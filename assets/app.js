@@ -2400,7 +2400,85 @@
         `;
       }
 
+      function renderCrasCarteiraOverview(snapshot) {
+        const overview = snapshot.portfolioOverview || {};
+        const assetRows = overview.assetRows || [];
+        const seriesRows = overview.rows || [];
+        const historyRows = overview.subHistory || [];
+        const totals = snapshot.ativo || {};
+        const passivo = snapshot.passivo || {};
+        const resumo = snapshot.carteiraResumo || {};
+        const assetColumns = [
+          { label: "CRA", render: (row) => `<strong>${escapeHtml(row.operacao || row.craId || "-")}</strong>` },
+          { label: "Carteira VP", render: (row) => escapeHtml(formatCurrencyShort(row.carteiraVp)) },
+          { label: "Caixa", render: (row) => escapeHtml(formatCurrencyShort(row.caixa)) },
+          { label: "Ativo", render: (row) => escapeHtml(formatCurrencyShort(row.ativoTotal)) },
+          { label: "Funding", render: (row) => escapeHtml(formatCurrencyShort(row.funding)) },
+          { label: "Sub", render: (row) => escapeHtml(formatCurrencyShort(row.subordinada)) },
+          { label: "PU Sub", render: (row) => escapeHtml(formatNumber(row.puSub, 6)) },
+          { label: "Dia Sub", render: (row) => renderPerformanceValue(row.rendimentoSubDia) },
+          { label: "PDD", render: (row) => escapeHtml(formatCurrencyShort(row.pdd)) },
+          { label: "Lastros", render: (row) => escapeHtml(formatNumber(row.lastrosAtivos, 0)) },
+          { label: "Taxa media", render: (row) => escapeHtml(formatPercent(row.taxaMedia)) }
+        ];
+        const seriesColumns = [
+          { label: "CRA", render: (row) => `<strong>${escapeHtml(row.operacao || row.craId || "-")}</strong>` },
+          { label: "Serie", render: (row) => escapeHtml(row.serie || classLabel(row.classe)) },
+          { label: "Codigo IF", render: (row) => escapeHtml(row.ifCodigo || "-") },
+          { label: "Quantidade", render: (row) => escapeHtml(formatNumber(row.quantidadeIntegralizada, 0)) },
+          { label: "PU", render: (row) => escapeHtml(formatNumber(row.puAtual, 6)) },
+          { label: "Valor", render: (row) => escapeHtml(formatCurrencyShort(row.valorAtual)) },
+          { label: "Taxa", render: (row) => escapeHtml(row.taxa || "-") },
+          { label: "Vencimento", render: (row) => escapeHtml(row.dataVencimento || formatIsoDate(row.dataVencimentoIso)) },
+          { label: "Status", render: (row) => escapeHtml(row.status || "-") }
+        ];
+        const historyColumns = [
+          { label: "Data", render: (row) => `<strong>${escapeHtml(row.reportDate || formatIsoDate(row.dateKey))}</strong>` },
+          { label: "Caixa total", render: (row) => escapeHtml(formatCurrencyShort(row.caixaTotal)) },
+          { label: "Subordinadas", render: (row) => escapeHtml(formatCurrencyShort(row.subordinadaTotal)) },
+          { label: "Dia Sub", render: (row) => renderPerformanceValue(row.rendimentoSubDia) }
+        ];
+
+        return `
+          <section class="panel section-panel report-block">
+            <div class="block-title">
+              <div>
+                <p class="eyebrow">cras carteira</p>
+                <h2>Visao geral consolidada</h2>
+              </div>
+              <span class="panel-meta">${escapeHtml(snapshot.metadata?.reportDate || state.dateKey)}</span>
+            </div>
+            <div class="stat-grid stat-grid-eight">
+              ${renderStatTile("Ativo total", formatCurrency(totals.total), "Carteira + caixa", "primary", "no-break-value")}
+              ${renderStatTile("Carteira VP liquida", formatCurrency(totals.carteiraVpLiquido), "", "", "no-break-value")}
+              ${renderStatTile("Caixa total", formatCurrency(totals.caixa), "", "", "no-break-value")}
+              ${renderStatTile("Funding SR/MEZ", formatCurrency(passivo.fundingTotal), "", "", "no-break-value")}
+              ${renderStatTile("Subordinadas", formatCurrency(passivo.subordinadaTotal), "Residual consolidado", "", "no-break-value")}
+              ${renderStatTile("PDD", formatCurrency(totals.pddTotal), "", "", "no-break-value")}
+              ${renderStatTile("Valor nominal", formatCurrency(resumo.valorNominal), "", "", "no-break-value")}
+              ${renderStatTile("Taxa media", formatPercent(resumo.taxaMediaPonderada))}
+            </div>
+          </section>
+          <section class="panel section-panel report-block">
+            <div class="block-title">
+              <div>
+                <p class="eyebrow">posicao por operacao</p>
+                <h2>Carteira, caixa e subordinada por CRA</h2>
+              </div>
+            </div>
+            ${renderGenericTable("Resumo individual dos CRAs Carteira", assetColumns, assetRows, "Sem carteira/caixa importado", "wide-table fit-table")}
+            ${renderGenericTable("Series de funding cadastradas", seriesColumns, seriesRows, "Sem series cadastradas", "wide-table fit-table")}
+            ${renderGenericTable("Historico consolidado de caixa e subordinada", historyColumns, historyRows, "Sem historico consolidado", "fit-table")}
+          </section>
+        `;
+      }
+
       function renderSections(snapshot) {
+        if (snapshot.metadata?.portfolioOverview) {
+          nodes.sectionsRoot.innerHTML = renderCrasCarteiraOverview(snapshot);
+          return;
+        }
+
         nodes.sectionsRoot.innerHTML = [
           renderGeneralOverview(snapshot),
           renderQuotaAndPricing(snapshot),

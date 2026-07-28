@@ -12,6 +12,7 @@
 !/scripts/Iniciar-Publicador-GitHub-Pages.cmd
 !/scripts/import-cra42-folder-day.py
 !/scripts/import-cra65-folder-day.py
+!/scripts/import-cras-carteira-consolidated.py
 !/scripts/normalize_carteira.py
 !/scripts/refresh_cra_snapshot_from_imports.py
 /tmp/
