@@ -6,8 +6,12 @@
 /docs/
 /inbox/
 /logs/
-/scripts/
+/scripts/*
+!/scripts/
+!/scripts/github-pages-publisher.mjs
+!/scripts/Iniciar-Publicador-GitHub-Pages.cmd
 /tmp/
+/.lamina-publisher-key
 
 # Duplicidades e variantes locais
 data/data/
