@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -109,6 +109,19 @@ function findImportedFile(cra, kind, dateKey) {
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score || b.file.localeCompare(a.file));
   return scored[0]?.file || files.sort().at(-1) || null;
+}
+
+function importedFilePath(payload) {
+  const craFolder = craFolders[payload.cra] || safeName(payload.cra);
+  const kindFolder = kindFolders[payload.kind] || safeName(payload.kind);
+  const dateFolder = safeName(payload.dateKey);
+  const fileName = safeName(payload.name);
+  if (!craFolder || !kindFolder || !fileName || !/^\d{4}-\d{2}-\d{2}$/.test(dateFolder)) return null;
+
+  const filePath = path.resolve(importRoot, craFolder, kindFolder, dateFolder, fileName);
+  const rootPath = path.resolve(importRoot);
+  if (filePath !== rootPath && filePath.startsWith(`${rootPath}${path.sep}`)) return filePath;
+  return null;
 }
 
 function extractSnapshotJson(text) {
@@ -482,6 +495,18 @@ const server = createServer(async (req, res) => {
       }
 
       json(req, res, 200, { ok: true, files: saved });
+      return;
+    }
+
+    if (req.method === "POST" && requestUrl.pathname === "/api/remove-import") {
+      const payload = await readBody(req);
+      const filePath = importedFilePath(payload);
+      if (!filePath) {
+        json(req, res, 400, { ok: false, message: "Arquivo invalido para exclusao." });
+        return;
+      }
+      if (existsSync(filePath)) unlinkSync(filePath);
+      json(req, res, 200, { ok: true, removed: true });
       return;
     }
 

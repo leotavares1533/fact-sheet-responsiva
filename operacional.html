@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Operacional - Lâmina ao investidor</title>
-  <link rel="stylesheet" href="./assets/styles.css?v=20260728-login-senha-v1">
+  <link rel="stylesheet" href="./assets/styles.css?v=20260728-operacional-fila-v1">
 </head>
 <body data-page="operacional">
   <main class="page operacional-page">
@@ -105,6 +105,7 @@
           <p class="eyebrow">Fila de arquivos</p>
           <h3>Importacoes desta sessao</h3>
         </div>
+        <button type="button" class="auth-button op-inline-button" id="clear-queue">Limpar fila</button>
       </div>
       <div class="table-shell">
         <table>
@@ -115,6 +116,8 @@
               <th>Tipo</th>
               <th>Data-base</th>
               <th>Arquivo</th>
+              <th>Status</th>
+              <th>Acao</th>
             </tr>
           </thead>
           <tbody id="op-files-body"></tbody>
@@ -141,9 +144,31 @@
         </table>
       </div>
     </section>
+
+    <section class="op-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Historico operacional</p>
+          <h3>Publicacoes deste navegador</h3>
+        </div>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Mensagem</th>
+              <th>Commit</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="publish-log-body"></tbody>
+        </table>
+      </div>
+    </section>
   </main>
 
   <script src="./assets/auth.js?v=20260728-login-senha-v1"></script>
-  <script src="./assets/operacional.js?v=20260728-prod-operacional-v1"></script>
+  <script src="./assets/operacional.js?v=20260728-operacional-fila-v1"></script>
 </body>
 </html>

@@ -5,17 +5,34 @@
   const KEY_STORAGE = "lamina_github_pages_publisher_key_v1";
   const STATE_KEY = "lamina_prod_operacional_state_v1";
   const queue = [];
+  let lastAutoCommitMessage = "";
 
   const $ = (selector) => document.querySelector(selector);
 
   function defaultCommitMessage() {
-    return `Atualiza lamina ${new Date().toLocaleDateString("pt-BR")}`;
+    const selected = selectedPayload();
+    const cra = selected.cra || "lamina";
+    const date = selected.dateKey ? formatDate(selected.dateKey) : new Date().toLocaleDateString("pt-BR");
+    return `Atualiza ${cra} em ${date}`;
   }
 
   function formatDate(value) {
     if (!value) return "";
     const [year, month, day] = value.split("-");
     return `${day}/${month}/${year}`;
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function queueItemId(item = {}) {
+    return [item.cra, item.kind, item.dateKey, item.name].map((part) => String(part || "")).join("|");
   }
 
   function setStatus(message, type = "info") {
@@ -106,7 +123,13 @@
     if (selected.cra && $("#op-cra")) $("#op-cra").value = selected.cra;
     if (selected.kind && $("#op-kind")) $("#op-kind").value = selected.kind;
     if (selected.dateKey && $("#op-date")) $("#op-date").value = selected.dateKey;
-    queue.splice(0, queue.length, ...(Array.isArray(state.queue) ? state.queue : []));
+    queue.splice(
+      0,
+      queue.length,
+      ...(Array.isArray(state.queue)
+        ? state.queue.map((item) => ({ ...item, status: item.status || "importado" }))
+        : [])
+    );
   }
 
   function selectedOrLastProcessed() {
@@ -151,7 +174,7 @@
     if (!body) return;
 
     if (!queue.length) {
-      body.innerHTML = `<tr><td colspan="5">Nenhum arquivo importado nesta sessao.</td></tr>`;
+      body.innerHTML = `<tr><td colspan="7">Nenhum arquivo importado nesta sessao.</td></tr>`;
       return;
     }
 
@@ -160,14 +183,20 @@
         (item, index) => `
           <tr>
             <td>${index + 1}</td>
-            <td>${item.cra}</td>
-            <td>${item.kind}</td>
+            <td>${escapeHtml(item.cra)}</td>
+            <td>${escapeHtml(item.kind)}</td>
             <td>${formatDate(item.dateKey)}</td>
-            <td>${item.name}</td>
+            <td>${escapeHtml(item.name)}</td>
+            <td><span class="op-queue-status" data-status="${escapeHtml(item.status || "importado")}">${escapeHtml(item.status || "importado")}</span></td>
+            <td><button type="button" class="op-row-action" data-remove-queue="${index}">Excluir</button></td>
           </tr>
         `
       )
       .join("");
+
+    body.querySelectorAll("[data-remove-queue]").forEach((button) => {
+      button.addEventListener("click", () => removeQueuedFile(Number(button.dataset.removeQueue)));
+    });
   }
 
   function renderChanges(changes = []) {
@@ -181,6 +210,94 @@
     body.innerHTML = changes
       .map((item) => `<tr><td>${item.status || ""}</td><td>${item.file || ""}</td></tr>`)
       .join("");
+  }
+
+  function renderPublishLog(log = loadState().publishLog || []) {
+    const body = $("#publish-log-body");
+    if (!body) return;
+    if (!log.length) {
+      body.innerHTML = `<tr><td colspan="4">Nenhuma publicacao registrada neste navegador.</td></tr>`;
+      return;
+    }
+
+    body.innerHTML = log
+      .slice(0, 20)
+      .map(
+        (item) => `
+          <tr>
+            <td>${escapeHtml(new Date(item.publishedAt).toLocaleString("pt-BR"))}</td>
+            <td>${escapeHtml(item.message)}</td>
+            <td>${escapeHtml(item.commit || "-")}</td>
+            <td>${escapeHtml(item.summary || "Publicado")}</td>
+          </tr>
+        `
+      )
+      .join("");
+  }
+
+  function addPublishLog(job, message) {
+    const state = loadState();
+    const entry = {
+      publishedAt: new Date().toISOString(),
+      message,
+      commit: job.commit || "",
+      summary: job.message || "Publicado no GitHub Pages.",
+    };
+    const publishLog = [entry, ...(state.publishLog || [])].slice(0, 20);
+    saveState({ lastPublication: entry, publishLog });
+    renderPublishLog(publishLog);
+  }
+
+  function updateCommitMessage(force = false) {
+    const input = $("#commit-message");
+    if (!input) return;
+    const next = defaultCommitMessage();
+    if (force || !input.value || input.value === lastAutoCommitMessage) {
+      input.value = next;
+    }
+    lastAutoCommitMessage = next;
+  }
+
+  function clearQueue(message = "") {
+    queue.splice(0, queue.length);
+    const input = $("#op-files");
+    if (input) input.value = "";
+    renderQueue();
+    saveState({ queueClearedAt: new Date().toISOString() });
+    if (message) setStatus(message, "ok");
+  }
+
+  async function removeQueuedFile(index) {
+    const item = queue[index];
+    if (!item) return;
+
+    const canRemoveLocal = item.status !== "processado";
+    const confirmed = window.confirm(
+      canRemoveLocal
+        ? `Excluir "${item.name}" da fila e da area de importacao local?`
+        : `Excluir "${item.name}" apenas da fila? A base ja foi processada e isso nao desfaz o snapshot.`
+    );
+    if (!confirmed) return;
+
+    try {
+      if (canRemoveLocal) {
+        if (!canOperate()) {
+          setStatus("Entre com usuario operacional para excluir importacoes.", "warn");
+          return;
+        }
+        if (!getKey()) {
+          setStatus("Informe a chave local do publicador antes de excluir importacoes.", "warn");
+          return;
+        }
+        await api("/remove-import", { body: item });
+      }
+      queue.splice(index, 1);
+      renderQueue();
+      saveState({ lastQueueRemoval: { ...item, removedAt: new Date().toISOString() } });
+      setStatus(canRemoveLocal ? "Arquivo removido da fila e da importacao local." : "Arquivo removido da fila.", "ok");
+    } catch (error) {
+      setStatus(friendlyError(error), "error");
+    }
   }
 
   function readFileAsBase64(file) {
@@ -272,7 +389,7 @@
         payloadFiles.push({ name: file.name, dataBase64: await readFileAsBase64(file) });
       }
       const result = await api("/import", { body: { ...base, files: payloadFiles } });
-      result.files.forEach((file) => queue.push({ ...base, name: file.name }));
+      result.files.forEach((file) => queue.push({ ...base, name: file.name, status: "importado" }));
       renderQueue();
       saveState({ lastImport: { ...base, files: result.files, importedAt: new Date().toISOString() } });
       setStatus(`${result.files.length} arquivo(s) importado(s).`, "ok");
@@ -308,6 +425,17 @@
         if (job.status !== "completed") throw new Error(job.message || "Processamento falhou.");
         processed.push({ ...payload, jobId: job.id, processedAt: new Date().toISOString() });
       }
+      const processedIds = new Set(
+        processed.flatMap((target) =>
+          queue
+            .filter((item) => item.cra === target.cra && item.dateKey === target.dateKey)
+            .map(queueItemId)
+        )
+      );
+      queue.forEach((item) => {
+        if (processedIds.has(queueItemId(item))) item.status = "processado";
+      });
+      renderQueue();
       saveState({ lastProcessed: processed.at(-1), lastProcessedBatch: processed });
       setStatus(`Processamento concluido para ${processed.length} posicao(oes). Valide a lamina antes de publicar.`, "ok");
       await refreshGitStatus();
@@ -325,6 +453,11 @@
     }
     if (!getKey()) {
       setStatus("Informe a chave local do publicador antes de publicar.", "warn");
+      return;
+    }
+    const pendingImports = queue.filter((item) => item.status !== "processado");
+    if (pendingImports.length) {
+      setStatus(`Existem ${pendingImports.length} arquivo(s) importado(s) ainda nao processado(s). Exclua da fila ou processe antes de publicar.`, "warn");
       return;
     }
 
@@ -347,8 +480,10 @@
       const started = await api("/publish", { body: { message } });
       const job = await pollJob(started.job.id);
       if (job.status !== "completed") throw new Error(job.message || "Publicacao falhou.");
-      setStatus(job.message || "Publicado no GitHub Pages.", "ok");
+      clearQueue();
+      addPublishLog(job, message);
       await refreshGitStatus();
+      setStatus(job.message || "Publicado no GitHub Pages. Fila limpa para a proxima importacao.", "ok");
     } catch (error) {
       setStatus(friendlyError(error), "error");
     } finally {
@@ -360,9 +495,8 @@
     restoreState();
 
     const keyInput = $("#publisher-key");
-    const messageInput = $("#commit-message");
     if (keyInput) keyInput.value = getKey();
-    if (messageInput && !messageInput.value) messageInput.value = defaultCommitMessage();
+    updateCommitMessage(true);
 
     $("#save-key")?.addEventListener("click", () => {
       const key = (keyInput?.value || "").trim();
@@ -374,12 +508,33 @@
     $("#op-process")?.addEventListener("click", processFiles);
     $("#refresh-git-status")?.addEventListener("click", refreshGitStatus);
     $("#publish-github")?.addEventListener("click", publishGithub);
-    $("#op-cra")?.addEventListener("change", () => saveState());
+    $("#clear-queue")?.addEventListener("click", () => {
+      if (!queue.length) {
+        setStatus("A fila ja esta vazia.", "ok");
+        return;
+      }
+      const pendingImports = queue.filter((item) => item.status !== "processado");
+      if (pendingImports.length) {
+        setStatus(`Existem ${pendingImports.length} arquivo(s) ainda nao processado(s). Exclua linha a linha para remover tambem da area local.`, "warn");
+        return;
+      }
+      if (window.confirm("Limpar a fila da tela? Isso nao desfaz snapshots ja processados nem publicacoes.")) {
+        clearQueue("Fila limpa na tela.");
+      }
+    });
+    $("#op-cra")?.addEventListener("change", () => {
+      updateCommitMessage();
+      saveState();
+    });
     $("#op-kind")?.addEventListener("change", () => saveState());
-    $("#op-date")?.addEventListener("change", () => saveState());
+    $("#op-date")?.addEventListener("change", () => {
+      updateCommitMessage();
+      saveState();
+    });
 
     renderQueue();
     renderChanges();
+    renderPublishLog();
     window.addEventListener("lamina-auth-ready", () => {
       if (!canOperate()) setStatus("Entre com usuario operacional para liberar importacao e publicacao.", "warn");
     });
