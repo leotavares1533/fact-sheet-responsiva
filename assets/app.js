@@ -23,6 +23,37 @@
         timeline: document.getElementById("timeline")
       };
 
+      const PUBLIC_HIDDEN_CRA_GROUP_ID = "cras-carteira";
+
+      function isPublicAccess() {
+        return window.LAMINA_AUTH?.currentUser?.().role === "public";
+      }
+
+      function isCrasCarteiraEntry(cra) {
+        const craId = String(cra?.craId || "");
+        return String(cra?.groupId || "") === PUBLIC_HIDDEN_CRA_GROUP_ID
+          || craId === "cras-carteira-overview"
+          || craId.startsWith("cra-carteira-");
+      }
+
+      function getAccessibleCraManifest() {
+        return isPublicAccess()
+          ? craManifest.filter((cra) => !isCrasCarteiraEntry(cra))
+          : craManifest;
+      }
+
+      function getFirstAccessibleCra() {
+        return getAccessibleCraManifest()[0] || craManifest[0] || null;
+      }
+
+      function normalizeCraAccess() {
+        const current = craManifest.find((cra) => cra.craId === state.craId);
+        if (!current || (isPublicAccess() && isCrasCarteiraEntry(current))) {
+          const fallback = getFirstAccessibleCra();
+          state.craId = fallback?.craId || "";
+        }
+      }
+
       function escapeHtml(value) {
         return String(value ?? "")
           .replace(/&/g, "&amp;")
@@ -229,14 +260,15 @@
       }
 
       function getCurrentCra() {
-        return craManifest.find((cra) => cra.craId === state.craId) || craManifest[0];
+        normalizeCraAccess();
+        return craManifest.find((cra) => cra.craId === state.craId) || getFirstAccessibleCra();
       }
 
       function getGroupedCraOptions() {
         const options = [];
         const seenGroups = new Set();
 
-        for (const cra of craManifest) {
+        for (const cra of getAccessibleCraManifest()) {
           if (cra.groupId) {
             if (!seenGroups.has(cra.groupId)) {
               seenGroups.add(cra.groupId);
@@ -262,7 +294,7 @@
       }
 
       function getGroupChildren(groupId) {
-        return craManifest.filter((cra) => cra.groupId === groupId);
+        return getAccessibleCraManifest().filter((cra) => cra.groupId === groupId);
       }
 
       function getCurrentMainSelection() {
@@ -2692,8 +2724,22 @@
         nodes.printButton?.addEventListener("click", printReport);
       }
 
+      function refreshCraVisibilityForAccess() {
+        const previousCraId = state.craId;
+        const cra = getCurrentCra();
+
+        if (cra?.craId && previousCraId !== cra.craId) {
+          selectCra(cra.craId);
+          return;
+        }
+
+        renderCraSelector();
+        renderDateSelector();
+      }
+
       function initCraApp() {
         bindCraEvents();
+        window.addEventListener("lamina-auth-ready", refreshCraVisibilityForAccess);
 
         const cra = getCurrentCra();
         state.craId = cra.craId;
