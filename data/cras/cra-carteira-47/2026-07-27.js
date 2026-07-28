@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:14.903258-03:00",
+    "importedAt": "2026-07-28T16:01:06.880399-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -104,20 +104,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
     "dateKey": "2026-07-27"
   },
   "ativo": {
-    "carteiraVpBruto": 15456436.202965466,
+    "carteiraVpBruto": 15456436.199932158,
     "pddTotal": 0.0,
-    "carteiraVp": 15456436.202965466,
-    "carteiraVpLiquido": 15456436.202965466,
+    "carteiraVp": 15456436.199932158,
+    "carteiraVpLiquido": 15456436.199932158,
     "caixa": 9684092.12,
-    "total": 25140528.322965465,
+    "total": 25140528.319932155,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 9,
     "quantidadeLastrosBase": 9,
-    "lastrosAtivos": 3,
-    "quantidadeLastrosAtivos": 3,
-    "cedentesUnicos": 3,
-    "sacadosUnicos": 3,
+    "lastrosAtivos": 2,
+    "quantidadeLastrosAtivos": 2,
+    "cedentesUnicos": 2,
+    "sacadosUnicos": 2,
     "montanteAtraso": 0
   },
   "caixa": {
@@ -135,9 +135,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
   "passivo": {
     "fundingTotal": 25279176.052242,
     "despesasTotal": 0,
-    "subordinadaTotal": -138647.72927653417,
+    "subordinadaTotal": -138647.73230984434,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": -1386.4772927653416,
+    "subordinadaPuResidual": -1386.4773230984435,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -8434,9 +8434,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": -1386.4772927653416,
-        "valor": -138647.72927653417,
-        "principalResidual": -1386.4772927653416,
+        "pu": -1386.4773230984435,
+        "valor": -138647.73230984434,
+        "principalResidual": -1386.4773230984435,
         "ehFunding": false,
         "ordem": 90,
         "historicoPu": [
@@ -8471,18 +8471,18 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
   },
   "carteiraResumo": {
     "valorNominal": 16886049.52,
-    "valorPresente": 15456436.202965466,
-    "valorPresenteLiquido": 15456436.202965466,
+    "valorPresente": 15456436.199932158,
+    "valorPresenteLiquido": 15456436.199932158,
     "pddTotal": 0.0,
-    "cedentesUnicos": 3,
-    "sacadosUnicos": 3,
-    "prazoMedioDias": 10.596478125396198,
-    "taxaMediaPonderada": 0.019522920952012395,
+    "cedentesUnicos": 2,
+    "sacadosUnicos": 2,
+    "prazoMedioDias": 10.596478127475745,
+    "taxaMediaPonderada": 0.019522920952592733,
     "preFixado": {
       "valorPresente": 4426588.86814339
     },
     "posFixado": {
-      "valorPresente": 11029847.334822075
+      "valorPresente": 11029847.331788769
     },
     "montanteAtraso": 0
   },
@@ -8508,8 +8508,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "CDI + 7,50% a.a.",
-      "pu": -1386.4772927653416,
-      "valor": -138647.72927653417,
+      "pu": -1386.4773230984435,
+      "valor": -138647.73230984434,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -8528,15 +8528,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
       "valorPresente": 15456436.199932158,
       "valorPdd": 0.0,
       "order": 0.0,
-      "percentualCarteira": 0.9999999998037511
-    },
-    {
-      "status": "LIQUIDADO",
-      "valorNominal": 0.0,
-      "valorPresente": 0.0030333065148282355,
-      "valorPdd": 0.0,
-      "order": 99.0,
-      "percentualCarteira": 1.9624876491556742e-10
+      "percentualCarteira": 1.0
     }
   ],
   "composicaoPdd": [],
@@ -8598,7 +8590,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-1.386,477293",
+          "value": "-1.386,477323",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -8827,14 +8819,14 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
       "dataVencimento": "31/10/2028",
       "dataVencimentoIso": "2028-10-31",
       "valorLiquidacao": 4268472.95,
-      "dataLiquidacao": "",
-      "dataLiquidacaoIso": "",
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
       "dataLiquidacaoOriginal": "03/06/2026",
       "dataLiquidacaoOriginalIso": "2026-06-03",
       "tipoTitulo": "NC",
       "tipoAtivo": "NC",
       "mesaResp": "Normal",
-      "status": "EM CARTEIRA",
+      "status": "LIQUIDADO",
       "statusOriginal": "LIQUIDADO",
       "statusPagamento": "Liquidado",
       "taxa": 0.01656579153001414,
@@ -9093,7 +9085,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 11029847.331788769,
         "valorNominal": 10856355.03,
         "posicao": 1,
-        "participacao": 0.7136086991173675,
+        "participacao": 0.7136086992574123,
         "participacaoPl": 0.43872774629454314
       },
       {
@@ -9104,19 +9096,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 4426588.86814339,
         "valorNominal": 6029694.49,
         "posicao": 2,
-        "participacao": 0.28639130068638374,
+        "participacao": 0.2863913007425877,
         "participacaoPl": 0.17607382037790242
-      },
-      {
-        "name": "INOVA 100 COMERCIO DE PRO",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0030333065148282355,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0030333065148282355,
-        "valorNominal": 0.0,
-        "posicao": 3,
-        "participacao": 1.9624876491556742e-10,
-        "participacaoPl": 1.2065404815130155e-10
       }
     ],
     "sacados": [
@@ -9128,7 +9109,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 11029847.331788769,
         "valorNominal": 10856355.03,
         "posicao": 1,
-        "participacao": 0.7136086991173675,
+        "participacao": 0.7136086992574123,
         "participacaoPl": 0.43872774629454314
       },
       {
@@ -9139,22 +9120,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 4426588.86814339,
         "valorNominal": 6029694.49,
         "posicao": 2,
-        "participacao": 0.28639130068638374,
+        "participacao": 0.2863913007425877,
         "participacaoPl": 0.17607382037790242
-      },
-      {
-        "name": "INOVA 100 COMERCIO DE PRO",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0030333065148282355,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0030333065148282355,
-        "valorNominal": 0.0,
-        "posicao": 3,
-        "participacao": 1.9624876491556742e-10,
-        "participacaoPl": 1.2065404815130155e-10
       }
     ],
-    "lastrosAtivos": 3
+    "lastrosAtivos": 2
   },
   "concentracaoDetalhada": {
     "top10Cedentes": [
@@ -9166,7 +9136,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 11029847.331788769,
         "valorNominal": 10856355.03,
         "posicao": 1,
-        "participacao": 0.7136086991173675,
+        "participacao": 0.7136086992574123,
         "participacaoPl": 0.43872774629454314
       },
       {
@@ -9177,19 +9147,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 4426588.86814339,
         "valorNominal": 6029694.49,
         "posicao": 2,
-        "participacao": 0.28639130068638374,
+        "participacao": 0.2863913007425877,
         "participacaoPl": 0.17607382037790242
-      },
-      {
-        "name": "INOVA 100 COMERCIO DE PRO",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0030333065148282355,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0030333065148282355,
-        "valorNominal": 0.0,
-        "posicao": 3,
-        "participacao": 1.9624876491556742e-10,
-        "participacaoPl": 1.2065404815130155e-10
       }
     ],
     "top10Sacados": [
@@ -9201,7 +9160,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 11029847.331788769,
         "valorNominal": 10856355.03,
         "posicao": 1,
-        "participacao": 0.7136086991173675,
+        "participacao": 0.7136086992574123,
         "participacaoPl": 0.43872774629454314
       },
       {
@@ -9212,19 +9171,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valorPresenteLiquido": 4426588.86814339,
         "valorNominal": 6029694.49,
         "posicao": 2,
-        "participacao": 0.28639130068638374,
+        "participacao": 0.2863913007425877,
         "participacaoPl": 0.17607382037790242
-      },
-      {
-        "name": "INOVA 100 COMERCIO DE PRO",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0030333065148282355,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0030333065148282355,
-        "valorNominal": 0.0,
-        "posicao": 3,
-        "participacao": 1.9624876491556742e-10,
-        "participacaoPl": 1.2065404815130155e-10
       }
     ]
   },
@@ -9234,10 +9182,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
       "label": "NC",
       "tipoTitulo": "NC",
       "valorNominal": 16886049.52,
-      "valorPresente": 15456436.202965464,
-      "lastros": 3,
-      "percentualCarteira": 0.9999999999999999,
-      "taxaMedia": 0.019522920952012395
+      "valorPresente": 15456436.199932158,
+      "lastros": 2,
+      "percentualCarteira": 1.0,
+      "taxaMedia": 0.019522920952592733
     }
   ],
   "movimentacoesDia": {
@@ -9364,8 +9312,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": -1386.4772927653416,
-          "valor": -138647.72927653417,
+          "pu": -1386.4773230984435,
+          "valor": -138647.73230984434,
           "resultadoDia": null,
           "resultadoMes": null
         }

@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:15.190213-03:00",
+    "importedAt": "2026-07-28T16:01:07.123152-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -81,20 +81,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
     "dateKey": "2026-07-27"
   },
   "ativo": {
-    "carteiraVpBruto": 13454789.371234436,
-    "pddTotal": 11988.284956303914,
-    "carteiraVp": 13442801.086278131,
-    "carteiraVpLiquido": 13442801.086278131,
+    "carteiraVpBruto": 13454789.367110366,
+    "pddTotal": 0.0,
+    "carteiraVp": 13454789.367110366,
+    "carteiraVpLiquido": 13454789.367110366,
     "caixa": 221081.47000000003,
-    "total": 13663882.556278132,
+    "total": 13675870.837110367,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 36,
     "quantidadeLastrosBase": 36,
-    "lastrosAtivos": 8,
-    "quantidadeLastrosAtivos": 8,
-    "cedentesUnicos": 5,
-    "sacadosUnicos": 8,
+    "lastrosAtivos": 7,
+    "quantidadeLastrosAtivos": 7,
+    "cedentesUnicos": 4,
+    "sacadosUnicos": 7,
     "montanteAtraso": 2397656.991260783
   },
   "caixa": {
@@ -112,9 +112,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
   "passivo": {
     "fundingTotal": 13771624.790847002,
     "despesasTotal": 0,
-    "subordinadaTotal": -107742.2345688697,
+    "subordinadaTotal": -95753.95373663493,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": -1077.4223456886969,
+    "subordinadaPuResidual": -957.5395373663492,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -7116,9 +7116,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": -1077.4223456886969,
-        "valor": -107742.2345688697,
-        "principalResidual": -1077.4223456886969,
+        "pu": -957.5395373663492,
+        "valor": -95753.95373663493,
+        "principalResidual": -957.5395373663492,
         "ehFunding": false,
         "ordem": 90,
         "historicoPu": [
@@ -7149,21 +7149,21 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
     "funding": 13407376.015047,
     "valorTotalSenior": 13407376.015047,
     "despesasOperacionaisTotal": 0,
-    "provisoesTotal": 11988.284956303914,
+    "provisoesTotal": 0.0,
     "provisoesCaixa": 0,
     "deducoesTotal": 0
   },
   "carteiraResumo": {
-    "valorNominal": 20131737.6,
-    "valorPresente": 13454789.371234436,
-    "valorPresenteLiquido": 13442801.086278131,
-    "pddTotal": 11988.284956303914,
-    "cedentesUnicos": 5,
-    "sacadosUnicos": 8,
-    "prazoMedioDias": 41.882605192790436,
-    "taxaMediaPonderada": 0.017645892316606356,
+    "valorNominal": 14949673.5,
+    "valorPresente": 13454789.367110366,
+    "valorPresenteLiquido": 13454789.367110366,
+    "pddTotal": 0.0,
+    "cedentesUnicos": 4,
+    "sacadosUnicos": 7,
+    "prazoMedioDias": 41.82657648832316,
+    "taxaMediaPonderada": 0.017645346295635234,
     "preFixado": {
-      "valorPresente": 13454789.371234436
+      "valorPresente": 13454789.367110366
     },
     "posFixado": {
       "valorPresente": 0
@@ -7192,8 +7192,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "CDI + 7,00% a.a.",
-      "pu": -1077.4223456886969,
-      "valor": -107742.2345688697,
+      "pu": -957.5395373663492,
+      "valor": -95753.95373663493,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -7212,23 +7212,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
       "valorPresente": 11057132.375849582,
       "valorPdd": 0.0,
       "order": 0.0,
-      "percentualCarteira": 0.8217989944524211
+      "percentualCarteira": 0.8217989947043133
     },
     {
       "status": "Entre 1 e 30 dias",
       "valorNominal": 2774913.31,
       "valorPresente": 2397656.991260783,
-      "valorPdd": 11988.284956303914,
-      "order": 1.0,
-      "percentualCarteira": 0.17820100524106572
-    },
-    {
-      "status": "LIQUIDADO",
-      "valorNominal": 5182064.1,
-      "valorPresente": 0.0041240699614780675,
       "valorPdd": 0.0,
-      "order": 99.0,
-      "percentualCarteira": 3.065131565935243e-10
+      "order": 1.0,
+      "percentualCarteira": 0.17820100529568667
     }
   ],
   "composicaoPdd": [],
@@ -7250,7 +7242,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 13.663.882,56",
+          "value": "R$ 13.675.870,84",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -7258,7 +7250,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         },
         {
           "label": "Carteira VP liquida",
-          "value": "R$ 13.442.801,09",
+          "value": "R$ 13.454.789,37",
           "isHighlight": true,
           "source": {
             "name": "Import carteira"
@@ -7282,7 +7274,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -107.742,23",
+          "value": "R$ -95.753,95",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -7290,7 +7282,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-1.077,422346",
+          "value": "-957,539537",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -7298,7 +7290,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         },
         {
           "label": "Valor nominal",
-          "value": "R$ 20.131.737,60",
+          "value": "R$ 14.949.673,50",
           "isHighlight": false,
           "source": {
             "name": "Carteira"
@@ -7306,7 +7298,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         },
         {
           "label": "PDD",
-          "value": "R$ 11.988,28",
+          "value": "R$ 0,00",
           "isHighlight": false,
           "source": {
             "name": "Faixa vencimento"
@@ -8782,8 +8774,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
       "faixaVencOrder": 1,
       "valorPresenteDia": 2397656.991260783,
       "valorPresente": 2397656.991260783,
-      "pdd": 11988.284956303914,
-      "valorPresenteLiquido": 2385668.706304479
+      "pdd": 0.0,
+      "valorPresenteLiquido": 2397656.991260783
     },
     {
       "craCarteira": "50ª",
@@ -8800,14 +8792,14 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
       "dataVencimento": "30/10/2026",
       "dataVencimentoIso": "2026-10-30",
       "valorLiquidacao": 4762411.0,
-      "dataLiquidacao": "",
-      "dataLiquidacaoIso": "",
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
       "dataLiquidacaoOriginal": "03/06/2026",
       "dataLiquidacaoOriginalIso": "2026-06-03",
       "tipoTitulo": "NC",
       "tipoAtivo": "NC",
       "mesaResp": "Recovery",
-      "status": "EM CARTEIRA",
+      "status": "LIQUIDADO",
       "statusOriginal": "LIQUIDADO",
       "statusPagamento": "Liquidado",
       "taxa": 0.02299999999999991,
@@ -8976,8 +8968,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 5826338.867303917,
         "valorNominal": 6472013.84,
         "posicao": 1,
-        "participacao": 0.43341702595385484,
-        "participacaoPl": 0.42640434322431253
+        "participacao": 0.43303084933801667,
+        "participacaoPl": 0.4260305566601863
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -8987,19 +8979,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 4484766.5191917075,
         "valorNominal": 4930895.61,
         "posicao": 2,
-        "participacao": 0.33361845424980485,
-        "participacaoPl": 0.32822051131660934
+        "participacao": 0.33332119863240073,
+        "participacaoPl": 0.3279327928185446
       },
       {
         "name": "INDUSTRIA QUIMICA KIMBERL",
         "quantidade": 1,
         "valorPresenteDia": 2397656.991260783,
-        "pdd": 11988.284956303914,
-        "valorPresenteLiquido": 2385668.706304479,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2397656.991260783,
         "valorNominal": 2774913.31,
         "posicao": 3,
-        "participacao": 0.17746812520641053,
-        "participacaoPl": 0.17459669288567894
+        "participacao": 0.17820100529568667,
+        "participacaoPl": 0.17532024242518812
       },
       {
         "name": "CONNTACTA AGRONEGOCIOS LT",
@@ -9009,19 +9001,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 746026.9893539585,
         "valorNominal": 771850.74,
         "posicao": 4,
-        "participacao": 0.05549639428314332,
-        "participacaoPl": 0.054598463231900526
-      },
-      {
-        "name": "JOAO PEDRO MARTINS OLIVEI",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0041240699614780675,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0041240699614780675,
-        "valorNominal": 5182064.1,
-        "posicao": 5,
-        "participacao": 3.0678650491137233e-10,
-        "participacaoPl": 3.0182270262438583e-10
+        "participacao": 0.05544694673389598,
+        "participacaoPl": 0.05455060215285122
       }
     ],
     "sacados": [
@@ -9033,8 +9014,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 5826338.867303917,
         "valorNominal": 6472013.84,
         "posicao": 1,
-        "participacao": 0.43341702595385484,
-        "participacaoPl": 0.42640434322431253
+        "participacao": 0.43303084933801667,
+        "participacaoPl": 0.4260305566601863
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -9044,19 +9025,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 4484766.5191917075,
         "valorNominal": 4930895.61,
         "posicao": 2,
-        "participacao": 0.33361845424980485,
-        "participacaoPl": 0.32822051131660934
+        "participacao": 0.33332119863240073,
+        "participacaoPl": 0.3279327928185446
       },
       {
         "name": "INDUSTRIA QUIMICA KIMBERL",
         "quantidade": 1,
         "valorPresenteDia": 2397656.991260783,
-        "pdd": 11988.284956303914,
-        "valorPresenteLiquido": 2385668.706304479,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2397656.991260783,
         "valorNominal": 2774913.31,
         "posicao": 3,
-        "participacao": 0.17746812520641053,
-        "participacaoPl": 0.17459669288567894
+        "participacao": 0.17820100529568667,
+        "participacaoPl": 0.17532024242518812
       },
       {
         "name": "ROGERIO VIEIRA GOUVEA E O",
@@ -9066,8 +9047,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 415430.4922156519,
         "valorNominal": 429840.0,
         "posicao": 4,
-        "participacao": 0.030903566120583797,
-        "participacaoPl": 0.030403546759465848
+        "participacao": 0.030876030897306596,
+        "participacaoPl": 0.03037689497352357
       },
       {
         "name": "MARANATA AGROPECUARIA LTD",
@@ -9077,8 +9058,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 276953.6600719389,
         "valorNominal": 286560.0,
         "posicao": 5,
-        "participacao": 0.020602377309193544,
-        "participacaoPl": 0.020269031070139523
+        "participacao": 0.020584020493768545,
+        "participacaoPl": 0.020251263212934818
       },
       {
         "name": "JOSE LUIZ VOLPE NETO",
@@ -9088,8 +9069,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 34139.959902874696,
         "valorNominal": 35271.39,
         "posicao": 6,
-        "participacao": 0.002539646289769428,
-        "participacaoPl": 0.002498554840636305
+        "participacao": 0.002537383452938201,
+        "participacaoPl": 0.00249636460443444
       },
       {
         "name": "REGINALDO DONIZETE DA SIL",
@@ -9099,22 +9080,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 19502.877163493093,
         "valorNominal": 20179.35,
         "posicao": 7,
-        "participacao": 0.001450804563596559,
-        "participacaoPl": 0.0014273305616588547
-      },
-      {
-        "name": "JOAO PEDRO MARTINS DE OLI",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0041240699614780675,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0041240699614780675,
-        "valorNominal": 5182064.1,
-        "posicao": 8,
-        "participacao": 3.0678650491137233e-10,
-        "participacaoPl": 3.0182270262438583e-10
+        "participacao": 0.001449511889882647,
+        "participacaoPl": 0.0014260793619584001
       }
     ],
-    "lastrosAtivos": 8
+    "lastrosAtivos": 7
   },
   "concentracaoDetalhada": {
     "top10Cedentes": [
@@ -9126,8 +9096,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 5826338.867303917,
         "valorNominal": 6472013.84,
         "posicao": 1,
-        "participacao": 0.43341702595385484,
-        "participacaoPl": 0.42640434322431253
+        "participacao": 0.43303084933801667,
+        "participacaoPl": 0.4260305566601863
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -9137,19 +9107,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 4484766.5191917075,
         "valorNominal": 4930895.61,
         "posicao": 2,
-        "participacao": 0.33361845424980485,
-        "participacaoPl": 0.32822051131660934
+        "participacao": 0.33332119863240073,
+        "participacaoPl": 0.3279327928185446
       },
       {
         "name": "INDUSTRIA QUIMICA KIMBERL",
         "quantidade": 1,
         "valorPresenteDia": 2397656.991260783,
-        "pdd": 11988.284956303914,
-        "valorPresenteLiquido": 2385668.706304479,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2397656.991260783,
         "valorNominal": 2774913.31,
         "posicao": 3,
-        "participacao": 0.17746812520641053,
-        "participacaoPl": 0.17459669288567894
+        "participacao": 0.17820100529568667,
+        "participacaoPl": 0.17532024242518812
       },
       {
         "name": "CONNTACTA AGRONEGOCIOS LT",
@@ -9159,19 +9129,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 746026.9893539585,
         "valorNominal": 771850.74,
         "posicao": 4,
-        "participacao": 0.05549639428314332,
-        "participacaoPl": 0.054598463231900526
-      },
-      {
-        "name": "JOAO PEDRO MARTINS OLIVEI",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0041240699614780675,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0041240699614780675,
-        "valorNominal": 5182064.1,
-        "posicao": 5,
-        "participacao": 3.0678650491137233e-10,
-        "participacaoPl": 3.0182270262438583e-10
+        "participacao": 0.05544694673389598,
+        "participacaoPl": 0.05455060215285122
       }
     ],
     "top10Sacados": [
@@ -9183,8 +9142,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 5826338.867303917,
         "valorNominal": 6472013.84,
         "posicao": 1,
-        "participacao": 0.43341702595385484,
-        "participacaoPl": 0.42640434322431253
+        "participacao": 0.43303084933801667,
+        "participacaoPl": 0.4260305566601863
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -9194,19 +9153,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 4484766.5191917075,
         "valorNominal": 4930895.61,
         "posicao": 2,
-        "participacao": 0.33361845424980485,
-        "participacaoPl": 0.32822051131660934
+        "participacao": 0.33332119863240073,
+        "participacaoPl": 0.3279327928185446
       },
       {
         "name": "INDUSTRIA QUIMICA KIMBERL",
         "quantidade": 1,
         "valorPresenteDia": 2397656.991260783,
-        "pdd": 11988.284956303914,
-        "valorPresenteLiquido": 2385668.706304479,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2397656.991260783,
         "valorNominal": 2774913.31,
         "posicao": 3,
-        "participacao": 0.17746812520641053,
-        "participacaoPl": 0.17459669288567894
+        "participacao": 0.17820100529568667,
+        "participacaoPl": 0.17532024242518812
       },
       {
         "name": "ROGERIO VIEIRA GOUVEA E O",
@@ -9216,8 +9175,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 415430.4922156519,
         "valorNominal": 429840.0,
         "posicao": 4,
-        "participacao": 0.030903566120583797,
-        "participacaoPl": 0.030403546759465848
+        "participacao": 0.030876030897306596,
+        "participacaoPl": 0.03037689497352357
       },
       {
         "name": "MARANATA AGROPECUARIA LTD",
@@ -9227,8 +9186,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 276953.6600719389,
         "valorNominal": 286560.0,
         "posicao": 5,
-        "participacao": 0.020602377309193544,
-        "participacaoPl": 0.020269031070139523
+        "participacao": 0.020584020493768545,
+        "participacaoPl": 0.020251263212934818
       },
       {
         "name": "JOSE LUIZ VOLPE NETO",
@@ -9238,8 +9197,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 34139.959902874696,
         "valorNominal": 35271.39,
         "posicao": 6,
-        "participacao": 0.002539646289769428,
-        "participacaoPl": 0.002498554840636305
+        "participacao": 0.002537383452938201,
+        "participacaoPl": 0.00249636460443444
       },
       {
         "name": "REGINALDO DONIZETE DA SIL",
@@ -9249,41 +9208,21 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
         "valorPresenteLiquido": 19502.877163493093,
         "valorNominal": 20179.35,
         "posicao": 7,
-        "participacao": 0.001450804563596559,
-        "participacaoPl": 0.0014273305616588547
-      },
-      {
-        "name": "JOAO PEDRO MARTINS DE OLI",
-        "quantidade": 1,
-        "valorPresenteDia": 0.0041240699614780675,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.0041240699614780675,
-        "valorNominal": 5182064.1,
-        "posicao": 8,
-        "participacao": 3.0678650491137233e-10,
-        "participacaoPl": 3.0182270262438583e-10
+        "participacao": 0.001449511889882647,
+        "participacaoPl": 0.0014260793619584001
       }
     ]
   },
-  "pddComposition": [
-    {
-      "cedente": "INDUSTRIA QUIMICA KIMBERL",
-      "status": "Entre 1 e 30 dias",
-      "valorAberto": 2397656.991260783,
-      "valorPdd": 11988.284956303914,
-      "valorNominal": 2774913.31,
-      "lastros": 1
-    }
-  ],
+  "pddComposition": [],
   "composicaoCarteira": [
     {
       "label": "NC",
       "tipoTitulo": "NC",
-      "valorNominal": 19359886.86,
-      "valorPresente": 12708762.381880477,
-      "lastros": 4,
-      "percentualCarteira": 0.9445530532830992,
-      "taxaMedia": 0.017042449061690383
+      "valorNominal": 14177822.760000002,
+      "valorPresente": 12708762.377756407,
+      "lastros": 3,
+      "percentualCarteira": 0.9445530532661041,
+      "taxaMedia": 0.017042440221337028
     },
     {
       "label": "NFE",
@@ -9291,7 +9230,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
       "valorNominal": 771850.74,
       "valorPresente": 746026.9893539585,
       "lastros": 4,
-      "percentualCarteira": 0.055446946716900765,
+      "percentualCarteira": 0.05544694673389598,
       "taxaMedia": 0.02791600693352604
     }
   ],
@@ -9431,8 +9370,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": -1077.4223456886969,
-          "valor": -107742.2345688697,
+          "pu": -957.5395373663492,
+          "valor": -95753.95373663493,
           "resultadoDia": null,
           "resultadoMes": null
         }

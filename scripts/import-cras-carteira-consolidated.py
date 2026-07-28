@@ -19,6 +19,7 @@ DEFAULT_SOURCE = Path.home() / "Downloads" / "carteira_caixa_ccs_2707.xlsx"
 SAO_PAULO = timezone(timedelta(hours=-3))
 GROUP_ID = "cras-carteira"
 GROUP_NAME = "CRAs Carteira"
+ACTIVE_VP_THRESHOLD = 1.0
 
 
 def clean_text(value: Any) -> str:
@@ -475,8 +476,8 @@ def parse_workbook(path: Path) -> tuple[str, dict[str, list[dict[str, Any]]], di
         faixa, faixa_order = pdd_status_from_due(base_date, due_date, source_faixa)
         if source_faixa and normalize_key(source_faixa) not in ("liquidado",):
             faixa = source_faixa
-        pdd = min(vp_bruto, max(0.0, vp_bruto * pdd_rate(faixa)))
-        is_active = vp_bruto > 0
+        pdd = 0.0
+        is_active = vp_bruto > ACTIVE_VP_THRESHOLD
         tx_op = to_number(raw[header_index["Tx Op"]])
         item = {
             "craCarteira": clean_text(raw[header_index["CRA Carteira"]]),
@@ -521,7 +522,7 @@ def parse_workbook(path: Path) -> tuple[str, dict[str, list[dict[str, Any]]], di
             "valorPresenteDia": vp_bruto,
             "valorPresente": vp_bruto,
             "pdd": pdd,
-            "valorPresenteLiquido": max(0.0, vp_bruto - pdd),
+            "valorPresenteLiquido": vp_bruto,
         }
         by_cra[cra_id].append(item)
 
@@ -621,7 +622,7 @@ def group_sum(rows: list[dict[str, Any]], key: str) -> list[dict[str, Any]]:
 
 
 def build_portfolio_blocks(rows: list[dict[str, Any]], base_date: date, ativo_total: float) -> dict[str, Any]:
-    active = [row for row in rows if to_number(row.get("valorPresenteDia")) > 0]
+    active = [row for row in rows if to_number(row.get("valorPresenteDia")) > ACTIVE_VP_THRESHOLD]
     vp_bruto = sum(to_number(row.get("valorPresenteDia")) for row in active)
     pdd_total = sum(to_number(row.get("pdd")) for row in active)
     vp_liquido = sum(to_number(row.get("valorPresenteLiquido")) for row in active)
@@ -1224,6 +1225,7 @@ def update_manifest(date_key: str, snapshots: dict[str, dict[str, Any]], overvie
     by_id = {item["craId"]: item for item in manifest}
 
     def make_date_entry(cra_id: str, key: str, snapshot: dict[str, Any]) -> dict[str, Any]:
+        asset_imported = bool(snapshot.get("metadata", {}).get("assetImport"))
         return {
             "dateKey": key,
             "reportDate": snapshot.get("metadata", {}).get("reportDate"),
@@ -1233,6 +1235,8 @@ def update_manifest(date_key: str, snapshots: dict[str, dict[str, Any]], overvie
             "funding": snapshot.get("passivo", {}).get("fundingTotal", 0),
             "subordinada": snapshot.get("passivo", {}).get("subordinadaTotal", 0),
             "dataScript": f"data/cras/{cra_id}/{key}.js",
+            "assetImported": asset_imported,
+            "portfolioAssetImport": asset_imported,
         }
 
     def sync_existing_dates(item: dict[str, Any], cra_id: str) -> None:
@@ -1293,6 +1297,26 @@ def update_manifest(date_key: str, snapshots: dict[str, dict[str, Any]], overvie
     write_manifest(manifest_path, fixed + grouped)
 
 
+def cleanup_skipped_date(date_key: str, skipped_ids: set[str]) -> None:
+    if not skipped_ids:
+        return
+
+    for cra_id in skipped_ids:
+        path = REPO_ROOT / "data" / "cras" / cra_id / f"{date_key}.js"
+        if path.exists():
+            path.unlink()
+
+    manifest_path = REPO_ROOT / "data" / "cra-manifest.js"
+    manifest = load_json_assignment(manifest_path)
+    for item in manifest:
+        if item.get("craId") not in skipped_ids:
+            continue
+        dates = [row for row in item.get("dates", []) if row.get("dateKey") != date_key]
+        item["dates"] = dates
+        item["currentDate"] = dates[0]["dateKey"] if dates else ""
+    write_manifest(manifest_path, manifest)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Importa carteira+caixa consolidado dos CRAs Carteira.")
     parser.add_argument("source", nargs="?", default=str(DEFAULT_SOURCE), help="Arquivo .xlsx consolidado")
@@ -1303,7 +1327,14 @@ def main() -> None:
 
     date_key, carteira_by_cra, cash_by_cra, source_meta = parse_workbook(source)
     snapshots: dict[str, dict[str, Any]] = {}
-    imported_ids = sorted(set(carteira_by_cra) | set(cash_by_cra), key=lambda cid: cra_number(cid) or 0)
+    active_ids = {
+        cra_id
+        for cra_id, rows in carteira_by_cra.items()
+        if sum(to_number(row.get("valorPresenteDia")) for row in rows) > ACTIVE_VP_THRESHOLD
+    }
+    skipped_ids = (set(carteira_by_cra) | set(cash_by_cra)) - active_ids
+    cleanup_skipped_date(date_key, skipped_ids)
+    imported_ids = sorted(active_ids, key=lambda cid: cra_number(cid) or 0)
     for cra_id in imported_ids:
         rows = carteira_by_cra.get(cra_id, [])
         cash = cash_by_cra.get(cra_id, {"accounts": {}, "total": 0, "totalCalculado": 0, "rawRows": []})
@@ -1321,6 +1352,7 @@ def main() -> None:
         "dateKey": date_key,
         "snapshots": len(snapshots),
         "overview": "cras-carteira-overview",
+        "skippedSemCarteira": sorted(skipped_ids, key=lambda cid: cra_number(cid) or 0),
         "missingCarteira": missing_carteira,
         "missingCash": missing_cash,
         "source": str(source),

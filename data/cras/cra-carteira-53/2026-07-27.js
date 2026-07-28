@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:15.470146-03:00",
+    "importedAt": "2026-07-28T16:01:07.335701-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -82,11 +82,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
   },
   "ativo": {
     "carteiraVpBruto": 19168339.273731504,
-    "pddTotal": 2250.0,
-    "carteiraVp": 19166089.273731504,
-    "carteiraVpLiquido": 19166089.273731504,
+    "pddTotal": 0.0,
+    "carteiraVp": 19168339.273731504,
+    "carteiraVpLiquido": 19168339.273731504,
     "caixa": 161609.01,
-    "total": 19327698.283731505,
+    "total": 19329948.283731505,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 393,
@@ -112,9 +112,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
   "passivo": {
     "fundingTotal": 19297154.005101003,
     "despesasTotal": 0,
-    "subordinadaTotal": 30544.278630502522,
+    "subordinadaTotal": 32794.27863050252,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": 305.4427863050252,
+    "subordinadaPuResidual": 327.9427863050252,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -6900,9 +6900,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": 305.4427863050252,
-        "valor": 30544.278630502522,
-        "principalResidual": 305.4427863050252,
+        "pu": 327.9427863050252,
+        "valor": 32794.27863050252,
+        "principalResidual": 327.9427863050252,
         "ehFunding": false,
         "ordem": 90,
         "historicoPu": [
@@ -6933,19 +6933,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
     "funding": 18956589.398481,
     "valorTotalSenior": 18956589.398481,
     "despesasOperacionaisTotal": 0,
-    "provisoesTotal": 2250.0,
+    "provisoesTotal": 0.0,
     "provisoesCaixa": 0,
     "deducoesTotal": 0
   },
   "carteiraResumo": {
     "valorNominal": 20466773.25,
     "valorPresente": 19168339.273731504,
-    "valorPresenteLiquido": 19166089.273731504,
-    "pddTotal": 2250.0,
+    "valorPresenteLiquido": 19168339.273731504,
+    "pddTotal": 0.0,
     "cedentesUnicos": 16,
     "sacadosUnicos": 128,
-    "prazoMedioDias": 32.00508777884405,
-    "taxaMediaPonderada": 0.018032761693051857,
+    "prazoMedioDias": 31.995227172518003,
+    "taxaMediaPonderada": 0.018033071677807513,
     "preFixado": {
       "valorPresente": 19168339.273731504
     },
@@ -6976,8 +6976,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "CDI + 7,00% a.a.",
-      "pu": 305.4427863050252,
-      "valor": 30544.278630502522,
+      "pu": 327.9427863050252,
+      "valor": 32794.27863050252,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -7002,7 +7002,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "status": "Entre 31 e 60 dias",
       "valorNominal": 450000.0,
       "valorPresente": 450000.0,
-      "valorPdd": 2250.0,
+      "valorPdd": 0.0,
       "order": 2.0,
       "percentualCarteira": 0.023476212183738045
     }
@@ -7026,7 +7026,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 19.327.698,28",
+          "value": "R$ 19.329.948,28",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -7034,7 +7034,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         },
         {
           "label": "Carteira VP liquida",
-          "value": "R$ 19.166.089,27",
+          "value": "R$ 19.168.339,27",
           "isHighlight": true,
           "source": {
             "name": "Import carteira"
@@ -7058,7 +7058,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 30.544,28",
+          "value": "R$ 32.794,28",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -7066,7 +7066,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "305,442786",
+          "value": "327,942786",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -7082,7 +7082,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         },
         {
           "label": "PDD",
-          "value": "R$ 2.250,00",
+          "value": "R$ 0,00",
           "isHighlight": false,
           "source": {
             "name": "Faixa vencimento"
@@ -13571,8 +13571,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "faixaVencOrder": 2,
       "valorPresenteDia": 150000.0,
       "valorPresente": 150000.0,
-      "pdd": 750.0,
-      "valorPresenteLiquido": 149250.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": 150000.0
     },
     {
       "craCarteira": "53ª",
@@ -13616,8 +13616,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "faixaVencOrder": 2,
       "valorPresenteDia": 150000.0,
       "valorPresente": 150000.0,
-      "pdd": 750.0,
-      "valorPresenteLiquido": 149250.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": 150000.0
     },
     {
       "craCarteira": "53ª",
@@ -13661,8 +13661,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "faixaVencOrder": 2,
       "valorPresenteDia": 150000.0,
       "valorPresente": 150000.0,
-      "pdd": 750.0,
-      "valorPresenteLiquido": 149250.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": 150000.0
     },
     {
       "craCarteira": "53ª",
@@ -24835,8 +24835,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 10129602.215928592,
         "valorNominal": 10961864.28,
         "posicao": 1,
-        "participacao": 0.5285169066707801,
-        "participacaoPl": 0.5240976999550366
+        "participacao": 0.5284548687955616,
+        "participacaoPl": 0.5240366951449053
       },
       {
         "name": "UBY AGROQUIMICA S.A",
@@ -24846,8 +24846,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 3815892.514412977,
         "valorNominal": 4079882.5999999996,
         "posicao": 2,
-        "participacao": 0.19909604196840147,
-        "participacaoPl": 0.197431295666742
+        "participacao": 0.1990726718637705,
+        "participacaoPl": 0.19740831472500694
       },
       {
         "name": "GEMINI-7 AGRONEGOCIOS LTD",
@@ -24857,8 +24857,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 1371156.5289276321,
         "valorNominal": 1426958.98,
         "posicao": 3,
-        "participacao": 0.07154075666374467,
-        "participacaoPl": 0.07094256692126454
+        "participacao": 0.07153235913382855,
+        "participacaoPl": 0.07093430922842285
       },
       {
         "name": "DIFUSAO COMERCIO DE INSUM",
@@ -24868,8 +24868,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 667947.0685773814,
         "valorNominal": 696954.51,
         "posicao": 4,
-        "participacao": 0.034850462138504734,
-        "participacaoPl": 0.03455905916844766
+        "participacao": 0.03484637135428541,
+        "participacaoPl": 0.034555036504652206
       },
       {
         "name": "CASA DO CAFE COMERCIO E R",
@@ -24879,8 +24879,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 554824.2242175569,
         "valorNominal": 569093.08,
         "posicao": 5,
-        "participacao": 0.02894822288957942,
-        "participacaoPl": 0.02870617163372025
+        "participacao": 0.02894482491646493,
+        "participacaoPl": 0.028702830244223092
       },
       {
         "name": "ZITRA AGRONEGOCIOS LTDA",
@@ -24890,19 +24890,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 500249.1456733928,
         "valorNominal": 506732.44,
         "posicao": 6,
-        "participacao": 0.026100741707335156,
-        "participacaoPl": 0.025882499733269435
+        "participacao": 0.026097677974582782,
+        "participacaoPl": 0.025879487018307914
       },
       {
         "name": "FERTI SOLO INSUMOS AGRICO",
         "quantidade": 3,
         "valorPresenteDia": 450000.0,
-        "pdd": 2250.0,
-        "valorPresenteLiquido": 447750.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 450000.0,
         "valorNominal": 450000.0,
         "posicao": 7,
-        "participacao": 0.023361573329081453,
-        "participacaoPl": 0.023166234976716278
+        "participacao": 0.023476212183738045,
+        "participacaoPl": 0.02327993812475585
       },
       {
         "name": "CISA INDUSTRIA, COMERCIO",
@@ -24912,8 +24912,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 431273.20308898744,
         "valorNominal": 484418.80000000005,
         "posicao": 8,
-        "participacao": 0.022501888461934603,
-        "participacaoPl": 0.02231373838508222
+        "participacao": 0.022499247166394266,
+        "participacaoPl": 0.022311141072837538
       },
       {
         "name": "AVANTIAGRO COMERCIAL AGRI",
@@ -24923,8 +24923,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 280131.3725184875,
         "valorNominal": 294873.5,
         "posicao": 9,
-        "participacao": 0.014615990175023737,
-        "participacaoPl": 0.014493778224708705
+        "participacao": 0.014614274534590617,
+        "participacaoPl": 0.01449209115340738
       },
       {
         "name": "DIFUSAO COMERCIO E REPRES",
@@ -24934,8 +24934,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 256544.5308039997,
         "valorNominal": 267115.0,
         "posicao": 10,
-        "participacao": 0.013385335273148932,
-        "participacaoPl": 0.013273413473136536
+        "participacao": 0.013383764088293818,
+        "participacaoPl": 0.013271868451914743
       },
       {
         "name": "AGROGERMINAR SOLUCOES AGR",
@@ -24945,8 +24945,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 195286.03882103978,
         "valorNominal": 200000.0,
         "posicao": 11,
-        "participacao": 0.010189143754469164,
-        "participacaoPl": 0.010103946986042087
+        "participacao": 0.01018794774196541,
+        "participacaoPl": 0.010102770889738833
       },
       {
         "name": "AGRICULTURA REGENERATIVA",
@@ -24956,8 +24956,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 159413.06521246253,
         "valorNominal": 163200.0,
         "posicao": 12,
-        "participacao": 0.008317453964432356,
-        "participacaoPl": 0.008247907374808494
+        "participacao": 0.008316477652861868,
+        "participacaoPl": 0.008246947320941772
       },
       {
         "name": "AGRICOLA PROCAMPO LTDA",
@@ -24967,8 +24967,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 145672.54044888177,
         "valorNominal": 146630.06,
         "posicao": 13,
-        "participacao": 0.007600535423182882,
-        "participacaoPl": 0.0075369833650340634
+        "participacao": 0.007599643264271359,
+        "participacaoPl": 0.007536106062502137
       },
       {
         "name": "AGRIIVE AGRICULTURA E INO",
@@ -24978,8 +24978,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 119563.70058931183,
         "valorNominal": 122450.0,
         "posicao": 14,
-        "participacao": 0.0062382940453680575,
-        "participacaoPl": 0.006186132400977663
+        "participacao": 0.006237561787794689,
+        "participacaoPl": 0.006185412337080032
       },
       {
         "name": "CAMPEIRA COMERCIO DE PROD",
@@ -24989,8 +24989,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 55036.81160307081,
         "valorNominal": 60200.0,
         "posicao": 15,
-        "participacao": 0.0028715723284510994,
-        "participacaoPl": 0.0028475616079642733
+        "participacao": 0.002871235260244681,
+        "participacaoPl": 0.002847230152674074
       },
       {
         "name": "AGRO CENTRAL COMERCIO E R",
@@ -25000,8 +25000,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 35746.31290773087,
         "valorNominal": 36400.0,
         "posicao": 16,
-        "participacao": 0.0018650812065622458,
-        "participacaoPl": 0.0018494862855873131
+        "participacao": 0.0018648622813515199,
+        "participacaoPl": 0.001849271005955858
       }
     ],
     "sacados": [
@@ -25013,8 +25013,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 10129602.215928592,
         "valorNominal": 10961864.28,
         "posicao": 1,
-        "participacao": 0.5285169066707801,
-        "participacaoPl": 0.5240976999550366
+        "participacao": 0.5284548687955616,
+        "participacaoPl": 0.5240366951449053
       },
       {
         "name": "REGIONAL AGRO INSUMOS LTD",
@@ -25024,8 +25024,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 1839582.9403640346,
         "valorNominal": 1975634.0,
         "posicao": 2,
-        "participacao": 0.09598113178390098,
-        "participacaoPl": 0.09517858326215942
+        "participacao": 0.09596986541682402,
+        "participacaoPl": 0.09516750450451368
       },
       {
         "name": "TERRA - SOLUCOES AGRICOLA",
@@ -25035,8 +25035,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 912794.24303095,
         "valorNominal": 985402.0,
         "posicao": 3,
-        "participacao": 0.04762548217293341,
-        "participacaoPl": 0.04722726056828331
+        "participacao": 0.047619891843309184,
+        "participacaoPl": 0.04722176332976415
       },
       {
         "name": "QUATROFOLHAS AGRONEGOCIOS",
@@ -25046,19 +25046,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 725622.8352393328,
         "valorNominal": 759064.0,
         "posicao": 4,
-        "participacao": 0.037859723226576575,
-        "participacaoPl": 0.03754315824818641
+        "participacao": 0.03785527921209815,
+        "participacaoPl": 0.03753878823618128
       },
       {
         "name": "ALFA NATURA DO BRASIL IMP",
         "quantidade": 3,
         "valorPresenteDia": 450000.0,
-        "pdd": 2250.0,
-        "valorPresenteLiquido": 447750.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 450000.0,
         "valorNominal": 450000.0,
         "posicao": 5,
-        "participacao": 0.023361573329081453,
-        "participacaoPl": 0.023166234976716278
+        "participacao": 0.023476212183738045,
+        "participacaoPl": 0.02327993812475585
       },
       {
         "name": "AGROBIO COMERCIO E REPRES",
@@ -25068,8 +25068,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 446059.1004340578,
         "valorNominal": 467440.35,
         "posicao": 6,
-        "participacao": 0.023273349824442992,
-        "participacaoPl": 0.023078749155015232
+        "participacao": 0.023270617973949467,
+        "participacaoPl": 0.023076062795753603
       },
       {
         "name": "ICV AGRO PARTS COMERCIO D",
@@ -25079,8 +25079,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 317285.39443801995,
         "valorNominal": 350724.43,
         "posicao": 7,
-        "participacao": 0.016554519281765125,
-        "participacaoPl": 0.01641609827410671
+        "participacao": 0.016552576094728835,
+        "participacaoPl": 0.016414187445346354
       },
       {
         "name": "JM PIONEIRA PRODUTOS AGRO",
@@ -25090,8 +25090,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 289696.265833159,
         "valorNominal": 303722.28,
         "posicao": 8,
-        "participacao": 0.01511504312098809,
-        "participacaoPl": 0.014988658327567225
+        "participacao": 0.015113268901190717,
+        "participacaoPl": 0.01498691365237503
       },
       {
         "name": "G NOVO PROGRESSO AGRICOLA",
@@ -25101,8 +25101,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 266589.56129939656,
         "valorNominal": 273816.0,
         "posicao": 9,
-        "participacao": 0.013909439609298732,
-        "participacaoPl": 0.013793135498384209
+        "participacao": 0.01390780690452061,
+        "participacaoPl": 0.013791529981679464
       },
       {
         "name": "MANEJO INSUMOS AGRICOLAS",
@@ -25112,8 +25112,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 203991.57904209202,
         "valorNominal": 209180.35,
         "posicao": 10,
-        "participacao": 0.010643359536140587,
-        "participacaoPl": 0.010554364831625898
+        "participacao": 0.010642110207306496,
+        "participacaoPl": 0.010553136306824766
       },
       {
         "name": "TERRA SOLUCOES AGRICOLAS",
@@ -25123,8 +25123,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 198644.9411301708,
         "valorNominal": 214177.01,
         "posicao": 11,
-        "participacao": 0.010364396110918042,
-        "participacaoPl": 0.010277733965734247
+        "participacao": 0.010363179527106761,
+        "participacaoPl": 0.010276537640680322
       },
       {
         "name": "CARLOS PEDRO KR",
@@ -25134,8 +25134,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 195286.03882103978,
         "valorNominal": 200000.0,
         "posicao": 12,
-        "participacao": 0.010189143754469164,
-        "participacaoPl": 0.010103946986042087
+        "participacao": 0.01018794774196541,
+        "participacaoPl": 0.010102770889738833
       },
       {
         "name": "CASA RURAL COMERCIO E REP",
@@ -25145,8 +25145,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 164820.02231892673,
         "valorNominal": 172800.0,
         "posicao": 13,
-        "participacao": 0.008599564572874257,
-        "participacaoPl": 0.008527659108671978
+        "participacao": 0.008598555146861253,
+        "participacaoPl": 0.008526666491789984
       },
       {
         "name": "JOAO CARLOS DE CASTRO REZ",
@@ -25156,8 +25156,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 159413.06521246253,
         "valorNominal": 163200.0,
         "posicao": 14,
-        "participacao": 0.008317453964432356,
-        "participacaoPl": 0.008247907374808494
+        "participacao": 0.008316477652861868,
+        "participacaoPl": 0.008246947320941772
       },
       {
         "name": "NEUZA RENOSTO",
@@ -25167,8 +25167,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 157033.5290871603,
         "valorNominal": 162584.51,
         "posicao": 15,
-        "participacao": 0.008193300513443084,
-        "participacaoPl": 0.008124792035859668
+        "participacao": 0.00819233877513639,
+        "participacaoPl": 0.008123846312580311
       },
       {
         "name": "JUNIOR FERLA",
@@ -25178,8 +25178,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 156782.0097389401,
         "valorNominal": 163980.0,
         "posicao": 16,
-        "participacao": 0.008180177369507564,
-        "participacaoPl": 0.00811177862140504
+        "participacao": 0.008179217171609427,
+        "participacaoPl": 0.0081108344128831
       },
       {
         "name": "ADEMIR DERLAM",
@@ -25189,8 +25189,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 147722.91868284313,
         "valorNominal": 154505.0,
         "posicao": 17,
-        "participacao": 0.007707514901608434,
-        "participacaoPl": 0.007643068332000212
+        "participacao": 0.0077066101853322366,
+        "participacaoPl": 0.007642178681210952
       },
       {
         "name": "ALCIR FICAGNA",
@@ -25200,8 +25200,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 126504.30533584321,
         "valorNominal": 135000.0,
         "posicao": 18,
-        "participacao": 0.006600423462976686,
-        "participacaoPl": 0.006545233864827263
+        "participacao": 0.006599648698268089,
+        "participacaoPl": 0.0065444720016303365
       },
       {
         "name": "MAIK ANTONIO DE SOUZA GEN",
@@ -25211,8 +25211,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 119563.70058931183,
         "valorNominal": 122450.0,
         "posicao": 19,
-        "participacao": 0.0062382940453680575,
-        "participacaoPl": 0.006186132400977663
+        "participacao": 0.006237561787794689,
+        "participacaoPl": 0.006185412337080032
       },
       {
         "name": "MAIA AGROBUSINESS LTDA",
@@ -25222,8 +25222,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 113752.14598003292,
         "valorNominal": 118660.0,
         "posicao": 20,
-        "participacao": 0.005935073366058999,
-        "participacaoPl": 0.005885447108607872
+        "participacao": 0.005934376700850661,
+        "participacaoPl": 0.005884762044385247
       }
     ],
     "lastrosAtivos": 217
@@ -25238,8 +25238,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 10129602.215928592,
         "valorNominal": 10961864.28,
         "posicao": 1,
-        "participacao": 0.5285169066707801,
-        "participacaoPl": 0.5240976999550366
+        "participacao": 0.5284548687955616,
+        "participacaoPl": 0.5240366951449053
       },
       {
         "name": "UBY AGROQUIMICA S.A",
@@ -25249,8 +25249,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 3815892.514412977,
         "valorNominal": 4079882.5999999996,
         "posicao": 2,
-        "participacao": 0.19909604196840147,
-        "participacaoPl": 0.197431295666742
+        "participacao": 0.1990726718637705,
+        "participacaoPl": 0.19740831472500694
       },
       {
         "name": "GEMINI-7 AGRONEGOCIOS LTD",
@@ -25260,8 +25260,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 1371156.5289276321,
         "valorNominal": 1426958.98,
         "posicao": 3,
-        "participacao": 0.07154075666374467,
-        "participacaoPl": 0.07094256692126454
+        "participacao": 0.07153235913382855,
+        "participacaoPl": 0.07093430922842285
       },
       {
         "name": "DIFUSAO COMERCIO DE INSUM",
@@ -25271,8 +25271,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 667947.0685773814,
         "valorNominal": 696954.51,
         "posicao": 4,
-        "participacao": 0.034850462138504734,
-        "participacaoPl": 0.03455905916844766
+        "participacao": 0.03484637135428541,
+        "participacaoPl": 0.034555036504652206
       },
       {
         "name": "CASA DO CAFE COMERCIO E R",
@@ -25282,8 +25282,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 554824.2242175569,
         "valorNominal": 569093.08,
         "posicao": 5,
-        "participacao": 0.02894822288957942,
-        "participacaoPl": 0.02870617163372025
+        "participacao": 0.02894482491646493,
+        "participacaoPl": 0.028702830244223092
       },
       {
         "name": "ZITRA AGRONEGOCIOS LTDA",
@@ -25293,19 +25293,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 500249.1456733928,
         "valorNominal": 506732.44,
         "posicao": 6,
-        "participacao": 0.026100741707335156,
-        "participacaoPl": 0.025882499733269435
+        "participacao": 0.026097677974582782,
+        "participacaoPl": 0.025879487018307914
       },
       {
         "name": "FERTI SOLO INSUMOS AGRICO",
         "quantidade": 3,
         "valorPresenteDia": 450000.0,
-        "pdd": 2250.0,
-        "valorPresenteLiquido": 447750.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 450000.0,
         "valorNominal": 450000.0,
         "posicao": 7,
-        "participacao": 0.023361573329081453,
-        "participacaoPl": 0.023166234976716278
+        "participacao": 0.023476212183738045,
+        "participacaoPl": 0.02327993812475585
       },
       {
         "name": "CISA INDUSTRIA, COMERCIO",
@@ -25315,8 +25315,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 431273.20308898744,
         "valorNominal": 484418.80000000005,
         "posicao": 8,
-        "participacao": 0.022501888461934603,
-        "participacaoPl": 0.02231373838508222
+        "participacao": 0.022499247166394266,
+        "participacaoPl": 0.022311141072837538
       },
       {
         "name": "AVANTIAGRO COMERCIAL AGRI",
@@ -25326,8 +25326,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 280131.3725184875,
         "valorNominal": 294873.5,
         "posicao": 9,
-        "participacao": 0.014615990175023737,
-        "participacaoPl": 0.014493778224708705
+        "participacao": 0.014614274534590617,
+        "participacaoPl": 0.01449209115340738
       },
       {
         "name": "DIFUSAO COMERCIO E REPRES",
@@ -25337,8 +25337,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 256544.5308039997,
         "valorNominal": 267115.0,
         "posicao": 10,
-        "participacao": 0.013385335273148932,
-        "participacaoPl": 0.013273413473136536
+        "participacao": 0.013383764088293818,
+        "participacaoPl": 0.013271868451914743
       }
     ],
     "top10Sacados": [
@@ -25350,8 +25350,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 10129602.215928592,
         "valorNominal": 10961864.28,
         "posicao": 1,
-        "participacao": 0.5285169066707801,
-        "participacaoPl": 0.5240976999550366
+        "participacao": 0.5284548687955616,
+        "participacaoPl": 0.5240366951449053
       },
       {
         "name": "REGIONAL AGRO INSUMOS LTD",
@@ -25361,8 +25361,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 1839582.9403640346,
         "valorNominal": 1975634.0,
         "posicao": 2,
-        "participacao": 0.09598113178390098,
-        "participacaoPl": 0.09517858326215942
+        "participacao": 0.09596986541682402,
+        "participacaoPl": 0.09516750450451368
       },
       {
         "name": "TERRA - SOLUCOES AGRICOLA",
@@ -25372,8 +25372,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 912794.24303095,
         "valorNominal": 985402.0,
         "posicao": 3,
-        "participacao": 0.04762548217293341,
-        "participacaoPl": 0.04722726056828331
+        "participacao": 0.047619891843309184,
+        "participacaoPl": 0.04722176332976415
       },
       {
         "name": "QUATROFOLHAS AGRONEGOCIOS",
@@ -25383,19 +25383,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 725622.8352393328,
         "valorNominal": 759064.0,
         "posicao": 4,
-        "participacao": 0.037859723226576575,
-        "participacaoPl": 0.03754315824818641
+        "participacao": 0.03785527921209815,
+        "participacaoPl": 0.03753878823618128
       },
       {
         "name": "ALFA NATURA DO BRASIL IMP",
         "quantidade": 3,
         "valorPresenteDia": 450000.0,
-        "pdd": 2250.0,
-        "valorPresenteLiquido": 447750.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 450000.0,
         "valorNominal": 450000.0,
         "posicao": 5,
-        "participacao": 0.023361573329081453,
-        "participacaoPl": 0.023166234976716278
+        "participacao": 0.023476212183738045,
+        "participacaoPl": 0.02327993812475585
       },
       {
         "name": "AGROBIO COMERCIO E REPRES",
@@ -25405,8 +25405,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 446059.1004340578,
         "valorNominal": 467440.35,
         "posicao": 6,
-        "participacao": 0.023273349824442992,
-        "participacaoPl": 0.023078749155015232
+        "participacao": 0.023270617973949467,
+        "participacaoPl": 0.023076062795753603
       },
       {
         "name": "ICV AGRO PARTS COMERCIO D",
@@ -25416,8 +25416,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 317285.39443801995,
         "valorNominal": 350724.43,
         "posicao": 7,
-        "participacao": 0.016554519281765125,
-        "participacaoPl": 0.01641609827410671
+        "participacao": 0.016552576094728835,
+        "participacaoPl": 0.016414187445346354
       },
       {
         "name": "JM PIONEIRA PRODUTOS AGRO",
@@ -25427,8 +25427,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 289696.265833159,
         "valorNominal": 303722.28,
         "posicao": 8,
-        "participacao": 0.01511504312098809,
-        "participacaoPl": 0.014988658327567225
+        "participacao": 0.015113268901190717,
+        "participacaoPl": 0.01498691365237503
       },
       {
         "name": "G NOVO PROGRESSO AGRICOLA",
@@ -25438,8 +25438,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 266589.56129939656,
         "valorNominal": 273816.0,
         "posicao": 9,
-        "participacao": 0.013909439609298732,
-        "participacaoPl": 0.013793135498384209
+        "participacao": 0.01390780690452061,
+        "participacaoPl": 0.013791529981679464
       },
       {
         "name": "MANEJO INSUMOS AGRICOLAS",
@@ -25449,21 +25449,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valorPresenteLiquido": 203991.57904209202,
         "valorNominal": 209180.35,
         "posicao": 10,
-        "participacao": 0.010643359536140587,
-        "participacaoPl": 0.010554364831625898
+        "participacao": 0.010642110207306496,
+        "participacaoPl": 0.010553136306824766
       }
     ]
   },
-  "pddComposition": [
-    {
-      "cedente": "FERTI SOLO INSUMOS AGRICO",
-      "status": "Entre 31 e 60 dias",
-      "valorAberto": 450000.0,
-      "valorPdd": 2250.0,
-      "valorNominal": 450000.0,
-      "lastros": 3
-    }
-  ],
+  "pddComposition": [],
   "composicaoCarteira": [
     {
       "label": "NC",
@@ -25481,7 +25472,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "valorPresente": 9038737.057802906,
       "lastros": 216,
       "percentualCarteira": 0.47154513120443814,
-      "taxaMedia": 0.02255335376837344
+      "taxaMedia": 0.022552885844682742
     }
   ],
   "movimentacoesDia": {
@@ -25620,8 +25611,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": 305.4427863050252,
-          "valor": 30544.278630502522,
+          "pu": 327.9427863050252,
+          "valor": 32794.27863050252,
           "resultadoDia": null,
           "resultadoMes": null
         }

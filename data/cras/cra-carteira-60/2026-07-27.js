@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:16.114485-03:00",
+    "importedAt": "2026-07-28T16:01:07.746582-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -86,11 +86,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
   },
   "ativo": {
     "carteiraVpBruto": 14511109.88566605,
-    "pddTotal": 22904.846813972767,
-    "carteiraVp": 14488205.038852077,
-    "carteiraVpLiquido": 14488205.038852077,
+    "pddTotal": 0.0,
+    "carteiraVp": 14511109.88566605,
+    "carteiraVpLiquido": 14511109.88566605,
     "caixa": 2843.3200000000033,
-    "total": 14491048.358852077,
+    "total": 14513953.20566605,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 3,
@@ -116,9 +116,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
   "passivo": {
     "fundingTotal": 14588849.165099502,
     "despesasTotal": 0,
-    "subordinadaTotal": -97800.80624742433,
+    "subordinadaTotal": -74895.9594334513,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": -978.0080624742434,
+    "subordinadaPuResidual": -748.959594334513,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -8515,9 +8515,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": -978.0080624742434,
-        "valor": -97800.80624742433,
-        "principalResidual": -978.0080624742434,
+        "pu": -748.959594334513,
+        "valor": -74895.9594334513,
+        "principalResidual": -748.959594334513,
         "ehFunding": false,
         "ordem": 90,
         "historicoPu": [
@@ -8546,19 +8546,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
       }
     ],
     "despesasOperacionaisTotal": 0,
-    "provisoesTotal": 22904.846813972767,
+    "provisoesTotal": 0.0,
     "provisoesCaixa": 0,
     "deducoesTotal": 0
   },
   "carteiraResumo": {
     "valorNominal": 15631423.299999999,
     "valorPresente": 14511109.88566605,
-    "valorPresenteLiquido": 14488205.038852077,
-    "pddTotal": 22904.846813972767,
+    "valorPresenteLiquido": 14511109.88566605,
+    "pddTotal": 0.0,
     "cedentesUnicos": 3,
     "sacadosUnicos": 3,
-    "prazoMedioDias": 155.26991627934234,
-    "taxaMediaPonderada": 0.016344549987529624,
+    "prazoMedioDias": 155.02325434085432,
+    "taxaMediaPonderada": 0.01634489920297072,
     "preFixado": {
       "valorPresente": 9930140.522871498
     },
@@ -8603,8 +8603,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "22,50% a.a.",
-      "pu": -978.0080624742434,
-      "valor": -97800.80624742433,
+      "pu": -748.959594334513,
+      "valor": -74895.9594334513,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -8629,7 +8629,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
       "status": "Entre 1 e 30 dias",
       "valorNominal": 4512230.02,
       "valorPresente": 4580969.362794553,
-      "valorPdd": 22904.846813972767,
+      "valorPdd": 0.0,
       "order": 1.0,
       "percentualCarteira": 0.31568704247216783
     }
@@ -8653,7 +8653,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 14.491.048,36",
+          "value": "R$ 14.513.953,21",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -8661,7 +8661,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         },
         {
           "label": "Carteira VP liquida",
-          "value": "R$ 14.488.205,04",
+          "value": "R$ 14.511.109,89",
           "isHighlight": true,
           "source": {
             "name": "Import carteira"
@@ -8685,7 +8685,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -97.800,81",
+          "value": "R$ -74.895,96",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -8693,7 +8693,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-978,008062",
+          "value": "-748,959594",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -8709,7 +8709,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         },
         {
           "label": "PDD",
-          "value": "R$ 22.904,85",
+          "value": "R$ 0,00",
           "isHighlight": false,
           "source": {
             "name": "Faixa vencimento"
@@ -8898,8 +8898,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
       "faixaVencOrder": 1,
       "valorPresenteDia": 4580969.362794553,
       "valorPresente": 4580969.362794553,
-      "pdd": 22904.846813972767,
-      "valorPresenteLiquido": 4558064.51598058
+      "pdd": 0.0,
+      "valorPresenteLiquido": 4580969.362794553
     }
   ],
   "rankingCarteira": {
@@ -8912,19 +8912,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 6095725.037949693,
         "valorNominal": 7200000.0,
         "posicao": 1,
-        "participacao": 0.4207370769258983,
-        "participacaoPl": 0.4206545231923146
+        "participacao": 0.42007297070853267,
+        "participacaoPl": 0.4199906773552229
       },
       {
         "name": "CERES TRADING S.A.",
         "quantidade": 1,
         "valorPresenteDia": 4580969.362794553,
-        "pdd": 22904.846813972767,
-        "valorPresenteLiquido": 4558064.51598058,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4580969.362794553,
         "valorNominal": 4512230.02,
         "posicao": 2,
-        "participacao": 0.3146051911715437,
-        "participacaoPl": 0.3145434618052473
+        "participacao": 0.31568704247216783,
+        "participacaoPl": 0.3156251985851935
       },
       {
         "name": "LEANDRO HOMERO SILVA",
@@ -8934,8 +8934,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 3834415.4849218046,
         "valorNominal": 3919193.28,
         "posicao": 3,
-        "participacao": 0.26465773190255815,
-        "participacaoPl": 0.264605802835479
+        "participacao": 0.26423998681929955,
+        "participacaoPl": 0.2641882215401453
       }
     ],
     "sacados": [
@@ -8947,19 +8947,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 6095725.037949693,
         "valorNominal": 7200000.0,
         "posicao": 1,
-        "participacao": 0.4207370769258983,
-        "participacaoPl": 0.4206545231923146
+        "participacao": 0.42007297070853267,
+        "participacaoPl": 0.4199906773552229
       },
       {
         "name": "CERES TRADING S.A.",
         "quantidade": 1,
         "valorPresenteDia": 4580969.362794553,
-        "pdd": 22904.846813972767,
-        "valorPresenteLiquido": 4558064.51598058,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4580969.362794553,
         "valorNominal": 4512230.02,
         "posicao": 2,
-        "participacao": 0.3146051911715437,
-        "participacaoPl": 0.3145434618052473
+        "participacao": 0.31568704247216783,
+        "participacaoPl": 0.3156251985851935
       },
       {
         "name": "LEANDRO HOMERO SILVA",
@@ -8969,8 +8969,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 3834415.4849218046,
         "valorNominal": 3919193.28,
         "posicao": 3,
-        "participacao": 0.26465773190255815,
-        "participacaoPl": 0.264605802835479
+        "participacao": 0.26423998681929955,
+        "participacaoPl": 0.2641882215401453
       }
     ],
     "lastrosAtivos": 3
@@ -8985,19 +8985,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 6095725.037949693,
         "valorNominal": 7200000.0,
         "posicao": 1,
-        "participacao": 0.4207370769258983,
-        "participacaoPl": 0.4206545231923146
+        "participacao": 0.42007297070853267,
+        "participacaoPl": 0.4199906773552229
       },
       {
         "name": "CERES TRADING S.A.",
         "quantidade": 1,
         "valorPresenteDia": 4580969.362794553,
-        "pdd": 22904.846813972767,
-        "valorPresenteLiquido": 4558064.51598058,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4580969.362794553,
         "valorNominal": 4512230.02,
         "posicao": 2,
-        "participacao": 0.3146051911715437,
-        "participacaoPl": 0.3145434618052473
+        "participacao": 0.31568704247216783,
+        "participacaoPl": 0.3156251985851935
       },
       {
         "name": "LEANDRO HOMERO SILVA",
@@ -9007,8 +9007,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 3834415.4849218046,
         "valorNominal": 3919193.28,
         "posicao": 3,
-        "participacao": 0.26465773190255815,
-        "participacaoPl": 0.264605802835479
+        "participacao": 0.26423998681929955,
+        "participacaoPl": 0.2641882215401453
       }
     ],
     "top10Sacados": [
@@ -9020,19 +9020,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 6095725.037949693,
         "valorNominal": 7200000.0,
         "posicao": 1,
-        "participacao": 0.4207370769258983,
-        "participacaoPl": 0.4206545231923146
+        "participacao": 0.42007297070853267,
+        "participacaoPl": 0.4199906773552229
       },
       {
         "name": "CERES TRADING S.A.",
         "quantidade": 1,
         "valorPresenteDia": 4580969.362794553,
-        "pdd": 22904.846813972767,
-        "valorPresenteLiquido": 4558064.51598058,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4580969.362794553,
         "valorNominal": 4512230.02,
         "posicao": 2,
-        "participacao": 0.3146051911715437,
-        "participacaoPl": 0.3145434618052473
+        "participacao": 0.31568704247216783,
+        "participacaoPl": 0.3156251985851935
       },
       {
         "name": "LEANDRO HOMERO SILVA",
@@ -9042,21 +9042,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
         "valorPresenteLiquido": 3834415.4849218046,
         "valorNominal": 3919193.28,
         "posicao": 3,
-        "participacao": 0.26465773190255815,
-        "participacaoPl": 0.264605802835479
+        "participacao": 0.26423998681929955,
+        "participacaoPl": 0.2641882215401453
       }
     ]
   },
-  "pddComposition": [
-    {
-      "cedente": "CERES TRADING S.A.",
-      "status": "Entre 1 e 30 dias",
-      "valorAberto": 4580969.362794553,
-      "valorPdd": 22904.846813972767,
-      "valorNominal": 4512230.02,
-      "lastros": 1
-    }
-  ],
+  "pddComposition": [],
   "composicaoCarteira": [
     {
       "label": "CPR",
@@ -9065,7 +9056,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
       "valorPresente": 14511109.88566605,
       "lastros": 3,
       "percentualCarteira": 1.0,
-      "taxaMedia": 0.016344549987529624
+      "taxaMedia": 0.01634489920297072
     }
   ],
   "movimentacoesDia": {
@@ -9240,8 +9231,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-60"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": -978.0080624742434,
-          "valor": -97800.80624742433,
+          "pu": -748.959594334513,
+          "valor": -74895.9594334513,
           "resultadoDia": null,
           "resultadoMes": null
         }

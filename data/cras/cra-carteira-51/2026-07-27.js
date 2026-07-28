@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:15.269887-03:00",
+    "importedAt": "2026-07-28T16:01:07.219371-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -100,20 +100,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
     "dateKey": "2026-07-27"
   },
   "ativo": {
-    "carteiraVpBruto": 12600312.357459577,
-    "pddTotal": 1405831.037985039,
-    "carteiraVp": 11194481.319474539,
-    "carteiraVpLiquido": 11194481.319474539,
+    "carteiraVpBruto": 12600312.3555662,
+    "pddTotal": 0.0,
+    "carteiraVp": 12600312.3555662,
+    "carteiraVpLiquido": 12600312.3555662,
     "caixa": 0.0,
-    "total": 11194481.319474539,
+    "total": 12600312.3555662,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 17,
     "quantidadeLastrosBase": 17,
-    "lastrosAtivos": 11,
-    "quantidadeLastrosAtivos": 11,
-    "cedentesUnicos": 5,
-    "sacadosUnicos": 5,
+    "lastrosAtivos": 10,
+    "quantidadeLastrosAtivos": 10,
+    "cedentesUnicos": 4,
+    "sacadosUnicos": 4,
     "montanteAtraso": 6025463.543283463
   },
   "caixa": {
@@ -131,9 +131,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
   "passivo": {
     "fundingTotal": 38287732.71808663,
     "despesasTotal": 0,
-    "subordinadaTotal": -27093251.39861209,
+    "subordinadaTotal": -25687420.36252043,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": -270932.5139861209,
+    "subordinadaPuResidual": -256874.2036252043,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -19589,9 +19589,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": -270932.5139861209,
-        "valor": -27093251.39861209,
-        "principalResidual": -270932.5139861209,
+        "pu": -256874.2036252043,
+        "valor": -25687420.36252043,
+        "principalResidual": -256874.2036252043,
         "ehFunding": false,
         "ordem": 90,
         "historicoPu": [
@@ -19622,24 +19622,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
     "funding": 12767334.67650469,
     "valorTotalSenior": 12767334.67650469,
     "despesasOperacionaisTotal": 0,
-    "provisoesTotal": 1405831.037985039,
+    "provisoesTotal": 0.0,
     "provisoesCaixa": 0,
     "deducoesTotal": 0
   },
   "carteiraResumo": {
     "valorNominal": 24122656.0,
-    "valorPresente": 12600312.357459577,
-    "valorPresenteLiquido": 11194481.319474539,
-    "pddTotal": 1405831.037985039,
-    "cedentesUnicos": 5,
-    "sacadosUnicos": 5,
-    "prazoMedioDias": 171.15785728684716,
-    "taxaMediaPonderada": 0.018271185696047684,
+    "valorPresente": 12600312.3555662,
+    "valorPresenteLiquido": 12600312.3555662,
+    "pddTotal": 0.0,
+    "cedentesUnicos": 4,
+    "sacadosUnicos": 4,
+    "prazoMedioDias": 142.0575253544767,
+    "taxaMediaPonderada": 0.018217239423697285,
     "preFixado": {
       "valorPresente": 12600312.3555662
     },
     "posFixado": {
-      "valorPresente": 0.001893378414969194
+      "valorPresente": 0
     },
     "montanteAtraso": 6025463.543283463
   },
@@ -19693,8 +19693,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "CDI + 7,00% a.a.",
-      "pu": -270932.5139861209,
-      "valor": -27093251.39861209,
+      "pu": -256874.2036252043,
+      "valor": -25687420.36252043,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -19713,39 +19713,31 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "valorPresente": 6574848.812282736,
       "valorPdd": 0.0,
       "order": 0.0,
-      "percentualCarteira": 0.5218004622234881
+      "percentualCarteira": 0.5218004623018961
     },
     {
       "status": "Entre 31 e 60 dias",
       "valorNominal": 1870015.0,
       "valorPresente": 1870015.0,
-      "valorPdd": 9350.075,
+      "valorPdd": 0.0,
       "order": 2.0,
-      "percentualCarteira": 0.14841020975904004
+      "percentualCarteira": 0.14841020978134079
     },
     {
       "status": "Entre 91 e 120 dias",
       "valorNominal": 499488.0,
       "valorPresente": 499488.0,
-      "valorPdd": 299692.8,
+      "valorPdd": 0.0,
       "order": 4.0,
-      "percentualCarteira": 0.03964092205256289
+      "percentualCarteira": 0.039640922058519504
     },
     {
       "status": "Entre 61 e 90 dias",
       "valorNominal": 4955280.0,
       "valorPresente": 3655960.5432834635,
-      "valorPdd": 1096788.162985039,
-      "order": 4.0,
-      "percentualCarteira": 0.2901484058146447
-    },
-    {
-      "status": "LIQUIDADO",
-      "valorNominal": 0.0,
-      "valorPresente": 0.001893378414969194,
       "valorPdd": 0.0,
-      "order": 99.0,
-      "percentualCarteira": 1.5026440307634796e-10
+      "order": 4.0,
+      "percentualCarteira": 0.29014840585824364
     }
   ],
   "composicaoPdd": [],
@@ -19767,7 +19759,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 11.194.481,32",
+          "value": "R$ 12.600.312,36",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -19775,7 +19767,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         },
         {
           "label": "Carteira VP liquida",
-          "value": "R$ 11.194.481,32",
+          "value": "R$ 12.600.312,36",
           "isHighlight": true,
           "source": {
             "name": "Import carteira"
@@ -19799,7 +19791,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -27.093.251,40",
+          "value": "R$ -25.687.420,36",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -19807,7 +19799,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-270.932,513986",
+          "value": "-256.874,203625",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -19823,7 +19815,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         },
         {
           "label": "PDD",
-          "value": "R$ 1.405.831,04",
+          "value": "R$ 0,00",
           "isHighlight": false,
           "source": {
             "name": "Faixa vencimento"
@@ -19979,8 +19971,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "faixaVencOrder": 2,
       "valorPresenteDia": 1870015.0,
       "valorPresente": 1870015.0,
-      "pdd": 9350.075,
-      "valorPresenteLiquido": 1860664.925
+      "pdd": 0.0,
+      "valorPresenteLiquido": 1870015.0
     },
     {
       "craCarteira": "51ª",
@@ -20384,8 +20376,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "faixaVencOrder": 4,
       "valorPresenteDia": 499488.0,
       "valorPresente": 499488.0,
-      "pdd": 299692.8,
-      "valorPresenteLiquido": 199795.2
+      "pdd": 0.0,
+      "valorPresenteLiquido": 499488.0
     },
     {
       "craCarteira": "51ª",
@@ -20519,8 +20511,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "faixaVencOrder": 4,
       "valorPresenteDia": 1115560.5432834635,
       "valorPresente": 1115560.5432834635,
-      "pdd": 334668.162985039,
-      "valorPresenteLiquido": 780892.3802984245
+      "pdd": 0.0,
+      "valorPresenteLiquido": 1115560.5432834635
     },
     {
       "craCarteira": "51ª",
@@ -20564,8 +20556,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "faixaVencOrder": 3,
       "valorPresenteDia": 2540400.0,
       "valorPresente": 2540400.0,
-      "pdd": 762120.0,
-      "valorPresenteLiquido": 1778280.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": 2540400.0
     },
     {
       "craCarteira": "51ª",
@@ -20627,14 +20619,14 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
       "dataVencimento": "30/08/2030",
       "dataVencimentoIso": "2030-08-30",
       "valorLiquidacao": 6387704.62,
-      "dataLiquidacao": "",
-      "dataLiquidacaoIso": "",
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
       "dataLiquidacaoOriginal": "03/06/2026",
       "dataLiquidacaoOriginalIso": "2026-06-03",
       "tipoTitulo": "CPR",
       "tipoAtivo": "CPR",
       "mesaResp": "Normal",
-      "status": "EM CARTEIRA",
+      "status": "LIQUIDADO",
       "statusOriginal": "LIQUIDADO",
       "statusPagamento": "Liquidado",
       "taxa": 0.01656579153001414,
@@ -20664,12 +20656,23 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "name": "AGROPERMUTA CONSULTORIA E",
         "quantidade": 6,
         "valorPresenteDia": 6484966.967390305,
-        "pdd": 9350.075,
-        "valorPresenteLiquido": 6475616.892390306,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 6484966.967390305,
         "valorNominal": 10546038.0,
         "posicao": 1,
-        "participacao": 0.5784651121910369,
-        "participacaoPl": 0.5784651121910369
+        "participacao": 0.5146671593839947,
+        "participacaoPl": 0.5146671593066585
+      },
+      {
+        "name": "VINICIUS LONGEN RIBEIRO",
+        "quantidade": 1,
+        "valorPresenteDia": 2540400.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2540400.0,
+        "valorNominal": 2540400.0,
+        "posicao": 2,
+        "participacao": 0.20161404958169757,
+        "participacaoPl": 0.20161404955140216
       },
       {
         "name": "PEDRO RIBEIRO MEROLA",
@@ -20678,42 +20681,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "pdd": 0.0,
         "valorPresenteLiquido": 1959896.84489243,
         "valorNominal": 8121850.0,
-        "posicao": 2,
-        "participacao": 0.1750770570748003,
-        "participacaoPl": 0.1750770570748003
-      },
-      {
-        "name": "VINICIUS LONGEN RIBEIRO",
-        "quantidade": 1,
-        "valorPresenteDia": 2540400.0,
-        "pdd": 762120.0,
-        "valorPresenteLiquido": 1778280.0,
-        "valorNominal": 2540400.0,
         "posicao": 3,
-        "participacao": 0.15885327325585025,
-        "participacaoPl": 0.15885327325585025
+        "participacao": 0.15554351269924224,
+        "participacaoPl": 0.15554351267586958
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRIC",
         "quantidade": 2,
         "valorPresenteDia": 1615048.5432834635,
-        "pdd": 634360.962985039,
-        "valorPresenteLiquido": 980687.5802984245,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 1615048.5432834635,
         "valorNominal": 2914368.0,
         "posicao": 4,
-        "participacao": 0.08760455730917753,
-        "participacaoPl": 0.08760455730917753
-      },
-      {
-        "name": "LEONARDO LEAL LOPES",
-        "quantidade": 1,
-        "valorPresenteDia": 0.001893378414969194,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.001893378414969194,
-        "valorNominal": 0.0,
-        "posicao": 5,
-        "participacao": 1.691349836526475e-10,
-        "participacaoPl": 1.691349836526475e-10
+        "participacao": 0.1281752783350656,
+        "participacaoPl": 0.1281752783158054
       }
     ],
     "sacados": [
@@ -20721,12 +20702,23 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "name": "AGROPERMUTA CONSULTORIA E",
         "quantidade": 6,
         "valorPresenteDia": 6484966.967390305,
-        "pdd": 9350.075,
-        "valorPresenteLiquido": 6475616.892390306,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 6484966.967390305,
         "valorNominal": 10546038.0,
         "posicao": 1,
-        "participacao": 0.5784651121910369,
-        "participacaoPl": 0.5784651121910369
+        "participacao": 0.5146671593839947,
+        "participacaoPl": 0.5146671593066585
+      },
+      {
+        "name": "VINICIUS LONGEN RIBEIRO",
+        "quantidade": 1,
+        "valorPresenteDia": 2540400.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2540400.0,
+        "valorNominal": 2540400.0,
+        "posicao": 2,
+        "participacao": 0.20161404958169757,
+        "participacaoPl": 0.20161404955140216
       },
       {
         "name": "PEDRO RIBEIRO MEROLA",
@@ -20735,45 +20727,23 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "pdd": 0.0,
         "valorPresenteLiquido": 1959896.84489243,
         "valorNominal": 8121850.0,
-        "posicao": 2,
-        "participacao": 0.1750770570748003,
-        "participacaoPl": 0.1750770570748003
-      },
-      {
-        "name": "VINICIUS LONGEN RIBEIRO",
-        "quantidade": 1,
-        "valorPresenteDia": 2540400.0,
-        "pdd": 762120.0,
-        "valorPresenteLiquido": 1778280.0,
-        "valorNominal": 2540400.0,
         "posicao": 3,
-        "participacao": 0.15885327325585025,
-        "participacaoPl": 0.15885327325585025
+        "participacao": 0.15554351269924224,
+        "participacaoPl": 0.15554351267586958
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRIC",
         "quantidade": 2,
         "valorPresenteDia": 1615048.5432834635,
-        "pdd": 634360.962985039,
-        "valorPresenteLiquido": 980687.5802984245,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 1615048.5432834635,
         "valorNominal": 2914368.0,
         "posicao": 4,
-        "participacao": 0.08760455730917753,
-        "participacaoPl": 0.08760455730917753
-      },
-      {
-        "name": "LEONARDO LEAL LOPES",
-        "quantidade": 1,
-        "valorPresenteDia": 0.001893378414969194,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.001893378414969194,
-        "valorNominal": 0.0,
-        "posicao": 5,
-        "participacao": 1.691349836526475e-10,
-        "participacaoPl": 1.691349836526475e-10
+        "participacao": 0.1281752783350656,
+        "participacaoPl": 0.1281752783158054
       }
     ],
-    "lastrosAtivos": 11
+    "lastrosAtivos": 10
   },
   "concentracaoDetalhada": {
     "top10Cedentes": [
@@ -20781,12 +20751,23 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "name": "AGROPERMUTA CONSULTORIA E",
         "quantidade": 6,
         "valorPresenteDia": 6484966.967390305,
-        "pdd": 9350.075,
-        "valorPresenteLiquido": 6475616.892390306,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 6484966.967390305,
         "valorNominal": 10546038.0,
         "posicao": 1,
-        "participacao": 0.5784651121910369,
-        "participacaoPl": 0.5784651121910369
+        "participacao": 0.5146671593839947,
+        "participacaoPl": 0.5146671593066585
+      },
+      {
+        "name": "VINICIUS LONGEN RIBEIRO",
+        "quantidade": 1,
+        "valorPresenteDia": 2540400.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2540400.0,
+        "valorNominal": 2540400.0,
+        "posicao": 2,
+        "participacao": 0.20161404958169757,
+        "participacaoPl": 0.20161404955140216
       },
       {
         "name": "PEDRO RIBEIRO MEROLA",
@@ -20795,42 +20776,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "pdd": 0.0,
         "valorPresenteLiquido": 1959896.84489243,
         "valorNominal": 8121850.0,
-        "posicao": 2,
-        "participacao": 0.1750770570748003,
-        "participacaoPl": 0.1750770570748003
-      },
-      {
-        "name": "VINICIUS LONGEN RIBEIRO",
-        "quantidade": 1,
-        "valorPresenteDia": 2540400.0,
-        "pdd": 762120.0,
-        "valorPresenteLiquido": 1778280.0,
-        "valorNominal": 2540400.0,
         "posicao": 3,
-        "participacao": 0.15885327325585025,
-        "participacaoPl": 0.15885327325585025
+        "participacao": 0.15554351269924224,
+        "participacaoPl": 0.15554351267586958
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRIC",
         "quantidade": 2,
         "valorPresenteDia": 1615048.5432834635,
-        "pdd": 634360.962985039,
-        "valorPresenteLiquido": 980687.5802984245,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 1615048.5432834635,
         "valorNominal": 2914368.0,
         "posicao": 4,
-        "participacao": 0.08760455730917753,
-        "participacaoPl": 0.08760455730917753
-      },
-      {
-        "name": "LEONARDO LEAL LOPES",
-        "quantidade": 1,
-        "valorPresenteDia": 0.001893378414969194,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.001893378414969194,
-        "valorNominal": 0.0,
-        "posicao": 5,
-        "participacao": 1.691349836526475e-10,
-        "participacaoPl": 1.691349836526475e-10
+        "participacao": 0.1281752783350656,
+        "participacaoPl": 0.1281752783158054
       }
     ],
     "top10Sacados": [
@@ -20838,12 +20797,23 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "name": "AGROPERMUTA CONSULTORIA E",
         "quantidade": 6,
         "valorPresenteDia": 6484966.967390305,
-        "pdd": 9350.075,
-        "valorPresenteLiquido": 6475616.892390306,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 6484966.967390305,
         "valorNominal": 10546038.0,
         "posicao": 1,
-        "participacao": 0.5784651121910369,
-        "participacaoPl": 0.5784651121910369
+        "participacao": 0.5146671593839947,
+        "participacaoPl": 0.5146671593066585
+      },
+      {
+        "name": "VINICIUS LONGEN RIBEIRO",
+        "quantidade": 1,
+        "valorPresenteDia": 2540400.0,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 2540400.0,
+        "valorNominal": 2540400.0,
+        "posicao": 2,
+        "participacao": 0.20161404958169757,
+        "participacaoPl": 0.20161404955140216
       },
       {
         "name": "PEDRO RIBEIRO MEROLA",
@@ -20852,88 +20822,33 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
         "pdd": 0.0,
         "valorPresenteLiquido": 1959896.84489243,
         "valorNominal": 8121850.0,
-        "posicao": 2,
-        "participacao": 0.1750770570748003,
-        "participacaoPl": 0.1750770570748003
-      },
-      {
-        "name": "VINICIUS LONGEN RIBEIRO",
-        "quantidade": 1,
-        "valorPresenteDia": 2540400.0,
-        "pdd": 762120.0,
-        "valorPresenteLiquido": 1778280.0,
-        "valorNominal": 2540400.0,
         "posicao": 3,
-        "participacao": 0.15885327325585025,
-        "participacaoPl": 0.15885327325585025
+        "participacao": 0.15554351269924224,
+        "participacaoPl": 0.15554351267586958
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRIC",
         "quantidade": 2,
         "valorPresenteDia": 1615048.5432834635,
-        "pdd": 634360.962985039,
-        "valorPresenteLiquido": 980687.5802984245,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 1615048.5432834635,
         "valorNominal": 2914368.0,
         "posicao": 4,
-        "participacao": 0.08760455730917753,
-        "participacaoPl": 0.08760455730917753
-      },
-      {
-        "name": "LEONARDO LEAL LOPES",
-        "quantidade": 1,
-        "valorPresenteDia": 0.001893378414969194,
-        "pdd": 0.0,
-        "valorPresenteLiquido": 0.001893378414969194,
-        "valorNominal": 0.0,
-        "posicao": 5,
-        "participacao": 1.691349836526475e-10,
-        "participacaoPl": 1.691349836526475e-10
+        "participacao": 0.1281752783350656,
+        "participacaoPl": 0.1281752783158054
       }
     ]
   },
-  "pddComposition": [
-    {
-      "cedente": "VINICIUS LONGEN RIBEIRO",
-      "status": "Entre 61 e 90 dias",
-      "valorAberto": 2540400.0,
-      "valorPdd": 762120.0,
-      "valorNominal": 2540400.0,
-      "lastros": 1
-    },
-    {
-      "cedente": "TEC PLANTE PRODUTOS AGRIC",
-      "status": "Entre 61 e 90 dias",
-      "valorAberto": 1115560.5432834635,
-      "valorPdd": 334668.162985039,
-      "valorNominal": 2414880.0,
-      "lastros": 1
-    },
-    {
-      "cedente": "TEC PLANTE PRODUTOS AGRIC",
-      "status": "Entre 91 e 120 dias",
-      "valorAberto": 499488.0,
-      "valorPdd": 299692.8,
-      "valorNominal": 499488.0,
-      "lastros": 1
-    },
-    {
-      "cedente": "AGROPERMUTA CONSULTORIA E",
-      "status": "Entre 31 e 60 dias",
-      "valorAberto": 1870015.0,
-      "valorPdd": 9350.075,
-      "valorNominal": 1870015.0,
-      "lastros": 1
-    }
-  ],
+  "pddComposition": [],
   "composicaoCarteira": [
     {
       "label": "CPR",
       "tipoTitulo": "CPR",
       "valorNominal": 24122656.0,
-      "valorPresente": 12600312.357459577,
-      "lastros": 11,
-      "percentualCarteira": 1.0,
-      "taxaMedia": 0.018271185696047684
+      "valorPresente": 12600312.355566198,
+      "lastros": 10,
+      "percentualCarteira": 0.9999999999999999,
+      "taxaMedia": 0.018217239423697285
     }
   ],
   "movimentacoesDia": {
@@ -21168,8 +21083,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": -270932.5139861209,
-          "valor": -27093251.39861209,
+          "pu": -256874.2036252043,
+          "valor": -25687420.36252043,
           "resultadoDia": null,
           "resultadoMes": null
         }

@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-44"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:14.568051-03:00",
+    "importedAt": "2026-07-28T16:01:06.497232-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "observation": "PU do CRA Carteira 44 calculado com integralizacoes e comunicados de cash sweep extraidos da pasta Comunicados. RESIDUAL tratado como PU/base apos evento quando informado. Alteracao de remuneracao para CDI + 7,00% a.a. aplicada a partir de 24/07/2026 para cotas Senior/Mezanino; subordinadas preservadas.",

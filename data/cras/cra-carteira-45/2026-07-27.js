@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:14.665297-03:00",
+    "importedAt": "2026-07-28T16:01:06.633426-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "observation": "PU do CRA Carteira 45 calculado com integralizacoes e comunicados de cash sweep extraidos da pasta Comunicados. RESIDUAL tratado como PU/base apos evento quando informado. Alteracao de remuneracao para CDI + 7,00% a.a. aplicada a partir de 24/07/2026 para cotas Senior/Mezanino; subordinadas preservadas.",
@@ -22854,8 +22854,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
       "faixaVencOrder": 99,
       "valorPresenteDia": -0.0002119625573110638,
       "valorPresente": -0.0002119625573110638,
-      "pdd": -0.0002119625573110638,
-      "valorPresenteLiquido": 0.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": -0.0002119625573110638
     }
   ],
   "rankingCarteira": {
@@ -22869,7 +22869,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 28550334.8,
         "posicao": 1,
         "participacao": 1.0,
-        "participacaoPl": 0.999978426588175
+        "participacaoPl": 0.9999784265962278
       }
     ],
     "sacados": [
@@ -22882,7 +22882,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 4000375.6,
         "posicao": 1,
         "participacao": 0.13994433378253504,
-        "participacaoPl": 0.13994131470578977
+        "participacaoPl": 0.13994131470691673
       },
       {
         "name": "TEMPO INVESTIMENTOS PARTI",
@@ -22893,7 +22893,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3899451.4,
         "posicao": 2,
         "participacao": 0.13374993265267027,
-        "participacaoPl": 0.1337470472102916
+        "participacaoPl": 0.13374704721136865
       },
       {
         "name": "ESTANCIA SANTA FE LTDA",
@@ -22904,7 +22904,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3799707.6,
         "posicao": 3,
         "participacao": 0.13032875227975207,
-        "participacaoPl": 0.1303259406439065
+        "participacaoPl": 0.130325940644956
       },
       {
         "name": "J.O. GARCIA PARTICIPACOES",
@@ -22915,7 +22915,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3650387.0,
         "posicao": 4,
         "participacao": 0.12761229474370725,
-        "participacaoPl": 0.1276095417111188
+        "participacaoPl": 0.12760954171214645
       },
       {
         "name": "TRADE COMPANY PARTICIPACO",
@@ -22926,7 +22926,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3449719.0,
         "posicao": 5,
         "participacao": 0.1205972291848716,
-        "participacaoPl": 0.12059462749118144
+        "participacaoPl": 0.12059462749215259
       },
       {
         "name": "TRADE COMPANY CONSULTORIA",
@@ -22937,7 +22937,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3349975.2,
         "posicao": 6,
         "participacao": 0.1194799399572898,
-        "participacaoPl": 0.11947736236734027
+        "participacaoPl": 0.11947736236830242
       },
       {
         "name": "RC INVESTIMENTOS E PARTIC",
@@ -22948,7 +22948,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3250231.4,
         "posicao": 7,
         "participacao": 0.1159224857854869,
-        "participacaoPl": 0.11591998494196128
+        "participacaoPl": 0.11591998494289478
       },
       {
         "name": "VILA CARVALHO EMPREENDIME",
@@ -22959,7 +22959,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3150487.6,
         "posicao": 8,
         "participacao": 0.11236503161368706,
-        "participacaoPl": 0.11236260751658532
+        "participacaoPl": 0.11236260751749018
       }
     ],
     "lastrosAtivos": 16
@@ -22975,7 +22975,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 28550334.8,
         "posicao": 1,
         "participacao": 1.0,
-        "participacaoPl": 0.999978426588175
+        "participacaoPl": 0.9999784265962278
       }
     ],
     "top10Sacados": [
@@ -22988,7 +22988,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 4000375.6,
         "posicao": 1,
         "participacao": 0.13994433378253504,
-        "participacaoPl": 0.13994131470578977
+        "participacaoPl": 0.13994131470691673
       },
       {
         "name": "TEMPO INVESTIMENTOS PARTI",
@@ -22999,7 +22999,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3899451.4,
         "posicao": 2,
         "participacao": 0.13374993265267027,
-        "participacaoPl": 0.1337470472102916
+        "participacaoPl": 0.13374704721136865
       },
       {
         "name": "ESTANCIA SANTA FE LTDA",
@@ -23010,7 +23010,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3799707.6,
         "posicao": 3,
         "participacao": 0.13032875227975207,
-        "participacaoPl": 0.1303259406439065
+        "participacaoPl": 0.130325940644956
       },
       {
         "name": "J.O. GARCIA PARTICIPACOES",
@@ -23021,7 +23021,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3650387.0,
         "posicao": 4,
         "participacao": 0.12761229474370725,
-        "participacaoPl": 0.1276095417111188
+        "participacaoPl": 0.12760954171214645
       },
       {
         "name": "TRADE COMPANY PARTICIPACO",
@@ -23032,7 +23032,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3449719.0,
         "posicao": 5,
         "participacao": 0.1205972291848716,
-        "participacaoPl": 0.12059462749118144
+        "participacaoPl": 0.12059462749215259
       },
       {
         "name": "TRADE COMPANY CONSULTORIA",
@@ -23043,7 +23043,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3349975.2,
         "posicao": 6,
         "participacao": 0.1194799399572898,
-        "participacaoPl": 0.11947736236734027
+        "participacaoPl": 0.11947736236830242
       },
       {
         "name": "RC INVESTIMENTOS E PARTIC",
@@ -23054,7 +23054,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3250231.4,
         "posicao": 7,
         "participacao": 0.1159224857854869,
-        "participacaoPl": 0.11591998494196128
+        "participacaoPl": 0.11591998494289478
       },
       {
         "name": "VILA CARVALHO EMPREENDIME",
@@ -23065,7 +23065,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-07-27"] = {
         "valorNominal": 3150487.6,
         "posicao": 8,
         "participacao": 0.11236503161368706,
-        "participacaoPl": 0.11236260751658532
+        "participacaoPl": 0.11236260751749018
       }
     ]
   },

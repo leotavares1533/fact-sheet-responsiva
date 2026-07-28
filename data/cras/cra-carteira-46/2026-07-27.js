@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:14.796827-03:00",
+    "importedAt": "2026-07-28T16:01:06.766168-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -75,11 +75,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
   },
   "ativo": {
     "carteiraVpBruto": 1370708.3783173354,
-    "pddTotal": 801.4822251275783,
-    "carteiraVp": 1369906.8960922079,
-    "carteiraVpLiquido": 1369906.8960922079,
+    "pddTotal": 0.0,
+    "carteiraVp": 1370708.3783173354,
+    "carteiraVpLiquido": 1370708.3783173354,
     "caixa": 115192.87,
-    "total": 1485099.7660922077,
+    "total": 1485901.2483173353,
     "liquidacoesDia": 71845.01,
     "aquisicoesDia": 0,
     "quantidadeLastros": 504,
@@ -105,9 +105,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
   "passivo": {
     "fundingTotal": 1444914.2211,
     "despesasTotal": 0,
-    "subordinadaTotal": 40185.54499220778,
+    "subordinadaTotal": 40987.0272173353,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": 401.8554499220778,
+    "subordinadaPuResidual": 409.870272173353,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -9265,9 +9265,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": 401.8554499220778,
-        "valor": 40185.54499220778,
-        "principalResidual": 401.8554499220778,
+        "pu": 409.870272173353,
+        "valor": 40987.0272173353,
+        "principalResidual": 409.870272173353,
         "ehFunding": false,
         "ordem": 90,
         "historicoPu": [
@@ -9298,19 +9298,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
     "funding": 1439015.982453,
     "valorTotalSenior": 1439015.982453,
     "despesasOperacionaisTotal": 0,
-    "provisoesTotal": 801.4822251275783,
+    "provisoesTotal": 0.0,
     "provisoesCaixa": 0,
     "deducoesTotal": 0
   },
   "carteiraResumo": {
     "valorNominal": 18953072.3,
     "valorPresente": 1370708.3783173354,
-    "valorPresenteLiquido": 1369906.8960922079,
-    "pddTotal": 801.4822251275783,
+    "valorPresenteLiquido": 1370708.3783173354,
+    "pddTotal": 0.0,
     "cedentesUnicos": 3,
     "sacadosUnicos": 3,
-    "prazoMedioDias": 3.365417577382223,
-    "taxaMediaPonderada": 0.017972318803926454,
+    "prazoMedioDias": 3.333628966077899,
+    "taxaMediaPonderada": 0.01797337553397993,
     "preFixado": {
       "valorPresente": 1370708.3783173354
     },
@@ -9341,8 +9341,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "CDI + 7,00% a.a.",
-      "pu": 401.8554499220778,
-      "valor": 40185.54499220778,
+      "pu": 409.870272173353,
+      "valor": 40987.0272173353,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -9367,7 +9367,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
       "status": "Entre 31 e 60 dias",
       "valorNominal": 277767.87,
       "valorPresente": 160296.44502551566,
-      "valorPdd": 801.4822251275783,
+      "valorPdd": 0.0,
       "order": 2.0,
       "percentualCarteira": 0.11694423668898382
     }
@@ -9390,7 +9390,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorFace": 70200.0,
         "valorLiquidacao": 71845.01,
         "quantidade": 1,
-        "percentualPl": 0.04837722800876075
+        "percentualPl": 0.04835113375223202
       }
     ]
   },
@@ -9401,7 +9401,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 1.485.099,77",
+          "value": "R$ 1.485.901,25",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -9409,7 +9409,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         },
         {
           "label": "Carteira VP liquida",
-          "value": "R$ 1.369.906,90",
+          "value": "R$ 1.370.708,38",
           "isHighlight": true,
           "source": {
             "name": "Import carteira"
@@ -9433,7 +9433,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 40.185,54",
+          "value": "R$ 40.987,03",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -9441,7 +9441,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "401,855450",
+          "value": "409,870272",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -9457,7 +9457,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         },
         {
           "label": "PDD",
-          "value": "R$ 801,48",
+          "value": "R$ 0,00",
           "isHighlight": false,
           "source": {
             "name": "Faixa vencimento"
@@ -14191,8 +14191,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
       "faixaVencOrder": 2,
       "valorPresenteDia": 160296.44502551566,
       "valorPresente": 160296.44502551566,
-      "pdd": 801.4822251275783,
-      "valorPresenteLiquido": 159494.96280038808
+      "pdd": 0.0,
+      "valorPresenteLiquido": 160296.44502551566
     },
     {
       "craCarteira": "46ª",
@@ -32205,19 +32205,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 1199913.039564157,
         "valorNominal": 18664304.43,
         "posicao": 1,
-        "participacao": 0.8759084599011985,
-        "participacaoPl": 0.8079679675134068
+        "participacao": 0.8753962976699357,
+        "participacaoPl": 0.8075321566106515
       },
       {
         "name": "AGRICRUZ COMERCIAL AGRICO",
         "quantidade": 1,
         "valorPresenteDia": 160296.44502551566,
-        "pdd": 801.4822251275783,
-        "valorPresenteLiquido": 159494.96280038808,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 160296.44502551566,
         "valorNominal": 277767.87,
         "posicao": 2,
-        "participacao": 0.11642759318561204,
-        "participacaoPl": 0.10739680016250522
+        "participacao": 0.11694423668898382,
+        "participacaoPl": 0.10787826257433904
       },
       {
         "name": "CAMPEIRA COMERCIO DE PROD",
@@ -32227,8 +32227,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 10498.893727662839,
         "valorNominal": 11000.0,
         "posicao": 3,
-        "participacao": 0.0076639469131894655,
-        "participacaoPl": 0.00706948715996968
+        "participacao": 0.007659465641080527,
+        "participacaoPl": 0.007065673940009135
       }
     ],
     "sacados": [
@@ -32240,19 +32240,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 1199913.039564157,
         "valorNominal": 18664304.43,
         "posicao": 1,
-        "participacao": 0.8759084599011985,
-        "participacaoPl": 0.8079679675134068
+        "participacao": 0.8753962976699357,
+        "participacaoPl": 0.8075321566106515
       },
       {
         "name": "ANDRE RICARDO DALTROZO BA",
         "quantidade": 1,
         "valorPresenteDia": 160296.44502551566,
-        "pdd": 801.4822251275783,
-        "valorPresenteLiquido": 159494.96280038808,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 160296.44502551566,
         "valorNominal": 277767.87,
         "posicao": 2,
-        "participacao": 0.11642759318561204,
-        "participacaoPl": 0.10739680016250522
+        "participacao": 0.11694423668898382,
+        "participacaoPl": 0.10787826257433904
       },
       {
         "name": "DAVID FERREIRA DA PAIXAO",
@@ -32262,8 +32262,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 10498.893727662839,
         "valorNominal": 11000.0,
         "posicao": 3,
-        "participacao": 0.0076639469131894655,
-        "participacaoPl": 0.00706948715996968
+        "participacao": 0.007659465641080527,
+        "participacaoPl": 0.007065673940009135
       }
     ],
     "lastrosAtivos": 3
@@ -32278,19 +32278,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 1199913.039564157,
         "valorNominal": 18664304.43,
         "posicao": 1,
-        "participacao": 0.8759084599011985,
-        "participacaoPl": 0.8079679675134068
+        "participacao": 0.8753962976699357,
+        "participacaoPl": 0.8075321566106515
       },
       {
         "name": "AGRICRUZ COMERCIAL AGRICO",
         "quantidade": 1,
         "valorPresenteDia": 160296.44502551566,
-        "pdd": 801.4822251275783,
-        "valorPresenteLiquido": 159494.96280038808,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 160296.44502551566,
         "valorNominal": 277767.87,
         "posicao": 2,
-        "participacao": 0.11642759318561204,
-        "participacaoPl": 0.10739680016250522
+        "participacao": 0.11694423668898382,
+        "participacaoPl": 0.10787826257433904
       },
       {
         "name": "CAMPEIRA COMERCIO DE PROD",
@@ -32300,8 +32300,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 10498.893727662839,
         "valorNominal": 11000.0,
         "posicao": 3,
-        "participacao": 0.0076639469131894655,
-        "participacaoPl": 0.00706948715996968
+        "participacao": 0.007659465641080527,
+        "participacaoPl": 0.007065673940009135
       }
     ],
     "top10Sacados": [
@@ -32313,19 +32313,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 1199913.039564157,
         "valorNominal": 18664304.43,
         "posicao": 1,
-        "participacao": 0.8759084599011985,
-        "participacaoPl": 0.8079679675134068
+        "participacao": 0.8753962976699357,
+        "participacaoPl": 0.8075321566106515
       },
       {
         "name": "ANDRE RICARDO DALTROZO BA",
         "quantidade": 1,
         "valorPresenteDia": 160296.44502551566,
-        "pdd": 801.4822251275783,
-        "valorPresenteLiquido": 159494.96280038808,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 160296.44502551566,
         "valorNominal": 277767.87,
         "posicao": 2,
-        "participacao": 0.11642759318561204,
-        "participacaoPl": 0.10739680016250522
+        "participacao": 0.11694423668898382,
+        "participacaoPl": 0.10787826257433904
       },
       {
         "name": "DAVID FERREIRA DA PAIXAO",
@@ -32335,21 +32335,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorPresenteLiquido": 10498.893727662839,
         "valorNominal": 11000.0,
         "posicao": 3,
-        "participacao": 0.0076639469131894655,
-        "participacaoPl": 0.00706948715996968
+        "participacao": 0.007659465641080527,
+        "participacaoPl": 0.007065673940009135
       }
     ]
   },
-  "pddComposition": [
-    {
-      "cedente": "AGRICRUZ COMERCIAL AGRICO",
-      "status": "Entre 31 e 60 dias",
-      "valorAberto": 160296.44502551566,
-      "valorPdd": 801.4822251275783,
-      "valorNominal": 277767.87,
-      "lastros": 1
-    }
-  ],
+  "pddComposition": [],
   "composicaoCarteira": [
     {
       "label": "NC",
@@ -32367,7 +32358,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
       "valorPresente": 170795.33875317848,
       "lastros": 2,
       "percentualCarteira": 0.12460370233006435,
-      "taxaMedia": 0.019922635151668304
+      "taxaMedia": 0.019921963733179882
     }
   ],
   "movimentacoesDia": {
@@ -32380,7 +32371,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
         "valorFace": 70200.0,
         "valorLiquidacao": 71845.01,
         "quantidade": 1,
-        "percentualPl": 0.04837722800876075
+        "percentualPl": 0.04835113375223202
       }
     ]
   },
@@ -32516,8 +32507,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": 401.8554499220778,
-          "valor": 40185.54499220778,
+          "pu": 409.870272173353,
+          "valor": 40987.0272173353,
           "resultadoDia": null,
           "resultadoMes": null
         }

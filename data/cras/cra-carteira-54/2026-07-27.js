@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-54"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:15.559375-03:00",
+    "importedAt": "2026-07-28T16:01:07.403327-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,

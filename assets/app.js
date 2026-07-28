@@ -347,7 +347,7 @@
 
         const currentCra = getCurrentCra();
         const groupId = currentCra?.groupId || "";
-        const children = groupId ? getGroupChildren(groupId) : [];
+        const children = groupId ? getGroupChildren(groupId).filter((cra) => getLaminaDates(cra).length) : [];
 
         if (nodes.craChildControl && nodes.craChildSelector) {
           nodes.craChildControl.hidden = !children.length;
@@ -360,7 +360,7 @@
 
       function renderDateSelector() {
         const cra = getCurrentCra();
-        const dates = cra?.dates || [];
+        const dates = getLaminaDates(cra);
 
         if (nodes.dateSelector.tagName === "INPUT") {
           const dateKeys = dates.map((item) => item.dateKey).filter(Boolean).sort();
@@ -381,15 +381,24 @@
 
       function getManifestEntry(dateKey) {
         const cra = getCurrentCra();
-        return cra?.dates?.find((item) => item.dateKey === dateKey) || null;
+        return getLaminaDates(cra).find((item) => item.dateKey === dateKey) || null;
       }
 
       function getAvailableDateKeys() {
         const cra = getCurrentCra();
-        return (cra?.dates || [])
+        return getLaminaDates(cra)
           .map((item) => item.dateKey)
           .filter(Boolean)
           .sort();
+      }
+
+      function getLaminaDates(cra) {
+        const dates = cra?.dates || [];
+        if (cra?.groupId !== "cras-carteira") {
+          return dates;
+        }
+
+        return dates.filter((item) => item.assetImported || item.portfolioAssetImport);
       }
 
       function resolveAvailableDateKey(dateKey) {
@@ -2536,7 +2545,7 @@
         }
 
         const cra = getCurrentCra();
-        nodes.timeline.innerHTML = (cra?.dates || []).map((item) => `
+        nodes.timeline.innerHTML = getLaminaDates(cra).map((item) => `
           <button class="timeline-item ${item.dateKey === state.dateKey ? "is-active" : ""}" data-date-key="${escapeHtml(item.dateKey)}" type="button">
             <strong>${escapeHtml(item.reportDate)}</strong>
             <span>${escapeHtml(formatCurrency(item.totalAtivo))}</span>
@@ -2617,7 +2626,8 @@
       function selectCra(craId) {
         state.craId = craId;
         const cra = getCurrentCra();
-        state.dateKey = cra?.currentDate || cra?.dates?.[0]?.dateKey || "";
+        const dates = getLaminaDates(cra);
+        state.dateKey = dates.find((item) => item.dateKey === cra?.currentDate)?.dateKey || dates[0]?.dateKey || "";
         renderCraSelector();
         renderDateSelector();
         selectDate(state.dateKey);
@@ -2663,7 +2673,7 @@
         nodes.craSelector.addEventListener("change", (event) => {
           const value = event.target.value;
           if (value.startsWith("group:")) {
-            const firstChild = getGroupChildren(value.slice("group:".length))[0];
+            const firstChild = getGroupChildren(value.slice("group:".length)).find((cra) => getLaminaDates(cra).length);
             if (firstChild) {
               selectCra(firstChild.craId);
             }
@@ -2684,7 +2694,8 @@
 
         const cra = getCurrentCra();
         state.craId = cra.craId;
-        state.dateKey = cra.currentDate || cra.dates?.[0]?.dateKey || "";
+        const dates = getLaminaDates(cra);
+        state.dateKey = dates.find((item) => item.dateKey === cra.currentDate)?.dateKey || dates[0]?.dateKey || "";
         renderCraSelector();
         renderDateSelector();
         selectDate(state.dateKey);

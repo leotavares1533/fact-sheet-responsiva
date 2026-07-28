@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T15:34:14.992880-03:00",
+    "importedAt": "2026-07-28T16:01:06.937555-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -8659,8 +8659,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
       "faixaVencOrder": 99,
       "valorPresenteDia": -6.898486902943929e-05,
       "valorPresente": -6.898486902943929e-05,
-      "pdd": -6.898486902943929e-05,
-      "valorPresenteLiquido": 0.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": -6.898486902943929e-05
     },
     {
       "craCarteira": "48ª",
@@ -8794,8 +8794,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
       "faixaVencOrder": 99,
       "valorPresenteDia": -0.004332429826838184,
       "valorPresente": -0.004332429826838184,
-      "pdd": -0.004332429826838184,
-      "valorPresenteLiquido": 0.0
+      "pdd": 0.0,
+      "valorPresenteLiquido": -0.004332429826838184
     },
     {
       "craCarteira": "48ª",
@@ -9079,7 +9079,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 10380460.82,
         "posicao": 1,
         "participacao": 0.5471574702467832,
-        "participacaoPl": 0.4063654046506479
+        "participacaoPl": 0.40636540471877797
       },
       {
         "name": "BR AGRO AGRONEGOCIOS S.A",
@@ -9090,7 +9090,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 6884522.73,
         "posicao": 2,
         "participacao": 0.34510016958783146,
-        "participacaoPl": 0.25630056736009776
+        "participacaoPl": 0.2563005674030684
       },
       {
         "name": "JOAO LEOPOLDO SAMWAYS FIL",
@@ -9101,7 +9101,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 2136316.96,
         "posicao": 3,
         "participacao": 0.1077423601653853,
-        "participacaoPl": 0.08001858727593612
+        "participacaoPl": 0.08001858728935181
       }
     ],
     "sacados": [
@@ -9114,7 +9114,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 10380460.82,
         "posicao": 1,
         "participacao": 0.5471574702467832,
-        "participacaoPl": 0.4063654046506479
+        "participacaoPl": 0.40636540471877797
       },
       {
         "name": "ELO AGRONEGOCIOS LTDA",
@@ -9125,7 +9125,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 6884522.73,
         "posicao": 2,
         "participacao": 0.34510016958783146,
-        "participacaoPl": 0.25630056736009776
+        "participacaoPl": 0.2563005674030684
       },
       {
         "name": "JOAO LEOPOLDO SAMWAYS FIL",
@@ -9136,7 +9136,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 2136316.96,
         "posicao": 3,
         "participacao": 0.1077423601653853,
-        "participacaoPl": 0.08001858727593612
+        "participacaoPl": 0.08001858728935181
       }
     ],
     "lastrosAtivos": 3
@@ -9152,7 +9152,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 10380460.82,
         "posicao": 1,
         "participacao": 0.5471574702467832,
-        "participacaoPl": 0.4063654046506479
+        "participacaoPl": 0.40636540471877797
       },
       {
         "name": "BR AGRO AGRONEGOCIOS S.A",
@@ -9163,7 +9163,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 6884522.73,
         "posicao": 2,
         "participacao": 0.34510016958783146,
-        "participacaoPl": 0.25630056736009776
+        "participacaoPl": 0.2563005674030684
       },
       {
         "name": "JOAO LEOPOLDO SAMWAYS FIL",
@@ -9174,7 +9174,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 2136316.96,
         "posicao": 3,
         "participacao": 0.1077423601653853,
-        "participacaoPl": 0.08001858727593612
+        "participacaoPl": 0.08001858728935181
       }
     ],
     "top10Sacados": [
@@ -9187,7 +9187,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 10380460.82,
         "posicao": 1,
         "participacao": 0.5471574702467832,
-        "participacaoPl": 0.4063654046506479
+        "participacaoPl": 0.40636540471877797
       },
       {
         "name": "ELO AGRONEGOCIOS LTDA",
@@ -9198,7 +9198,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 6884522.73,
         "posicao": 2,
         "participacao": 0.34510016958783146,
-        "participacaoPl": 0.25630056736009776
+        "participacaoPl": 0.2563005674030684
       },
       {
         "name": "JOAO LEOPOLDO SAMWAYS FIL",
@@ -9209,7 +9209,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-07-27"] = {
         "valorNominal": 2136316.96,
         "posicao": 3,
         "participacao": 0.1077423601653853,
-        "participacaoPl": 0.08001858727593612
+        "participacaoPl": 0.08001858728935181
       }
     ]
   },
