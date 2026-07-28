@@ -4360,3 +4360,311 @@ tbody tr:hover td {
     display: none !important;
   }
 }
+
+@media (max-width: 760px) {
+  :root {
+    --mobile-canvas-width: 100vw;
+  }
+
+  html,
+  body {
+    width: 100%;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  body {
+    background: #f4efe7;
+  }
+
+  .app-shell,
+  .operacional-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px;
+  }
+
+  .topbar {
+    gap: 12px;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .brand {
+    flex: 1 1 100%;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .brand-mark {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    font-size: 0.95rem;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    line-height: 1.02;
+  }
+
+  .controls,
+  .auth-access-controls,
+  .base-switcher,
+  .base-switcher-actions,
+  .panel-head,
+  .block-title,
+  .table-panel-head {
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .controls > *,
+  .auth-access-controls > *,
+  .base-switcher > *,
+  .base-switcher-actions > *,
+  .date-control {
+    flex: 1 1 136px;
+    min-width: 0;
+  }
+
+  .nav-link,
+  .button-like,
+  .auth-button,
+  .auth-pill,
+  .status-pill {
+    min-height: 36px;
+  }
+
+  .summary-strip,
+  .stat-grid-six,
+  .stat-grid-eight,
+  .stat-grid-four,
+  .pdd-summary-grid,
+  .pdd-daily-metrics,
+  .pdd-waterfall-metrics,
+  .event-simulator-page .simulator-actions,
+  .event-simulator-page .simulator-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-grid,
+  .stat-grid-two,
+  .balance-grid,
+  .ranking-grid,
+  .model-grid-three,
+  .info-grid,
+  .account-grid,
+  .side-column,
+  .pu-side-rail .pu-field-grid,
+  .pu-field-grid,
+  .pu-field-grid-tight,
+  .two-column-layout,
+  .pricing-layout,
+  .pdd-window-grid,
+  .pdd-rank-layout,
+  .op-grid,
+  .op-grid-four {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card,
+  .panel,
+  .table-panel,
+  .line-chart-panel,
+  .pdd-stress-panel,
+  .pdd-waterfall-panel,
+  .pdd-rank-panel,
+  .pdd-window {
+    min-width: 0;
+  }
+
+  .table-shell,
+  .table-wrap,
+  .wide-table .table-wrap,
+  .fit-table .table-wrap,
+  .overview-table-wrap,
+  .simulator-table-wrap,
+  .pdd-window {
+    max-width: 100%;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .wide-table .table-wrap {
+    max-height: min(62vh, 520px);
+  }
+
+  .table-shell table,
+  .table-wrap table,
+  .compact-table {
+    width: max-content;
+    min-width: 720px !important;
+    table-layout: auto !important;
+  }
+
+  .daily-returns-table .compact-table {
+    min-width: 1080px !important;
+  }
+
+  .wide-table .compact-table {
+    min-width: 940px !important;
+  }
+
+  .maturity-table .compact-table,
+  .overdue-table .compact-table {
+    min-width: 760px !important;
+  }
+
+  .pdd-migration-table .compact-table,
+  .overdue-pmt-table .compact-table {
+    min-width: 980px !important;
+  }
+
+  .fit-table th,
+  .fit-table td,
+  .maturity-table th,
+  .maturity-table td,
+  .overdue-table th,
+  .overdue-table td,
+  .pdd-migration-table th,
+  .pdd-migration-table td,
+  .overdue-pmt-table th,
+  .overdue-pmt-table td,
+  .daily-returns-table th,
+  .daily-returns-table td {
+    padding: 8px 7px;
+    font-size: 0.68rem;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .name-cell {
+    max-width: 280px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .line-chart-panel {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .line-chart-panel .chart-head,
+  .line-chart {
+    min-width: 720px;
+  }
+
+  .line-chart {
+    height: 220px;
+  }
+
+  .pdd-daily-panel,
+  .pdd-waterfall-panel,
+  .pdd-stress-panel,
+  .pdd-rank-panel {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pdd-daily-chart {
+    min-width: 780px;
+    grid-template-columns: repeat(30, minmax(22px, 1fr));
+  }
+
+  .pdd-waterfall-chart {
+    min-width: calc(var(--pdd-waterfall-columns, 12) * 38px);
+    grid-template-columns: repeat(var(--pdd-waterfall-columns, 12), minmax(34px, 1fr));
+  }
+
+  .pdd-stress-chart {
+    min-width: 720px;
+    grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+  }
+
+  .pdd-window table {
+    min-width: 560px !important;
+  }
+
+  .pdd-rank-row {
+    min-width: 560px;
+    grid-template-columns: minmax(150px, 0.75fr) minmax(260px, 1.25fr);
+  }
+
+  .pdd-rank-row small {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .controls,
+  .auth-access-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .controls > *,
+  .auth-access-controls > *,
+  .date-control,
+  .date-control select,
+  .date-control input,
+  .status-pill,
+  .nav-link,
+  .button-like,
+  .auth-button,
+  .auth-pill {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .summary-strip,
+  .stat-grid-six,
+  .stat-grid-eight {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    min-height: 116px;
+  }
+
+  .metric-card strong {
+    font-size: clamp(1.18rem, 6.4vw, 1.65rem);
+    overflow-wrap: normal;
+  }
+
+  .stat-tile.no-break-value strong {
+    white-space: normal;
+  }
+
+  .panel,
+  .table-wrap,
+  .line-chart-panel,
+  .pdd-stress-panel,
+  .pdd-waterfall-panel,
+  .pdd-rank-panel,
+  .pdd-window {
+    border-radius: 16px;
+  }
+
+  .wide-table tbody tr:nth-child(n+19),
+  .fit-table tbody tr:nth-child(n+16) {
+    display: table-row;
+  }
+
+  .table-panel-head span,
+  .ranking-title span {
+    white-space: normal;
+  }
+}
