@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -52,6 +52,44 @@ const localKey = ensureKey();
 function ensureDir(dir) {
   mkdirSync(dir, { recursive: true });
   return dir;
+}
+
+const previewTypes = new Map([
+  [".html", "text/html; charset=utf-8"],
+  [".css", "text/css; charset=utf-8"],
+  [".js", "text/javascript; charset=utf-8"],
+  [".json", "application/json; charset=utf-8"],
+  [".csv", "text/csv; charset=utf-8"],
+  [".svg", "image/svg+xml"],
+  [".png", "image/png"],
+  [".jpg", "image/jpeg"],
+  [".jpeg", "image/jpeg"],
+  [".ico", "image/x-icon"],
+  [".pdf", "application/pdf"],
+]);
+
+function servePreview(req, res, requestUrl) {
+  let relative = decodeURIComponent(requestUrl.pathname.replace(/^\/preview\/?/, ""));
+  if (!relative || relative.endsWith("/")) relative = path.join(relative, "index.html");
+
+  const target = path.resolve(root, relative);
+  if (target !== root && !target.startsWith(`${root}${path.sep}`)) {
+    json(req, res, 403, { ok: false, message: "Caminho de preview invalido." });
+    return true;
+  }
+
+  if (!existsSync(target) || !statSync(target).isFile()) {
+    json(req, res, 404, { ok: false, message: "Arquivo de preview nao encontrado." });
+    return true;
+  }
+
+  const type = previewTypes.get(path.extname(target).toLowerCase()) || "application/octet-stream";
+  res.writeHead(200, {
+    "Content-Type": type,
+    "Cache-Control": "no-store, max-age=0",
+  });
+  res.end(readFileSync(target));
+  return true;
 }
 
 function safeName(name) {
@@ -458,6 +496,11 @@ const server = createServer(async (req, res) => {
   const requestUrl = new URL(req.url, "http://127.0.0.1");
 
   try {
+    if (req.method === "GET" && requestUrl.pathname.startsWith("/preview")) {
+      servePreview(req, res, requestUrl);
+      return;
+    }
+
     if (req.method === "GET" && requestUrl.pathname === "/api/ping") {
       const state = await repositoryState().catch(() => ({}));
       json(req, res, 200, {

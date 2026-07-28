@@ -437,7 +437,7 @@
       });
       renderQueue();
       saveState({ lastProcessed: processed.at(-1), lastProcessedBatch: processed });
-      setStatus(`Processamento concluido para ${processed.length} posicao(oes). Valide a lamina antes de publicar.`, "ok");
+      setStatus(`Processamento concluido para ${processed.length} posicao(oes). Abra a previa local para validar antes de publicar.`, "ok");
       await refreshGitStatus();
     } catch (error) {
       setStatus(friendlyError(error), "error");
