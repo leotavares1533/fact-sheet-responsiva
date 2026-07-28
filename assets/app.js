@@ -2421,6 +2421,7 @@
           { label: "CRA", render: (row) => `<strong>${escapeHtml(row.operacao || row.craId || "-")}</strong>` },
           { label: "Carteira VP", render: (row) => escapeHtml(formatCurrencyShort(row.carteiraVp)) },
           { label: "Caixa", render: (row) => escapeHtml(formatCurrencyShort(row.caixa)) },
+          { label: "Cessao rend.", render: (row) => escapeHtml(formatCurrencyShort(row.cessaoRendimentosDia)) },
           { label: "Ativo", render: (row) => escapeHtml(formatCurrencyShort(row.ativoTotal)) },
           { label: "Funding", render: (row) => escapeHtml(formatCurrencyShort(row.funding)) },
           { label: "Sub", render: (row) => escapeHtml(formatCurrencyShort(row.subordinada)) },
@@ -2444,6 +2445,7 @@
         const historyColumns = [
           { label: "Data", render: (row) => `<strong>${escapeHtml(row.reportDate || formatIsoDate(row.dateKey))}</strong>` },
           { label: "Caixa total", render: (row) => escapeHtml(formatCurrencyShort(row.caixaTotal)) },
+          { label: "Cessao rend.", render: (row) => escapeHtml(formatCurrencyShort(row.cessaoRendimentosDia)) },
           { label: "Subordinadas", render: (row) => escapeHtml(formatCurrencyShort(row.subordinadaTotal)) },
           { label: "Dia Sub", render: (row) => renderPerformanceValue(row.rendimentoSubDia) }
         ];
@@ -2461,6 +2463,7 @@
               ${renderStatTile("Ativo total", formatCurrency(totals.total), "Carteira + caixa", "primary", "no-break-value")}
               ${renderStatTile("Carteira VP liquida", formatCurrency(totals.carteiraVpLiquido), "", "", "no-break-value")}
               ${renderStatTile("Caixa total", formatCurrency(totals.caixa), "", "", "no-break-value")}
+              ${renderStatTile("Cessao rend.", formatCurrency(snapshot.caixa?.cessaoRendimentosDia), "Rendimento do dia", "", "no-break-value")}
               ${renderStatTile("Funding SR/MEZ", formatCurrency(passivo.fundingTotal), "", "", "no-break-value")}
               ${renderStatTile("Subordinadas", formatCurrency(passivo.subordinadaTotal), "Residual consolidado", "", "no-break-value")}
               ${renderStatTile("PDD", formatCurrency(totals.pddTotal), "", "", "no-break-value")}

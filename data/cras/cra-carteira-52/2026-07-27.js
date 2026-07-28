@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T16:25:39.994802-03:00",
+    "importedAt": "2026-07-28T17:54:38.428668-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -140,6 +140,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-07-27"] = {
     },
     "total": 58658.899999999994,
     "totalCalculado": 58658.899999999994,
+    "totalCalculadoPlanilha": 58658.899999999994,
+    "cessaoRendimentosDia": 50.72999999998137,
+    "linhasPosTotal": [
+      58658.899999999994,
+      50.72999999998137
+    ],
     "fonte": "Importacao consolidada CRAs Carteira",
     "arquivoOrigem": "carteira_caixa_ccs_2707.xlsx",
     "observacao": "Fundo de despesa reduz o caixa conforme total informado na aba Planilha2."

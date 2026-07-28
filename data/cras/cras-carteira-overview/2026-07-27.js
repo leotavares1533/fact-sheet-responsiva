@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     "craId": "cras-carteira-overview",
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T16:25:40.662099-03:00",
+    "importedAt": "2026-07-28T17:54:38.938358-03:00",
     "revisionId": "20260727-cras-carteira-overview-assets",
     "portfolioOverview": true,
     "portfolioConsolidado": true,
@@ -38,6 +38,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
       "totalCrasCarteira": 35597283.19
     },
     "total": 35597283.19,
+    "cessaoRendimentosDia": 158498.4099999983,
     "fonte": "Soma dos caixas importados por CRA",
     "arquivoOrigem": "carteira_caixa_ccs_2707.xlsx"
   },
@@ -96,6 +97,10 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "value": "R$ 35.597.283,19"
       },
       {
+        "label": "Cessao rendimentos",
+        "value": "R$ 158.498,41"
+      },
+      {
         "label": "Subordinadas",
         "value": "R$ -3.581.257,11"
       },
@@ -111,6 +116,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 15759214.228882074,
         "valorNominal": 23571447.65,
         "caixa": 605059.46,
+        "cessaoRendimentosDia": 178.53000000002794,
         "ativoTotal": 16364273.688882075,
         "funding": 16178499.102800999,
         "subordinada": 185774.5860810764,
@@ -131,6 +137,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 26320257.295111887,
         "valorNominal": 28550334.8,
         "caixa": 567.8300000000017,
+        "cessaoRendimentosDia": 0.0,
         "ativoTotal": 26320825.125111885,
         "funding": 26380231.162823997,
         "subordinada": -59406.03771211207,
@@ -151,6 +158,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 1370708.3783173354,
         "valorNominal": 18953072.3,
         "caixa": 115192.87,
+        "cessaoRendimentosDia": 71845.01000000001,
         "ativoTotal": 1485901.2483173353,
         "funding": 1444914.2211,
         "subordinada": 40987.0272173353,
@@ -171,6 +179,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 15456436.199932158,
         "valorNominal": 16886049.52,
         "caixa": 9684092.12,
+        "cessaoRendimentosDia": 3834.449999999255,
         "ativoTotal": 25140528.319932155,
         "funding": 25279176.052242,
         "subordinada": -138647.73230984434,
@@ -191,6 +200,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 19497319.155826174,
         "valorNominal": 19401300.51,
         "caixa": 6755171.1,
+        "cessaoRendimentosDia": 2648.5300000002608,
         "ativoTotal": 26252490.255826175,
         "funding": 26348343.026166,
         "subordinada": -95852.77033982426,
@@ -211,6 +221,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 10106407.351684958,
         "valorNominal": 10437163.96,
         "caixa": 154490.87,
+        "cessaoRendimentosDia": 0.0,
         "ativoTotal": 10260898.221684957,
         "funding": 9950566.993206,
         "subordinada": 310331.22847895697,
@@ -231,6 +242,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 13454789.367110366,
         "valorNominal": 14949673.5,
         "caixa": 221081.47000000003,
+        "cessaoRendimentosDia": 3022.539999999979,
         "ativoTotal": 13675870.837110367,
         "funding": 13771624.790847002,
         "subordinada": -95753.95373663493,
@@ -251,6 +263,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 12600312.3555662,
         "valorNominal": 24122656.0,
         "caixa": 0.0,
+        "cessaoRendimentosDia": 0.0,
         "ativoTotal": 12600312.3555662,
         "funding": 13258922.71292663,
         "subordinada": -658610.3573604301,
@@ -271,6 +284,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 0,
         "valorNominal": 0,
         "caixa": 58658.899999999994,
+        "cessaoRendimentosDia": 50.72999999998137,
         "ativoTotal": 58658.899999999994,
         "funding": 0.0,
         "subordinada": 58658.899999999994,
@@ -291,6 +305,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 19168339.273731504,
         "valorNominal": 20466773.25,
         "caixa": 161609.01,
+        "cessaoRendimentosDia": 47.43000000002212,
         "ativoTotal": 19329948.283731505,
         "funding": 19297154.005101003,
         "subordinada": 32794.27863050252,
@@ -311,6 +326,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 14521870.823756948,
         "valorNominal": 15715400.42,
         "caixa": 25238.16000000001,
+        "cessaoRendimentosDia": 17595.08000000001,
         "ativoTotal": 14547108.983756948,
         "funding": 14420143.10931555,
         "subordinada": 126965.87444139831,
@@ -331,6 +347,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 11782722.264431937,
         "valorNominal": 12726256.36,
         "caixa": 3853917.4100000006,
+        "cessaoRendimentosDia": 1502.160000000149,
         "ativoTotal": 15636639.674431937,
         "funding": 16824892.784511,
         "subordinada": -1188253.110079063,
@@ -351,6 +368,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 10592831.295254767,
         "valorNominal": 10844240.129999999,
         "caixa": 11935050.93,
+        "cessaoRendimentosDia": 4704.109999999404,
         "ativoTotal": 22527882.225254767,
         "funding": 24016762.765,
         "subordinada": -1488880.539745234,
@@ -371,6 +389,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 2301908.0915492754,
         "valorNominal": 2983591.13,
         "caixa": 628987.94,
+        "cessaoRendimentosDia": 272.25,
         "ativoTotal": 2930896.0315492754,
         "funding": 3029866.5518403496,
         "subordinada": -98970.52029107418,
@@ -391,6 +410,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 30146983.72869875,
         "valorNominal": 31789039.52,
         "caixa": 58852.330000000016,
+        "cessaoRendimentosDia": 12360.129999999997,
         "ativoTotal": 30205836.058698747,
         "funding": 30531927.891930003,
         "subordinada": -326091.8332312554,
@@ -411,6 +431,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 14511109.88566605,
         "valorNominal": 15631423.299999999,
         "caixa": 2843.3200000000033,
+        "cessaoRendimentosDia": 39842.5399999991,
         "ativoTotal": 14513953.20566605,
         "funding": 14588849.165099502,
         "subordinada": -74895.9594334513,
@@ -431,6 +452,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 41917509.93665335,
         "valorNominal": 51743678.75,
         "caixa": 5320.5899999999965,
+        "cessaoRendimentosDia": 46.820000000006985,
         "ativoTotal": 41922830.52665336,
         "funding": 41572865.75399999,
         "subordinada": 349964.77265336365,
@@ -451,6 +473,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "carteiraVp": 27258890.865073167,
         "valorNominal": 28923601.169999998,
         "caixa": 1331148.88,
+        "cessaoRendimentosDia": 548.1000000000931,
         "ativoTotal": 28590039.745073166,
         "funding": 29051410.710267596,
         "subordinada": -461370.9651944302,
@@ -907,6 +930,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "dateKey": "2026-07-27",
         "reportDate": "27/07/2026",
         "caixaTotal": 35597283.19,
+        "cessaoRendimentosDia": 158498.4099999983,
         "subordinadaTotal": -3581257.1119307205,
         "rendimentoSubDia": null
       }
@@ -960,6 +984,14 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
+          }
+        },
+        {
+          "label": "Cessao rendimentos",
+          "value": "R$ 158.498,41",
+          "isHighlight": true,
+          "source": {
+            "name": "Linhas pos-total caixa"
           }
         },
         {

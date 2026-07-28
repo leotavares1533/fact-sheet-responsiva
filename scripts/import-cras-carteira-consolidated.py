@@ -570,6 +570,13 @@ def parse_workbook(path: Path) -> tuple[str, dict[str, list[dict[str, Any]]], di
     if current_id:
         cash_by_cra[current_id] = build_cash(current_accounts, current_raw)
 
+    post_total_cash_rows = extract_post_total_cash_rows(cash_sheet)
+    for cra_id, values in post_total_cash_rows.items():
+        cash = cash_by_cra.setdefault(cra_id, build_cash({}, []))
+        cash["totalCalculadoPlanilha"] = values.get("totalCalculado")
+        cash["cessaoRendimentosDia"] = values.get("cessaoRendimentosDia", 0.0)
+        cash["linhasPosTotal"] = values.get("linhasPosTotal", [])
+
     meta = {
         "sourceFile": str(path),
         "sheetCarteira": sheet_name,
@@ -577,6 +584,45 @@ def parse_workbook(path: Path) -> tuple[str, dict[str, list[dict[str, Any]]], di
         "cashDate": iso(cash_date),
     }
     return date_key, by_cra, cash_by_cra, meta
+
+
+def is_sheet_date(value: Any) -> bool:
+    return isinstance(value, (date, datetime))
+
+
+def extract_post_total_cash_rows(ws) -> dict[str, dict[str, Any]]:
+    result: dict[str, dict[str, Any]] = {}
+    rows = list(ws.iter_rows(values_only=True))
+    current_id = ""
+    for index, row in enumerate(rows):
+        label = clean_text(row[1] if len(row) > 1 else "")
+        desc = clean_text(row[5] if len(row) > 5 else "")
+        number = cra_number(label)
+        if is_cra_emission_label(label) and number:
+            current_id = cra_id_from_number(number)
+        if not current_id or normalize_key(desc) != "total":
+            continue
+
+        values = []
+        cursor = index + 1
+        while cursor < len(rows):
+            next_row = rows[cursor]
+            next_label = clean_text(next_row[1] if len(next_row) > 1 else "")
+            next_desc = clean_text(next_row[5] if len(next_row) > 5 else "")
+            next_value = next_row[6] if len(next_row) > 6 else None
+            if next_desc or is_cra_emission_label(next_label) or is_sheet_date(next_value):
+                break
+            if next_value not in (None, ""):
+                values.append(to_number(next_value))
+            cursor += 1
+
+        if values:
+            result[current_id] = {
+                "totalCalculado": values[0],
+                "cessaoRendimentosDia": sum(values[1:]),
+                "linhasPosTotal": values,
+            }
+    return result
 
 
 def build_cash(accounts: dict[str, float], rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -595,6 +641,8 @@ def build_cash(accounts: dict[str, float], rows: list[dict[str, Any]]) -> dict[s
         },
         "total": max(0.0, to_number(total)),
         "totalCalculado": total_calc,
+        "cessaoRendimentosDia": 0.0,
+        "linhasPosTotal": [],
         "rawRows": rows,
     }
 
@@ -1014,6 +1062,9 @@ def build_snapshot(cra_id: str, date_key: str, rows: list[dict[str, Any]], cash:
         "accounts": cash.get("accounts") or {},
         "total": caixa_total,
         "totalCalculado": cash.get("totalCalculado"),
+        "totalCalculadoPlanilha": cash.get("totalCalculadoPlanilha"),
+        "cessaoRendimentosDia": to_number(cash.get("cessaoRendimentosDia")),
+        "linhasPosTotal": cash.get("linhasPosTotal") or [],
         "fonte": "Importacao consolidada CRAs Carteira",
         "arquivoOrigem": Path(source_meta["sourceFile"]).name,
         "observacao": "Fundo de despesa reduz o caixa conforme total informado na aba Planilha2.",
@@ -1079,6 +1130,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
             "carteiraVp": ativo.get("carteiraVpLiquido"),
             "valorNominal": resumo.get("valorNominal"),
             "caixa": ativo.get("caixa"),
+            "cessaoRendimentosDia": snapshot.get("caixa", {}).get("cessaoRendimentosDia"),
             "ativoTotal": ativo.get("total"),
             "funding": passivo.get("fundingTotal"),
             "subordinada": passivo.get("subordinadaTotal"),
@@ -1115,6 +1167,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
         "carteiraVp": sum(to_number(row.get("carteiraVp")) for row in asset_rows),
         "valorNominal": sum(to_number(row.get("valorNominal")) for row in asset_rows),
         "caixa": sum(to_number(row.get("caixa")) for row in asset_rows),
+        "cessaoRendimentosDia": sum(to_number(row.get("cessaoRendimentosDia")) for row in asset_rows),
         "ativoTotal": sum(to_number(row.get("ativoTotal")) for row in asset_rows),
         "funding": sum(to_number(row.get("funding")) for row in asset_rows),
         "subordinada": sum(to_number(row.get("subordinada")) for row in asset_rows),
@@ -1142,6 +1195,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
                 "dateKey": key,
                 "reportDate": previous_overview.get("metadata", {}).get("reportDate") or date_key_to_br(key),
                 "caixaTotal": sum(to_number(row.get("caixa")) for row in previous_asset_rows),
+                "cessaoRendimentosDia": sum(to_number(row.get("cessaoRendimentosDia")) for row in previous_asset_rows),
                 "subordinadaTotal": sum(to_number(row.get("subordinada")) for row in previous_asset_rows),
                 "rendimentoSubDia": None,
             }
@@ -1152,6 +1206,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
         "dateKey": date_key,
         "reportDate": report_date,
         "caixaTotal": totals["caixa"],
+        "cessaoRendimentosDia": totals["cessaoRendimentosDia"],
         "subordinadaTotal": totals["subordinada"],
         "rendimentoSubDia": current_sub_return,
     }]
@@ -1192,6 +1247,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
         "caixa": {
             "accounts": {"totalCrasCarteira": totals["caixa"]},
             "total": totals["caixa"],
+            "cessaoRendimentosDia": totals["cessaoRendimentosDia"],
             "fonte": "Soma dos caixas importados por CRA",
             "arquivoOrigem": Path(source_meta["sourceFile"]).name,
         },
@@ -1223,6 +1279,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
             "metrics": [
                 {"label": "Carteira VP liquida", "value": currency(totals["carteiraVp"])},
                 {"label": "Caixa total", "value": currency(totals["caixa"])},
+                {"label": "Cessao rendimentos", "value": currency(totals["cessaoRendimentosDia"])},
                 {"label": "Subordinadas", "value": currency(totals["subordinada"])},
                 {"label": "PDD", "value": currency(totals["pdd"])},
             ],
@@ -1242,6 +1299,7 @@ def build_overview(date_key: str, snapshots: dict[str, dict[str, Any]], source_m
                 {"label": "Ativo total", "value": currency(totals["ativoTotal"]), "isHighlight": True, "source": {"name": "Carteira + caixa"}},
                 {"label": "Carteira VP liquida", "value": currency(totals["carteiraVp"]), "isHighlight": True, "source": {"name": "Import carteira"}},
                 {"label": "Caixa total", "value": currency(totals["caixa"]), "isHighlight": True, "source": {"name": "Import caixa"}},
+                {"label": "Cessao rendimentos", "value": currency(totals["cessaoRendimentosDia"]), "isHighlight": True, "source": {"name": "Linhas pos-total caixa"}},
                 {"label": "Funding SR/MEZ", "value": currency(totals["funding"]), "isHighlight": True, "source": {"name": "Memoria PU"}},
                 {"label": "Subordinadas", "value": currency(totals["subordinada"]), "isHighlight": True, "source": {"name": "Residual"}},
                 {"label": "PDD", "value": currency(totals["pdd"]), "isHighlight": True, "source": {"name": "Faixa vencimento"}},
