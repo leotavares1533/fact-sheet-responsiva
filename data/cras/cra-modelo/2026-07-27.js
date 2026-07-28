@@ -8,15 +8,15 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
     "title": "CRA 42",
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T17:34:48.646205-03:00",
-    "revisionId": "20260728-173447",
+    "importedAt": "2026-07-28T18:22:16.269862-03:00",
+    "revisionId": "20260728-182215",
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
       "holidayCount": 1263,
       "lagBusinessDays": 2
     },
     "canonicalPath": "cras/cra-modelo/archive/canonical/2026-07-27.json",
-    "revisionPath": "cras/cra-modelo/archive/revisions/2026-07-27/20260728-173447.json",
+    "revisionPath": "cras/cra-modelo/archive/revisions/2026-07-27/20260728-182215.json",
     "dataScript": "data/cras/cra-modelo/2026-07-27.js",
     "manualAdjustments": [
       {
@@ -500725,42 +500725,42 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/carteira/2026-07-27/carteira-2026-07-27-20260728-173447.csv"
+      "file": "cras/cra-modelo/archive/raw/carteira/2026-07-27/carteira-2026-07-27-20260728-182215.csv"
     },
     {
       "name": "Carteira fonte Excel",
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-27/carteira-fonte-excel-2026-07-27-20260728-173447.xlsx"
+      "file": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-27/carteira-fonte-excel-2026-07-27-20260728-182215.xlsx"
     },
     {
       "name": "Validacao carteira",
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-27/carteira-validacao-2026-07-27-20260728-173447.json"
+      "file": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-27/carteira-validacao-2026-07-27-20260728-182215.json"
     },
     {
       "name": "Caixa",
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/caixa/2026-07-27/caixa-2026-07-27-20260728-173447.csv"
+      "file": "cras/cra-modelo/archive/raw/caixa/2026-07-27/caixa-2026-07-27-20260728-182215.csv"
     },
     {
       "name": "Caixa fonte Excel",
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-27/caixa-fonte-excel-2026-07-27-20260728-173447.xlsx"
+      "file": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-27/caixa-fonte-excel-2026-07-27-20260728-182215.xlsx"
     },
     {
       "name": "Cotas e memoria de PU",
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/cotas/2026-07-27/cotas-2026-07-27-20260728-173447.csv"
+      "file": "cras/cra-modelo/archive/raw/cotas/2026-07-27/cotas-2026-07-27-20260728-182215.csv"
     },
     {
       "name": "Eventos de PU",
@@ -500781,7 +500781,7 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
       "owner": "",
       "url": "",
       "date": "27/07/2026",
-      "file": "cras/cra-modelo/archive/raw/despesas/2026-07-27/despesas-2026-07-27-20260728-173447.csv"
+      "file": "cras/cra-modelo/archive/raw/despesas/2026-07-27/despesas-2026-07-27-20260728-182215.csv"
     },
     {
       "name": "Calendario ANBIMA",
@@ -500792,17 +500792,17 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
     }
   ],
   "rawImports": {
-    "carteira": "cras/cra-modelo/archive/raw/carteira/2026-07-27/carteira-2026-07-27-20260728-173447.csv",
-    "carteiraFonteExcel": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-27/carteira-fonte-excel-2026-07-27-20260728-173447.xlsx",
+    "carteira": "cras/cra-modelo/archive/raw/carteira/2026-07-27/carteira-2026-07-27-20260728-182215.csv",
+    "carteiraFonteExcel": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-27/carteira-fonte-excel-2026-07-27-20260728-182215.xlsx",
     "carteiraFonteMinerva": "",
-    "carteiraValidacao": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-27/carteira-validacao-2026-07-27-20260728-173447.json",
-    "caixa": "cras/cra-modelo/archive/raw/caixa/2026-07-27/caixa-2026-07-27-20260728-173447.csv",
-    "cotas": "cras/cra-modelo/archive/raw/cotas/2026-07-27/cotas-2026-07-27-20260728-173447.csv",
+    "carteiraValidacao": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-27/carteira-validacao-2026-07-27-20260728-182215.json",
+    "caixa": "cras/cra-modelo/archive/raw/caixa/2026-07-27/caixa-2026-07-27-20260728-182215.csv",
+    "cotas": "cras/cra-modelo/archive/raw/cotas/2026-07-27/cotas-2026-07-27-20260728-182215.csv",
     "eventosPu": "cras/cra-modelo/archive/raw/eventos-pu/2026-07-03/eventos-pu-2026-07-03-20260706-173813.csv",
     "indices": "cras/cra-modelo/archive/raw/indices/2026-07-03/indices-2026-07-03-20260706-173813.csv",
-    "despesas": "cras/cra-modelo/archive/raw/despesas/2026-07-27/despesas-2026-07-27-20260728-173447.csv",
+    "despesas": "cras/cra-modelo/archive/raw/despesas/2026-07-27/despesas-2026-07-27-20260728-182215.csv",
     "calendario": "cras/cra-modelo/archive/raw/calendarios/2026-07-03/calendarios-2026-07-03-20260706-173813.csv",
-    "caixaFonteExcel": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-27/caixa-fonte-excel-2026-07-27-20260728-173447.xlsx"
+    "caixaFonteExcel": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-27/caixa-fonte-excel-2026-07-27-20260728-182215.xlsx"
   },
   "carteiraResumo": {
     "valorNominal": 1065250627.6230133,
@@ -502399,67 +502399,14 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
       "tipo": "sr",
       "quantidade": 360000.0,
       "taxa": "110,00% DI",
-      "pu": 1004.05191,
-      "valor": 361458687.6,
-      "resultadoDia": 0.0005778436920305108,
-      "resultadoMes": 0.010452388171882099,
-      "resultado30Dias": 0.01278992966824033,
-      "resultadoInicio": 0.004051910000000047,
+      "pu": 1004.63209,
+      "valor": 361667552.4,
+      "resultadoDia": 0.000577838649796325,
+      "resultadoMes": 0.011036266615547019,
+      "resultado30Dias": 0.017520140638912052,
+      "resultadoInicio": 0.004632089999999867,
       "ajustesFluxoSub": [],
-      "ajustesFluxoPeriodo": {
-        "dia": [],
-        "mes": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR1",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 387101625.96959996,
-            "valorDepois": 360000000.0,
-            "valorFluxoEstimado": 27325308.250799973,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "dias30": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR1",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 387101625.96959996,
-            "valorDepois": 360000000.0,
-            "valorFluxoEstimado": 27325308.250799973,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "inicio": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR1",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 387101625.96959996,
-            "valorDepois": 360000000.0,
-            "valorFluxoEstimado": 27325308.250799973,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ]
-      }
+      "ajustesFluxoPeriodo": {}
     },
     {
       "classe": "SR2",
@@ -502467,67 +502414,14 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
       "tipo": "sr",
       "quantidade": 140000.0,
       "taxa": "110,00% DI",
-      "pu": 1004.05191,
-      "valor": 140567267.4,
-      "resultadoDia": 0.0005778436920305108,
-      "resultadoMes": 0.010452388171882099,
-      "resultado30Dias": 0.01278992966824033,
-      "resultadoInicio": 0.004051910000000047,
+      "pu": 1004.63209,
+      "valor": 140648492.6,
+      "resultadoDia": 0.000577838649796325,
+      "resultadoMes": 0.011036266615547019,
+      "resultado30Dias": 0.017520140638912052,
+      "resultadoInicio": 0.004632089999999867,
       "ajustesFluxoSub": [],
-      "ajustesFluxoPeriodo": {
-        "dia": [],
-        "mes": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR2",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 150539521.2104,
-            "valorDepois": 140000000.0,
-            "valorFluxoEstimado": 10626508.764199989,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "dias30": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR2",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 150539521.2104,
-            "valorDepois": 140000000.0,
-            "valorFluxoEstimado": 10626508.764199989,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "inicio": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR2",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 150539521.2104,
-            "valorDepois": 140000000.0,
-            "valorFluxoEstimado": 10626508.764199989,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ]
-      }
+      "ajustesFluxoPeriodo": {}
     },
     {
       "classe": "SR3",
@@ -502535,67 +502429,14 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
       "tipo": "sr",
       "quantidade": 100000.0,
       "taxa": "110,00% DI",
-      "pu": 1004.05191,
-      "valor": 100405191.0,
-      "resultadoDia": 0.0005778436920305108,
-      "resultadoMes": 0.010452388171821703,
-      "resultado30Dias": 0.012789929677654355,
-      "resultadoInicio": 0.004051910000000047,
+      "pu": 1004.63209,
+      "valor": 100463209.0,
+      "resultadoDia": 0.000577838649796325,
+      "resultadoMes": 0.011036266615487067,
+      "resultado30Dias": 0.017520140648369376,
+      "resultadoInicio": 0.004632089999999867,
       "ajustesFluxoSub": [],
-      "ajustesFluxoPeriodo": {
-        "dia": [],
-        "mes": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR3",
-            "retornoOriginal": -0.07001165625451633,
-            "retornoConsiderado": 0.0005778386506065658,
-            "puAntes": 1075.28229437,
-            "puAntesEvento": 1075.90363404,
-            "puEvento": 75.90363404000004,
-            "puDepois": 1000.0,
-            "valorAntes": 107528229.437,
-            "valorDepois": 100000000.0,
-            "valorFluxoEstimado": 7590363.404000004,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "dias30": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR3",
-            "retornoOriginal": -0.07001165625451633,
-            "retornoConsiderado": 0.0005778386506065658,
-            "puAntes": 1075.28229437,
-            "puAntesEvento": 1075.90363404,
-            "puEvento": 75.90363404000004,
-            "puDepois": 1000.0,
-            "valorAntes": 107528229.437,
-            "valorDepois": 100000000.0,
-            "valorFluxoEstimado": 7590363.404000004,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "inicio": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR3",
-            "retornoOriginal": -0.07001165625451633,
-            "retornoConsiderado": 0.0005778386506065658,
-            "puAntes": 1075.28229437,
-            "puAntesEvento": 1075.90363404,
-            "puEvento": 75.90363404000004,
-            "puDepois": 1000.0,
-            "valorAntes": 107528229.437,
-            "valorDepois": 100000000.0,
-            "valorFluxoEstimado": 7590363.404000004,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ]
-      }
+      "ajustesFluxoPeriodo": {}
     },
     {
       "classe": "SUB",
@@ -502603,46 +502444,55 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
       "tipo": "sub",
       "quantidade": 400000.0,
       "taxa": "-",
-      "pu": 1102.2833734496205,
-      "valor": 440913349.3798482,
-      "resultadoDia": 0.0007834692159278678,
-      "resultadoMes": 0.01507531685982344,
-      "resultado30Dias": 0.015049362948313494,
-      "resultadoInicio": 0.10228337344962046,
-      "ajustesFluxoSub": [
-        {
-          "dateKey": "2026-01-20",
-          "reportDate": "20/01/2026",
-          "retornoIgnorado": -0.12239757862393108,
-          "puAntes": 1141.8772327420568,
-          "puDepois": 1002.114224368634,
-          "valorAntes": 456750893.0968227,
-          "valorDepois": 400845689.74745363,
-          "valorFluxoEstimado": 55905203.34936905,
-          "observacao": "Pagamento/prêmio da Subordinada tratado como fluxo, não como perda de performance."
-        }
-      ],
-      "ajustesFluxoPeriodo": {
-        "dia": [],
-        "mes": [],
-        "dias30": [],
-        "inicio": [
-          {
-            "dateKey": "2026-01-20",
-            "reportDate": "20/01/2026",
-            "retornoIgnorado": -0.12239757862393108,
-            "puAntes": 1141.8772327420568,
-            "puDepois": 1002.114224368634,
-            "valorAntes": 456750893.0968227,
-            "valorDepois": 400845689.74745363,
-            "valorFluxoEstimado": 55905203.34936905,
-            "observacao": "Pagamento/prêmio da Subordinada tratado como fluxo, não como perda de performance."
-          }
-        ]
-      }
+      "pu": 1103.1028689647844,
+      "valor": 441241147.5859138,
+      "resultadoDia": 0.0007434526682545961,
+      "resultadoMes": 0.015829977312622034,
+      "resultado30Dias": 0.02226138714410597,
+      "resultadoInicio": 0.10310286896478416,
+      "ajustesFluxoSub": [],
+      "ajustesFluxoPeriodo": {}
     }
   ],
   "rendimento30Dias": [
+    {
+      "dateKey": "2026-07-27",
+      "reportDate": "27/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 1004.63209,
+          "valor": 361667552.4,
+          "resultadoDia": 0.000577838649796325,
+          "resultadoMes": 0.011036266615547019,
+          "ajustesFluxoSub": [],
+          "ajustesFluxoMes": []
+        },
+        "SR2": {
+          "pu": 1004.63209,
+          "valor": 140648492.6,
+          "resultadoDia": 0.000577838649796325,
+          "resultadoMes": 0.011036266615547019,
+          "ajustesFluxoSub": [],
+          "ajustesFluxoMes": []
+        },
+        "SR3": {
+          "pu": 1004.63209,
+          "valor": 100463209.0,
+          "resultadoDia": 0.000577838649796325,
+          "resultadoMes": 0.011036266615487067,
+          "ajustesFluxoSub": [],
+          "ajustesFluxoMes": []
+        },
+        "SUB": {
+          "pu": 1103.1028689647844,
+          "valor": 441241147.5859138,
+          "resultadoDia": 0.0007434526682545961,
+          "resultadoMes": 0.015829977312622034,
+          "ajustesFluxoSub": [],
+          "ajustesFluxoMes": []
+        }
+      }
+    },
     {
       "dateKey": "2026-07-24",
       "reportDate": "24/07/2026",
@@ -504632,60 +504482,6 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-27"] = {
           "valor": 431911137.7411385,
           "resultadoDia": 0.0006457493955185356,
           "resultadoMes": 0.008967350683507513,
-          "ajustesFluxoSub": [],
-          "ajustesFluxoMes": [],
-          "ajustesFluxoPeriodo": {
-            "dia": [],
-            "mes": []
-          }
-        }
-      }
-    },
-    {
-      "dateKey": "2026-06-15",
-      "reportDate": "15/06/2026",
-      "cotas": {
-        "SR1": {
-          "pu": 1062.27609,
-          "valor": 382419392.40000004,
-          "resultadoDia": 0.0005874050290677335,
-          "resultadoMes": 0.005889552924347452,
-          "ajustesFluxoSub": [],
-          "ajustesFluxoMes": [],
-          "ajustesFluxoPeriodo": {
-            "dia": [],
-            "mes": []
-          }
-        },
-        "SR2": {
-          "pu": 1062.27609,
-          "valor": 148718652.60000002,
-          "resultadoDia": 0.0005874050290677335,
-          "resultadoMes": 0.005889552924347452,
-          "ajustesFluxoSub": [],
-          "ajustesFluxoMes": [],
-          "ajustesFluxoPeriodo": {
-            "dia": [],
-            "mes": []
-          }
-        },
-        "SR3": {
-          "pu": 1062.27609,
-          "valor": 106227609.0,
-          "resultadoDia": 0.0005874050290677335,
-          "resultadoMes": 0.005889552924347452,
-          "ajustesFluxoSub": [],
-          "ajustesFluxoMes": [],
-          "ajustesFluxoPeriodo": {
-            "dia": [],
-            "mes": []
-          }
-        },
-        "SUB": {
-          "pu": 1079.0810284310217,
-          "valor": 431632411.3724087,
-          "resultadoDia": 0.0014059643995738558,
-          "resultadoMes": 0.008316231086791692,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {

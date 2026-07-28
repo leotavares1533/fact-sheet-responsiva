@@ -740,6 +740,187 @@ def enrich_current_performance(project_root, cra_root, cra_id, date_key, snapsho
     enrich_cota_performance(records)
 
 
+def cota_label(classe, cota):
+    labels = {
+        "SR1": "Senior 1a",
+        "SR2": "Senior 2a",
+        "SR3": "Senior 3a",
+        "SUB": "Subordinada",
+    }
+    return cota.get("label") or labels.get(str(classe or "").upper(), classe or "-")
+
+
+def cota_performance_type(cota):
+    return "sr" if cota.get("ehFunding") else "sub"
+
+
+def cota_tax_label(cota, fallback="-"):
+    text = str(cota.get("taxaTexto") or cota.get("taxa") or "").strip()
+    if text:
+        return text
+    indexador = str(cota.get("indexador") or "").strip()
+    percentual = cota.get("percentualIndexador")
+    if indexador and percentual:
+        return f"{format_number_br(float(percentual) * 100, 2)}% {indexador}"
+    taxa_aa = float(cota.get("taxaAa") or 0.0)
+    if taxa_aa:
+        return f"{format_percent_br(taxa_aa)} a.a."
+    taxa_am = float(cota.get("taxaAm") or 0.0)
+    if taxa_am:
+        return f"{format_percent_br(taxa_am)} a.m."
+    return fallback or "-"
+
+
+def performance_rows_by_class(snapshot):
+    return {
+        str(row.get("classe") or "").upper(): row
+        for row in snapshot.get("performanceCotas", []) or []
+        if str(row.get("classe") or "").strip()
+    }
+
+
+def cotas_by_class(snapshot):
+    return {
+        str(row.get("classe") or "").upper(): row
+        for row in snapshot.get("passivo", {}).get("cotas", []) or []
+        if str(row.get("classe") or "").strip()
+    }
+
+
+def compound_return(values):
+    factor = 1.0
+    has_value = False
+    for value in values:
+        if value is None:
+            continue
+        try:
+            number = float(value)
+        except (TypeError, ValueError):
+            continue
+        factor *= 1.0 + number
+        has_value = True
+    return factor - 1.0 if has_value else None
+
+
+def performance_needs_fallback(snapshot, date_key):
+    history = snapshot.get("rendimento30Dias") or []
+    if not history or str(history[0].get("dateKey") or "") != date_key:
+        return True
+
+    perf_by_class = performance_rows_by_class(snapshot)
+    for classe, cota in cotas_by_class(snapshot).items():
+        perf = perf_by_class.get(classe)
+        if not perf:
+            return True
+        if abs(float(perf.get("pu") or 0.0) - float(cota.get("pu") or 0.0)) > 0.000001:
+            return True
+    return False
+
+
+def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapshot):
+    if not performance_needs_fallback(snapshot, date_key):
+        return
+
+    canonical_dir = cra_root / "archive" / "canonical"
+    data_dir = project_root / "data" / "cras" / cra_id
+    record_keys = {
+        path.stem for path in canonical_dir.glob("*.json")
+        if path.stem < date_key
+    }
+    record_keys.update(
+        path.stem for path in data_dir.glob("*.js")
+        if path.stem < date_key
+    )
+    previous_key = max(record_keys) if record_keys else ""
+    previous_snapshot = load_snapshot_for_date(project_root, cra_root, cra_id, previous_key) if previous_key else {}
+    previous_perf = performance_rows_by_class(previous_snapshot)
+    previous_cotas = cotas_by_class(previous_snapshot)
+
+    current_perf = []
+    current_history_cotas = {}
+    for classe, cota in cotas_by_class(snapshot).items():
+        base_perf = dict(performance_rows_by_class(snapshot).get(classe) or {})
+        prev_cota = previous_cotas.get(classe) or {}
+        prev_perf = previous_perf.get(classe) or {}
+        pu = float(cota.get("pu") or 0.0)
+        prev_pu = float(prev_cota.get("pu") or prev_perf.get("pu") or 0.0)
+        resultado_dia = (pu / prev_pu - 1.0) if pu > 0 and prev_pu > 0 else None
+        resultado_inicio = None
+        if resultado_dia is not None and prev_perf.get("resultadoInicio") is not None:
+            resultado_inicio = (1.0 + float(prev_perf.get("resultadoInicio") or 0.0)) * (1.0 + resultado_dia) - 1.0
+        elif pu > 0:
+            initial_pu = float(cota.get("valorNominalInicial") or 1000.0)
+            resultado_inicio = pu / initial_pu - 1.0 if initial_pu else None
+
+        row = {
+            **base_perf,
+            "classe": classe,
+            "label": cota_label(classe, cota),
+            "tipo": base_perf.get("tipo") or cota_performance_type(cota),
+            "quantidade": float(cota.get("quantidade") or 0.0),
+            "taxa": cota_tax_label(cota, base_perf.get("taxa") or "-"),
+            "pu": pu,
+            "valor": float(cota.get("valor") or 0.0),
+            "resultadoDia": resultado_dia,
+            "resultadoMes": None,
+            "resultado30Dias": None,
+            "resultadoInicio": resultado_inicio,
+            "ajustesFluxoSub": [],
+            "ajustesFluxoPeriodo": {},
+        }
+        current_perf.append(row)
+        current_history_cotas[classe] = {
+            "pu": row["pu"],
+            "valor": row["valor"],
+            "resultadoDia": row["resultadoDia"],
+            "resultadoMes": row["resultadoMes"],
+            "ajustesFluxoSub": [],
+            "ajustesFluxoMes": [],
+        }
+
+    previous_history = []
+    if previous_snapshot:
+        previous_history = [
+            row for row in previous_snapshot.get("rendimento30Dias", []) or []
+            if str(row.get("dateKey") or "") < date_key
+        ]
+
+    history = [
+        {
+            "dateKey": date_key,
+            "reportDate": snapshot.get("metadata", {}).get("reportDate") or format_date_br(date_key),
+            "cotas": current_history_cotas,
+        }
+    ]
+    seen = {date_key}
+    for row in previous_history:
+        row_date = str(row.get("dateKey") or "")
+        if not row_date or row_date in seen:
+            continue
+        seen.add(row_date)
+        history.append(row)
+        if len(history) >= 30:
+            break
+
+    for perf in current_perf:
+        classe = str(perf.get("classe") or "").upper()
+        monthly_values = [
+            row.get("cotas", {}).get(classe, {}).get("resultadoDia")
+            for row in history
+            if str(row.get("dateKey") or "")[:7] == date_key[:7]
+        ]
+        thirty_day_values = [
+            row.get("cotas", {}).get(classe, {}).get("resultadoDia")
+            for row in history[:30]
+        ]
+        perf["resultadoMes"] = compound_return(monthly_values)
+        perf["resultado30Dias"] = compound_return(thirty_day_values)
+        history[0]["cotas"][classe]["resultadoMes"] = perf["resultadoMes"]
+
+    snapshot["performanceCotas"] = sorted(current_perf, key=lambda row: {"SR1": 1, "SR2": 2, "SR3": 3, "SUB": 4}.get(str(row.get("classe") or "").upper(), 99))
+    snapshot["rendimento30Dias"] = history[:30]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--project-root", required=True)
@@ -1034,6 +1215,7 @@ def main():
     ]
 
     enrich_current_performance(project_root, cra_root, args.cra_id, date_key, snapshot)
+    build_performance_fallback(project_root, cra_root, args.cra_id, date_key, snapshot)
 
     revision_path = cra_root / "archive" / "revisions" / date_key / f"{revision_id}.json"
     revision_path.parent.mkdir(parents=True, exist_ok=True)
