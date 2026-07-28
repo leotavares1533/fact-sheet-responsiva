@@ -1,0 +1,93 @@
+[
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA026000S6",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 3.80064771,
+    "fileName": "VALIDAÃ‡ÃƒO_1007 - Vortx.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 95,
+    "fonte": "Retorno Agente Fiduciario"
+  },
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA026000S6",
+    "tipoEvento": "2-AmortizaÃ§Ã£o",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 991.39935229,
+    "fileName": "VALIDAÃ‡ÃƒO_1007 - Vortx.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 97,
+    "fonte": "Retorno Agente Fiduciario"
+  },
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA026000S7",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 8.3,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 34,
+    "fonte": "Controle paralelo Pasta2"
+  },
+  {
+    "dataIso": "2026-07-03",
+    "ifCodigo": "CRA026000S6",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 21.177664,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "03-07-2026",
+    "row": 29,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 978.822336
+  },
+  {
+    "dataIso": "2026-07-03",
+    "ifCodigo": "CRA026000S6",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 12.522336,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "03-07-2026",
+    "row": 29,
+    "fonte": "Controle paralelo Pasta2"
+  },
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA026000S7",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 0.0,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 34,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 991.7
+  },
+  {
+    "dataIso": "2026-07-20",
+    "ifCodigo": "CRA026000S6",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 978.822336,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "20-07-2026",
+    "row": 38,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 0.0
+  },
+  {
+    "dataIso": "2026-07-20",
+    "ifCodigo": "CRA026000S6",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 8.380911749999996,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "20-07-2026",
+    "row": 38,
+    "fonte": "Controle paralelo Pasta2"
+  }
+]

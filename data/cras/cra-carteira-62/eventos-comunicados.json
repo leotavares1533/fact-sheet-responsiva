@@ -1,0 +1,25 @@
+[
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA0260020F",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 24.78861,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 15,
+    "fonte": "Controle paralelo Pasta2"
+  },
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA0260020F",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 83.71139000000001,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 15,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 916.28861
+  }
+]

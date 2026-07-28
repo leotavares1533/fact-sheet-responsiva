@@ -1,0 +1,27 @@
+# Pastas operacionais e bases brutas
+/Importe de arquivos/
+/archive/
+/backups/
+/cras/
+/docs/
+/inbox/
+/logs/
+/scripts/
+/tmp/
+
+# Duplicidades e variantes locais
+data/data/
+data/cras/cra-carteira-*/cra-carteira-*/
+data/cras/cras-carteira-overview/cras-carteira-overview/
+*NBURAAGRO029*
+
+# Arquivos brutos importados
+*.xlsx
+*.xls
+*.xlsm
+*.csv
+*.pdf
+
+# Sistema/editor
+.DS_Store
+Thumbs.db

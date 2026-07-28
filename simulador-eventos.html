@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de eventos</title>
+  <link rel="stylesheet" href="./assets/styles.css?v=20260727-hml-access-v1">
+</head>
+<body class="event-simulator-page">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">PU</span>
+        <div>
+          <p class="eyebrow">Controle gerencial</p>
+          <h1>Simulador de eventos</h1>
+        </div>
+      </div>
+      <div class="controls">
+        <a class="nav-link" href="./pu.html">Validar PU</a>
+        <a class="nav-link" href="./index.html">Lamina</a>
+        <div class="status-pill" id="status-pill">Carregando</div>
+      </div>
+    </header>
+
+    <main class="event-simulator-shell">
+      <section class="panel simulator-panel">
+        <div class="section-head simulator-head">
+          <div>
+            <p class="eyebrow">Padrao de data</p>
+            <h2>Data geral do evento</h2>
+          </div>
+          <div class="simulator-actions">
+            <label class="form-field compact">
+              <span>Data geral</span>
+              <input id="global-event-date" type="date" aria-label="Data geral do evento">
+            </label>
+            <button class="ghost-button" id="apply-global-date" type="button">Aplicar data a todas</button>
+            <label class="form-field compact">
+              <span>Filtrar</span>
+              <input id="series-filter" type="search" placeholder="CRA, serie ou IF">
+            </label>
+            <button class="ghost-button" id="select-visible" type="button">Selecionar visiveis</button>
+            <button class="ghost-button" id="suggest-cash" type="button">Sugerir caixa base</button>
+            <button class="ghost-button" id="clear-selection" type="button">Limpar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-strip simulator-summary" id="sim-summary"></section>
+
+      <section class="panel simulator-panel">
+        <div class="section-head simulator-head">
+          <div>
+            <p class="eyebrow">Series</p>
+            <h2>Parametros e calculo por serie</h2>
+          </div>
+        </div>
+
+        <div class="table-wrap simulator-table-wrap">
+          <table class="compact-table simulator-table">
+            <thead>
+              <tr>
+                <th>Sel.</th>
+                <th>CRA</th>
+                <th>Serie</th>
+                <th>Base</th>
+                <th>Qtd.</th>
+                <th>Taxa</th>
+                <th>Data evento</th>
+                <th>Prazo AF</th>
+                <th>Caixa evento</th>
+                <th>Tipo evento</th>
+                <th>PU antes</th>
+                <th>Juros PU</th>
+                <th>PU evento</th>
+                <th>Valor evento</th>
+                <th>PU pos</th>
+                <th>Caixa pos</th>
+                <th>AF ate</th>
+                <th>Farol</th>
+              </tr>
+            </thead>
+            <tbody id="event-rows">
+              <tr><td colspan="18">Carregando series...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel simulator-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Memoria gerencial</p>
+            <h2>Componentes por evento</h2>
+          </div>
+          <button class="ghost-button" id="export-af-excel" type="button">Gerar Excel AF</button>
+        </div>
+        <div class="sim-detail-grid" id="event-details"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./data/current-cra.js?v=20260721-sub-simulator-v1"></script>
+  <script src="./data/cra-manifest.js?v=20260721-sub-simulator-v1"></script>
+  <script src="./data/indices/di.js?v=20260721-sub-simulator-v1"></script>
+  <script src="./assets/event-simulator.js?v=20260721-sub-simulator-v1"></script>
+</body>
+</html>

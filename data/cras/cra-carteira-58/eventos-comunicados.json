@@ -1,0 +1,71 @@
+[
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA026000S2",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 23.96907617,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 70,
+    "fonte": "Controle paralelo Pasta2"
+  },
+  {
+    "dataIso": "2026-07-10",
+    "ifCodigo": "CRA026000S2",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 821.8148289010177,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "10-07-2026",
+    "row": 70,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 192.57101178846813
+  },
+  {
+    "dataIso": "2026-05-27",
+    "ifCodigo": "CRA026000S2",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 0.0,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "27-05-2026",
+    "row": 38,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 1000.0
+  },
+  {
+    "dataIso": "2026-05-27",
+    "ifCodigo": "CRA026000S2",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 17.87494,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "27-05-2026",
+    "row": 38,
+    "fonte": "Controle paralelo Pasta2"
+  },
+  {
+    "dataIso": "2026-05-29",
+    "ifCodigo": "CRA026000S2",
+    "tipoEvento": "2-Amortizacao",
+    "tipoNormalizado": "amortizacao",
+    "puEvento": 0.0,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "29-05-2026",
+    "row": 38,
+    "fonte": "Controle paralelo Pasta2",
+    "residual": 1014.3858406894858
+  },
+  {
+    "dataIso": "2026-05-29",
+    "ifCodigo": "CRA026000S2",
+    "tipoEvento": "2-Juros",
+    "tipoNormalizado": "juros",
+    "puEvento": 5.129849310514134,
+    "fileName": "Pasta2.xlsx",
+    "folderDate": "29-05-2026",
+    "row": 38,
+    "fonte": "Controle paralelo Pasta2"
+  }
+]
