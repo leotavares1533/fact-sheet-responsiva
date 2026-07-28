@@ -51,6 +51,7 @@
       updatePu: true,
       operate: true,
       publish: true,
+      manageUsers: true,
     },
   };
 
@@ -84,6 +85,10 @@
 
   function normalizeEmail(email) {
     return String(email || "").trim().toLowerCase();
+  }
+
+  function isRootAdmin(user = currentUser()) {
+    return normalizeEmail(user.email) === ADMIN_EMAIL;
   }
 
   function getSession() {
@@ -173,6 +178,43 @@
     return { ok: true };
   }
 
+  function createUser(record) {
+    if (!isRootAdmin()) {
+      return { ok: false, message: "Apenas o administrador pode criar usuarios." };
+    }
+
+    const users = loadUsers();
+    const email = normalizeEmail(record.email);
+    const name = String(record.name || "").trim();
+    const role = String(record.role || "operator").trim();
+    const password = String(record.password || "");
+    const confirmPassword = String(record.confirmPassword || "");
+
+    if (!name) return { ok: false, message: "Informe o nome do usuario." };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return { ok: false, message: "Informe um e-mail valido." };
+    }
+    if (!["operator", "admin"].includes(role)) {
+      return { ok: false, message: "Perfil invalido para novo usuario." };
+    }
+    if (users[email]) return { ok: false, message: "Ja existe usuario com esse e-mail." };
+    if (!password || password.length < 8) {
+      return { ok: false, message: "Use uma senha inicial com pelo menos 8 caracteres." };
+    }
+    if (password !== confirmPassword) {
+      return { ok: false, message: "A confirmacao nao bate com a senha inicial." };
+    }
+
+    users[email] = {
+      name,
+      role,
+      password,
+      mustChangePassword: true,
+    };
+    saveUsers(users);
+    return { ok: true, email };
+  }
+
   function getPageName() {
     const page = document.body?.dataset?.page;
     if (page) return page;
@@ -235,6 +277,9 @@
     if (user.role === "public") {
       holder.appendChild(createButton("Entrar", "auth-button", openLoginModal));
     } else {
+      if (isRootAdmin(user)) {
+        holder.appendChild(createButton("Usuarios", "auth-button", openUserAdminModal));
+      }
       holder.appendChild(createButton("Trocar senha", "auth-button", openPasswordModal));
       holder.appendChild(createButton("Sair", "auth-button auth-button-soft", logout));
     }
@@ -282,10 +327,20 @@
     return wrap;
   }
 
+  function makeSelect(label, name, options) {
+    const wrap = document.createElement("label");
+    wrap.className = "auth-field";
+    const optionHtml = options
+      .map((option) => `<option value="${option.value}">${option.label}</option>`)
+      .join("");
+    wrap.innerHTML = `<span>${label}</span><select name="${name}">${optionHtml}</select>`;
+    return wrap;
+  }
+
   function openLoginModal() {
     const form = document.createElement("form");
     form.className = "auth-form";
-    form.appendChild(makeField("E-mail", "email", "email", "joao.souza@ceresinvestimentos.com"));
+    form.appendChild(makeField("E-mail", "email", "email"));
     form.appendChild(makeField("Senha", "password", "password"));
 
     const message = document.createElement("div");
@@ -314,6 +369,78 @@
     });
 
     renderModal("Entrar", form);
+  }
+
+  function openUserAdminModal() {
+    if (!isRootAdmin()) return;
+
+    const form = document.createElement("form");
+    form.className = "auth-form auth-user-admin-form";
+    form.appendChild(makeField("Nome", "text", "name"));
+    form.appendChild(makeField("E-mail", "email", "email"));
+    form.appendChild(
+      makeSelect("Perfil", "role", [
+        { value: "operator", label: "Operacional" },
+        { value: "admin", label: "Administrador" },
+      ])
+    );
+    form.appendChild(makeField("Senha inicial", "password", "password"));
+    form.appendChild(makeField("Confirmar senha", "password", "confirmPassword"));
+
+    const message = document.createElement("div");
+    message.className = "auth-message";
+    form.appendChild(message);
+
+    const list = document.createElement("div");
+    list.className = "auth-user-list";
+    form.appendChild(list);
+
+    function renderUserList() {
+      const users = loadUsers();
+      list.innerHTML = `
+        <p class="auth-list-title">Usuarios cadastrados neste navegador</p>
+        ${Object.entries(users)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([email, user]) => `
+            <div class="auth-user-row">
+              <span>${user.name || email}</span>
+              <strong>${user.role === "admin" ? "Admin" : "Operacional"}</strong>
+              <small>${email}</small>
+            </div>
+          `)
+          .join("")}
+      `;
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "auth-actions";
+    actions.appendChild(createButton("Cancelar", "auth-button auth-button-soft", closeModal));
+    const submit = createButton("Criar usuario", "auth-button", () => {});
+    submit.type = "submit";
+    actions.appendChild(submit);
+    form.appendChild(actions);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const result = createUser({
+        name: data.get("name"),
+        email: data.get("email"),
+        role: data.get("role"),
+        password: data.get("password"),
+        confirmPassword: data.get("confirmPassword"),
+      });
+      if (!result.ok) {
+        message.textContent = result.message;
+        return;
+      }
+      message.textContent = `Usuario ${result.email} criado.`;
+      form.reset();
+      renderUserList();
+    });
+
+    renderUserList();
+    renderModal("Usuarios", form);
   }
 
   function openPasswordModal(forced = false) {
@@ -483,11 +610,14 @@
     ADMIN_EMAIL,
     can,
     changePassword,
+    createUser,
     currentUser,
+    isRootAdmin,
     login,
     logout,
     openLoginModal,
     openPasswordModal,
+    openUserAdminModal,
     permissionMap,
   };
 
