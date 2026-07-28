@@ -87,6 +87,15 @@
     return String(email || "").trim().toLowerCase();
   }
 
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   function isRootAdmin(user = currentUser()) {
     return normalizeEmail(user.email) === ADMIN_EMAIL;
   }
@@ -215,6 +224,28 @@
     return { ok: true, email };
   }
 
+  function resetUserPassword(email, password, confirmPassword) {
+    if (!isRootAdmin()) {
+      return { ok: false, message: "Apenas o administrador pode resetar senhas." };
+    }
+
+    const users = loadUsers();
+    const key = normalizeEmail(email);
+    const record = users[key];
+
+    if (!record) return { ok: false, message: "Usuario nao encontrado." };
+    if (!password || password.length < 8) {
+      return { ok: false, message: "Use uma senha inicial com pelo menos 8 caracteres." };
+    }
+    if (password !== confirmPassword) {
+      return { ok: false, message: "A confirmacao nao bate com a senha inicial." };
+    }
+
+    users[key] = { ...record, password, mustChangePassword: true };
+    saveUsers(users);
+    return { ok: true, email: key };
+  }
+
   function getPageName() {
     const page = document.body?.dataset?.page;
     if (page) return page;
@@ -315,15 +346,50 @@
     root.appendChild(backdrop);
 
     modal.querySelector(".auth-modal-close").addEventListener("click", closeModal);
-    backdrop.addEventListener("click", (event) => {
-      if (event.target === backdrop && !currentUser().mustChangePassword) closeModal();
-    });
   }
 
   function makeField(label, type, name, value = "") {
     const wrap = document.createElement("label");
     wrap.className = "auth-field";
-    wrap.innerHTML = `<span>${label}</span><input type="${type}" name="${name}" value="${value}" autocomplete="off" />`;
+    const caption = document.createElement("span");
+    const input = document.createElement("input");
+    const autocomplete =
+      type === "email"
+        ? "username"
+        : type === "password" && /new|confirm/i.test(name)
+          ? "new-password"
+          : type === "password"
+            ? "current-password"
+            : "off";
+
+    caption.textContent = label;
+    input.type = type;
+    input.name = name;
+    input.value = value;
+    input.autocomplete = autocomplete;
+    wrap.appendChild(caption);
+
+    if (type === "password") {
+      const field = document.createElement("div");
+      const toggle = document.createElement("button");
+      field.className = "auth-password-field";
+      toggle.type = "button";
+      toggle.className = "auth-password-toggle";
+      toggle.textContent = "Mostrar";
+      toggle.setAttribute("aria-label", `Mostrar ${label.toLowerCase()}`);
+      toggle.addEventListener("click", () => {
+        const isVisible = input.type === "text";
+        input.type = isVisible ? "password" : "text";
+        toggle.textContent = isVisible ? "Mostrar" : "Ocultar";
+        toggle.setAttribute("aria-label", `${isVisible ? "Mostrar" : "Ocultar"} ${label.toLowerCase()}`);
+      });
+      field.appendChild(input);
+      field.appendChild(toggle);
+      wrap.appendChild(field);
+      return wrap;
+    }
+
+    wrap.appendChild(input);
     return wrap;
   }
 
@@ -347,6 +413,12 @@
     message.className = "auth-message";
     form.appendChild(message);
 
+    const forgot = createButton("Esqueci a senha", "auth-text-button", () => {
+      const data = new FormData(form);
+      openForgotPasswordModal(data.get("email"));
+    });
+    form.appendChild(forgot);
+
     const actions = document.createElement("div");
     actions.className = "auth-actions";
     actions.appendChild(createButton("Usar publico", "auth-button auth-button-soft", closeModal));
@@ -369,6 +441,37 @@
     });
 
     renderModal("Entrar", form);
+  }
+
+  function openForgotPasswordModal(email = "") {
+    const panel = document.createElement("div");
+    panel.className = "auth-form auth-help-panel";
+
+    const userEmail = normalizeEmail(email);
+    const text = document.createElement("div");
+    text.className = "auth-help-text";
+    const first = document.createElement("p");
+    const second = document.createElement("p");
+    first.textContent = "Como o acesso atual roda no site estatico, a recuperacao automatica por e-mail ainda nao esta ativa.";
+    second.textContent = "Peça ao administrador para resetar sua senha no painel de usuarios.";
+    if (userEmail) {
+      const strong = document.createElement("strong");
+      second.textContent = "Peça ao administrador para resetar sua senha no painel de usuarios para ";
+      strong.textContent = userEmail;
+      second.appendChild(strong);
+      second.append(".");
+    }
+    text.appendChild(first);
+    text.appendChild(second);
+    panel.appendChild(text);
+
+    const actions = document.createElement("div");
+    actions.className = "auth-actions";
+    actions.appendChild(createButton("Voltar ao login", "auth-button auth-button-soft", openLoginModal));
+    actions.appendChild(createButton("Fechar", "auth-button", closeModal));
+    panel.appendChild(actions);
+
+    renderModal("Esqueci a senha", panel);
   }
 
   function openUserAdminModal() {
@@ -401,15 +504,24 @@
         <p class="auth-list-title">Usuarios cadastrados neste navegador</p>
         ${Object.entries(users)
           .sort(([a], [b]) => a.localeCompare(b))
-          .map(([email, user]) => `
-            <div class="auth-user-row">
-              <span>${user.name || email}</span>
-              <strong>${user.role === "admin" ? "Admin" : "Operacional"}</strong>
-              <small>${email}</small>
-            </div>
-          `)
+          .map(([email, user]) => {
+            const safeEmail = escapeHtml(email);
+            const safeName = escapeHtml(user.name || email);
+            const safeRole = user.role === "admin" ? "Admin" : "Operacional";
+            return `
+              <div class="auth-user-row">
+                <span>${safeName}</span>
+                <strong>${safeRole}</strong>
+                <small>${safeEmail}</small>
+                <button type="button" class="auth-row-action" data-reset-user="${safeEmail}">Resetar senha</button>
+              </div>
+            `;
+          })
           .join("")}
       `;
+      list.querySelectorAll("[data-reset-user]").forEach((button) => {
+        button.addEventListener("click", () => openResetPasswordModal(button.dataset.resetUser));
+      });
     }
 
     const actions = document.createElement("div");
@@ -441,6 +553,51 @@
 
     renderUserList();
     renderModal("Usuarios", form);
+  }
+
+  function openResetPasswordModal(email) {
+    if (!isRootAdmin()) return;
+
+    const form = document.createElement("form");
+    form.className = "auth-form";
+    const info = document.createElement("div");
+    info.className = "auth-help-text";
+    const paragraph = document.createElement("p");
+    const strong = document.createElement("strong");
+    paragraph.textContent = "Defina uma senha inicial para ";
+    strong.textContent = normalizeEmail(email);
+    paragraph.appendChild(strong);
+    paragraph.append(". O usuario sera obrigado a trocar no proximo acesso.");
+    info.appendChild(paragraph);
+    form.appendChild(info);
+    form.appendChild(makeField("Nova senha inicial", "password", "password"));
+    form.appendChild(makeField("Confirmar senha", "password", "confirmPassword"));
+
+    const message = document.createElement("div");
+    message.className = "auth-message";
+    form.appendChild(message);
+
+    const actions = document.createElement("div");
+    actions.className = "auth-actions";
+    actions.appendChild(createButton("Voltar", "auth-button auth-button-soft", openUserAdminModal));
+    const submit = createButton("Resetar senha", "auth-button", () => {});
+    submit.type = "submit";
+    actions.appendChild(submit);
+    form.appendChild(actions);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const result = resetUserPassword(email, data.get("password"), data.get("confirmPassword"));
+      if (!result.ok) {
+        message.textContent = result.message;
+        return;
+      }
+      message.textContent = `Senha resetada para ${result.email}.`;
+      form.reset();
+    });
+
+    renderModal("Resetar senha", form);
   }
 
   function openPasswordModal(forced = false) {
@@ -616,9 +773,11 @@
     login,
     logout,
     openLoginModal,
+    openForgotPasswordModal,
     openPasswordModal,
     openUserAdminModal,
     permissionMap,
+    resetUserPassword,
   };
 
   if (document.readyState === "loading") {

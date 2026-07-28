@@ -3759,6 +3759,70 @@ tbody tr:hover td {
   font-weight: 700;
 }
 
+.auth-password-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  border: 1px solid rgba(20, 54, 74, 0.16);
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.auth-password-field input {
+  border: 0;
+  border-radius: 0;
+}
+
+.auth-password-toggle {
+  align-self: stretch;
+  min-width: 76px;
+  border: 0;
+  border-left: 1px solid rgba(20, 54, 74, 0.1);
+  background: rgba(20, 54, 74, 0.06);
+  color: #285a74;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.auth-password-toggle:hover,
+.auth-row-action:hover,
+.auth-text-button:hover {
+  background: rgba(20, 54, 74, 0.1);
+}
+
+.auth-text-button {
+  justify-self: start;
+  border: 0;
+  background: transparent;
+  color: #285a74;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-help-text {
+  display: grid;
+  gap: 8px;
+  color: #506778;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.auth-help-text p {
+  margin: 0;
+}
+
+.auth-help-text strong {
+  color: #102334;
+  font-weight: 900;
+}
+
 .auth-message {
   min-height: 18px;
   color: #bf4f2d;
@@ -3827,6 +3891,20 @@ tbody tr:hover td {
   color: #506778;
   font-size: 12px;
   font-weight: 700;
+}
+
+.auth-row-action {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-height: 28px;
+  border: 1px solid rgba(20, 54, 74, 0.12);
+  border-radius: 999px;
+  background: rgba(20, 54, 74, 0.06);
+  color: #285a74;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 5px 10px;
 }
 
 .auth-actions {
