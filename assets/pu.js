@@ -1094,6 +1094,14 @@
   }
 
   function renderCotaSelector(snapshot) {
+    if (snapshot.metadata?.portfolioOverview) {
+      state.cotaIndex = 0;
+      if (nodes.cotaTabs) {
+        nodes.cotaTabs.innerHTML = "";
+      }
+      return;
+    }
+
     const cotas = snapshot.passivo?.cotas || [];
     const showAllCrasCarteiraSeries = Boolean(snapshot.metadata?.crasCarteiraBatch);
     const visibleCotas = cotas
@@ -1138,17 +1146,27 @@
 
   function renderSummary(snapshot) {
     if (snapshot.metadata?.portfolioOverview) {
-      const metrics = snapshot.portfolioOverview?.metrics || [];
-      nodes.summaryStrip.innerHTML = metrics.map((metric) => {
-        const type = metric.type || "";
-        const value = type === "currency"
-          ? formatCurrency(metric.value)
-          : type === "number"
-            ? formatNumber(metric.value, 0)
-            : metric.value;
+      const rows = snapshot.portfolioOverview?.rows || [];
+      const finalizedRows = rows.filter((row) => computedOverviewStatus(row) === "Finalizado");
+      const activeRows = rows.filter((row) => computedOverviewStatus(row) !== "Finalizado" && Number(row.quantidadeIntegralizada || 0) > 0);
+      const pendingRows = rows.filter((row) => !["Integralizada", "Finalizado"].includes(computedOverviewStatus(row)));
+      const totalValue = rows.reduce((total, row) => total + Number(row.valorAtual || 0), 0);
+      const nextMaturity = rows
+        .map((row) => toIsoDate(row.dataVencimento))
+        .filter(Boolean)
+        .filter((dateKey) => dateKey >= state.dateKey)
+        .sort()[0];
+      const metrics = [
+        ["Valor total SR/MEZ", formatCurrency(totalValue)],
+        ["Séries ativas", formatNumber(activeRows.length, 0)],
+        ["Finalizadas", formatNumber(finalizedRows.length, 0)],
+        ["Pendentes/parciais", formatNumber(pendingRows.length, 0)],
+        ["Próx. vencimento", nextMaturity ? formatIsoDate(nextMaturity) : "-"]
+      ];
+      nodes.summaryStrip.innerHTML = metrics.map(([label, value]) => {
         return `
           <article class="metric-card">
-            <div class="metric-label">${escapeHtml(metric.label)}</div>
+            <div class="metric-label">${escapeHtml(label)}</div>
             <strong>${escapeHtml(value)}</strong>
           </article>
         `;
@@ -1882,9 +1900,48 @@
     return null;
   }
 
+  function overviewSerieLabel(row) {
+    const raw = String(row?.serie || row?.classe || "").trim();
+    const normalized = raw.toUpperCase().replace(/\s+/g, "");
+    const labels = {
+      SR1: "Senior",
+      SENIOR1: "Senior",
+      "SENIOR1A": "Senior",
+      SR2: "Mezanino A",
+      MEZA: "Mezanino A",
+      MEZANINOA: "Mezanino A",
+      SR3: "Mezanino B",
+      MEZB: "Mezanino B",
+      MEZANINOB: "Mezanino B"
+    };
+    return labels[normalized] || raw || "-";
+  }
+
+  function overviewRateText(row) {
+    if (row?.taxa) {
+      return row.taxa;
+    }
+    if (row?.taxaAaAtual != null) {
+      return formatPercent(row.taxaAaAtual);
+    }
+    return "-";
+  }
+
+  function renderOverviewMaturityCell(row) {
+    const maturity = row.dataVencimento || "-";
+    const alert = row.alertaVencimentoTexto || "";
+    return `
+      <div class="overview-cell-stack">
+        <strong>${escapeHtml(maturity)}</strong>
+        ${row.alertaVencimento && alert ? `<small>${escapeHtml(alert)}</small>` : ""}
+      </div>
+    `;
+  }
+
   function renderPortfolioOverview(snapshot) {
     const rows = snapshot.portfolioOverview?.rows || [];
     const cprfRows = snapshot.portfolioOverview?.cprfEligibility || [];
+    const cprfPanel = renderCprfEligibility(cprfRows);
     const resolvedStatuses = new Set(["Integralizada", "Finalizado"]);
     const pendingRows = rows.filter((row) => !resolvedStatuses.has(computedOverviewStatus(row)));
     const pendingInfo = pendingRows.length
@@ -1894,14 +1951,12 @@
     const tableRows = rows.map((row) => `
       <tr>
         <td><strong>${escapeHtml(row.operacao || "-")}</strong></td>
-        <td>${escapeHtml(row.serie || row.classe || "-")}</td>
+        <td>${escapeHtml(overviewSerieLabel(row))}</td>
+        <td title="${escapeHtml(row.ifCodigo || "-")}">${escapeHtml(row.ifCodigo || "-")}</td>
         <td class="numeric"><strong>${overviewPu(row) == null ? "-" : escapeHtml(formatNumber(overviewPu(row), 6))}</strong></td>
-        <td class="numeric">${escapeHtml(formatCurrencyShort(row.valorAtual || 0))}</td>
-        <td>${escapeHtml(row.ifCodigo || "-")}</td>
-        <td>${escapeHtml(row.taxa || "-")}</td>
-        <td class="numeric">${row.taxaAaAtual == null ? "-" : escapeHtml(formatPercent(row.taxaAaAtual))}</td>
-        <td>${escapeHtml(row.dataVencimento || "-")}</td>
-        <td>${renderOverviewMaturityAlert(row)}</td>
+        <td class="numeric"><strong>${escapeHtml(formatCurrencyShort(row.valorAtual || 0))}</strong></td>
+        <td title="${escapeHtml(overviewRateText(row))}">${escapeHtml(overviewRateText(row))}</td>
+        <td>${renderOverviewMaturityCell(row)}</td>
         <td class="numeric">${escapeHtml(formatNumber(row.quantidadeIntegralizada || 0, 0))}</td>
         <td class="numeric">${escapeHtml(formatNumber(row.quantidadeAIntegralizar || 0, 0))}</td>
         <td>${renderOverviewStatus(row)}</td>
@@ -1909,7 +1964,7 @@
     `).join("");
 
     return `
-      <div class="portfolio-overview-layout">
+      <div class="portfolio-overview-layout ${cprfPanel ? "" : "is-single"}">
       <section class="panel portfolio-overview-panel">
         <div class="panel-head">
           <div>
@@ -1922,29 +1977,39 @@
         </div>
         <div class="table-wrap overview-table-wrap">
           <table class="compact-table overview-table">
+            <colgroup>
+              <col class="overview-col-operation">
+              <col class="overview-col-series">
+              <col class="overview-col-if">
+              <col class="overview-col-pu">
+              <col class="overview-col-value">
+              <col class="overview-col-rate">
+              <col class="overview-col-maturity">
+              <col class="overview-col-qty">
+              <col class="overview-col-qty">
+              <col class="overview-col-status">
+            </colgroup>
             <thead>
               <tr>
                 <th>Operação</th>
                 <th>Série</th>
+                <th>IF</th>
                 <th>PU</th>
                 <th>Valor atual</th>
-                <th>IF</th>
-                <th>Remun.</th>
-                <th>Taxa a.a.</th>
+                <th>Remuneração</th>
                 <th>Vencimento</th>
-                <th>Alerta</th>
                 <th>Qtd. int.</th>
                 <th>A integralizar</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              ${tableRows || `<tr><td colspan="12">Nenhuma série cadastrada.</td></tr>`}
+              ${tableRows || `<tr><td colspan="10">Nenhuma série cadastrada.</td></tr>`}
             </tbody>
           </table>
         </div>
       </section>
-      ${renderCprfEligibility(cprfRows)}
+      ${cprfPanel}
       </div>
     `;
   }
