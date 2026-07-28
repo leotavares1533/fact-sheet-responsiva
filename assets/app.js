@@ -393,12 +393,12 @@
       }
 
       function getLaminaDates(cra) {
-        const dates = cra?.dates || [];
+        const dates = (cra?.dates || []).filter((item) => item?.dateKey && item?.dataScript);
         if (cra?.groupId !== "cras-carteira") {
           return dates;
         }
 
-        return dates.filter((item) => item.assetImported || item.portfolioAssetImport);
+        return dates;
       }
 
       function resolveAvailableDateKey(dateKey) {
