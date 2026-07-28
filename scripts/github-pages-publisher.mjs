@@ -125,10 +125,13 @@ function importedFilePath(payload) {
 }
 
 function extractSnapshotJson(text) {
-  const start = String(text || "").indexOf("{");
-  const end = String(text || "").lastIndexOf("}");
+  const raw = String(text || "");
+  const assignment = raw.match(/window\.LAMINA_CRA_DAILY\[[^\]]+\]\[[^\]]+\]\s*=\s*/);
+  const start = assignment ? raw.indexOf("{", assignment.index + assignment[0].length) : raw.indexOf("{");
+  const assignmentEnd = raw.lastIndexOf("};");
+  const end = assignmentEnd >= start ? assignmentEnd : raw.lastIndexOf("}");
   if (start < 0 || end < start) return null;
-  return JSON.parse(text.slice(start, end + 1));
+  return JSON.parse(raw.slice(start, end + 1));
 }
 
 function latestSnapshot(craId) {
