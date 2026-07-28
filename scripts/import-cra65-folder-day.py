@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import importlib.util
 import json
 import re
 import shutil
@@ -259,14 +258,15 @@ def run_command(args: list[object]) -> None:
     subprocess.run([str(item) for item in args], cwd=PROJECT_ROOT, check=True)
 
 
-def load_cra65_history_module():
-    path = PROJECT_ROOT / "scripts" / "import-cra65-historical-workbook.py"
-    spec = importlib.util.spec_from_file_location("cra65_historical", path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"Nao consegui carregar {path}.")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+def write_js_snapshot(path: Path, cra_id: str, date_key: str, snapshot: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(snapshot, ensure_ascii=False, indent=2)
+    path.write_text(
+        "window.LAMINA_CRA_DAILY = window.LAMINA_CRA_DAILY || {};\n"
+        f'window.LAMINA_CRA_DAILY["{cra_id}"] = window.LAMINA_CRA_DAILY["{cra_id}"] || {{}};\n'
+        f'window.LAMINA_CRA_DAILY["{cra_id}"]["{date_key}"] = {payload};\n',
+        encoding="utf-8",
+    )
 
 
 def load_manifest(path: Path) -> list[dict[str, object]]:
@@ -309,13 +309,12 @@ def update_manifest_from_snapshot(snapshot: dict, date_key: str) -> None:
 
 
 def patch_cra65_pu(date_key: str) -> dict:
-    module = load_cra65_history_module()
     canonical = CRA_ROOT / "archive" / "canonical" / f"{date_key}.json"
+    if not canonical.exists():
+        raise FileNotFoundError(canonical)
     snapshot = json.loads(canonical.read_text(encoding="utf-8"))
-    module.patch_cra65_pu(snapshot, date_key)
-    canonical.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
-    module.write_js_snapshot(DATA_ROOT / f"{date_key}.js", CRA_ID, date_key, snapshot)
-    module.write_js_snapshot(CRA_ROOT / "data" / "daily" / f"{date_key}.js", CRA_ID, date_key, snapshot)
+    write_js_snapshot(DATA_ROOT / f"{date_key}.js", CRA_ID, date_key, snapshot)
+    write_js_snapshot(CRA_ROOT / "data" / "daily" / f"{date_key}.js", CRA_ID, date_key, snapshot)
     update_manifest_from_snapshot(snapshot, date_key)
     return snapshot
 
