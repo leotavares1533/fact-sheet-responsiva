@@ -303,6 +303,12 @@ async function gitOutput(args) {
   return result.stdout.trim();
 }
 
+async function repairPerformanceHistory(onData) {
+  const scriptPath = path.join(root, "scripts", "repair-performance-history.py");
+  if (!existsSync(scriptPath)) return null;
+  return runProcess(bundledPython(), [scriptPath, "--project-root", root], { onData });
+}
+
 function parsePorcelain(text) {
   return String(text || "")
     .split(/\r?\n/)
@@ -397,6 +403,9 @@ async function processImportJob(job, prepared) {
     });
     const result = await runProcess(prepared.command, prepared.args, { onData: append });
     if (result.code !== 0) throw new Error(result.stderr || result.stdout || `Processamento retornou codigo ${result.code}.`);
+    updateJob(job, { message: "Validando historico de rendimento dos snapshots..." });
+    const repair = await repairPerformanceHistory(append);
+    if (repair && repair.code !== 0) throw new Error(repair.stderr || repair.stdout || "Falha ao validar historico de rendimento.");
     updateJob(job, {
       status: "completed",
       finishedAt: new Date().toISOString(),
@@ -438,6 +447,10 @@ async function publishJob(job, message) {
 
   try {
     updateJob(job, { status: "running", message: "Conferindo alteracoes locais..." });
+
+    updateJob(job, { message: "Validando historico de rendimento antes da publicacao..." });
+    const repair = await repairPerformanceHistory(append);
+    if (repair && repair.code !== 0) throw new Error(repair.stderr || repair.stdout || "Falha ao validar historico de rendimento.");
 
     await runGit(["add", "-A", "--", "."], { onData: append });
     const staged = await gitOutput(["diff", "--cached", "--name-only"]);

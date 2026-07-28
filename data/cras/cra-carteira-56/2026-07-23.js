@@ -5,7 +5,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-56"]["2026-07-23"] = {
     "reportDate": "23/07/2026",
     "dateKey": "2026-07-23",
     "importedAt": "2026-07-23T15:11:07-03:00",
-    "revisionId": "20260723-cra-carteira-56-projected-v1",
+    "revisionId": "20260728-183044-performance",
     "calculatedView": true,
     "crasCarteiraBatch": true,
     "observation": "Snapshot inicial em lote dos CRAs Carteira, usando series Senior e Mezanino no validador de PU. Subordinadas ficam para a lamina com carteira e caixa.",
@@ -72,7 +72,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-56"]["2026-07-23"] = {
         "2028-05-01",
         "2028-06-15"
       ]
-    }
+    },
+    "performanceHistoryValidatedAt": "2026-07-28T18:30:44.597698-03:00"
   },
   "cra": {
     "id": "cra-carteira-56",
@@ -6986,36 +6987,42 @@ window.LAMINA_CRA_DAILY["cra-carteira-56"]["2026-07-23"] = {
       "label": "Senior",
       "quantidade": 19600.0,
       "taxa": "22,50% a.a.",
-      "pu": 74.09904197755105,
-      "valor": 1452341.2227600007,
-      "resultadoDia": 0,
-      "resultadoMes": 0,
-      "resultado30Dias": 0,
-      "resultadoInicio": -0.925900958022449
+      "pu": 74.27827888,
+      "valor": 1455854.266048,
+      "resultadoDia": 0.0008056453849663026,
+      "resultadoMes": 0.0008056453849663026,
+      "resultado30Dias": 0.0008056453849663026,
+      "resultadoInicio": -0.9258412604712494,
+      "tipo": "sr",
+      "ifCodigo": "CRA026000RT"
     },
     {
       "classe": "MEZA",
       "label": "Mezanino A",
-      "quantidade": 0,
+      "quantidade": 0.0,
       "taxa": "22,50% a.a.",
-      "pu": 0,
-      "valor": 0,
-      "resultadoDia": 0,
-      "resultadoMes": 0,
-      "resultado30Dias": 0,
-      "resultadoInicio": 0
+      "pu": 0.0,
+      "valor": 0.0,
+      "resultadoDia": null,
+      "resultadoMes": null,
+      "resultado30Dias": null,
+      "resultadoInicio": null,
+      "tipo": "mez",
+      "ifCodigo": "CRA026000RV"
     },
     {
       "classe": "MEZB",
       "label": "Mezanino B",
-      "quantidade": 0,
+      "quantidade": 0.0,
       "taxa": "22,50% a.a.",
-      "pu": 0,
-      "valor": 0,
-      "resultadoDia": 0,
-      "resultadoMes": 0,
-      "resultado30Dias": 0,
-      "resultadoInicio": 0
+      "pu": 0.0,
+      "valor": 0.0,
+      "resultadoDia": null,
+      "resultadoMes": null,
+      "resultado30Dias": null,
+      "resultadoInicio": null,
+      "tipo": "mez",
+      "ifCodigo": "CRA026000RW"
     }
   ],
   "puMensal": [],
@@ -7102,5 +7109,31 @@ window.LAMINA_CRA_DAILY["cra-carteira-56"]["2026-07-23"] = {
       "ultimoEvento": "2026-07-20"
     },
     "warnings": []
-  }
+  },
+  "rendimento30Dias": [
+    {
+      "dateKey": "2026-07-23",
+      "reportDate": "23/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 74.27827888,
+          "valor": 1455854.266048,
+          "resultadoDia": 0.0008056453849663026,
+          "resultadoMes": 0.0008056453849663026
+        },
+        "MEZA": {
+          "pu": 0.0,
+          "valor": 0.0,
+          "resultadoDia": null,
+          "resultadoMes": null
+        },
+        "MEZB": {
+          "pu": 0.0,
+          "valor": 0.0,
+          "resultadoDia": null,
+          "resultadoMes": null
+        }
+      }
+    }
+  ]
 };

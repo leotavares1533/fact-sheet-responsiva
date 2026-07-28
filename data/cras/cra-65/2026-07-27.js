@@ -9,7 +9,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-27"] = {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
     "importedAt": "2026-07-28T17:34:54.386240-03:00",
-    "revisionId": "20260728-173454",
+    "revisionId": "20260728-183044-performance",
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
       "holidayCount": 1263,
@@ -84,7 +84,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-27"] = {
     "tsRuleNote": "Concentracao por tipo de ativo recalculada conforme TS do CRA 65.",
     "concentrationRuleVersion": "cra65-ts-v1",
     "concentrationRuleNote": "Concentracao de cedente/sacado recalculada conforme TS do CRA 65.",
-    "adjustmentNote": "Ajuste gerencial CRA 65 conforme controle paralelo: provisao embutida no caixa/PL, sem dupla deducao no passivo."
+    "adjustmentNote": "Ajuste gerencial CRA 65 conforme controle paralelo: provisao embutida no caixa/PL, sem dupla deducao no passivo.",
+    "performanceHistoryValidatedAt": "2026-07-28T18:30:44.424468-03:00"
   },
   "cra": {
     "id": "cra-65",
@@ -12164,19 +12165,20 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-27"] = {
       "tipo": "sr",
       "quantidade": 400000.0,
       "taxa": "105,00% DI",
-      "pu": 1008.86180999,
-      "valor": 403544723.996,
-      "resultadoDia": 0.0005515787697907282,
-      "resultadoMes": 0.00886180998999997,
-      "resultado30Dias": 0.00886180998999997,
-      "resultadoInicio": 0.00886180998999997,
+      "pu": 1009.41827279,
+      "valor": 403767309.116,
+      "resultadoDia": 0.000551574848497216,
+      "resultadoMes": 0.009418272789999627,
+      "resultado30Dias": 0.009418272789999627,
+      "resultadoInicio": 0.009418272789999849,
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {
         "dia": [],
         "mes": [],
         "dias30": [],
         "inicio": []
-      }
+      },
+      "ifCodigo": "CRA0260040P"
     },
     {
       "classe": "SUB",
@@ -12184,22 +12186,41 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-27"] = {
       "tipo": "sub",
       "quantidade": 100000.0,
       "taxa": "-",
-      "pu": 885.1501143169394,
-      "valor": 88515011.43169394,
-      "resultadoDia": 0.0005206164893531984,
-      "resultadoMes": -0.11484988568306098,
-      "resultado30Dias": -0.11484988568306098,
-      "resultadoInicio": -0.11484988568306098,
+      "pu": 888.2162679988155,
+      "valor": 88821626.79988155,
+      "resultadoDia": 0.0034639928666135855,
+      "resultadoMes": -0.1117837320011843,
+      "resultado30Dias": -0.1117837320011843,
+      "resultadoInicio": -0.11178373200118485,
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {
         "dia": [],
         "mes": [],
         "dias30": [],
         "inicio": []
-      }
+      },
+      "ifCodigo": "CRA0260040R"
     }
   ],
   "rendimento30Dias": [
+    {
+      "dateKey": "2026-07-27",
+      "reportDate": "27/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 1009.41827279,
+          "valor": 403767309.116,
+          "resultadoDia": 0.000551574848497216,
+          "resultadoMes": 0.009418272789999627
+        },
+        "SUB": {
+          "pu": 888.2162679988155,
+          "valor": 88821626.79988155,
+          "resultadoDia": 0.0034639928666135855,
+          "resultadoMes": -0.1117837320011843
+        }
+      }
+    },
     {
       "dateKey": "2026-07-24",
       "reportDate": "24/07/2026",
