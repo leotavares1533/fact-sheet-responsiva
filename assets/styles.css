@@ -2943,13 +2943,25 @@ tbody tr:hover td {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --mobile-canvas-width: clamp(680px, 200vw, 860px);
+  }
+
+  html,
+  body {
+    min-width: var(--mobile-canvas-width);
+    overflow-x: auto;
+  }
+
   .event-simulator-page .simulator-actions,
   .event-simulator-page .simulator-summary {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .app-shell {
-    width: min(100% - 24px, 1440px);
+    width: var(--mobile-canvas-width);
+    max-width: none;
+    padding-inline: 12px;
     padding-top: 16px;
   }
 
@@ -2958,8 +2970,17 @@ tbody tr:hover td {
   .base-switcher-actions,
   .controls,
   .panel-head {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .topbar {
+    justify-content: space-between;
+  }
+
+  .controls {
+    justify-content: flex-end;
   }
 
   .date-chips {
@@ -2967,9 +2988,14 @@ tbody tr:hover td {
   }
 
   .summary-strip,
-  .cota-tabs,
-  .side-column,
+  .stat-grid-six,
+  .stat-grid-eight {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .stat-grid,
+  .stat-grid-two,
+  .stat-grid-four,
   .balance-grid,
   .ranking-grid,
   .model-grid-three,
@@ -2978,23 +3004,43 @@ tbody tr:hover td {
   .pu-side-rail .pu-field-grid,
   .pu-field-grid,
   .pu-field-grid-tight {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .side-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .block-title,
-  .table-panel-head,
-  .bar-row div {
+  .table-panel-head {
     align-items: flex-start;
-    flex-direction: column;
+    flex-direction: row;
+  }
+
+  .table-wrap,
+  .wide-table .table-wrap,
+  .fit-table .table-wrap,
+  .pdd-window {
+    overflow-x: visible;
+  }
+
+  .fit-table .compact-table,
+  .maturity-table .compact-table,
+  .overdue-table .compact-table,
+  .pdd-migration-table .compact-table,
+  .overdue-pmt-table .compact-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
   }
 
   .metric-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     gap: 6px;
   }
 
   .metric-row-value {
-    text-align: left;
+    text-align: right;
   }
 }
 
@@ -4104,14 +4150,21 @@ tbody tr:hover td {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --mobile-canvas-width: clamp(680px, 200vw, 860px);
+  }
+
   body {
+    min-width: var(--mobile-canvas-width);
+    overflow-x: auto;
     background: #f4efe7;
   }
 
   .app-shell,
   .operacional-page {
-    width: 100%;
-    padding: 10px;
+    width: var(--mobile-canvas-width);
+    max-width: none;
+    padding: 12px;
   }
 
   .topbar {
@@ -4121,7 +4174,8 @@ tbody tr:hover td {
   }
 
   .brand {
-    width: 100%;
+    width: auto;
+    flex: 1 1 320px;
     gap: 12px;
   }
 
@@ -4138,8 +4192,8 @@ tbody tr:hover td {
 
   .controls,
   .auth-access-controls {
-    width: 100%;
-    justify-content: stretch;
+    width: auto;
+    justify-content: flex-end;
     gap: 8px;
   }
 
@@ -4150,11 +4204,15 @@ tbody tr:hover td {
   .auth-button,
   .auth-pill,
   .status-pill {
-    flex: 1 1 100%;
+    flex: 0 1 auto;
     min-width: 0;
   }
 
-  .date-control,
+  .date-control {
+    width: auto;
+    min-width: 150px;
+  }
+
   .date-control select,
   .date-control input {
     width: 100%;
@@ -4167,8 +4225,9 @@ tbody tr:hover td {
   }
 
   .auth-modal {
-    width: 100%;
+    width: min(430px, calc(100vw - 24px));
     max-height: 92vh;
+    margin: 12px auto 0;
     border-radius: 20px 20px 0 0;
     overflow: auto;
   }
@@ -4213,19 +4272,34 @@ tbody tr:hover td {
 
   .op-grid,
   .op-grid-four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
+  .op-form-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .op-hero {
+    align-items: center;
+    flex-direction: row;
+  }
+
   .table-shell,
-  .table-wrap,
-  .simulator-table-wrap {
-    overflow-x: auto;
+  .table-wrap {
+    overflow-x: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .simulator-table-wrap,
+  .overview-table-wrap {
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .table-shell table,
   .table-wrap table {
-    min-width: 640px;
+    min-width: 0;
   }
 }
 
