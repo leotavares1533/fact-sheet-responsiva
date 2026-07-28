@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -9,7 +9,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const port = Number(process.env.LAMINA_PUBLISHER_PORT || 8790);
 const keyPath = path.join(root, ".lamina-publisher-key");
+const importRoot = path.join(root, "Importe de arquivos");
 const jobs = new Map();
+
+const craFolders = {
+  "CRA 42": "CRA 42",
+  "CRA 65": "CRA 65",
+};
+
+const craIds = {
+  "CRA 42": "cra-modelo",
+  "CRA 65": "cra-65",
+};
+
+const kindFolders = {
+  carteira: "01_Carteira",
+  caixa: "02_Caixa",
+  evento: "03_Eventos de pagamento",
+};
 
 const allowedOrigins = new Set(
   [
@@ -31,6 +48,105 @@ function ensureKey() {
 }
 
 const localKey = ensureKey();
+
+function ensureDir(dir) {
+  mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+function safeName(name) {
+  return String(name || "arquivo")
+    .replace(/[<>:"/\\|?*\u0000-\u001F]/g, "_")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function bundledPython() {
+  const candidate = path.join(
+    process.env.USERPROFILE || "",
+    ".cache",
+    "codex-runtimes",
+    "codex-primary-runtime",
+    "dependencies",
+    "python",
+    "python.exe"
+  );
+  return existsSync(candidate) ? candidate : "python";
+}
+
+function ymdToTokens(dateKey) {
+  const [year, month, day] = String(dateKey || "").split("-");
+  return {
+    ymd: `${year || ""}${month || ""}${day || ""}`,
+    dmy: `${day || ""}${month || ""}${year || ""}`,
+    dm: `${day || ""}${month || ""}`,
+    dashed: `${day || ""}-${month || ""}-${year || ""}`,
+    dashedShort: `${day || ""}-${month || ""}`,
+  };
+}
+
+function listFilesRecursive(dir) {
+  if (!existsSync(dir)) return [];
+  const out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const filePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...listFilesRecursive(filePath));
+    if (entry.isFile()) out.push(filePath);
+  }
+  return out;
+}
+
+function findImportedFile(cra, kind, dateKey) {
+  const folder = path.join(importRoot, craFolders[cra] || safeName(cra), kindFolders[kind] || safeName(kind));
+  const tokens = Object.values(ymdToTokens(dateKey)).filter(Boolean);
+  const files = listFilesRecursive(folder).filter((file) => /\.(xlsx|xls|csv)$/i.test(file));
+  const scored = files
+    .map((file) => {
+      const name = path.basename(file).toLowerCase();
+      const score = tokens.reduce((total, token) => total + (name.includes(token.toLowerCase()) ? 1 : 0), 0);
+      return { file, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || b.file.localeCompare(a.file));
+  return scored[0]?.file || files.sort().at(-1) || null;
+}
+
+function extractSnapshotJson(text) {
+  const start = String(text || "").indexOf("{");
+  const end = String(text || "").lastIndexOf("}");
+  if (start < 0 || end < start) return null;
+  return JSON.parse(text.slice(start, end + 1));
+}
+
+function latestSnapshot(craId) {
+  const dataDir = path.join(root, "data", "cras", craId);
+  if (!existsSync(dataDir)) return null;
+  const files = readdirSync(dataDir)
+    .filter((name) => /^\d{4}-\d{2}-\d{2}\.js$/.test(name))
+    .sort();
+  const latest = files.at(-1);
+  if (!latest) return null;
+  return extractSnapshotJson(readFileSync(path.join(dataDir, latest), "utf8"));
+}
+
+function ensureCotasSeed(craId) {
+  const cotasPath = path.join(root, "cras", craId, "imports", "cotas", "cotas.csv");
+  if (existsSync(cotasPath)) return cotasPath;
+
+  const snapshot = latestSnapshot(craId);
+  const cotas = snapshot?.passivo?.cotas || [];
+  if (!cotas.length) throw new Error(`Nao encontrei cotas para preparar processamento de ${craId}.`);
+
+  ensureDir(path.dirname(cotasPath));
+  const lines = ["classe;quantidade"];
+  for (const cota of cotas) {
+    const classe = String(cota.classe || "").trim();
+    const quantidade = Number(cota.quantidade || 0);
+    if (classe && quantidade) lines.push(`${classe};${String(quantidade).replace(".", ",")}`);
+  }
+  writeFileSync(cotasPath, `${lines.join("\n")}\n`, "utf8");
+  return cotasPath;
+}
 
 function corsHeaders(req) {
   const origin = req.headers.origin || "null";
@@ -100,6 +216,33 @@ function runGit(args, options = {}) {
   });
 }
 
+function runProcess(command, args, options = {}) {
+  return new Promise((resolve) => {
+    const child = spawn(command, args, {
+      cwd: root,
+      windowsHide: true,
+      env: process.env,
+    });
+
+    let stdout = "";
+    let stderr = "";
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk.toString();
+      options.onData?.(chunk.toString(), "stdout");
+    });
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk.toString();
+      options.onData?.(chunk.toString(), "stderr");
+    });
+    child.on("error", (error) => {
+      resolve({ code: 1, stdout, stderr: stderr || error.message });
+    });
+    child.on("close", (code) => {
+      resolve({ code, stdout, stderr });
+    });
+  });
+}
+
 async function gitOutput(args) {
   const result = await runGit(args);
   if (result.code !== 0) throw new Error(result.stderr || result.stdout || `git ${args.join(" ")} falhou`);
@@ -132,11 +275,49 @@ async function repositoryState() {
   };
 }
 
+function prepareProcess(payload) {
+  const cra = String(payload.cra || "");
+  const dateKey = String(payload.dateKey || "");
+  if (!craIds[cra]) {
+    return { ok: false, status: 400, message: "Processamento automatico V1 esta habilitado para CRA 42 e CRA 65." };
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) {
+    return { ok: false, status: 400, message: "Data-base invalida para processamento." };
+  }
+
+  const carteira = findImportedFile(cra, "carteira", dateKey);
+  const caixa = findImportedFile(cra, "caixa", dateKey);
+  if (!carteira || !caixa) {
+    return { ok: false, status: 400, message: `Nao encontrei carteira e caixa importados para ${cra} em ${dateKey}.` };
+  }
+
+  const script = cra === "CRA 42" ? "import-cra42-folder-day.py" : "import-cra65-folder-day.py";
+  const scriptPath = path.join(root, "scripts", script);
+  if (!existsSync(scriptPath)) {
+    return { ok: false, status: 400, message: `Script nao encontrado: ${script}` };
+  }
+
+  ensureCotasSeed(craIds[cra]);
+
+  return {
+    ok: true,
+    cra,
+    craId: craIds[cra],
+    dateKey,
+    command: bundledPython(),
+    args: [scriptPath, "--date-key", dateKey, "--carteira", carteira, "--caixa", caixa],
+    script,
+  };
+}
+
 function publicJob(job) {
   return {
     id: job.id,
     status: job.status,
     message: job.message,
+    type: job.type || "",
+    cra: job.cra || "",
+    dateKey: job.dateKey || "",
     startedAt: job.startedAt,
     updatedAt: job.updatedAt,
     finishedAt: job.finishedAt || null,
@@ -147,6 +328,52 @@ function publicJob(job) {
 function updateJob(job, patch) {
   Object.assign(job, patch, { updatedAt: new Date().toISOString() });
   jobs.set(job.id, job);
+}
+
+async function processImportJob(job, prepared) {
+  const append = (text) => {
+    const clean = String(text || "").trim();
+    if (clean) updateJob(job, { message: clean.slice(-800) });
+  };
+
+  try {
+    updateJob(job, {
+      status: "running",
+      message: `Processando ${prepared.cra} em ${prepared.dateKey}...`,
+    });
+    const result = await runProcess(prepared.command, prepared.args, { onData: append });
+    if (result.code !== 0) throw new Error(result.stderr || result.stdout || `Processamento retornou codigo ${result.code}.`);
+    updateJob(job, {
+      status: "completed",
+      finishedAt: new Date().toISOString(),
+      message: `Processamento concluido para ${prepared.cra} em ${prepared.dateKey}. Valide a lamina antes de publicar.`,
+    });
+  } catch (error) {
+    updateJob(job, {
+      status: "failed",
+      finishedAt: new Date().toISOString(),
+      message: error.message || String(error),
+    });
+  }
+}
+
+function startProcessJob(payload) {
+  const prepared = prepareProcess(payload);
+  if (!prepared.ok) return prepared;
+
+  const job = {
+    id: `${Date.now()}-${randomBytes(4).toString("hex")}`,
+    type: "process",
+    status: "queued",
+    cra: prepared.cra,
+    dateKey: prepared.dateKey,
+    message: "Processamento aguardando inicio...",
+    startedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  jobs.set(job.id, job);
+  processImportJob(job, prepared);
+  return { ok: true, status: 202, job: publicJob(job) };
 }
 
 async function publishJob(job, message) {
@@ -230,8 +457,37 @@ const server = createServer(async (req, res) => {
       return;
     }
 
-    if (req.method === "POST" && requestUrl.pathname === "/api/status") {
+    if (req.method === "POST" && (requestUrl.pathname === "/api/status" || requestUrl.pathname === "/api/git-status")) {
       json(req, res, 200, { ok: true, ...(await repositoryState()) });
+      return;
+    }
+
+    if (req.method === "POST" && requestUrl.pathname === "/api/import") {
+      const payload = await readBody(req);
+      const craFolder = craFolders[payload.cra] || safeName(payload.cra);
+      const kindFolder = kindFolders[payload.kind] || safeName(payload.kind);
+      const dateFolder = safeName(payload.dateKey);
+      if (!craFolder || !kindFolder || !/^\d{4}-\d{2}-\d{2}$/.test(dateFolder)) {
+        json(req, res, 400, { ok: false, message: "CRA, tipo ou data-base invalida para importacao." });
+        return;
+      }
+      const target = ensureDir(path.join(importRoot, craFolder, kindFolder, dateFolder));
+      const saved = [];
+
+      for (const file of payload.files || []) {
+        const name = safeName(file.name);
+        const dest = path.join(target, name);
+        writeFileSync(dest, Buffer.from(String(file.dataBase64 || ""), "base64"));
+        saved.push({ name, path: dest });
+      }
+
+      json(req, res, 200, { ok: true, files: saved });
+      return;
+    }
+
+    if (req.method === "POST" && requestUrl.pathname === "/api/process") {
+      const result = startProcessJob(await readBody(req));
+      json(req, res, result.status || 500, result);
       return;
     }
 
@@ -260,11 +516,11 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`Publicador GitHub Pages ativo em http://127.0.0.1:${port}`);
+  console.log(`Operacional local da lamina ativo em http://127.0.0.1:${port}`);
   console.log(`Repositorio: ${root}`);
   console.log("");
   console.log("Chave local do publicador:");
   console.log(localKey);
   console.log("");
-  console.log("Abra a pagina operacional no site e cole essa chave para publicar.");
+  console.log("Abra a pagina operacional no site e cole essa chave para importar, processar e publicar.");
 });

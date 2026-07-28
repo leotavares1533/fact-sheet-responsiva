@@ -3829,6 +3829,10 @@ tbody tr:hover td {
   margin-bottom: 14px;
 }
 
+.op-grid-four {
+  grid-template-columns: minmax(220px, 0.9fr) minmax(330px, 1.25fr) minmax(220px, 0.8fr) minmax(260px, 1fr);
+}
+
 .op-card {
   padding: 18px;
 }

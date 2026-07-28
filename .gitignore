@@ -10,6 +10,10 @@
 !/scripts/
 !/scripts/github-pages-publisher.mjs
 !/scripts/Iniciar-Publicador-GitHub-Pages.cmd
+!/scripts/import-cra42-folder-day.py
+!/scripts/import-cra65-folder-day.py
+!/scripts/normalize_carteira.py
+!/scripts/refresh_cra_snapshot_from_imports.py
 /tmp/
 /.lamina-publisher-key
 
@@ -29,3 +33,4 @@ data/cras/cras-carteira-overview/cras-carteira-overview/
 # Sistema/editor
 .DS_Store
 Thumbs.db
+__pycache__/

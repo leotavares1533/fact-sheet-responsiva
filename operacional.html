@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operacional - Publicar no GitHub Pages</title>
-  <link rel="stylesheet" href="./assets/styles.css?v=20260728-github-publisher-v1">
+  <title>Operacional - Lâmina ao investidor</title>
+  <link rel="stylesheet" href="./assets/styles.css?v=20260728-prod-operacional-v1">
 </head>
 <body data-page="operacional">
   <main class="page operacional-page">
@@ -13,7 +13,7 @@
         <div class="brand-mark">GCI</div>
         <div>
           <p class="eyebrow">Controle operacional</p>
-          <h1>Publicar no GitHub Pages</h1>
+          <h1>Importar, processar e publicar</h1>
         </div>
       </div>
       <div class="controls">
@@ -25,18 +25,18 @@
 
     <section class="op-hero">
       <div>
-        <p class="eyebrow">Publicacao controlada</p>
-        <h2>Commit e push da base validada</h2>
-        <p>Use esta tela depois de validar as alteracoes. O botao publica a branch main e o GitHub Pages atualiza em alguns minutos.</p>
+        <p class="eyebrow">Base de producao</p>
+        <h2>Atualizacao pelo site</h2>
+        <p>Importe carteira e caixa, processe a data-base, valide a lamina e publique no GitHub Pages.</p>
       </div>
       <button type="button" class="auth-button" id="op-check-server">Verificar publicador</button>
     </section>
 
-    <section class="op-grid">
+    <section class="op-grid op-grid-four">
       <article class="op-card">
         <p class="eyebrow">1. Conectar</p>
         <h3>Chave local</h3>
-        <p>A chave aparece na janela do publicador local. Ela evita que qualquer pagina externa acione seu Git.</p>
+        <p>A chave aparece na janela do publicador local. Ela autoriza importar, processar e publicar.</p>
         <label class="op-file-box">
           <span>Chave do publicador</span>
           <input id="publisher-key" type="password" autocomplete="off" placeholder="Cole a chave local">
@@ -45,32 +45,87 @@
       </article>
 
       <article class="op-card">
-        <p class="eyebrow">2. Revisar</p>
-        <h3>Status do Git</h3>
-        <p>Confira se ha arquivos pendentes antes de publicar.</p>
-        <button type="button" class="auth-button" id="refresh-git-status">Atualizar status</button>
+        <p class="eyebrow">2. Importar</p>
+        <h3>Arquivos do dia</h3>
+        <div class="op-form-grid">
+          <label>
+            <span>CRA</span>
+            <select id="op-cra">
+              <option value="CRA 42">CRA 42</option>
+              <option value="CRA 65">CRA 65</option>
+            </select>
+          </label>
+          <label>
+            <span>Tipo</span>
+            <select id="op-kind">
+              <option value="carteira">Carteira</option>
+              <option value="caixa">Caixa</option>
+              <option value="evento">Evento</option>
+            </select>
+          </label>
+          <label>
+            <span>Data-base</span>
+            <input id="op-date" type="date">
+          </label>
+        </div>
+        <label class="op-file-box">
+          <span>Selecionar arquivo</span>
+          <input id="op-files" type="file" multiple>
+        </label>
+        <button type="button" class="auth-button" id="op-import">Importar arquivo</button>
       </article>
 
       <article class="op-card">
-        <p class="eyebrow">3. Publicar</p>
-        <h3>Enviar para o Pages</h3>
+        <p class="eyebrow">3. Processar</p>
+        <h3>Atualizar dados</h3>
+        <p>Processa as posicoes importadas e grava os snapshots em `data/`.</p>
+        <button type="button" class="auth-button" id="op-process">Processar arquivo</button>
+      </article>
+
+      <article class="op-card">
+        <p class="eyebrow">4. Publicar</p>
+        <h3>GitHub Pages</h3>
         <label class="op-file-box">
           <span>Mensagem do commit</span>
           <input id="commit-message" type="text" placeholder="Atualiza lamina">
         </label>
+        <button type="button" class="auth-button" id="refresh-git-status">Atualizar status</button>
         <button type="button" class="auth-button op-danger-button" id="publish-github">Publicar no GitHub Pages</button>
       </article>
     </section>
 
     <section class="op-card op-status-card">
       <p class="eyebrow">Status</p>
-      <div id="op-status">Abra o publicador local e clique em verificar.</div>
+      <div id="op-status">Entre com usuario operacional e conecte o publicador local.</div>
     </section>
 
     <section class="op-card">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Arquivos</p>
+          <p class="eyebrow">Fila de arquivos</p>
+          <h3>Importacoes desta sessao</h3>
+        </div>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>CRA</th>
+              <th>Tipo</th>
+              <th>Data-base</th>
+              <th>Arquivo</th>
+            </tr>
+          </thead>
+          <tbody id="op-files-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="op-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Git</p>
           <h3>Alteracoes detectadas</h3>
         </div>
       </div>
@@ -88,6 +143,7 @@
     </section>
   </main>
 
-  <script src="./assets/operacional.js?v=20260728-github-publisher-v1"></script>
+  <script src="./assets/auth.js?v=20260728-prod-access-v1"></script>
+  <script src="./assets/operacional.js?v=20260728-prod-operacional-v1"></script>
 </body>
 </html>

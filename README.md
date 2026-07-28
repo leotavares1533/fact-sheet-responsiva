@@ -7,7 +7,7 @@ Versao estatica da lamina diaria ao investidor, pronta para abrir em navegador o
 - `index.html`: lamina ao investidor.
 - `pu.html`: validacao de PU.
 - `simulador-eventos.html`: simulador gerencial de eventos.
-- `operacional.html`: tela operacional para publicar no GitHub Pages.
+- `operacional.html`: tela operacional restrita para importar, processar e publicar no GitHub Pages.
 - `assets/`: estilos e scripts de renderizacao.
 - `data/`: snapshots historicos ja processados, manifestos e curvas de indice usados pela navegacao no tempo.
 
@@ -26,16 +26,17 @@ Por isso a base historica processada esta versionada neste repositorio. Arquivos
 
 Abra `index.html` diretamente no navegador, ou use um servidor estatico simples caso o navegador bloqueie arquivos locais.
 
-## Publicar no GitHub Pages
+## Operacional em producao
 
-O GitHub Pages nao grava arquivos diretamente pelo navegador. Para publicar pelo site sem expor token do GitHub no HTML:
+O GitHub Pages nao grava arquivos diretamente pelo navegador. Para importar, processar e publicar pelo site sem expor token do GitHub no HTML:
 
 1. Abra `scripts/Iniciar-Publicador-GitHub-Pages.cmd` no computador com o clone e credencial GitHub.
 2. Copie a chave local exibida na janela.
-3. Abra `operacional.html` pelo site publicado.
-4. Cole a chave, confira o status do Git e clique em `Publicar no GitHub Pages`.
+3. Abra `operacional.html` pelo site publicado e entre com usuario operacional.
+4. Cole a chave no painel operacional.
+5. Importe carteira e caixa, processe a data-base, valide a lamina e clique em `Publicar no GitHub Pages`.
 
-O publicador local executa `git add`, cria commit se houver alteracao e faz `git push` para a branch atual. Depois do push, o GitHub Pages costuma atualizar em alguns minutos.
+O publicador local salva os arquivos importados na area operacional ignorada pelo Git, executa os scripts de processamento, atualiza `data/`, cria commit se houver alteracao e faz `git push` para a branch atual. Depois do push, o GitHub Pages costuma atualizar em alguns minutos.
 
 ## Nao versionado
 
