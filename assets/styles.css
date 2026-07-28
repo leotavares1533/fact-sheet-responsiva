@@ -4668,3 +4668,131 @@ tbody tr:hover td {
     white-space: normal;
   }
 }
+
+@media (max-width: 760px) {
+  :root {
+    --mobile-canvas-width: clamp(700px, 200vw, 860px);
+  }
+
+  html,
+  body {
+    width: auto;
+    min-width: var(--mobile-canvas-width) !important;
+    overflow-x: auto !important;
+  }
+
+  .app-shell,
+  .operacional-page {
+    width: var(--mobile-canvas-width) !important;
+    max-width: none !important;
+    padding: 12px;
+  }
+
+  .topbar,
+  .base-switcher,
+  .base-switcher-actions,
+  .controls,
+  .auth-access-controls,
+  .panel-head,
+  .block-title,
+  .table-panel-head {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .topbar {
+    justify-content: space-between;
+  }
+
+  .brand {
+    flex: 1 1 290px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .controls,
+  .auth-access-controls {
+    display: flex;
+    width: auto;
+    flex: 1 1 390px;
+    justify-content: flex-end;
+  }
+
+  .controls > *,
+  .auth-access-controls > *,
+  .date-control,
+  .date-control select,
+  .date-control input,
+  .status-pill,
+  .nav-link,
+  .button-like,
+  .auth-button,
+  .auth-pill {
+    width: auto;
+    max-width: none;
+  }
+
+  .date-control {
+    min-width: 136px;
+  }
+
+  .date-control select,
+  .date-control input {
+    min-width: 136px;
+  }
+
+  .summary-strip,
+  .stat-grid-six,
+  .stat-grid-eight {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .stat-grid,
+  .stat-grid-two,
+  .stat-grid-four,
+  .balance-grid,
+  .ranking-grid,
+  .model-grid-three,
+  .info-grid,
+  .account-grid,
+  .side-column,
+  .pu-side-rail .pu-field-grid,
+  .pu-field-grid,
+  .pu-field-grid-tight,
+  .op-grid,
+  .op-grid-four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pricing-layout,
+  .two-column-layout,
+  .pdd-window-grid,
+  .pdd-rank-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    min-height: 110px;
+  }
+
+  .metric-card strong {
+    font-size: clamp(1.08rem, 2.8vw, 1.34rem);
+  }
+
+  .table-wrap,
+  .wide-table .table-wrap,
+  .fit-table .table-wrap,
+  .overview-table-wrap,
+  .simulator-table-wrap,
+  .pdd-window,
+  .line-chart-panel,
+  .pdd-daily-panel,
+  .pdd-waterfall-panel,
+  .pdd-stress-panel,
+  .pdd-rank-panel {
+    overflow: auto !important;
+  }
+}
