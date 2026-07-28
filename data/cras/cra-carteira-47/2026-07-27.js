@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T16:07:14.712568-03:00",
+    "importedAt": "2026-07-28T16:25:39.228318-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -85,7 +85,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
     "schemaVersion": 2,
     "model": "cra-carteira",
     "craId": "cra-carteira-47",
-    "sourceSnapshotDateKey": "2026-07-27",
+    "sourceSnapshotDateKey": "2026-07-23",
     "assetImport": {
       "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\carteira_caixa_ccs_2707.xlsx",
       "sheetCarteira": "carteira ",
@@ -8439,30 +8439,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
         "valor": -138647.73230984434,
         "principalResidual": -1386.4773230984435,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "27/07/2026",
-            "dataIso": "2026-07-27",
-            "valorNominal": -97911.85809276534,
-            "puAtualizado": -97911.85809276534,
-            "valorReais": -9791185.809276534,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "27/07/2026",
-        "dataHistoricaIso": "2026-07-27",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "27/07/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": -97911.85809276534
-        }
+        "ordem": 90
       }
     ],
     "despesasOperacionaisTotal": 0,
@@ -8624,8 +8601,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-27"] = {
     },
     {
       "name": "Memoria PU existente",
-      "date": "27/07/2026",
-      "file": "data/cras/cra-carteira-47/2026-07-27.js"
+      "date": "23/07/2026",
+      "file": "data/cras/cra-carteira-47/2026-07-23.js"
     }
   ],
   "notasEstruturacao": {

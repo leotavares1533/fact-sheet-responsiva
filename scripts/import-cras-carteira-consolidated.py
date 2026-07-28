@@ -44,6 +44,14 @@ def to_number(value: Any) -> float:
         return 0.0
 
 
+def first_present_number(*values: Any) -> float:
+    for value in values:
+        if value is None or value == "":
+            continue
+        return to_number(value)
+    return 0.0
+
+
 def as_date(value: Any) -> date | None:
     if value is None or value == "":
         return None
@@ -182,7 +190,7 @@ def get_latest_snapshot_info(cra_id: str, target_date: str) -> tuple[str, dict[s
     if not folder.exists():
         return None, None
     candidates = sorted(
-        [p.stem for p in folder.glob("*.js") if re.match(r"\d{4}-\d{2}-\d{2}$", p.stem) and p.stem <= target_date],
+        [p.stem for p in folder.glob("*.js") if re.match(r"\d{4}-\d{2}-\d{2}$", p.stem) and p.stem < target_date],
         reverse=True,
     )
     for date_key in candidates:
@@ -327,8 +335,8 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
         history = [{
             "data": date_key_to_br(current_key),
             "dataIso": current_key,
-            "valorNominal": to_number(next_cota.get("principalResidual") or next_cota.get("valorNominalInicial")),
-            "puAtualizado": to_number(next_cota.get("pu") or next_cota.get("principalResidual")),
+            "valorNominal": first_present_number(next_cota.get("principalResidual"), next_cota.get("valorNominalInicial")),
+            "puAtualizado": first_present_number(next_cota.get("pu"), next_cota.get("principalResidual"), next_cota.get("valorNominalInicial")),
             "valorReais": to_number(next_cota.get("valor")),
             "diasUteis": 0,
             "diasUteisPeriodo": 0,
@@ -342,13 +350,13 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
         latest_key = iso(as_date(latest_key))
     cursor = as_date(latest_key) or target
 
-    principal = to_number(latest.get("valorNominal") or next_cota.get("principalResidual") or next_cota.get("valorNominalInicial"))
-    pu = to_number(latest.get("puAtualizado") or next_cota.get("pu") or principal)
+    principal = first_present_number(latest.get("valorNominal"), next_cota.get("principalResidual"), next_cota.get("valorNominalInicial"))
+    pu = first_present_number(latest.get("puAtualizado"), next_cota.get("pu"), principal)
     base_pu = pu
     period_factor = to_number(latest.get("fatorDiAcumulado")) or 1.0
     total_factor = to_number(latest.get("produtorioFatorDi")) or 1.0
     dias_uteis = int(to_number(latest.get("diasUteis")))
-    dias_uteis_periodo = int(to_number(latest.get("diasUteisPeriodo") or latest.get("diasUteis")))
+    dias_uteis_periodo = int(first_present_number(latest.get("diasUteisPeriodo"), latest.get("diasUteis")))
     pure_di_factor = 1.0
     fixed = is_fixed_cota(next_cota)
     metodo = clean_text(next_cota.get("metodo")).lower()
@@ -907,6 +915,19 @@ def build_snapshot(cra_id: str, date_key: str, rows: list[dict[str, Any]], cash:
             cota["principalResidual"] = 0
             cota["status"] = "Finalizada"
             cota["observacaoGerencial"] = "Operacao liquidada; caixa residual tratado como ganho da subordinada."
+    for cota in cotas:
+        if clean_text(cota.get("classe")).upper() == "SUB" or clean_text(cota.get("tipo")).lower() == "sub":
+            continue
+        if (
+            abs(to_number(cota.get("pu"))) < 0.00000001
+            and abs(to_number(cota.get("principalResidual"))) < 0.00000001
+            and abs(to_number(cota.get("valor"))) < 0.01
+        ):
+            cota["pu"] = 0
+            cota["principalResidual"] = 0
+            cota["valor"] = 0
+            cota["status"] = "Finalizada"
+            cota["observacaoGerencial"] = cota.get("observacaoGerencial") or "Principal residual zerado por eventos aplicados."
     funding_total = sum(
         to_number(cota.get("valor"))
         for cota in cotas

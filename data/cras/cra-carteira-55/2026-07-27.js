@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T16:07:15.860512-03:00",
+    "importedAt": "2026-07-28T16:25:40.274335-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -60,7 +60,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
     "schemaVersion": 2,
     "model": "cra-carteira",
     "craId": "cra-carteira-55",
-    "sourceSnapshotDateKey": "2026-07-27",
+    "sourceSnapshotDateKey": "2026-07-24",
     "assetImport": {
       "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\carteira_caixa_ccs_2707.xlsx",
       "sheetCarteira": "carteira ",
@@ -109,11 +109,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
     "observacao": "Fundo de despesa reduz o caixa conforme total informado na aba Planilha2."
   },
   "passivo": {
-    "fundingTotal": 30135452.585378,
+    "fundingTotal": 16824892.784511,
     "despesasTotal": 0,
-    "subordinadaTotal": -14498812.910946062,
+    "subordinadaTotal": -1188253.110079063,
     "subordinadaQuantidade": 100.0,
-    "subordinadaPuResidual": -144988.12910946063,
+    "subordinadaPuResidual": -11882.531100790631,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -161,9 +161,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
         "dataVencimento": "01/03/2027",
         "dataVencimentoIso": "2027-03-01",
         "valorNominalInicial": 1000,
-        "principalResidual": 1000.0,
-        "pu": 1000.79396999,
-        "valor": 13310559.800867,
+        "principalResidual": 0,
+        "pu": 0,
+        "valor": 0,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -311,10 +311,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
         "acumulacaoFinal": {
           "periodoInicio": "03/03/2026",
           "periodoFim": "27/07/2026",
-          "diasAcumulacao": 114.0,
-          "diasUteisPeriodo": 44.0,
+          "diasAcumulacao": 113.0,
+          "diasUteisPeriodo": 43.0,
           "puAntesAcumulacao": 0,
-          "puFinal": 1000.79396999
+          "puFinal": 0.0
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "27/07/2026",
@@ -6641,16 +6641,16 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
             "dataReferenciaTaxaDiIso": "",
             "diasUteis": 113,
             "diasUteisPeriodo": 43,
-            "fator": 1.0,
-            "valorNominal": 1000.0,
-            "puAtualizado": 1000.0,
+            "fator": 0.0,
+            "valorNominal": 0.0,
+            "puAtualizado": 0.0,
             "puJuros": 0.0,
-            "puAntesEvento": 1000.0,
+            "puAntesEvento": 0.0,
             "puEvento": 0,
-            "puAposEvento": 1000.0,
-            "principalAntesEvento": 1000.0,
-            "principalAposEvento": 1000.0,
-            "valorReais": 13300000.0,
+            "puAposEvento": 0.0,
+            "principalAntesEvento": 0.0,
+            "principalAposEvento": 0.0,
+            "valorReais": 0.0,
             "valorEventoReais": 0,
             "tdk": 0.0007939738037565647,
             "fatorDiario": 1.0,
@@ -6658,7 +6658,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
             "fatorDiAcumulado": 1.0,
             "spread": 0.0,
             "spreadAcumulado": 0.10119804175955593,
-            "fatorJurosAcumulado": 1.0,
+            "fatorJurosAcumulado": 0.0,
             "evento": "",
             "eventoTs": "",
             "efeitoEvento": "",
@@ -6677,16 +6677,16 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
             "dataReferenciaTaxaDiIso": "",
             "diasUteis": 113,
             "diasUteisPeriodo": 43,
-            "fator": 1.0,
-            "valorNominal": 1000.0,
-            "puAtualizado": 1000.0,
+            "fator": 0.0,
+            "valorNominal": 0.0,
+            "puAtualizado": 0.0,
             "puJuros": 0.0,
-            "puAntesEvento": 1000.0,
+            "puAntesEvento": 0.0,
             "puEvento": 0,
-            "puAposEvento": 1000.0,
-            "principalAntesEvento": 1000.0,
-            "principalAposEvento": 1000.0,
-            "valorReais": 13300000.0,
+            "puAposEvento": 0.0,
+            "principalAntesEvento": 0.0,
+            "principalAposEvento": 0.0,
+            "valorReais": 0.0,
             "valorEventoReais": 0,
             "tdk": 0.0007939738037565647,
             "fatorDiario": 1.0,
@@ -6694,7 +6694,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
             "fatorDiAcumulado": 1.0,
             "spread": 0.0,
             "spreadAcumulado": 0.10119804175955593,
-            "fatorJurosAcumulado": 1.0,
+            "fatorJurosAcumulado": 0.0,
             "evento": "",
             "eventoTs": "",
             "efeitoEvento": "",
@@ -6705,39 +6705,41 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
             "dataIso": "2026-07-27",
             "diaUtil": true,
             "taxaDiUtilizadaDia": 0.0007939738037565647,
-            "taxaDiAnualEquivalente": 0.22140521424543658,
-            "dataTaxaDi": "22/07/2026",
-            "dataTaxaDiIso": "2026-07-22",
+            "taxaDiAnualEquivalente": 0.2214052142454137,
+            "dataTaxaDi": "",
+            "dataTaxaDiIso": "",
             "taxaDiStatus": "projetada",
-            "dataReferenciaTaxaDi": "22/07/2026",
-            "dataReferenciaTaxaDiIso": "2026-07-22",
-            "diasUteis": 114,
-            "diasUteisPeriodo": 44,
-            "fator": 1.0007939699900001,
-            "valorNominal": 1000.0,
-            "puAtualizado": 1000.79396999,
-            "puJuros": 0.7939699900000505,
-            "puAntesEvento": 1000.79396999,
+            "dataReferenciaTaxaDi": "",
+            "dataReferenciaTaxaDiIso": "",
+            "diasUteis": 113,
+            "diasUteisPeriodo": 43,
+            "fator": 0.0,
+            "valorNominal": 0.0,
+            "puAtualizado": 0.0,
+            "puJuros": 0.0,
+            "puAntesEvento": 0.0,
             "puEvento": 0,
-            "puAposEvento": 1000.79396999,
-            "principalAntesEvento": 1000.0,
-            "principalAposEvento": 1000.0,
-            "valorReais": 13310559.800867,
+            "puAposEvento": 0.0,
+            "principalAntesEvento": 0.0,
+            "principalAposEvento": 0.0,
+            "valorReais": 0.0,
             "valorEventoReais": 0,
             "tdk": 0.0007939738037565647,
-            "fatorDiario": 1.00079397,
-            "produtorioFatorDi": 1.1020723599687716,
-            "fatorDiAcumulado": 1.00079397,
+            "fatorDiario": 1.0,
+            "produtorioFatorDi": 1.101198041759556,
+            "fatorDiAcumulado": 1.0,
             "spread": 0.0,
-            "spreadAcumulado": 0.10154704996877162,
-            "fatorJurosAcumulado": 1.0007939699900001,
+            "spreadAcumulado": 0.10119804175955593,
+            "fatorJurosAcumulado": 0.0,
             "evento": "",
             "eventoTs": "",
             "efeitoEvento": "",
             "ehDataPagamentoTs": false
           }
         ],
-        "visaoCalculadaPu": true
+        "visaoCalculadaPu": true,
+        "status": "Finalizada",
+        "observacaoGerencial": "Principal residual zerado por eventos aplicados."
       },
       {
         "classe": "MEZA",
@@ -19843,34 +19845,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100.0,
-        "pu": -144988.12910946063,
-        "valor": -14498812.910946062,
-        "principalResidual": -144988.12910946063,
+        "pu": -11882.531100790631,
+        "valor": -1188253.110079063,
+        "principalResidual": -11882.531100790631,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "27/07/2026",
-            "dataIso": "2026-07-27",
-            "valorNominal": -182492.48330946063,
-            "puAtualizado": -182492.48330946063,
-            "valorReais": -18249248.33094606,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "27/07/2026",
-        "dataHistoricaIso": "2026-07-27",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "27/07/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": -182492.48330946063
-        }
+        "ordem": 90
       }
     ],
     "funding": 15327116.216761999,
@@ -19905,8 +19884,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
       "ifCodigo": "CRA026000M9",
       "quantidade": 13300,
       "taxa": "CDI + 7,00% a.a.",
-      "pu": 1000.79396999,
-      "valor": 13310559.800867,
+      "pu": 0.0,
+      "valor": 0.0,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -19947,8 +19926,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
       "ifCodigo": "",
       "quantidade": 100.0,
       "taxa": "CDI + 7,00% a.a.",
-      "pu": -144988.12910946063,
-      "valor": -14498812.910946062,
+      "pu": -11882.531100790631,
+      "valor": -1188253.110079063,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
@@ -20013,7 +19992,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
         },
         {
           "label": "Funding SR/MEZ",
-          "value": "R$ 30.135.452,59",
+          "value": "R$ 16.824.892,78",
           "isHighlight": true,
           "source": {
             "name": "Memoria PU"
@@ -20021,7 +20000,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -14.498.812,91",
+          "value": "R$ -1.188.253,11",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -20029,7 +20008,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-144.988,129109",
+          "value": "-11.882,531101",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -20062,8 +20041,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
     },
     {
       "name": "Memoria PU existente",
-      "date": "27/07/2026",
-      "file": "data/cras/cra-carteira-55/2026-07-27.js"
+      "date": "24/07/2026",
+      "file": "data/cras/cra-carteira-55/2026-07-24.js"
     }
   ],
   "notasEstruturacao": {
@@ -27546,8 +27525,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
       "reportDate": "27/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 1000.79396999,
-          "valor": 13310559.800867,
+          "pu": 0.0,
+          "valor": 0.0,
           "resultadoDia": null,
           "resultadoMes": null
         },
@@ -27564,8 +27543,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-55"]["2026-07-27"] = {
           "resultadoMes": null
         },
         "SUB": {
-          "pu": -144988.12910946063,
-          "valor": -14498812.910946062,
+          "pu": -11882.531100790631,
+          "valor": -1188253.110079063,
           "resultadoDia": null,
           "resultadoMes": null
         }
