@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-57"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T16:01:07.617267-03:00",
+    "importedAt": "2026-07-28T16:07:16.041550-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -69,7 +69,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-57"]["2026-07-27"] = {
       "sheetCarteira": "carteira ",
       "sheetCaixa": "Planilha2",
       "cashDate": "1901-07-01",
-      "importMode": "carteira-caixa-consolidado"
+      "importMode": "carteira-caixa-consolidado",
+      "cashGainLiquidated": false
     }
   },
   "cra": {

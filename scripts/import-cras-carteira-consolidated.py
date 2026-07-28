@@ -20,6 +20,7 @@ SAO_PAULO = timezone(timedelta(hours=-3))
 GROUP_ID = "cras-carteira"
 GROUP_NAME = "CRAs Carteira"
 ACTIVE_VP_THRESHOLD = 1.0
+LIQUIDATED_CASH_GAIN_IDS = {"cra-carteira-52"}
 
 
 def clean_text(value: Any) -> str:
@@ -896,6 +897,16 @@ def build_snapshot(cra_id: str, date_key: str, rows: list[dict[str, Any]], cash:
     base_date = as_date(date_key)
     report_date = br_date(base_date)
     cotas = [project_cota_to_date(source_snapshot, cota, date_key) for cota in source_snapshot.get("passivo", {}).get("cotas", [])]
+    cash_gain_liquidated = cra_id in LIQUIDATED_CASH_GAIN_IDS
+    if cash_gain_liquidated:
+        for cota in cotas:
+            if clean_text(cota.get("classe")).upper() == "SUB" or clean_text(cota.get("tipo")).lower() == "sub":
+                continue
+            cota["pu"] = 0
+            cota["valor"] = 0
+            cota["principalResidual"] = 0
+            cota["status"] = "Finalizada"
+            cota["observacaoGerencial"] = "Operacao liquidada; caixa residual tratado como ganho da subordinada."
     funding_total = sum(
         to_number(cota.get("valor"))
         for cota in cotas
@@ -951,6 +962,7 @@ def build_snapshot(cra_id: str, date_key: str, rows: list[dict[str, Any]], cash:
             "sheetCaixa": source_meta["sheetCaixa"],
             "cashDate": source_meta["cashDate"],
             "importMode": "carteira-caixa-consolidado",
+            "cashGainLiquidated": cash_gain_liquidated,
         },
     }
     snapshot["cra"] = {
@@ -1025,6 +1037,8 @@ def build_snapshot(cra_id: str, date_key: str, rows: list[dict[str, Any]], cash:
         {"name": "Importacao carteira+caixa CRAs Carteira", "date": report_date, "file": Path(source_meta["sourceFile"]).name},
         {"name": "Memoria PU existente", "date": date_key_to_br(source_date_key) if source_date_key else "", "file": f"data/cras/{cra_id}/{source_date_key}.js" if source_date_key else ""},
     ]
+    if cash_gain_liquidated:
+        snapshot["sources"].append({"name": "Regra gerencial", "date": report_date, "file": "CRA liquidado: caixa tratado como ganho da subordinada"})
     return snapshot
 
 
@@ -1331,6 +1345,11 @@ def main() -> None:
         cra_id
         for cra_id, rows in carteira_by_cra.items()
         if sum(to_number(row.get("valorPresenteDia")) for row in rows) > ACTIVE_VP_THRESHOLD
+    }
+    active_ids |= {
+        cra_id
+        for cra_id in LIQUIDATED_CASH_GAIN_IDS
+        if to_number(cash_by_cra.get(cra_id, {}).get("total")) > ACTIVE_VP_THRESHOLD
     }
     skipped_ids = (set(carteira_by_cra) | set(cash_by_cra)) - active_ids
     cleanup_skipped_date(date_key, skipped_ids)

@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     "craId": "cras-carteira-overview",
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T16:01:07.883445-03:00",
+    "importedAt": "2026-07-28T16:07:16.484810-03:00",
     "revisionId": "20260727-cras-carteira-overview-assets",
     "portfolioOverview": true,
     "portfolioConsolidado": true,
@@ -28,24 +28,24 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     "pddTotal": 0.0,
     "carteiraVp": 286767610.4972469,
     "carteiraVpLiquido": 286767610.4972469,
-    "caixa": 35538624.29,
-    "total": 322306234.7872469,
+    "caixa": 35597283.19,
+    "total": 322364893.6872469,
     "lastrosAtivos": 887.0,
     "quantidadeLastrosAtivos": 887.0
   },
   "caixa": {
     "accounts": {
-      "totalCrasCarteira": 35538624.29
+      "totalCrasCarteira": 35597283.19
     },
-    "total": 35538624.29,
+    "total": 35597283.19,
     "fonte": "Soma dos caixas importados por CRA",
     "arquivoOrigem": "carteira_caixa_ccs_2707.xlsx"
   },
   "passivo": {
     "fundingTotal": 384363178.00500464,
-    "subordinadaTotal": -62056943.21775772,
+    "subordinadaTotal": -61998284.31775772,
     "subordinadaQuantidade": 1.0,
-    "subordinadaPuResidual": -62056943.21775772,
+    "subordinadaPuResidual": -61998284.31775772,
     "deducoesTotal": 0,
     "provisoesTotal": 0.0,
     "cotas": [
@@ -64,8 +64,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "tipo": "sub",
         "quantidade": 1,
         "taxa": "-",
-        "pu": -62056943.21775772,
-        "valor": -62056943.21775772
+        "pu": -61998284.31775772,
+        "valor": -61998284.31775772
       }
     ]
   },
@@ -93,11 +93,11 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
       },
       {
         "label": "Caixa total",
-        "value": "R$ 35.538.624,29"
+        "value": "R$ 35.597.283,19"
       },
       {
         "label": "Subordinadas",
-        "value": "R$ -62.056.943,22"
+        "value": "R$ -61.998.284,32"
       },
       {
         "label": "PDD",
@@ -264,6 +264,26 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "taxaMedia": 0.018217239423697285,
         "prazoMedio": 142.0575253544767,
         "montanteAtraso": 6025463.543283463
+      },
+      {
+        "operacao": "CRA 52",
+        "craId": "cra-carteira-52",
+        "carteiraVp": 0,
+        "valorNominal": 0,
+        "caixa": 58658.899999999994,
+        "ativoTotal": 58658.899999999994,
+        "funding": 0.0,
+        "subordinada": 58658.899999999994,
+        "puSub": 586.5889999999999,
+        "rendimentoSubDia": null,
+        "rendimentoSubMes": null,
+        "pdd": 0,
+        "lastrosAtivos": 0,
+        "cedentes": 0,
+        "sacados": 0,
+        "taxaMedia": 0.0,
+        "prazoMedio": 0.0,
+        "montanteAtraso": 0
       },
       {
         "operacao": "CRA 53",
@@ -588,6 +608,20 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "status": "Integralizada"
       },
       {
+        "operacao": "CRA 52",
+        "craId": "cra-carteira-52",
+        "serie": "Senior",
+        "classe": "SR1",
+        "ifCodigo": "CRA026000B5",
+        "puAtual": 0,
+        "valorAtual": 0,
+        "quantidadeIntegralizada": 21845.0,
+        "taxa": "23,50% a.a.",
+        "dataVencimento": "30/11/2029",
+        "dataVencimentoIso": "2029-11-30",
+        "status": "Integralizada"
+      },
+      {
         "operacao": "CRA 53",
         "craId": "cra-carteira-53",
         "serie": "Senior",
@@ -872,8 +906,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
       {
         "dateKey": "2026-07-27",
         "reportDate": "27/07/2026",
-        "caixaTotal": 35538624.29,
-        "subordinadaTotal": -62056943.21775772,
+        "caixaTotal": 35597283.19,
+        "subordinadaTotal": -61998284.31775772,
         "rendimentoSubDia": null
       }
     ]
@@ -893,8 +927,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
       "label": "Subordinadas",
       "quantidade": 1,
       "taxa": "-",
-      "pu": -62056943.21775772,
-      "valor": -62056943.21775772,
+      "pu": -61998284.31775772,
+      "valor": -61998284.31775772,
       "resultadoDia": null
     }
   ],
@@ -906,7 +940,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 322.306.234,79",
+          "value": "R$ 322.364.893,69",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -922,7 +956,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 35.538.624,29",
+          "value": "R$ 35.597.283,19",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -938,7 +972,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         },
         {
           "label": "Subordinadas",
-          "value": "R$ -62.056.943,22",
+          "value": "R$ -61.998.284,32",
           "isHighlight": true,
           "source": {
             "name": "Residual"
