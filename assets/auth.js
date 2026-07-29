@@ -23,9 +23,9 @@
 
   const permissionMap = {
     public: {
-      viewLamina: true,
-      viewPu: true,
-      generatePdf: true,
+      viewLamina: false,
+      viewPu: false,
+      generatePdf: false,
       simulate: false,
       viewRealizedEvents: false,
       updatePu: false,
@@ -133,7 +133,7 @@
       ? { email, ...user }
       : {
           email: "",
-          name: "Acesso publico",
+          name: "Acesso restrito",
           role: "public",
           mustChangePassword: false,
         };
@@ -294,7 +294,7 @@
 
     const pill = document.createElement("span");
     pill.className = `auth-pill auth-role-${user.role}`;
-    pill.textContent = user.role === "public" ? "Acesso publico" : user.name;
+    pill.textContent = user.role === "public" ? "Acesso restrito" : user.name;
     holder.appendChild(pill);
 
     if (can("operate")) {
@@ -421,7 +421,6 @@
 
     const actions = document.createElement("div");
     actions.className = "auth-actions";
-    actions.appendChild(createButton("Usar publico", "auth-button auth-button-soft", closeModal));
     const submit = createButton("Entrar", "auth-button", () => {});
     submit.type = "submit";
     actions.appendChild(submit);
@@ -639,6 +638,7 @@
   }
 
   function lockCurrentPage(reason) {
+    document.documentElement.classList.add("auth-page-locked");
     const main = document.querySelector("main") || document.querySelector(".page") || document.body;
     const topbar = document.querySelector(".topbar");
     Array.from(main.children).forEach((child) => {
@@ -656,7 +656,6 @@
         <h2>${reason}</h2>
         <p>Entre com um usuario autorizado para liberar esta tela.</p>
         <div class="auth-actions">
-          <a class="button-like" href="./index.html">Voltar para a lamina</a>
           <button type="button" class="auth-button auth-login-from-lock">Entrar</button>
         </div>
       `;
@@ -666,6 +665,7 @@
   }
 
   function unlockCurrentPage() {
+    document.documentElement.classList.remove("auth-page-locked");
     document.querySelectorAll("[data-auth-locked-hidden='true']").forEach((child) => {
       child.style.display = "";
       delete child.dataset.authLockedHidden;
@@ -687,8 +687,20 @@
     document.querySelectorAll('a[href*="simulador-eventos"], a[href*="simulador"]').forEach((el) => {
       hideElement(el, !can("simulate"));
     });
+    document.querySelectorAll('a[href$="index.html"], a[href*="index.html"]').forEach((el) => {
+      hideElement(el, !can("viewLamina"));
+    });
+    document.querySelectorAll('a[href*="pu.html"]').forEach((el) => {
+      hideElement(el, !can("viewPu"));
+    });
     document.querySelectorAll('a[href*="operacional"]').forEach((el) => {
       hideElement(el, !can("operate"));
+    });
+    document.querySelectorAll(".print-button, #print-button, [data-action='print'], [data-action='generate-pdf']").forEach((el) => {
+      hideElement(el, !can("generatePdf"));
+    });
+    document.querySelectorAll(".topbar .date-control, .topbar .status-pill").forEach((el) => {
+      hideElement(el, publicAccess);
     });
     document.querySelectorAll("#update-pu-button, .update-pu-link, [data-action='update-pu']").forEach((el) => {
       hideElement(el, !can("updatePu"));
@@ -736,6 +748,14 @@
 
   function guardPageAccess() {
     const page = getPageName();
+    if (page === "lamina" && !can("viewLamina")) {
+      lockCurrentPage("Lamina disponivel apenas para usuarios autorizados.");
+      return;
+    }
+    if (page === "pu" && !can("viewPu")) {
+      lockCurrentPage("Validacao de PU disponivel apenas para usuarios autorizados.");
+      return;
+    }
     if (page === "simulador" && !can("simulate")) {
       lockCurrentPage("Simulador disponivel apenas para usuarios internos.");
       return;

@@ -3778,6 +3778,11 @@ tbody tr:hover td {
   display: none !important;
 }
 
+.auth-page-locked main > :not(.topbar):not(.auth-locked-panel),
+.auth-page-locked main.page > :not(.topbar):not(.auth-locked-panel) {
+  display: none !important;
+}
+
 .auth-modal-backdrop {
   position: fixed;
   inset: 0;
