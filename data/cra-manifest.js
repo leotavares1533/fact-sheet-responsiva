@@ -7,11 +7,11 @@ window.LAMINA_CRA_MANIFEST = [
       {
         "dateKey": "2026-07-28",
         "reportDate": "28/07/2026",
-        "importedAt": "2026-07-29T17:19:40.049145-03:00",
-        "revisionId": "20260729-171938",
-        "totalAtivo": 1039808536.8299999,
+        "importedAt": "2026-07-29T17:48:33.479998-03:00",
+        "revisionId": "20260729-174832",
+        "totalAtivo": 1047082593.78,
         "funding": 603127566.0,
-        "subordinada": 434327996.9483859,
+        "subordinada": 441602053.89838594,
         "dataScript": "data/cras/cra-modelo/2026-07-28.js"
       },
       {
