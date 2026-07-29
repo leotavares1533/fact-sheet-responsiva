@@ -4,7 +4,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
   "metadata": {
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T17:54:38.461757-03:00",
+    "importedAt": "2026-07-29T10:14:19.373276-03:00",
     "revisionId": "20260727-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
@@ -62,12 +62,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
     "schemaVersion": 2,
     "model": "cra-carteira",
     "craId": "cra-carteira-53",
-    "sourceSnapshotDateKey": "2026-07-24",
+    "sourceSnapshotDateKey": "2026-07-27",
     "assetImport": {
-      "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\carteira_caixa_ccs_2707.xlsx",
+      "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\CARTEIRA_CAIXA_CCs_total.xlsx",
       "sheetCarteira": "carteira ",
-      "sheetCaixa": "Planilha2",
-      "cashDate": "1901-07-01",
+      "sheetCaixa": "caixa ",
+      "cashDate": "2026-07-27",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     }
@@ -113,7 +113,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       47.43000000002212
     ],
     "fonte": "Importacao consolidada CRAs Carteira",
-    "arquivoOrigem": "carteira_caixa_ccs_2707.xlsx",
+    "arquivoOrigem": "CARTEIRA_CAIXA_CCs_total.xlsx",
     "observacao": "Fundo de despesa reduz o caixa conforme total informado na aba Planilha2."
   },
   "passivo": {
@@ -6911,7 +6911,30 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "valor": 32794.27863050252,
         "principalResidual": 327.9427863050252,
         "ehFunding": false,
-        "ordem": 90
+        "ordem": 90,
+        "historicoPu": [
+          {
+            "data": "27/07/2026",
+            "dataIso": "2026-07-27",
+            "valorNominal": 327.9427863050252,
+            "puAtualizado": 327.9427863050252,
+            "valorReais": 32794.27863050252,
+            "diasUteis": 0,
+            "diasUteisPeriodo": 0,
+            "produtorioFatorDi": 1,
+            "fatorDiAcumulado": 1
+          }
+        ],
+        "dataHistoricaDisponivel": true,
+        "dataHistoricaSelecionada": "27/07/2026",
+        "dataHistoricaIso": "2026-07-27",
+        "visaoCalculadaPu": true,
+        "acumulacaoFinal": {
+          "periodoFim": "27/07/2026",
+          "diasAcumulacao": 0.0,
+          "diasUteisPeriodo": 0.0,
+          "puFinal": 327.9427863050252
+        }
       }
     ],
     "funding": 18956589.398481,
@@ -6962,7 +6985,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "taxa": "CDI + 7,00% a.a.",
       "pu": 327.9427863050252,
       "valor": 32794.27863050252,
-      "resultadoDia": null,
+      "resultadoDia": -0.9063243999845698,
       "resultadoMes": null,
       "resultado30Dias": null,
       "resultadoInicio": null
@@ -7079,12 +7102,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "27/07/2026",
-      "file": "carteira_caixa_ccs_2707.xlsx"
+      "file": "CARTEIRA_CAIXA_CCs_total.xlsx"
     },
     {
       "name": "Memoria PU existente",
-      "date": "24/07/2026",
-      "file": "data/cras/cra-carteira-53/2026-07-24.js"
+      "date": "27/07/2026",
+      "file": "data/cras/cra-carteira-53/2026-07-27.js"
     }
   ],
   "notasEstruturacao": {
@@ -25465,13 +25488,307 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
   },
   "rendimento30Dias": [
     {
+      "dateKey": "2026-06-16",
+      "reportDate": "16/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 826.4875499899999,
+          "valor": 32976853.244600996,
+          "resultadoDia": null,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 71.40853794325143,
+          "valor": 7140.853794325143,
+          "resultadoDia": null,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-17",
+      "reportDate": "17/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 827.19335532,
+          "valor": 33005014.877268,
+          "resultadoDia": 0.0008539818053019399,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": -74.11683780033141,
+          "valor": -7411.683780033141,
+          "resultadoDia": -2.0379268352928928,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-18",
+      "reportDate": "18/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 827.89976213,
+          "valor": 33033200.508987,
+          "resultadoDia": 0.0008539802761431403,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": -219.76388112645597,
+          "valor": -21976.388112645596,
+          "resultadoDia": 1.9651006120700054,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-19",
+      "reportDate": "19/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 828.60677291,
+          "valor": 33061410.239109002,
+          "resultadoDia": 0.0008539811367755945,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": -365.5334700652957,
+          "valor": -36553.34700652957,
+          "resultadoDia": 0.6633009400437435,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-22",
+      "reportDate": "22/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 829.3143876299999,
+          "valor": 33089644.066437,
+          "resultadoDia": 0.0008539813372692162,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": -419.09158077411354,
+          "valor": -41909.15807741135,
+          "resultadoDia": 0.14652040126243615,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-23",
+      "reportDate": "23/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 830.02260632,
+          "valor": 33117901.992168,
+          "resultadoDia": 0.0008539809516918684,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": -565.0631018156931,
+          "valor": -56506.31018156931,
+          "resultadoDia": 0.3483045895886343,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-24",
+      "reportDate": "24/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 830.73142979,
+          "valor": 33146184.048621,
+          "resultadoDia": 0.0008539809212457783,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 2999.5229753440617,
+          "valor": 299952.2975344062,
+          "resultadoDia": -6.308297366622989,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-25",
+      "reportDate": "25/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 831.4408588599999,
+          "valor": 33174490.268513996,
+          "resultadoDia": 0.0008539812562278204,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 2909.415639497824,
+          "valor": 290941.5639497824,
+          "resultadoDia": -0.03004055531059968,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-26",
+      "reportDate": "26/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 467.08823423783906,
+          "valor": 18636820.54608978,
+          "resultadoDia": -0.43821832995040655,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3196.9250643119217,
+          "valor": 319692.50643119216,
+          "resultadoDia": 0.09882033385361289,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-29",
+      "reportDate": "29/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 467.4871187,
+          "valor": 18652736.03613,
+          "resultadoDia": 0.0008539809674543708,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3267.4877330202235,
+          "valor": 326748.77330202237,
+          "resultadoDia": 0.022072043381939244,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-30",
+      "reportDate": "30/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 467.88634369,
+          "valor": 18668665.113231,
+          "resultadoDia": 0.0008539807280896206,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3180.442825626358,
+          "valor": 318044.28256263584,
+          "resultadoDia": -0.026639704417010135,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-01",
+      "reportDate": "01/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 468.28591011000003,
+          "valor": 18684607.813389,
+          "resultadoDia": 0.0008539817957686768,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3158.3145452244207,
+          "valor": 315831.4545224421,
+          "resultadoDia": -0.006957609872323189,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-02",
+      "reportDate": "02/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 468.68581705,
+          "valor": 18700564.100295,
+          "resultadoDia": 0.0008539802957259202,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3135.2601420029255,
+          "valor": 313526.0142002925,
+          "resultadoDia": -0.007299590617519391,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
       "dateKey": "2026-07-03",
       "reportDate": "03/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 469.0860659,
-          "valor": 18716534.02941,
-          "resultadoDia": null,
+          "pu": 469.08606589,
+          "valor": 18716534.029011,
+          "resultadoDia": 0.000853981122192371,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3112.187997862771,
+          "valor": 311218.7997862771,
+          "resultadoDia": -0.0073589249679979485,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-06",
+      "reportDate": "06/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 469.48665664000004,
+          "valor": 18732517.599936,
+          "resultadoDia": 0.0008539813461310164,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3182.033132940307,
+          "valor": 318203.3132940307,
+          "resultadoDia": 0.02244245370957687,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-07",
+      "reportDate": "07/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 469.8875893,
+          "valor": 18748514.81307,
+          "resultadoDia": 0.0008539809477638993,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3106.2745255794002,
+          "valor": 310627.45255794004,
+          "resultadoDia": -0.02380823963668266,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-08",
+      "reportDate": "08/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 470.28886433,
+          "valor": 18764525.686767,
+          "resultadoDia": 0.0008539809076417715,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3182.3827577558905,
+          "valor": 318238.27577558905,
+          "resultadoDia": 0.02450145070880172,
           "resultadoMes": null
         }
       }
@@ -25481,9 +25798,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "reportDate": "09/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 470.69048222000004,
-          "valor": 18780550.240578003,
-          "resultadoDia": 0.0034203026622028343,
+          "pu": 470.69048221,
+          "valor": 18780550.240179002,
+          "resultadoDia": 0.0008539812665395718,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3258.4733542077242,
+          "valor": 325847.33542077243,
+          "resultadoDia": 0.02390994491985321,
           "resultadoMes": null
         }
       }
@@ -25493,9 +25816,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "reportDate": "10/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 471.09244294,
-          "valor": 18796588.473306,
-          "resultadoDia": 0.000853980981523339,
+          "pu": 471.09244293,
+          "valor": 18796588.472907,
+          "resultadoDia": 0.0008539809815415467,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3336.167335304618,
+          "valor": 333616.7335304618,
+          "resultadoDia": 0.023843675442847045,
           "resultadoMes": null
         }
       }
@@ -25505,9 +25834,51 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "reportDate": "13/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 471.49474697,
-          "valor": 18812640.404103,
-          "resultadoDia": 0.000853981073203558,
+          "pu": 471.49474696,
+          "valor": 18812640.403704,
+          "resultadoDia": 0.0008539810732217656,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3506.9320723046735,
+          "valor": 350693.20723046735,
+          "resultadoDia": 0.05118590281517266,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-14",
+      "reportDate": "14/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 471.89739430000003,
+          "valor": 18828706.03257,
+          "resultadoDia": 0.0008539805429352842,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3586.2733445204794,
+          "valor": 358627.33445204794,
+          "resultadoDia": 0.02262412575435624,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-15",
+      "reportDate": "15/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 472.30038589000003,
+          "valor": 18844785.397011,
+          "resultadoDia": 0.0008539813842325383,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3563.8409039527924,
+          "valor": 356384.0903952792,
+          "resultadoDia": -0.006255083874730838,
           "resultadoMes": null
         }
       }
@@ -25517,9 +25888,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "reportDate": "16/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 472.70372126,
-          "valor": 18860878.478274,
-          "resultadoDia": 0.002564130985062585,
+          "pu": 472.70372125,
+          "valor": 18860878.477875,
+          "resultadoDia": 0.0008539805853426952,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3540.4964962029458,
+          "valor": 354049.6496202946,
+          "resultadoDia": -0.0065503506971802405,
           "resultadoMes": null
         }
       }
@@ -25529,9 +25906,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
       "reportDate": "17/07/2026",
       "cotas": {
         "SR1": {
-          "pu": 473.10740133,
-          "valor": 18876985.313067,
-          "resultadoDia": 0.0008539811553081034,
+          "pu": 473.10740132,
+          "valor": 18876985.312668,
+          "resultadoDia": 0.000853981155326089,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3517.1342376482116,
+          "valor": 351713.42376482114,
+          "resultadoDia": -0.006598582594217861,
           "resultadoMes": null
         }
       }
@@ -25543,7 +25926,31 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "SR1": {
           "pu": 473.5114261,
           "valor": 18893105.90139,
-          "resultadoDia": 0.000853981080964239,
+          "resultadoDia": 0.0008539811021190946,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3587.2940774918347,
+          "valor": 358729.4077491835,
+          "resultadoDia": 0.019948013099021278,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-21",
+      "reportDate": "21/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 473.91579606,
+          "valor": 18909240.262794,
+          "resultadoDia": 0.0008539814199004514,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3563.939639953375,
+          "valor": 356393.9639953375,
+          "resultadoDia": -0.006510321438377598,
           "resultadoMes": null
         }
       }
@@ -25555,7 +25962,13 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "SR1": {
           "pu": 474.3205112,
           "valor": 18925388.39688,
-          "resultadoDia": 0.0017086918190420963,
+          "resultadoDia": 0.0008539811151362375,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3541.3851181805508,
+          "valor": 354138.51181805506,
+          "resultadoDia": -0.006328536409533347,
           "resultadoMes": null
         }
       }
@@ -25569,6 +25982,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
           "valor": 18941550.303648002,
           "resultadoDia": 0.000853980189419179,
           "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3518.435342866853,
+          "valor": 351843.5342866853,
+          "resultadoDia": -0.006480451729432013,
+          "resultadoMes": null
         }
       }
     },
@@ -25580,6 +25999,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
           "pu": 475.10249119,
           "valor": 18956589.398481,
           "resultadoDia": 0.0007939738084745684,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 3500.8346490548925,
+          "valor": 350083.46490548924,
+          "resultadoDia": -0.00500242070602297,
           "resultadoMes": null
         }
       }
@@ -25597,7 +26022,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-07-27"] = {
         "SUB": {
           "pu": 327.9427863050252,
           "valor": 32794.27863050252,
-          "resultadoDia": null,
+          "resultadoDia": -0.9063243999845698,
           "resultadoMes": null
         }
       }

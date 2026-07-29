@@ -4,8 +4,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
   "metadata": {
     "reportDate": "22/07/2026",
     "dateKey": "2026-07-22",
-    "importedAt": "2026-07-22T15:29:22-03:00",
-    "revisionId": "20260722-cra-carteira-47-projected-v1",
+    "importedAt": "2026-07-29T10:13:43.614621-03:00",
+    "revisionId": "20260722-cras-carteira-consolidado",
     "calculatedView": true,
     "crasCarteiraBatch": true,
     "observation": "Snapshot inicial em lote dos CRAs Carteira, usando series Senior e Mezanino no validador de PU. Subordinadas ficam para a lamina com carteira e caixa.",
@@ -81,6 +81,18 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
         "2028-11-20",
         "2028-12-25"
       ]
+    },
+    "schemaVersion": 2,
+    "model": "cra-carteira",
+    "craId": "cra-carteira-47",
+    "sourceSnapshotDateKey": "2026-07-27",
+    "assetImport": {
+      "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\CARTEIRA_CAIXA_CCs_total.xlsx",
+      "sheetCarteira": "carteira ",
+      "sheetCaixa": "caixa ",
+      "cashDate": "2026-07-22",
+      "importMode": "carteira-caixa-consolidado",
+      "cashGainLiquidated": false
     }
   },
   "cra": {
@@ -88,35 +100,51 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
     "name": "CRA Carteira 47",
     "dataVencimento": "29/12/2028",
     "dataVencimentoIso": "2028-12-29",
-    "description": "CRA Carteira 47, importado em lote."
+    "description": "CRA Carteira 47, importado em lote.",
+    "dataBase": "22/07/2026",
+    "dateKey": "2026-07-22"
   },
   "ativo": {
-    "carteiraVpBruto": 0,
-    "pddTotal": 0,
-    "carteiraVp": 0,
-    "carteiraVpLiquido": 0,
-    "caixa": 0,
-    "total": 24993374.117019,
-    "liquidacoesDia": 0,
-    "quantidadeLastros": 0,
-    "quantidadeLastrosBase": 0,
-    "lastrosAtivos": 0,
-    "cedentesUnicos": 0,
-    "sacadosUnicos": 0,
+    "carteiraVpBruto": 15414660.545916323,
+    "pddTotal": 0.0,
+    "carteiraVp": 15414660.545916323,
+    "carteiraVpLiquido": 15414660.545916323,
+    "caixa": 9673194.610000001,
+    "total": 25087855.155916326,
+    "liquidacoesDia": 9877288.530000001,
+    "aquisicoesDia": 0,
+    "quantidadeLastros": 9,
+    "quantidadeLastrosBase": 9,
+    "lastrosAtivos": 2,
+    "quantidadeLastrosAtivos": 2,
+    "cedentesUnicos": 2,
+    "sacadosUnicos": 2,
     "montanteAtraso": 0
   },
   "caixa": {
-    "accounts": {},
-    "total": 0,
-    "fonte": "Pendente de importacao",
-    "arquivoOrigem": ""
+    "accounts": {
+      "cc": 32154.0,
+      "contaAplicacao": 9699980.72,
+      "fundoDespesas": 58940.11
+    },
+    "total": 9673194.610000001,
+    "totalCalculado": 9673194.610000001,
+    "totalCalculadoPlanilha": 9673194.610000001,
+    "cessaoRendimentosDia": 9667359.65,
+    "linhasPosTotal": [
+      9673194.610000001,
+      9667359.65
+    ],
+    "fonte": "Importacao consolidada CRAs Carteira",
+    "arquivoOrigem": "CARTEIRA_CAIXA_CCs_total.xlsx",
+    "observacao": "Fundo de despesa reduz o caixa conforme total informado na aba Planilha2."
   },
   "passivo": {
     "fundingTotal": 25034004.284624998,
     "despesasTotal": 0,
-    "subordinadaTotal": 0,
-    "subordinadaQuantidade": 0,
-    "subordinadaPuResidual": 0,
+    "subordinadaTotal": 53850.87129132822,
+    "subordinadaQuantidade": 100.0,
+    "subordinadaPuResidual": 538.5087129132822,
     "subordinadasSimulador": [
       {
         "classe": "SUB",
@@ -385,14 +413,14 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
         "acumulacaoFinal": {
           "periodoInicio": "29/12/2025",
           "periodoFim": "22/07/2026",
-          "diasAcumulacao": 140,
-          "diasUteisPeriodo": 8,
+          "diasAcumulacao": 140.0,
+          "diasUteisPeriodo": 8.0,
           "puAntesAcumulacao": 1000.0,
           "puFinal": 627.41865375
         },
         "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "20/07/2026",
-        "dataHistoricaIso": "2026-07-20",
+        "dataHistoricaSelecionada": "22/07/2026",
+        "dataHistoricaIso": "2026-07-22",
         "historicoPu": [
           {
             "data": "29/12/2025",
@@ -8222,37 +8250,95 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
             "principalAntesEvento": null,
             "principalAposEvento": null
           }
-        ]
+        ],
+        "visaoCalculadaPu": true
+      },
+      {
+        "classe": "SUB",
+        "label": "Subordinada",
+        "tipo": "sub",
+        "ifCodigo": "",
+        "quantidade": 100.0,
+        "pu": 538.5087129132822,
+        "valor": 53850.87129132822,
+        "principalResidual": 538.5087129132822,
+        "ehFunding": false,
+        "ordem": 90,
+        "historicoPu": [
+          {
+            "data": "27/07/2026",
+            "dataIso": "2026-07-27",
+            "valorNominal": -1386.4773230984435,
+            "puAtualizado": -1386.4773230984435,
+            "valorReais": -138647.73230984434,
+            "diasUteis": 0,
+            "diasUteisPeriodo": 0,
+            "produtorioFatorDi": 1,
+            "fatorDiAcumulado": 1
+          }
+        ],
+        "dataHistoricaDisponivel": true,
+        "dataHistoricaSelecionada": "27/07/2026",
+        "dataHistoricaIso": "2026-07-27",
+        "visaoCalculadaPu": false,
+        "acumulacaoFinal": {
+          "periodoFim": "27/07/2026",
+          "diasAcumulacao": 0.0,
+          "diasUteisPeriodo": 0.0,
+          "puFinal": -1386.4773230984435
+        }
       }
-    ]
+    ],
+    "despesasOperacionaisTotal": 0,
+    "provisoesTotal": 0.0,
+    "provisoesCaixa": 0,
+    "deducoesTotal": 0
   },
   "carteiraResumo": {
-    "valorNominal": 0,
-    "valorPresente": 0,
-    "valorPresenteLiquido": 0,
-    "cedentesUnicos": 0,
-    "sacadosUnicos": 0,
-    "prazoMedioDias": 0,
-    "taxaMediaPonderada": 0,
+    "valorNominal": 16886049.52,
+    "valorPresente": 15414660.545916323,
+    "valorPresenteLiquido": 15414660.545916323,
+    "pddTotal": 0.0,
+    "cedentesUnicos": 2,
+    "sacadosUnicos": 2,
+    "prazoMedioDias": 10.594799092711765,
+    "taxaMediaPonderada": 0.019522874277382477,
     "preFixado": {
-      "valorPresente": 0
+      "valorPresente": 4413925.177468489
     },
     "posFixado": {
-      "valorPresente": 0
-    }
+      "valorPresente": 11000735.368447835
+    },
+    "montanteAtraso": 0
   },
   "performanceCotas": [
     {
       "classe": "SR1",
       "label": "Senior",
+      "tipo": "sr",
+      "ifCodigo": "CRA02500B49",
       "quantidade": 39900.0,
       "taxa": "CDI + 7,50% a.a.",
-      "pu": 626.4003538100001,
-      "valor": 24993374.117019,
-      "resultadoDia": 0,
-      "resultadoMes": 0,
-      "resultado30Dias": 0,
-      "resultadoInicio": -0.37359964618999997
+      "pu": 627.41865375,
+      "valor": 25034004.284624998,
+      "resultadoDia": 0.0008124887163440953,
+      "resultadoMes": null,
+      "resultado30Dias": null,
+      "resultadoInicio": null
+    },
+    {
+      "classe": "SUB",
+      "label": "Subordinada",
+      "tipo": "sub",
+      "ifCodigo": "",
+      "quantidade": 100.0,
+      "taxa": "CDI + 7,50% a.a.",
+      "pu": 538.5087129132822,
+      "valor": 53850.87129132822,
+      "resultadoDia": -0.636526148472131,
+      "resultadoMes": null,
+      "resultado30Dias": null,
+      "resultadoInicio": null
     }
   ],
   "puMensal": [],
@@ -8260,7 +8346,16 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
   "evolucaoPu": [],
   "topCedentes": [],
   "topSacados": [],
-  "agingList": [],
+  "agingList": [
+    {
+      "status": "Em dia",
+      "valorNominal": 16886049.52,
+      "valorPresente": 15414660.545916323,
+      "valorPdd": 0.0,
+      "order": 0.0,
+      "percentualCarteira": 1.0
+    }
+  ],
   "composicaoPdd": [],
   "enquadramentos": [],
   "aquisicoesDia": {
@@ -8269,58 +8364,102 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
     "itens": []
   },
   "liquidacoesDia": {
-    "total": 0,
-    "quantidade": 0,
-    "itens": []
+    "total": 9877288.530000001,
+    "quantidade": 1,
+    "itens": [
+      {
+        "name": "PEDRO RIBEIRO MEROLA",
+        "cedente": "PEDRO RIBEIRO MEROLA",
+        "valorAquisicao": 9158950.919999998,
+        "valorFace": 9957626.370000001,
+        "valorLiquidacao": 9877288.530000001,
+        "quantidade": 4,
+        "percentualPl": 0.39370797014822395
+      }
+    ]
   },
   "sections": [
     {
-      "id": "estrutura-pu-lote",
-      "label": "Estrutura PU",
+      "id": "resumo",
+      "label": "Resumo",
       "metrics": [
         {
-          "label": "Series identificadas",
-          "value": "1",
-          "isHighlight": true
+          "label": "Ativo total",
+          "value": "R$ 25.087.855,16",
+          "isHighlight": true,
+          "source": {
+            "name": "Carteira + caixa"
+          }
         },
         {
-          "label": "Eventos extraidos",
-          "value": "13",
-          "isHighlight": true
+          "label": "Carteira VP liquida",
+          "value": "R$ 15.414.660,55",
+          "isHighlight": true,
+          "source": {
+            "name": "Import carteira"
+          }
         },
         {
-          "label": "Cotas integralizadas",
-          "value": "39.900",
-          "isHighlight": true
+          "label": "Caixa total",
+          "value": "R$ 9.673.194,61",
+          "isHighlight": true,
+          "source": {
+            "name": "Import caixa"
+          }
         },
         {
-          "label": "Pendencias",
-          "value": "0",
-          "isHighlight": false
+          "label": "Funding SR/MEZ",
+          "value": "R$ 25.034.004,28",
+          "isHighlight": true,
+          "source": {
+            "name": "Memoria PU"
+          }
+        },
+        {
+          "label": "Subordinada residual",
+          "value": "R$ 53.850,87",
+          "isHighlight": true,
+          "source": {
+            "name": "Residual"
+          }
+        },
+        {
+          "label": "PU SUB residual",
+          "value": "538,508713",
+          "isHighlight": true,
+          "source": {
+            "name": "Residual"
+          }
+        },
+        {
+          "label": "Valor nominal",
+          "value": "R$ 16.886.049,52",
+          "isHighlight": false,
+          "source": {
+            "name": "Carteira"
+          }
+        },
+        {
+          "label": "PDD",
+          "value": "R$ 0,00",
+          "isHighlight": false,
+          "source": {
+            "name": "Faixa vencimento"
+          }
         }
       ]
     }
   ],
   "sources": [
     {
-      "name": "Pasta CRAs Carteira",
-      "date": "20/07/2026",
-      "file": "C:\\Users\\leonardo.silva\\OneDrive - Ceres Investimentos\\Leonardo Tavares\\CRAs Carteiras\\47ª Emissão_CRA Carteira (pós)"
+      "name": "Importacao carteira+caixa CRAs Carteira",
+      "date": "22/07/2026",
+      "file": "CARTEIRA_CAIXA_CCs_total.xlsx"
     },
     {
-      "name": "Certificados IF B3",
-      "date": "20/07/2026",
-      "file": "2 PDFs identificados; 1 series Senior/Mezanino no PU"
-    },
-    {
-      "name": "Comunicados de eventos",
-      "date": "20/07/2026",
-      "file": "13 linhas extraidas"
-    },
-    {
-      "name": "Prints de integralizacao",
-      "date": "20/07/2026",
-      "file": "5 linhas cadastradas"
+      "name": "Memoria PU existente",
+      "date": "27/07/2026",
+      "file": "data/cras/cra-carteira-47/2026-07-27.js"
     }
   ],
   "notasEstruturacao": {
@@ -8363,5 +8502,1082 @@ window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-07-22"] = {
       "ultimoEvento": "2026-06-26"
     },
     "warnings": []
-  }
+  },
+  "carteira": [
+    {
+      "craCarteira": "47ª",
+      "lastro": "420854",
+      "numeroUnico": "420854",
+      "cedente": "AGRO BOA ESPERANCA COMERC",
+      "sacado": "AGRO BOA ESPERANCA COMERC",
+      "devedor": "AGRO BOA ESPERANCA COMERC",
+      "valorAquisicao": 11400000.0,
+      "valorFace": 0.0,
+      "valorNominal": 0.0,
+      "dataAquisicao": "29/12/2025",
+      "dataAquisicaoIso": "2025-12-29",
+      "dataVencimento": "30/09/2028",
+      "dataVencimentoIso": "2028-09-30",
+      "valorLiquidacao": 12610770.22,
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
+      "dataLiquidacaoOriginal": "03/06/2026",
+      "dataLiquidacaoOriginalIso": "2026-06-03",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "mesaResp": "Normal",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Liquidado",
+      "taxa": 0.01891178311302899,
+      "taxaCessao": 0.2521,
+      "taxaOp": 0.01891178311302899,
+      "taxaMedia": 0.01891178311302899,
+      "base": 252.0,
+      "tipo": "Pós fixado",
+      "indexadorAtivo": "Pós fixado",
+      "pagamento": "PMT",
+      "dias": 0.0,
+      "diasDoVencimento": 0.0,
+      "diasUteisOp": 691.0,
+      "diasCorridosOp": 1006.0,
+      "fator": 1.00089254944132,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "417286",
+      "numeroUnico": "417286",
+      "cedente": "BMG FOODS IMPORTACAO E EX",
+      "sacado": "BMG FOODS IMPORTAÇÃO E EX",
+      "devedor": "BMG FOODS IMPORTAÇÃO E EX",
+      "valorAquisicao": 10333000.0,
+      "valorFace": 10856355.03,
+      "valorNominal": 10856355.03,
+      "dataAquisicao": "26/01/2026",
+      "dataAquisicaoIso": "2026-01-26",
+      "dataVencimento": "12/01/2028",
+      "dataVencimentoIso": "2028-01-12",
+      "valorLiquidacao": 509254.7,
+      "dataLiquidacao": "",
+      "dataLiquidacaoIso": "",
+      "dataLiquidacaoOriginal": "01/07/2026",
+      "dataLiquidacaoOriginalIso": "2026-07-01",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "mesaResp": "Recovery",
+      "status": "EM CARTEIRA",
+      "statusOriginal": "BAIXA PARCIAL",
+      "statusPagamento": "Liquidado",
+      "taxa": 0.019228351206213468,
+      "taxaCessao": 0.2567761999999998,
+      "taxaOp": 0.019228351206213468,
+      "taxaMedia": 0.019228351206213468,
+      "base": 252.0,
+      "tipo": "Pós fixado",
+      "indexadorAtivo": "Pós fixado",
+      "pagamento": "PMT",
+      "dias": 0.0,
+      "diasDoVencimento": 0.0,
+      "diasUteisOp": 492.0,
+      "diasCorridosOp": 716.0,
+      "fator": 1.0009073553297447,
+      "faixaVenc": "Em dia",
+      "faixaVencOrder": 0,
+      "valorPresenteDia": 11000735.368447835,
+      "valorPresente": 11000735.368447835,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 11000735.368447835
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "482216",
+      "numeroUnico": "482216",
+      "cedente": "BR AGRO AGRONEGOCIOS S.A",
+      "sacado": "ELO AGRONEGOCIOS LTDA",
+      "devedor": "ELO AGRONEGOCIOS LTDA",
+      "valorAquisicao": 5255000.0,
+      "valorFace": 6029694.49,
+      "valorNominal": 6029694.49,
+      "dataAquisicao": "30/01/2026",
+      "dataAquisicaoIso": "2026-01-30",
+      "dataVencimento": "27/08/2026",
+      "dataVencimentoIso": "2026-08-27",
+      "valorLiquidacao": 1430847.57,
+      "dataLiquidacao": "",
+      "dataLiquidacaoIso": "",
+      "dataLiquidacaoOriginal": "",
+      "dataLiquidacaoOriginalIso": "",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "mesaResp": "Normal",
+      "status": "EM CARTEIRA",
+      "statusOriginal": "BAIXA PARCIAL",
+      "statusPagamento": "Vincendo",
+      "taxa": 0.020256908098882587,
+      "taxaCessao": 0.2720803042626798,
+      "taxaOp": 0.020256908098882587,
+      "taxaMedia": 0.020256908098882587,
+      "base": 252.0,
+      "tipo": "Pré fixado",
+      "indexadorAtivo": "Pré fixado",
+      "pagamento": "Bullet",
+      "dias": 0.0,
+      "diasDoVencimento": 37.0,
+      "diasUteisOp": 144.0,
+      "diasCorridosOp": 209.0,
+      "fator": 1.0009554307175705,
+      "faixaVenc": "Em dia",
+      "faixaVencOrder": 0,
+      "valorPresenteDia": 4413925.177468489,
+      "valorPresente": 4413925.177468489,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 4413925.177468489
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "422165",
+      "numeroUnico": "422165",
+      "cedente": "INOVA 100 COMERCIO DE PRO",
+      "sacado": "INOVA 100 COMERCIO DE PRO",
+      "devedor": "INOVA 100 COMERCIO DE PRO",
+      "valorAquisicao": 3999595.27,
+      "valorFace": 0.0,
+      "valorNominal": 0.0,
+      "dataAquisicao": "30/01/2026",
+      "dataAquisicaoIso": "2026-01-30",
+      "dataVencimento": "31/10/2028",
+      "dataVencimentoIso": "2028-10-31",
+      "valorLiquidacao": 4268472.95,
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
+      "dataLiquidacaoOriginal": "03/06/2026",
+      "dataLiquidacaoOriginalIso": "2026-06-03",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "mesaResp": "Normal",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Liquidado",
+      "taxa": 0.01656579153001414,
+      "taxaCessao": 0.21794000000000002,
+      "taxaOp": 0.01656579153001414,
+      "taxaMedia": 0.01656579153001414,
+      "base": 252.0,
+      "tipo": "Pós fixado",
+      "indexadorAtivo": "Pós fixado",
+      "pagamento": "PMT",
+      "dias": 0.0,
+      "diasDoVencimento": 0.0,
+      "diasUteisOp": 689.0,
+      "diasCorridosOp": 1005.0,
+      "fator": 1.0007826906941784,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0030264311648323496,
+      "valorPresente": 0.0030264311648323496,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0030264311648323496
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "457666",
+      "numeroUnico": "457666",
+      "cedente": "FABIO SCHMITT",
+      "sacado": "FABIO SCHIMTT",
+      "devedor": "FABIO SCHIMTT",
+      "valorAquisicao": 391411.63,
+      "valorFace": 423589.63,
+      "valorNominal": 423589.63,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "16/08/2026",
+      "dataVencimentoIso": "2026-08-16",
+      "valorLiquidacao": 413281.54,
+      "dataLiquidacao": "06/07/2026",
+      "dataLiquidacaoIso": "2026-07-06",
+      "dataLiquidacaoOriginal": "06/07/2026",
+      "dataLiquidacaoOriginalIso": "2026-07-06",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "mesaResp": "Normal",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Liquidado",
+      "taxa": 0.017806818703970162,
+      "taxaCessao": 0.23590267650826235,
+      "taxaOp": 0.017806818703970162,
+      "taxaMedia": 0.017806818703970162,
+      "base": 252.0,
+      "tipo": "Pré fixado",
+      "indexadorAtivo": "Pré fixado",
+      "pagamento": "Bullet",
+      "dias": 0.0,
+      "diasDoVencimento": 0.0,
+      "diasUteisOp": 94.0,
+      "diasCorridosOp": 137.0,
+      "fator": 1.000840835904659,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "443173",
+      "numeroUnico": "443173",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 2793440.86,
+      "valorFace": 3035958.14,
+      "valorNominal": 3035958.14,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "21/08/2026",
+      "dataVencimentoIso": "2026-08-21",
+      "valorLiquidacao": 3035958.14,
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "dataLiquidacaoOriginal": "22/07/2026",
+      "dataLiquidacaoOriginalIso": "2026-07-22",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "mesaResp": "Especial",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Vincendo",
+      "taxa": 0.01781657196660924,
+      "taxaCessao": 0.23604480232431513,
+      "taxaOp": 0.01781657196660924,
+      "taxaMedia": 0.01781657196660924,
+      "base": 252.0,
+      "tipo": "Pré fixado",
+      "indexadorAtivo": "Pré fixado",
+      "pagamento": "Bullet",
+      "dias": 0.0,
+      "diasDoVencimento": 31.0,
+      "diasUteisOp": 99.0,
+      "diasCorridosOp": 142.0,
+      "fator": 1.0008412926018113,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "443176",
+      "numeroUnico": "443176",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 2617211.53,
+      "valorFace": 2846846.59,
+      "valorNominal": 2846846.59,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "24/08/2026",
+      "dataVencimentoIso": "2026-08-24",
+      "valorLiquidacao": 2791762.07,
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "dataLiquidacaoOriginal": "22/07/2026",
+      "dataLiquidacaoOriginalIso": "2026-07-22",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "mesaResp": "Especial",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Vincendo",
+      "taxa": 0.01781840613159824,
+      "taxaCessao": 0.23607153168951478,
+      "taxaOp": 0.01781840613159824,
+      "taxaMedia": 0.01781840613159824,
+      "base": 252.0,
+      "tipo": "Pré fixado",
+      "indexadorAtivo": "Pré fixado",
+      "pagamento": "Bullet",
+      "dias": 0.0,
+      "diasDoVencimento": 34.0,
+      "diasUteisOp": 100.0,
+      "diasCorridosOp": 145.0,
+      "fator": 1.0008413784862396,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "443175",
+      "numeroUnico": "443175",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 1199852.23,
+      "valorFace": 1305127.68,
+      "valorNominal": 1305127.68,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "24/08/2026",
+      "dataVencimentoIso": "2026-08-24",
+      "valorLiquidacao": 1279874.36,
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "dataLiquidacaoOriginal": "22/07/2026",
+      "dataLiquidacaoOriginalIso": "2026-07-22",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "mesaResp": "Especial",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Vincendo",
+      "taxa": 0.017818405051483355,
+      "taxaCessao": 0.23607151594880027,
+      "taxaOp": 0.017818405051483355,
+      "taxaMedia": 0.017818405051483355,
+      "base": 252.0,
+      "tipo": "Pré fixado",
+      "indexadorAtivo": "Pré fixado",
+      "pagamento": "Bullet",
+      "dias": 0.0,
+      "diasDoVencimento": 34.0,
+      "diasUteisOp": 100.0,
+      "diasCorridosOp": 145.0,
+      "fator": 1.0008413784356636,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0
+    },
+    {
+      "craCarteira": "47ª",
+      "lastro": "443174",
+      "numeroUnico": "443174",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 2548446.3,
+      "valorFace": 2769693.96,
+      "valorNominal": 2769693.96,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "21/08/2026",
+      "dataVencimentoIso": "2026-08-21",
+      "valorLiquidacao": 2769693.96,
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "dataLiquidacaoOriginal": "22/07/2026",
+      "dataLiquidacaoOriginalIso": "2026-07-22",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "mesaResp": "Especial",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "Vincendo",
+      "taxa": 0.017816571651877444,
+      "taxaCessao": 0.2360447977377622,
+      "taxaOp": 0.017816571651877444,
+      "taxaMedia": 0.017816571651877444,
+      "base": 252.0,
+      "tipo": "Pré fixado",
+      "indexadorAtivo": "Pré fixado",
+      "pagamento": "Bullet",
+      "dias": 0.0,
+      "diasDoVencimento": 31.0,
+      "diasUteisOp": 99.0,
+      "diasCorridosOp": 142.0,
+      "fator": 1.000841292587074,
+      "faixaVenc": "LIQUIDADO",
+      "faixaVencOrder": 99,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "pdd": 0.0,
+      "valorPresenteLiquido": 0.0
+    }
+  ],
+  "rankingCarteira": {
+    "cedentes": [
+      {
+        "name": "BMG FOODS IMPORTACAO E EX",
+        "quantidade": 1,
+        "valorPresenteDia": 11000735.368447835,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11000735.368447835,
+        "valorNominal": 10856355.03,
+        "posicao": 1,
+        "participacao": 0.7136540785753578,
+        "participacaoPl": 0.4384884757486548
+      },
+      {
+        "name": "BR AGRO AGRONEGOCIOS S.A",
+        "quantidade": 1,
+        "valorPresenteDia": 4413925.177468489,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4413925.177468489,
+        "valorNominal": 6029694.49,
+        "posicao": 2,
+        "participacao": 0.28634592142464227,
+        "participacaoPl": 0.1759387221228879
+      }
+    ],
+    "sacados": [
+      {
+        "name": "BMG FOODS IMPORTAÇÃO E EX",
+        "quantidade": 1,
+        "valorPresenteDia": 11000735.368447835,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11000735.368447835,
+        "valorNominal": 10856355.03,
+        "posicao": 1,
+        "participacao": 0.7136540785753578,
+        "participacaoPl": 0.4384884757486548
+      },
+      {
+        "name": "ELO AGRONEGOCIOS LTDA",
+        "quantidade": 1,
+        "valorPresenteDia": 4413925.177468489,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4413925.177468489,
+        "valorNominal": 6029694.49,
+        "posicao": 2,
+        "participacao": 0.28634592142464227,
+        "participacaoPl": 0.1759387221228879
+      }
+    ],
+    "lastrosAtivos": 2
+  },
+  "concentracaoDetalhada": {
+    "top10Cedentes": [
+      {
+        "name": "BMG FOODS IMPORTACAO E EX",
+        "quantidade": 1,
+        "valorPresenteDia": 11000735.368447835,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11000735.368447835,
+        "valorNominal": 10856355.03,
+        "posicao": 1,
+        "participacao": 0.7136540785753578,
+        "participacaoPl": 0.4384884757486548
+      },
+      {
+        "name": "BR AGRO AGRONEGOCIOS S.A",
+        "quantidade": 1,
+        "valorPresenteDia": 4413925.177468489,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4413925.177468489,
+        "valorNominal": 6029694.49,
+        "posicao": 2,
+        "participacao": 0.28634592142464227,
+        "participacaoPl": 0.1759387221228879
+      }
+    ],
+    "top10Sacados": [
+      {
+        "name": "BMG FOODS IMPORTAÇÃO E EX",
+        "quantidade": 1,
+        "valorPresenteDia": 11000735.368447835,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11000735.368447835,
+        "valorNominal": 10856355.03,
+        "posicao": 1,
+        "participacao": 0.7136540785753578,
+        "participacaoPl": 0.4384884757486548
+      },
+      {
+        "name": "ELO AGRONEGOCIOS LTDA",
+        "quantidade": 1,
+        "valorPresenteDia": 4413925.177468489,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 4413925.177468489,
+        "valorNominal": 6029694.49,
+        "posicao": 2,
+        "participacao": 0.28634592142464227,
+        "participacaoPl": 0.1759387221228879
+      }
+    ]
+  },
+  "pddComposition": [],
+  "composicaoCarteira": [
+    {
+      "label": "NC",
+      "tipoTitulo": "NC",
+      "valorNominal": 16886049.52,
+      "valorPresente": 15414660.545916323,
+      "lastros": 2,
+      "percentualCarteira": 1.0,
+      "taxaMedia": 0.019522874277382477
+    }
+  ],
+  "movimentacoesDia": {
+    "aquisicoes": [],
+    "liquidacoes": [
+      {
+        "name": "PEDRO RIBEIRO MEROLA",
+        "cedente": "PEDRO RIBEIRO MEROLA",
+        "valorAquisicao": 9158950.919999998,
+        "valorFace": 9957626.370000001,
+        "valorLiquidacao": 9877288.530000001,
+        "quantidade": 4,
+        "percentualPl": 0.39370797014822395
+      }
+    ]
+  },
+  "rendimento30Dias": [
+    {
+      "dateKey": "2026-06-11",
+      "reportDate": "11/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 660.91259196,
+          "valor": 26370412.419204,
+          "resultadoDia": null,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 799.5589568130672,
+          "valor": 79955.89568130672,
+          "resultadoDia": null,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-12",
+      "reportDate": "12/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 661.45532096,
+          "valor": 26392067.306304,
+          "resultadoDia": 0.0008211812070193503,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 817.3266134854406,
+          "valor": 81732.66134854406,
+          "resultadoDia": 0.022221821819360166,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-15",
+      "reportDate": "15/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 661.99849565,
+          "valor": 26413739.976435,
+          "resultadoDia": 0.0008211812238680949,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 835.1151796589419,
+          "valor": 83511.51796589419,
+          "resultadoDia": 0.021764330048721803,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-16",
+      "reportDate": "16/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 662.54211637,
+          "valor": 26435430.443163,
+          "resultadoDia": 0.0008211812014260467,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 852.9340048215911,
+          "valor": 85293.40048215911,
+          "resultadoDia": 0.02133696715933997,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-17",
+      "reportDate": "17/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 663.0861835100001,
+          "valor": 26457138.722049,
+          "resultadoDia": 0.0008211812148348763,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 870.7831186767295,
+          "valor": 87078.31186767295,
+          "resultadoDia": 0.020926723233261058,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-18",
+      "reportDate": "18/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 663.62493355,
+          "valor": 26478634.848645,
+          "resultadoDia": 0.0008124887132290315,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 890.0114179566875,
+          "valor": 89001.14179566875,
+          "resultadoDia": 0.02208161695782307,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-19",
+      "reportDate": "19/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 664.16412132,
+          "valor": 26500148.440668,
+          "resultadoDia": 0.000812488715750348,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 904.1346524605156,
+          "valor": 90413.46524605155,
+          "resultadoDia": 0.015868599232415015,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-22",
+      "reportDate": "22/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 664.70374717,
+          "valor": 26521679.512083,
+          "resultadoDia": 0.0008124887097598066,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 920.3815426098928,
+          "valor": 92038.15426098928,
+          "resultadoDia": 0.017969547019531795,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-23",
+      "reportDate": "23/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 665.24381147,
+          "valor": 26543228.077653,
+          "resultadoDia": 0.0008124887249383317,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 931.6449865116551,
+          "valor": 93164.49865116552,
+          "resultadoDia": 0.012237798543659473,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-24",
+      "reportDate": "24/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 665.78431456,
+          "valor": 26564794.150944,
+          "resultadoDia": 0.0008124887156870653,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 942.9307469602302,
+          "valor": 94293.07469602302,
+          "resultadoDia": 0.01211379936775292,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-25",
+      "reportDate": "25/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 666.3252568,
+          "valor": 26586377.74632,
+          "resultadoDia": 0.0008124887116895962,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 954.2387519107386,
+          "valor": 95423.87519107386,
+          "resultadoDia": 0.011992402397485336,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-26",
+      "reportDate": "26/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 630.4945879938498,
+          "valor": 25156734.060954608,
+          "resultadoDia": -0.053773541435642946,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1172.4000013739615,
+          "valor": 117240.00013739616,
+          "resultadoDia": 0.22862333878851948,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-29",
+      "reportDate": "29/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 631.00685772,
+          "valor": 25177173.623028,
+          "resultadoDia": 0.0008124886968183809,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1189.923885446675,
+          "valor": 118992.38854466751,
+          "resultadoDia": 0.01494701812707011,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-06-30",
+      "reportDate": "30/06/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 631.51954367,
+          "valor": 25197629.792432997,
+          "resultadoDia": 0.0008124887134388636,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1207.476977251023,
+          "valor": 120747.6977251023,
+          "resultadoDia": 0.014751440843427499,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-01",
+      "reportDate": "01/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 632.03264618,
+          "valor": 25218102.582582,
+          "resultadoDia": 0.0008124887268226022,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1245.2303148656338,
+          "valor": 124523.03148656338,
+          "resultadoDia": 0.03126630016628651,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-02",
+      "reportDate": "02/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 632.54616557,
+          "valor": 25238592.006242998,
+          "resultadoDia": 0.0008124887109923762,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1261.7058662195877,
+          "valor": 126170.58662195876,
+          "resultadoDia": 0.013230926967700452,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-03",
+      "reportDate": "03/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 633.0601021900001,
+          "valor": 25259098.077381004,
+          "resultadoDia": 0.0008124887130365188,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1279.0969462045282,
+          "valor": 127909.69462045282,
+          "resultadoDia": 0.013783783091259494,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-06",
+      "reportDate": "06/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 633.57445638,
+          "valor": 25279620.809562,
+          "resultadoDia": 0.0008124887166647277,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": -2833.908675950989,
+          "valor": -283390.8675950989,
+          "resultadoDia": -3.2155542504890366,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-07",
+      "reportDate": "07/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 634.08922848,
+          "valor": 25300160.216352,
+          "resultadoDia": 0.0008124887214380205,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1312.6628606716172,
+          "valor": 131266.2860671617,
+          "resultadoDia": -1.4631987162504876,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-08",
+      "reportDate": "08/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 634.60441882,
+          "valor": 25320716.310918,
+          "resultadoDia": 0.0008124887111471413,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1328.244519566074,
+          "valor": 132824.4519566074,
+          "resultadoDia": 0.011870267196014472,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-09",
+      "reportDate": "09/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 635.12002775,
+          "valor": 25341289.107224997,
+          "resultadoDia": 0.0008124887169218553,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1343.8531312190369,
+          "valor": 134385.3131219037,
+          "resultadoDia": 0.011751308906632785,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-10",
+      "reportDate": "10/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 623.3553594494638,
+          "valor": 24871878.842033606,
+          "resultadoDia": -0.01852353537364293,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1357.4980983115734,
+          "valor": 135749.80983115733,
+          "resultadoDia": 0.010153614837477676,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-13",
+      "reportDate": "13/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 623.86182863,
+          "valor": 24892086.962337,
+          "resultadoDia": 0.0008124886918170482,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1375.133321349621,
+          "valor": 137513.33213496208,
+          "resultadoDia": 0.01299097439619401,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-14",
+      "reportDate": "14/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 624.36870933,
+          "valor": 24912311.502267,
+          "resultadoDia": 0.0008124887222433763,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1392.797829603404,
+          "valor": 139279.78296034038,
+          "resultadoDia": 0.012845669564930828,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-15",
+      "reportDate": "15/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 624.87600186,
+          "valor": 24932552.474214,
+          "resultadoDia": 0.0008124887144718151,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1410.4916699083149,
+          "valor": 141049.1669908315,
+          "resultadoDia": 0.012703810939990623,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-16",
+      "reportDate": "16/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 625.3837065600001,
+          "valor": 24952809.891744003,
+          "resultadoDia": 0.0008124887153433402,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1428.2148774946854,
+          "valor": 142821.48774946854,
+          "resultadoDia": 0.012565269235175647,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-17",
+      "reportDate": "17/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 625.8918237600001,
+          "valor": 24973083.768024005,
+          "resultadoDia": 0.0008124887084042243,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1445.9674917339905,
+          "valor": 144596.74917339906,
+          "resultadoDia": 0.012429932301535773,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-20",
+      "reportDate": "20/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 626.4003538100001,
+          "valor": 24993374.117019,
+          "resultadoDia": 0.0008124887252001223,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1463.749544169046,
+          "valor": 146374.9544169046,
+          "resultadoDia": 0.01229768479354365,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-21",
+      "reportDate": "21/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 626.90929702,
+          "valor": 25013680.951098002,
+          "resultadoDia": 0.0008124887013623017,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 1481.5610824538023,
+          "valor": 148156.10824538022,
+          "resultadoDia": 0.012168433018961533,
+          "resultadoMes": null
+        }
+      }
+    },
+    {
+      "dateKey": "2026-07-22",
+      "reportDate": "22/07/2026",
+      "cotas": {
+        "SR1": {
+          "pu": 627.41865375,
+          "valor": 25034004.284624998,
+          "resultadoDia": 0.0008124887163440953,
+          "resultadoMes": null
+        },
+        "SUB": {
+          "pu": 538.5087129132822,
+          "valor": 53850.87129132822,
+          "resultadoDia": -0.636526148472131,
+          "resultadoMes": null
+        }
+      }
+    }
+  ],
+  "precificacaoMensal": []
 };

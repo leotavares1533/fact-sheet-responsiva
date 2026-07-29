@@ -21,6 +21,7 @@ GROUP_ID = "cras-carteira"
 GROUP_NAME = "CRAs Carteira"
 ACTIVE_VP_THRESHOLD = 1.0
 LIQUIDATED_CASH_GAIN_IDS = {"cra-carteira-52"}
+SNAPSHOT_SOURCE_OVERRIDES: dict[str, tuple[str, dict[str, Any]]] = {}
 
 
 def clean_text(value: Any) -> str:
@@ -186,6 +187,10 @@ def write_manifest(path: Path, manifest: list[dict[str, Any]]) -> None:
 
 
 def get_latest_snapshot_info(cra_id: str, target_date: str) -> tuple[str, dict[str, Any]] | tuple[None, None]:
+    override = SNAPSHOT_SOURCE_OVERRIDES.get(cra_id)
+    if override:
+        return override
+
     folder = REPO_ROOT / "data" / "cras" / cra_id
     if not folder.exists():
         return None, None
@@ -623,6 +628,268 @@ def extract_post_total_cash_rows(ws) -> dict[str, dict[str, Any]]:
                 "linhasPosTotal": values,
             }
     return result
+
+
+def header_positions(headers: list[Any]) -> dict[str, int]:
+    return {
+        normalize_key(header): index
+        for index, header in enumerate(headers)
+        if header is not None and clean_text(header)
+    }
+
+
+def header_pos(index: dict[str, int], label: str) -> int:
+    key = normalize_key(label)
+    if key not in index:
+        raise KeyError(f"Coluna obrigatoria nao encontrada: {label}")
+    return index[key]
+
+
+def carteira_date_columns(headers: list[Any]) -> list[tuple[int, str, date]]:
+    columns = []
+    seen = set()
+    for index, header in enumerate(headers):
+        parsed = as_date(header)
+        if not parsed:
+            continue
+        key = iso(parsed)
+        if key in seen:
+            continue
+        seen.add(key)
+        columns.append((index, key, parsed))
+    if not columns:
+        raise ValueError("Nao consegui identificar colunas de data-base na carteira.")
+    return columns
+
+
+def cash_date_columns(row: tuple[Any, ...]) -> list[tuple[int, str, date]]:
+    columns = []
+    for index, value in enumerate(row):
+        if index < 6:
+            continue
+        if isinstance(value, datetime):
+            parsed = value.date()
+        elif isinstance(value, date):
+            parsed = value
+        else:
+            parsed = None
+        if parsed:
+            columns.append((index, iso(parsed), parsed))
+    return columns
+
+
+def parse_carteira_for_date(ws_or_rows, headers: list[Any], vp_index: int, base_date: date) -> dict[str, list[dict[str, Any]]]:
+    header_index = header_positions(headers)
+    col_cra = header_pos(header_index, "CRA Carteira")
+    col_lastro = header_pos(header_index, "Lastro")
+    col_cedente = header_pos(header_index, "Cedente")
+    col_sacado = header_pos(header_index, "Sacado")
+    col_aquisicao_valor = header_pos(header_index, "Vlr Aquisicao")
+    col_face = header_pos(header_index, "Vlr Face")
+    col_aquisicao_data = header_pos(header_index, "DT Aquisicao")
+    col_vencimento = header_pos(header_index, "DT Vencimento")
+    col_liquidacao_valor = header_pos(header_index, "Vlr Liquidacao")
+    col_liquidacao_data = header_pos(header_index, "Dt Liquidacao")
+    col_tipo_titulo = header_pos(header_index, "tipo_titulo")
+    col_mesa = header_pos(header_index, "Mesa Resp")
+    col_status = header_pos(header_index, "Status")
+    col_tx_cessao = header_pos(header_index, "Tx Cessao")
+    col_tx_op = header_pos(header_index, "Tx Op")
+    col_base = header_pos(header_index, "Base")
+    col_tipo = header_pos(header_index, "Tipo")
+    col_pagamento = header_pos(header_index, "Pagamento")
+    col_dias = header_pos(header_index, "Dias")
+    col_dias_venc = header_pos(header_index, "Dias do Venc.")
+    col_dias_uteis = header_pos(header_index, "Dias Uteis Op.")
+    col_dias_corridos = header_pos(header_index, "Dias Corridos Op.")
+    col_fator = header_pos(header_index, "Fator")
+    col_status_pagamento = header_pos(header_index, "Status de Pagamento")
+    col_faixa = header_pos(header_index, "Faixa Venc")
+    by_cra: dict[str, list[dict[str, Any]]] = defaultdict(list)
+
+    rows = ws_or_rows if isinstance(ws_or_rows, list) else ws_or_rows.iter_rows(min_row=3, values_only=True)
+    for raw in rows:
+        number = cra_number(raw[col_cra])
+        if not number:
+            continue
+        cra_id = cra_id_from_number(number)
+        due_date = as_date(raw[col_vencimento])
+        acquisition_date = as_date(raw[col_aquisicao_data])
+        liquidation_date = as_date(raw[col_liquidacao_data])
+        vp_bruto = to_number(raw[vp_index] if vp_index < len(raw) else 0)
+        source_status = clean_text(raw[col_status])
+        source_payment_status = clean_text(raw[col_status_pagamento])
+        source_faixa = clean_text(raw[col_faixa])
+        faixa, faixa_order = pdd_status_from_due(base_date, due_date, source_faixa)
+        pdd = 0.0
+        is_active = vp_bruto > ACTIVE_VP_THRESHOLD
+        tx_op = to_number(raw[col_tx_op])
+        item = {
+            "craCarteira": clean_text(raw[col_cra]),
+            "lastro": clean_text(raw[col_lastro]),
+            "numeroUnico": clean_text(raw[col_lastro]),
+            "cedente": clean_text(raw[col_cedente]) or "Nao informado",
+            "sacado": clean_text(raw[col_sacado]) or "Nao informado",
+            "devedor": clean_text(raw[col_sacado]) or "Nao informado",
+            "valorAquisicao": to_number(raw[col_aquisicao_valor]),
+            "valorFace": to_number(raw[col_face]),
+            "valorNominal": to_number(raw[col_face]),
+            "dataAquisicao": br_date(acquisition_date),
+            "dataAquisicaoIso": iso(acquisition_date),
+            "dataVencimento": br_date(due_date),
+            "dataVencimentoIso": iso(due_date),
+            "valorLiquidacao": to_number(raw[col_liquidacao_valor]),
+            "dataLiquidacao": "" if is_active else br_date(liquidation_date),
+            "dataLiquidacaoIso": "" if is_active else iso(liquidation_date),
+            "dataLiquidacaoOriginal": br_date(liquidation_date),
+            "dataLiquidacaoOriginalIso": iso(liquidation_date),
+            "tipoTitulo": clean_text(raw[col_tipo_titulo]) or "-",
+            "tipoAtivo": clean_text(raw[col_tipo_titulo]) or "-",
+            "mesaResp": clean_text(raw[col_mesa]),
+            "status": "EM CARTEIRA" if is_active else source_status,
+            "statusOriginal": source_status,
+            "statusPagamento": source_payment_status,
+            "taxa": tx_op,
+            "taxaCessao": to_number(raw[col_tx_cessao]),
+            "taxaOp": tx_op,
+            "taxaMedia": tx_op,
+            "base": to_number(raw[col_base]),
+            "tipo": clean_text(raw[col_tipo]),
+            "indexadorAtivo": clean_text(raw[col_tipo]),
+            "pagamento": clean_text(raw[col_pagamento]),
+            "dias": to_number(raw[col_dias]),
+            "diasDoVencimento": to_number(raw[col_dias_venc]),
+            "diasUteisOp": to_number(raw[col_dias_uteis]),
+            "diasCorridosOp": to_number(raw[col_dias_corridos]),
+            "fator": to_number(raw[col_fator]),
+            "faixaVenc": faixa,
+            "faixaVencOrder": faixa_order,
+            "valorPresenteDia": vp_bruto,
+            "valorPresente": vp_bruto,
+            "pdd": pdd,
+            "valorPresenteLiquido": vp_bruto,
+        }
+        by_cra[cra_id].append(item)
+    return by_cra
+
+
+def extract_post_total_cash_rows_by_date(rows: list[tuple[Any, ...]]) -> dict[str, dict[str, dict[str, Any]]]:
+    result: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
+    current_id = ""
+    current_date_cols: list[tuple[int, str, date]] = []
+    for index, row in enumerate(rows):
+        row_date_cols = cash_date_columns(row)
+        if row_date_cols:
+            current_date_cols = row_date_cols
+            continue
+        label = clean_text(row[1] if len(row) > 1 else "")
+        desc = clean_text(row[5] if len(row) > 5 else "")
+        number = cra_number(label)
+        if is_cra_emission_label(label) and number:
+            current_id = cra_id_from_number(number)
+        if not current_id or normalize_key(desc) != "total":
+            continue
+
+        values_by_date: dict[str, list[float]] = defaultdict(list)
+        cursor = index + 1
+        while cursor < len(rows):
+            next_row = rows[cursor]
+            next_label = clean_text(next_row[1] if len(next_row) > 1 else "")
+            next_desc = clean_text(next_row[5] if len(next_row) > 5 else "")
+            if next_desc or is_cra_emission_label(next_label) or cash_date_columns(next_row):
+                break
+            for col_index, date_key, _ in current_date_cols:
+                value = next_row[col_index] if col_index < len(next_row) else None
+                if value not in (None, ""):
+                    values_by_date[date_key].append(to_number(value))
+            cursor += 1
+
+        for date_key, values in values_by_date.items():
+            if values:
+                result[date_key][current_id] = {
+                    "totalCalculado": values[0],
+                    "cessaoRendimentosDia": sum(values[1:]),
+                    "linhasPosTotal": values,
+                }
+    return result
+
+
+def parse_cash_by_date(ws) -> dict[str, dict[str, dict[str, Any]]]:
+    rows = list(ws.iter_rows(values_only=True))
+    raw_by_date: dict[str, dict[str, dict[str, Any]]] = defaultdict(lambda: defaultdict(lambda: {"accounts": {}, "rawRows": []}))
+    current_id = ""
+    current_date_cols: list[tuple[int, str, date]] = []
+
+    for row in rows:
+        row_date_cols = cash_date_columns(row)
+        if row_date_cols:
+            current_date_cols = row_date_cols
+            continue
+        label = clean_text(row[1] if len(row) > 1 else "")
+        desc = clean_text(row[5] if len(row) > 5 else "")
+        number = cra_number(label)
+        if is_cra_emission_label(label) and number:
+            current_id = cra_id_from_number(number)
+        if not current_id or not desc or not current_date_cols:
+            continue
+
+        key = normalize_key(desc)
+        for col_index, date_key, _ in current_date_cols:
+            value = to_number(row[col_index] if col_index < len(row) else 0)
+            raw = raw_by_date[date_key][current_id]
+            if "contacorrente" in key:
+                raw["accounts"]["cc"] = value
+            elif "aplicacao" in key:
+                raw["accounts"]["contaAplicacao"] = value
+            elif "fundodedespesa" in key:
+                raw["accounts"]["fundoDespesas"] = value
+            elif key == "total":
+                raw["accounts"]["totalInformado"] = value
+            raw["rawRows"].append({"label": desc, "valor": value})
+
+    cash_by_date: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
+    for date_key, cra_rows in raw_by_date.items():
+        for cra_id, raw in cra_rows.items():
+            cash_by_date[date_key][cra_id] = build_cash(raw["accounts"], raw["rawRows"])
+
+    post_total_cash_rows = extract_post_total_cash_rows_by_date(rows)
+    for date_key, cra_rows in post_total_cash_rows.items():
+        for cra_id, values in cra_rows.items():
+            cash = cash_by_date[date_key].setdefault(cra_id, build_cash({}, []))
+            cash["totalCalculadoPlanilha"] = values.get("totalCalculado")
+            cash["cessaoRendimentosDia"] = values.get("cessaoRendimentosDia", 0.0)
+            cash["linhasPosTotal"] = values.get("linhasPosTotal", [])
+
+    return cash_by_date
+
+
+def parse_workbook_all_dates(path: Path) -> list[tuple[str, dict[str, list[dict[str, Any]]], dict[str, dict[str, Any]], dict[str, Any]]]:
+    wb = openpyxl.load_workbook(path, data_only=True, read_only=True)
+    sheet_name = next(name for name in wb.sheetnames if normalize_key(name).startswith("carteira"))
+    ws = wb[sheet_name]
+    headers = [cell.value for cell in ws[2]]
+    carteira_rows = list(ws.iter_rows(min_row=3, values_only=True))
+    date_columns = carteira_date_columns(headers)
+    cash_sheet = wb["Planilha2"] if "Planilha2" in wb.sheetnames else next(
+        (wb[name] for name in wb.sheetnames if normalize_key(name).startswith("caixa")),
+        wb[wb.sheetnames[1]],
+    )
+    cash_by_date = parse_cash_by_date(cash_sheet)
+    records = []
+    for vp_index, date_key, base_date in sorted(date_columns, key=lambda item: item[1]):
+        meta = {
+            "sourceFile": str(path),
+            "sheetCarteira": sheet_name,
+            "sheetCaixa": cash_sheet.title,
+            "cashDate": date_key if date_key in cash_by_date else "",
+        }
+        records.append((date_key, parse_carteira_for_date(carteira_rows, headers, vp_index, base_date), cash_by_date.get(date_key, {}), meta))
+    return records
+
+
+def parse_workbook(path: Path) -> tuple[str, dict[str, list[dict[str, Any]]], dict[str, dict[str, Any]], dict[str, Any]]:
+    records = parse_workbook_all_dates(path)
+    return max(records, key=lambda item: item[0])
 
 
 def build_cash(accounts: dict[str, float], rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -1410,15 +1677,31 @@ def cleanup_skipped_date(date_key: str, skipped_ids: set[str]) -> None:
     write_manifest(manifest_path, manifest)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Importa carteira+caixa consolidado dos CRAs Carteira.")
-    parser.add_argument("source", nargs="?", default=str(DEFAULT_SOURCE), help="Arquivo .xlsx consolidado")
-    args = parser.parse_args()
-    source = Path(args.source)
-    if not source.exists():
-        raise FileNotFoundError(source)
+def load_latest_source_snapshots(cra_ids: set[str]) -> dict[str, tuple[str, dict[str, Any]]]:
+    sources: dict[str, tuple[str, dict[str, Any]]] = {}
+    for cra_id in sorted(cra_ids, key=lambda cid: cra_number(cid) or 0):
+        folder = REPO_ROOT / "data" / "cras" / cra_id
+        if not folder.exists():
+            continue
+        candidates = sorted(
+            [p.stem for p in folder.glob("*.js") if re.match(r"\d{4}-\d{2}-\d{2}$", p.stem)],
+            reverse=True,
+        )
+        for date_key in candidates:
+            try:
+                sources[cra_id] = (date_key, load_snapshot(folder / f"{date_key}.js", cra_id, date_key))
+                break
+            except Exception:
+                continue
+    return sources
 
-    date_key, carteira_by_cra, cash_by_cra, source_meta = parse_workbook(source)
+
+def import_record(
+    date_key: str,
+    carteira_by_cra: dict[str, list[dict[str, Any]]],
+    cash_by_cra: dict[str, dict[str, Any]],
+    source_meta: dict[str, Any],
+) -> dict[str, Any]:
     snapshots: dict[str, dict[str, Any]] = {}
     active_ids = {
         cra_id
@@ -1446,13 +1729,42 @@ def main() -> None:
 
     missing_carteira = sorted(set(cash_by_cra) - set(carteira_by_cra), key=lambda cid: cra_number(cid) or 0)
     missing_cash = sorted(set(carteira_by_cra) - set(cash_by_cra), key=lambda cid: cra_number(cid) or 0)
-    print(json.dumps({
+    return {
         "dateKey": date_key,
         "snapshots": len(snapshots),
         "overview": "cras-carteira-overview",
         "skippedSemCarteira": sorted(skipped_ids, key=lambda cid: cra_number(cid) or 0),
         "missingCarteira": missing_carteira,
         "missingCash": missing_cash,
+        "source": source_meta.get("sourceFile"),
+    }
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Importa carteira+caixa consolidado dos CRAs Carteira.")
+    parser.add_argument("source", nargs="?", default=str(DEFAULT_SOURCE), help="Arquivo .xlsx consolidado")
+    parser.add_argument("--all-dates", action="store_true", help="Processa todas as datas historicas encontradas no arquivo.")
+    args = parser.parse_args()
+    source = Path(args.source)
+    if not source.exists():
+        raise FileNotFoundError(source)
+
+    records = parse_workbook_all_dates(source) if args.all_dates else [parse_workbook(source)]
+    if args.all_dates:
+        cra_ids = set()
+        for _, carteira_by_cra, cash_by_cra, _ in records:
+            cra_ids.update(carteira_by_cra)
+            cra_ids.update(cash_by_cra)
+        SNAPSHOT_SOURCE_OVERRIDES.update(load_latest_source_snapshots(cra_ids))
+
+    results = [import_record(*record) for record in records]
+    print(json.dumps({
+        "mode": "all-dates" if args.all_dates else "single-date",
+        "dates": len(results),
+        "firstDate": results[0]["dateKey"] if results else "",
+        "lastDate": results[-1]["dateKey"] if results else "",
+        "totalSnapshots": sum(row.get("snapshots", 0) for row in results),
+        "results": results[-5:] if args.all_dates else results,
         "source": str(source),
     }, ensure_ascii=False, indent=2))
 

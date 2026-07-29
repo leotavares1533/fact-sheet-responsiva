@@ -7,14 +7,14 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     "craId": "cras-carteira-overview",
     "reportDate": "27/07/2026",
     "dateKey": "2026-07-27",
-    "importedAt": "2026-07-28T17:54:38.938358-03:00",
+    "importedAt": "2026-07-29T10:14:23.867179-03:00",
     "revisionId": "20260727-cras-carteira-overview-assets",
     "portfolioOverview": true,
     "portfolioConsolidado": true,
     "assetImport": {
-      "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\carteira_caixa_ccs_2707.xlsx",
+      "sourceFile": "C:\\Users\\leonardo.silva\\Downloads\\CARTEIRA_CAIXA_CCs_total.xlsx",
       "sheetCarteira": "carteira ",
-      "sheetCaixa": "Planilha2",
+      "sheetCaixa": "caixa ",
       "importMode": "carteira-caixa-consolidado"
     }
   },
@@ -40,7 +40,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     "total": 35597283.19,
     "cessaoRendimentosDia": 158498.4099999983,
     "fonte": "Soma dos caixas importados por CRA",
-    "arquivoOrigem": "carteira_caixa_ccs_2707.xlsx"
+    "arquivoOrigem": "CARTEIRA_CAIXA_CCs_total.xlsx"
   },
   "passivo": {
     "fundingTotal": 325946150.79917765,
@@ -121,7 +121,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 16178499.102800999,
         "subordinada": 185774.5860810764,
         "puSub": 1857.745860810764,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.22279360855095487,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 6,
@@ -142,7 +142,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 26380231.162823997,
         "subordinada": -59406.03771211207,
         "puSub": -594.0603771211207,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -1.2390128651047216,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 16,
@@ -163,7 +163,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 1444914.2211,
         "subordinada": 40987.0272173353,
         "puSub": 409.870272173353,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.5080931400477514,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 3,
@@ -184,7 +184,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 25279176.052242,
         "subordinada": -138647.73230984434,
         "puSub": -1386.4773230984435,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 0.020235909235520655,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 2,
@@ -205,7 +205,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 26348343.026166,
         "subordinada": -95852.77033982426,
         "puSub": -958.5277033982426,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 0.012243721522254836,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 3,
@@ -226,7 +226,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 9950566.993206,
         "subordinada": 310331.22847895697,
         "puSub": 3103.3122847895697,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.20661365059984949,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 239,
@@ -247,7 +247,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 13771624.790847002,
         "subordinada": -95753.95373663493,
         "puSub": -957.5395373663492,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -1.3939791928359657,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 7,
@@ -268,7 +268,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 13258922.71292663,
         "subordinada": -658610.3573604301,
         "puSub": -6586.1035736043,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 2.9979751165049975,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 10,
@@ -310,7 +310,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 19297154.005101003,
         "subordinada": 32794.27863050252,
         "puSub": 327.9427863050252,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.9063243999845698,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 217,
@@ -331,7 +331,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 14420143.10931555,
         "subordinada": 126965.87444139831,
         "puSub": 1269.6587444139832,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.2350484277059497,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 85,
@@ -352,7 +352,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 16824892.784511,
         "subordinada": -1188253.110079063,
         "puSub": -11882.531100790631,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -5.0676505380026855,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 9,
@@ -373,7 +373,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 24016762.765,
         "subordinada": -1488880.539745234,
         "puSub": -14888.80539745234,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 15.069554157258107,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 6,
@@ -394,7 +394,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 3029866.5518403496,
         "subordinada": -98970.52029107418,
         "puSub": -989.7052029107418,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 0.001830924232085307,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 1,
@@ -415,7 +415,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 30531927.891930003,
         "subordinada": -326091.8332312554,
         "puSub": -3260.918332312554,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.04124077185925956,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 15,
@@ -436,7 +436,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 14588849.165099502,
         "subordinada": -74895.9594334513,
         "puSub": -748.959594334513,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 0.008951716030841883,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 3,
@@ -457,7 +457,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 41572865.75399999,
         "subordinada": 349964.77265336365,
         "puSub": 3499.6477265336366,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": 0.19292023780402356,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 254,
@@ -478,7 +478,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
         "funding": 29051410.710267596,
         "subordinada": -461370.9651944302,
         "puSub": -4613.709651944302,
-        "rendimentoSubDia": null,
+        "rendimentoSubDia": -0.0014164215679576264,
         "rendimentoSubMes": null,
         "pdd": 0.0,
         "lastrosAtivos": 11,
@@ -927,12 +927,244 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     ],
     "subHistory": [
       {
+        "dateKey": "2026-06-16",
+        "reportDate": "16/06/2026",
+        "caixaTotal": 14316300.0,
+        "cessaoRendimentosDia": 0.0,
+        "subordinadaTotal": 10422054.436621176,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-17",
+        "reportDate": "17/06/2026",
+        "caixaTotal": 14317019.93,
+        "cessaoRendimentosDia": 0.0,
+        "subordinadaTotal": 10390803.377337696,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-18",
+        "reportDate": "18/06/2026",
+        "caixaTotal": 14895696.75,
+        "cessaoRendimentosDia": 578676.82,
+        "subordinadaTotal": 10361500.233802604,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-19",
+        "reportDate": "19/06/2026",
+        "caixaTotal": 6385785.289999999,
+        "cessaoRendimentosDia": -8509911.46,
+        "subordinadaTotal": 5125109.567757666,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-22",
+        "reportDate": "22/06/2026",
+        "caixaTotal": 7597112.249999999,
+        "cessaoRendimentosDia": 1211326.9599999997,
+        "subordinadaTotal": 5254544.152471506,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-23",
+        "reportDate": "23/06/2026",
+        "caixaTotal": 11268748.919999998,
+        "cessaoRendimentosDia": 3671617.4699999997,
+        "subordinadaTotal": 5211965.5613245,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-24",
+        "reportDate": "24/06/2026",
+        "caixaTotal": 30332630.92,
+        "cessaoRendimentosDia": 17364120.05,
+        "subordinadaTotal": 7663715.069139692,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-25",
+        "reportDate": "25/06/2026",
+        "caixaTotal": 30351499.87,
+        "cessaoRendimentosDia": 17979.18999999961,
+        "subordinadaTotal": 7639994.780474476,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-26",
+        "reportDate": "26/06/2026",
+        "caixaTotal": 4296678.45,
+        "cessaoRendimentosDia": -23734836.39,
+        "subordinadaTotal": 5111261.859385786,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-29",
+        "reportDate": "29/06/2026",
+        "caixaTotal": 4738750.899999999,
+        "cessaoRendimentosDia": 442057.5200000001,
+        "subordinadaTotal": 5256509.267965611,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-06-30",
+        "reportDate": "30/06/2026",
+        "caixaTotal": 7964355.43,
+        "cessaoRendimentosDia": 3225589.5500000003,
+        "subordinadaTotal": 4700776.909904404,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-01",
+        "reportDate": "01/07/2026",
+        "caixaTotal": 8271406.84,
+        "cessaoRendimentosDia": 307051.2899999999,
+        "subordinadaTotal": 4690282.15453174,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-02",
+        "reportDate": "02/07/2026",
+        "caixaTotal": 9760412.27,
+        "cessaoRendimentosDia": 1489095.2999999996,
+        "subordinadaTotal": 5345587.335534122,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-03",
+        "reportDate": "03/07/2026",
+        "caixaTotal": 7406920.840000001,
+        "cessaoRendimentosDia": -2353491.699999999,
+        "subordinadaTotal": 5178222.410346768,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-06",
+        "reportDate": "06/07/2026",
+        "caixaTotal": 6731405.09,
+        "cessaoRendimentosDia": -675515.480000001,
+        "subordinadaTotal": -48516153.99894648,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-07",
+        "reportDate": "07/07/2026",
+        "caixaTotal": 58131924.09,
+        "cessaoRendimentosDia": 51400519.0,
+        "subordinadaTotal": 2643049.059809388,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-08",
+        "reportDate": "08/07/2026",
+        "caixaTotal": 59992715.6,
+        "cessaoRendimentosDia": 1860791.5100000019,
+        "subordinadaTotal": 2620355.182283589,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-09",
+        "reportDate": "09/07/2026",
+        "caixaTotal": 60514668.830000006,
+        "cessaoRendimentosDia": 521965.9600000004,
+        "subordinadaTotal": 2237624.433209094,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-10",
+        "reportDate": "10/07/2026",
+        "caixaTotal": 35366124.72,
+        "cessaoRendimentosDia": -26900573.040000003,
+        "subordinadaTotal": 25944718.135794826,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-13",
+        "reportDate": "13/07/2026",
+        "caixaTotal": 37120612.78,
+        "cessaoRendimentosDia": 1648155.5500000035,
+        "subordinadaTotal": 23744204.767931785,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-14",
+        "reportDate": "14/07/2026",
+        "caixaTotal": 37162118.370000005,
+        "cessaoRendimentosDia": 40833.93999999993,
+        "subordinadaTotal": 23734185.190334313,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-15",
+        "reportDate": "15/07/2026",
+        "caixaTotal": 37178782.6,
+        "cessaoRendimentosDia": 15992.220000000263,
+        "subordinadaTotal": 23713924.100281045,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-16",
+        "reportDate": "16/07/2026",
+        "caixaTotal": 37241678.690000005,
+        "cessaoRendimentosDia": 62220.489999999925,
+        "subordinadaTotal": 23438909.672320027,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-17",
+        "reportDate": "17/07/2026",
+        "caixaTotal": 41275707.55,
+        "cessaoRendimentosDia": 4033314.459999997,
+        "subordinadaTotal": 23418729.628405537,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-20",
+        "reportDate": "20/07/2026",
+        "caixaTotal": 2578162.35,
+        "cessaoRendimentosDia": -37264475.1,
+        "subordinadaTotal": 2425883.4905180703,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-21",
+        "reportDate": "21/07/2026",
+        "caixaTotal": 6437514.26,
+        "cessaoRendimentosDia": 3899198.4499999993,
+        "subordinadaTotal": 2450554.5204253583,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-22",
+        "reportDate": "22/07/2026",
+        "caixaTotal": 35096146.85,
+        "cessaoRendimentosDia": 28698478.13,
+        "subordinadaTotal": 2129249.4769468345,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-23",
+        "reportDate": "23/07/2026",
+        "caixaTotal": 35459696.5,
+        "cessaoRendimentosDia": 403394.1899999994,
+        "subordinadaTotal": 2130518.5667558517,
+        "rendimentoSubDia": null
+      },
+      {
+        "dateKey": "2026-07-24",
+        "reportDate": "24/07/2026",
+        "caixaTotal": 35478627.32,
+        "cessaoRendimentosDia": 58774.35999999903,
+        "subordinadaTotal": 902106.7102579809,
+        "rendimentoSubDia": null
+      },
+      {
         "dateKey": "2026-07-27",
         "reportDate": "27/07/2026",
         "caixaTotal": 35597283.19,
         "cessaoRendimentosDia": 158498.4099999983,
         "subordinadaTotal": -3581257.1119307205,
-        "rendimentoSubDia": null
+        "rendimentoSubDia": -4.969881912203676
       }
     ]
   },
@@ -1025,7 +1257,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-27"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "27/07/2026",
-      "file": "carteira_caixa_ccs_2707.xlsx"
+      "file": "CARTEIRA_CAIXA_CCs_total.xlsx"
     }
   ]
 };
