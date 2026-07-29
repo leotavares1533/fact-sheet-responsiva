@@ -2,6 +2,7 @@
   "use strict";
 
   const USERS_KEY = "lamina_prod_access_users_v1";
+  const DELETED_USERS_KEY = "lamina_prod_access_deleted_users_v1";
   const SESSION_KEY = "lamina_prod_access_session_v1";
   const DEFAULT_PASSWORD = String.fromCharCode(67, 101, 114, 101, 115, 64, 50, 48, 50, 54);
   const ADMIN_EMAIL = "leonardo.silva@ceresinvestimentos.com";
@@ -26,6 +27,16 @@
       viewLamina: false,
       viewPu: false,
       generatePdf: false,
+      simulate: false,
+      viewRealizedEvents: false,
+      updatePu: false,
+      operate: false,
+      publish: false,
+    },
+    viewer: {
+      viewLamina: true,
+      viewPu: true,
+      generatePdf: true,
       simulate: false,
       viewRealizedEvents: false,
       updatePu: false,
@@ -66,6 +77,35 @@
   let cachedUser = null;
   let scrubObserver = null;
 
+  const roleOptions = [
+    { value: "viewer", label: "Visualizacao" },
+    { value: "operator", label: "Operacional" },
+    { value: "admin", label: "Administrador" },
+  ];
+
+  const roleLabels = {
+    viewer: "Visualizacao",
+    operator: "Operacional",
+    admin: "Admin",
+  };
+
+  function loadDeletedUsers() {
+    try {
+      return JSON.parse(localStorage.getItem(DELETED_USERS_KEY) || "[]")
+        .map(normalizeEmail)
+        .filter(Boolean)
+        .filter((email) => email !== ADMIN_EMAIL);
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function saveDeletedUsers(users) {
+    const cleaned = [...new Set((users || []).map(normalizeEmail).filter(Boolean))]
+      .filter((email) => email !== ADMIN_EMAIL);
+    localStorage.setItem(DELETED_USERS_KEY, JSON.stringify(cleaned));
+  }
+
   function loadUsers() {
     let stored = {};
     try {
@@ -75,6 +115,9 @@
     }
 
     const merged = { ...defaultUsers, ...stored };
+    loadDeletedUsers().forEach((email) => {
+      delete merged[email];
+    });
     localStorage.setItem(USERS_KEY, JSON.stringify(merged));
     return merged;
   }
@@ -203,7 +246,7 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { ok: false, message: "Informe um e-mail valido." };
     }
-    if (!["operator", "admin"].includes(role)) {
+    if (!["viewer", "operator", "admin"].includes(role)) {
       return { ok: false, message: "Perfil invalido para novo usuario." };
     }
     if (users[email]) return { ok: false, message: "Ja existe usuario com esse e-mail." };
@@ -220,8 +263,72 @@
       password,
       mustChangePassword: true,
     };
+    saveDeletedUsers(loadDeletedUsers().filter((deletedEmail) => deletedEmail !== email));
     saveUsers(users);
     return { ok: true, email };
+  }
+
+  function updateUser(email, record) {
+    if (!isRootAdmin()) {
+      return { ok: false, message: "Apenas o administrador pode editar usuarios." };
+    }
+
+    const users = loadUsers();
+    const key = normalizeEmail(email);
+    const current = users[key];
+    const name = String(record.name || "").trim();
+    const role = key === ADMIN_EMAIL ? "admin" : String(record.role || "viewer").trim();
+    const password = String(record.password || "");
+    const confirmPassword = String(record.confirmPassword || "");
+
+    if (!current) return { ok: false, message: "Usuario nao encontrado." };
+    if (!name) return { ok: false, message: "Informe o nome do usuario." };
+    if (!["viewer", "operator", "admin"].includes(role)) {
+      return { ok: false, message: "Perfil invalido para usuario." };
+    }
+    if (password || confirmPassword) {
+      if (!password || password.length < 8) {
+        return { ok: false, message: "Use uma senha inicial com pelo menos 8 caracteres." };
+      }
+      if (password !== confirmPassword) {
+        return { ok: false, message: "A confirmacao nao bate com a senha inicial." };
+      }
+    }
+
+    users[key] = {
+      ...current,
+      name,
+      role,
+      ...(password ? { password, mustChangePassword: true } : {}),
+    };
+    saveUsers(users);
+    cachedUser = null;
+    applyPermissions();
+    return { ok: true, email: key };
+  }
+
+  function deleteUser(email) {
+    if (!isRootAdmin()) {
+      return { ok: false, message: "Apenas o administrador pode excluir usuarios." };
+    }
+
+    const key = normalizeEmail(email);
+    if (key === ADMIN_EMAIL) {
+      return { ok: false, message: "O administrador principal nao pode ser excluido." };
+    }
+    if (key === normalizeEmail(currentUser().email)) {
+      return { ok: false, message: "Voce nao pode excluir o proprio usuario logado." };
+    }
+
+    const users = loadUsers();
+    if (!users[key]) return { ok: false, message: "Usuario nao encontrado." };
+
+    delete users[key];
+    saveUsers(users);
+    if (defaultUsers[key]) {
+      saveDeletedUsers([...loadDeletedUsers(), key]);
+    }
+    return { ok: true, email: key };
   }
 
   function resetUserPassword(email, password, confirmPassword) {
@@ -244,6 +351,10 @@
     users[key] = { ...record, password, mustChangePassword: true };
     saveUsers(users);
     return { ok: true, email: key };
+  }
+
+  function roleLabel(role) {
+    return roleLabels[role] || role || "-";
   }
 
   function getPageName() {
@@ -480,12 +591,7 @@
     form.className = "auth-form auth-user-admin-form";
     form.appendChild(makeField("Nome", "text", "name"));
     form.appendChild(makeField("E-mail", "email", "email"));
-    form.appendChild(
-      makeSelect("Perfil", "role", [
-        { value: "operator", label: "Operacional" },
-        { value: "admin", label: "Administrador" },
-      ])
-    );
+    form.appendChild(makeSelect("Perfil", "role", roleOptions));
     form.appendChild(makeField("Senha inicial", "password", "password"));
     form.appendChild(makeField("Confirmar senha", "password", "confirmPassword"));
 
@@ -506,20 +612,37 @@
           .map(([email, user]) => {
             const safeEmail = escapeHtml(email);
             const safeName = escapeHtml(user.name || email);
-            const safeRole = user.role === "admin" ? "Admin" : "Operacional";
+            const safeRole = escapeHtml(roleLabel(user.role));
+            const canDelete = email !== ADMIN_EMAIL && email !== normalizeEmail(currentUser().email);
             return `
               <div class="auth-user-row">
                 <span>${safeName}</span>
                 <strong>${safeRole}</strong>
                 <small>${safeEmail}</small>
-                <button type="button" class="auth-row-action" data-reset-user="${safeEmail}">Resetar senha</button>
+                <div class="auth-user-actions">
+                  <button type="button" class="auth-row-action" data-edit-user="${safeEmail}">Editar</button>
+                  <button type="button" class="auth-row-action" data-reset-user="${safeEmail}">Resetar senha</button>
+                  <button type="button" class="auth-row-action auth-row-danger" data-delete-user="${safeEmail}" ${canDelete ? "" : "disabled"}>Excluir</button>
+                </div>
               </div>
             `;
           })
           .join("")}
       `;
+      list.querySelectorAll("[data-edit-user]").forEach((button) => {
+        button.addEventListener("click", () => openEditUserModal(button.dataset.editUser));
+      });
       list.querySelectorAll("[data-reset-user]").forEach((button) => {
         button.addEventListener("click", () => openResetPasswordModal(button.dataset.resetUser));
+      });
+      list.querySelectorAll("[data-delete-user]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const email = button.dataset.deleteUser;
+          if (!window.confirm(`Excluir o usuario ${email}?`)) return;
+          const result = deleteUser(email);
+          message.textContent = result.ok ? `Usuario ${result.email} excluido.` : result.message;
+          renderUserList();
+        });
       });
     }
 
@@ -552,6 +675,69 @@
 
     renderUserList();
     renderModal("Usuarios", form);
+  }
+
+  function openEditUserModal(email) {
+    if (!isRootAdmin()) return;
+
+    const key = normalizeEmail(email);
+    const users = loadUsers();
+    const user = users[key];
+    if (!user) return;
+
+    const form = document.createElement("form");
+    form.className = "auth-form";
+
+    const info = document.createElement("div");
+    info.className = "auth-help-text";
+    info.innerHTML = `<p>Editando <strong>${escapeHtml(key)}</strong>.</p>`;
+    form.appendChild(info);
+
+    form.appendChild(makeField("Nome", "text", "name"));
+    form.appendChild(makeSelect("Perfil", "role", roleOptions));
+    form.appendChild(makeField("Nova senha inicial (opcional)", "password", "password"));
+    form.appendChild(makeField("Confirmar nova senha", "password", "confirmPassword"));
+
+    const nameInput = form.querySelector('[name="name"]');
+    const roleSelect = form.querySelector('[name="role"]');
+    if (nameInput) nameInput.value = user.name || "";
+    if (roleSelect) {
+      roleSelect.value = user.role || "viewer";
+      if (key === ADMIN_EMAIL) {
+        roleSelect.value = "admin";
+        roleSelect.disabled = true;
+      }
+    }
+
+    const message = document.createElement("div");
+    message.className = "auth-message";
+    form.appendChild(message);
+
+    const actions = document.createElement("div");
+    actions.className = "auth-actions";
+    actions.appendChild(createButton("Voltar", "auth-button auth-button-soft", openUserAdminModal));
+    const submit = createButton("Salvar usuario", "auth-button", () => {});
+    submit.type = "submit";
+    actions.appendChild(submit);
+    form.appendChild(actions);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const result = updateUser(key, {
+        name: data.get("name"),
+        role: roleSelect?.disabled ? "admin" : data.get("role"),
+        password: data.get("password"),
+        confirmPassword: data.get("confirmPassword"),
+      });
+      if (!result.ok) {
+        message.textContent = result.message;
+        return;
+      }
+      message.textContent = `Usuario ${result.email} atualizado.`;
+    });
+
+    renderModal("Editar usuario", form);
   }
 
   function openResetPasswordModal(email) {
@@ -709,7 +895,7 @@
       hideElement(el, !can("simulate"));
     });
     document.querySelectorAll("[data-private='events'], [data-private='operational'], .auth-private").forEach((el) => {
-      hideElement(el, currentUser().role === "public");
+      hideElement(el, !can("viewRealizedEvents"));
     });
   }
 
@@ -721,7 +907,7 @@
   }
 
   function scrubPrivateSections() {
-    const hide = currentUser().role === "public";
+    const hide = !can("viewRealizedEvents");
     const candidates = document.querySelectorAll("section, .section, .panel, .card, .table-card, .module, .block");
     candidates.forEach((section) => {
       if (sectionLooksPrivate(section)) hideElement(section, hide);
@@ -789,6 +975,7 @@
     changePassword,
     createUser,
     currentUser,
+    deleteUser,
     isRootAdmin,
     login,
     logout,
@@ -798,6 +985,7 @@
     openUserAdminModal,
     permissionMap,
     resetUserPassword,
+    updateUser,
   };
 
   if (document.readyState === "loading") {

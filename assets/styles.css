@@ -3995,7 +3995,6 @@ tbody tr:hover td {
 }
 
 .auth-row-action {
-  grid-column: 1 / -1;
   justify-self: start;
   min-height: 28px;
   border: 1px solid rgba(20, 54, 74, 0.12);
@@ -4006,6 +4005,24 @@ tbody tr:hover td {
   font-size: 11px;
   font-weight: 900;
   padding: 5px 10px;
+}
+
+.auth-user-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.auth-row-action.auth-row-danger {
+  color: #b43f32;
+  border-color: rgba(180, 63, 50, 0.18);
+  background: rgba(180, 63, 50, 0.08);
+}
+
+.auth-row-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
 }
 
 .auth-actions {

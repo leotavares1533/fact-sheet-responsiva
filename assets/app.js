@@ -26,7 +26,8 @@
       const PUBLIC_HIDDEN_CRA_GROUP_ID = "cras-carteira";
 
       function isPublicAccess() {
-        return window.LAMINA_AUTH?.currentUser?.().role === "public";
+        const role = window.LAMINA_AUTH?.currentUser?.().role || "public";
+        return role === "public" || role === "viewer";
       }
 
       function isCrasCarteiraEntry(cra) {
