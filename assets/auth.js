@@ -275,6 +275,7 @@
 
     const users = loadUsers();
     const key = normalizeEmail(email);
+    const nextEmail = normalizeEmail(record.email || key);
     const current = users[key];
     const name = String(record.name || "").trim();
     const role = key === ADMIN_EMAIL ? "admin" : String(record.role || "viewer").trim();
@@ -282,6 +283,15 @@
     const confirmPassword = String(record.confirmPassword || "");
 
     if (!current) return { ok: false, message: "Usuario nao encontrado." };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nextEmail)) {
+      return { ok: false, message: "Informe um e-mail valido." };
+    }
+    if (key === ADMIN_EMAIL && nextEmail !== ADMIN_EMAIL) {
+      return { ok: false, message: "O e-mail do administrador principal nao pode ser alterado." };
+    }
+    if (nextEmail !== key && users[nextEmail]) {
+      return { ok: false, message: "Ja existe usuario com esse e-mail." };
+    }
     if (!name) return { ok: false, message: "Informe o nome do usuario." };
     if (!["viewer", "operator", "admin"].includes(role)) {
       return { ok: false, message: "Perfil invalido para usuario." };
@@ -295,16 +305,23 @@
       }
     }
 
-    users[key] = {
+    users[nextEmail] = {
       ...current,
       name,
       role,
       ...(password ? { password, mustChangePassword: true } : {}),
     };
+    if (nextEmail !== key) {
+      delete users[key];
+      saveDeletedUsers([
+        ...loadDeletedUsers().filter((deletedEmail) => deletedEmail !== nextEmail),
+        ...(defaultUsers[key] ? [key] : []),
+      ]);
+    }
     saveUsers(users);
     cachedUser = null;
     applyPermissions();
-    return { ok: true, email: key };
+    return { ok: true, email: nextEmail };
   }
 
   function deleteUser(email) {
@@ -680,7 +697,7 @@
   function openEditUserModal(email) {
     if (!isRootAdmin()) return;
 
-    const key = normalizeEmail(email);
+    let key = normalizeEmail(email);
     const users = loadUsers();
     const user = users[key];
     if (!user) return;
@@ -693,13 +710,21 @@
     info.innerHTML = `<p>Editando <strong>${escapeHtml(key)}</strong>.</p>`;
     form.appendChild(info);
 
+    form.appendChild(makeField("E-mail", "email", "email"));
     form.appendChild(makeField("Nome", "text", "name"));
     form.appendChild(makeSelect("Perfil", "role", roleOptions));
     form.appendChild(makeField("Nova senha inicial (opcional)", "password", "password"));
     form.appendChild(makeField("Confirmar nova senha", "password", "confirmPassword"));
 
+    const emailInput = form.querySelector('[name="email"]');
     const nameInput = form.querySelector('[name="name"]');
     const roleSelect = form.querySelector('[name="role"]');
+    if (emailInput) {
+      emailInput.value = key;
+      if (key === ADMIN_EMAIL) {
+        emailInput.disabled = true;
+      }
+    }
     if (nameInput) nameInput.value = user.name || "";
     if (roleSelect) {
       roleSelect.value = user.role || "viewer";
@@ -725,6 +750,7 @@
       event.preventDefault();
       const data = new FormData(form);
       const result = updateUser(key, {
+        email: emailInput?.disabled ? key : data.get("email"),
         name: data.get("name"),
         role: roleSelect?.disabled ? "admin" : data.get("role"),
         password: data.get("password"),
@@ -734,6 +760,9 @@
         message.textContent = result.message;
         return;
       }
+      key = result.email;
+      if (emailInput) emailInput.value = key;
+      info.innerHTML = `<p>Editando <strong>${escapeHtml(key)}</strong>.</p>`;
       message.textContent = `Usuario ${result.email} atualizado.`;
     });
 
