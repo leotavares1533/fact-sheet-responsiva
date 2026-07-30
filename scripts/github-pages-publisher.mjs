@@ -319,6 +319,42 @@ function parsePorcelain(text) {
     }));
 }
 
+function cacheBusterToken() {
+  const now = new Date();
+  const pad = (value) => String(value).padStart(2, "0");
+  return [
+    now.getFullYear(),
+    pad(now.getMonth() + 1),
+    pad(now.getDate()),
+    pad(now.getHours()),
+    pad(now.getMinutes()),
+    pad(now.getSeconds()),
+  ].join("");
+}
+
+function bumpIndexCacheBusters(token = cacheBusterToken()) {
+  const files = ["index.html", "pu.html", "simulador-eventos.html", "operacional.html"];
+  let touched = 0;
+
+  for (const fileName of files) {
+    const filePath = path.join(root, fileName);
+    if (!existsSync(filePath)) continue;
+
+    const before = readFileSync(filePath, "utf8");
+    const after = before.replace(
+      /(href|src)="(\.\/(?:assets|data)\/[^"?]+)\?v=[^"]*"/g,
+      `$1="$2?v=${token}"`
+    );
+
+    if (after !== before) {
+      writeFileSync(filePath, after, "utf8");
+      touched += 1;
+    }
+  }
+
+  return touched;
+}
+
 async function repositoryState() {
   const [branch, remote, porcelain, lastCommit] = await Promise.all([
     gitOutput(["branch", "--show-current"]).catch(() => ""),
@@ -451,6 +487,9 @@ async function publishJob(job, message) {
     updateJob(job, { message: "Validando historico de rendimento antes da publicacao..." });
     const repair = await repairPerformanceHistory(append);
     if (repair && repair.code !== 0) throw new Error(repair.stderr || repair.stdout || "Falha ao validar historico de rendimento.");
+
+    const bumped = bumpIndexCacheBusters();
+    if (bumped) updateJob(job, { message: `Atualizando versoes de cache em ${bumped} pagina(s)...` });
 
     await runGit(["add", "-A", "--", "."], { onData: append });
     const staged = await gitOutput(["diff", "--cached", "--name-only"]);

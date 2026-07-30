@@ -2617,6 +2617,13 @@
         document.title = `Lamina ${cra?.name || "CRA"} ${reportDate}`.replace(/[\\/:*?"<>|]+/g, "-");
       }
 
+      function waitForPrintLayout() {
+        const fontReady = document.fonts?.ready?.catch?.(() => null) || Promise.resolve();
+        return fontReady.then(() => new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        }));
+      }
+
       async function selectDate(dateKey) {
         if (!dateKey) {
           renderEmptyState("CRA sem data importada");
@@ -2691,7 +2698,7 @@
         }
       }
 
-      function printReport() {
+      async function printReport() {
         if (!state.snapshot) {
           setStatus("Aguarde carregar", "neutral");
           return;
@@ -2699,6 +2706,7 @@
 
         updatePrintMeta(state.snapshot);
         document.body.classList.add("is-printing-report");
+        await waitForPrintLayout();
         window.setTimeout(() => {
           window.print();
           document.body.classList.remove("is-printing-report");
