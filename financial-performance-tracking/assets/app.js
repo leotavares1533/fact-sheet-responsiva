@@ -217,7 +217,6 @@ const state = {
 const nodes = {
   dateSelector: document.getElementById("date-selector"),
   fundingSelector: document.getElementById("funding-selector"),
-  viewSelector: document.getElementById("view-selector"),
   printButton: document.getElementById("print-button"),
   summaryStrip: document.getElementById("summary-strip"),
   managementView: document.getElementById("management-view"),
@@ -267,11 +266,13 @@ function buildHistoryRows() {
 }
 
 function renderSelectors() {
-  nodes.fundingSelector.innerHTML = operations.map((operation) =>
-    `<option value="${operation.id}">${operation.investor} - ${operation.shortName}</option>`
-  ).join("");
-  nodes.fundingSelector.value = state.selectedId;
-  nodes.viewSelector.value = state.view;
+  nodes.fundingSelector.innerHTML = `
+    <option value="gerencial">Visao gerencial consolidada</option>
+    ${operations.map((operation) =>
+      `<option value="${operation.id}">${operation.investor} - ${operation.shortName}</option>`
+    ).join("")}
+  `;
+  nodes.fundingSelector.value = state.view === "gerencial" ? "gerencial" : state.selectedId;
   nodes.dateSelector.value = state.dateKey;
 }
 
@@ -446,13 +447,12 @@ nodes.dateSelector.addEventListener("change", (event) => {
 });
 
 nodes.fundingSelector.addEventListener("change", (event) => {
-  state.selectedId = event.target.value;
-  state.view = "individual";
-  render();
-});
-
-nodes.viewSelector.addEventListener("change", (event) => {
-  state.view = event.target.value;
+  if (event.target.value === "gerencial") {
+    state.view = "gerencial";
+  } else {
+    state.selectedId = event.target.value;
+    state.view = "individual";
+  }
   render();
 });
 
