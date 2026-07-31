@@ -18,6 +18,15 @@ const formatPercent = (value, digits = 2) =>
     maximumFractionDigits: digits
   })}%`;
 
+const formatSignedPercent = (value, digits = 2) => {
+  const number = Number(value || 0);
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number.toLocaleString("pt-BR", {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  })}%`;
+};
+
 const formatDate = (dateKey) => {
   const [year, month, day] = String(dateKey).split("-");
   return `${day}/${month}/${year}`;
@@ -208,10 +217,13 @@ const operations = [
   }
 ];
 
+const initialFundingId = new URLSearchParams(window.location.search).get("funding");
+const hasInitialFunding = operations.some((operation) => operation.id === initialFundingId);
+
 const state = {
   dateKey: "2026-07-28",
-  selectedId: operations[0].id,
-  view: "gerencial"
+  selectedId: hasInitialFunding ? initialFundingId : operations[0].id,
+  view: hasInitialFunding ? "individual" : "gerencial"
 };
 
 const nodes = {
@@ -232,8 +244,12 @@ const nodes = {
   detailFundingRate: document.getElementById("detail-funding-rate"),
   detailPortfolioRate: document.getElementById("detail-portfolio-rate"),
   detailSpread: document.getElementById("detail-spread"),
+  performanceTable: document.getElementById("performance-table"),
+  portfolioKpis: document.getElementById("portfolio-kpis"),
+  detailHistoryTable: document.getElementById("detail-history-table"),
   waterfall: document.getElementById("waterfall"),
   alertList: document.getElementById("alert-list"),
+  portfolioConcentrationTable: document.getElementById("portfolio-concentration-table"),
   portfolioTable: document.getElementById("portfolio-table")
 };
 
@@ -245,12 +261,101 @@ function signedClass(value) {
   return "neutral";
 }
 
+function dailyRateFromMonthly(monthlyRate) {
+  return Math.pow(1 + Number(monthlyRate || 0) / 100, 1 / 21) - 1;
+}
+
+function returnFromValues(current, previous) {
+  const base = Math.abs(Number(previous || 0));
+  if (!base) return 0;
+  return ((Number(current || 0) - Number(previous || 0)) / base) * 100;
+}
+
+function syntheticReturnOnFunding(operation, current, previous) {
+  const base = Math.abs(Number(operation.fundingBalance || 0));
+  if (!base) return 0;
+  return ((Number(current || 0) - Number(previous || 0)) / base) * 100;
+}
+
 function syntheticAtDay(operation, dayIndex) {
   const monthlyDelta = operation.syntheticSub - operation.monthStartSyntheticSub;
   const trend = monthlyDelta / 22;
   const dailyVol = Math.sin((dayIndex + operation.name.length) * 0.65) * Math.abs(trend) * 0.14;
   const weekendStep = dayIndex % 5 === 0 ? trend * 0.9 : 0;
   return operation.syntheticSub - trend * (30 - dayIndex) + dailyVol + weekendStep;
+}
+
+function fundingAtOffset(operation, offset) {
+  const dailyRate = dailyRateFromMonthly(operation.fundingRate);
+  return operation.fundingBalance / Math.pow(1 + dailyRate, offset);
+}
+
+function syntheticAtOffset(operation, offset) {
+  if (offset === 0) return operation.syntheticSub;
+  if (offset === 1) return operation.previousSyntheticSub;
+  return syntheticAtDay(operation, Math.max(1, 30 - offset));
+}
+
+function buildDetailHistory(operation) {
+  const monthStartFunding = fundingAtOffset(operation, 21);
+  return Array.from({ length: 30 }, (_, offset) => {
+    const dateKey = addBusinessDaysBack(state.dateKey, offset);
+    const funding = fundingAtOffset(operation, offset);
+    const fundingPrevious = fundingAtOffset(operation, offset + 1);
+    const synthetic = syntheticAtOffset(operation, offset);
+    const syntheticPrevious = syntheticAtOffset(operation, offset + 1);
+    const result = operation.portfolioVp + operation.cash - funding;
+    return {
+      dateKey,
+      funding,
+      synthetic,
+      result,
+      fundingDay: returnFromValues(funding, fundingPrevious),
+      syntheticDay: syntheticReturnOnFunding(operation, synthetic, syntheticPrevious),
+      fundingMonth: returnFromValues(funding, monthStartFunding),
+      syntheticMonth: syntheticReturnOnFunding(operation, synthetic, operation.monthStartSyntheticSub)
+    };
+  });
+}
+
+function portfolioTotals(operation) {
+  const rows = operation.portfolio;
+  const portfolioVp = rows.reduce((sum, row) => sum + row[3], 0);
+  const portfolioVn = rows.reduce((sum, row) => sum + row[2], 0);
+  const weightedRate = rows.reduce((sum, row) => sum + row[3] * row[4], 0) / (portfolioVp || 1);
+  const overdueVp = rows
+    .filter((row) => String(row[6]).toLowerCase().includes("atras"))
+    .reduce((sum, row) => sum + row[3], 0);
+  return {
+    count: rows.length,
+    portfolioVp,
+    portfolioVn,
+    weightedRate,
+    overdueVp,
+    largest: rows.reduce((max, row) => row[3] > max[3] ? row : max, rows[0])
+  };
+}
+
+function portfolioConcentration(operation) {
+  const grouped = new Map();
+  operation.portfolio.forEach((row) => {
+    const current = grouped.get(row[0]) || {
+      producer: row[0],
+      type: row[1],
+      vn: 0,
+      vp: 0,
+      weightedRate: 0,
+      status: row[6]
+    };
+    current.vn += row[2];
+    current.vp += row[3];
+    current.weightedRate += row[3] * row[4];
+    current.status = current.status === "Em dia" ? row[6] : current.status;
+    grouped.set(row[0], current);
+  });
+  return Array.from(grouped.values())
+    .map((row) => ({ ...row, rate: row.weightedRate / (row.vp || 1) }))
+    .sort((a, b) => b.vp - a.vp);
 }
 
 function buildHistoryRows() {
@@ -277,19 +382,22 @@ function renderSelectors() {
 }
 
 function renderSummary() {
-  const totalCash = operations.reduce((sum, item) => sum + item.cash, 0);
-  const totalPortfolio = operations.reduce((sum, item) => sum + item.portfolioVp, 0);
-  const totalFunding = operations.reduce((sum, item) => sum + item.fundingBalance, 0);
-  const totalSynthetic = operations.reduce((sum, item) => sum + item.syntheticSub, 0);
-  const dayResult = operations.reduce((sum, item) => sum + item.syntheticSub - item.previousSyntheticSub, 0);
-  const monthResult = operations.reduce((sum, item) => sum + item.syntheticSub - item.monthStartSyntheticSub, 0);
+  const selected = selectedOperation();
+  const source = state.view === "individual" ? [selected] : operations;
+  const totalCash = source.reduce((sum, item) => sum + item.cash, 0);
+  const totalPortfolio = source.reduce((sum, item) => sum + item.portfolioVp, 0);
+  const totalFunding = source.reduce((sum, item) => sum + item.fundingBalance, 0);
+  const totalSynthetic = source.reduce((sum, item) => sum + item.syntheticSub, 0);
+  const dayResult = source.reduce((sum, item) => sum + item.syntheticSub - item.previousSyntheticSub, 0);
+  const monthResult = source.reduce((sum, item) => sum + item.syntheticSub - item.monthStartSyntheticSub, 0);
+  const scope = state.view === "individual" ? selected.shortName : "contas";
 
   const cards = [
-    ["Caixa total", totalCash, "Valores disponiveis nas contas"],
+    [state.view === "individual" ? "Caixa" : "Caixa total", totalCash, `Valores disponiveis ${state.view === "individual" ? "na operacao" : "nas contas"}`],
     ["Carteira VP", totalPortfolio, "Direitos crediticios ativos"],
     ["Funding", totalFunding, "Saldo devedor dos investidores"],
     ["Resultado sintetico", totalSynthetic, "Carteira + caixa - funding"],
-    ["Delta dia", dayResult, "Variacao contra D-1"],
+    ["Delta dia", dayResult, `Variacao D-1 - ${scope}`],
     ["Delta mes", monthResult, "Variacao contra fechamento anterior"]
   ];
 
@@ -375,6 +483,71 @@ function renderDetail() {
   nodes.detailPortfolioRate.textContent = `${formatPercent(operation.portfolioRate)} a.m.`;
   nodes.detailSpread.textContent = `${formatPercent(spread)} a.m.`;
 
+  const fundingCurrent = fundingAtOffset(operation, 0);
+  const fundingMonthStart = fundingAtOffset(operation, 21);
+  const fundingThirtyStart = fundingAtOffset(operation, 29);
+  const syntheticThirtyStart = syntheticAtOffset(operation, 29);
+  const portfolio = portfolioTotals(operation);
+  const averageTicket = operation.portfolioVp / Math.max(portfolio.count, 1);
+
+  const performanceRows = [
+    {
+      label: "Funding",
+      balance: fundingCurrent,
+      day: returnFromValues(fundingCurrent, fundingAtOffset(operation, 1)),
+      month: returnFromValues(fundingCurrent, fundingMonthStart),
+      thirty: returnFromValues(fundingCurrent, fundingThirtyStart)
+    },
+    {
+      label: "Subordinada sintetica",
+      balance: operation.syntheticSub,
+      day: syntheticReturnOnFunding(operation, operation.syntheticSub, operation.previousSyntheticSub),
+      month: syntheticReturnOnFunding(operation, operation.syntheticSub, operation.monthStartSyntheticSub),
+      thirty: syntheticReturnOnFunding(operation, operation.syntheticSub, syntheticThirtyStart)
+    }
+  ];
+
+  nodes.performanceTable.innerHTML = performanceRows.map((row) => `
+    <tr>
+      <td>${row.label}</td>
+      <td class="num">${formatCurrency(row.balance)}</td>
+      <td class="num ${signedClass(row.day)}">${formatSignedPercent(row.day)}</td>
+      <td class="num ${signedClass(row.month)}">${formatSignedPercent(row.month)}</td>
+      <td class="num ${signedClass(row.thirty)}">${formatSignedPercent(row.thirty)}</td>
+    </tr>
+  `).join("");
+
+  const portfolioCards = [
+    ["Valor nominal", formatCurrency(operation.portfolioVn), "Base total da carteira"],
+    ["Valor presente", formatCurrency(operation.portfolioVp), "Carteira marcada na data"],
+    ["Taxa media", `${formatPercent(operation.portfolioRate)} a.m.`, "Media ponderada gerencial"],
+    ["Spread medio", `${formatSignedPercent(spread)} a.m.`, "Carteira menos funding"],
+    ["Prazo medio", `${formatNumber(operation.duration)} dias`, "Prazo ponderado estimado"],
+    ["Ticket medio", formatCurrency(averageTicket), "VP por titulo da amostra"],
+    ["Vencidos", formatCurrency(operation.overdue), "Exposicao em atraso"],
+    ["Amostra", `${portfolio.count} titulos`, "Abertura sintetica da V1"]
+  ];
+  nodes.portfolioKpis.innerHTML = portfolioCards.map(([label, value, note]) => `
+    <article class="portfolio-kpi">
+      <span>${label}</span>
+      <strong>${value}</strong>
+      <small>${note}</small>
+    </article>
+  `).join("");
+
+  nodes.detailHistoryTable.innerHTML = buildDetailHistory(operation).map((row) => `
+    <tr>
+      <td>${formatDate(row.dateKey)}</td>
+      <td class="num ${signedClass(row.fundingDay)}">${formatSignedPercent(row.fundingDay)}</td>
+      <td class="num ${signedClass(row.syntheticDay)}">${formatSignedPercent(row.syntheticDay)}</td>
+      <td class="num ${signedClass(row.fundingMonth)}">${formatSignedPercent(row.fundingMonth)}</td>
+      <td class="num ${signedClass(row.syntheticMonth)}">${formatSignedPercent(row.syntheticMonth)}</td>
+      <td class="num">${formatCurrency(row.funding)}</td>
+      <td class="num ${signedClass(row.synthetic)}">${formatCurrency(row.synthetic)}</td>
+      <td class="num ${signedClass(row.result)}">${formatCurrency(row.result)}</td>
+    </tr>
+  `).join("");
+
   const maxValue = Math.max(operation.portfolioVp, operation.cash, operation.fundingBalance, Math.abs(result));
   const rows = [
     ["Carteira VP", operation.portfolioVp],
@@ -419,6 +592,18 @@ function renderDetail() {
     </article>
   `).join("");
 
+  nodes.portfolioConcentrationTable.innerHTML = portfolioConcentration(operation).map((row) => `
+    <tr>
+      <td>${row.producer}</td>
+      <td>${row.type}</td>
+      <td class="num">${formatCurrency(row.vn)}</td>
+      <td class="num">${formatCurrency(row.vp)}</td>
+      <td class="num">${formatPercent(row.vp / operation.portfolioVp * 100)}</td>
+      <td class="num">${formatPercent(row.rate)} a.m.</td>
+      <td>${row.status}</td>
+    </tr>
+  `).join("");
+
   nodes.portfolioTable.innerHTML = operation.portfolio.map((row) => `
     <tr>
       <td>${row[0]}</td>
@@ -426,6 +611,8 @@ function renderDetail() {
       <td class="num">${formatCurrency(row[2])}</td>
       <td class="num">${formatCurrency(row[3])}</td>
       <td class="num">${formatPercent(row[4])}</td>
+      <td class="num ${signedClass(row[4] - operation.fundingRate)}">${formatSignedPercent(row[4] - operation.fundingRate)}</td>
+      <td class="num">${formatPercent(row[3] / operation.portfolioVp * 100)}</td>
       <td>${row[5]}</td>
       <td>${row[6]}</td>
     </tr>

@@ -253,6 +253,10 @@ main {
   max-height: 520px;
 }
 
+.detail-history-wrap {
+  max-height: 430px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -353,6 +357,10 @@ tfoot td,
   margin-bottom: 14px;
 }
 
+.detail-panel .management-grid {
+  align-items: start;
+}
+
 .mini-card {
   min-height: 92px;
   display: grid;
@@ -364,6 +372,41 @@ tfoot td,
 
 .mini-card strong {
   font-size: 1.22rem;
+}
+
+.portfolio-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+
+.portfolio-kpi {
+  min-height: 86px;
+  display: grid;
+  align-content: space-between;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.portfolio-kpi span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.portfolio-kpi strong {
+  font-size: 1.05rem;
+}
+
+.portfolio-kpi small {
+  color: var(--muted);
+  font-size: 0.72rem;
 }
 
 .waterfall {

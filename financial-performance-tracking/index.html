@@ -128,6 +128,61 @@
         <div class="management-grid">
           <article class="table-card">
             <div class="card-head">
+              <h3>Rentabilidade por componente</h3>
+              <span>Dia, mes e 30 dias</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Componente</th>
+                    <th class="num">Saldo atual</th>
+                    <th class="num">Dia</th>
+                    <th class="num">Mes</th>
+                    <th class="num">30 dias</th>
+                  </tr>
+                </thead>
+                <tbody id="performance-table"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="table-card">
+            <div class="card-head">
+              <h3>Detalhamento da carteira</h3>
+              <span>Indicadores sinteticos</span>
+            </div>
+            <div class="portfolio-kpis" id="portfolio-kpis"></div>
+          </article>
+        </div>
+
+        <div class="table-card wide">
+          <div class="card-head">
+            <h3>Historico diario - ultimos 30 registros</h3>
+            <span>Rendimento do funding e da subordinada sintetica</span>
+          </div>
+          <div class="table-wrap detail-history-wrap">
+            <table class="wide-table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th class="num">Funding dia</th>
+                  <th class="num">Sub. sintetica dia</th>
+                  <th class="num">Funding acum. mes</th>
+                  <th class="num">Sub. acum. mes</th>
+                  <th class="num">Saldo funding</th>
+                  <th class="num">Sub. sintetica</th>
+                  <th class="num">Resultado</th>
+                </tr>
+              </thead>
+              <tbody id="detail-history-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="management-grid">
+          <article class="table-card">
+            <div class="card-head">
               <h3>Composicao da posicao</h3>
               <span>Ativo, caixa e passivo</span>
             </div>
@@ -145,8 +200,31 @@
 
         <div class="table-card wide">
           <div class="card-head">
+            <h3>Concentracao da carteira</h3>
+            <span>Top produtores por VP</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produtor</th>
+                  <th>Tipo principal</th>
+                  <th class="num">VN</th>
+                  <th class="num">VP</th>
+                  <th class="num">% carteira</th>
+                  <th class="num">Taxa media</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="portfolio-concentration-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-card wide">
+          <div class="card-head">
             <h3>Carteira do funding</h3>
-            <span>Abertura sintetica ficticia</span>
+            <span>Abertura sintetica ficticia por titulo</span>
           </div>
           <div class="table-wrap">
             <table>
@@ -157,6 +235,8 @@
                   <th class="num">VN</th>
                   <th class="num">VP</th>
                   <th class="num">Taxa a.m.</th>
+                  <th class="num">Spread</th>
+                  <th class="num">% carteira</th>
                   <th>Vencimento</th>
                   <th>Status</th>
                 </tr>
