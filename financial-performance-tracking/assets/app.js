@@ -567,18 +567,18 @@ function renderDetail() {
 
   const alerts = [
     {
-      title: spread < 0.18 ? "Spread abaixo do alvo" : "Spread dentro do alvo",
-      text: spread < 0.18 ? "Avaliar repactuacao ou novas originacoes com taxa maior." : "Carteira gera margem adequada frente ao funding.",
+      title: "Margem",
+      text: `Spread ${formatSignedPercent(spread)} a.m.`,
       tone: spread < 0.18 ? "warn" : "ok"
     },
     {
-      title: operation.overdue > 0 ? "Exposicao em atraso" : "Sem atraso relevante",
-      text: operation.overdue > 0 ? `${formatCurrency(operation.overdue)} em atraso monitorado.` : "Nao ha valor vencido na base ficticia.",
+      title: "Atraso",
+      text: operation.overdue > 0 ? formatCurrency(operation.overdue) : "Sem atraso",
       tone: operation.overdue > 0 ? "warn" : "ok"
     },
     {
-      title: result < 0 ? "Resultado negativo" : "Resultado positivo",
-      text: result < 0 ? "Operacao consome capital sintetico e exige plano de recuperacao." : "Operacao contribui para o resultado consolidado.",
+      title: "Resultado",
+      text: formatCurrency(result),
       tone: result < 0 ? "bad" : "ok"
     }
   ];

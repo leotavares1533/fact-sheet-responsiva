@@ -437,29 +437,39 @@ tfoot td,
 
 .alert-list {
   display: grid;
-  gap: 10px;
-  padding: 0 16px 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px 16px 14px;
 }
 
 .alert-item {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  padding: 11px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 64px;
+  padding: 10px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
 }
 
 .alert-item strong,
-.alert-item span {
+.alert-item div > span {
   display: block;
 }
 
-.alert-item span {
+.alert-item div > span {
   margin-top: 2px;
   color: var(--muted);
   font-size: 0.75rem;
+}
+
+.alert-item .pill {
+  display: inline-flex;
+  min-width: 62px;
+  min-height: 26px;
+  margin-left: auto;
 }
 
 @media screen and (max-width: 1100px) {
@@ -480,6 +490,10 @@ tfoot td,
 
   .management-grid,
   .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .alert-list {
     grid-template-columns: 1fr;
   }
 }
