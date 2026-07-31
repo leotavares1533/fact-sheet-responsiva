@@ -411,28 +411,66 @@ tfoot td,
 
 .waterfall {
   display: grid;
-  gap: 8px;
-  padding: 0 16px 16px;
+  gap: 12px;
+  padding: 14px 16px 16px;
 }
 
-.waterfall-row {
+.position-equation {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr) 120px;
+  gap: 7px;
+}
+
+.equation-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
   align-items: center;
   gap: 10px;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
 }
 
-.bar-track {
-  height: 12px;
-  overflow: hidden;
+.equation-row.result {
+  background: rgba(44, 96, 119, 0.08);
+  border-color: rgba(44, 96, 119, 0.24);
+}
+
+.equation-sign {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
   border-radius: 999px;
-  background: rgba(16, 32, 48, 0.08);
+  color: #fff;
+  background: var(--navy);
+  font-size: 0.92rem;
+  font-weight: 900;
 }
 
-.bar-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--blue), var(--copper));
+.equation-row.result .equation-sign {
+  background: var(--copper);
+}
+
+.equation-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.equation-row strong {
+  font-size: 1.02rem;
+  line-height: 1.1;
+}
+
+.formula-line {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-align: center;
 }
 
 .alert-list {

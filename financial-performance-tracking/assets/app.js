@@ -548,22 +548,26 @@ function renderDetail() {
     </tr>
   `).join("");
 
-  const maxValue = Math.max(operation.portfolioVp, operation.cash, operation.fundingBalance, Math.abs(result));
-  const rows = [
-    ["Carteira VP", operation.portfolioVp],
-    ["Caixa", operation.cash],
-    ["Funding", -operation.fundingBalance],
-    ["Resultado", result]
+  const equationItems = [
+    { label: "Carteira VP", value: operation.portfolioVp, sign: "+" },
+    { label: "Caixa", value: operation.cash, sign: "+" },
+    { label: "Funding", value: operation.fundingBalance, sign: "-" },
+    { label: "Resultado", value: result, sign: "=" }
   ];
-  nodes.waterfall.innerHTML = rows.map(([label, value]) => `
-    <div class="waterfall-row">
-      <strong>${label}</strong>
-      <div class="bar-track">
-        <div class="bar-fill" style="width:${Math.max(2, Math.abs(value) / maxValue * 100)}%"></div>
-      </div>
-      <span class="num ${signedClass(value)}">${formatCurrency(value)}</span>
+  nodes.waterfall.innerHTML = `
+    <div class="position-equation">
+      ${equationItems.map((item, index) => `
+        <article class="equation-row ${index === equationItems.length - 1 ? "result" : ""}">
+          <span class="equation-sign">${item.sign}</span>
+          <span class="equation-label">${item.label}</span>
+          <strong class="${item.sign === "-" ? "negative" : signedClass(item.value)}">${formatCurrency(item.value)}</strong>
+        </article>
+      `).join("")}
     </div>
-  `).join("");
+    <div class="formula-line">
+      Resultado sintetico = Carteira VP + Caixa - Funding
+    </div>
+  `;
 
   const alerts = [
     {
