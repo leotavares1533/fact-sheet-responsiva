@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance de Fundings</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">GCI</span>
+        <div>
+          <p class="eyebrow">Controle gerencial</p>
+          <h1>Performance de fundings</h1>
+        </div>
+      </div>
+      <div class="controls">
+        <label>
+          <span>Data-base</span>
+          <input id="date-selector" type="date" value="2026-07-28">
+        </label>
+        <label>
+          <span>Funding</span>
+          <select id="funding-selector"></select>
+        </label>
+        <label>
+          <span>Visao</span>
+          <select id="view-selector">
+            <option value="gerencial">Gerencial consolidada</option>
+            <option value="individual">Funding individual</option>
+          </select>
+        </label>
+        <button id="print-button" type="button">Gerar PDF</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-strip" id="summary-strip"></section>
+
+      <section class="panel management-panel" id="management-view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">visao gerencial</p>
+            <h2>Resultado consolidado dos fundings</h2>
+          </div>
+          <span id="management-date"></span>
+        </div>
+
+        <div class="management-grid">
+          <article class="table-card">
+            <div class="card-head">
+              <h3>Saldos de caixa por operacao</h3>
+              <span>Valores disponiveis</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Conta</th>
+                    <th>Operacao</th>
+                    <th class="num">Saldo</th>
+                  </tr>
+                </thead>
+                <tbody id="cash-table"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="table-card">
+            <div class="card-head">
+              <h3>Resultado por funding</h3>
+              <span>Carteira + caixa - funding</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Investidor</th>
+                    <th>Funding</th>
+                    <th class="num">Resultado</th>
+                    <th class="num">Dia</th>
+                    <th class="num">Mes</th>
+                  </tr>
+                </thead>
+                <tbody id="result-table"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <div class="table-card wide">
+          <div class="card-head">
+            <h3>Historico de resultado - ultimos 30 dias</h3>
+            <span>Valores acumulados diariamente</span>
+          </div>
+          <div class="table-wrap history-wrap">
+            <table class="wide-table">
+              <thead id="history-head"></thead>
+              <tbody id="history-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel detail-panel" id="detail-view" hidden>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">visao individual</p>
+            <h2 id="detail-title">Funding individual</h2>
+          </div>
+          <span id="detail-status"></span>
+        </div>
+
+        <div class="detail-grid">
+          <article class="mini-card">
+            <span>Investidor</span>
+            <strong id="detail-investor"></strong>
+          </article>
+          <article class="mini-card">
+            <span>Taxa funding</span>
+            <strong id="detail-funding-rate"></strong>
+          </article>
+          <article class="mini-card">
+            <span>Taxa media carteira</span>
+            <strong id="detail-portfolio-rate"></strong>
+          </article>
+          <article class="mini-card">
+            <span>Spread liquido estimado</span>
+            <strong id="detail-spread"></strong>
+          </article>
+        </div>
+
+        <div class="management-grid">
+          <article class="table-card">
+            <div class="card-head">
+              <h3>Composicao da posicao</h3>
+              <span>Ativo, caixa e passivo</span>
+            </div>
+            <div class="waterfall" id="waterfall"></div>
+          </article>
+
+          <article class="table-card">
+            <div class="card-head">
+              <h3>Gatilhos de rentabilidade</h3>
+              <span>Alertas gerenciais</span>
+            </div>
+            <div class="alert-list" id="alert-list"></div>
+          </article>
+        </div>
+
+        <div class="table-card wide">
+          <div class="card-head">
+            <h3>Carteira do funding</h3>
+            <span>Abertura sintetica ficticia</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produtor</th>
+                  <th>Tipo</th>
+                  <th class="num">VN</th>
+                  <th class="num">VP</th>
+                  <th class="num">Taxa a.m.</th>
+                  <th>Vencimento</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="portfolio-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>
