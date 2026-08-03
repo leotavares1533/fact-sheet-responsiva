@@ -25,6 +25,16 @@ CRA65_PAYMENT_DATES = [
 ]
 
 
+SUB_PAYMENT_RESET_EVENTS = {
+    "cra-modelo": {
+        "2026-07-31": {
+            "benchmarkPu": 1000.0,
+            "descricao": "Pagamento de premio da Subordinada",
+        },
+    },
+}
+
+
 CRA_STATIC_INFO = {
     "cra-modelo": {
         "dataVencimentoIso": "2030-06-17",
@@ -1062,7 +1072,8 @@ def performance_needs_fallback(snapshot, date_key):
 
 
 def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapshot):
-    if not performance_needs_fallback(snapshot, date_key):
+    sub_payment_event = SUB_PAYMENT_RESET_EVENTS.get(cra_id, {}).get(date_key)
+    if not sub_payment_event and not performance_needs_fallback(snapshot, date_key):
         return
 
     canonical_dir = cra_root / "archive" / "canonical"
@@ -1089,6 +1100,32 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
         pu = float(cota.get("pu") or 0.0)
         prev_pu = float(prev_cota.get("pu") or prev_perf.get("pu") or 0.0)
         resultado_dia = (pu / prev_pu - 1.0) if pu > 0 and prev_pu > 0 else None
+        ajustes_fluxo_sub = []
+        ajustes_fluxo_periodo = {}
+        if classe == "SUB" and sub_payment_event and pu > 0 and prev_pu > 0:
+            benchmark_pu = float(sub_payment_event.get("benchmarkPu") or 1000.0)
+            paid_pu = max(0.0, prev_pu - benchmark_pu)
+            quantidade = float(cota.get("quantidade") or 0.0)
+            if paid_pu > 0:
+                resultado_dia = (pu + paid_pu) / prev_pu - 1.0
+                payment_adjustment = {
+                    "dateKey": date_key,
+                    "dataIso": date_key,
+                    "data": format_date_br(date_key),
+                    "tipoEvento": "pagamento_subordinada",
+                    "tipoNormalizado": "pagamento premio subordinada",
+                    "evento": sub_payment_event.get("descricao") or "Pagamento da Subordinada",
+                    "observacao": "Fluxo tratado como pagamento para nao contaminar a rentabilidade diaria.",
+                    "puEvento": paid_pu,
+                    "puAntesEvento": prev_pu,
+                    "puDepois": benchmark_pu,
+                    "puAposEvento": benchmark_pu,
+                    "principalAposEvento": benchmark_pu,
+                    "valorFluxoEstimado": paid_pu * quantidade,
+                    "ehDataPagamentoTs": True,
+                }
+                ajustes_fluxo_sub.append(payment_adjustment)
+                ajustes_fluxo_periodo.setdefault(date_key, []).append(payment_adjustment)
         resultado_inicio = None
         if resultado_dia is not None and prev_perf.get("resultadoInicio") is not None:
             resultado_inicio = (1.0 + float(prev_perf.get("resultadoInicio") or 0.0)) * (1.0 + resultado_dia) - 1.0
@@ -1109,8 +1146,8 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
             "resultadoMes": None,
             "resultado30Dias": None,
             "resultadoInicio": resultado_inicio,
-            "ajustesFluxoSub": [],
-            "ajustesFluxoPeriodo": {},
+            "ajustesFluxoSub": ajustes_fluxo_sub,
+            "ajustesFluxoPeriodo": ajustes_fluxo_periodo,
         }
         current_perf.append(row)
         current_history_cotas[classe] = {
@@ -1118,8 +1155,9 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
             "valor": row["valor"],
             "resultadoDia": row["resultadoDia"],
             "resultadoMes": row["resultadoMes"],
-            "ajustesFluxoSub": [],
+            "ajustesFluxoSub": ajustes_fluxo_sub,
             "ajustesFluxoMes": [],
+            "ajustesFluxoPeriodo": ajustes_fluxo_periodo,
         }
 
     previous_history = []

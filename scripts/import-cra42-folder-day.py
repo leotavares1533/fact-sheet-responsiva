@@ -27,6 +27,8 @@ def normalize(value: object) -> str:
 def parse_number(value: object) -> float:
     if value is None:
         return 0.0
+    if isinstance(value, (datetime, date)):
+        return 0.0
     if isinstance(value, (int, float)):
         return float(value)
     text = str(value).replace("R$", "").replace("%", "").strip()
@@ -35,7 +37,10 @@ def parse_number(value: object) -> float:
         return 0.0
     if "," in text:
         text = text.replace(".", "").replace(",", ".")
-    return float(text)
+    try:
+        return float(text)
+    except ValueError:
+        return 0.0
 
 
 def br_number(value: float) -> str:
