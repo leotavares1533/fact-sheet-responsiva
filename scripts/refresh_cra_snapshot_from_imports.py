@@ -1,11 +1,28 @@
 import argparse
 import csv
 import json
+import math
 import re
 import shutil
 import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
+
+
+CRA65_PAYMENT_DATES = [
+    "2026-08-17", "2026-09-15", "2026-10-15", "2026-11-16", "2026-12-15", "2027-01-15",
+    "2027-02-15", "2027-03-15", "2027-04-15", "2027-05-17", "2027-06-15", "2027-07-15",
+    "2027-08-16", "2027-09-15", "2027-10-15", "2027-11-16", "2027-12-15", "2028-01-17",
+    "2028-02-15", "2028-03-15", "2028-04-17", "2028-05-15", "2028-06-16", "2028-07-17",
+    "2028-08-15", "2028-09-15", "2028-10-16", "2028-11-16", "2028-12-15", "2029-01-15",
+    "2029-02-15", "2029-03-15", "2029-04-16", "2029-05-15", "2029-06-15", "2029-07-16",
+    "2029-08-15", "2029-09-17", "2029-10-15", "2029-11-16", "2029-12-17", "2030-01-15",
+    "2030-02-15", "2030-03-15", "2030-04-15", "2030-05-15", "2030-06-17", "2030-07-15",
+    "2030-08-15", "2030-09-16", "2030-10-15", "2030-11-18", "2030-12-16", "2031-01-15",
+    "2031-02-17", "2031-03-17", "2031-04-15", "2031-05-15", "2031-06-16", "2031-07-15",
+    "2031-08-15", "2031-09-15", "2031-10-15", "2031-11-17", "2031-12-15", "2032-01-15",
+    "2032-02-16", "2032-03-15", "2032-04-15", "2032-05-17", "2032-06-15", "2032-07-15",
+]
 
 
 CRA_STATIC_INFO = {
@@ -17,6 +34,20 @@ CRA_STATIC_INFO = {
             "SR2": "2030-05-15",
             "SR3": "2030-06-17",
             "SUB": "2030-06-17",
+        },
+    },
+    "cra-65": {
+        "dataVencimentoIso": "2032-07-15",
+        "dataVencimento": "15/07/2032",
+        "vencimentosSeries": {
+            "SR1": "2032-07-15",
+            "SUB": "2032-07-15",
+        },
+        "agendaPagamentosByClasse": {
+            "SR1": [
+                {"dataIso": item, "juros": True, "amortizacaoPercentual": 1 if item == "2032-07-15" else 0}
+                for item in CRA65_PAYMENT_DATES
+            ],
         },
     }
 }
@@ -240,6 +271,215 @@ def parse_date_key(value):
 def format_date_br(value):
     parsed = parse_date_key(value)
     return parsed.strftime("%d/%m/%Y") if parsed else ""
+
+
+def is_business_day_key(date_key, holiday_dates=None):
+    parsed = parse_date_key(date_key)
+    if not parsed:
+        return False
+    return parsed.weekday() < 5 and str(date_key) not in (holiday_dates or set())
+
+
+def round_decimal_js(value, decimals):
+    factor = 10 ** decimals
+    return math.floor((float(value or 0.0) + sys_float_epsilon()) * factor + 0.5) / factor
+
+
+def sys_float_epsilon():
+    return 2.220446049250313e-16
+
+
+def truncate_decimal(value, decimals):
+    factor = 10 ** decimals
+    return math.trunc(float(value or 0.0) * factor) / factor
+
+
+def get_ts_daily_factor(daily_rate, percentual_indexador):
+    tdk = round_decimal_js(daily_rate, 8)
+    return truncate_decimal(1 + (tdk * float(percentual_indexador or 1.0)), 16)
+
+
+def add_ts_factor(product, daily_factor):
+    return truncate_decimal(float(product or 1.0) * float(daily_factor or 1.0), 16)
+
+
+def apply_ts_factor_to_pu(base_pu, product):
+    vne = truncate_decimal(base_pu, 8)
+    factor_di = round_decimal_js(product, 8)
+    interest = truncate_decimal(vne * (factor_di - 1), 8)
+    return vne + interest
+
+
+def get_static_payment_label(cota, date_key):
+    scheduled_event = next(
+        (
+            event for event in cota.get("agendaPagamentos", []) or []
+            if str(event.get("dataIso") or event.get("data") or "")[:10] == date_key
+        ),
+        None,
+    )
+    if not scheduled_event:
+        return ""
+    labels = []
+    if scheduled_event.get("juros"):
+        labels.append("Juros TS")
+    amortization = parse_number(scheduled_event.get("amortizacaoPercentual")) or (1 if scheduled_event.get("amortizacao") else 0)
+    if amortization:
+        labels.append("Amortizacao final TS" if amortization >= 1 else "Amortizacao TS")
+    return " / ".join(labels)
+
+
+def last_known_rate_info(cota, date_key):
+    rows = []
+    for source in (cota.get("historicoPu", []) or [], cota.get("previsaoPu", []) or []):
+        for row in source:
+            row_date = str(row.get("dataIso") or row.get("data") or "")[:10]
+            if row_date and row_date <= date_key:
+                rows.append((row_date, row))
+    if rows:
+        row = sorted(rows, key=lambda item: item[0])[-1][1]
+    else:
+        row = next((item for item in cota.get("historicoPu", []) or [] if parse_number(item.get("taxaDiUtilizadaDia") or item.get("tdk"))), {})
+    daily_rate = parse_number(row.get("taxaDiUtilizadaDia") or row.get("tdk"))
+    annual_rate = parse_number(row.get("taxaDiAnualEquivalente"))
+    if not annual_rate and daily_rate:
+        annual_rate = (1 + daily_rate) ** 252 - 1
+    return {
+        "dailyRate": daily_rate,
+        "annualRate": annual_rate,
+        "dataTaxaDi": row.get("dataTaxaDi") or format_date_br(date_key),
+        "dataTaxaDiIso": row.get("dataTaxaDiIso") or row.get("dataReferenciaTaxaDiIso") or date_key,
+        "dataReferenciaTaxaDi": row.get("dataReferenciaTaxaDi") or row.get("dataTaxaDi") or format_date_br(date_key),
+        "dataReferenciaTaxaDiIso": row.get("dataReferenciaTaxaDiIso") or row.get("dataTaxaDiIso") or date_key,
+    }
+
+
+def snapshot_holidays(snapshot):
+    calendar = snapshot.get("metadata", {}).get("businessCalendar") or snapshot.get("businessCalendar") or {}
+    values = calendar.get("holidays") or calendar.get("feriados") or []
+    dates = set()
+    for value in values:
+        text = str(value or "")[:10]
+        if parse_date_key(text):
+            dates.add(text)
+    return dates
+
+
+def build_funding_forecast_rows(cota, date_key, holiday_dates=None, days=220):
+    parsed = parse_date_key(date_key)
+    if not parsed:
+        return []
+
+    rate_info = last_known_rate_info(cota, date_key)
+    principal = float(cota.get("principalResidual") or cota.get("valorNominalInicial") or 0.0)
+    pu = float(cota.get("pu") or principal or 0.0)
+    base_pu = pu
+    period_factor = 1.0
+    total_factor = 1.0
+    pure_di_factor = 1.0
+    accum = cota.get("acumulacaoFinal") or {}
+    dias_uteis = int(parse_number(accum.get("diasAcumulacao")))
+    dias_uteis_periodo = int(parse_number(accum.get("diasUteisPeriodo") if accum.get("diasUteisPeriodo") is not None else accum.get("diasAcumulacao")))
+    rows = []
+    cursor = parsed
+    has_payment = False
+
+    for _ in range(days):
+        cursor = cursor + timedelta(days=1)
+        row_key = cursor.isoformat()
+        dia_util = is_business_day_key(row_key, holiday_dates)
+        fator_diario = 1.0
+        pu_antes_evento = pu
+
+        if dia_util and principal > 0:
+            dias_uteis += 1
+            dias_uteis_periodo += 1
+            fator_diario = get_ts_daily_factor(rate_info["dailyRate"], cota.get("percentualIndexador") or 1)
+            period_factor = add_ts_factor(period_factor, fator_diario)
+            total_factor = add_ts_factor(total_factor, fator_diario)
+            pure_di_factor = add_ts_factor(pure_di_factor, get_ts_daily_factor(rate_info["dailyRate"], 1))
+            pu = apply_ts_factor_to_pu(base_pu, period_factor)
+            pu_antes_evento = pu
+
+        evento_ts = get_static_payment_label(cota, row_key)
+        pu_evento = 0.0
+        efeito_evento = ""
+        principal_antes_evento = principal
+
+        if evento_ts:
+            if "Juros" in evento_ts:
+                pu_evento = max(0.0, pu - principal)
+                pu = max(principal, pu - pu_evento)
+                base_pu = pu
+                period_factor = 1.0
+                dias_uteis_periodo = 0
+                efeito_evento = "paga_remuneracao"
+            if "Amortizacao" in evento_ts:
+                pu_evento = pu
+                principal = 0.0
+                pu = 0.0
+                base_pu = 0.0
+                period_factor = 1.0
+                dias_uteis_periodo = 0
+                efeito_evento = "amortizacao_final"
+
+        fator = pu / principal if principal > 0 else 0.0
+        row = {
+            "data": format_date_br(row_key),
+            "dataIso": row_key,
+            "diaUtil": dia_util,
+            "taxaDiUtilizadaDia": rate_info["dailyRate"],
+            "taxaDiAnualEquivalente": rate_info["annualRate"],
+            "dataTaxaDi": rate_info["dataTaxaDi"],
+            "dataTaxaDiIso": rate_info["dataTaxaDiIso"],
+            "taxaDiStatus": "projetada",
+            "dataReferenciaTaxaDi": rate_info["dataReferenciaTaxaDi"],
+            "dataReferenciaTaxaDiIso": rate_info["dataReferenciaTaxaDiIso"],
+            "diasUteis": dias_uteis,
+            "diasUteisPeriodo": dias_uteis_periodo,
+            "fator": fator,
+            "valorNominal": principal,
+            "puAtualizado": pu,
+            "puJuros": pu_evento if pu_evento > 0 else pu - principal,
+            "puAntesEvento": pu_antes_evento,
+            "puEvento": pu_evento,
+            "puAposEvento": pu,
+            "principalAntesEvento": principal_antes_evento,
+            "principalAposEvento": principal,
+            "valorReais": pu * float(cota.get("quantidade") or 0.0),
+            "valorEventoReais": pu_evento * float(cota.get("quantidade") or 0.0),
+            "tdk": rate_info["dailyRate"],
+            "fatorDiario": fator_diario,
+            "produtorioFatorDi": total_factor,
+            "fatorDiAcumulado": period_factor,
+            "spread": float(cota.get("percentualIndexador") or 1.0) - 1.0,
+            "spreadAcumulado": total_factor - pure_di_factor,
+            "fatorJurosAcumulado": fator,
+            "evento": evento_ts,
+            "eventoTs": evento_ts,
+            "efeitoEvento": efeito_evento,
+            "ehDataPagamentoTs": bool(evento_ts),
+        }
+        rows.append(row)
+        if row["ehDataPagamentoTs"]:
+            has_payment = True
+        if has_payment and len(rows) >= 30:
+            break
+
+    return rows
+
+
+def rebuild_static_funding_forecasts(snapshot, cra_id, date_key):
+    info = CRA_STATIC_INFO.get(cra_id)
+    if not info or not info.get("agendaPagamentosByClasse"):
+        return
+    holiday_dates = snapshot_holidays(snapshot)
+    for cota in snapshot.get("passivo", {}).get("cotas", []) or []:
+        if not cota.get("ehFunding"):
+            continue
+        if not cota.get("agendaPagamentos"):
+            continue
+        cota["previsaoPu"] = build_funding_forecast_rows(cota, date_key, holiday_dates)
 
 
 def maturity_bucket(days):
@@ -665,6 +905,7 @@ def apply_static_cra_info(snapshot, cra_id):
     snapshot["cra"] = cra
 
     series_maturities = info.get("vencimentosSeries") or {}
+    agenda_by_class = info.get("agendaPagamentosByClasse") or {}
     for cota in snapshot.get("passivo", {}).get("cotas", []):
         classe = str(cota.get("classe") or "").upper()
         maturity_iso = series_maturities.get(classe) or info.get("dataVencimentoIso")
@@ -672,6 +913,9 @@ def apply_static_cra_info(snapshot, cra_id):
             continue
         cota["dataVencimentoIso"] = maturity_iso
         cota["dataVencimento"] = format_date_br(maturity_iso)
+        agenda = agenda_by_class.get(classe)
+        if agenda:
+            cota["agendaPagamentos"] = [dict(event) for event in agenda]
 
 
 def enrich_current_performance(project_root, cra_root, cra_id, date_key, snapshot):
@@ -1073,6 +1317,7 @@ def main():
             cota["valor"] = subordinada_total
 
     apply_static_cra_info(snapshot, args.cra_id)
+    rebuild_static_funding_forecasts(snapshot, args.cra_id, date_key)
 
     snapshot["metadata"]["reportDate"] = report_date
     snapshot["metadata"]["dateKey"] = date_key
