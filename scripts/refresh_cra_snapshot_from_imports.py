@@ -35,6 +35,20 @@ SUB_PAYMENT_RESET_EVENTS = {
 }
 
 
+PDD_RENEGOTIATION_OVERRIDES = {
+    "cra-modelo": [
+        {
+            "id": "cra42-tecplante-pdd-renegociado-2026-07-31",
+            "fromDate": "2026-07-31",
+            "numeroUnico": "471368",
+            "nameContains": "tecplante",
+            "cedente": "TEC PLANTE PRODUTOS AGRICOLAS LTDA",
+            "descricao": "PDD zerado por renegociacao do titulo.",
+        },
+    ],
+}
+
+
 CRA_STATIC_INFO = {
     "cra-modelo": {
         "dataVencimentoIso": "2030-06-17",
@@ -97,6 +111,68 @@ def parse_number(value):
         return float(text)
     except ValueError:
         return 0.0
+
+
+def add_manual_adjustment(snapshot, adjustment):
+    metadata = snapshot.setdefault("metadata", {})
+    adjustments = [
+        item for item in metadata.get("manualAdjustments", []) or []
+        if item.get("id") != adjustment.get("id")
+    ]
+    adjustments.append(adjustment)
+    metadata["manualAdjustments"] = adjustments
+
+
+def apply_pdd_renegotiation_overrides(cra_id, date_key, carteira, snapshot):
+    rules = PDD_RENEGOTIATION_OVERRIDES.get(cra_id, [])
+    for rule in rules:
+        from_date = str(rule.get("fromDate") or "")
+        if from_date and date_key < from_date:
+            continue
+
+        total_adjusted = 0.0
+        adjusted_rows = 0
+        target_lastro = str(rule.get("numeroUnico") or "").strip()
+        target_name = normalize_name(rule.get("nameContains"))
+
+        for row in carteira:
+            row_lastro = str(row.get("numeroUnico") or "").strip()
+            row_name = normalize_name(f"{row.get('cedente') or ''} {row.get('sacado') or ''}")
+            matches_lastro = bool(target_lastro and row_lastro == target_lastro)
+            matches_name = bool(target_name and target_name in row_name)
+            if not matches_lastro and not matches_name:
+                continue
+
+            original_pdd = float(row.get("pdd", 0.0) or 0.0)
+            if original_pdd <= 0:
+                continue
+
+            row["pddOriginal"] = original_pdd
+            row["pddAjusteManual"] = -original_pdd
+            row["pdd"] = 0.0
+            row["valorPresenteLiquido"] = float(row.get("valorPresenteDia", 0.0) or 0.0)
+            row["statusPdd"] = "Renegociado"
+            observation = str(row.get("observacao") or "").strip()
+            note = rule.get("descricao") or "PDD zerado por ajuste manual."
+            row["observacao"] = f"{observation}; {note}".strip("; ")
+            total_adjusted += original_pdd
+            adjusted_rows += 1
+
+        if adjusted_rows:
+            add_manual_adjustment(
+                snapshot,
+                {
+                    "id": rule.get("id"),
+                    "tipo": "pdd_renegociado",
+                    "dataInicio": from_date or date_key,
+                    "dataBase": date_key,
+                    "lastro": target_lastro,
+                    "cedente": rule.get("cedente") or "",
+                    "linhasAjustadas": adjusted_rows,
+                    "valorPddZerado": total_adjusted,
+                    "observacao": rule.get("descricao") or "",
+                },
+            )
 
 
 def format_currency_br(value):
@@ -1335,6 +1411,7 @@ def main():
                 "statusPmt": str(row.get("status_pmt", "")).strip(),
             }
         )
+    apply_pdd_renegotiation_overrides(args.cra_id, date_key, carteira, snapshot)
 
     caixa_row = read_csv(caixa_path)[-1]
     accounts = {
