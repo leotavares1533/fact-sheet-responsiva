@@ -65,6 +65,7 @@ CRA_STATIC_INFO = {
         "dataVencimento": "15/07/2032",
         "vencimentosSeries": {
             "SR1": "2032-07-15",
+            "SR2": "2032-07-15",
             "SUB": "2032-07-15",
         },
         "agendaPagamentosByClasse": {
@@ -72,7 +73,28 @@ CRA_STATIC_INFO = {
                 {"dataIso": item, "juros": True, "amortizacaoPercentual": 1 if item == "2032-07-15" else 0}
                 for item in CRA65_PAYMENT_DATES
             ],
+            "SR2": [
+                {"dataIso": item, "juros": True, "amortizacaoPercentual": 1 if item == "2032-07-15" else 0}
+                for item in CRA65_PAYMENT_DATES
+            ],
         },
+        "series": [
+            {
+                "classe": "SR2",
+                "ifCodigo": "CRA0260040Q",
+                "tipo": "sr",
+                "quantidade": 400000,
+                "dataInicio": "30/07/2026",
+                "dataInicioIso": "2026-07-30",
+                "valorNominalInicial": 1000,
+                "principalResidual": 1000,
+                "indexador": "DI",
+                "percentualIndexador": 1.05,
+                "metodo": "percentual_di_252",
+                "ehFunding": True,
+                "ordem": 20,
+            },
+        ],
     }
 }
 
@@ -449,6 +471,196 @@ def snapshot_holidays(snapshot):
         if parse_date_key(text):
             dates.add(text)
     return dates
+
+
+def rate_info_from_row(row, fallback_date_key):
+    row = row or {}
+    daily_rate = parse_number(row.get("taxaDiUtilizadaDia") or row.get("tdk"))
+    annual_rate = parse_number(row.get("taxaDiAnualEquivalente"))
+    if not annual_rate and daily_rate:
+        annual_rate = (1 + daily_rate) ** 252 - 1
+    return {
+        "dailyRate": daily_rate,
+        "annualRate": annual_rate,
+        "dataTaxaDi": row.get("dataTaxaDi") or row.get("dataReferenciaTaxaDi") or format_date_br(fallback_date_key),
+        "dataTaxaDiIso": row.get("dataTaxaDiIso") or row.get("dataReferenciaTaxaDiIso") or fallback_date_key,
+        "taxaDiStatus": row.get("taxaDiStatus") or "BCB_SGS_12_D-2",
+        "defasagemDiDiasUteis": row.get("defasagemDiDiasUteis") if row.get("defasagemDiDiasUteis") is not None else 2,
+        "dataReferenciaTaxaDi": row.get("dataReferenciaTaxaDi") or row.get("dataTaxaDi") or format_date_br(fallback_date_key),
+        "dataReferenciaTaxaDiIso": row.get("dataReferenciaTaxaDiIso") or row.get("dataTaxaDiIso") or fallback_date_key,
+    }
+
+
+def funding_rate_info_for_date(cotas, date_key):
+    exact_rows = []
+    previous_rows = []
+    for cota in cotas or []:
+        if not cota.get("ehFunding"):
+            continue
+        for source_name in ("historicoPu", "previsaoPu"):
+            for row in cota.get(source_name, []) or []:
+                row_key = str(row.get("dataIso") or row.get("data") or "")[:10]
+                if not row_key:
+                    continue
+                if row_key == date_key:
+                    exact_rows.append(row)
+                elif row_key < date_key:
+                    previous_rows.append((row_key, row))
+    if exact_rows:
+        return rate_info_from_row(exact_rows[0], date_key)
+    if previous_rows:
+        return rate_info_from_row(sorted(previous_rows, key=lambda item: item[0])[-1][1], date_key)
+    reference = next((cota for cota in cotas or [] if cota.get("ehFunding")), {})
+    return last_known_rate_info(reference, date_key)
+
+
+def build_integralized_funding_cota(series, date_key, reference_cotas, holiday_dates):
+    start_key = str(series.get("dataInicioIso") or "")
+    start_date = parse_date_key(start_key)
+    end_date = parse_date_key(date_key)
+    if not start_date or not end_date or date_key < start_key:
+        return None
+
+    quantity = float(series.get("quantidade") or 0.0)
+    principal = float(series.get("principalResidual") or series.get("valorNominalInicial") or 1000.0)
+    pu = principal
+    base_pu = principal
+    period_factor = 1.0
+    total_factor = 1.0
+    pure_di_factor = 1.0
+    dias_uteis = 0
+    percentual_indexador = float(series.get("percentualIndexador") or 1.0)
+    history = []
+
+    def build_row(row_key, rate_info, dia_util, fator_diario, evento=""):
+        fator = pu / principal if principal > 0 else 0.0
+        return {
+            "data": format_date_br(row_key),
+            "dataIso": row_key,
+            "diaUtil": dia_util,
+            "taxaDiUtilizadaDia": rate_info["dailyRate"],
+            "taxaDiAnualEquivalente": rate_info["annualRate"],
+            "dataTaxaDi": rate_info["dataTaxaDi"],
+            "dataTaxaDiIso": rate_info["dataTaxaDiIso"],
+            "taxaDiStatus": rate_info["taxaDiStatus"],
+            "defasagemDiDiasUteis": rate_info["defasagemDiDiasUteis"],
+            "dataReferenciaTaxaDi": rate_info["dataReferenciaTaxaDi"],
+            "dataReferenciaTaxaDiIso": rate_info["dataReferenciaTaxaDiIso"],
+            "diasUteis": dias_uteis,
+            "diasUteisPeriodo": dias_uteis,
+            "fator": fator,
+            "valorNominal": principal,
+            "puAtualizado": pu,
+            "puJuros": max(0.0, pu - principal),
+            "valorReais": pu * quantity,
+            "tdk": rate_info["dailyRate"],
+            "fatorDiario": fator_diario,
+            "produtorioFatorDi": total_factor,
+            "fatorDiAcumulado": period_factor,
+            "spread": percentual_indexador - 1.0 if evento != "Integralizacao" else 0.0,
+            "spreadAcumulado": total_factor - pure_di_factor if evento != "Integralizacao" else 0.0,
+            "fatorJurosAcumulado": fator,
+            "evento": evento,
+            "puEvento": 0,
+        }
+
+    rate_info = funding_rate_info_for_date(reference_cotas, start_key)
+    history.append(build_row(start_key, rate_info, is_business_day_key(start_key, holiday_dates), 1.0, "Integralizacao"))
+
+    cursor = start_date
+    while cursor < end_date:
+        cursor += timedelta(days=1)
+        row_key = cursor.isoformat()
+        rate_info = funding_rate_info_for_date(reference_cotas, row_key)
+        dia_util = is_business_day_key(row_key, holiday_dates)
+        fator_diario = 1.0
+        if dia_util:
+            dias_uteis += 1
+            fator_diario = get_ts_daily_factor(rate_info["dailyRate"], percentual_indexador)
+            period_factor = add_ts_factor(period_factor, fator_diario)
+            total_factor = add_ts_factor(total_factor, fator_diario)
+            pure_di_factor = add_ts_factor(pure_di_factor, get_ts_daily_factor(rate_info["dailyRate"], 1.0))
+            pu = apply_ts_factor_to_pu(base_pu, period_factor)
+        history.append(build_row(row_key, rate_info, dia_util, fator_diario))
+
+    cota = {
+        "classe": series.get("classe"),
+        "ifCodigo": series.get("ifCodigo"),
+        "tipo": series.get("tipo") or "sr",
+        "quantidade": quantity,
+        "dataInicio": series.get("dataInicio") or format_date_br(start_key),
+        "dataInicioIso": start_key,
+        "valorNominalInicial": float(series.get("valorNominalInicial") or principal),
+        "principalResidual": principal,
+        "pu": pu,
+        "valor": pu * quantity,
+        "taxaAa": 0,
+        "taxaAm": 0,
+        "taxaDia": 0,
+        "indexador": series.get("indexador") or "DI",
+        "percentualIndexador": percentual_indexador,
+        "metodo": series.get("metodo") or "percentual_di_252",
+        "ehFunding": bool(series.get("ehFunding", True)),
+        "ordem": series.get("ordem") or 99,
+        "eventosAplicados": [],
+        "historicoPu": history,
+        "previsaoPu": [],
+        "acumulacaoFinal": {
+            "periodoInicio": series.get("dataInicio") or format_date_br(start_key),
+            "periodoFim": format_date_br(date_key),
+            "diasAcumulacao": dias_uteis,
+            "diasUteisPeriodo": dias_uteis,
+            "puAntesAcumulacao": principal,
+            "puFinal": pu,
+        },
+        "dataHistoricaDisponivel": True,
+        "dataHistoricaSelecionada": format_date_br(date_key),
+        "dataHistoricaIso": date_key,
+    }
+    return cota
+
+
+def ensure_static_cotas(snapshot, cra_id, date_key):
+    info = CRA_STATIC_INFO.get(cra_id) or {}
+    series_list = info.get("series") or []
+    if not series_list:
+        return
+
+    passivo = snapshot.setdefault("passivo", {})
+    cotas = passivo.setdefault("cotas", [])
+    holiday_dates = snapshot_holidays(snapshot)
+    existing_keys = {
+        str(cota.get("ifCodigo") or cota.get("classe") or "").upper()
+        for cota in cotas
+    }
+
+    for series in series_list:
+        start_key = str(series.get("dataInicioIso") or "")
+        if start_key and date_key < start_key:
+            continue
+        key = str(series.get("ifCodigo") or series.get("classe") or "").upper()
+        if key in existing_keys:
+            continue
+        cota = build_integralized_funding_cota(series, date_key, cotas, holiday_dates)
+        if not cota:
+            continue
+        cotas.append(cota)
+        existing_keys.add(key)
+        add_manual_adjustment(
+            snapshot,
+            {
+                "id": f"{cra_id}-{str(series.get('classe') or '').lower()}-integralizacao-{start_key}",
+                "tipo": "integralizacao",
+                "dataInicio": start_key,
+                "dataBase": date_key,
+                "classe": series.get("classe"),
+                "ifCodigo": series.get("ifCodigo"),
+                "quantidade": float(series.get("quantidade") or 0.0),
+                "valorIntegralizado": float(series.get("quantidade") or 0.0) * float(series.get("valorNominalInicial") or 1000.0),
+                "remuneracao": f"{format_number_br(float(series.get('percentualIndexador') or 0.0) * 100, 2)}% {series.get('indexador') or 'DI'}",
+                "observacao": "Serie incluida por integralizacao informada pelo usuario.",
+            },
+        )
 
 
 def build_funding_forecast_rows(cota, date_key, holiday_dates=None, days=220):
@@ -1489,6 +1701,7 @@ def main():
     pre_row = next((row for row in portfolio_composition if normalize_name(row.get("label")) == "prefixado"), None) or {"valorNominal": 0.0, "valorPresente": 0.0}
     pos_row = next((row for row in portfolio_composition if normalize_name(row.get("label")) == "posfixado"), None) or {"valorNominal": 0.0, "valorPresente": 0.0}
 
+    ensure_static_cotas(snapshot, args.cra_id, date_key)
     cotas = snapshot["passivo"]["cotas"]
     cota_quantities = {
         str(row.get("classe", "")).strip(): parse_number(row.get("quantidade"))
@@ -1499,7 +1712,9 @@ def main():
         classe = str(cota.get("classe", "")).strip()
         if classe in cota_quantities:
             cota["quantidade"] = cota_quantities[classe]
+            cota["valor"] = float(cota.get("pu") or 0.0) * float(cota.get("quantidade") or 0.0)
     apply_forecast_to_funding_cotas(cotas, date_key)
+    cotas.sort(key=lambda cota: (0 if cota.get("ehFunding") else 1, int(parse_number(cota.get("ordem"))) or {"SR1": 10, "SR2": 20, "SR3": 30, "SUB": 90}.get(str(cota.get("classe") or "").upper(), 99)))
 
     funding_total = sum(float(cota.get("valor", 0.0)) for cota in cotas if cota.get("ehFunding"))
     sub_quantity = sum(float(cota.get("quantidade", 0.0)) for cota in cotas if not cota.get("ehFunding"))
