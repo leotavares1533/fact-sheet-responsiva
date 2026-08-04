@@ -123,7 +123,15 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
             provisao = 0.0
             matches = 0
             for row in rows:
-                label = next((value for idx, value in enumerate(row) if idx != date_column and value not in (None, "")), "")
+                label = next(
+                    (
+                        value for idx, value in enumerate(row)
+                        if idx != date_column
+                        and value not in (None, "")
+                        and re.search(r"[A-Za-zÀ-ÿ]", str(value))
+                    ),
+                    "",
+                )
                 text = normalize(label)
                 if not text:
                     continue
