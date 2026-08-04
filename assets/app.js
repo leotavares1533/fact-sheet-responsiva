@@ -1414,7 +1414,7 @@
             return;
           }
 
-          const rawPdd = row?.pddTotal ?? row?.valorPdd ?? row?.pdd;
+          const rawPdd = row?.pddTotal ?? row?.ativo?.pddTotal ?? row?.carteiraResumo?.pddTotal ?? row?.valorPdd ?? row?.pdd;
           if (rawPdd === undefined || rawPdd === null || rawPdd === "") {
             return;
           }
@@ -1428,8 +1428,8 @@
             dateKey: rowDateKey,
             reportDate: row.reportDate || row.data || formatIsoDate(rowDateKey),
             pddTotal,
-            carteiraVp: Number(row.carteiraVp ?? row.carteiraVpLiquido ?? row.carteiraVpBruto ?? 0),
-            ativoTotal: Number(row.ativoTotal ?? row.totalAtivo ?? 0)
+            carteiraVp: Number(row.carteiraVp ?? row.carteiraVpLiquido ?? row.carteiraVpBruto ?? row.ativo?.carteiraVp ?? row.ativo?.carteiraVpLiquido ?? row.ativo?.carteiraVpBruto ?? row.carteiraResumo?.valorPresenteLiquido ?? row.carteiraResumo?.valorPresente ?? 0),
+            ativoTotal: Number(row.ativoTotal ?? row.totalAtivo ?? row.ativo?.total ?? 0)
           });
         };
 
