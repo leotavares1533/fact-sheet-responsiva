@@ -1203,6 +1203,85 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
     snapshot["rendimento30Dias"] = history[:30]
 
 
+def parse_indexer_percent_from_tax(tax_text):
+    text = str(tax_text or "").strip()
+    if not text:
+        return None
+    normalized = normalize_name(text)
+    if "di" not in normalized and "cdi" not in normalized:
+        return None
+    match = re.search(r"(\d+(?:[.,]\d+)?)\s*%", text)
+    if not match:
+        return None
+    return parse_number(match.group(1)) / 100.0
+
+
+def infer_month_cdi_period(snapshot, month_key, date_key):
+    for row in snapshot.get("performanceCotas", []) or []:
+        if str(row.get("classe") or "").upper() == "SUB":
+            continue
+        result = row.get("resultadoMes")
+        indexer_percent = parse_indexer_percent_from_tax(row.get("taxa"))
+        if result is None or not indexer_percent:
+            continue
+        return float(result) / indexer_percent
+
+    for row in snapshot.get("precificacaoMensal", []) or []:
+        row_date = str(row.get("dateKey") or "")
+        if row_date[:7] == month_key and row.get("cdiPeriodo") is not None:
+            return float(row.get("cdiPeriodo") or 0.0)
+
+    return None
+
+
+def rebuild_current_month_pricing(snapshot, date_key):
+    monthly_rows = list(snapshot.get("precificacaoMensal") or [])
+    performance_rows = list(snapshot.get("performanceCotas") or [])
+    if not performance_rows:
+        return
+
+    month_key = date_key[:7]
+    month_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%m/%y")
+    cdi_period = infer_month_cdi_period(snapshot, month_key, date_key)
+    order = {"SR1": 1, "SR2": 2, "SR3": 3, "SUB": 4}
+    rebuilt = []
+
+    for row in sorted(performance_rows, key=lambda item: order.get(str(item.get("classe") or "").upper(), 99)):
+        result = row.get("resultadoMes")
+        percent_cdi = None
+        classe = str(row.get("classe") or "").upper()
+        indexer_percent = parse_indexer_percent_from_tax(row.get("taxa"))
+        if result is not None and cdi_period:
+            percent_cdi = float(result) / cdi_period
+        elif indexer_percent and result is not None:
+            percent_cdi = indexer_percent
+
+        rebuilt_row = {
+            "mes": month_label,
+            "dateKey": date_key,
+            "reportDate": snapshot.get("metadata", {}).get("reportDate") or format_date_br(date_key),
+            "classe": classe,
+            "label": row.get("label") or cota_label(classe, {}),
+            "resultadoMensal": result,
+            "cdiPeriodo": cdi_period,
+            "percentualCdi": percent_cdi,
+            "puFechamento": row.get("pu"),
+        }
+        if row.get("resultadoInicio") is not None:
+            rebuilt_row["resultadoInicio"] = row.get("resultadoInicio")
+        if row.get("ajustesFluxoSub"):
+            rebuilt_row["ajustesFluxoSub"] = row.get("ajustesFluxoSub")
+        if row.get("ajustesFluxoPeriodo"):
+            rebuilt_row["ajustesFluxoPeriodo"] = row.get("ajustesFluxoPeriodo")
+        rebuilt.append(rebuilt_row)
+
+    preserved = [
+        row for row in monthly_rows
+        if str(row.get("dateKey") or "")[:7] != month_key and str(row.get("mes") or "") != month_label
+    ]
+    snapshot["precificacaoMensal"] = rebuilt + preserved
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--project-root", required=True)
@@ -1499,6 +1578,7 @@ def main():
 
     enrich_current_performance(project_root, cra_root, args.cra_id, date_key, snapshot)
     build_performance_fallback(project_root, cra_root, args.cra_id, date_key, snapshot)
+    rebuild_current_month_pricing(snapshot, date_key)
 
     revision_path = cra_root / "archive" / "revisions" / date_key / f"{revision_id}.json"
     revision_path.parent.mkdir(parents=True, exist_ok=True)

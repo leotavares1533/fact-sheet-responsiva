@@ -8,15 +8,15 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-31"] = {
     "title": "CRA 42",
     "reportDate": "31/07/2026",
     "dateKey": "2026-07-31",
-    "importedAt": "2026-08-03T18:05:28.528870-03:00",
-    "revisionId": "20260803-180527",
+    "importedAt": "2026-08-03T22:50:04.556229-03:00",
+    "revisionId": "20260803-225003",
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
       "holidayCount": 1263,
       "lagBusinessDays": 2
     },
     "canonicalPath": "cras/cra-modelo/archive/canonical/2026-07-31.json",
-    "revisionPath": "cras/cra-modelo/archive/revisions/2026-07-31/20260803-180527.json",
+    "revisionPath": "cras/cra-modelo/archive/revisions/2026-07-31/20260803-225003.json",
     "dataScript": "data/cras/cra-modelo/2026-07-31.js",
     "manualAdjustments": [
       {
@@ -505531,42 +505531,42 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-31"] = {
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/carteira/2026-07-31/carteira-2026-07-31-20260803-180527.csv"
+      "file": "cras/cra-modelo/archive/raw/carteira/2026-07-31/carteira-2026-07-31-20260803-225003.csv"
     },
     {
       "name": "Carteira fonte Excel",
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-31/carteira-fonte-excel-2026-07-31-20260803-180527.xlsx"
+      "file": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-31/carteira-fonte-excel-2026-07-31-20260803-225003.xlsx"
     },
     {
       "name": "Validacao carteira",
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-31/carteira-validacao-2026-07-31-20260803-180527.json"
+      "file": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-31/carteira-validacao-2026-07-31-20260803-225003.json"
     },
     {
       "name": "Caixa",
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/caixa/2026-07-31/caixa-2026-07-31-20260803-180527.csv"
+      "file": "cras/cra-modelo/archive/raw/caixa/2026-07-31/caixa-2026-07-31-20260803-225003.csv"
     },
     {
       "name": "Caixa fonte Excel",
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-31/caixa-fonte-excel-2026-07-31-20260803-180527.xlsx"
+      "file": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-31/caixa-fonte-excel-2026-07-31-20260803-225003.xlsx"
     },
     {
       "name": "Cotas e memoria de PU",
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/cotas/2026-07-31/cotas-2026-07-31-20260803-180527.csv"
+      "file": "cras/cra-modelo/archive/raw/cotas/2026-07-31/cotas-2026-07-31-20260803-225003.csv"
     },
     {
       "name": "Eventos de PU",
@@ -505587,7 +505587,7 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-31"] = {
       "owner": "",
       "url": "",
       "date": "31/07/2026",
-      "file": "cras/cra-modelo/archive/raw/despesas/2026-07-31/despesas-2026-07-31-20260803-180527.csv"
+      "file": "cras/cra-modelo/archive/raw/despesas/2026-07-31/despesas-2026-07-31-20260803-225003.csv"
     },
     {
       "name": "Calendario ANBIMA",
@@ -505598,17 +505598,17 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-31"] = {
     }
   ],
   "rawImports": {
-    "carteira": "cras/cra-modelo/archive/raw/carteira/2026-07-31/carteira-2026-07-31-20260803-180527.csv",
-    "carteiraFonteExcel": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-31/carteira-fonte-excel-2026-07-31-20260803-180527.xlsx",
+    "carteira": "cras/cra-modelo/archive/raw/carteira/2026-07-31/carteira-2026-07-31-20260803-225003.csv",
+    "carteiraFonteExcel": "cras/cra-modelo/archive/raw/carteira-fonte-excel/2026-07-31/carteira-fonte-excel-2026-07-31-20260803-225003.xlsx",
     "carteiraFonteMinerva": "",
-    "carteiraValidacao": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-31/carteira-validacao-2026-07-31-20260803-180527.json",
-    "caixa": "cras/cra-modelo/archive/raw/caixa/2026-07-31/caixa-2026-07-31-20260803-180527.csv",
-    "cotas": "cras/cra-modelo/archive/raw/cotas/2026-07-31/cotas-2026-07-31-20260803-180527.csv",
+    "carteiraValidacao": "cras/cra-modelo/archive/raw/carteira-validacao/2026-07-31/carteira-validacao-2026-07-31-20260803-225003.json",
+    "caixa": "cras/cra-modelo/archive/raw/caixa/2026-07-31/caixa-2026-07-31-20260803-225003.csv",
+    "cotas": "cras/cra-modelo/archive/raw/cotas/2026-07-31/cotas-2026-07-31-20260803-225003.csv",
     "eventosPu": "cras/cra-modelo/archive/raw/eventos-pu/2026-07-03/eventos-pu-2026-07-03-20260706-173813.csv",
     "indices": "cras/cra-modelo/archive/raw/indices/2026-07-03/indices-2026-07-03-20260706-173813.csv",
-    "despesas": "cras/cra-modelo/archive/raw/despesas/2026-07-31/despesas-2026-07-31-20260803-180527.csv",
+    "despesas": "cras/cra-modelo/archive/raw/despesas/2026-07-31/despesas-2026-07-31-20260803-225003.csv",
     "calendario": "cras/cra-modelo/archive/raw/calendarios/2026-07-03/calendarios-2026-07-03-20260706-173813.csv",
-    "caixaFonteExcel": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-31/caixa-fonte-excel-2026-07-31-20260803-180527.xlsx"
+    "caixaFonteExcel": "cras/cra-modelo/archive/raw/caixa-fonte-excel/2026-07-31/caixa-fonte-excel-2026-07-31-20260803-225003.xlsx"
   },
   "carteiraResumo": {
     "valorNominal": 598664071.35,
@@ -509236,192 +509236,86 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-31"] = {
   "precificacaoMensal": [
     {
       "mes": "07/26",
-      "dateKey": "2026-07-24",
-      "reportDate": "24/07/2026",
+      "dateKey": "2026-07-31",
+      "reportDate": "31/07/2026",
+      "classe": "SR1",
+      "label": "Senior 1a",
+      "resultadoMensal": 0.013375161809025649,
+      "cdiPeriodo": 0.012159238008205134,
+      "percentualCdi": 1.1,
+      "puFechamento": 1006.95617,
+      "resultadoInicio": 0.006956169999999817
+    },
+    {
+      "mes": "07/26",
+      "dateKey": "2026-07-31",
+      "reportDate": "31/07/2026",
+      "classe": "SR2",
+      "label": "Senior 2a",
+      "resultadoMensal": 0.013375161809025649,
+      "cdiPeriodo": 0.012159238008205134,
+      "percentualCdi": 1.1,
+      "puFechamento": 1006.95617,
+      "resultadoInicio": 0.006956169999999817
+    },
+    {
+      "mes": "07/26",
+      "dateKey": "2026-07-31",
+      "reportDate": "31/07/2026",
+      "classe": "SR3",
+      "label": "Senior 3a",
+      "resultadoMensal": 0.013375161808965252,
+      "cdiPeriodo": 0.012159238008205134,
+      "percentualCdi": 1.099999999995033,
+      "puFechamento": 1006.95617,
+      "resultadoInicio": 0.006956169999999817
+    },
+    {
+      "mes": "07/26",
+      "dateKey": "2026-07-31",
+      "reportDate": "31/07/2026",
       "classe": "SUB",
       "label": "Subordinada",
-      "resultadoMensal": 0.01507531685982344,
-      "cdiPeriodo": 0.00949791896160157,
-      "percentualCdi": 1.5872231507523191,
-      "puFechamento": 1102.2833734496205,
-      "resultadoInicio": 0.10228337344962046,
-      "ajustesFluxoSub": [],
-      "ajustesFluxoInicio": [
+      "resultadoMensal": 0.041039132161930114,
+      "cdiPeriodo": 0.012159238008205134,
+      "percentualCdi": 3.375140130840159,
+      "puFechamento": 1000.914326375,
+      "resultadoInicio": 0.13047781522499946,
+      "ajustesFluxoSub": [
         {
-          "dateKey": "2026-01-20",
-          "reportDate": "20/01/2026",
-          "retornoIgnorado": -0.12239757862393108,
-          "puAntes": 1141.8772327420568,
-          "puDepois": 1002.114224368634,
-          "valorAntes": 456750893.0968227,
-          "valorDepois": 400845689.74745363,
-          "valorFluxoEstimado": 55905203.34936905,
-          "observacao": "Pagamento/prêmio da Subordinada tratado como fluxo, não como perda de performance."
+          "dateKey": "2026-07-31",
+          "dataIso": "2026-07-31",
+          "data": "31/07/2026",
+          "tipoEvento": "pagamento_subordinada",
+          "tipoNormalizado": "pagamento premio subordinada",
+          "evento": "Pagamento de premio da Subordinada",
+          "observacao": "Fluxo tratado como pagamento para nao contaminar a rentabilidade diaria.",
+          "puEvento": 129.56348884999989,
+          "puAntesEvento": 1129.5634888499999,
+          "puDepois": 1000.0,
+          "puAposEvento": 1000.0,
+          "principalAposEvento": 1000.0,
+          "valorFluxoEstimado": 51825395.539999954,
+          "ehDataPagamentoTs": true
         }
       ],
       "ajustesFluxoPeriodo": {
-        "mes": [],
-        "inicio": [
+        "2026-07-31": [
           {
-            "dateKey": "2026-01-20",
-            "reportDate": "20/01/2026",
-            "retornoIgnorado": -0.12239757862393108,
-            "puAntes": 1141.8772327420568,
-            "puDepois": 1002.114224368634,
-            "valorAntes": 456750893.0968227,
-            "valorDepois": 400845689.74745363,
-            "valorFluxoEstimado": 55905203.34936905,
-            "observacao": "Pagamento/prêmio da Subordinada tratado como fluxo, não como perda de performance."
-          }
-        ]
-      }
-    },
-    {
-      "mes": "07/26",
-      "dateKey": "2026-07-24",
-      "reportDate": "24/07/2026",
-      "classe": "SR3",
-      "label": "Senior 3a",
-      "resultadoMensal": 0.010452388171821703,
-      "cdiPeriodo": 0.009502171065292456,
-      "percentualCdi": 1.1,
-      "puFechamento": 1004.05191,
-      "resultadoInicio": 0.004051910000000047,
-      "ajustesFluxoSub": [],
-      "ajustesFluxoInicio": [],
-      "ajustesFluxoPeriodo": {
-        "mes": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR3",
-            "retornoOriginal": -0.07001165625451633,
-            "retornoConsiderado": 0.0005778386506065658,
-            "puAntes": 1075.28229437,
-            "puAntesEvento": 1075.90363404,
-            "puEvento": 75.90363404000004,
+            "dateKey": "2026-07-31",
+            "dataIso": "2026-07-31",
+            "data": "31/07/2026",
+            "tipoEvento": "pagamento_subordinada",
+            "tipoNormalizado": "pagamento premio subordinada",
+            "evento": "Pagamento de premio da Subordinada",
+            "observacao": "Fluxo tratado como pagamento para nao contaminar a rentabilidade diaria.",
+            "puEvento": 129.56348884999989,
+            "puAntesEvento": 1129.5634888499999,
             "puDepois": 1000.0,
-            "valorAntes": 107528229.437,
-            "valorDepois": 100000000.0,
-            "valorFluxoEstimado": 7590363.404000004,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "inicio": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR3",
-            "retornoOriginal": -0.07001165625451633,
-            "retornoConsiderado": 0.0005778386506065658,
-            "puAntes": 1075.28229437,
-            "puAntesEvento": 1075.90363404,
-            "puEvento": 75.90363404000004,
-            "puDepois": 1000.0,
-            "valorAntes": 107528229.437,
-            "valorDepois": 100000000.0,
-            "valorFluxoEstimado": 7590363.404000004,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ]
-      }
-    },
-    {
-      "mes": "07/26",
-      "dateKey": "2026-07-24",
-      "reportDate": "24/07/2026",
-      "classe": "SR2",
-      "label": "Senior 2a",
-      "resultadoMensal": 0.010452388171882099,
-      "cdiPeriodo": 0.009502171065347361,
-      "percentualCdi": 1.1,
-      "puFechamento": 1004.05191,
-      "resultadoInicio": 0.004051910000000047,
-      "ajustesFluxoSub": [],
-      "ajustesFluxoInicio": [],
-      "ajustesFluxoPeriodo": {
-        "mes": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR2",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 150539521.2104,
-            "valorDepois": 140000000.0,
-            "valorFluxoEstimado": 10626508.764199989,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "inicio": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR2",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 150539521.2104,
-            "valorDepois": 140000000.0,
-            "valorFluxoEstimado": 10626508.764199989,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ]
-      }
-    },
-    {
-      "mes": "07/26",
-      "dateKey": "2026-07-24",
-      "reportDate": "24/07/2026",
-      "classe": "SR1",
-      "label": "Senior 1a",
-      "resultadoMensal": 0.010452388171882099,
-      "cdiPeriodo": 0.009502171065347361,
-      "percentualCdi": 1.1,
-      "puFechamento": 1004.05191,
-      "resultadoInicio": 0.004051910000000047,
-      "ajustesFluxoSub": [],
-      "ajustesFluxoInicio": [],
-      "ajustesFluxoPeriodo": {
-        "mes": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR1",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 387101625.96959996,
-            "valorDepois": 360000000.0,
-            "valorFluxoEstimado": 27325308.250799973,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
-          }
-        ],
-        "inicio": [
-          {
-            "dateKey": "2026-07-15",
-            "reportDate": "15/07/2026",
-            "classe": "SR1",
-            "retornoOriginal": -0.07001165624586736,
-            "retornoConsiderado": 0.0005778386506121169,
-            "puAntes": 1075.28229436,
-            "puAntesEvento": 1075.90363403,
-            "puEvento": 75.90363402999992,
-            "puDepois": 1000.0,
-            "valorAntes": 387101625.96959996,
-            "valorDepois": 360000000.0,
-            "valorFluxoEstimado": 27325308.250799973,
-            "observacao": "Pagamento/amortizacao tratado como fluxo, nao como perda de performance."
+            "puAposEvento": 1000.0,
+            "principalAposEvento": 1000.0,
+            "valorFluxoEstimado": 51825395.539999954,
+            "ehDataPagamentoTs": true
           }
         ]
       }
