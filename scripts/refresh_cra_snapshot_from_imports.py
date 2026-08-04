@@ -1234,13 +1234,41 @@ def load_or_bootstrap_snapshot(project_root, cra_root, cra_id, date_key):
     return load_snapshot_for_date(project_root, cra_root, cra_id, sorted(candidate_keys)[-1]), canonical_path
 
 
-def apply_forecast_to_funding_cotas(cotas, date_key):
+def apply_forecast_to_funding_cotas(cotas, date_key, holiday_dates=None):
     for cota in cotas:
         if not cota.get("ehFunding"):
             continue
 
         forecast_rows = list(cota.get("previsaoPu") or [])
         forecast = next((row for row in forecast_rows if str(row.get("dataIso") or "") == date_key), None)
+        if not forecast:
+            history = [
+                row for row in (cota.get("historicoPu") or [])
+                if str(row.get("dataIso") or row.get("data") or "")[:10] < date_key
+            ]
+            history = sorted(history, key=lambda row: str(row.get("dataIso") or row.get("data") or "")[:10])
+            start_key = str(
+                (history[-1].get("dataIso") if history else "")
+                or cota.get("dataHistoricaIso")
+                or cota.get("dataInicioIso")
+                or ""
+            )[:10]
+            start_date = parse_date_key(start_key)
+            target_date = parse_date_key(date_key)
+            if start_date and target_date and start_key < date_key:
+                days = max((target_date - start_date).days + 5, 10)
+                generated_rows = build_funding_forecast_rows(cota, start_key, holiday_dates, days)
+                merged_rows = {
+                    str(row.get("dataIso") or ""): row
+                    for row in forecast_rows
+                    if str(row.get("dataIso") or "")
+                }
+                for row in generated_rows:
+                    row_key = str(row.get("dataIso") or "")
+                    if row_key:
+                        merged_rows[row_key] = row
+                forecast_rows = sorted(merged_rows.values(), key=lambda row: str(row.get("dataIso") or ""))
+                forecast = next((row for row in forecast_rows if str(row.get("dataIso") or "") == date_key), None)
         if not forecast:
             continue
 
@@ -1808,7 +1836,7 @@ def main():
             cota["quantidade"] = cota_quantities[classe]
             cota["valor"] = float(cota.get("pu") or 0.0) * float(cota.get("quantidade") or 0.0)
     apply_static_quantity_events(snapshot, args.cra_id, date_key)
-    apply_forecast_to_funding_cotas(cotas, date_key)
+    apply_forecast_to_funding_cotas(cotas, date_key, snapshot_holidays(snapshot))
     cotas.sort(key=lambda cota: (0 if cota.get("ehFunding") else 1, int(parse_number(cota.get("ordem"))) or {"SR1": 10, "SR2": 20, "SR3": 30, "SUB": 90}.get(str(cota.get("classe") or "").upper(), 99)))
 
     funding_total = sum(float(cota.get("valor", 0.0)) for cota in cotas if cota.get("ehFunding"))
