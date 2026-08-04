@@ -95,6 +95,17 @@ CRA_STATIC_INFO = {
                 "ordem": 20,
             },
         ],
+        "quantityEvents": [
+            {
+                "classe": "SUB",
+                "fromDate": "2026-07-30",
+                "quantidade": 200000,
+                "quantidadeEvento": 100000,
+                "valorIntegralizado": 100000000,
+                "puIntegralizacao": 1000,
+                "descricao": "Integralizacao adicional na Subordinada existente.",
+            },
+        ],
     }
 }
 
@@ -659,6 +670,64 @@ def ensure_static_cotas(snapshot, cra_id, date_key):
                 "valorIntegralizado": float(series.get("quantidade") or 0.0) * float(series.get("valorNominalInicial") or 1000.0),
                 "remuneracao": f"{format_number_br(float(series.get('percentualIndexador') or 0.0) * 100, 2)}% {series.get('indexador') or 'DI'}",
                 "observacao": "Serie incluida por integralizacao informada pelo usuario.",
+            },
+        )
+
+
+def quantity_events_for_class(cra_id, classe):
+    info = CRA_STATIC_INFO.get(cra_id) or {}
+    normalized_class = str(classe or "").upper()
+    return [
+        event for event in info.get("quantityEvents", []) or []
+        if str(event.get("classe") or "").upper() == normalized_class
+    ]
+
+
+def quantity_event_for_period(cra_id, classe, previous_key, date_key):
+    candidates = []
+    for event in quantity_events_for_class(cra_id, classe):
+        event_date = str(event.get("fromDate") or "")
+        if event_date and (not previous_key or event_date > previous_key) and event_date <= date_key:
+            candidates.append(event)
+    return sorted(candidates, key=lambda event: str(event.get("fromDate") or ""))[-1] if candidates else None
+
+
+def apply_static_quantity_events(snapshot, cra_id, date_key):
+    info = CRA_STATIC_INFO.get(cra_id) or {}
+    events = info.get("quantityEvents") or []
+    if not events:
+        return
+
+    cotas = snapshot.get("passivo", {}).get("cotas", []) or []
+    for event in events:
+        event_date = str(event.get("fromDate") or "")
+        if event_date and date_key < event_date:
+            continue
+        classe = str(event.get("classe") or "").upper()
+        cota = next((item for item in cotas if str(item.get("classe") or "").upper() == classe), None)
+        if not cota:
+            continue
+        previous_quantity = float(cota.get("quantidade") or 0.0)
+        target_quantity = float(event.get("quantidade") or previous_quantity)
+        if not target_quantity or abs(previous_quantity - target_quantity) <= 0.0001:
+            continue
+        cota["quantidade"] = target_quantity
+        if cota.get("ehFunding"):
+            cota["valor"] = float(cota.get("pu") or 0.0) * target_quantity
+        add_manual_adjustment(
+            snapshot,
+            {
+                "id": f"{cra_id}-{classe.lower()}-quantidade-{event_date}",
+                "tipo": "integralizacao_quantidade",
+                "dataInicio": event_date,
+                "dataBase": date_key,
+                "classe": classe,
+                "quantidadeAnterior": previous_quantity,
+                "quantidadeAtual": target_quantity,
+                "quantidadeEvento": float(event.get("quantidadeEvento") or max(target_quantity - previous_quantity, 0.0)),
+                "valorIntegralizado": float(event.get("valorIntegralizado") or 0.0),
+                "puIntegralizacao": float(event.get("puIntegralizacao") or 0.0),
+                "observacao": event.get("descricao") or "Ajuste de quantidade por integralizacao.",
             },
         )
 
@@ -1390,6 +1459,31 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
         resultado_dia = (pu / prev_pu - 1.0) if pu > 0 and prev_pu > 0 else None
         ajustes_fluxo_sub = []
         ajustes_fluxo_periodo = {}
+        quantity_event = quantity_event_for_period(cra_id, classe, previous_key, date_key)
+        if classe == "SUB" and quantity_event and previous_key and previous_key < date_key:
+            previous_value = float(prev_cota.get("valor") or (prev_pu * float(prev_cota.get("quantidade") or 0.0)) or 0.0)
+            current_value = float(cota.get("valor") or (pu * float(cota.get("quantidade") or 0.0)) or 0.0)
+            contribution_value = float(quantity_event.get("valorIntegralizado") or 0.0)
+            contribution_quantity = float(quantity_event.get("quantidadeEvento") or 0.0)
+            if not contribution_value and contribution_quantity:
+                contribution_value = contribution_quantity * float(quantity_event.get("puIntegralizacao") or cota.get("valorNominalInicial") or 1000.0)
+            if previous_value > 0 and current_value >= contribution_value:
+                resultado_dia = (current_value - contribution_value) / previous_value - 1.0
+                quantity_adjustment = {
+                    "dateKey": quantity_event.get("fromDate") or date_key,
+                    "dataIso": quantity_event.get("fromDate") or date_key,
+                    "data": format_date_br(quantity_event.get("fromDate") or date_key),
+                    "tipoEvento": "integralizacao_subordinada",
+                    "tipoNormalizado": "integralizacao subordinada",
+                    "evento": quantity_event.get("descricao") or "Integralizacao da Subordinada",
+                    "observacao": "Fluxo de integralizacao tratado fora da rentabilidade diaria.",
+                    "quantidadeEvento": contribution_quantity,
+                    "puIntegralizacao": float(quantity_event.get("puIntegralizacao") or 0.0),
+                    "valorFluxoEstimado": contribution_value,
+                    "ehDataPagamentoTs": False,
+                }
+                ajustes_fluxo_sub.append(quantity_adjustment)
+                ajustes_fluxo_periodo.setdefault(date_key, []).append(quantity_adjustment)
         if classe == "SUB" and sub_payment_event and pu > 0 and prev_pu > 0:
             benchmark_pu = float(sub_payment_event.get("benchmarkPu") or 1000.0)
             paid_pu = max(0.0, prev_pu - benchmark_pu)
@@ -1713,6 +1807,7 @@ def main():
         if classe in cota_quantities:
             cota["quantidade"] = cota_quantities[classe]
             cota["valor"] = float(cota.get("pu") or 0.0) * float(cota.get("quantidade") or 0.0)
+    apply_static_quantity_events(snapshot, args.cra_id, date_key)
     apply_forecast_to_funding_cotas(cotas, date_key)
     cotas.sort(key=lambda cota: (0 if cota.get("ehFunding") else 1, int(parse_number(cota.get("ordem"))) or {"SR1": 10, "SR2": 20, "SR3": 30, "SUB": 90}.get(str(cota.get("classe") or "").upper(), 99)))
 
