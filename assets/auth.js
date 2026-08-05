@@ -14,6 +14,12 @@
       password: DEFAULT_PASSWORD,
       mustChangePassword: true,
     },
+    "fabryny.bittencourt@ceresagrofinance.com": {
+      name: "Fabryny Bittencourt",
+      role: "viewer",
+      password: DEFAULT_PASSWORD,
+      mustChangePassword: true,
+    },
     [ADMIN_EMAIL]: {
       name: "Leonardo Silva",
       role: "admin",
