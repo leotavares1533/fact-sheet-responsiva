@@ -920,8 +920,25 @@ def build_upcoming_maturities(active_rows, date_key, denominator):
     }
 
 
-def tipo_ativo_ts_label(tipo_titulo):
+def tipo_ativo_ts_label(tipo_titulo, cra_id=None):
     normalized = normalize_name(tipo_titulo)
+    if cra_id == "cra-65":
+        if normalized in {"cprf", "cpr_f"} or "cprf" in normalized:
+            return "CPR-F", 1.0
+        if normalized == "ccb" or "ccb" in normalized:
+            return "CCB", 1.0
+        if normalized == "cdca" or "cdca" in normalized:
+            return "CDCA", 1.0
+        if normalized in {"np", "notapromissoria", "notaspromissorias"} or "notapromiss" in normalized:
+            return "Notas Promissorias", 1.0
+        if normalized in {"nc", "notacomercial", "notascomerciais"} or "notacomercial" in normalized:
+            return "Notas Comerciais", 1.0
+        if normalized in {"crt", "contrato", "contratos"} or "takeorpay" in normalized:
+            return "Contratos de Take-or-Pay", 0.10
+        if normalized in {"nfe", "nf", "duplicata", "duplicatas"} or "notafiscal" in normalized:
+            return "Duplicatas / NFE", 1.0
+        return "Outros Direitos Creditorios", 1.0
+
     if any(token in normalized for token in ("duplicata", "duplicatas", "cprf", "cpr_f", "nf", "notafiscal")):
         return "Duplicatas e CPR-F", 1.0
     if any(token in normalized for token in ("ccb", "cdca", "nc", "notacomercial", "notascomerciais")):
@@ -929,10 +946,29 @@ def tipo_ativo_ts_label(tipo_titulo):
     return "Outros Direitos Creditorios", 0.05
 
 
-def build_tipo_ativo_ts(active_rows, patrimonio_liquido):
+def tipo_ativo_ts_order(cra_id=None):
+    if cra_id == "cra-65":
+        return [
+            ("Duplicatas / NFE", 1.0),
+            ("CPR-F", 1.0),
+            ("CCB", 1.0),
+            ("CDCA", 1.0),
+            ("Notas Promissorias", 1.0),
+            ("Notas Comerciais", 1.0),
+            ("Contratos de Take-or-Pay", 0.10),
+            ("Outros Direitos Creditorios", 1.0),
+        ]
+    return [
+        ("Duplicatas e CPR-F", 1.0),
+        ("CCB, CDCA, Notas Comerciais", 0.30),
+        ("Outros Direitos Creditorios", 0.05),
+    ]
+
+
+def build_tipo_ativo_ts(active_rows, patrimonio_liquido, cra_id=None):
     grouped = {}
     for row in active_rows:
-        label, limit = tipo_ativo_ts_label(row.get("tipoTitulo"))
+        label, limit = tipo_ativo_ts_label(row.get("tipoTitulo"), cra_id)
         current = grouped.setdefault(
             label,
             {
@@ -950,12 +986,12 @@ def build_tipo_ativo_ts(active_rows, patrimonio_liquido):
         current["valorPresente"] += float(row.get("valorPresenteLiquido", row.get("valorPresenteDia", 0.0)) or 0.0)
 
     rows = []
-    preferred_order = ["Duplicatas e CPR-F", "CCB, CDCA, Notas Comerciais", "Outros Direitos Creditorios"]
-    for label in preferred_order:
+    preferred_order = tipo_ativo_ts_order(cra_id)
+    for label, default_limit in preferred_order:
         if label not in grouped:
             grouped[label] = {
                 "label": label,
-                "percentualPermitido": 1.0 if label == "Duplicatas e CPR-F" else (0.30 if label.startswith("CCB") else 0.05),
+                "percentualPermitido": default_limit,
                 "quantidade": 0,
                 "valorNominal": 0.0,
                 "valorPresente": 0.0,
@@ -1257,7 +1293,40 @@ def apply_forecast_to_funding_cotas(cotas, date_key, holiday_dates=None):
             target_date = parse_date_key(date_key)
             if start_date and target_date and start_key < date_key:
                 days = max((target_date - start_date).days + 5, 10)
-                generated_rows = build_funding_forecast_rows(cota, start_key, holiday_dates, days)
+                source_cota = cota
+                if history:
+                    last_history = history[-1]
+                    source_cota = dict(cota)
+                    history_pu = float(
+                        last_history.get("puAposEvento")
+                        or last_history.get("puAtualizado")
+                        or last_history.get("puFinal")
+                        or source_cota.get("pu")
+                        or 0.0
+                    )
+                    quantity = float(source_cota.get("quantidade") or 0.0)
+                    source_cota["pu"] = history_pu
+                    source_cota["valor"] = float(last_history.get("valorReais") or (history_pu * quantity))
+                    principal = float(
+                        last_history.get("principalAposEvento")
+                        or last_history.get("valorNominal")
+                        or source_cota.get("principalResidual")
+                        or source_cota.get("valorNominalInicial")
+                        or 0.0
+                    )
+                    if principal:
+                        source_cota["principalResidual"] = principal
+                    acumulacao = dict(source_cota.get("acumulacaoFinal") or {})
+                    if last_history.get("diasUteis") is not None:
+                        acumulacao["diasAcumulacao"] = int(parse_number(last_history.get("diasUteis")))
+                    if last_history.get("diasUteisPeriodo") is not None:
+                        acumulacao["diasUteisPeriodo"] = int(parse_number(last_history.get("diasUteisPeriodo")))
+                    acumulacao["periodoFim"] = format_date_br(start_key)
+                    acumulacao["puFinal"] = history_pu
+                    source_cota["acumulacaoFinal"] = acumulacao
+                    source_cota["dataHistoricaIso"] = start_key
+
+                generated_rows = build_funding_forecast_rows(source_cota, start_key, holiday_dates, days)
                 merged_rows = {
                     str(row.get("dataIso") or ""): row
                     for row in forecast_rows
@@ -1446,6 +1515,13 @@ def performance_needs_fallback(snapshot, date_key):
     if not history or str(history[0].get("dateKey") or "") != date_key:
         return True
 
+    for row in history:
+        for cota in (row.get("cotas") or {}).values():
+            pu = float(cota.get("pu") or 0.0)
+            valor = float(cota.get("valor") or 0.0)
+            if pu <= 0 and valor <= 0:
+                return True
+
     perf_by_class = performance_rows_by_class(snapshot)
     for classe, cota in cotas_by_class(snapshot).items():
         perf = perf_by_class.get(classe)
@@ -1593,6 +1669,14 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
         history.append(row)
         if len(history) >= 30:
             break
+
+    for row in history:
+        cotas = row.get("cotas") or {}
+        for classe, cota in list(cotas.items()):
+            pu = float(cota.get("pu") or 0.0)
+            valor = float(cota.get("valor") or 0.0)
+            if pu <= 0 and valor <= 0 and cota.get("resultadoDia") is None:
+                del cotas[classe]
 
     for perf in current_perf:
         classe = str(perf.get("classe") or "").upper()
@@ -1816,7 +1900,7 @@ def main():
         5,
     )
     proximos_vencimentos = build_upcoming_maturities(active_carteira, date_key, carteira_vp)
-    tipo_ativo_ts = build_tipo_ativo_ts(active_carteira, patrimonio_liquido)
+    tipo_ativo_ts = build_tipo_ativo_ts(active_carteira, patrimonio_liquido, args.cra_id)
     pdd_migration = build_pdd_migration(active_carteira, date_key, patrimonio_liquido)
     pmts_vencidas = build_overdue_pmts(active_carteira, date_key, patrimonio_liquido)
     portfolio_composition = build_composicao_carteira(active_carteira)
