@@ -2,20 +2,33 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-08-03",
+    "currentDate": "2026-08-04",
     "dates": [
+      {
+        "dateKey": "2026-08-04",
+        "reportDate": "04/08/2026",
+        "importedAt": "2026-08-05T18:29:01.823378-03:00",
+        "revisionId": "20260805-182901",
+        "totalAtivo": 1005430472.1621997,
+        "carteiraVp": 585789337.8521997,
+        "carteiraVpBruto": 588509636.4142308,
+        "pddTotal": 2720298.5620311205,
+        "funding": 605221658.1960001,
+        "subordinada": 399746892.68429065,
+        "dataScript": "data/cras/cra-modelo/2026-08-04.js"
+      },
       {
         "dateKey": "2026-08-03",
         "reportDate": "03/08/2026",
-        "importedAt": "2026-08-04T19:20:42.736092-03:00",
-        "revisionId": "20260804-192041",
-        "totalAtivo": 1005374570.3982623,
-        "funding": 604522817.73,
-        "subordinada": 400517832.04730827,
-        "dataScript": "data/cras/cra-modelo/2026-08-03.js",
-        "carteiraVp": 584607766.3282622,
-        "carteiraVpBruto": 587290879.1076161,
-        "pddTotal": 2683112.779353895
+        "importedAt": "2026-08-05T18:27:49.086292-03:00",
+        "revisionId": "20260805-182748",
+        "totalAtivo": 1004855294.6039953,
+        "carteiraVp": 584088490.5339954,
+        "carteiraVpBruto": 586808789.0960265,
+        "pddTotal": 2720298.5620311205,
+        "funding": 604872135.192,
+        "subordinada": 399649238.7910413,
+        "dataScript": "data/cras/cra-modelo/2026-08-03.js"
       },
       {
         "dateKey": "2026-07-31",
@@ -3376,8 +3389,60 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-07-29",
+    "currentDate": "2026-08-04",
     "dates": [
+      {
+        "dateKey": "2026-08-04",
+        "reportDate": "04/08/2026",
+        "importedAt": "2026-08-05T18:27:05.041803-03:00",
+        "revisionId": "20260805-182704",
+        "totalAtivo": 985690301.6875167,
+        "carteiraVp": 850238154.0210177,
+        "carteiraVpBruto": 850238154.0210177,
+        "pddTotal": 0.0,
+        "funding": 805767669.584,
+        "subordinada": 179137058.88533488,
+        "dataScript": "data/cras/cra-65/2026-08-04.js"
+      },
+      {
+        "dateKey": "2026-08-03",
+        "reportDate": "03/08/2026",
+        "importedAt": "2026-08-05T18:26:53.816843-03:00",
+        "revisionId": "20260805-182653",
+        "totalAtivo": 985008447.0030341,
+        "carteiraVp": 850806075.2165351,
+        "carteiraVpBruto": 850806075.2165351,
+        "pddTotal": 0.0,
+        "funding": 805323469.2720001,
+        "subordinada": 178899404.51285222,
+        "dataScript": "data/cras/cra-65/2026-08-03.js"
+      },
+      {
+        "dateKey": "2026-07-31",
+        "reportDate": "31/07/2026",
+        "importedAt": "2026-08-05T18:26:40.199050-03:00",
+        "revisionId": "20260805-182639",
+        "totalAtivo": 983970695.4205103,
+        "carteiraVp": 849753256.7658294,
+        "carteiraVpBruto": 849753256.7658294,
+        "pddTotal": 0.0,
+        "funding": 804879513.832,
+        "subordinada": 178373790.18851027,
+        "dataScript": "data/cras/cra-65/2026-07-31.js"
+      },
+      {
+        "dateKey": "2026-07-30",
+        "reportDate": "30/07/2026",
+        "importedAt": "2026-08-05T18:26:28.805244-03:00",
+        "revisionId": "20260805-182628",
+        "totalAtivo": 983323120.2682137,
+        "carteiraVp": 854573553.403533,
+        "carteiraVpBruto": 854573553.403533,
+        "pddTotal": 0.0,
+        "funding": 804435803.14,
+        "subordinada": 178202534.42821378,
+        "dataScript": "data/cras/cra-65/2026-07-30.js"
+      },
       {
         "dateKey": "2026-07-29",
         "reportDate": "29/07/2026",
@@ -3461,7 +3526,14 @@ window.LAMINA_CRA_MANIFEST = [
         "subordinada": 0,
         "dataScript": "data/cras/cra-65/2026-07-02.js"
       }
-    ]
+    ],
+    "dataVencimentoIso": "2032-07-15",
+    "dataVencimento": "15/07/2032",
+    "vencimentosSeries": {
+      "SR1": "2032-07-15",
+      "SR2": "2032-07-15",
+      "SUB": "2032-07-15"
+    }
   },
   {
     "craId": "cras-carteira-overview",

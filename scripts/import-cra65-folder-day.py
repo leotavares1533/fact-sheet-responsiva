@@ -30,6 +30,8 @@ def normalize(value: object) -> str:
 def parse_number(value: object) -> float:
     if value is None:
         return 0.0
+    if isinstance(value, (datetime, date)):
+        return 0.0
     if isinstance(value, (int, float)):
         return float(value)
     text = str(value).replace("R$", "").replace("%", "").strip()
