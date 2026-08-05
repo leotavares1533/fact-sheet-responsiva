@@ -1357,6 +1357,69 @@ def apply_forecast_to_funding_cotas(cotas, date_key, holiday_dates=None):
             cota["acumulacaoFinal"]["puFinal"] = pu
 
 
+def normalize_funding_history_memory(cotas, holiday_dates=None):
+    for cota in cotas:
+        if not cota.get("ehFunding"):
+            continue
+
+        history = [
+            row for row in list(cota.get("historicoPu") or [])
+            if str(row.get("dataIso") or "")[:10]
+        ]
+        if not history:
+            continue
+
+        history = sorted(history, key=lambda row: str(row.get("dataIso") or "")[:10])
+        start_key = str(cota.get("dataInicioIso") or history[0].get("dataIso") or "")[:10]
+        principal = float(cota.get("principalResidual") or cota.get("valorNominalInicial") or 0.0)
+        quantity = float(cota.get("quantidade") or 0.0)
+        dias_uteis = 0
+        dias_periodo = 0
+        previous_key = start_key
+
+        for row in history:
+            row_key = str(row.get("dataIso") or "")[:10]
+            if not row_key:
+                continue
+            current_date = parse_date_key(row_key)
+            previous_date = parse_date_key(previous_key)
+            if current_date and previous_date and row_key > previous_key:
+                cursor = previous_date
+                while cursor < current_date:
+                    cursor += timedelta(days=1)
+                    cursor_key = cursor.isoformat()
+                    if is_business_day_key(cursor_key, holiday_dates):
+                        dias_uteis += 1
+                        dias_periodo += 1
+
+            pu = float(row.get("puAposEvento") or row.get("puAtualizado") or row.get("puFinal") or 0.0)
+            if not pu:
+                pu = float(cota.get("pu") or 0.0)
+            row["diasUteis"] = dias_uteis
+            row["diasUteisPeriodo"] = dias_periodo
+            row["valorNominal"] = principal
+            row["puAtualizado"] = pu
+            row["valorReais"] = pu * quantity
+            row["puJuros"] = max(0.0, pu - principal)
+            factor = pu / principal if principal else 0.0
+            row["fator"] = factor
+            row["fatorJurosAcumulado"] = factor
+            row["produtorioFatorDi"] = factor
+            row["fatorDiAcumulado"] = factor
+            row["fatorDiario"] = row.get("fatorDiario") or (1.0 if row_key == start_key else 0.0)
+            previous_key = row_key
+
+        cota["historicoPu"] = history
+        last_row = history[-1]
+        cota["dataHistoricaIso"] = str(last_row.get("dataIso") or "")[:10]
+        acumulacao = dict(cota.get("acumulacaoFinal") or {})
+        acumulacao["periodoFim"] = format_date_br(cota["dataHistoricaIso"])
+        acumulacao["diasAcumulacao"] = int(last_row.get("diasUteis") or 0)
+        acumulacao["diasUteisPeriodo"] = int(last_row.get("diasUteisPeriodo") or 0)
+        acumulacao["puFinal"] = float(last_row.get("puAtualizado") or cota.get("pu") or 0.0)
+        cota["acumulacaoFinal"] = acumulacao
+
+
 def apply_static_cra_info(snapshot, cra_id):
     info = CRA_STATIC_INFO.get(cra_id)
     if not info:
@@ -1921,6 +1984,7 @@ def main():
             cota["valor"] = float(cota.get("pu") or 0.0) * float(cota.get("quantidade") or 0.0)
     apply_static_quantity_events(snapshot, args.cra_id, date_key)
     apply_forecast_to_funding_cotas(cotas, date_key, snapshot_holidays(snapshot))
+    normalize_funding_history_memory(cotas, snapshot_holidays(snapshot))
     cotas.sort(key=lambda cota: (0 if cota.get("ehFunding") else 1, int(parse_number(cota.get("ordem"))) or {"SR1": 10, "SR2": 20, "SR3": 30, "SUB": 90}.get(str(cota.get("classe") or "").upper(), 99)))
 
     funding_total = sum(float(cota.get("valor", 0.0)) for cota in cotas if cota.get("ehFunding"))
