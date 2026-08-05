@@ -26,6 +26,46 @@
   };
 
   const PUBLIC_HIDDEN_CRA_GROUP_ID = "cras-carteira";
+  const CRA65_PAYMENT_DATES = [
+    "2026-08-17", "2026-09-15", "2026-10-15", "2026-11-16", "2026-12-15", "2027-01-15",
+    "2027-02-15", "2027-03-15", "2027-04-15", "2027-05-17", "2027-06-15", "2027-07-15",
+    "2027-08-16", "2027-09-15", "2027-10-15", "2027-11-16", "2027-12-15", "2028-01-17",
+    "2028-02-15", "2028-03-15", "2028-04-17", "2028-05-15", "2028-06-16", "2028-07-17",
+    "2028-08-15", "2028-09-15", "2028-10-16", "2028-11-16", "2028-12-15", "2029-01-15",
+    "2029-02-15", "2029-03-15", "2029-04-16", "2029-05-15", "2029-06-15", "2029-07-16",
+    "2029-08-15", "2029-09-17", "2029-10-15", "2029-11-16", "2029-12-17", "2030-01-15",
+    "2030-02-15", "2030-03-15", "2030-04-15", "2030-05-15", "2030-06-17", "2030-07-15",
+    "2030-08-15", "2030-09-16", "2030-10-15", "2030-11-18", "2030-12-16", "2031-01-15",
+    "2031-02-17", "2031-03-17", "2031-04-15", "2031-05-15", "2031-06-16", "2031-07-15",
+    "2031-08-15", "2031-09-15", "2031-10-15", "2031-11-17", "2031-12-15", "2032-01-15",
+    "2032-02-16", "2032-03-15", "2032-04-15", "2032-05-17", "2032-06-15", "2032-07-15"
+  ];
+  const STATIC_FUNDING_SERIES = {
+    "cra-65": [
+      {
+        classe: "SR2",
+        ifCodigo: "CRA0260040Q",
+        tipo: "sr",
+        quantidade: 400000,
+        dataInicio: "30/07/2026",
+        dataInicioIso: "2026-07-30",
+        dataVencimento: "15/07/2032",
+        dataVencimentoIso: "2032-07-15",
+        valorNominalInicial: 1000,
+        principalResidual: 1000,
+        indexador: "DI",
+        percentualIndexador: 1.05,
+        metodo: "percentual_di_252",
+        ehFunding: true,
+        ordem: 20,
+        agendaPagamentos: CRA65_PAYMENT_DATES.map((dataIso) => ({
+          dataIso,
+          juros: true,
+          amortizacaoPercentual: dataIso === "2032-07-15" ? 1 : 0
+        }))
+      }
+    ]
+  };
 
   function isPublicAccess() {
     const role = window.LAMINA_AUTH?.currentUser?.().role || "public";
@@ -835,6 +875,101 @@
     return rows.find((row) => toIsoDate(row.dataIso || row.data) === dateKey) || rows[rows.length - 1] || null;
   }
 
+  function buildStaticFundingCota(series, dateKey, referenceCotas = []) {
+    const startKey = toIsoDate(series.dataInicioIso || series.dataInicio);
+    if (!startKey || startKey > dateKey) {
+      return null;
+    }
+
+    const rateInfo = getDiRateForDate(startKey)
+      || getLastKnownRateInfo(referenceCotas.find(isSeniorCota) || {}, startKey);
+    const principal = Number(series.principalResidual || series.valorNominalInicial || 1000);
+    const quantity = Number(series.quantidade || 0);
+    const historyRow = {
+      data: formatIsoDate(startKey),
+      dataIso: startKey,
+      diaUtil: isBusinessDayIso(startKey),
+      taxaDiUtilizadaDia: Number(rateInfo?.dailyRate || 0),
+      taxaDiAnualEquivalente: Number(rateInfo?.annualRate || 0),
+      dataTaxaDi: rateInfo?.dataTaxaDi || formatIsoDate(startKey),
+      dataTaxaDiIso: rateInfo?.dataTaxaDiIso || startKey,
+      taxaDiStatus: rateInfo?.taxaDiStatus || "informada",
+      dataReferenciaTaxaDi: rateInfo?.dataReferenciaTaxaDi || rateInfo?.dataTaxaDi || formatIsoDate(startKey),
+      dataReferenciaTaxaDiIso: rateInfo?.dataReferenciaTaxaDiIso || rateInfo?.dataTaxaDiIso || startKey,
+      diasUteis: 0,
+      diasUteisPeriodo: 0,
+      fator: 1,
+      valorNominal: principal,
+      puAtualizado: principal,
+      puJuros: 0,
+      puAntesEvento: principal,
+      puEvento: 0,
+      puAposEvento: principal,
+      principalAntesEvento: principal,
+      principalAposEvento: principal,
+      valorReais: principal * quantity,
+      valorEventoReais: 0,
+      tdk: Number(rateInfo?.dailyRate || 0),
+      fatorDiario: 1,
+      produtorioFatorDi: 1,
+      fatorDiAcumulado: 1,
+      spread: Number(series.percentualIndexador || 1) - 1,
+      spreadAcumulado: 0,
+      fatorJurosAcumulado: 1,
+      evento: "",
+      eventoTs: "",
+      efeitoEvento: "",
+      ehDataPagamentoTs: false
+    };
+
+    return {
+      ...series,
+      pu: principal,
+      valor: principal * quantity,
+      historicoPu: [historyRow],
+      previsaoPu: [],
+      acumulacaoFinal: {
+        periodoInicio: series.dataInicio || formatIsoDate(startKey),
+        periodoFim: formatIsoDate(startKey),
+        diasAcumulacao: 0,
+        diasUteisPeriodo: 0,
+        puAntesAcumulacao: principal,
+        puFinal: principal
+      },
+      dataHistoricaDisponivel: true,
+      dataHistoricaSelecionada: formatIsoDate(startKey),
+      dataHistoricaIso: startKey
+    };
+  }
+
+  function ensureStaticFundingSeries(snapshot, dateKey) {
+    const craId = String(snapshot?.cra?.id || state.craId || "");
+    const series = STATIC_FUNDING_SERIES[craId] || [];
+    if (!series.length) {
+      return snapshot;
+    }
+
+    snapshot.passivo = snapshot.passivo || {};
+    const cotas = snapshot.passivo.cotas || [];
+    series.forEach((item) => {
+      const startKey = toIsoDate(item.dataInicioIso || item.dataInicio);
+      const exists = cotas.some((cota) => {
+        return String(cota.ifCodigo || "").toUpperCase() === String(item.ifCodigo || "").toUpperCase()
+          || String(cota.classe || "").toUpperCase() === String(item.classe || "").toUpperCase();
+      });
+      if (exists || !startKey || startKey > dateKey) {
+        return;
+      }
+
+      const cota = buildStaticFundingCota(item, dateKey, cotas);
+      if (cota) {
+        cotas.push(cota);
+      }
+    });
+    snapshot.passivo.cotas = cotas.sort((a, b) => Number(a.ordem || 99) - Number(b.ordem || 99));
+    return snapshot;
+  }
+
   function getLastKnownRateInfo(cota, dateKey) {
     const history = [...(cota.historicoPu || [])]
       .filter((row) => toIsoDate(row.dataIso || row.data) && toIsoDate(row.dataIso || row.data) <= dateKey)
@@ -1075,13 +1210,14 @@
   }
 
   function buildHistoricalSnapshot(snapshot, dateKey) {
-    const hasAnyHistory = (snapshot.passivo?.cotas || []).some((cota) => getHistoricalRow(cota, dateKey));
+    const source = ensureStaticFundingSeries(cloneData(snapshot), dateKey);
+    const hasAnyHistory = (source.passivo?.cotas || []).some((cota) => getHistoricalRow(cota, dateKey));
     if (!hasAnyHistory) {
       throw new Error(`Nao existe historico de PU para ${formatIsoDate(dateKey)}.`);
     }
 
-    const historical = cloneData(snapshot);
-    const cotas = (snapshot.passivo?.cotas || []).map((cota) => buildHistoricalCota(cota, dateKey));
+    const historical = cloneData(source);
+    const cotas = (source.passivo?.cotas || []).map((cota) => buildHistoricalCota(cota, dateKey));
     const calculatedView = cotas.some((cota) => cota.visaoCalculadaPu);
     const fundingTotal = cotas
       .filter(isSeniorCota)
@@ -2135,6 +2271,7 @@
   function prepareSnapshotForPu(snapshot) {
     const prepared = cloneData(snapshot);
     const dateKey = toIsoDate(prepared.metadata?.dateKey || prepared.metadata?.reportDate) || state.dateKey;
+    ensureStaticFundingSeries(prepared, dateKey);
     const cotas = prepared.passivo?.cotas || [];
 
     prepared.passivo = prepared.passivo || {};
