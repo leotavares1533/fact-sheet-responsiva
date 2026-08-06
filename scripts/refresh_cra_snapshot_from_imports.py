@@ -1277,12 +1277,12 @@ def apply_forecast_to_funding_cotas(cotas, date_key, holiday_dates=None):
 
         forecast_rows = list(cota.get("previsaoPu") or [])
         forecast = next((row for row in forecast_rows if str(row.get("dataIso") or "") == date_key), None)
-        if not forecast:
-            history = [
-                row for row in (cota.get("historicoPu") or [])
-                if str(row.get("dataIso") or row.get("data") or "")[:10] < date_key
-            ]
-            history = sorted(history, key=lambda row: str(row.get("dataIso") or row.get("data") or "")[:10])
+        history = [
+            row for row in (cota.get("historicoPu") or [])
+            if str(row.get("dataIso") or row.get("data") or "")[:10] < date_key
+        ]
+        history = sorted(history, key=lambda row: str(row.get("dataIso") or row.get("data") or "")[:10])
+        if history or not forecast:
             start_key = str(
                 (history[-1].get("dataIso") if history else "")
                 or cota.get("dataHistoricaIso")
@@ -1347,7 +1347,13 @@ def apply_forecast_to_funding_cotas(cotas, date_key, holiday_dates=None):
         cota["valor"] = value
 
         history = list(cota.get("historicoPu") or [])
-        if not any(str(row.get("dataIso") or "") == date_key for row in history):
+        replaced_history = False
+        for index, row in enumerate(history):
+            if str(row.get("dataIso") or "") == date_key:
+                history[index] = forecast
+                replaced_history = True
+                break
+        if not replaced_history:
             history.append(forecast)
         cota["historicoPu"] = history
         cota["previsaoPu"] = [row for row in forecast_rows if str(row.get("dataIso") or "") > date_key]
@@ -1573,6 +1579,27 @@ def compound_return(values):
     return factor - 1.0 if has_value else None
 
 
+def cota_value_for_date(cota, date_key):
+    quantity = float(cota.get("quantidade") or 0.0)
+    for row in reversed(list(cota.get("historicoPu") or [])):
+        row_key = str(row.get("dataIso") or row.get("dateKey") or "")[:10]
+        if row_key != date_key:
+            continue
+        pu = float(
+            row.get("puAposEvento")
+            or row.get("puAtualizado")
+            or row.get("puFinal")
+            or row.get("pu")
+            or 0.0
+        )
+        value = float(row.get("valorReais") or (pu * quantity))
+        return pu, value
+
+    pu = float(cota.get("pu") or 0.0)
+    value = float(cota.get("valor") or (pu * quantity))
+    return pu, value
+
+
 def performance_needs_fallback(snapshot, date_key):
     history = snapshot.get("rendimento30Dias") or []
     if not history or str(history[0].get("dateKey") or "") != date_key:
@@ -1621,15 +1648,15 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
         base_perf = dict(performance_rows_by_class(snapshot).get(classe) or {})
         prev_cota = previous_cotas.get(classe) or {}
         prev_perf = previous_perf.get(classe) or {}
-        pu = float(cota.get("pu") or 0.0)
-        prev_pu = float(prev_cota.get("pu") or prev_perf.get("pu") or 0.0)
+        pu, current_value = cota_value_for_date(cota, date_key)
+        prev_pu, previous_value = cota_value_for_date(prev_cota, previous_key) if prev_cota else (0.0, 0.0)
+        if not prev_pu:
+            prev_pu = float(prev_perf.get("pu") or 0.0)
         resultado_dia = (pu / prev_pu - 1.0) if pu > 0 and prev_pu > 0 else None
         ajustes_fluxo_sub = []
         ajustes_fluxo_periodo = {}
         quantity_event = quantity_event_for_period(cra_id, classe, previous_key, date_key)
         if classe == "SUB" and quantity_event and previous_key and previous_key < date_key:
-            previous_value = float(prev_cota.get("valor") or (prev_pu * float(prev_cota.get("quantidade") or 0.0)) or 0.0)
-            current_value = float(cota.get("valor") or (pu * float(cota.get("quantidade") or 0.0)) or 0.0)
             contribution_value = float(quantity_event.get("valorIntegralizado") or 0.0)
             contribution_quantity = float(quantity_event.get("quantidadeEvento") or 0.0)
             if not contribution_value and contribution_quantity:
@@ -1690,7 +1717,7 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
             "quantidade": float(cota.get("quantidade") or 0.0),
             "taxa": cota_tax_label(cota, base_perf.get("taxa") or "-"),
             "pu": pu,
-            "valor": float(cota.get("valor") or 0.0),
+            "valor": current_value,
             "resultadoDia": resultado_dia,
             "resultadoMes": None,
             "resultado30Dias": None,

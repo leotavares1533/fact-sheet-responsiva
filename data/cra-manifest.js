@@ -13,8 +13,8 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVp": 585789337.8521997,
         "carteiraVpBruto": 588509636.4142308,
         "pddTotal": 2720298.5620311205,
-        "funding": 605221658.1960001,
-        "subordinada": 399746892.68429065,
+        "funding": 604872135.192,
+        "subordinada": 400096415.6882907,
         "dataScript": "data/cras/cra-modelo/2026-08-04.js"
       },
       {
@@ -26,8 +26,8 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVp": 584088490.5339954,
         "carteiraVpBruto": 586808789.0960265,
         "pddTotal": 2720298.5620311205,
-        "funding": 604872135.192,
-        "subordinada": 399649238.7910413,
+        "funding": 604522817.73,
+        "subordinada": 399998556.2530413,
         "dataScript": "data/cras/cra-modelo/2026-08-03.js"
       },
       {
