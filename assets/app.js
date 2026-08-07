@@ -1027,6 +1027,12 @@
         (cota?.historicoPu || []).forEach(collect);
         (row?.ajustesFluxoSub || []).forEach(collect);
         Object.values(row?.ajustesFluxoPeriodo || {}).flat().forEach(collect);
+        (snapshot.rendimento30Dias || []).forEach((historyRow) => {
+          const historyCota = historyRow?.cotas?.[row?.classe];
+          if (!historyCota) return;
+          (historyCota.ajustesFluxoSub || []).forEach(collect);
+          Object.values(historyCota.ajustesFluxoPeriodo || {}).flat().forEach(collect);
+        });
 
         const lastEvent = events
           .filter((event) => event.dateKey)
