@@ -939,8 +939,8 @@
         const detail = `Sub + taxa BTG ${formatCurrency(distributionFee)}`;
 
         return `
-          ${renderStatTile("PU SUB sim. s/ taxa BTG", formatNumber(simulatedPu, 6), detail, "primary", "no-break-value")}
-          ${renderStatTile("Rentab. acum. sim.", formatPercent(accumulatedReturn), `Valor simulado ${formatCurrency(simulatedSubValue)}`, accumulatedReturn >= 0 ? "ok" : "alert", "no-break-value")}
+          ${renderStatTile("PU SUB sem taxa BTG", formatNumber(simulatedPu, 6), detail, "primary", "no-break-value")}
+          ${renderStatTile("Rentabilidade acumulada sem taxa BTG", formatPercent(accumulatedReturn), `Valor simulado ${formatCurrency(simulatedSubValue)}`, accumulatedReturn >= 0 ? "ok" : "alert", "no-break-value")}
         `;
       }
 
