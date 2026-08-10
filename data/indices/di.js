@@ -2550,5 +2550,93 @@ window.LAMINA_DI_RATES = {
     "indexador": "DI",
     "taxaDia": 0.00052531,
     "taxaPercentualDia": 0.052531
+  },
+  "2026-07-23": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-23",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-07-24": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-24",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-07-27": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-27",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-07-28": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-28",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-07-29": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-29",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-07-30": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-30",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-07-31": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-07-31",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-08-03": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-08-03",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-08-04": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-08-04",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-08-05": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-08-05",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00052531,
+    "taxaPercentualDia": 0.052531
+  },
+  "2026-08-06": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-08-06",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.0005166,
+    "taxaPercentualDia": 0.05166
   }
 };

@@ -259,6 +259,16 @@ def main() -> None:
     run_command(
         [
             python_path,
+            PROJECT_ROOT / "scripts" / "update-di-rates.py",
+            "--project-root",
+            PROJECT_ROOT,
+            "--target-date",
+            date_key,
+        ]
+    )
+    run_command(
+        [
+            python_path,
             PROJECT_ROOT / "scripts" / "normalize_carteira.py",
             "--excel",
             carteira_path,

@@ -7,8 +7,8 @@ window.LAMINA_CRA_MANIFEST = [
       {
         "dateKey": "2026-08-06",
         "reportDate": "06/08/2026",
-        "importedAt": "2026-08-07T15:51:25.070978-03:00",
-        "revisionId": "20260807-155124",
+        "importedAt": "2026-08-10T15:27:40.266799-03:00",
+        "revisionId": "20260810-152739",
         "totalAtivo": 1006786280.6490439,
         "carteiraVp": 587507657.0290439,
         "carteiraVpBruto": 590024905.2183502,
@@ -3420,8 +3420,8 @@ window.LAMINA_CRA_MANIFEST = [
       {
         "dateKey": "2026-08-06",
         "reportDate": "06/08/2026",
-        "importedAt": "2026-08-07T15:51:37.027500-03:00",
-        "revisionId": "20260807-155136",
+        "importedAt": "2026-08-10T15:27:39.796342-03:00",
+        "revisionId": "20260810-152739",
         "totalAtivo": 986878558.6845357,
         "carteiraVp": 851227223.4180367,
         "carteiraVpBruto": 851227223.4180367,

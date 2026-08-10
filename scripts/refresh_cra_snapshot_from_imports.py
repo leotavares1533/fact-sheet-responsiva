@@ -399,6 +399,78 @@ def is_business_day_key(date_key, holiday_dates=None):
     return parsed.weekday() < 5 and str(date_key) not in (holiday_dates or set())
 
 
+def load_di_rates():
+    path = Path(__file__).resolve().parents[1] / "data" / "indices" / "di.js"
+    if not path.exists():
+        return {}
+    text = path.read_text(encoding="utf-8-sig")
+    start = text.find("{")
+    end = text.rfind("}")
+    if start < 0 or end < 0:
+        return {}
+    return json.loads(text[start : end + 1])
+
+
+DI_RATES = load_di_rates()
+
+
+def business_day_offset(date_key, offset, holiday_dates=None):
+    parsed = parse_date_key(date_key)
+    if not parsed:
+        return ""
+    cursor = parsed
+    remaining = int(offset or 0)
+    while remaining > 0:
+        cursor -= timedelta(days=1)
+        if is_business_day_key(cursor.isoformat(), holiday_dates):
+            remaining -= 1
+    return cursor.isoformat()
+
+
+def cota_uses_di_rate(cota):
+    text = " ".join(
+        str(value or "")
+        for value in (
+            cota.get("indexador"),
+            cota.get("metodo"),
+            cota.get("taxaTexto"),
+            cota.get("remuneracao"),
+            cota.get("taxa"),
+        )
+    ).lower()
+    return "di" in text or "cdi" in text
+
+
+def di_rate_info_for_date(date_key, holiday_dates=None, defasagem=2):
+    if not DI_RATES:
+        return None
+    reference_key = business_day_offset(date_key, defasagem, holiday_dates)
+    if not reference_key:
+        return None
+    available = [key for key in DI_RATES if key <= reference_key]
+    if not available:
+        return None
+    rate_key = sorted(available)[-1]
+    row = DI_RATES.get(rate_key) or {}
+    daily_rate = parse_number(row.get("taxaDia") or row.get("dailyRate") or row.get("taxaDiUtilizadaDia"))
+    if not daily_rate:
+        percentual = parse_number(row.get("taxaPercentualDia") or row.get("valor"))
+        daily_rate = percentual / 100 if percentual else 0.0
+    if not daily_rate:
+        return None
+    annual_rate = (1 + daily_rate) ** 252 - 1
+    return {
+        "dailyRate": daily_rate,
+        "annualRate": annual_rate,
+        "dataTaxaDi": format_date_br(rate_key),
+        "dataTaxaDiIso": rate_key,
+        "taxaDiStatus": "BCB_SGS_12_D-2" if rate_key == reference_key else "BCB_SGS_12_D-2_fallback",
+        "defasagemDiDiasUteis": defasagem,
+        "dataReferenciaTaxaDi": format_date_br(rate_key),
+        "dataReferenciaTaxaDiIso": rate_key,
+    }
+
+
 def round_decimal_js(value, decimals):
     factor = 10 ** decimals
     return math.floor((float(value or 0.0) + sys_float_epsilon()) * factor + 0.5) / factor
@@ -448,7 +520,12 @@ def get_static_payment_label(cota, date_key):
     return " / ".join(labels)
 
 
-def last_known_rate_info(cota, date_key):
+def last_known_rate_info(cota, date_key, holiday_dates=None):
+    if cota_uses_di_rate(cota):
+        master_rate = di_rate_info_for_date(date_key, holiday_dates)
+        if master_rate:
+            return master_rate
+
     rows = []
     for source in (cota.get("historicoPu", []) or [], cota.get("previsaoPu", []) or []):
         for row in source:
@@ -502,7 +579,13 @@ def rate_info_from_row(row, fallback_date_key):
     }
 
 
-def funding_rate_info_for_date(cotas, date_key):
+def funding_rate_info_for_date(cotas, date_key, holiday_dates=None):
+    reference = next((cota for cota in cotas or [] if cota.get("ehFunding")), {})
+    if reference and cota_uses_di_rate(reference):
+        master_rate = di_rate_info_for_date(date_key, holiday_dates)
+        if master_rate:
+            return master_rate
+
     exact_rows = []
     previous_rows = []
     for cota in cotas or []:
@@ -521,8 +604,7 @@ def funding_rate_info_for_date(cotas, date_key):
         return rate_info_from_row(exact_rows[0], date_key)
     if previous_rows:
         return rate_info_from_row(sorted(previous_rows, key=lambda item: item[0])[-1][1], date_key)
-    reference = next((cota for cota in cotas or [] if cota.get("ehFunding")), {})
-    return last_known_rate_info(reference, date_key)
+    return last_known_rate_info(reference, date_key, holiday_dates)
 
 
 def build_integralized_funding_cota(series, date_key, reference_cotas, holiday_dates):
@@ -575,14 +657,14 @@ def build_integralized_funding_cota(series, date_key, reference_cotas, holiday_d
             "puEvento": 0,
         }
 
-    rate_info = funding_rate_info_for_date(reference_cotas, start_key)
+    rate_info = funding_rate_info_for_date(reference_cotas, start_key, holiday_dates)
     history.append(build_row(start_key, rate_info, is_business_day_key(start_key, holiday_dates), 1.0, "Integralizacao"))
 
     cursor = start_date
     while cursor < end_date:
         cursor += timedelta(days=1)
         row_key = cursor.isoformat()
-        rate_info = funding_rate_info_for_date(reference_cotas, row_key)
+        rate_info = funding_rate_info_for_date(reference_cotas, row_key, holiday_dates)
         dia_util = is_business_day_key(row_key, holiday_dates)
         fator_diario = 1.0
         if dia_util:
@@ -737,7 +819,7 @@ def build_funding_forecast_rows(cota, date_key, holiday_dates=None, days=220):
     if not parsed:
         return []
 
-    rate_info = last_known_rate_info(cota, date_key)
+    rate_info = last_known_rate_info(cota, date_key, holiday_dates)
     principal = float(cota.get("principalResidual") or cota.get("valorNominalInicial") or 0.0)
     pu = float(cota.get("pu") or principal or 0.0)
     base_pu = pu
@@ -757,6 +839,7 @@ def build_funding_forecast_rows(cota, date_key, holiday_dates=None, days=220):
         dia_util = is_business_day_key(row_key, holiday_dates)
         fator_diario = 1.0
         pu_antes_evento = pu
+        rate_info = last_known_rate_info(cota, row_key, holiday_dates)
 
         if dia_util and principal > 0:
             dias_uteis += 1

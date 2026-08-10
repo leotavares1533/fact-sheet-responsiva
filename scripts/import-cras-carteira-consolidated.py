@@ -5,6 +5,8 @@ import copy
 import json
 import math
 import re
+import subprocess
+import sys
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -215,6 +217,23 @@ def parse_di_rates() -> dict[str, dict[str, Any]]:
 
 
 DI_RATES = parse_di_rates()
+
+
+def update_di_rates(target_date: str) -> None:
+    subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "update-di-rates.py"),
+            "--project-root",
+            str(REPO_ROOT),
+            "--target-date",
+            target_date,
+        ],
+        cwd=REPO_ROOT,
+        check=True,
+    )
+    global DI_RATES
+    DI_RATES = parse_di_rates()
 
 
 def di_daily_for(date_key: str) -> tuple[float, float, str]:
@@ -1750,6 +1769,8 @@ def main() -> None:
         raise FileNotFoundError(source)
 
     records = parse_workbook_all_dates(source) if args.all_dates else [parse_workbook(source)]
+    if records:
+        update_di_rates(max(record[0] for record in records))
     if args.all_dates:
         cra_ids = set()
         for _, carteira_by_cra, cash_by_cra, _ in records:

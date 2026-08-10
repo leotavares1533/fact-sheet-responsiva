@@ -15,6 +15,7 @@
 !/scripts/import-cras-carteira-consolidated.py
 !/scripts/normalize_carteira.py
 !/scripts/refresh_cra_snapshot_from_imports.py
+!/scripts/update-di-rates.py
 /tmp/
 /.lamina-publisher-key
 
