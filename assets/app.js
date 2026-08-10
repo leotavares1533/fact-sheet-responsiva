@@ -919,6 +919,31 @@
         `;
       }
 
+      function renderCra65DistributionFeeScenario(snapshot) {
+        const craId = String(snapshot?.metadata?.craId || snapshot?.cra?.id || state.craId || "").toLowerCase();
+        if (craId !== "cra-65") {
+          return "";
+        }
+
+        const distributionFee = 24929717.76;
+        const passivo = snapshot.passivo || {};
+        const subQuantity = Number(passivo.subordinadaQuantidade || 0);
+        const officialSubValue = Number(passivo.subordinadaTotal || 0);
+        if (!subQuantity || !Number.isFinite(officialSubValue)) {
+          return "";
+        }
+
+        const simulatedSubValue = officialSubValue + distributionFee;
+        const simulatedPu = simulatedSubValue / subQuantity;
+        const accumulatedReturn = (simulatedPu / 1000) - 1;
+        const detail = `Sub + taxa BTG ${formatCurrency(distributionFee)}`;
+
+        return `
+          ${renderStatTile("PU SUB sim. s/ taxa BTG", formatNumber(simulatedPu, 6), detail, "primary", "no-break-value")}
+          ${renderStatTile("Rentab. acum. sim.", formatPercent(accumulatedReturn), `Valor simulado ${formatCurrency(simulatedSubValue)}`, accumulatedReturn >= 0 ? "ok" : "alert", "no-break-value")}
+        `;
+      }
+
       function renderGenericTable(title, columns, rows, emptyLabel, extraClass) {
         return `
           <div class="table-panel ${extraClass || ""}">
@@ -1106,6 +1131,7 @@
                   ${renderStatTile("Sacados", formatNumber(resumo.sacadosUnicos || ativo.sacadosUnicos, 0))}
                   ${renderStatTile("Prox. pag. Senior", coverage.valor ? formatCurrency(coverage.valor) : "-", coverage.data || "", "primary", "no-break-value")}
                   ${renderStatTile("Farol pagamento", coverageText, coverageDetail, coverageTone)}
+                  ${renderCra65DistributionFeeScenario(snapshot)}
                   ${renderStatTile("Prazo médio", formatDays(resumo.prazoMedioDias))}
                   ${renderStatTile("Taxa média", formatPercent(resumo.taxaMediaPonderada))}
                 </div>
