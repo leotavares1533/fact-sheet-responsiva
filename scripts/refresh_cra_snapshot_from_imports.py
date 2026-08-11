@@ -1864,7 +1864,8 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
         ]
         perf["resultadoMes"] = compound_return(monthly_values)
         perf["resultado30Dias"] = compound_return(thirty_day_values)
-        history[0]["cotas"][classe]["resultadoMes"] = perf["resultadoMes"]
+        if classe in history[0]["cotas"]:
+            history[0]["cotas"][classe]["resultadoMes"] = perf["resultadoMes"]
 
     snapshot["performanceCotas"] = sorted(current_perf, key=lambda row: {"SR1": 1, "SR2": 2, "SR3": 3, "SUB": 4}.get(str(row.get("classe") or "").upper(), 99))
     snapshot["rendimento30Dias"] = history[:30]
