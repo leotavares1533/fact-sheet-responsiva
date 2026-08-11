@@ -88,7 +88,7 @@ def assign_cash_value(accounts: dict[str, float], text: str, amount: float) -> t
         accounts["fundo_despesas"] = amount
         matched = True
     elif ("dev" in text and "recurso" in text) or ("devolucao" in text and "recurso" in text):
-        accounts["conta_liquidacao"] = -abs(amount)
+        accounts["conta_liquidacao"] = abs(amount)
         matched = True
     elif "liquid" in text or "recurso" in text:
         accounts["conta_liquidacao"] = amount
@@ -209,7 +209,7 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
     if provisao:
         observation = (
             f"Caixa bruto {br_number(raw_cash_total)} ajustado pela provisao de despesa de {br_number(provisao)}. "
-            f"Total liquido usado no ativo {br_number(cash_total)}; provisao nao registrada como nova deducao no passivo."
+            f"Total do caixa usado no ativo {br_number(cash_total)}; provisao registrada como deducao da Subordinada."
         )
     write_csv(
         cash_dir / "caixa.csv",
@@ -231,6 +231,18 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
     )
 
     expense_rows = []
+    if provisao:
+        expense_rows.append(
+            {
+                "data_base": date_key,
+                "tipo": "provisao_despesa",
+                "descricao": "Provisao de despesa importada do caixa",
+                "valor": br_number(provisao),
+                "fonte": "Extrato Bancario",
+                "arquivo_origem": cash_path.name,
+                "observacao": "Provisao considerada como deducao da Subordinada, sem alterar o caixa total exibido.",
+            }
+        )
     write_csv(
         expenses_dir / "despesas.csv",
         ["data_base", "tipo", "descricao", "valor", "fonte", "arquivo_origem", "observacao"],

@@ -1664,6 +1664,11 @@ def compound_return(values):
 
 def cota_value_for_date(cota, date_key):
     quantity = float(cota.get("quantidade") or 0.0)
+    if not cota.get("ehFunding"):
+        pu = float(cota.get("pu") or 0.0)
+        value = float(cota.get("valor") or (pu * quantity))
+        return pu, value
+
     for row in reversed(list(cota.get("historicoPu") or [])):
         row_key = str(row.get("dataIso") or row.get("dateKey") or "")[:10]
         if row_key != date_key:
@@ -1707,7 +1712,7 @@ def performance_needs_fallback(snapshot, date_key):
 
 def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapshot):
     sub_payment_event = SUB_PAYMENT_RESET_EVENTS.get(cra_id, {}).get(date_key)
-    if not sub_payment_event and not performance_needs_fallback(snapshot, date_key):
+    if cra_id != "cra-65" and not sub_payment_event and not performance_needs_fallback(snapshot, date_key):
         return
 
     canonical_dir = cra_root / "archive" / "canonical"
