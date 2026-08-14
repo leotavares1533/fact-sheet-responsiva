@@ -3518,7 +3518,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 851853872.4294751,
         "pddTotal": 26264.736,
         "funding": 807977571.0040001,
-        "subordinada": 179707469.47492957,
+        "subordinada": 180902133.6022023,
         "dataScript": "data/cras/cra-65/2026-08-11.js"
       },
       {
@@ -3531,7 +3531,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 851766330.5640483,
         "pddTotal": 26264.736,
         "funding": 807539537.336,
-        "subordinada": 179624446.69854742,
+        "subordinada": 180750929.00763834,
         "dataScript": "data/cras/cra-65/2026-08-10.js"
       },
       {
@@ -3544,7 +3544,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 851532162.789836,
         "pddTotal": 26264.736,
         "funding": 807101741.144,
-        "subordinada": 179075517.38269866,
+        "subordinada": 180133817.87360775,
         "dataScript": "data/cras/cra-65/2026-08-07.js"
       },
       {
@@ -3557,7 +3557,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 851227223.4180367,
         "pddTotal": 26264.736,
         "funding": 806656805.3840001,
-        "subordinada": 179000824.43726295,
+        "subordinada": 179990943.10999024,
         "dataScript": "data/cras/cra-65/2026-08-06.js"
       },
       {
@@ -3570,7 +3570,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 850579896.4820988,
         "pddTotal": 26264.736,
         "funding": 806212114.912,
-        "subordinada": 178911855.43968883,
+        "subordinada": 179833792.29423428,
         "dataScript": "data/cras/cra-65/2026-08-05.js"
       },
       {
@@ -3583,7 +3583,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 850238154.0210177,
         "pddTotal": 26264.736,
         "funding": 805767669.584,
-        "subordinada": 178974430.51297125,
+        "subordinada": 179828185.54933488,
         "dataScript": "data/cras/cra-65/2026-08-04.js"
       },
       {
@@ -3596,7 +3596,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 850806075.2165351,
         "pddTotal": 26264.736,
         "funding": 805323469.2720001,
-        "subordinada": 178873139.77685228,
+        "subordinada": 179658712.9950341,
         "dataScript": "data/cras/cra-65/2026-08-03.js"
       },
       {
@@ -3609,7 +3609,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 849753256.7658294,
         "pddTotal": 26264.736,
         "funding": 804879513.832,
-        "subordinada": 178347525.45251033,
+        "subordinada": 179064916.85251033,
         "dataScript": "data/cras/cra-65/2026-07-31.js"
       },
       {
@@ -3622,7 +3622,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 854573553.403533,
         "pddTotal": 26264.736,
         "funding": 804435803.14,
-        "subordinada": 178176269.69221395,
+        "subordinada": 178861052.39221394,
         "dataScript": "data/cras/cra-65/2026-07-30.js"
       },
       {
@@ -3635,7 +3635,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 317779456.08811677,
         "pddTotal": 26264.736,
         "funding": 404212848.704,
-        "subordinada": 88867788.70811677,
+        "subordinada": 89519962.70811677,
         "dataScript": "data/cras/cra-65/2026-07-29.js"
       },
       {
@@ -3648,7 +3648,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 329281176.7697171,
         "pddTotal": 26264.736,
         "funding": 403990019.08799994,
-        "subordinada": 88830920.70571716,
+        "subordinada": 89450486.00571716,
         "dataScript": "data/cras/cra-65/2026-07-28.js"
       },
       {
@@ -3661,7 +3661,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 329006248.8671827,
         "pddTotal": 26264.736,
         "funding": 403767311.192,
-        "subordinada": 88778771.13918266,
+        "subordinada": 89365727.73918265,
         "dataScript": "data/cras/cra-65/2026-07-27.js"
       },
       {
@@ -3674,7 +3674,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 328476607.18679565,
         "pddTotal": 26264.736,
         "funding": 403544724.49200004,
-        "subordinada": 88471819.46879557,
+        "subordinada": 89026167.36879557,
         "dataScript": "data/cras/cra-65/2026-07-24.js"
       },
       {
@@ -3687,7 +3687,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 328204203.0642809,
         "pddTotal": 26264.736,
         "funding": 403322288.668,
-        "subordinada": 88425737.19028096,
+        "subordinada": 88947476.39028096,
         "dataScript": "data/cras/cra-65/2026-07-23.js"
       },
       {
@@ -3700,7 +3700,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 327926202.86720586,
         "pddTotal": 26264.736,
         "funding": 403099946.8,
-        "subordinada": 88370248.43120581,
+        "subordinada": 88859378.93120581,
         "dataScript": "data/cras/cra-65/2026-07-22.js"
       },
       {
@@ -3713,7 +3713,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 332776903.09730077,
         "pddTotal": 26264.736,
         "funding": 402877727.504,
-        "subordinada": 88295032.47730078,
+        "subordinada": 88751554.27730078,
         "dataScript": "data/cras/cra-65/2026-07-21.js"
       },
       {
@@ -3726,7 +3726,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 332820919.7698379,
         "pddTotal": 26264.736,
         "funding": 402655630.712,
-        "subordinada": 88244295.1118379,
+        "subordinada": 88668208.21183789,
         "dataScript": "data/cras/cra-65/2026-07-20.js"
       },
       {
@@ -3739,7 +3739,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 332288566.31038547,
         "pddTotal": 26264.736,
         "funding": 402433656.356,
-        "subordinada": 87936175.80838546,
+        "subordinada": 88327480.20838547,
         "dataScript": "data/cras/cra-65/2026-07-17.js"
       },
       {
@@ -3752,7 +3752,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 332014392.3500767,
         "pddTotal": 26264.736,
         "funding": 402211804.372,
-        "subordinada": 87915300.66207676,
+        "subordinada": 88273996.36207676,
         "dataScript": "data/cras/cra-65/2026-07-16.js"
       },
       {
@@ -3765,7 +3765,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 331741338.15956414,
         "pddTotal": 26264.736,
         "funding": 401990074.688,
-        "subordinada": 87866299.77556413,
+        "subordinada": 88192386.77556413,
         "dataScript": "data/cras/cra-65/2026-07-15.js"
       },
       {
@@ -3778,7 +3778,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 331469244.702011,
         "pddTotal": 26264.736,
         "funding": 401768467.23999995,
-        "subordinada": 87818170.10601105,
+        "subordinada": 88111648.40601104,
         "dataScript": "data/cras/cra-65/2026-07-14.js"
       },
       {
@@ -3791,7 +3791,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 331198233.10410184,
         "pddTotal": 26264.736,
         "funding": 401546981.956,
-        "subordinada": 87775044.9021019,
+        "subordinada": 88035914.5021019,
         "dataScript": "data/cras/cra-65/2026-07-13.js"
       },
       {
@@ -3804,7 +3804,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 330667920.0141846,
         "pddTotal": 26264.736,
         "funding": 401325618.772,
-        "subordinada": 87478765.06618455,
+        "subordinada": 87707025.96618456,
         "dataScript": "data/cras/cra-65/2026-07-10.js"
       },
       {
@@ -3817,7 +3817,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 330395325.47453094,
         "pddTotal": 26264.736,
         "funding": 401104377.62,
-        "subordinada": 87440118.46853094,
+        "subordinada": 87635770.66853094,
         "dataScript": "data/cras/cra-65/2026-07-09.js"
       },
       {
@@ -3830,7 +3830,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 330123762.54619014,
         "pddTotal": 26264.736,
         "funding": 400883258.436,
-        "subordinada": 87402408.66419017,
+        "subordinada": 87565452.16419017,
         "dataScript": "data/cras/cra-65/2026-07-08.js"
       },
       {
@@ -3843,7 +3843,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 329851149.1031009,
         "pddTotal": 26264.736,
         "funding": 400662261.148,
-        "subordinada": 87363553.2191009,
+        "subordinada": 87493988.0191009,
         "dataScript": "data/cras/cra-65/2026-07-07.js"
       },
       {
@@ -3856,7 +3856,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 329574416.86,
         "pddTotal": 26264.736,
         "funding": 400441385.69200003,
-        "subordinada": 87345547.23200002,
+        "subordinada": 87443373.33200002,
         "dataScript": "data/cras/cra-65/2026-07-06.js"
       },
       {
@@ -3869,7 +3869,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 0.0,
         "pddTotal": 26264.736,
         "funding": 400220631.996,
-        "subordinada": 87346243.08800003,
+        "subordinada": 87411460.48800004,
         "dataScript": "data/cras/cra-65/2026-07-03.js"
       },
       {
@@ -3882,7 +3882,7 @@ window.LAMINA_CRA_MANIFEST = [
         "carteiraVpBruto": 0.0,
         "pddTotal": 26264.736,
         "funding": 400000000.0,
-        "subordinada": 87443571.98400001,
+        "subordinada": 87476180.68400002,
         "dataScript": "data/cras/cra-65/2026-07-02.js"
       }
     ],
