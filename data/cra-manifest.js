@@ -2,8 +2,21 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-08-12",
+    "currentDate": "2026-08-13",
     "dates": [
+      {
+        "dateKey": "2026-08-13",
+        "reportDate": "13/08/2026",
+        "importedAt": "2026-08-14T14:09:21.699931-03:00",
+        "revisionId": "20260814-140917",
+        "totalAtivo": 1009710801.8146129,
+        "carteiraVp": 591035074.8546128,
+        "carteiraVpBruto": 593591103.9701722,
+        "pddTotal": 2556029.1155592995,
+        "funding": 607299756.912,
+        "subordinada": 401053118.9940229,
+        "dataScript": "data/cras/cra-modelo/2026-08-13.js"
+      },
       {
         "dateKey": "2026-08-12",
         "reportDate": "12/08/2026",
@@ -3467,19 +3480,32 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-08-12",
+    "currentDate": "2026-08-13",
     "dates": [
+      {
+        "dateKey": "2026-08-13",
+        "reportDate": "13/08/2026",
+        "importedAt": "2026-08-14T14:10:20.459046-03:00",
+        "revisionId": "20260814-141020",
+        "totalAtivo": 990011220.9335482,
+        "carteiraVp": 846585597.3271846,
+        "carteiraVpBruto": 846611862.0631845,
+        "pddTotal": 26264.736,
+        "funding": 808854351.2720001,
+        "subordinada": 181156869.66154814,
+        "dataScript": "data/cras/cra-65/2026-08-13.js"
+      },
       {
         "dateKey": "2026-08-12",
         "reportDate": "12/08/2026",
-        "importedAt": "2026-08-13T16:46:02.076729-03:00",
-        "revisionId": "20260813-164601",
+        "importedAt": "2026-08-14T14:09:57.249247-03:00",
+        "revisionId": "20260814-140956",
         "totalAtivo": 989451982.6967765,
         "carteiraVp": 846191757.3022311,
         "carteiraVpBruto": 846218022.038231,
         "pddTotal": 26264.736,
         "funding": 808415842.2720001,
-        "subordinada": 179773294.4793219,
+        "subordinada": 181036140.42477643,
         "dataScript": "data/cras/cra-65/2026-08-12.js"
       },
       {

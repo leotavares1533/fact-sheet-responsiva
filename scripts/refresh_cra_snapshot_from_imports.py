@@ -2056,7 +2056,10 @@ def main():
     despesas_operacionais = despesas_importadas - provisoes_importadas
     provisoes_caixa = accounts["provisoes"]
     provisoes_total = provisoes_caixa + provisoes_importadas
-    deducoes_total = despesas_operacionais + provisoes_total
+    embedded_provision_in_cash = args.cra_id == "cra-65" and provisoes_importadas > 0 and provisoes_caixa == 0
+    deducoes_total = despesas_operacionais + provisoes_caixa
+    if not embedded_provision_in_cash:
+        deducoes_total += provisoes_importadas
     caixa_liquido = caixa_total - deducoes_total
     patrimonio_liquido = carteira_vp + caixa_liquido
 
@@ -2148,6 +2151,8 @@ def main():
     snapshot["passivo"]["provisoesTotal"] = provisoes_total
     snapshot["passivo"]["provisoesCaixa"] = provisoes_caixa
     snapshot["passivo"]["provisoesImportadasTotal"] = provisoes_importadas
+    snapshot["passivo"]["provisoesJaDeduzidasNoCaixa"] = bool(embedded_provision_in_cash)
+    snapshot["passivo"]["deducoesSubordinadaTotal"] = deducoes_total
     snapshot["passivo"]["deducoesTotal"] = deducoes_total
     snapshot["passivo"]["subordinadaTotal"] = subordinada_total
     snapshot["passivo"]["subordinadaQuantidade"] = sub_quantity
