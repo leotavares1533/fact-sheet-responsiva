@@ -69,9 +69,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
     "provisoesCaixa": 0.0,
     "provisoesImportadasTotal": 163043.5,
     "deducoesTotal": 163043.5,
-    "subordinadaTotal": 87565452.16419017,
+    "subordinadaTotal": 87402408.66419017,
     "subordinadaQuantidade": 100000.0,
-    "subordinadaPuResidual": 875.6545216419017,
+    "subordinadaPuResidual": 874.0240866419017,
     "cotas": [
       {
         "classe": "SR1",
@@ -2103,8 +2103,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
         "dataEmissaoIso": "2026-07-01",
         "valorNominalInicial": 1000,
         "principalResidual": 875.3505412,
-        "pu": 875.6545216419017,
-        "valor": 87565452.16419017,
+        "pu": 874.0240866419017,
+        "valor": 87402408.66419017,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -2165,9 +2165,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
         "dataVencimentoIso": "2032-07-15",
         "dataVencimento": "15/07/2032"
       }
-    ],
-    "provisoesJaDeduzidasNoCaixa": true,
-    "deducoesSubordinadaTotal": 0.0
+    ]
   },
   "carteiraResumo": {
     "valorNominal": 332507350.194,
@@ -2209,12 +2207,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
       "label": "Subordinada",
       "quantidade": 100000.0,
       "taxa": "Premio de subordinacao",
-      "pu": 875.6545216419017,
-      "valor": 87565452.16419017,
-      "resultadoDia": 0.0008167892069756988,
-      "resultadoMes": 0.001020523295508502,
-      "resultado30Dias": 0.001020523295508502,
-      "resultadoInicio": -0.1243454783580984,
+      "pu": 874.0240866419017,
+      "valor": 87402408.66419017,
+      "resultadoDia": 0.0004447557780968836,
+      "resultadoMes": -0.0004707415179399099,
+      "resultado30Dias": -0.0004707415179399099,
+      "resultadoInicio": -0.12597591335809832,
       "tipo": "sub",
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {}
@@ -2235,10 +2233,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 875.6545216419017,
-          "valor": 87565452.16419017,
-          "resultadoDia": 0.0008167892069756988,
-          "resultadoMes": 0.001020523295508502,
+          "pu": 874.0240866419017,
+          "valor": 87402408.66419017,
+          "resultadoDia": 0.0004447557780968836,
+          "resultadoMes": -0.0004707415179399099,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -2259,10 +2257,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.939880191009,
-          "valor": 87493988.0191009,
-          "resultadoDia": 0.0005788281624121705,
-          "resultadoMes": 0.00020356781653774192,
+          "pu": 873.635532191009,
+          "valor": 87363553.2191009,
+          "resultadoDia": 0.00020614659443429773,
+          "resultadoMes": -0.0009150903043365632,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -2283,10 +2281,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.4337333200002,
-          "valor": 87443373.33200002,
-          "resultadoDia": 0.00036508764207598965,
-          "resultadoMes": -0.0003750432602734888,
+          "pu": 873.4554723200002,
+          "valor": 87345547.23200002,
+          "resultadoDia": -7.966639152479082e-06,
+          "resultadoMes": -0.001121005807241393,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -2307,10 +2305,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.1146048800003,
-          "valor": 87411460.48800004,
-          "resultadoDia": -0.0007398607883187802,
-          "resultadoMes": -0.0007398607883187802,
+          "pu": 873.4624308800003,
+          "valor": 87346243.08800003,
+          "resultadoDia": -0.0011130480353409578,
+          "resultadoMes": -0.0011130480353409578,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -2331,8 +2329,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.7618068400002,
-          "valor": 87476180.68400002,
+          "pu": 874.4357198400002,
+          "valor": 87443571.98400001,
           "resultadoDia": null,
           "resultadoMes": null,
           "ajustesFluxoSub": [],
@@ -2361,11 +2359,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
       "reportDate": "08/07/2026",
       "classe": "SUB",
       "label": "Subordinada",
-      "resultadoMensal": 0.001020523295508502,
+      "resultadoMensal": -0.0004707415179399099,
       "cdiPeriodo": 0.0021029962761905567,
-      "percentualCdi": 0.4852710901405468,
-      "puFechamento": 875.6545216419017,
-      "resultadoInicio": -0.1243454783580984
+      "percentualCdi": -0.22384324844960168,
+      "puFechamento": 874.0240866419017,
+      "resultadoInicio": -0.12597591335809832
     }
   ],
   "concentracaoDetalhada": {
@@ -2891,11 +2889,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
         {
           "id": "subordinada_total",
           "label": "Subordinada residual",
-          "value": "R$ 87.565.452,16",
-          "numericValue": 87565452.16419017,
+          "value": "R$ 87.402.408,66",
+          "numericValue": 87402408.66419017,
           "isHighlight": true,
           "source": {
-            "name": "Ativo - funding",
+            "name": "Ativo - funding - despesas/provisoes",
             "owner": "",
             "url": ""
           },
@@ -2904,8 +2902,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-08"] = {
         {
           "id": "subordinada_pu",
           "label": "PU SUB residual",
-          "value": "R$ 875,654522",
-          "numericValue": 875.6545216419017,
+          "value": "R$ 874,024087",
+          "numericValue": 874.0240866419017,
           "isHighlight": true,
           "source": {
             "name": "Subordinada residual / quantidade",

@@ -209,7 +209,7 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
     if provisao:
         observation = (
             f"Caixa bruto {br_number(raw_cash_total)} ajustado pela provisao de despesa de {br_number(provisao)}. "
-            f"Total do caixa usado no ativo {br_number(cash_total)}; provisao evidenciada sem nova deducao da Subordinada."
+            f"Total do caixa usado no ativo {br_number(cash_total)}; provisao registrada como deducao da Subordinada."
         )
     write_csv(
         cash_dir / "caixa.csv",
@@ -240,7 +240,7 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
                 "valor": br_number(provisao),
                 "fonte": "Extrato Bancario",
                 "arquivo_origem": cash_path.name,
-                "observacao": "Provisao ja abatida do caixa usado no ativo; mantida para evidencia gerencial.",
+                "observacao": "Provisao considerada como deducao da Subordinada, sem alterar o caixa total exibido.",
             }
         )
     write_csv(
