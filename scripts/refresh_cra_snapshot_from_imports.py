@@ -1688,6 +1688,34 @@ def cota_value_for_date(cota, date_key):
     return pu, value
 
 
+def cota_cashflow_for_date(cota, date_key):
+    quantity = float(cota.get("quantidade") or 0.0)
+    for row in reversed(list(cota.get("historicoPu") or [])):
+        row_key = str(row.get("dataIso") or row.get("dateKey") or "")[:10]
+        if row_key != date_key:
+            continue
+        pu_evento = float(row.get("puEvento") or 0.0)
+        valor_evento = float(row.get("valorEventoReais") or (pu_evento * quantity))
+        if pu_evento > 0 or valor_evento > 0 or row.get("ehDataPagamentoTs"):
+            return {
+                "dateKey": date_key,
+                "dataIso": date_key,
+                "data": format_date_br(date_key),
+                "tipoEvento": "pagamento_juros",
+                "tipoNormalizado": "pagamento juros",
+                "evento": row.get("evento") or row.get("eventoTs") or "Pagamento de juros",
+                "observacao": "Fluxo tratado como pagamento para nao contaminar a rentabilidade diaria.",
+                "puEvento": pu_evento,
+                "puAntesEvento": float(row.get("puAntesEvento") or 0.0),
+                "puDepois": float(row.get("puAposEvento") or row.get("puAtualizado") or 0.0),
+                "puAposEvento": float(row.get("puAposEvento") or row.get("puAtualizado") or 0.0),
+                "principalAposEvento": float(row.get("principalAposEvento") or row.get("valorNominal") or 0.0),
+                "valorFluxoEstimado": valor_evento,
+                "ehDataPagamentoTs": bool(row.get("ehDataPagamentoTs")),
+            }
+    return None
+
+
 def performance_needs_fallback(snapshot, date_key):
     history = snapshot.get("rendimento30Dias") or []
     if not history or str(history[0].get("dateKey") or "") != date_key:
@@ -1743,6 +1771,13 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
         resultado_dia = (pu / prev_pu - 1.0) if pu > 0 and prev_pu > 0 else None
         ajustes_fluxo_sub = []
         ajustes_fluxo_periodo = {}
+        payment_flow = cota_cashflow_for_date(cota, date_key)
+        if cota.get("ehFunding") and payment_flow and prev_pu > 0:
+            paid_pu = float(payment_flow.get("puEvento") or 0.0)
+            if paid_pu > 0:
+                resultado_dia = (pu + paid_pu) / prev_pu - 1.0
+                ajustes_fluxo_sub.append(payment_flow)
+                ajustes_fluxo_periodo.setdefault(date_key, []).append(payment_flow)
         quantity_event = quantity_event_for_period(cra_id, classe, previous_key, date_key)
         if classe == "SUB" and quantity_event and previous_key and previous_key < date_key:
             contribution_value = float(quantity_event.get("valorIntegralizado") or 0.0)
