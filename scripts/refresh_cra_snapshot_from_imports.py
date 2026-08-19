@@ -1484,6 +1484,14 @@ def normalize_funding_history_memory(cotas, holiday_dates=None):
             pu = float(row.get("puAposEvento") or row.get("puAtualizado") or row.get("puFinal") or 0.0)
             if not pu:
                 pu = float(cota.get("pu") or 0.0)
+            has_reset_event = (
+                bool(row.get("ehDataPagamentoTs"))
+                or parse_number(row.get("puEvento")) > 0
+                or parse_number(row.get("valorEventoReais")) > 0
+                or str(row.get("efeitoEvento") or "").strip().lower() in {"paga_remuneracao", "amortizacao_final"}
+            )
+            if has_reset_event:
+                dias_periodo = 0
             row["diasUteis"] = dias_uteis
             row["diasUteisPeriodo"] = dias_periodo
             row["valorNominal"] = principal
