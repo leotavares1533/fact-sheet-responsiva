@@ -822,11 +822,24 @@ def build_funding_forecast_rows(cota, date_key, holiday_dates=None, days=220):
     rate_info = last_known_rate_info(cota, date_key, holiday_dates)
     principal = float(cota.get("principalResidual") or cota.get("valorNominalInicial") or 0.0)
     pu = float(cota.get("pu") or principal or 0.0)
-    base_pu = pu
-    period_factor = 1.0
-    total_factor = 1.0
-    pure_di_factor = 1.0
     accum = cota.get("acumulacaoFinal") or {}
+    history = sorted(
+        [
+            row for row in cota.get("historicoPu", []) or []
+            if str(row.get("dataIso") or row.get("data") or "")[:10] <= date_key
+        ],
+        key=lambda row: str(row.get("dataIso") or row.get("data") or "")[:10],
+    )
+    latest_row = history[-1] if history else {}
+    base_pu = principal
+    period_factor = (
+        parse_number(latest_row.get("fatorDiAcumulado"))
+        or parse_number(latest_row.get("fatorJurosAcumulado"))
+        or (pu / principal if principal else 1.0)
+        or 1.0
+    )
+    total_factor = parse_number(latest_row.get("produtorioFatorDi")) or period_factor or 1.0
+    pure_di_factor = 1.0
     dias_uteis = int(parse_number(accum.get("diasAcumulacao")))
     dias_uteis_periodo = int(parse_number(accum.get("diasUteisPeriodo") if accum.get("diasUteisPeriodo") is not None else accum.get("diasAcumulacao")))
     rows = []
@@ -860,7 +873,7 @@ def build_funding_forecast_rows(cota, date_key, holiday_dates=None, days=220):
             if "Juros" in evento_ts:
                 pu_evento = max(0.0, pu - principal)
                 pu = max(principal, pu - pu_evento)
-                base_pu = pu
+                base_pu = principal
                 period_factor = 1.0
                 dias_uteis_periodo = 0
                 efeito_evento = "paga_remuneracao"

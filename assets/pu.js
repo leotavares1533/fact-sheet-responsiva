@@ -1038,7 +1038,7 @@
       if (eventoTs.includes("Juros")) {
         puEvento = Math.max(0, context.pu - context.principal);
         context.pu = Math.max(context.principal, context.pu - puEvento);
-        context.basePu = context.pu;
+        context.basePu = context.principal;
         context.periodFactor = 1;
         context.diasUteisPeriodo = 0;
         efeitoEvento = "paga_remuneracao";
@@ -1100,14 +1100,15 @@
   function createProjectionContext(cota, startRow, startDateKey) {
     const principal = Number(startRow?.valorNominal ?? cota.principalResidual ?? cota.valorNominalInicial ?? 0);
     const pu = Number(startRow?.puAtualizado ?? cota.pu ?? principal);
+    const periodFactor = Number(startRow?.fatorDiAcumulado || startRow?.fatorJurosAcumulado || (principal > 0 ? pu / principal : 1) || 1);
     return {
       startDateKey,
       rateInfo: getLastKnownRateInfo(cota, startDateKey),
       principal,
       pu,
-      basePu: pu,
-      periodFactor: 1,
-      totalFactor: Number(startRow?.produtorioFatorDi || 1),
+      basePu: principal,
+      periodFactor,
+      totalFactor: Number(startRow?.produtorioFatorDi || periodFactor || 1),
       pureDiFactor: 1,
       diasUteis: Number(startRow?.diasUteis || 0),
       diasUteisPeriodo: Number(startRow?.diasUteisPeriodo || 0)
@@ -1128,12 +1129,16 @@
   }
 
   function buildForecastRowsForCota(cota, startDateKey, days = 220) {
+    const history = getHistoryRowsToDate(cota, startDateKey);
+    const latestRow = history[history.length - 1] || {};
     const startRow = {
-      puAtualizado: cota.pu,
-      valorNominal: cota.principalResidual,
-      diasUteis: cota.acumulacaoFinal?.diasAcumulacao || 0,
-      diasUteisPeriodo: cota.acumulacaoFinal?.diasUteisPeriodo ?? cota.acumulacaoFinal?.diasAcumulacao ?? 0,
-      produtorioFatorDi: 1
+      puAtualizado: latestRow.puAtualizado ?? cota.pu,
+      valorNominal: latestRow.valorNominal ?? cota.principalResidual,
+      diasUteis: latestRow.diasUteis ?? cota.acumulacaoFinal?.diasAcumulacao ?? 0,
+      diasUteisPeriodo: latestRow.diasUteisPeriodo ?? cota.acumulacaoFinal?.diasUteisPeriodo ?? cota.acumulacaoFinal?.diasAcumulacao ?? 0,
+      produtorioFatorDi: latestRow.produtorioFatorDi,
+      fatorDiAcumulado: latestRow.fatorDiAcumulado,
+      fatorJurosAcumulado: latestRow.fatorJurosAcumulado
     };
     const context = createProjectionContext(cota, startRow, startDateKey);
     const rows = [];

@@ -391,14 +391,15 @@
   function createProjectionContext(cota, startRow, startDateKey) {
     const principal = Number(startRow?.valorNominal ?? cota.principalResidual ?? cota.valorNominalInicial ?? 0);
     const pu = Number(startRow?.puAtualizado ?? cota.pu ?? principal);
+    const periodFactor = Number(startRow?.fatorDiAcumulado || startRow?.fatorJurosAcumulado || (principal > 0 ? pu / principal : 1) || 1);
     return {
       startDateKey,
       rateInfo: getLastKnownRateInfo(cota, startDateKey),
       principal,
       pu,
-      basePu: pu,
-      periodFactor: 1,
-      totalFactor: Number(startRow?.produtorioFatorDi || 1),
+      basePu: principal,
+      periodFactor,
+      totalFactor: Number(startRow?.produtorioFatorDi || periodFactor || 1),
       pureDiFactor: 1,
       diasUteis: Number(startRow?.diasUteis || 0),
       diasUteisPeriodo: Number(startRow?.diasUteisPeriodo || startRow?.diasUteis || 0)
@@ -421,14 +422,18 @@
   function getSimulationBaseRow(row, targetDateKey) {
     const cota = row.cota;
     const startDateKey = row.dateKey;
+    const history = getHistoryRowsToDate(cota, startDateKey);
+    const latestRow = history[history.length - 1] || {};
     const startRow = {
       data: formatIsoDate(startDateKey),
       dataIso: startDateKey,
-      puAtualizado: Number(cota?.pu || 0),
-      valorNominal: Number(cota?.principalResidual ?? cota?.valorNominalInicial ?? 0),
-      diasUteis: Number(cota?.acumulacaoFinal?.diasAcumulacao || 0),
-      diasUteisPeriodo: Number(cota?.acumulacaoFinal?.diasUteisPeriodo ?? cota?.acumulacaoFinal?.diasAcumulacao ?? 0),
-      produtorioFatorDi: 1
+      puAtualizado: Number(latestRow?.puAtualizado ?? cota?.pu ?? 0),
+      valorNominal: Number(latestRow?.valorNominal ?? cota?.principalResidual ?? cota?.valorNominalInicial ?? 0),
+      diasUteis: Number(latestRow?.diasUteis ?? cota?.acumulacaoFinal?.diasAcumulacao ?? 0),
+      diasUteisPeriodo: Number(latestRow?.diasUteisPeriodo ?? cota?.acumulacaoFinal?.diasUteisPeriodo ?? cota?.acumulacaoFinal?.diasAcumulacao ?? 0),
+      produtorioFatorDi: latestRow?.produtorioFatorDi,
+      fatorDiAcumulado: latestRow?.fatorDiAcumulado,
+      fatorJurosAcumulado: latestRow?.fatorJurosAcumulado
     };
 
     if (!targetDateKey || targetDateKey <= startDateKey) {

@@ -376,7 +376,7 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
 
     principal = first_present_number(latest.get("valorNominal"), next_cota.get("principalResidual"), next_cota.get("valorNominalInicial"))
     pu = first_present_number(latest.get("puAtualizado"), next_cota.get("pu"), principal)
-    base_pu = pu
+    base_pu = principal
     period_factor = to_number(latest.get("fatorDiAcumulado")) or 1.0
     total_factor = to_number(latest.get("produtorioFatorDi")) or 1.0
     dias_uteis = int(to_number(latest.get("diasUteis")))

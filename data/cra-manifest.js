@@ -3524,8 +3524,8 @@ window.LAMINA_CRA_MANIFEST = [
       {
         "dateKey": "2026-08-18",
         "reportDate": "18/08/2026",
-        "importedAt": "2026-08-19T14:35:02.123295-03:00",
-        "revisionId": "20260819-143501",
+        "importedAt": "2026-08-20T16:15:12.576087-03:00",
+        "revisionId": "20260820-161512",
         "totalAtivo": 982433573.731215,
         "carteiraVp": 848366047.3093967,
         "carteiraVpBruto": 848392312.0453967,
