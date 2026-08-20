@@ -607,6 +607,42 @@ def funding_rate_info_for_date(cotas, date_key, holiday_dates=None):
     return last_known_rate_info(reference, date_key, holiday_dates)
 
 
+def build_total_carry_metrics(carteira_vp, caixa_total, taxa_carteira_mes, cotas, date_key, holiday_dates=None):
+    carteira_vp = float(carteira_vp or 0.0)
+    caixa_total = float(caixa_total or 0.0)
+    total_base = carteira_vp + caixa_total
+    if total_base <= 0:
+        return {}
+
+    rate_info = funding_rate_info_for_date(cotas, date_key, holiday_dates) or {}
+    daily_di = parse_number(rate_info.get("dailyRate"))
+    caixa_percentual_cdi = 0.90
+    taxa_caixa_mes = (1 + daily_di * caixa_percentual_cdi) ** 21 - 1 if daily_di else 0.0
+    taxa_caixa_aa = (1 + daily_di * caixa_percentual_cdi) ** 252 - 1 if daily_di else 0.0
+    taxa_carteira_mes = float(taxa_carteira_mes or 0.0)
+    taxa_carrego_mes = ((carteira_vp * taxa_carteira_mes) + (caixa_total * taxa_caixa_mes)) / total_base
+    taxa_carrego_aa = (1 + taxa_carrego_mes) ** 12 - 1 if taxa_carrego_mes > -1 else 0.0
+
+    return {
+        "taxaCarregoTotal": taxa_carrego_mes,
+        "taxaCarregoTotalAa": taxa_carrego_aa,
+        "taxaCarregoCarteira": taxa_carteira_mes,
+        "taxaCarregoCaixa90Cdi": taxa_caixa_mes,
+        "taxaCarregoCaixa90CdiAa": taxa_caixa_aa,
+        "taxaCarregoCaixaPercentualCdi": caixa_percentual_cdi,
+        "taxaCarregoPesoCarteira": carteira_vp / total_base,
+        "taxaCarregoPesoCaixa": caixa_total / total_base,
+        "taxaCarregoCarteiraVpBase": carteira_vp,
+        "taxaCarregoCaixaBase": caixa_total,
+        "taxaCarregoBaseTotal": total_base,
+        "taxaCarregoTaxaDiDia": daily_di,
+        "taxaCarregoTaxaDiAnual": parse_number(rate_info.get("annualRate")) or ((1 + daily_di) ** 252 - 1 if daily_di else 0.0),
+        "taxaCarregoDataTaxaDi": rate_info.get("dataTaxaDi") or "",
+        "taxaCarregoDataTaxaDiIso": rate_info.get("dataTaxaDiIso") or "",
+        "taxaCarregoStatusTaxaDi": rate_info.get("taxaDiStatus") or "",
+    }
+
+
 def build_integralized_funding_cota(series, date_key, reference_cotas, holiday_dates):
     start_key = str(series.get("dataInicioIso") or "")
     start_date = parse_date_key(start_key)
@@ -2210,6 +2246,15 @@ def main():
     snapshot["passivo"]["subordinadaQuantidade"] = sub_quantity
     snapshot["passivo"]["subordinadaPuResidual"] = sub_pu
     snapshot["carteira"] = carteira
+    taxa_media_carteira = weighted_average(active_carteira, "taxa", "valorPresenteLiquido")
+    taxa_carrego = build_total_carry_metrics(
+        carteira_vp,
+        caixa_total,
+        taxa_media_carteira,
+        cotas,
+        date_key,
+        snapshot_holidays(snapshot),
+    )
     snapshot["carteiraResumo"] = {
         "valorNominal": direitos_creditorios_vn,
         "valorPresente": carteira_vp_bruto,
@@ -2230,7 +2275,8 @@ def main():
             "prazoDias",
             "valorPresenteLiquido",
         ),
-        "taxaMediaPonderada": weighted_average(active_carteira, "taxa", "valorPresenteLiquido"),
+        "taxaMediaPonderada": taxa_media_carteira,
+        **taxa_carrego,
         "preFixado": {
             "valorNominal": float(pre_row.get("valorNominal") or 0),
             "valorPresente": float(pre_row.get("valorPresente") or 0),

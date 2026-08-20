@@ -944,6 +944,20 @@
         `;
       }
 
+      function renderCarryRateTile(resumo) {
+        if (!resumo || resumo.taxaCarregoTotal === null || resumo.taxaCarregoTotal === undefined) {
+          return "";
+        }
+        const details = [];
+        if (resumo.taxaCarregoTotalAa !== null && resumo.taxaCarregoTotalAa !== undefined) {
+          details.push(`${formatPercent(resumo.taxaCarregoTotalAa)} a.a.`);
+        }
+        if (resumo.taxaCarregoDataTaxaDi) {
+          details.push(`DI ${resumo.taxaCarregoDataTaxaDi}`);
+        }
+        return renderStatTile("Carrego CRA", formatPercent(resumo.taxaCarregoTotal), details.join(" | "), "primary", "no-break-value");
+      }
+
       function renderGenericTable(title, columns, rows, emptyLabel, extraClass) {
         return `
           <div class="table-panel ${extraClass || ""}">
@@ -1132,6 +1146,7 @@
                   ${renderStatTile("Prox. pag. Senior", coverage.valor ? formatCurrency(coverage.valor) : "-", coverage.data || "", "primary", "no-break-value")}
                   ${renderStatTile("Farol pagamento", coverageText, coverageDetail, coverageTone)}
                   ${renderCra65DistributionFeeScenario(snapshot)}
+                  ${renderCarryRateTile(resumo)}
                   ${renderStatTile("Prazo médio", formatDays(resumo.prazoMedioDias))}
                   ${renderStatTile("Taxa média", formatPercent(resumo.taxaMediaPonderada))}
                 </div>
@@ -1851,6 +1866,7 @@
             ${renderStatTile("Sacados", formatNumber(resumo.sacadosUnicos, 0))}
             ${renderStatTile("Prazo médio", formatDays(resumo.prazoMedioDias))}
             ${renderStatTile("Taxa média", formatPercent(resumo.taxaMediaPonderada))}
+            ${renderCarryRateTile(resumo)}
             ${renderStatTile("Pre fixado", formatCurrencyShort(resumo.preFixado?.valorPresente))}
             ${renderStatTile("Pos fixado", formatCurrencyShort(resumo.posFixado?.valorPresente))}
           </div>
