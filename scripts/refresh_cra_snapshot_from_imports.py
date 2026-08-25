@@ -143,6 +143,21 @@ def is_cash_embedded_provision(row):
     return is_provision and from_cash
 
 
+def deduct_cash_accounts(accounts, amount):
+    adjusted = dict(accounts)
+    remaining = abs(float(amount or 0.0))
+    for field in ("contaAplicacao", "cc", "fundoZeragem", "fundoDespesas", "contaLiquidacao", "provisoes"):
+        if remaining <= 0:
+            break
+        available = max(float(adjusted.get(field) or 0.0), 0.0)
+        deduction = min(available, remaining)
+        adjusted[field] = float(adjusted.get(field) or 0.0) - deduction
+        remaining -= deduction
+    if remaining > 0:
+        adjusted["contaAplicacao"] = float(adjusted.get("contaAplicacao") or 0.0) - remaining
+    return adjusted
+
+
 def parse_number(value):
     text = str(value or "").strip().replace("R$", "").replace("%", "").replace(" ", "")
     text = re.sub(r"[^0-9,.\-]", "", text)
@@ -2121,14 +2136,7 @@ def main():
         "fundoDespesas": parse_number(caixa_row.get("fundo_despesas")),
         "provisoes": parse_number(caixa_row.get("provisoes")),
     }
-    caixa_total = sum(accounts.values())
-    caixa = {
-        "accounts": accounts,
-        "total": caixa_total,
-        "fonte": str(caixa_row.get("fonte", "")).strip(),
-        "arquivoOrigem": str(caixa_row.get("arquivo_origem", "")).strip(),
-        "observacao": str(caixa_row.get("observacao", "")).strip(),
-    }
+    caixa_observacao = str(caixa_row.get("observacao", "")).strip()
 
     despesas = []
     for row in read_csv(despesas_path):
@@ -2144,12 +2152,29 @@ def main():
                 "observacao": str(row.get("observacao", "")).strip(),
             }
         )
+    provisoes_caixa_informativas = sum(row["valor"] for row in despesas if is_cash_embedded_provision(row))
+    caixa_total_antes_provisao_informativa = sum(accounts.values())
+    if provisoes_caixa_informativas:
+        accounts = deduct_cash_accounts(accounts, provisoes_caixa_informativas)
+        caixa_observacao = (
+            f"{caixa_observacao} Ajuste gerencial: provisao informativa de "
+            f"{format_currency_br(provisoes_caixa_informativas)} abatida do caixa usado no ativo."
+        ).strip()
+    caixa_total = sum(accounts.values())
+    caixa = {
+        "accounts": accounts,
+        "total": caixa_total,
+        "totalAntesProvisaoInformativa": caixa_total_antes_provisao_informativa,
+        "provisaoInformativaAbatida": provisoes_caixa_informativas,
+        "fonte": str(caixa_row.get("fonte", "")).strip(),
+        "arquivoOrigem": str(caixa_row.get("arquivo_origem", "")).strip(),
+        "observacao": caixa_observacao,
+    }
 
     carteira_vp_bruto = sum(row["valorPresenteDia"] for row in carteira)
     pdd_total = sum(row["pdd"] for row in carteira)
     carteira_vp = carteira_vp_bruto - pdd_total
     ativo_total = carteira_vp + caixa_total
-    provisoes_caixa_informativas = sum(row["valor"] for row in despesas if is_cash_embedded_provision(row))
     despesas_dedutiveis = [row for row in despesas if not is_cash_embedded_provision(row)]
     despesas_importadas = sum(row["valor"] for row in despesas_dedutiveis)
     provisoes_importadas = sum(

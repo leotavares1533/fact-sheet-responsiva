@@ -99,6 +99,42 @@ def assign_cash_value(accounts: dict[str, float], text: str, amount: float) -> t
     return matched, provisao
 
 
+def infer_shifted_total_provision(accounts: dict[str, float], rows: list[list[object]], date_column: int | None = None) -> float:
+    raw_total = sum(float(value or 0.0) for key, value in accounts.items() if key != "provisoes")
+    if raw_total <= 0:
+        return 0.0
+
+    for index, row in enumerate(rows):
+        labels = [
+            normalize(value)
+            for column, value in enumerate(row)
+            if column != date_column and value not in (None, "")
+        ]
+        if "total" not in labels:
+            continue
+
+        amount = 0.0
+        if date_column is not None and date_column < len(row):
+            amount = parse_number(row[date_column])
+        else:
+            label_index = next((column for column, value in enumerate(row) if normalize(value) == "total"), -1)
+            if label_index >= 0:
+                amount = parse_number(first_value_after(row, label_index))
+        if not (0 < amount < raw_total * 0.1):
+            continue
+
+        nearby_values: list[float] = []
+        for next_row in rows[index + 1 : index + 3]:
+            if date_column is not None and date_column < len(next_row):
+                nearby_values.append(parse_number(next_row[date_column]))
+            else:
+                nearby_values.extend(parse_number(value) for value in next_row)
+        if any(abs(value - (raw_total - amount)) < 1.0 for value in nearby_values if value):
+            return amount
+
+    return 0.0
+
+
 def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], float]:
     workbook = openpyxl.load_workbook(cash_path, read_only=True, data_only=True)
     default_accounts = {
@@ -135,15 +171,16 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
                     matches += 1
                     provisao = row_provisao or provisao
             if matches:
+                provisao = provisao or infer_shifted_total_provision(accounts, rows, date_column)
                 return accounts, provisao
 
     for worksheet in workbook.worksheets:
+        rows = [list(row) for row in worksheet.iter_rows(values_only=True)]
         accounts = dict(default_accounts)
         provisao = 0.0
         file_date = date_key
         matches = 0
-        for row in worksheet.iter_rows(values_only=True):
-            values = list(row)
+        for values in rows:
             for index, value in enumerate(values):
                 text = normalize(value)
                 if not text:
@@ -160,6 +197,7 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
                     matches += 1
                     provisao = row_provisao or provisao
         if matches and file_date == date_key:
+            provisao = provisao or infer_shifted_total_provision(accounts, rows)
             return accounts, provisao
 
     raise ValueError(f"Nao encontrei caixa para a data {date_key} em {cash_path.name}.")
@@ -209,7 +247,7 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
     if provisao:
         observation = (
             f"Caixa bruto {br_number(raw_cash_total)} ajustado pela provisao de despesa de {br_number(provisao)}. "
-            f"Total do caixa usado no ativo {br_number(cash_total)}; provisao registrada apenas como informativa, sem nova deducao na Subordinada."
+            f"Total preliminar {br_number(cash_total)}; provisao registrada como informativa para abatimento do caixa gerencial."
         )
     write_csv(
         cash_dir / "caixa.csv",
@@ -240,7 +278,7 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
                 "valor": br_number(provisao),
                 "fonte": "Extrato Bancario",
                 "arquivo_origem": cash_path.name,
-                "observacao": "Provisao ja deduzida no caixa informado; registro apenas informativo, sem dupla deducao na Subordinada.",
+                "observacao": "Provisao informativa para abatimento do caixa usado no ativo, sem lancamento separado como despesa no passivo.",
             }
         )
     write_csv(
