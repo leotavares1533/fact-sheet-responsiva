@@ -4,12 +4,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-09"] = {
   "metadata": {
     "reportDate": "09/07/2026",
     "dateKey": "2026-07-09",
-    "importedAt": "2026-08-24T22:20:42.704474-03:00",
-    "revisionId": "20260824-222042",
+    "importedAt": "2026-08-25T10:26:16.743797-03:00",
+    "revisionId": "20260825-102614",
     "preOperational": false,
     "observation": "Posicao inicial de liquidacao em 02/07/2026, com carteira zerada e caixa informado.",
     "canonicalPath": "cras/cra-65/archive/canonical/2026-07-09.json",
-    "revisionPath": "cras/cra-65/archive/revisions/2026-07-09/20260824-222042.json",
+    "revisionPath": "cras/cra-65/archive/revisions/2026-07-09/20260825-102614.json",
     "dataScript": "data/cras/cra-65/2026-07-09.js"
   },
   "cra": {
@@ -59,6 +59,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-09"] = {
     "total": 158175435.35,
     "totalAntesProvisaoInformativa": 158371087.54999998,
     "provisaoInformativaAbatida": 195652.2,
+    "ajustesCompetencia": [],
+    "ajusteCompetenciaTotal": 0,
     "fonte": "Extrato Bancario",
     "arquivoOrigem": "carteira e caixa completo 65.xlsx",
     "observacao": "Caixa bruto 158566739,75 ajustado pela provisao de despesa de 195652,200000000012. Total do caixa usado no ativo 158371087,549999982119; provisao registrada como deducao da Subordinada. Ajuste gerencial: provisao informativa de R$ 195.652,20 abatida do caixa usado no ativo."
@@ -3032,42 +3034,42 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-09"] = {
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/carteira/2026-07-09/carteira-2026-07-09-20260824-222042.csv"
+      "file": "cras/cra-65/archive/raw/carteira/2026-07-09/carteira-2026-07-09-20260825-102614.csv"
     },
     {
       "name": "Carteira fonte Excel",
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-09/carteira-fonte-excel-2026-07-09-20260824-222042.xlsx"
+      "file": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-09/carteira-fonte-excel-2026-07-09-20260825-102614.xlsx"
     },
     {
       "name": "Validacao carteira",
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/carteira-validacao/2026-07-09/carteira-validacao-2026-07-09-20260824-222042.json"
+      "file": "cras/cra-65/archive/raw/carteira-validacao/2026-07-09/carteira-validacao-2026-07-09-20260825-102614.json"
     },
     {
       "name": "Caixa",
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/caixa/2026-07-09/caixa-2026-07-09-20260824-222042.csv"
+      "file": "cras/cra-65/archive/raw/caixa/2026-07-09/caixa-2026-07-09-20260825-102614.csv"
     },
     {
       "name": "Caixa fonte Excel",
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-09/caixa-fonte-excel-2026-07-09-20260824-222042.xlsx"
+      "file": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-09/caixa-fonte-excel-2026-07-09-20260825-102614.xlsx"
     },
     {
       "name": "Cotas e memoria de PU",
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/cotas/2026-07-09/cotas-2026-07-09-20260824-222042.csv"
+      "file": "cras/cra-65/archive/raw/cotas/2026-07-09/cotas-2026-07-09-20260825-102614.csv"
     },
     {
       "name": "Eventos de PU",
@@ -3088,7 +3090,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-09"] = {
       "owner": "",
       "url": "",
       "date": "09/07/2026",
-      "file": "cras/cra-65/archive/raw/despesas/2026-07-09/despesas-2026-07-09-20260824-222042.csv"
+      "file": "cras/cra-65/archive/raw/despesas/2026-07-09/despesas-2026-07-09-20260825-102614.csv"
     },
     {
       "name": "Calendario ANBIMA",
@@ -94157,12 +94159,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-09"] = {
     ]
   },
   "rawImports": {
-    "carteira": "cras/cra-65/archive/raw/carteira/2026-07-09/carteira-2026-07-09-20260824-222042.csv",
-    "carteiraFonteExcel": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-09/carteira-fonte-excel-2026-07-09-20260824-222042.xlsx",
-    "carteiraValidacao": "cras/cra-65/archive/raw/carteira-validacao/2026-07-09/carteira-validacao-2026-07-09-20260824-222042.json",
-    "caixa": "cras/cra-65/archive/raw/caixa/2026-07-09/caixa-2026-07-09-20260824-222042.csv",
-    "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-09/caixa-fonte-excel-2026-07-09-20260824-222042.xlsx",
-    "cotas": "cras/cra-65/archive/raw/cotas/2026-07-09/cotas-2026-07-09-20260824-222042.csv",
-    "despesas": "cras/cra-65/archive/raw/despesas/2026-07-09/despesas-2026-07-09-20260824-222042.csv"
+    "carteira": "cras/cra-65/archive/raw/carteira/2026-07-09/carteira-2026-07-09-20260825-102614.csv",
+    "carteiraFonteExcel": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-09/carteira-fonte-excel-2026-07-09-20260825-102614.xlsx",
+    "carteiraValidacao": "cras/cra-65/archive/raw/carteira-validacao/2026-07-09/carteira-validacao-2026-07-09-20260825-102614.json",
+    "caixa": "cras/cra-65/archive/raw/caixa/2026-07-09/caixa-2026-07-09-20260825-102614.csv",
+    "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-09/caixa-fonte-excel-2026-07-09-20260825-102614.xlsx",
+    "cotas": "cras/cra-65/archive/raw/cotas/2026-07-09/cotas-2026-07-09-20260825-102614.csv",
+    "despesas": "cras/cra-65/archive/raw/despesas/2026-07-09/despesas-2026-07-09-20260825-102614.csv"
   }
 };

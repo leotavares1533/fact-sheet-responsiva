@@ -49,6 +49,22 @@ PDD_RENEGOTIATION_OVERRIDES = {
 }
 
 
+CASH_COMPETENCE_ADJUSTMENTS = {
+    "cra-65": [
+        {
+            "id": "cra65-darf-sispag-competencia-jul2026",
+            "tipo": "competencia_caixa",
+            "descricao": "SISPAG TRIBUTOS DARF - competencia julho/2026",
+            "valor": 827616.72,
+            "competenciaIso": "2026-07-31",
+            "dataPagamentoIso": "2026-08-20",
+            "aplicaDeIso": "2026-07-31",
+            "aplicaAteIso": "2026-08-19",
+        },
+    ],
+}
+
+
 CRA_STATIC_INFO = {
     "cra-modelo": {
         "dataVencimentoIso": "2030-06-17",
@@ -156,6 +172,22 @@ def deduct_cash_accounts(accounts, amount):
     if remaining > 0:
         adjusted["contaAplicacao"] = float(adjusted.get("contaAplicacao") or 0.0) - remaining
     return adjusted
+
+
+def active_cash_competence_adjustments(cra_id, date_key):
+    adjustments = []
+    for adjustment in CASH_COMPETENCE_ADJUSTMENTS.get(cra_id, []):
+        start = str(adjustment.get("aplicaDeIso") or adjustment.get("competenciaIso") or "")
+        end = str(adjustment.get("aplicaAteIso") or "")
+        payment_date = str(adjustment.get("dataPagamentoIso") or "")
+        if start and date_key < start:
+            continue
+        if end and date_key > end:
+            continue
+        if not end and payment_date and date_key >= payment_date:
+            continue
+        adjustments.append(adjustment)
+    return adjustments
 
 
 def parse_number(value):
@@ -2160,16 +2192,40 @@ def main():
             f"{caixa_observacao} Ajuste gerencial: provisao informativa de "
             f"{format_currency_br(provisoes_caixa_informativas)} abatida do caixa usado no ativo."
         ).strip()
+    ajustes_competencia_caixa = active_cash_competence_adjustments(args.cra_id, date_key)
+    ajuste_competencia_caixa_total = sum(float(item.get("valor") or 0.0) for item in ajustes_competencia_caixa)
+    if ajuste_competencia_caixa_total:
+        accounts = deduct_cash_accounts(accounts, ajuste_competencia_caixa_total)
+        caixa_observacao = (
+            f"{caixa_observacao} Ajuste gerencial: "
+            f"{format_currency_br(ajuste_competencia_caixa_total)} realocado por competencia."
+        ).strip()
     caixa_total = sum(accounts.values())
     caixa = {
         "accounts": accounts,
         "total": caixa_total,
         "totalAntesProvisaoInformativa": caixa_total_antes_provisao_informativa,
         "provisaoInformativaAbatida": provisoes_caixa_informativas,
+        "ajustesCompetencia": ajustes_competencia_caixa,
+        "ajusteCompetenciaTotal": ajuste_competencia_caixa_total,
         "fonte": str(caixa_row.get("fonte", "")).strip(),
         "arquivoOrigem": str(caixa_row.get("arquivo_origem", "")).strip(),
         "observacao": caixa_observacao,
     }
+    for adjustment in ajustes_competencia_caixa:
+        add_manual_adjustment(
+            snapshot,
+            {
+                "id": f"{adjustment.get('id')}-{date_key}",
+                "tipo": adjustment.get("tipo") or "competencia_caixa",
+                "dataBase": date_key,
+                "competenciaIso": adjustment.get("competenciaIso"),
+                "dataPagamentoIso": adjustment.get("dataPagamentoIso"),
+                "descricao": adjustment.get("descricao"),
+                "valorAplicado": float(adjustment.get("valor") or 0.0),
+                "efeito": "reduz_caixa_ativo_por_competencia",
+            },
+        )
 
     carteira_vp_bruto = sum(row["valorPresenteDia"] for row in carteira)
     pdd_total = sum(row["pdd"] for row in carteira)

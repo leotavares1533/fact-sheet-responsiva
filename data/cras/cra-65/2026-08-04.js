@@ -8,15 +8,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
     "title": "CRA 65",
     "reportDate": "04/08/2026",
     "dateKey": "2026-08-04",
-    "importedAt": "2026-08-24T22:21:19.458087-03:00",
-    "revisionId": "20260824-222118",
+    "importedAt": "2026-08-25T10:30:30.050296-03:00",
+    "revisionId": "20260825-103025",
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
       "holidayCount": 1263,
       "lagBusinessDays": 2
     },
     "canonicalPath": "cras/cra-65/archive/canonical/2026-08-04.json",
-    "revisionPath": "cras/cra-65/archive/revisions/2026-08-04/20260824-222118.json",
+    "revisionPath": "cras/cra-65/archive/revisions/2026-08-04/20260825-103025.json",
     "dataScript": "data/cras/cra-65/2026-08-04.js",
     "manualAdjustments": [
       {
@@ -92,6 +92,16 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "observacao": "Serie incluida por integralizacao informada pelo usuario."
       },
       {
+        "id": "cra65-darf-sispag-competencia-jul2026-2026-08-04",
+        "tipo": "competencia_caixa",
+        "dataBase": "2026-08-04",
+        "competenciaIso": "2026-07-31",
+        "dataPagamentoIso": "2026-08-20",
+        "descricao": "SISPAG TRIBUTOS DARF - competencia julho/2026",
+        "valorAplicado": 827616.72,
+        "efeito": "reduz_caixa_ativo_por_competencia"
+      },
+      {
         "id": "cra-65-sub-quantidade-2026-07-30",
         "tipo": "integralizacao_quantidade",
         "dataInicio": "2026-07-30",
@@ -124,16 +134,16 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
     "pddTotal": 26264.736,
     "carteiraVp": 850211889.2850177,
     "carteiraVpLiquido": 850211889.2850177,
-    "caixa": 134530210.81195354,
-    "total": 984742100.0969713,
+    "caixa": 133702594.09195356,
+    "total": 983914483.3769712,
     "liquidacoesDia": 1196706.3,
     "aquisicoesDia": 0,
-    "caixaLiquido": 134530210.81195354,
-    "patrimonioLiquido": 984742100.0969713,
+    "caixaLiquido": 133702594.09195356,
+    "patrimonioLiquido": 983914483.3769712,
     "direitosCreditoriosVn": 975188108.944,
     "direitosCreditoriosVp": 850211889.2850177,
     "direitosCreditoriosAtraso": 7002065.244000001,
-    "percentualDireitosCreditoriosPatrimonio": 0.8633853363243982,
+    "percentualDireitosCreditoriosPatrimonio": 0.8641115703134461,
     "quantidadeLastros": 3365,
     "quantidadeLastrosAtivos": 3270,
     "cedentesUnicos": 81,
@@ -150,18 +160,31 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
   "caixa": {
     "accounts": {
       "cc": 209028.314680829,
-      "contaAplicacao": 134321182.49727273,
+      "contaAplicacao": 133493565.77727273,
       "fundoZeragem": 0.0,
       "contaLiquidacao": 0.0,
       "fundoDespesas": 0.0,
       "provisoes": 0.0
     },
-    "total": 134530210.81195354,
+    "total": 133702594.09195356,
     "totalAntesProvisaoInformativa": 135383965.84831718,
     "provisaoInformativaAbatida": 853755.0363636361,
+    "ajustesCompetencia": [
+      {
+        "id": "cra65-darf-sispag-competencia-jul2026",
+        "tipo": "competencia_caixa",
+        "descricao": "SISPAG TRIBUTOS DARF - competencia julho/2026",
+        "valor": 827616.72,
+        "competenciaIso": "2026-07-31",
+        "dataPagamentoIso": "2026-08-20",
+        "aplicaDeIso": "2026-07-31",
+        "aplicaAteIso": "2026-08-19"
+      }
+    ],
+    "ajusteCompetenciaTotal": 827616.72,
     "fonte": "Extrato Bancario",
     "arquivoOrigem": "carteira e caixa completo 65.xlsx",
-    "observacao": "Caixa bruto 136237720,88468080759 ajustado pela provisao de despesa de 853755,036363636144. Total do caixa usado no ativo 135383965,848317176104; provisao registrada como deducao da Subordinada. Ajuste gerencial: provisao informativa de R$ 853.755,04 abatida do caixa usado no ativo."
+    "observacao": "Caixa bruto 136237720,88468080759 ajustado pela provisao de despesa de 853755,036363636144. Total do caixa usado no ativo 135383965,848317176104; provisao registrada como deducao da Subordinada. Ajuste gerencial: provisao informativa de R$ 853.755,04 abatida do caixa usado no ativo. Ajuste gerencial: R$ 827.616,72 realocado por competencia."
   },
   "passivo": {
     "fundingTotal": 805767668.0,
@@ -171,9 +194,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
     "provisoesCaixa": 0.0,
     "provisoesImportadasTotal": 0,
     "deducoesTotal": 0.0,
-    "subordinadaTotal": 178974432.09697127,
+    "subordinadaTotal": 178146815.37697124,
     "subordinadaQuantidade": 200000.0,
-    "subordinadaPuResidual": 894.8721604848564,
+    "subordinadaPuResidual": 890.7340768848562,
     "cotas": [
       {
         "classe": "SR1",
@@ -4182,8 +4205,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "dataInicioIso": "2026-07-02",
         "valorNominalInicial": 1000,
         "principalResidual": 1000,
-        "pu": 894.8721604848564,
-        "valor": 178974432.09697127,
+        "pu": 890.7340768848562,
+        "valor": 178146815.37697124,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -96228,8 +96251,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "section": "ativo",
           "sectionLabel": "Ativo",
           "label": "Ativo total",
-          "value": "R$ 984.742.100,10",
-          "numericValue": 984742100.0969713,
+          "value": "R$ 983.914.483,38",
+          "numericValue": 983914483.3769712,
           "unit": "BRL",
           "format": "currency",
           "order": 10,
@@ -96304,8 +96327,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "section": "ativo",
           "sectionLabel": "Ativo",
           "label": "Caixa total",
-          "value": "R$ 134.530.210,81",
-          "numericValue": 134530210.81195354,
+          "value": "R$ 133.702.594,09",
+          "numericValue": 133702594.09195356,
           "unit": "BRL",
           "format": "currency",
           "order": 30,
@@ -96552,8 +96575,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "section": "passivo",
           "sectionLabel": "Passivo",
           "label": "Subordinada residual",
-          "value": "R$ 178.974.432,10",
-          "numericValue": 178974432.09697127,
+          "value": "R$ 178.146.815,38",
+          "numericValue": 178146815.37697124,
           "unit": "BRL",
           "format": "currency",
           "order": 30,
@@ -96571,8 +96594,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "section": "passivo",
           "sectionLabel": "Passivo",
           "label": "PU SUB residual",
-          "value": "R$ 894,872160",
-          "numericValue": 894.8721604848564,
+          "value": "R$ 890,734077",
+          "numericValue": 890.7340768848562,
           "unit": "BRL",
           "format": "currency",
           "order": 40,
@@ -96621,42 +96644,42 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/carteira/2026-08-04/carteira-2026-08-04-20260824-222118.csv"
+      "file": "cras/cra-65/archive/raw/carteira/2026-08-04/carteira-2026-08-04-20260825-103025.csv"
     },
     {
       "name": "Carteira fonte Excel",
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-08-04/carteira-fonte-excel-2026-08-04-20260824-222118.xlsx"
+      "file": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-08-04/carteira-fonte-excel-2026-08-04-20260825-103025.xlsx"
     },
     {
       "name": "Validacao carteira",
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/carteira-validacao/2026-08-04/carteira-validacao-2026-08-04-20260824-222118.json"
+      "file": "cras/cra-65/archive/raw/carteira-validacao/2026-08-04/carteira-validacao-2026-08-04-20260825-103025.json"
     },
     {
       "name": "Caixa",
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/caixa/2026-08-04/caixa-2026-08-04-20260824-222118.csv"
+      "file": "cras/cra-65/archive/raw/caixa/2026-08-04/caixa-2026-08-04-20260825-103025.csv"
     },
     {
       "name": "Caixa fonte Excel",
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-08-04/caixa-fonte-excel-2026-08-04-20260824-222118.xlsx"
+      "file": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-08-04/caixa-fonte-excel-2026-08-04-20260825-103025.xlsx"
     },
     {
       "name": "Cotas e memoria de PU",
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/cotas/2026-08-04/cotas-2026-08-04-20260824-222118.csv"
+      "file": "cras/cra-65/archive/raw/cotas/2026-08-04/cotas-2026-08-04-20260825-103025.csv"
     },
     {
       "name": "Eventos de PU",
@@ -96677,7 +96700,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       "owner": "",
       "url": "",
       "date": "04/08/2026",
-      "file": "cras/cra-65/archive/raw/despesas/2026-08-04/despesas-2026-08-04-20260824-222118.csv"
+      "file": "cras/cra-65/archive/raw/despesas/2026-08-04/despesas-2026-08-04-20260825-103025.csv"
     },
     {
       "name": "Calendario ANBIMA",
@@ -96688,17 +96711,17 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
     }
   ],
   "rawImports": {
-    "carteira": "cras/cra-65/archive/raw/carteira/2026-08-04/carteira-2026-08-04-20260824-222118.csv",
-    "carteiraFonteExcel": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-08-04/carteira-fonte-excel-2026-08-04-20260824-222118.xlsx",
+    "carteira": "cras/cra-65/archive/raw/carteira/2026-08-04/carteira-2026-08-04-20260825-103025.csv",
+    "carteiraFonteExcel": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-08-04/carteira-fonte-excel-2026-08-04-20260825-103025.xlsx",
     "carteiraFonteMinerva": "",
-    "carteiraValidacao": "cras/cra-65/archive/raw/carteira-validacao/2026-08-04/carteira-validacao-2026-08-04-20260824-222118.json",
-    "caixa": "cras/cra-65/archive/raw/caixa/2026-08-04/caixa-2026-08-04-20260824-222118.csv",
-    "cotas": "cras/cra-65/archive/raw/cotas/2026-08-04/cotas-2026-08-04-20260824-222118.csv",
+    "carteiraValidacao": "cras/cra-65/archive/raw/carteira-validacao/2026-08-04/carteira-validacao-2026-08-04-20260825-103025.json",
+    "caixa": "cras/cra-65/archive/raw/caixa/2026-08-04/caixa-2026-08-04-20260825-103025.csv",
+    "cotas": "cras/cra-65/archive/raw/cotas/2026-08-04/cotas-2026-08-04-20260825-103025.csv",
     "eventosPu": "cras/cra-65/archive/raw/eventos-pu/2026-07-17/eventos-pu-2026-07-17-20260720-150958.csv",
     "indices": "cras/cra-65/archive/raw/indices/2026-07-17/indices-2026-07-17-20260720-150958.csv",
-    "despesas": "cras/cra-65/archive/raw/despesas/2026-08-04/despesas-2026-08-04-20260824-222118.csv",
+    "despesas": "cras/cra-65/archive/raw/despesas/2026-08-04/despesas-2026-08-04-20260825-103025.csv",
     "calendario": "cras/cra-65/archive/raw/calendarios/2026-07-17/calendarios-2026-07-17-20260720-150958.csv",
-    "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-08-04/caixa-fonte-excel-2026-08-04-20260824-222118.xlsx"
+    "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-08-04/caixa-fonte-excel-2026-08-04-20260825-103025.xlsx"
   },
   "carteiraResumo": {
     "valorNominal": 975188108.944,
@@ -96710,17 +96733,17 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
     "sacadosUnicos": 1042,
     "prazoMedioDias": 302.9034836219822,
     "taxaMediaPonderada": 0.018432952389455748,
-    "taxaCarregoTotal": 0.01727753204828689,
-    "taxaCarregoTotalAa": 0.2282122692586992,
+    "taxaCarregoTotal": 0.01728367418194091,
+    "taxaCarregoTotalAa": 0.22830126083706048,
     "taxaCarregoCarteira": 0.018432952389455748,
     "taxaCarregoCaixa90Cdi": 0.009975439044384249,
     "taxaCarregoCaixa90CdiAa": 0.12649625153876065,
     "taxaCarregoCaixaPercentualCdi": 0.9,
-    "taxaCarregoPesoCarteira": 0.8633853363243982,
-    "taxaCarregoPesoCaixa": 0.13661466367560182,
+    "taxaCarregoPesoCarteira": 0.8641115703134461,
+    "taxaCarregoPesoCaixa": 0.1358884296865539,
     "taxaCarregoCarteiraVpBase": 850211889.2850177,
-    "taxaCarregoCaixaBase": 134530210.81195354,
-    "taxaCarregoBaseTotal": 984742100.0969713,
+    "taxaCarregoCaixaBase": 133702594.09195356,
+    "taxaCarregoBaseTotal": 983914483.3769712,
     "taxaCarregoTaxaDiDia": 0.00052531,
     "taxaCarregoTaxaDiAnual": 0.14150020022937992,
     "taxaCarregoDataTaxaDi": "31/07/2026",
@@ -96736,13 +96759,13 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
     }
   },
   "informacoesComplementares": {
-    "saldoCaixa": 134530210.81195354,
-    "saldoRevolvencia": 134530210.81195354,
-    "patrimonioLiquido": 984742100.0969713,
+    "saldoCaixa": 133702594.09195356,
+    "saldoRevolvencia": 133702594.09195356,
+    "patrimonioLiquido": 983914483.3769712,
     "direitosCreditoriosVn": 975188108.944,
     "direitosCreditoriosVp": 850211889.2850177,
     "direitosCreditoriosAtraso": 7002065.244000001,
-    "percentualDireitosCreditoriosPatrimonio": 0.8633853363243982,
+    "percentualDireitosCreditoriosPatrimonio": 0.8641115703134461,
     "pdd": 26264.736
   },
   "composicaoCarteira": [
@@ -96831,14 +96854,14 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 1,
         "valorLiquidacao": 801912.48,
         "valorFace": 801912.5,
-        "percentualPl": 0.0008143375609929063
+        "percentualPl": 0.0008150225385926755
       },
       {
         "name": "BOIPREMIUM AGRO LTDA",
         "quantidade": 1,
         "valorLiquidacao": 394793.82,
         "valorFace": 395459.89,
-        "percentualPl": 0.00040091087804728075
+        "percentualPl": 0.00040124810303126824
       }
     ]
   },
@@ -96983,7 +97006,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       "diasParaMudanca": 1,
       "diasVencido": 0,
       "valorPresente": 970583.017693181,
-      "percentualPl": 0.0009856215323764508,
+      "percentualPl": 0.0009864505849756025,
       "farol": "Critico",
       "lastros": 2,
       "posicao": 1
@@ -97001,7 +97024,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       "diasParaMudanca": 5,
       "diasVencido": 0,
       "valorPresente": 1240163.2090128644,
-      "percentualPl": 0.0012593786828965074,
+      "percentualPl": 0.001260438005502675,
       "farol": "Atencao",
       "lastros": 2,
       "posicao": 2
@@ -97013,19 +97036,19 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       {
         "label": "Concentração Máxima Individual",
         "percentualPermitido": 0.1,
-        "posicaoAtual": 0.09254165991798256,
+        "posicaoAtual": 0.0926195010579786,
         "status": "OK"
       },
       {
         "label": "Top 5",
         "percentualPermitido": 0.4,
-        "posicaoAtual": 0.2979566661823394,
+        "posicaoAtual": 0.29820729153945547,
         "status": "OK"
       },
       {
         "label": "Top 10",
         "percentualPermitido": 0.5,
-        "posicaoAtual": 0.44608566469724964,
+        "posicaoAtual": 0.4464608883176894,
         "status": "OK"
       }
     ],
@@ -97033,19 +97056,19 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       {
         "label": "Concentração Máxima Individual",
         "percentualPermitido": 0.05,
-        "posicaoAtual": 0.05081192098046405,
+        "posicaoAtual": 0.0508546612755702,
         "status": "Atenção"
       },
       {
         "label": "Top 5",
         "percentualPermitido": 0.25,
-        "posicaoAtual": 0.19667383318396034,
+        "posicaoAtual": 0.1968392647895313,
         "status": "OK"
       },
       {
         "label": "Top 10",
         "percentualPermitido": 0.4,
-        "posicaoAtual": 0.3133461974783125,
+        "posicaoAtual": 0.3136097676935729,
         "status": "OK"
       }
     ]
@@ -97060,7 +97083,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 91129668.53409386,
         "pdd": 0.0,
         "participacao": 0.10718465559300633,
-        "participacaoPl": 0.09254165991798256
+        "participacaoPl": 0.0926195010579786
       },
       {
         "name": "CULTURA AGRONEGOCIOS LTDA",
@@ -97070,7 +97093,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 69820161.31993714,
         "pdd": 0.0,
         "participacao": 0.08212089503788535,
-        "participacaoPl": 0.07090197658154525
+        "participacaoPl": 0.07096161556673279
       },
       {
         "name": "CERES TRADING S.A.",
@@ -97080,7 +97103,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 50036637.77626352,
         "pdd": 0.0,
         "participacao": 0.05885196197190518,
-        "participacaoPl": 0.05081192098046405
+        "participacaoPl": 0.0508546612755702
       },
       {
         "name": "STEFAN ZEMBROD",
@@ -97090,7 +97113,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 44544036.59978133,
         "pdd": 0.0,
         "participacao": 0.052391688661564656,
-        "participacaoPl": 0.04523421573566816
+        "participacaoPl": 0.0452722643607178
       },
       {
         "name": "PEDRO RIBEIRO MEROLA",
@@ -97100,7 +97123,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 37879968.96421332,
         "pdd": 0.0,
         "participacao": 0.04455356299012512,
-        "participacaoPl": 0.038466892966679433
+        "participacaoPl": 0.03849924927845605
       },
       {
         "name": "BOASAFRA COMERCIO E REPRE",
@@ -97110,7 +97133,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 34919057.23755519,
         "pdd": 0.0,
         "participacao": 0.04107100556653028,
-        "participacaoPl": 0.03546010395423998
+        "participacaoPl": 0.03548993111444677
       },
       {
         "name": "BOIPREMIUM AGRO LTDA",
@@ -97120,7 +97143,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 34796939.82975897,
         "pdd": 0.0,
         "participacao": 0.040927373832682246,
-        "participacaoPl": 0.035336094421404736
+        "participacaoPl": 0.0353658172713645
       },
       {
         "name": "JOSE ARNALDO FAVARETTO",
@@ -97130,7 +97153,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 26415420.353677373,
         "pdd": 0.0,
         "participacao": 0.03106922013980693,
-        "participacaoPl": 0.026824709079743974
+        "participacaoPl": 0.026847272603422713
       },
       {
         "name": "NOOA CIENCIA E TECNOLOGIA",
@@ -97140,7 +97163,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 26371854.520462368,
         "pdd": 0.0,
         "participacao": 0.03101797899184834,
-        "participacaoPl": 0.026780468223980097
+        "participacaoPl": 0.026802994534595552
       },
       {
         "name": "AVANTIAGRO COMERCIAL AGRI",
@@ -97150,7 +97173,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 23365589.14137993,
         "pdd": 0.0,
         "participacao": 0.02748207762776539,
-        "participacaoPl": 0.02372762283554144
+        "participacaoPl": 0.023747581254404376
       }
     ],
     "top10Sacados": [
@@ -97162,7 +97185,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 50036637.77626352,
         "pdd": 0.0,
         "participacao": 0.05885196197190518,
-        "participacaoPl": 0.05081192098046405
+        "participacaoPl": 0.0508546612755702
       },
       {
         "name": "STEFAN ZEMBROD",
@@ -97172,7 +97195,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 44544036.59978133,
         "pdd": 0.0,
         "participacao": 0.052391688661564656,
-        "participacaoPl": 0.04523421573566816
+        "participacaoPl": 0.0452722643607178
       },
       {
         "name": "PEDRO RIBEIRO MEROLA",
@@ -97182,7 +97205,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 37879968.96421332,
         "pdd": 0.0,
         "participacao": 0.04455356299012512,
-        "participacaoPl": 0.038466892966679433
+        "participacaoPl": 0.03849924927845605
       },
       {
         "name": "BOIPREMIUM AGRO LTDA",
@@ -97192,7 +97215,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 34796939.82975897,
         "pdd": 0.0,
         "participacao": 0.040927373832682246,
-        "participacaoPl": 0.035336094421404736
+        "participacaoPl": 0.0353658172713645
       },
       {
         "name": "JOSE ARNALDO FAVARETTO",
@@ -97202,7 +97225,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 26415420.353677373,
         "pdd": 0.0,
         "participacao": 0.03106922013980693,
-        "participacaoPl": 0.026824709079743974
+        "participacaoPl": 0.026847272603422713
       },
       {
         "name": "NOOA CIENCIA E TECNO",
@@ -97212,7 +97235,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 26371854.520462368,
         "pdd": 0.0,
         "participacao": 0.03101797899184834,
-        "participacaoPl": 0.026780468223980097
+        "participacaoPl": 0.026802994534595552
       },
       {
         "name": "GLAUCIA NASSER DE CARVALH",
@@ -97222,7 +97245,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 23170034.521649893,
         "pdd": 0.0,
         "participacao": 0.027252070705732708,
-        "participacaoPl": 0.023529038231805313
+        "participacaoPl": 0.023548829611823755
       },
       {
         "name": "FABIO SCHIMTT",
@@ -97232,7 +97255,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 22605797.09251165,
         "pdd": 0.0,
         "participacao": 0.026588427399576717,
-        "participacaoPl": 0.022956058332720387
+        "participacaoPl": 0.02297536775241329
       },
       {
         "name": "PLANTFITO AGROPECUÁRIA LT",
@@ -97242,7 +97265,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 21390561.741271242,
         "pdd": 0.0,
         "participacao": 0.025159095057185745,
-        "participacaoPl": 0.021721993747565817
+        "participacaoPl": 0.021740265137530034
       },
       {
         "name": "AVANTIAGRO COMERCIAL AGRÍ",
@@ -97252,7 +97275,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "valorPresenteDia": 21353941.16260407,
         "pdd": 0.0,
         "participacao": 0.025116022760586873,
-        "participacaoPl": 0.021684805758280537
+        "participacaoPl": 0.021703045867678978
       }
     ],
     "top5DevedoresVencidos": [
@@ -97266,7 +97289,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "diasVencido": 12,
         "posicao": 1,
         "participacao": 0.00614750573341824,
-        "participacaoPl": 0.0053076663052034736
+        "participacaoPl": 0.005312130832814949
       },
       {
         "name": "RIVIERA PRESERV. E FAB. D",
@@ -97278,7 +97301,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "diasVencido": 0,
         "posicao": 2,
         "participacao": 0.0011415777995169992,
-        "participacaoPl": 0.0009856215323764508
+        "participacaoPl": 0.0009864505849756025
       },
       {
         "name": "FABIO SCHMITT",
@@ -97290,7 +97313,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "diasVencido": 0,
         "posicao": 3,
         "participacao": 0.0009412534430456999,
-        "participacaoPl": 0.0008126644204905094
+        "participacaoPl": 0.0008133479907331576
       }
     ],
     "proximosVencimentos": {
@@ -97427,7 +97450,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 3036,
         "valorNominal": 349915633.91000026,
         "valorPresente": 315546634.94385123,
-        "percentualPl": 0.3204358124962649,
+        "percentualPl": 0.320705346119958,
         "status": "OK"
       },
       {
@@ -97436,7 +97459,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 17,
         "valorNominal": 237737098.49,
         "valorPresente": 176769920.43758455,
-        "percentualPl": 0.17950884847939105,
+        "percentualPl": 0.179659841809502,
         "status": "OK"
       },
       {
@@ -97445,7 +97468,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 2,
         "valorNominal": 15739036.53,
         "valorPresente": 12775366.080884513,
-        "percentualPl": 0.012973311570233946,
+        "percentualPl": 0.012984224032394727,
         "status": "OK"
       },
       {
@@ -97454,7 +97477,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 1,
         "valorNominal": 6987202.82,
         "valorPresente": 7090388.001414184,
-        "percentualPl": 0.0072002486749738505,
+        "percentualPl": 0.0072063051425757035,
         "status": "OK"
       },
       {
@@ -97463,7 +97486,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 181,
         "valorNominal": 228127697.64000005,
         "valorPresente": 214245923.76029873,
-        "percentualPl": 0.21756551663547352,
+        "percentualPl": 0.21774852121799065,
         "status": "OK"
       },
       {
@@ -97472,7 +97495,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 13,
         "valorNominal": 128945477.944,
         "valorPresente": 97259878.29214412,
-        "percentualPl": 0.0987668530497138,
+        "percentualPl": 0.09884993049226265,
         "status": "OK"
       },
       {
@@ -97481,7 +97504,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "quantidade": 20,
         "valorNominal": 7735961.609999999,
         "valorPresente": 6945596.983169755,
-        "percentualPl": 0.007053214219728999,
+        "percentualPl": 0.0070591470097393205,
         "status": "OK"
       },
       {
@@ -97508,7 +97531,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "diasParaMudanca": 1,
         "diasVencido": 0,
         "valorPresente": 970583.017693181,
-        "percentualPl": 0.0009856215323764508,
+        "percentualPl": 0.0009864505849756025,
         "farol": "Critico",
         "lastros": 2,
         "posicao": 1
@@ -97526,7 +97549,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
         "diasParaMudanca": 5,
         "diasVencido": 0,
         "valorPresente": 1240163.2090128644,
-        "percentualPl": 0.0012593786828965074,
+        "percentualPl": 0.001260438005502675,
         "farol": "Atencao",
         "lastros": 2,
         "posicao": 2
@@ -97574,12 +97597,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       "tipo": "sub",
       "quantidade": 200000.0,
       "taxa": "-",
-      "pu": 894.8721604848564,
-      "valor": 178974432.09697127,
-      "resultadoDia": 0.0005662506805410583,
-      "resultadoMes": 0.0035150742933869328,
-      "resultado30Dias": -0.10197548144428092,
-      "resultadoInicio": -0.21473528368276018,
+      "pu": 890.7340768848562,
+      "valor": 178146815.37697124,
+      "resultadoDia": 0.0005688828080383512,
+      "resultadoMes": 0.003531461943921066,
+      "resultado30Dias": -0.10612814223397438,
+      "resultadoInicio": -0.21836651860964695,
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {},
       "ifCodigo": "CRA0260040R"
@@ -97609,10 +97632,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 894.8721604848564,
-          "valor": 178974432.09697127,
-          "resultadoDia": 0.0005662506805410583,
-          "resultadoMes": 0.0035150742933869328,
+          "pu": 890.7340768848562,
+          "valor": 178146815.37697124,
+          "resultadoDia": 0.0005688828080383512,
+          "resultadoMes": 0.003531461943921066,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -97642,10 +97665,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 894.3657252842617,
-          "valor": 178873145.05685234,
-          "resultadoDia": 0.0029471547844435175,
-          "resultadoMes": 0.0029471547844435175,
+          "pu": 890.2276416842616,
+          "valor": 178045528.3368523,
+          "resultadoDia": 0.002960894733772257,
+          "resultadoMes": 0.002960894733772257,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -97675,10 +97698,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 891.7376364425517,
-          "valor": 178347527.28851032,
-          "resultadoDia": 0.0009611518389653906,
-          "resultadoMes": -0.1051210474460964,
+          "pu": 887.5995528425515,
+          "valor": 177519910.5685103,
+          "resultadoDia": -0.0036837804341484093,
+          "resultadoMes": -0.10927370823578941,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -98260,11 +98283,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-04"] = {
       "reportDate": "04/08/2026",
       "classe": "SUB",
       "label": "Subordinada",
-      "resultadoMensal": 0.0035150742933869328,
+      "resultadoMensal": 0.003531461943921066,
       "cdiPeriodo": 0.0010509216105791808,
-      "percentualCdi": 3.3447540311305577,
-      "puFechamento": 894.8721604848564,
-      "resultadoInicio": -0.21473528368276018
+      "percentualCdi": 3.360347630471522,
+      "puFechamento": 890.7340768848562,
+      "resultadoInicio": -0.21836651860964695
     },
     {
       "mes": "07/26",
