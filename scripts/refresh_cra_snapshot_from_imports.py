@@ -133,6 +133,23 @@ def normalize_text(value):
     return "".join(char for char in text if not unicodedata.combining(char))
 
 
+def is_cash_embedded_provision(row):
+    tipo = normalize_name(row.get("tipo"))
+    descricao = normalize_name(row.get("descricao"))
+    fonte = normalize_name(row.get("fonte"))
+    observacao = normalize_name(row.get("observacao"))
+    is_provision = "provis" in tipo or "provis" in descricao
+    from_cash = "extratobancario" in fonte or "caixa" in observacao or "extrato" in observacao
+    already_net = (
+        "informativ" in tipo
+        or "informativ" in observacao
+        or "jadeduz" in observacao
+        or "semdedu" in observacao
+        or "semdupl" in observacao
+    )
+    return is_provision and from_cash and already_net
+
+
 def parse_number(value):
     text = str(value or "").strip().replace("R$", "").replace("%", "").replace(" ", "")
     text = re.sub(r"[^0-9,.\-]", "", text)
@@ -2139,10 +2156,12 @@ def main():
     pdd_total = sum(row["pdd"] for row in carteira)
     carteira_vp = carteira_vp_bruto - pdd_total
     ativo_total = carteira_vp + caixa_total
-    despesas_importadas = sum(row["valor"] for row in despesas)
+    provisoes_caixa_informativas = sum(row["valor"] for row in despesas if is_cash_embedded_provision(row))
+    despesas_dedutiveis = [row for row in despesas if not is_cash_embedded_provision(row)]
+    despesas_importadas = sum(row["valor"] for row in despesas_dedutiveis)
     provisoes_importadas = sum(
         row["valor"]
-        for row in despesas
+        for row in despesas_dedutiveis
         if "provis" in normalize_name(row["tipo"]) or "provis" in normalize_name(row["descricao"])
     )
     despesas_operacionais = despesas_importadas - provisoes_importadas
@@ -2240,6 +2259,8 @@ def main():
     snapshot["passivo"]["provisoesTotal"] = provisoes_total
     snapshot["passivo"]["provisoesCaixa"] = provisoes_caixa
     snapshot["passivo"]["provisoesImportadasTotal"] = provisoes_importadas
+    snapshot["passivo"]["provisoesCaixaInformativas"] = provisoes_caixa_informativas
+    snapshot["passivo"]["provisoesJaDeduzidasNoCaixa"] = bool(provisoes_caixa_informativas)
     snapshot["passivo"]["deducoesSubordinadaTotal"] = deducoes_total
     snapshot["passivo"]["deducoesTotal"] = deducoes_total
     snapshot["passivo"]["subordinadaTotal"] = subordinada_total
