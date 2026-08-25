@@ -4,12 +4,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
   "metadata": {
     "reportDate": "02/07/2026",
     "dateKey": "2026-07-02",
-    "importedAt": "2026-08-11T16:21:44.244715-03:00",
-    "revisionId": "20260811-162144",
+    "importedAt": "2026-08-24T21:57:08.971658-03:00",
+    "revisionId": "20260824-215708",
     "preOperational": false,
     "observation": "Posicao inicial de liquidacao em 02/07/2026, com carteira zerada e caixa informado.",
     "canonicalPath": "cras/cra-65/archive/canonical/2026-07-02.json",
-    "revisionPath": "cras/cra-65/archive/revisions/2026-07-02/20260811-162144.json",
+    "revisionPath": "cras/cra-65/archive/revisions/2026-07-02/20260824-215708.json",
     "dataScript": "data/cras/cra-65/2026-07-02.js"
   },
   "cra": {
@@ -28,12 +28,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     "total": 487476180.684,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "caixaLiquido": 487469836.72,
-    "patrimonioLiquido": 487443571.984,
+    "caixaLiquido": 487502445.42,
+    "patrimonioLiquido": 487476180.684,
     "direitosCreditoriosVn": 0,
     "direitosCreditoriosVp": -26264.736,
     "direitosCreditoriosAtraso": 0,
-    "percentualDireitosCreditoriosPatrimonio": -5.3882618439498305e-05,
+    "percentualDireitosCreditoriosPatrimonio": -5.38790140743836e-05,
     "quantidadeLastros": 3365,
     "quantidadeLastrosAtivos": 0,
     "cedentesUnicos": 81,
@@ -63,15 +63,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
   },
   "passivo": {
     "fundingTotal": 400000000.0,
-    "despesasTotal": 32608.7,
-    "despesasOperacionaisTotal": 0.0,
-    "provisoesTotal": 32608.7,
+    "despesasTotal": 0.0,
+    "despesasOperacionaisTotal": 0,
+    "provisoesTotal": 0.0,
     "provisoesCaixa": 0.0,
-    "provisoesImportadasTotal": 32608.7,
-    "deducoesTotal": 32608.7,
-    "subordinadaTotal": 87443571.98400001,
+    "provisoesImportadasTotal": 0,
+    "deducoesTotal": 0.0,
+    "subordinadaTotal": 87476180.68400002,
     "subordinadaQuantidade": 100000.0,
-    "subordinadaPuResidual": 874.4357198400002,
+    "subordinadaPuResidual": 874.7618068400002,
     "cotas": [
       {
         "classe": "SR1",
@@ -1987,11 +1987,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
             "diaUtil": true,
             "taxaDiUtilizadaDia": 0.0005166,
             "taxaDiAnualEquivalente": 0.1389987480014514,
-            "dataTaxaDi": "10/08/2026",
-            "dataTaxaDiIso": "2026-08-10",
+            "dataTaxaDi": "11/08/2026",
+            "dataTaxaDiIso": "2026-08-11",
             "taxaDiStatus": "projetada",
-            "dataReferenciaTaxaDi": "10/08/2026",
-            "dataReferenciaTaxaDiIso": "2026-08-10",
+            "dataReferenciaTaxaDi": "11/08/2026",
+            "dataReferenciaTaxaDiIso": "2026-08-11",
             "diasUteis": 30,
             "diasUteisPeriodo": 30,
             "fator": 1.01664311999,
@@ -2023,11 +2023,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
             "diaUtil": true,
             "taxaDiUtilizadaDia": 0.0005166,
             "taxaDiAnualEquivalente": 0.1389987480014514,
-            "dataTaxaDi": "10/08/2026",
-            "dataTaxaDiIso": "2026-08-10",
+            "dataTaxaDi": "12/08/2026",
+            "dataTaxaDiIso": "2026-08-12",
             "taxaDiStatus": "projetada",
-            "dataReferenciaTaxaDi": "10/08/2026",
-            "dataReferenciaTaxaDiIso": "2026-08-10",
+            "dataReferenciaTaxaDi": "12/08/2026",
+            "dataReferenciaTaxaDiIso": "2026-08-12",
             "diasUteis": 31,
             "diasUteisPeriodo": 31,
             "fator": 1.01719457999,
@@ -2059,11 +2059,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
             "diaUtil": false,
             "taxaDiUtilizadaDia": 0.0005166,
             "taxaDiAnualEquivalente": 0.1389987480014514,
-            "dataTaxaDi": "10/08/2026",
-            "dataTaxaDiIso": "2026-08-10",
+            "dataTaxaDi": "13/08/2026",
+            "dataTaxaDiIso": "2026-08-13",
             "taxaDiStatus": "projetada",
-            "dataReferenciaTaxaDi": "10/08/2026",
-            "dataReferenciaTaxaDiIso": "2026-08-10",
+            "dataReferenciaTaxaDi": "13/08/2026",
+            "dataReferenciaTaxaDiIso": "2026-08-13",
             "diasUteis": 31,
             "diasUteisPeriodo": 31,
             "fator": 1.01719457999,
@@ -2095,11 +2095,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
             "diaUtil": false,
             "taxaDiUtilizadaDia": 0.0005166,
             "taxaDiAnualEquivalente": 0.1389987480014514,
-            "dataTaxaDi": "10/08/2026",
-            "dataTaxaDiIso": "2026-08-10",
+            "dataTaxaDi": "13/08/2026",
+            "dataTaxaDiIso": "2026-08-13",
             "taxaDiStatus": "projetada",
-            "dataReferenciaTaxaDi": "10/08/2026",
-            "dataReferenciaTaxaDiIso": "2026-08-10",
+            "dataReferenciaTaxaDi": "13/08/2026",
+            "dataReferenciaTaxaDiIso": "2026-08-13",
             "diasUteis": 31,
             "diasUteisPeriodo": 31,
             "fator": 1.01719457999,
@@ -2131,11 +2131,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
             "diaUtil": true,
             "taxaDiUtilizadaDia": 0.0005166,
             "taxaDiAnualEquivalente": 0.1389987480014514,
-            "dataTaxaDi": "10/08/2026",
-            "dataTaxaDiIso": "2026-08-10",
+            "dataTaxaDi": "13/08/2026",
+            "dataTaxaDiIso": "2026-08-13",
             "taxaDiStatus": "projetada",
-            "dataReferenciaTaxaDi": "10/08/2026",
-            "dataReferenciaTaxaDiIso": "2026-08-10",
+            "dataReferenciaTaxaDi": "13/08/2026",
+            "dataReferenciaTaxaDiIso": "2026-08-13",
             "diasUteis": 32,
             "diasUteisPeriodo": 0,
             "fator": 1.0,
@@ -2175,8 +2175,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         "dataEmissaoIso": "2026-07-01",
         "valorNominalInicial": 1000,
         "principalResidual": 875.3505412,
-        "pu": 874.4357198400002,
-        "valor": 87443571.98400001,
+        "pu": 874.7618068400002,
+        "valor": 87476180.68400002,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -2237,7 +2237,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         "dataVencimentoIso": "2032-07-15",
         "dataVencimento": "15/07/2032"
       }
-    ]
+    ],
+    "provisoesCaixaInformativas": 32608.7,
+    "provisoesJaDeduzidasNoCaixa": true,
+    "deducoesSubordinadaTotal": 0.0
   },
   "carteiraResumo": {
     "valorNominal": 0,
@@ -2249,6 +2252,22 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     "sacadosUnicos": 0,
     "prazoMedioDias": 0.0,
     "taxaMediaPonderada": 0.0,
+    "taxaCarregoTotal": 0.00997597651120492,
+    "taxaCarregoTotalAa": 0.12650344525188406,
+    "taxaCarregoCarteira": 0.0,
+    "taxaCarregoCaixa90Cdi": 0.009975439044384249,
+    "taxaCarregoCaixa90CdiAa": 0.12649625153876065,
+    "taxaCarregoCaixaPercentualCdi": 0.9,
+    "taxaCarregoPesoCarteira": -5.38790140743836e-05,
+    "taxaCarregoPesoCaixa": 1.0000538790140743,
+    "taxaCarregoCarteiraVpBase": -26264.736,
+    "taxaCarregoCaixaBase": 487502445.42,
+    "taxaCarregoBaseTotal": 487476180.684,
+    "taxaCarregoTaxaDiDia": 0.00052531,
+    "taxaCarregoTaxaDiAnual": 0.14150020022937992,
+    "taxaCarregoDataTaxaDi": "30/06/2026",
+    "taxaCarregoDataTaxaDiIso": "2026-06-30",
+    "taxaCarregoStatusTaxaDi": "BCB_SGS_12_D-2",
     "preFixado": {
       "valorNominal": 0.0,
       "valorPresente": 0.0
@@ -2279,12 +2298,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
       "label": "Subordinada",
       "quantidade": 100000.0,
       "taxa": "Premio de subordinacao",
-      "pu": 874.4357198400002,
-      "valor": 87443571.98400001,
+      "pu": 874.7618068400002,
+      "valor": 87476180.68400002,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
-      "resultadoInicio": -0.12556428015999987,
+      "resultadoInicio": -0.12523819315999984,
       "tipo": "sub",
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {}
@@ -2305,8 +2324,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.4357198400002,
-          "valor": 87443571.98400001,
+          "pu": 874.7618068400002,
+          "valor": 87476180.68400002,
           "resultadoDia": null,
           "resultadoMes": null,
           "ajustesFluxoSub": [],
@@ -2338,8 +2357,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
       "resultadoMensal": null,
       "cdiPeriodo": null,
       "percentualCdi": null,
-      "puFechamento": 874.4357198400002,
-      "resultadoInicio": -0.12556428015999987
+      "puFechamento": 874.7618068400002,
+      "resultadoInicio": -0.12523819315999984
     }
   ],
   "concentracaoDetalhada": {
@@ -2550,8 +2569,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         {
           "id": "subordinada_total",
           "label": "Subordinada residual",
-          "value": "R$ 87.443.571,98",
-          "numericValue": 87443571.98400001,
+          "value": "R$ 87.476.180,68",
+          "numericValue": 87476180.68400002,
           "isHighlight": true,
           "source": {
             "name": "Ativo - funding - despesas/provisoes",
@@ -2563,8 +2582,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         {
           "id": "subordinada_pu",
           "label": "PU SUB residual",
-          "value": "R$ 874,435720",
-          "numericValue": 874.4357198400002,
+          "value": "R$ 874,761807",
+          "numericValue": 874.7618068400002,
           "isHighlight": true,
           "source": {
             "name": "Subordinada residual / quantidade",
@@ -2635,42 +2654,42 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/carteira/2026-07-02/carteira-2026-07-02-20260811-162144.csv"
+      "file": "cras/cra-65/archive/raw/carteira/2026-07-02/carteira-2026-07-02-20260824-215708.csv"
     },
     {
       "name": "Carteira fonte Excel",
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-02/carteira-fonte-excel-2026-07-02-20260811-162144.xlsx"
+      "file": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-02/carteira-fonte-excel-2026-07-02-20260824-215708.xlsx"
     },
     {
       "name": "Validacao carteira",
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/carteira-validacao/2026-07-02/carteira-validacao-2026-07-02-20260811-162144.json"
+      "file": "cras/cra-65/archive/raw/carteira-validacao/2026-07-02/carteira-validacao-2026-07-02-20260824-215708.json"
     },
     {
       "name": "Caixa",
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/caixa/2026-07-02/caixa-2026-07-02-20260811-162144.csv"
+      "file": "cras/cra-65/archive/raw/caixa/2026-07-02/caixa-2026-07-02-20260824-215708.csv"
     },
     {
       "name": "Caixa fonte Excel",
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-02/caixa-fonte-excel-2026-07-02-20260811-162144.xlsx"
+      "file": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-02/caixa-fonte-excel-2026-07-02-20260824-215708.xlsx"
     },
     {
       "name": "Cotas e memoria de PU",
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/cotas/2026-07-02/cotas-2026-07-02-20260811-162144.csv"
+      "file": "cras/cra-65/archive/raw/cotas/2026-07-02/cotas-2026-07-02-20260824-215708.csv"
     },
     {
       "name": "Eventos de PU",
@@ -2691,7 +2710,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
       "owner": "",
       "url": "",
       "date": "02/07/2026",
-      "file": "cras/cra-65/archive/raw/despesas/2026-07-02/despesas-2026-07-02-20260811-162144.csv"
+      "file": "cras/cra-65/archive/raw/despesas/2026-07-02/despesas-2026-07-02-20260824-215708.csv"
     },
     {
       "name": "Calendario ANBIMA",
@@ -93581,13 +93600,13 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     }
   ],
   "informacoesComplementares": {
-    "saldoCaixa": 487469836.72,
-    "saldoRevolvencia": 487469836.72,
-    "patrimonioLiquido": 487443571.984,
+    "saldoCaixa": 487502445.42,
+    "saldoRevolvencia": 487502445.42,
+    "patrimonioLiquido": 487476180.684,
     "direitosCreditoriosVn": 0,
     "direitosCreditoriosVp": -26264.736,
     "direitosCreditoriosAtraso": 0,
-    "percentualDireitosCreditoriosPatrimonio": -5.3882618439498305e-05,
+    "percentualDireitosCreditoriosPatrimonio": -5.38790140743836e-05,
     "pdd": 26264.736
   },
   "composicaoCarteira": [
@@ -93652,12 +93671,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     ]
   },
   "rawImports": {
-    "carteira": "cras/cra-65/archive/raw/carteira/2026-07-02/carteira-2026-07-02-20260811-162144.csv",
-    "carteiraFonteExcel": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-02/carteira-fonte-excel-2026-07-02-20260811-162144.xlsx",
-    "carteiraValidacao": "cras/cra-65/archive/raw/carteira-validacao/2026-07-02/carteira-validacao-2026-07-02-20260811-162144.json",
-    "caixa": "cras/cra-65/archive/raw/caixa/2026-07-02/caixa-2026-07-02-20260811-162144.csv",
-    "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-02/caixa-fonte-excel-2026-07-02-20260811-162144.xlsx",
-    "cotas": "cras/cra-65/archive/raw/cotas/2026-07-02/cotas-2026-07-02-20260811-162144.csv",
-    "despesas": "cras/cra-65/archive/raw/despesas/2026-07-02/despesas-2026-07-02-20260811-162144.csv"
+    "carteira": "cras/cra-65/archive/raw/carteira/2026-07-02/carteira-2026-07-02-20260824-215708.csv",
+    "carteiraFonteExcel": "cras/cra-65/archive/raw/carteira-fonte-excel/2026-07-02/carteira-fonte-excel-2026-07-02-20260824-215708.xlsx",
+    "carteiraValidacao": "cras/cra-65/archive/raw/carteira-validacao/2026-07-02/carteira-validacao-2026-07-02-20260824-215708.json",
+    "caixa": "cras/cra-65/archive/raw/caixa/2026-07-02/caixa-2026-07-02-20260824-215708.csv",
+    "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-02/caixa-fonte-excel-2026-07-02-20260824-215708.xlsx",
+    "cotas": "cras/cra-65/archive/raw/cotas/2026-07-02/cotas-2026-07-02-20260824-215708.csv",
+    "despesas": "cras/cra-65/archive/raw/despesas/2026-07-02/despesas-2026-07-02-20260824-215708.csv"
   }
 };

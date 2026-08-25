@@ -140,14 +140,7 @@ def is_cash_embedded_provision(row):
     observacao = normalize_name(row.get("observacao"))
     is_provision = "provis" in tipo or "provis" in descricao
     from_cash = "extratobancario" in fonte or "caixa" in observacao or "extrato" in observacao
-    already_net = (
-        "informativ" in tipo
-        or "informativ" in observacao
-        or "jadeduz" in observacao
-        or "semdedu" in observacao
-        or "semdupl" in observacao
-    )
-    return is_provision and from_cash and already_net
+    return is_provision and from_cash
 
 
 def parse_number(value):
