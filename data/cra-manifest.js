@@ -2,8 +2,34 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-08-21",
+    "currentDate": "2026-08-25",
     "dates": [
+      {
+        "dateKey": "2026-08-25",
+        "reportDate": "25/08/2026",
+        "importedAt": "2026-08-26T17:51:15.812606-03:00",
+        "revisionId": "20260826-175114",
+        "totalAtivo": 1012301744.4099998,
+        "carteiraVp": 607259644.4899999,
+        "carteiraVpBruto": 609945210.31,
+        "pddTotal": 2685565.82,
+        "funding": 610066092.0,
+        "subordinada": 402235652.40999985,
+        "dataScript": "data/cras/cra-modelo/2026-08-25.js"
+      },
+      {
+        "dateKey": "2026-08-24",
+        "reportDate": "24/08/2026",
+        "importedAt": "2026-08-26T17:50:37.003228-03:00",
+        "revisionId": "20260826-175035",
+        "totalAtivo": 1011869968.8499999,
+        "carteiraVp": 606593800.5999999,
+        "carteiraVpBruto": 609279366.42,
+        "pddTotal": 2685565.82,
+        "funding": 609719609.994,
+        "subordinada": 402150358.85599995,
+        "dataScript": "data/cras/cra-modelo/2026-08-24.js"
+      },
       {
         "dateKey": "2026-08-21",
         "reportDate": "21/08/2026",
