@@ -241,13 +241,13 @@ def write_cash_files(cash_path: Path, date_key: str) -> dict[str, float]:
     shutil.copy2(cash_path, cash_dir / "fonte-caixa.xlsx")
 
     raw_cash_total = sum(accounts.values())
-    accounts_for_csv = net_accounts_for_provision(accounts, provisao)
+    accounts_for_csv = dict(accounts)
     cash_total = sum(accounts_for_csv.values())
     observation = f"Total do extrato {br_number(cash_total)}"
     if provisao:
         observation = (
-            f"Caixa bruto {br_number(raw_cash_total)} ajustado pela provisao de despesa de {br_number(provisao)}. "
-            f"Total preliminar {br_number(cash_total)}; provisao registrada como informativa para abatimento do caixa gerencial."
+            f"Caixa bruto {br_number(raw_cash_total)}; provisao de despesa de {br_number(provisao)} "
+            f"registrada como informativa para abatimento unico do caixa gerencial."
         )
     write_csv(
         cash_dir / "caixa.csv",
