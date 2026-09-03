@@ -36,3 +36,5 @@ data/cras/cras-carteira-overview/cras-carteira-overview/
 .DS_Store
 Thumbs.db
 __pycache__/
+node_modules/
+/outputs/**/node_modules/

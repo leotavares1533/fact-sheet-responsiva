@@ -1854,7 +1854,8 @@ def performance_needs_fallback(snapshot, date_key):
 
 def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapshot):
     sub_payment_event = SUB_PAYMENT_RESET_EVENTS.get(cra_id, {}).get(date_key)
-    if cra_id != "cra-65" and not sub_payment_event and not performance_needs_fallback(snapshot, date_key):
+    force_daily_rebuild = cra_id in {"cra-modelo", "cra-42"}
+    if cra_id != "cra-65" and not force_daily_rebuild and not sub_payment_event and not performance_needs_fallback(snapshot, date_key):
         return
 
     canonical_dir = cra_root / "archive" / "canonical"

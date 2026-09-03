@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Lâmina demo ao investidor</title>
+  <style>
+    :root {
+      --bg: #f1ece3;
+      --surface: rgba(255, 252, 247, 0.94);
+      --surface-soft: #fbf7f0;
+      --ink: #0f1f2e;
+      --muted: #63727d;
+      --line: rgba(15, 31, 46, 0.12);
+      --line-strong: rgba(15, 31, 46, 0.22);
+      --blue: #285a74;
+      --blue-dark: #102436;
+      --copper: #c7702e;
+      --green: #058653;
+      --red: #c83f36;
+      --yellow: #d99a21;
+      --shadow: 0 18px 56px rgba(35, 31, 24, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Segoe UI", "Aptos", Arial, sans-serif;
+      background:
+        linear-gradient(135deg, #ebe4d8 0%, #f8f4ed 50%, #ebe2d5 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15, 31, 46, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 31, 46, 0.028) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58), transparent 88%);
+    }
+
+    button,
+    select,
+    input {
+      font: inherit;
+    }
+
+    .app-shell {
+      width: min(1320px, calc(100% - 42px));
+      margin: 0 auto;
+      padding: 30px 0 52px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 24px;
+      color: #fffaf2;
+      background: linear-gradient(135deg, rgba(15, 31, 46, 0.98), rgba(40, 90, 116, 0.94));
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: #fffaf2;
+      color: #11495a;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: rgba(255, 250, 242, 0.72);
+      font-size: 0.71rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin-top: 4px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      line-height: 0.98;
+      font-weight: 400;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255, 250, 242, 0.75);
+    }
+
+    select,
+    input,
+    button {
+      min-height: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 16px;
+      color: #fffaf2;
+      background: rgba(255, 255, 255, 0.12);
+      font-weight: 800;
+    }
+
+    select,
+    input {
+      min-width: 160px;
+      padding: 0 12px;
+    }
+
+    select option {
+      color: var(--ink);
+    }
+
+    button {
+      padding: 0 16px;
+      cursor: pointer;
+      transition: transform 140ms ease, background 140ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .demo-ribbon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin: 14px 0 18px;
+      padding: 12px 18px;
+      border: 1px solid rgba(199, 112, 46, 0.35);
+      border-radius: 18px;
+      background: rgba(199, 112, 46, 0.11);
+      color: #8b4a19;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .demo-ribbon span:last-child {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .metric-card,
+    .panel,
+    .mini-card {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: 0 12px 40px rgba(34, 31, 24, 0.08);
+    }
+
+    .metric-card {
+      min-height: 126px;
+      display: grid;
+      align-content: space-between;
+      padding: 18px;
+      border-radius: 24px;
+    }
+
+    .metric-card small,
+    .mini-card small {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .metric-card strong {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(1.25rem, 2vw, 1.62rem);
+      line-height: 1.06;
+    }
+
+    .metric-card p,
+    .mini-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .panel {
+      margin-bottom: 18px;
+      padding: 24px;
+      border-radius: var(--radius);
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-head .eyebrow {
+      color: var(--copper);
+    }
+
+    .panel-head h2 {
+      margin-top: 6px;
+      font-size: 1.34rem;
+    }
+
+    .panel-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .layout-two {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .layout-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .section-gap {
+      margin-top: 18px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      min-height: 86px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 252, 247, 0.76);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.08rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 252, 247, 0.84);
+    }
+
+    th,
+    td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 0.84rem;
+      white-space: nowrap;
+    }
+
+    th {
+      color: #fffaf2;
+      background: #0b4050;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: var(--ink);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .positive {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .negative {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .neutral {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 78px;
+      min-height: 26px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      background: rgba(5, 134, 83, 0.14);
+      color: var(--green);
+    }
+
+    .tag.attention {
+      background: rgba(217, 154, 33, 0.16);
+      color: #9b6510;
+    }
+
+    .scroll-table {
+      overflow-x: auto;
+      border-radius: 18px;
+    }
+
+    .scroll-table.wide-table table {
+      min-width: 980px;
+    }
+
+    .scroll-table.extra-wide table {
+      min-width: 1160px;
+    }
+
+    .chart-card {
+      min-height: 260px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 252, 247, 0.76);
+    }
+
+    .chart-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .bar-chart {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(24px, 1fr));
+      align-items: end;
+      gap: 10px;
+      min-height: 186px;
+      padding: 8px 0 0;
+    }
+
+    .bar {
+      display: grid;
+      align-content: end;
+      gap: 8px;
+      min-height: 170px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+
+    .bar span {
+      display: block;
+      border-radius: 7px 7px 2px 2px;
+      background: linear-gradient(180deg, var(--copper), #285a74);
+    }
+
+    .line-chart {
+      position: relative;
+      min-height: 240px;
+      padding: 20px 12px 26px 40px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        linear-gradient(to right, transparent 0 99%, var(--line) 100%),
+        linear-gradient(to bottom, rgba(15, 31, 46, 0.08) 1px, transparent 1px);
+      background-size: 25% 100%, 100% 50px;
+    }
+
+    .line-chart svg {
+      width: 100%;
+      height: 188px;
+      display: block;
+      overflow: visible;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    .legend i {
+      width: 22px;
+      height: 4px;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+      border-radius: 999px;
+    }
+
+    .concentration-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rank-row {
+      display: grid;
+      grid-template-columns: minmax(130px, 1fr) minmax(180px, 1.4fr) 90px;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(15, 31, 46, 0.08);
+    }
+
+    .track span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--copper));
+    }
+
+    .movement-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pill-card {
+      min-height: 82px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 252, 247, 0.72);
+    }
+
+    .pill-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .pill-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    .pu-panel {
+      display: none;
+    }
+
+    .pu-panel.is-visible {
+      display: block;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-align: center;
+    }
+
+    @media (max-width: 1050px) {
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        justify-content: start;
+      }
+
+      .summary-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .layout-two,
+      .movement-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        width: min(820px, calc(100% - 18px));
+        padding-top: 12px;
+      }
+
+      .topbar,
+      .panel {
+        border-radius: 20px;
+      }
+
+      .summary-strip,
+      .mini-grid,
+      .pill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      select,
+      input {
+        min-width: 132px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .metric-card {
+        min-height: 112px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      body::before,
+      .controls,
+      .demo-ribbon span:last-child {
+        display: none;
+      }
+
+      .app-shell {
+        width: 100%;
+        padding: 0;
+      }
+
+      .topbar,
+      .panel,
+      .metric-card,
+      .mini-card,
+      .chart-card,
+      .line-chart {
+        box-shadow: none;
+      }
+
+      .topbar {
+        border-radius: 12px;
+      }
+
+      .summary-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .panel {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">DEMO</span>
+        <div>
+          <p class="eyebrow">Ambiente demonstrativo</p>
+          <h1>Lâmina ao investidor</h1>
+        </div>
+      </div>
+      <div class="controls">
+        <label>
+          Operação
+          <select id="operation-select"></select>
+        </label>
+        <label>
+          Data-base
+          <input id="date-select" type="date">
+        </label>
+        <button id="pu-toggle" type="button">Verificar PU</button>
+        <button id="print-button" type="button">Gerar PDF</button>
+      </div>
+    </header>
+
+    <div class="demo-ribbon">
+      <strong>Dados 100% fictícios para apresentação. Nenhum dado real de emissão, IF, cedente ou sacado é carregado nesta página.</strong>
+      <span>Versão offline segura</span>
+    </div>
+
+    <main>
+      <section class="summary-strip" id="summary-strip"></section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Resumo geral</p>
+            <h2 id="operation-title">Operação Demo</h2>
+          </div>
+          <span class="panel-date" id="position-date"></span>
+        </div>
+        <div class="layout-two">
+          <div>
+            <h3>Posição das cotas</h3>
+            <div class="scroll-table" style="margin-top: 12px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Serie</th>
+                    <th class="num">Quantidade</th>
+                    <th>Taxa</th>
+                    <th class="num">PU</th>
+                    <th class="num">Valor total</th>
+                    <th class="num">Dia</th>
+                    <th class="num">Mês</th>
+                    <th class="num">30 dias</th>
+                    <th class="num">Desde o último pagamento</th>
+                  </tr>
+                </thead>
+                <tbody id="quota-table"></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h3>Dados complementares</h3>
+            <div class="mini-grid" id="position-details" style="margin-top: 12px;"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Posição e rentabilidade</p>
+            <h2>Histórico de rendimento</h2>
+          </div>
+          <span class="panel-date">Últimos 30 registros</span>
+        </div>
+        <div class="layout-two">
+          <div class="scroll-table wide-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th class="num">Senior</th>
+                  <th class="num">Mezanino</th>
+                  <th class="num">Subordinada</th>
+                  <th class="num">Sub acum. mês</th>
+                  <th class="num">PU senior</th>
+                  <th class="num">PL senior</th>
+                  <th class="num">PU sub</th>
+                  <th class="num">PL sub</th>
+                </tr>
+              </thead>
+              <tbody id="daily-table"></tbody>
+            </table>
+          </div>
+          <div class="line-chart">
+            <div class="chart-title">
+              <span>Evolução do PU das cotas</span>
+              <span class="neutral" id="chart-range"></span>
+            </div>
+            <svg id="pu-chart" viewBox="0 0 620 170" role="img" aria-label="Gráfico demonstrativo de evolução de PU"></svg>
+            <div class="legend">
+              <span><i style="background:#285a74"></i>Senior</span>
+              <span><i style="background:#6f8f7a"></i>Mezanino</span>
+              <span><i style="background:#c7702e"></i>Subordinada</span>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-table wide-table section-gap">
+          <table>
+            <thead>
+              <tr>
+                <th>Mês</th>
+                <th class="num">Resultado mensal da subordinada</th>
+                <th class="num">CDI período</th>
+                <th class="num">% CDI</th>
+                <th class="num">PU fechamento</th>
+              </tr>
+            </thead>
+            <tbody id="monthly-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Abertura da carteira</p>
+            <h2>Carteira e risco</h2>
+          </div>
+          <span class="panel-date">Classificação demonstrativa</span>
+        </div>
+        <div class="mini-grid" id="portfolio-kpis"></div>
+        <div class="scroll-table extra-wide section-gap">
+          <table>
+            <thead>
+              <tr>
+                <th>Cedente</th>
+                <th>Sacado</th>
+                <th>Tipo de ativo</th>
+                <th class="num">Valor nominal</th>
+                <th class="num">Valor presente</th>
+                <th class="num">PDD</th>
+                <th>Vencimento</th>
+                <th class="num">Atraso</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio-detail-table"></tbody>
+          </table>
+        </div>
+        <div class="layout-two" style="margin-top: 18px;">
+          <div class="chart-card">
+            <div class="chart-title">
+              <span>Concentração por cedente</span>
+              <span class="neutral">Top 10</span>
+            </div>
+            <div class="concentration-list" id="seller-list"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">
+              <span>Concentração por sacado</span>
+              <span class="neutral">Top 10</span>
+            </div>
+            <div class="concentration-list" id="buyer-list"></div>
+          </div>
+        </div>
+        <div class="scroll-table wide-table section-gap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo de ativo</th>
+                <th class="num">Valor presente</th>
+                <th class="num">% carteira</th>
+                <th class="num">Taxa média</th>
+                <th class="num">Prazo médio</th>
+              </tr>
+            </thead>
+            <tbody id="asset-type-table"></tbody>
+          </table>
+        </div>
+        <div class="layout-two" style="margin-top: 18px;">
+          <div class="chart-card">
+            <div class="chart-title">
+              <span>Estresse de PDD diário</span>
+              <span class="neutral">Últimos 20 dias</span>
+            </div>
+            <div class="pill-grid" id="pdd-kpis" style="margin-bottom: 14px;"></div>
+            <div class="bar-chart" id="pdd-chart"></div>
+          </div>
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Faixa</th>
+                  <th class="num">Valor nominal</th>
+                  <th class="num">PDD</th>
+                  <th class="num">% carteira</th>
+                </tr>
+              </thead>
+              <tbody id="aging-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="layout-two" style="margin-top: 18px;">
+          <div class="chart-card">
+            <div class="chart-title">
+              <span>Maiores PDDs por sacado</span>
+              <span class="neutral">Top 5</span>
+            </div>
+            <div class="concentration-list" id="pdd-buyer-list"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">
+              <span>Maiores PDDs por cedente</span>
+              <span class="neutral">Top 5</span>
+            </div>
+            <div class="concentration-list" id="pdd-seller-list"></div>
+          </div>
+        </div>
+        <div class="layout-two" style="margin-top: 18px;">
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sacado</th>
+                  <th>Cedente</th>
+                  <th class="num">Valor nominal</th>
+                  <th class="num">PDD</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="pdd-open-table"></tbody>
+            </table>
+          </div>
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Sacado</th>
+                  <th class="num">VP risco</th>
+                  <th class="num">Atraso atual</th>
+                  <th class="num">Atraso projetado</th>
+                </tr>
+              </thead>
+              <tbody id="pdd-migration-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Movimentações</p>
+            <h2>Aquisições e liquidações do dia</h2>
+          </div>
+          <span class="panel-date">Amostra fictícia</span>
+        </div>
+        <div class="movement-grid">
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Cedente</th>
+                  <th>Sacado</th>
+                  <th>Tipo</th>
+                  <th class="num">Valor</th>
+                  <th>Vencimento</th>
+                </tr>
+              </thead>
+              <tbody id="acquisition-table"></tbody>
+            </table>
+          </div>
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sacado</th>
+                  <th>Cedente</th>
+                  <th>Tipo</th>
+                  <th class="num">Valor</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="settlement-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel pu-panel" id="pu-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Validação de PU</p>
+            <h2>Histórico e previsão dos próximos dias</h2>
+          </div>
+          <span class="panel-date">Memória simplificada</span>
+        </div>
+        <div class="layout-two">
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th class="num">Taxa DI</th>
+                  <th class="num">DU</th>
+                  <th class="num">Fator</th>
+                  <th class="num">PU senior</th>
+                  <th class="num">Juros PU</th>
+                </tr>
+              </thead>
+              <tbody id="pu-history"></tbody>
+            </table>
+          </div>
+          <div class="scroll-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data futura</th>
+                  <th class="num">PU senior</th>
+                  <th class="num">PU sub</th>
+                  <th class="num">Evento</th>
+                </tr>
+              </thead>
+              <tbody id="pu-forecast"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <p class="footer-note">Esta página é uma demonstração visual. Todos os nomes, valores, códigos e datas foram inventados para apresentação.</p>
+  </div>
+
+  <script>
+    const operations = {
+      demo01: {
+        name: "Operação Demo 01",
+        date: "2026-08-28",
+        cards: [
+          ["Ativo total", 1024800000, "Carteira líquida + caixa"],
+          ["Carteira VP líquida", 724300000, "Direitos creditórios ativos"],
+          ["Caixa total", 300500000, "Contas e aplicações"],
+          ["Funding SR/MEZ", 642900000, "Saldo devedor das cotas"],
+          ["Subordinada residual", 381900000, "Ativo - funding"],
+          ["PU SUB residual", 954.75, "Subordinada / quantidade", "pu"]
+        ],
+        quotas: [
+          ["Senior", 420000, "110,00% DI", 1012.482191, 425242520, 0.0006, 0.0128, 0.0189, 0.0067],
+          ["Mezanino A", 120000, "CDI + 7,00% a.a.", 1009.774312, 121172917, 0.0007, 0.0141, 0.0217, 0.0079],
+          ["Subordinada", 400000, "-", 954.750000, 381900000, 0.0011, 0.0294, 0.0450, 0.0188]
+        ],
+        details: [
+          ["Valor nominal", 758900000],
+          ["Cedentes", 142, "number"],
+          ["Sacados", 1880, "number"],
+          ["Próx. pag. senior", "R$ 34,8 mi | 15/09/2026"],
+          ["Farol pagamento", "OK | cobertura 178,2%"],
+          ["Prazo médio", "438 dias"],
+          ["Taxa média", "1,91% a.m."],
+          ["PDD total", 2375000],
+          ["Base demonstrativa", "Sem dados reais"]
+        ],
+        portfolio: [
+          ["Valor nominal", 758900000],
+          ["Valor presente", 726675000],
+          ["Montante em atraso", 18400000],
+          ["Pré-fixados", 532100000],
+          ["Pós-fixados", 194575000],
+          ["Taxa de carrego", "1,76% a.m."],
+          ["Maior cedente", "10,80%"],
+          ["Maior sacado", "9,70%"],
+          ["PDD / carteira", "0,33%"]
+        ],
+        sellers: [
+          ["Cedente Aurora Campo Ltda", 10.8],
+          ["Cedente Beta Cereais S.A.", 8.6],
+          ["Cedente Campo Norte Ltda", 6.2],
+          ["Cedente Delta Insumos Ltda", 4.9],
+          ["Cedente Horizonte Rural S.A.", 3.7],
+          ["Cedente Vale do Sol Ltda", 3.2],
+          ["Cedente Nova Safra Ltda", 2.8],
+          ["Cedente Prisma Agro Ltda", 2.4],
+          ["Cedente Serra Azul S.A.", 2.1],
+          ["Cedente Rio Claro Ltda", 1.9]
+        ],
+        buyers: [
+          ["Sacado Safra Sul Ltda", 9.7],
+          ["Sacado Norte Grãos S.A.", 7.1],
+          ["Sacado Vale Verde Ltda", 5.5],
+          ["Sacado Cooperativo A", 4.2],
+          ["Sacado Agro Industrial Ltda", 3.6],
+          ["Sacado Fazenda Modelo", 3.1],
+          ["Sacado Planície Norte", 2.9],
+          ["Sacado Armazéns Gerais Demo", 2.5],
+          ["Sacado Cerrado Forte Ltda", 2.0],
+          ["Sacado São Miguel Agro", 1.8]
+        ],
+        assetTypes: [
+          ["CPR-F", 392400000, 54.0, "1,94% a.m.", 482],
+          ["Duplicata", 184900000, 25.4, "1,73% a.m.", 216],
+          ["Nota comercial", 102200000, 14.1, "1,81% a.m.", 391],
+          ["CCB rural", 47025000, 6.5, "1,68% a.m.", 318]
+        ],
+        pdd: [1.72, 1.76, 1.79, 1.84, 1.90, 1.88, 1.93, 1.96, 2.01, 2.06, 2.05, 2.10, 2.13, 2.18, 2.22, 2.24, 2.30, 2.34, 2.39, 2.38],
+        aging: [
+          ["Em dia", 626800000, 0, 86.3],
+          ["1 a 30 dias", 52100000, 521000, 7.2],
+          ["31 a 60 dias", 20800000, 416000, 2.9],
+          ["61 a 90 dias", 15400000, 770000, 2.1],
+          ["Acima de 90 dias", 10800000, 668000, 1.5]
+        ],
+        portfolioRows: [
+          ["Cedente Aurora Campo Ltda", "Sacado Safra Sul Ltda", "CPR-F", 42800000, 41420000, 0, "15/12/2026", 0, "Em dia"],
+          ["Cedente Beta Cereais S.A.", "Sacado Norte Grãos S.A.", "Duplicata", 28600000, 27900000, 139500, "20/01/2027", 18, "Monitorado"],
+          ["Cedente Campo Norte Ltda", "Sacado Vale Verde Ltda", "Nota comercial", 21800000, 21150000, 0, "28/11/2026", 0, "Em dia"],
+          ["Cedente Delta Insumos Ltda", "Sacado Cooperativo A", "CPR-F", 17400000, 16880000, 253200, "10/10/2026", 42, "Monitorado"],
+          ["Cedente Horizonte Rural S.A.", "Sacado Agro Industrial Ltda", "CCB rural", 12900000, 12470000, 124700, "05/02/2027", 11, "Monitorado"],
+          ["Cedente Vale do Sol Ltda", "Sacado Fazenda Modelo", "Duplicata", 9500000, 9180000, 275400, "18/09/2026", 64, "Atenção"],
+          ["Cedente Nova Safra Ltda", "Sacado Planície Norte", "CPR-F", 8200000, 8010000, 0, "22/03/2027", 0, "Em dia"],
+          ["Cedente Prisma Agro Ltda", "Sacado Armazéns Gerais Demo", "Nota comercial", 7100000, 6930000, 34650, "30/12/2026", 7, "Monitorado"]
+        ],
+        pddOpen: [
+          ["Sacado Fazenda Modelo", "Cedente Vale do Sol Ltda", 9500000, 275400, "61 a 90 dias"],
+          ["Sacado Cooperativo A", "Cedente Delta Insumos Ltda", 17400000, 253200, "31 a 60 dias"],
+          ["Sacado Norte Grãos S.A.", "Cedente Beta Cereais S.A.", 28600000, 139500, "1 a 30 dias"],
+          ["Sacado Agro Industrial Ltda", "Cedente Horizonte Rural S.A.", 12900000, 124700, "1 a 30 dias"],
+          ["Sacado Armazéns Gerais Demo", "Cedente Prisma Agro Ltda", 7100000, 34650, "1 a 30 dias"]
+        ],
+        pddMigration: [
+          ["29/08/2026", "Sacado Norte Grãos S.A.", 27900000, 18, 19],
+          ["02/09/2026", "Sacado Cooperativo A", 16880000, 42, 45],
+          ["09/09/2026", "Sacado Fazenda Modelo", 9180000, 64, 71],
+          ["13/09/2026", "Sacado Agro Industrial Ltda", 12470000, 11, 15]
+        ],
+        pddByBuyer: [
+          ["Sacado Fazenda Modelo", 0.275],
+          ["Sacado Cooperativo A", 0.253],
+          ["Sacado Norte Grãos S.A.", 0.140],
+          ["Sacado Agro Industrial Ltda", 0.125],
+          ["Sacado Armazéns Gerais Demo", 0.035]
+        ],
+        pddBySeller: [
+          ["Cedente Vale do Sol Ltda", 0.275],
+          ["Cedente Delta Insumos Ltda", 0.253],
+          ["Cedente Beta Cereais S.A.", 0.140],
+          ["Cedente Horizonte Rural S.A.", 0.125],
+          ["Cedente Prisma Agro Ltda", 0.035]
+        ],
+        acquisitions: [
+          ["Cedente Aurora Campo Ltda", "Sacado Safra Sul Ltda", "CPR-F", 12400000, "15/12/2026"],
+          ["Cedente Beta Cereais S.A.", "Sacado Norte Grãos S.A.", "Duplicata", 8600000, "20/01/2027"],
+          ["Cedente Campo Norte Ltda", "Sacado Vale Verde Ltda", "Nota comercial", 3900000, "28/11/2026"]
+        ],
+        settlements: [
+          ["Sacado Fictício Sul", "Cedente Prisma Agro Ltda", "Duplicata", 7200000, "Liquidado"],
+          ["Sacado Fictício Norte", "Cedente Vale do Sol Ltda", "CPR-F", 3100000, "Parcial"],
+          ["Sacado Fictício Oeste", "Cedente Rio Claro Ltda", "Nota comercial", 1850000, "Liquidado"]
+        ],
+        monthly: [
+          ["08/2026", 0.0294, "0,89%", "330,34%", 954.750000],
+          ["07/2026", 0.0187, "0,96%", "194,79%", 927.480000],
+          ["06/2026", 0.0212, "0,91%", "232,97%", 910.452300],
+          ["05/2026", 0.0168, "0,83%", "202,41%", 891.550400]
+        ],
+        puBase: 1012.48,
+        subBase: 954.75,
+        plSenior: 546415437,
+        plSub: 381900000
+      },
+      demo02: {
+        name: "Operação Demo 02",
+        date: "2026-08-28",
+        cards: [
+          ["Ativo total", 586200000, "Carteira líquida + caixa"],
+          ["Carteira VP líquida", 451700000, "Direitos creditórios ativos"],
+          ["Caixa total", 134500000, "Contas e aplicações"],
+          ["Funding SR/MEZ", 392800000, "Saldo devedor das cotas"],
+          ["Subordinada residual", 193400000, "Ativo - funding"],
+          ["PU SUB residual", 967.00, "Subordinada / quantidade", "pu"]
+        ],
+        quotas: [
+          ["Senior", 300000, "105,00% DI", 1008.651204, 302595361, 0.0005, 0.0109, 0.0156, 0.0052],
+          ["Mezanino A", 90000, "CDI + 6,50% a.a.", 1002.498102, 90224829, 0.0006, 0.0127, 0.0182, 0.0064],
+          ["Subordinada", 200000, "-", 967.000000, 193400000, 0.0008, 0.0215, 0.0331, 0.0140]
+        ],
+        details: [
+          ["Valor nominal", 472300000],
+          ["Cedentes", 91, "number"],
+          ["Sacados", 1245, "number"],
+          ["Próx. pag. senior", "R$ 18,2 mi | 10/09/2026"],
+          ["Farol pagamento", "OK | cobertura 151,4%"],
+          ["Prazo médio", "286 dias"],
+          ["Taxa média", "1,64% a.m."],
+          ["PDD total", 970000],
+          ["Base demonstrativa", "Sem dados reais"]
+        ],
+        portfolio: [
+          ["Valor nominal", 472300000],
+          ["Valor presente", 452670000],
+          ["Montante em atraso", 6900000],
+          ["Pré-fixados", 322000000],
+          ["Pós-fixados", 130670000],
+          ["Taxa de carrego", "1,49% a.m."],
+          ["Maior cedente", "11,30%"],
+          ["Maior sacado", "8,20%"],
+          ["PDD / carteira", "0,21%"]
+        ],
+        sellers: [
+          ["Cedente Serra Alta Ltda", 11.3],
+          ["Cedente Planalto Verde Ltda", 7.4],
+          ["Cedente Agro Mais S.A.", 5.8],
+          ["Cedente Terra Boa Ltda", 4.1],
+          ["Cedente Vale Norte S.A.", 3.4],
+          ["Cedente Rota Rural Ltda", 3.0],
+          ["Cedente Laguna Agro Ltda", 2.7],
+          ["Cedente Monte Claro Ltda", 2.3],
+          ["Cedente Estrela Campo S.A.", 1.9],
+          ["Cedente Semente Forte Ltda", 1.6]
+        ],
+        buyers: [
+          ["Sacado Cooperativa Norte", 8.2],
+          ["Sacado Rio Verde Ltda", 5.9],
+          ["Sacado Comercial Safra", 4.6],
+          ["Sacado Agro Mix Ltda", 3.8],
+          ["Sacado Campo Forte S.A.", 3.0],
+          ["Sacado Vila Rural Ltda", 2.7],
+          ["Sacado Pontal Agrícola", 2.2],
+          ["Sacado Nova Estação Ltda", 2.0],
+          ["Sacado Cerrado Sul", 1.7],
+          ["Sacado Boa Colheita Ltda", 1.5]
+        ],
+        assetTypes: [
+          ["CPR-F", 246800000, 54.5, "1,70% a.m.", 338],
+          ["Duplicata", 102400000, 22.6, "1,55% a.m.", 181],
+          ["Nota promissória", 66870000, 14.8, "1,48% a.m.", 244],
+          ["CCB rural", 36600000, 8.1, "1,43% a.m.", 294]
+        ],
+        pdd: [0.54, 0.55, 0.58, 0.60, 0.61, 0.64, 0.65, 0.69, 0.70, 0.73, 0.76, 0.79, 0.81, 0.83, 0.86, 0.89, 0.91, 0.93, 0.95, 0.97],
+        aging: [
+          ["Em dia", 419900000, 0, 92.8],
+          ["1 a 30 dias", 18900000, 189000, 4.2],
+          ["31 a 60 dias", 7400000, 148000, 1.6],
+          ["61 a 90 dias", 3900000, 195000, 0.9],
+          ["Acima de 90 dias", 2570000, 438000, 0.5]
+        ],
+        portfolioRows: [
+          ["Cedente Serra Alta Ltda", "Sacado Cooperativa Norte", "CPR-F", 23800000, 22960000, 0, "12/12/2026", 0, "Em dia"],
+          ["Cedente Planalto Verde Ltda", "Sacado Rio Verde Ltda", "Duplicata", 17100000, 16490000, 82450, "18/10/2026", 9, "Monitorado"],
+          ["Cedente Agro Mais S.A.", "Sacado Comercial Safra", "Nota promissória", 13200000, 12850000, 0, "30/09/2026", 0, "Em dia"],
+          ["Cedente Terra Boa Ltda", "Sacado Agro Mix Ltda", "CPR-F", 9800000, 9510000, 142650, "22/11/2026", 44, "Monitorado"],
+          ["Cedente Vale Norte S.A.", "Sacado Campo Forte S.A.", "CCB rural", 7400000, 7190000, 71900, "05/01/2027", 14, "Monitorado"],
+          ["Cedente Rota Rural Ltda", "Sacado Vila Rural Ltda", "Duplicata", 6100000, 5920000, 177600, "14/09/2026", 68, "Atenção"],
+          ["Cedente Laguna Agro Ltda", "Sacado Pontal Agrícola", "CPR-F", 5400000, 5260000, 0, "26/02/2027", 0, "Em dia"],
+          ["Cedente Monte Claro Ltda", "Sacado Nova Estação Ltda", "Nota promissória", 4200000, 4110000, 20550, "19/12/2026", 6, "Monitorado"]
+        ],
+        pddOpen: [
+          ["Sacado Vila Rural Ltda", "Cedente Rota Rural Ltda", 6100000, 177600, "61 a 90 dias"],
+          ["Sacado Agro Mix Ltda", "Cedente Terra Boa Ltda", 9800000, 142650, "31 a 60 dias"],
+          ["Sacado Rio Verde Ltda", "Cedente Planalto Verde Ltda", 17100000, 82450, "1 a 30 dias"],
+          ["Sacado Campo Forte S.A.", "Cedente Vale Norte S.A.", 7400000, 71900, "1 a 30 dias"],
+          ["Sacado Nova Estação Ltda", "Cedente Monte Claro Ltda", 4200000, 20550, "1 a 30 dias"]
+        ],
+        pddMigration: [
+          ["29/08/2026", "Sacado Rio Verde Ltda", 16490000, 9, 10],
+          ["01/09/2026", "Sacado Agro Mix Ltda", 9510000, 44, 47],
+          ["08/09/2026", "Sacado Vila Rural Ltda", 5920000, 68, 75],
+          ["12/09/2026", "Sacado Campo Forte S.A.", 7190000, 14, 18]
+        ],
+        pddByBuyer: [
+          ["Sacado Vila Rural Ltda", 0.178],
+          ["Sacado Agro Mix Ltda", 0.143],
+          ["Sacado Rio Verde Ltda", 0.082],
+          ["Sacado Campo Forte S.A.", 0.072],
+          ["Sacado Nova Estação Ltda", 0.021]
+        ],
+        pddBySeller: [
+          ["Cedente Rota Rural Ltda", 0.178],
+          ["Cedente Terra Boa Ltda", 0.143],
+          ["Cedente Planalto Verde Ltda", 0.082],
+          ["Cedente Vale Norte S.A.", 0.072],
+          ["Cedente Monte Claro Ltda", 0.021]
+        ],
+        acquisitions: [
+          ["Cedente Serra Alta Ltda", "Sacado Cooperativa Norte", "CPR-F", 6900000, "12/12/2026"],
+          ["Cedente Planalto Verde Ltda", "Sacado Rio Verde Ltda", "Nota promissória", 2800000, "18/10/2026"],
+          ["Cedente Agro Mais S.A.", "Sacado Comercial Safra", "Duplicata", 1250000, "30/09/2026"]
+        ],
+        settlements: [
+          ["Sacado Fictício Centro", "Cedente Laguna Agro Ltda", "Duplicata", 4800000, "Liquidado"],
+          ["Sacado Fictício Leste", "Cedente Rota Rural Ltda", "Nota promissória", 950000, "Liquidado"],
+          ["Sacado Fictício Sul", "Cedente Monte Claro Ltda", "CPR-F", 700000, "Parcial"]
+        ],
+        monthly: [
+          ["08/2026", 0.0215, "0,89%", "241,57%", 967.000000],
+          ["07/2026", 0.0144, "0,96%", "150,00%", 946.645000],
+          ["06/2026", 0.0181, "0,91%", "198,90%", 933.210000],
+          ["05/2026", 0.0128, "0,83%", "154,22%", 916.705300]
+        ],
+        puBase: 1008.65,
+        subBase: 967,
+        plSenior: 392820190,
+        plSub: 193400000
+      }
+    };
+
+    const dates = ["2026-08-26", "2026-08-27", "2026-08-28"];
+    const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+    const numberFmt = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+    const pctFmt = new Intl.NumberFormat("pt-BR", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const decimalFmt = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 6, maximumFractionDigits: 6 });
+
+    const operationSelect = document.querySelector("#operation-select");
+    const dateSelect = document.querySelector("#date-select");
+
+    Object.entries(operations).forEach(([id, item]) => {
+      const option = document.createElement("option");
+      option.value = id;
+      option.textContent = item.name;
+      operationSelect.append(option);
+    });
+
+    dateSelect.value = "2026-08-28";
+    dateSelect.min = dates[0];
+    dateSelect.max = dates[dates.length - 1];
+
+    function formatValue(value, type) {
+      if (type === "pu") return decimalFmt.format(value);
+      if (type === "number") return numberFmt.format(value);
+      if (typeof value === "number") return brl.format(value);
+      return value;
+    }
+
+    function formatPercent(value) {
+      const className = value > 0 ? "positive" : value < 0 ? "negative" : "neutral";
+      return `<span class="${className}">${pctFmt.format(value)}</span>`;
+    }
+
+    function renderSummary(data) {
+      document.querySelector("#summary-strip").innerHTML = data.cards.map(([label, value, help, type]) => `
+        <article class="metric-card">
+          <small>${label}</small>
+          <strong>${formatValue(value, type)}</strong>
+          <p>${help}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderQuotas(data) {
+      document.querySelector("#quota-table").innerHTML = data.quotas.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td class="num">${numberFmt.format(row[1])}</td>
+          <td>${row[2]}</td>
+          <td class="num">${decimalFmt.format(row[3])}</td>
+          <td class="num">${brl.format(row[4])}</td>
+          <td class="num">${formatPercent(row[5])}</td>
+          <td class="num">${formatPercent(row[6])}</td>
+          <td class="num">${formatPercent(row[7])}</td>
+          <td class="num">${formatPercent(row[8])}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderMiniCards(selector, items) {
+      document.querySelector(selector).innerHTML = items.map(([label, value, type]) => `
+        <article class="mini-card">
+          <small>${label}</small>
+          <strong>${formatValue(value, type)}</strong>
+        </article>
+      `).join("");
+    }
+
+    function renderDaily(data) {
+      const rows = [
+        "2026-08-28", "2026-08-27", "2026-08-26", "2026-08-25", "2026-08-24",
+        "2026-08-21", "2026-08-20", "2026-08-19", "2026-08-18", "2026-08-17",
+        "2026-08-14", "2026-08-13", "2026-08-12", "2026-08-11", "2026-08-10",
+        "2026-08-07", "2026-08-06", "2026-08-05", "2026-08-04", "2026-08-03",
+        "2026-07-31", "2026-07-30", "2026-07-29", "2026-07-28", "2026-07-27",
+        "2026-07-24", "2026-07-23", "2026-07-22", "2026-07-21", "2026-07-20"
+      ];
+      document.querySelector("#daily-table").innerHTML = rows.map((date, index) => {
+        const senior = data.puBase - index * 0.58;
+        const sub = data.subBase - index * 1.08;
+        const seniorYield = 0.00055 + (index % 3) * 0.00003;
+        const mezYield = 0.00062 + (index % 2) * 0.00004;
+        const subYield = 0.00088 + ((index + 1) % 4) * 0.00011;
+        const subMonth = 0.0011 + Math.max(0, 20 - index) * 0.00138;
+        const plSenior = data.plSenior - index * 385000;
+        const plSub = data.plSub - index * 430000;
+        return `
+          <tr>
+            <td><strong>${date.split("-").reverse().join("/")}</strong></td>
+            <td class="num">${formatPercent(seniorYield)}</td>
+            <td class="num">${formatPercent(mezYield)}</td>
+            <td class="num">${formatPercent(subYield)}</td>
+            <td class="num">${formatPercent(subMonth)}</td>
+            <td class="num">${decimalFmt.format(senior)}</td>
+            <td class="num">${brl.format(plSenior)}</td>
+            <td class="num">${decimalFmt.format(sub)}</td>
+            <td class="num">${brl.format(plSub)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function renderMonthly(data) {
+      document.querySelector("#monthly-table").innerHTML = data.monthly.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td class="num">${formatPercent(row[1])}</td>
+          <td class="num">${row[2]}</td>
+          <td class="num">${row[3]}</td>
+          <td class="num">${decimalFmt.format(row[4])}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderRankings(selector, items) {
+      const max = Math.max(...items.map(item => item[1]));
+      document.querySelector(selector).innerHTML = items.map(([name, pct]) => `
+        <div class="rank-row">
+          <span>${name}</span>
+          <div class="track"><span style="width:${Math.max(7, pct / max * 100)}%"></span></div>
+          <span class="num">${pct.toFixed(2).replace(".", ",")}%</span>
+        </div>
+      `).join("");
+    }
+
+    function renderPdd(data) {
+      const max = Math.max(...data.pdd);
+      const current = data.pdd[data.pdd.length - 1];
+      const previous = data.pdd[data.pdd.length - 2];
+      const pddRows = data.pddOpen || [];
+      document.querySelector("#pdd-kpis").innerHTML = [
+        ["PDD atual", `${current.toFixed(2).replace(".", ",")} mi`],
+        ["Variação D-1", `${(current - previous).toFixed(2).replace(".", ",")} mi`],
+        ["Maior ponto", `${max.toFixed(2).replace(".", ",")} mi`],
+        ["Cedentes com PDD", numberFmt.format(new Set(pddRows.map(row => row[1])).size)],
+        ["Sacados com PDD", numberFmt.format(new Set(pddRows.map(row => row[0])).size)],
+        ["Linhas de PDD", numberFmt.format(pddRows.length)]
+      ].map(([label, value]) => `
+        <article class="pill-card">
+          <small>${label}</small>
+          <strong>${value}</strong>
+        </article>
+      `).join("");
+
+      document.querySelector("#pdd-chart").innerHTML = data.pdd.map((value, index) => `
+        <div class="bar">
+          <strong>${value.toFixed(1).replace(".", ",")} mi</strong>
+          <span style="height:${Math.max(12, value / max * 140)}px"></span>
+          <small>${String(index + 1).padStart(2, "0")}/08</small>
+        </div>
+      `).join("");
+
+      document.querySelector("#aging-table").innerHTML = data.aging.map(([range, vn, pdd, pct]) => `
+        <tr>
+          <td><strong>${range}</strong></td>
+          <td class="num">${brl.format(vn)}</td>
+          <td class="num">${brl.format(pdd)}</td>
+          <td class="num">${pct.toFixed(1).replace(".", ",")}%</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderPortfolioRows(data) {
+      document.querySelector("#portfolio-detail-table").innerHTML = data.portfolioRows.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td class="num">${brl.format(row[3])}</td>
+          <td class="num">${brl.format(row[4])}</td>
+          <td class="num">${brl.format(row[5])}</td>
+          <td>${row[6]}</td>
+          <td class="num">${numberFmt.format(row[7])}</td>
+          <td><span class="tag ${row[8] === "Atenção" ? "attention" : ""}">${row[8]}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function renderAssetTypes(data) {
+      document.querySelector("#asset-type-table").innerHTML = data.assetTypes.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td class="num">${brl.format(row[1])}</td>
+          <td class="num">${row[2].toFixed(1).replace(".", ",")}%</td>
+          <td class="num">${row[3]}</td>
+          <td class="num">${numberFmt.format(row[4])} dias</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderPddRanks(selector, items) {
+      const max = Math.max(...items.map(item => item[1]));
+      document.querySelector(selector).innerHTML = items.map(([name, value]) => `
+        <div class="rank-row">
+          <span>${name}</span>
+          <div class="track"><span style="width:${Math.max(7, value / max * 100)}%"></span></div>
+          <span class="num">R$ ${value.toFixed(3).replace(".", ",")} mi</span>
+        </div>
+      `).join("");
+    }
+
+    function renderPddTables(data) {
+      document.querySelector("#pdd-open-table").innerHTML = data.pddOpen.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td>${row[1]}</td>
+          <td class="num">${brl.format(row[2])}</td>
+          <td class="num">${brl.format(row[3])}</td>
+          <td>${row[4]}</td>
+        </tr>
+      `).join("");
+
+      document.querySelector("#pdd-migration-table").innerHTML = data.pddMigration.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td>${row[1]}</td>
+          <td class="num">${brl.format(row[2])}</td>
+          <td class="num">${numberFmt.format(row[3])} dias</td>
+          <td class="num">${numberFmt.format(row[4])} dias</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderMovements(data) {
+      document.querySelector("#acquisition-table").innerHTML = data.acquisitions.map(row => `
+        <tr>
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td class="num">${brl.format(row[3])}</td>
+          <td>${row[4]}</td>
+        </tr>
+      `).join("");
+
+      document.querySelector("#settlement-table").innerHTML = data.settlements.map(row => `
+        <tr>
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td class="num">${brl.format(row[3])}</td>
+          <td><span class="tag ${row[4] === "Parcial" ? "attention" : ""}">${row[4]}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function renderPuChart(data) {
+      const points = Array.from({ length: 10 }, (_, index) => ({
+        x: 22 + index * 64,
+        senior: data.puBase - (9 - index) * 0.58,
+        mez: data.puBase - 2.5 - (9 - index) * 0.53,
+        sub: data.subBase - (9 - index) * 1.08
+      }));
+      const all = points.flatMap(item => [item.senior, item.mez, item.sub]);
+      const min = Math.min(...all) - 3;
+      const max = Math.max(...all) + 3;
+      const y = value => 150 - ((value - min) / (max - min)) * 125;
+      const line = key => points.map(point => `${point.x},${y(point[key]).toFixed(2)}`).join(" ");
+      document.querySelector("#pu-chart").innerHTML = `
+        <polyline fill="none" stroke="#285a74" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${line("senior")}"></polyline>
+        <polyline fill="none" stroke="#6f8f7a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${line("mez")}"></polyline>
+        <polyline fill="none" stroke="#c7702e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${line("sub")}"></polyline>
+        ${points.map(point => `
+          <circle cx="${point.x}" cy="${y(point.senior)}" r="4" fill="#fffaf2" stroke="#285a74" stroke-width="3"></circle>
+          <circle cx="${point.x}" cy="${y(point.mez)}" r="4" fill="#fffaf2" stroke="#6f8f7a" stroke-width="3"></circle>
+          <circle cx="${point.x}" cy="${y(point.sub)}" r="4" fill="#fffaf2" stroke="#c7702e" stroke-width="3"></circle>
+        `).join("")}
+      `;
+      document.querySelector("#chart-range").textContent = "17/08 a 28/08";
+    }
+
+    function renderPuTables(data) {
+      const history = dates.slice().reverse().concat(["2026-08-25", "2026-08-24"]);
+      document.querySelector("#pu-history").innerHTML = history.map((date, index) => {
+        const factor = 1 + 0.00054 + index * 0.000002;
+        const pu = data.puBase - index * 0.58;
+        return `
+          <tr>
+            <td><strong>${date.split("-").reverse().join("/")}</strong></td>
+            <td class="num">14,90%</td>
+            <td class="num">1</td>
+            <td class="num">${factor.toFixed(9).replace(".", ",")}</td>
+            <td class="num">${decimalFmt.format(pu)}</td>
+            <td class="num">${decimalFmt.format(pu - 1000)}</td>
+          </tr>
+        `;
+      }).join("");
+
+      const forecast = ["2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04"];
+      document.querySelector("#pu-forecast").innerHTML = forecast.map((date, index) => `
+        <tr>
+          <td><strong>${date.split("-").reverse().join("/")}</strong></td>
+          <td class="num">${decimalFmt.format(data.puBase + (index + 1) * 0.55)}</td>
+          <td class="num">${decimalFmt.format(data.subBase + (index + 1) * 0.84)}</td>
+          <td class="num">${index === 3 ? "Juros" : "-"}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderPage() {
+      const data = operations[operationSelect.value] || operations.demo01;
+      document.querySelector("#operation-title").textContent = `${data.name} - posição consolidada`;
+      document.querySelector("#position-date").textContent = dateSelect.value.split("-").reverse().join("/");
+      renderSummary(data);
+      renderQuotas(data);
+      renderMiniCards("#position-details", data.details);
+      renderMiniCards("#portfolio-kpis", data.portfolio);
+      renderDaily(data);
+      renderMonthly(data);
+      renderRankings("#seller-list", data.sellers);
+      renderRankings("#buyer-list", data.buyers);
+      renderAssetTypes(data);
+      renderPortfolioRows(data);
+      renderPdd(data);
+      renderPddRanks("#pdd-buyer-list", data.pddByBuyer);
+      renderPddRanks("#pdd-seller-list", data.pddBySeller);
+      renderPddTables(data);
+      renderMovements(data);
+      renderPuChart(data);
+      renderPuTables(data);
+    }
+
+    operationSelect.addEventListener("change", renderPage);
+    dateSelect.addEventListener("change", renderPage);
+    document.querySelector("#print-button").addEventListener("click", () => window.print());
+    document.querySelector("#pu-toggle").addEventListener("click", () => {
+      document.querySelector("#pu-panel").classList.toggle("is-visible");
+    });
+
+    renderPage();
+  </script>
+</body>
+</html>
