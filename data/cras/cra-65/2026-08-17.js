@@ -9,7 +9,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
     "reportDate": "17/08/2026",
     "dateKey": "2026-08-17",
     "importedAt": "2026-08-25T10:32:44.059937-03:00",
-    "revisionId": "20260825-103239",
+    "revisionId": "20260908-153204-cash-provision",
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
       "holidayCount": 1263,
@@ -125,6 +125,16 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
         "valorIntegralizado": 100000000.0,
         "puIntegralizacao": 1000.0,
         "observacao": "Integralizacao adicional na Subordinada existente."
+      },
+      {
+        "id": "cra65-caixa-provisao-planilha-reprocessada-2026-08-17",
+        "tipo": "alinhamento_caixa_provisao",
+        "dataBase": "2026-08-17",
+        "caixaAnterior": 131774196.28999999,
+        "caixaAjustado": 134069204.41,
+        "provisaoAnterior": 1467391.3999999992,
+        "provisaoAjustada": 1467391.3999999992,
+        "observacao": "Alinhamento com planilha paralela reprocessada; provisao tratada como informativa e ja refletida no caixa."
       }
     ],
     "tsRuleVersion": "cra65-ts-v1",
@@ -133,7 +143,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
     "concentrationRuleNote": "Concentracao de cedente/sacado recalculada conforme TS do CRA 65.",
     "adjustmentNote": "Ajuste gerencial CRA 65 conforme controle paralelo: provisao embutida no caixa/PL, sem dupla deducao no passivo.",
     "performanceHistoryValidatedAt": "2026-07-28T18:30:44.424468-03:00",
-    "parallelControlAdjustedAt": "2026-08-10T19:08:45.187472-03:00"
+    "parallelControlAdjustedAt": "2026-08-10T19:08:45.187472-03:00",
+    "cashProvisionMemoryAlignedAt": "2026-09-08T15:32:25.805165-03:00",
+    "cashProvisionPerformanceRebuiltAt": "2026-09-08T15:33:00.028133-03:00"
   },
   "cra": {
     "id": "cra-65",
@@ -147,16 +159,16 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
     "pddTotal": 26264.736,
     "carteiraVp": 847788330.18535,
     "carteiraVpLiquido": 847788330.18535,
-    "caixa": 131774196.28999999,
-    "total": 979562526.4753499,
+    "caixa": 134069204.41,
+    "total": 981857534.5953499,
     "liquidacoesDia": 403966.0,
     "aquisicoesDia": 0,
-    "caixaLiquido": 131774196.28999999,
-    "patrimonioLiquido": 979562526.4753499,
+    "caixaLiquido": 134069204.41,
+    "patrimonioLiquido": 981857534.5953499,
     "direitosCreditoriosVn": 967185661.764,
     "direitosCreditoriosVp": 847788330.18535,
     "direitosCreditoriosAtraso": 10898313.124,
-    "percentualDireitosCreditoriosPatrimonio": 0.8654764828906346,
+    "percentualDireitosCreditoriosPatrimonio": 0.8634535055380987,
     "quantidadeLastros": 3365,
     "quantidadeLastrosAtivos": 3241,
     "cedentesUnicos": 82,
@@ -173,43 +185,32 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
   "caixa": {
     "accounts": {
       "cc": 448317.37,
-      "contaAplicacao": 131325878.91999999,
+      "contaAplicacao": 133620887.03999999,
       "fundoZeragem": 0.0,
       "contaLiquidacao": 0.0,
       "fundoDespesas": 0.0,
       "provisoes": 0.0
     },
-    "total": 131774196.28999999,
-    "totalAntesProvisaoInformativa": 134069204.41,
+    "total": 134069204.41,
+    "totalAntesProvisaoInformativa": 135536595.81,
     "provisaoInformativaAbatida": 1467391.3999999992,
-    "ajustesCompetencia": [
-      {
-        "id": "cra65-darf-sispag-competencia-jul2026",
-        "tipo": "competencia_caixa",
-        "descricao": "SISPAG TRIBUTOS DARF - competencia julho/2026",
-        "valor": 827616.72,
-        "competenciaIso": "2026-07-31",
-        "dataPagamentoIso": "2026-08-20",
-        "aplicaDeIso": "2026-07-31",
-        "aplicaAteIso": "2026-08-19"
-      }
-    ],
-    "ajusteCompetenciaTotal": 827616.72,
+    "ajustesCompetencia": [],
+    "ajusteCompetenciaTotal": 0,
     "fonte": "Extrato Bancario",
     "arquivoOrigem": "caixa_65_1708.xlsx",
-    "observacao": "Caixa bruto 135536595,810000002384 ajustado pela provisao de despesa de 1467391,399999999208. Total do caixa usado no ativo 134069204,409999996424; provisao registrada como deducao da Subordinada. Ajuste gerencial: provisao informativa de R$ 1.467.391,40 abatida do caixa usado no ativo. Ajuste gerencial: R$ 827.616,72 realocado por competencia."
+    "observacao": "Caixa alinhado a planilha paralela reprocessada em 08/09/2026. A provisao fica apenas informativa, sem nova deducao no passivo."
   },
   "passivo": {
     "fundingTotal": 800000000.0,
     "despesasTotal": 0.0,
-    "despesasOperacionaisTotal": 0,
+    "despesasOperacionaisTotal": 0.0,
     "provisoesTotal": 0.0,
     "provisoesCaixa": 0.0,
-    "provisoesImportadasTotal": 0,
+    "provisoesImportadasTotal": 0.0,
     "deducoesTotal": 0.0,
-    "subordinadaTotal": 179562526.4753499,
+    "subordinadaTotal": 181857534.5953499,
     "subordinadaQuantidade": 200000.0,
-    "subordinadaPuResidual": 897.8126323767495,
+    "subordinadaPuResidual": 909.2876729767495,
     "cotas": [
       {
         "classe": "SR1",
@@ -4866,8 +4867,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
         "dataInicioIso": "2026-07-02",
         "valorNominalInicial": 1000,
         "principalResidual": 1000,
-        "pu": 897.8126323767495,
-        "valor": 179562526.4753499,
+        "pu": 909.2876729767495,
+        "valor": 181857534.5953499,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -96912,8 +96913,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "section": "ativo",
           "sectionLabel": "Ativo",
           "label": "Ativo total",
-          "value": "R$ 979.562.526,48",
-          "numericValue": 979562526.4753499,
+          "value": "R$ 981.857.534,60",
+          "numericValue": 981857534.5953499,
           "unit": "BRL",
           "format": "currency",
           "order": 10,
@@ -96921,7 +96922,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "historyEnabled": true,
           "notes": "",
           "source": {
-            "name": "Carteira liquida + caixa",
+            "name": "Planilha paralela + carteira",
             "owner": "",
             "url": ""
           }
@@ -96988,8 +96989,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "section": "ativo",
           "sectionLabel": "Ativo",
           "label": "Caixa total",
-          "value": "R$ 131.774.196,29",
-          "numericValue": 131774196.28999999,
+          "value": "R$ 134.069.204,41",
+          "numericValue": 134069204.41,
           "unit": "BRL",
           "format": "currency",
           "order": 30,
@@ -96997,7 +96998,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "historyEnabled": true,
           "notes": "",
           "source": {
-            "name": "Import caixa",
+            "name": "Planilha paralela reprocessada",
             "owner": "",
             "url": ""
           }
@@ -97207,7 +97208,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "historyEnabled": true,
           "notes": "",
           "source": {
-            "name": "Caixa + import despesas",
+            "name": "Provisao ja no caixa",
             "owner": "",
             "url": ""
           }
@@ -97226,7 +97227,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "historyEnabled": true,
           "notes": "",
           "source": {
-            "name": "Despesas + provisoes",
+            "name": "Sem dupla deducao",
             "owner": "",
             "url": ""
           }
@@ -97236,8 +97237,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "section": "passivo",
           "sectionLabel": "Passivo",
           "label": "Subordinada residual",
-          "value": "R$ 179.562.526,48",
-          "numericValue": 179562526.4753499,
+          "value": "R$ 181.857.534,60",
+          "numericValue": 181857534.5953499,
           "unit": "BRL",
           "format": "currency",
           "order": 30,
@@ -97245,7 +97246,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "historyEnabled": true,
           "notes": "",
           "source": {
-            "name": "Ativo - funding - despesas/provisoes",
+            "name": "Ativo - funding",
             "owner": "",
             "url": ""
           }
@@ -97255,8 +97256,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "section": "passivo",
           "sectionLabel": "Passivo",
           "label": "PU SUB residual",
-          "value": "R$ 897,812632",
-          "numericValue": 897.8126323767495,
+          "value": "R$ 909,287673",
+          "numericValue": 909.2876729767495,
           "unit": "BRL",
           "format": "currency",
           "order": 40,
@@ -97420,13 +97421,13 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
     }
   },
   "informacoesComplementares": {
-    "saldoCaixa": 131774196.28999999,
-    "saldoRevolvencia": 131774196.28999999,
-    "patrimonioLiquido": 979562526.4753499,
+    "saldoCaixa": 134069204.41,
+    "saldoRevolvencia": 134069204.41,
+    "patrimonioLiquido": 981857534.5953499,
     "direitosCreditoriosVn": 967185661.764,
     "direitosCreditoriosVp": 847788330.18535,
     "direitosCreditoriosAtraso": 10898313.124,
-    "percentualDireitosCreditoriosPatrimonio": 0.8654764828906346,
+    "percentualDireitosCreditoriosPatrimonio": 0.8634535055380987,
     "pdd": 26264.736
   },
   "composicaoCarteira": [
@@ -98807,12 +98808,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
       "tipo": "sub",
       "quantidade": 200000.0,
       "taxa": "-",
-      "pu": 897.8126323767495,
-      "valor": 179562526.4753499,
-      "resultadoDia": 0.0027253868610386256,
-      "resultadoMes": 0.011506404550893023,
-      "resultado30Dias": -0.09801353660947676,
-      "resultadoInicio": -0.21215497229529334,
+      "pu": 909.2876729767495,
+      "valor": 181857534.5953499,
+      "resultadoDia": 0.003067981498460437,
+      "resultadoMes": 0.020311307379861976,
+      "resultado30Dias": -0.08303832620810292,
+      "resultadoInicio": -0.19817776472312487,
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {},
       "ifCodigo": "CRA0260040R"
@@ -98914,10 +98915,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           }
         },
         "SUB": {
-          "pu": 897.8126323767495,
-          "valor": 179562526.4753499,
-          "resultadoDia": 0.0027253868610386256,
-          "resultadoMes": 0.011506404550893023,
+          "pu": 909.2876729767495,
+          "valor": 181857534.5953499,
+          "resultadoDia": 0.003067981498460437,
+          "resultadoMes": 0.020311307379861976,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -98947,10 +98948,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 895.3723962123757,
-          "valor": 179074479.24247515,
-          "resultadoDia": 0.00042600863106878606,
-          "resultadoMes": 0.008757151065400537,
+          "pu": 906.5065277214665,
+          "valor": 181301305.54429328,
+          "resultadoDia": 0.0007973012979978211,
+          "resultadoMes": 0.01719058548319108,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -98980,10 +98981,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 894.9911222695589,
-          "valor": 178998224.45391178,
-          "resultadoDia": 0.00029365572700723597,
-          "resultadoMes": 0.008327594807067795,
+          "pu": 905.7843446877408,
+          "valor": 181156868.93754816,
+          "resultadoDia": 0.0006668847537334432,
+          "resultadoMes": 0.016380224211168137,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99013,10 +99014,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 894.72838015661,
-          "valor": 178945676.031322,
-          "resultadoDia": 0.0003679803384428748,
-          "resultadoMes": 0.008031580560432072,
+          "pu": 905.1806934838826,
+          "valor": 181036138.6967765,
+          "resultadoDia": 0.0007407656540068253,
+          "resultadoMes": 0.015702867454539415,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99046,10 +99047,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 894.3992588146484,
-          "valor": 178879851.76292968,
-          "resultadoDia": 0.00046432838753451833,
-          "resultadoMes": 0.007660781205128586,
+          "pu": 904.5106630510115,
+          "valor": 180902132.6102023,
+          "resultadoDia": 0.0008365227347557624,
+          "resultadoMes": 0.014951026593540195,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99079,10 +99080,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 893.9841565927362,
-          "valor": 178796831.31854725,
-          "resultadoDia": 0.0030795621713024524,
-          "resultadoMes": 0.007193112851102468,
+          "pu": 903.7546517381912,
+          "valor": 180750930.34763825,
+          "resultadoDia": 0.0034258270638960475,
+          "resultadoMes": 0.014102706624071759,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99112,10 +99113,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 891.2395290534937,
-          "valor": 178247905.81069875,
-          "resultadoDia": 0.0004192139779723991,
-          "resultadoMes": 0.004100921636660093,
+          "pu": 900.6691151080388,
+          "valor": 180133823.02160776,
+          "resultadoDia": 0.0007937872476728725,
+          "resultadoMes": 0.010640427296372268,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99145,10 +99146,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 890.8660655463153,
-          "valor": 178173213.10926306,
-          "resultadoDia": 0.000499603315593955,
-          "resultadoMes": 0.0036801648821283006,
+          "pu": 899.9547425099516,
+          "valor": 179990948.50199032,
+          "resultadoDia": 0.0015575475259101967,
+          "resultadoMes": 0.009838830110825425,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99178,10 +99179,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 890.4212081584442,
-          "valor": 178084241.63168883,
-          "resultadoDia": -0.0003512481834154757,
-          "resultadoMes": 0.003178973340912883,
+          "pu": 898.5552000811714,
+          "valor": 179711040.01623428,
+          "resultadoDia": -0.0006514391262463226,
+          "resultadoMes": 0.00826840415248431,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99211,10 +99212,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 890.7340768848562,
-          "valor": 178146815.37697124,
-          "resultadoDia": 0.0005688828080383512,
-          "resultadoMes": 0.003531461943921066,
+          "pu": 899.1409356666744,
+          "valor": 179828187.13333488,
+          "resultadoDia": 0.0009432821291825988,
+          "resultadoMes": 0.008925657801450049,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99244,10 +99245,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 890.2276416842616,
-          "valor": 178045528.3368523,
-          "resultadoDia": 0.002960894733772257,
-          "resultadoMes": 0.002960894733772257,
+          "pu": 898.293591375171,
+          "valor": 179658718.2750342,
+          "resultadoDia": 0.00797485313582147,
+          "resultadoMes": 0.00797485313582147,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99277,10 +99278,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 887.5995528425515,
-          "valor": 177519910.5685103,
-          "resultadoDia": -0.0036837804341484093,
-          "resultadoMes": -0.10927370823578941,
+          "pu": 891.1865098425513,
+          "valor": 178237301.96851027,
+          "resultadoDia": -0.003487363785445785,
+          "resultadoMes": -0.10162929231055473,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99310,10 +99311,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 890.8813641810691,
-          "valor": 178176272.83621383,
-          "resultadoDia": -0.12030811895005877,
-          "resultadoMes": -0.10598033609013435,
+          "pu": 894.3052776810694,
+          "valor": 178861055.53621387,
+          "resultadoDia": -0.11906738422531482,
+          "resultadoMes": -0.09848538288276998,
           "ajustesFluxoSub": [
             {
               "dateKey": "2026-07-30",
@@ -99364,10 +99365,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 888.6778941611677,
-          "valor": 88867789.41611677,
-          "resultadoDia": 0.00041500888232759436,
-          "resultadoMes": 0.016287274179253686,
+          "pu": 895.1996341611678,
+          "valor": 89519963.41611677,
+          "resultadoDia": 0.0007766790668621848,
+          "resultadoMes": 0.02336387707071652,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99388,10 +99389,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 888.3092379371702,
-          "valor": 88830923.79371703,
-          "resultadoDia": 0.0005874091293469608,
-          "resultadoMes": 0.015865680898429213,
+          "pu": 894.504890937171,
+          "valor": 89450489.0937171,
+          "resultadoDia": 0.0009484414400386942,
+          "resultadoMes": 0.022569668614695892,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99412,10 +99413,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 887.7877433118266,
-          "valor": 88778774.33118266,
-          "resultadoDia": 0.003469515677524848,
-          "resultadoMes": 0.015269302441429877,
+          "pu": 893.6573093118262,
+          "valor": 89365730.93118262,
+          "resultadoDia": 0.0038141938997384717,
+          "resultadoMes": 0.021600740137574848,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99436,10 +99437,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 884.7181996479565,
-          "valor": 88471819.96479565,
-          "resultadoDia": 0.0005211390668697913,
-          "resultadoMes": 0.011758988768022505,
+          "pu": 890.2616786479563,
+          "valor": 89026167.86479563,
+          "resultadoDia": 0.000884688460169869,
+          "resultadoMes": 0.017718962678478167,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99460,10 +99461,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 884.257378582809,
-          "valor": 88425737.8582809,
-          "resultadoDia": 0.0006278880766097394,
-          "resultadoMes": 0.011231996269098099,
+          "pu": 889.4747705828095,
+          "valor": 88947477.05828094,
+          "resultadoDia": 0.0009914015308096769,
+          "resultadoMes": 0.016819394294269374,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99484,10 +99485,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 883.7025123120582,
-          "valor": 88370251.23120582,
-          "resultadoDia": 0.0008518627244349375,
-          "resultadoMes": 0.010597454177367682,
+          "pu": 888.5938173120583,
+          "valor": 88859381.73120582,
+          "resultadoDia": 0.0012148964209817148,
+          "resultadoMes": 0.015812316408766458,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99508,10 +99509,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 882.9503598130071,
-          "valor": 88295035.98130071,
-          "resultadoDia": 0.0005749737797682286,
-          "resultadoMes": 0.009737296612911228,
+          "pu": 887.5155778130078,
+          "valor": 88751557.78130078,
+          "resultadoDia": 0.0009399857806364764,
+          "resultadoMes": 0.014579707153744792,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99532,10 +99533,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 882.4429782383794,
-          "valor": 88244297.82383794,
-          "resultadoDia": 0.003503923787594676,
-          "resultadoMes": 0.00915705776502862,
+          "pu": 886.682109238379,
+          "valor": 88668210.9238379,
+          "resultadoDia": 0.0038575804186338214,
+          "resultadoMes": 0.013626912269341096,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99556,10 +99557,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 879.3617616438544,
-          "valor": 87936176.16438544,
-          "resultadoDia": 0.00023744588327923033,
-          "resultadoMes": 0.005633394990720797,
+          "pu": 883.2748056438547,
+          "valor": 88327480.56438547,
+          "resultadoDia": 0.0006058842726632818,
+          "resultadoMes": 0.00973179068552077,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99580,10 +99581,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 879.153010380767,
-          "valor": 87915301.0380767,
-          "resultadoDia": 0.0005576491685266305,
-          "resultadoMes": 0.005394668165694005,
+          "pu": 882.7399673807674,
+          "valor": 88273996.73807675,
+          "resultadoDia": 0.0009253323444942119,
+          "resultadoMes": 0.00912038051774089,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99604,10 +99605,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 878.6630246756416,
-          "valor": 87866302.46756417,
-          "resultadoDia": 0.0005480541864761879,
-          "resultadoMes": 0.0048343231408871645,
+          "pu": 881.9238946756417,
+          "valor": 88192389.46756417,
+          "resultadoDia": 0.0009163126106619401,
+          "resultadoMes": 0.00818747204054815,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99628,10 +99629,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 878.1817335001099,
-          "valor": 87818173.35001099,
-          "resultadoDia": 0.0004913297053192878,
-          "resultadoMes": 0.004283921133499513,
+          "pu": 881.11651650011,
+          "valor": 88111651.650011,
+          "resultadoDia": 0.0008602760208866744,
+          "resultadoMes": 0.007264502874291923,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99652,10 +99653,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 877.7504686210185,
-          "valor": 87775046.86210185,
-          "resultadoDia": 0.0033868678222046533,
-          "resultadoMes": 0.0037907289304517366,
+          "pu": 880.3591646210187,
+          "valor": 88035916.46210188,
+          "resultadoDia": 0.003749844552357162,
+          "resultadoMes": 0.0063987221861443455,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99676,10 +99677,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.7876783818459,
-          "valor": 87478767.8381846,
-          "resultadoDia": 0.00044199099466912806,
-          "resultadoMes": 0.0004024979010577301,
+          "pu": 877.0702873818457,
+          "valor": 87707028.73818457,
+          "resultadoDia": 0.000813097708727506,
+          "resultadoMes": 0.002638981862028267,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99700,10 +99701,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.401200925309,
-          "valor": 87440120.0925309,
-          "resultadoDia": 0.0004314410994625817,
-          "resultadoMes": -3.9475645731479325e-05,
+          "pu": 876.3577229253095,
+          "valor": 87635772.29253095,
+          "resultadoDia": 0.0008030300609052077,
+          "resultadoMes": 0.0018244007372414384,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99724,10 +99725,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.0241110019016,
-          "valor": 87402411.10019016,
-          "resultadoDia": 0.00044477051524238753,
-          "resultadoMes": -0.0004707136599750861,
+          "pu": 875.6545460019016,
+          "valor": 87565454.60019016,
+          "resultadoDia": 0.0008168039172700148,
+          "resultadoMes": 0.001020551143089632,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99748,10 +99749,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 873.6355436710089,
-          "valor": 87363554.3671009,
-          "resultadoDia": 0.00020614031649968112,
-          "resultadoMes": -0.0009150771758704712,
+          "pu": 874.939891671009,
+          "valor": 87493989.1671009,
+          "resultadoDia": 0.0005788218842723847,
+          "resultadoMes": 0.0002035809401101929,
           "ajustesFluxoSub": [],
           "ajustesFluxoMes": [],
           "ajustesFluxoPeriodo": {}
@@ -99866,11 +99867,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-17"] = {
       "reportDate": "17/08/2026",
       "classe": "SUB",
       "label": "Subordinada",
-      "resultadoMensal": 0.011506404550893023,
+      "resultadoMensal": 0.020311307379861976,
       "cdiPeriodo": 0.005741847364895559,
-      "percentualCdi": 2.003955141900976,
-      "puFechamento": 897.8126323767495,
-      "resultadoInicio": -0.21215497229529334
+      "percentualCdi": 3.537416808402295,
+      "puFechamento": 909.2876729767495,
+      "resultadoInicio": -0.19817776472312487
     },
     {
       "mes": "07/26",

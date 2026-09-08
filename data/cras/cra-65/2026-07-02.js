@@ -5,12 +5,26 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     "reportDate": "02/07/2026",
     "dateKey": "2026-07-02",
     "importedAt": "2026-08-25T10:25:26.168004-03:00",
-    "revisionId": "20260825-102524",
+    "revisionId": "20260908-153204-cash-provision",
     "preOperational": false,
     "observation": "Posicao inicial de liquidacao em 02/07/2026, com carteira zerada e caixa informado.",
     "canonicalPath": "cras/cra-65/archive/canonical/2026-07-02.json",
     "revisionPath": "cras/cra-65/archive/revisions/2026-07-02/20260825-102524.json",
-    "dataScript": "data/cras/cra-65/2026-07-02.js"
+    "dataScript": "data/cras/cra-65/2026-07-02.js",
+    "cashProvisionMemoryAlignedAt": "2026-09-08T15:32:04.896354-03:00",
+    "manualAdjustments": [
+      {
+        "id": "cra65-caixa-provisao-planilha-reprocessada-2026-07-02",
+        "tipo": "alinhamento_caixa_provisao",
+        "dataBase": "2026-07-02",
+        "caixaAnterior": 487469836.72,
+        "caixaAjustado": 487502445.42,
+        "provisaoAnterior": 32608.7,
+        "provisaoAjustada": 32608.7,
+        "observacao": "Alinhamento com planilha paralela reprocessada; provisao tratada como informativa e ja refletida no caixa."
+      }
+    ],
+    "cashProvisionPerformanceRebuiltAt": "2026-09-08T15:32:30.587094-03:00"
   },
   "cra": {
     "id": "cra-65",
@@ -24,16 +38,16 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     "pddTotal": 26264.736,
     "carteiraVp": -26264.736,
     "carteiraVpLiquido": -26264.736,
-    "caixa": 487469836.72,
-    "total": 487443571.984,
+    "caixa": 487502445.42,
+    "total": 487476180.684,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "caixaLiquido": 487469836.72,
-    "patrimonioLiquido": 487443571.984,
+    "caixaLiquido": 487502445.42,
+    "patrimonioLiquido": 487476180.684,
     "direitosCreditoriosVn": 0,
     "direitosCreditoriosVp": -26264.736,
     "direitosCreditoriosAtraso": 0,
-    "percentualDireitosCreditoriosPatrimonio": -5.3882618439498305e-05,
+    "percentualDireitosCreditoriosPatrimonio": -5.38790140743836e-05,
     "quantidadeLastros": 3365,
     "quantidadeLastrosAtivos": 0,
     "cedentesUnicos": 81,
@@ -50,32 +64,32 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
   "caixa": {
     "accounts": {
       "cc": 94629.61,
-      "contaAplicacao": 487375207.11,
+      "contaAplicacao": 487407815.81,
       "fundoZeragem": 0.0,
       "contaLiquidacao": 0.0,
       "fundoDespesas": 0.0,
       "provisoes": 0.0
     },
-    "total": 487469836.72,
-    "totalAntesProvisaoInformativa": 487502445.42,
+    "total": 487502445.42,
+    "totalAntesProvisaoInformativa": 487535054.12,
     "provisaoInformativaAbatida": 32608.7,
     "ajustesCompetencia": [],
     "ajusteCompetenciaTotal": 0,
     "fonte": "Extrato Bancario",
     "arquivoOrigem": "carteira e caixa completo 65.xlsx",
-    "observacao": "Caixa bruto 487535054,120000004768 ajustado pela provisao de despesa de 32608,700000000001. Total do caixa usado no ativo 487502445,420000016689; provisao registrada como deducao da Subordinada. Ajuste gerencial: provisao informativa de R$ 32.608,70 abatida do caixa usado no ativo."
+    "observacao": "Caixa alinhado a planilha paralela reprocessada em 08/09/2026. A provisao fica apenas informativa, sem nova deducao no passivo."
   },
   "passivo": {
     "fundingTotal": 400000000.0,
     "despesasTotal": 0.0,
-    "despesasOperacionaisTotal": 0,
+    "despesasOperacionaisTotal": 0.0,
     "provisoesTotal": 0.0,
     "provisoesCaixa": 0.0,
-    "provisoesImportadasTotal": 0,
+    "provisoesImportadasTotal": 0.0,
     "deducoesTotal": 0.0,
-    "subordinadaTotal": 87443571.98400003,
+    "subordinadaTotal": 87476180.68400002,
     "subordinadaQuantidade": 100000.0,
-    "subordinadaPuResidual": 874.4357198400003,
+    "subordinadaPuResidual": 874.7618068400002,
     "cotas": [
       {
         "classe": "SR1",
@@ -2179,8 +2193,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         "dataEmissaoIso": "2026-07-01",
         "valorNominalInicial": 1000,
         "principalResidual": 875.3505412,
-        "pu": 874.4357198400003,
-        "valor": 87443571.98400003,
+        "pu": 874.7618068400002,
+        "valor": 87476180.68400002,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -2302,12 +2316,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
       "label": "Subordinada",
       "quantidade": 100000.0,
       "taxa": "Premio de subordinacao",
-      "pu": 874.4357198400003,
-      "valor": 87443571.98400003,
+      "pu": 874.7618068400002,
+      "valor": 87476180.68400002,
       "resultadoDia": null,
       "resultadoMes": null,
       "resultado30Dias": null,
-      "resultadoInicio": -0.12556428015999976,
+      "resultadoInicio": -0.12523819315999984,
       "tipo": "sub",
       "ajustesFluxoSub": [],
       "ajustesFluxoPeriodo": {}
@@ -2328,8 +2342,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
           "ajustesFluxoPeriodo": {}
         },
         "SUB": {
-          "pu": 874.4357198400003,
-          "valor": 87443571.98400003,
+          "pu": 874.7618068400002,
+          "valor": 87476180.68400002,
           "resultadoDia": null,
           "resultadoMes": null,
           "ajustesFluxoSub": [],
@@ -2361,8 +2375,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
       "resultadoMensal": null,
       "cdiPeriodo": null,
       "percentualCdi": null,
-      "puFechamento": 874.4357198400003,
-      "resultadoInicio": -0.12556428015999976
+      "puFechamento": 874.7618068400002,
+      "resultadoInicio": -0.12523819315999984
     }
   ],
   "concentracaoDetalhada": {
@@ -2521,11 +2535,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         {
           "id": "ativo_total",
           "label": "Ativo total",
-          "value": "R$ 487.443.571,98",
-          "numericValue": 487443571.984,
+          "value": "R$ 487.476.180,68",
+          "numericValue": 487476180.684,
           "isHighlight": true,
           "source": {
-            "name": "Carteira liquida + caixa",
+            "name": "Planilha paralela + carteira",
             "owner": "",
             "url": ""
           },
@@ -2547,11 +2561,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         {
           "id": "caixa_total",
           "label": "Caixa total",
-          "value": "R$ 487.469.836,72",
-          "numericValue": 487469836.72,
+          "value": "R$ 487.502.445,42",
+          "numericValue": 487502445.42,
           "isHighlight": true,
           "source": {
-            "name": "Import caixa",
+            "name": "Planilha paralela reprocessada",
             "owner": "",
             "url": ""
           },
@@ -2573,11 +2587,11 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         {
           "id": "subordinada_total",
           "label": "Subordinada residual",
-          "value": "R$ 87.443.571,98",
-          "numericValue": 87443571.98400003,
+          "value": "R$ 87.476.180,68",
+          "numericValue": 87476180.68400002,
           "isHighlight": true,
           "source": {
-            "name": "Ativo - funding - despesas/provisoes",
+            "name": "Ativo - funding",
             "owner": "",
             "url": ""
           },
@@ -2586,8 +2600,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
         {
           "id": "subordinada_pu",
           "label": "PU SUB residual",
-          "value": "R$ 874,435720",
-          "numericValue": 874.4357198400003,
+          "value": "R$ 874,761807",
+          "numericValue": 874.7618068400002,
           "isHighlight": true,
           "source": {
             "name": "Subordinada residual / quantidade",
@@ -93604,13 +93618,13 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-02"] = {
     }
   ],
   "informacoesComplementares": {
-    "saldoCaixa": 487469836.72,
-    "saldoRevolvencia": 487469836.72,
-    "patrimonioLiquido": 487443571.984,
+    "saldoCaixa": 487502445.42,
+    "saldoRevolvencia": 487502445.42,
+    "patrimonioLiquido": 487476180.684,
     "direitosCreditoriosVn": 0,
     "direitosCreditoriosVp": -26264.736,
     "direitosCreditoriosAtraso": 0,
-    "percentualDireitosCreditoriosPatrimonio": -5.3882618439498305e-05,
+    "percentualDireitosCreditoriosPatrimonio": -5.38790140743836e-05,
     "pdd": 26264.736
   },
   "composicaoCarteira": [
