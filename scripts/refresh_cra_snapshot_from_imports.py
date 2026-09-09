@@ -471,6 +471,51 @@ def load_di_rates():
 DI_RATES = load_di_rates()
 
 
+def load_known_holiday_dates():
+    project_root = Path(__file__).resolve().parents[1]
+    candidates = [
+        project_root / "data" / "cras" / "cra-carteira-62" / "2026-06-08.js",
+    ]
+    for path in candidates:
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8-sig")
+        match = re.search(r'"holidays"\s*:\s*(\[[\s\S]*?\])', text)
+        if not match:
+            continue
+        try:
+            values = json.loads(match.group(1))
+        except json.JSONDecodeError:
+            continue
+        dates = {
+            str(value or "")[:10]
+            for value in values
+            if parse_date_key(str(value or "")[:10])
+        }
+        if dates:
+            return dates
+
+    fixed_month_days = (
+        (1, 1),
+        (4, 21),
+        (5, 1),
+        (9, 7),
+        (10, 12),
+        (11, 2),
+        (11, 15),
+        (11, 20),
+        (12, 25),
+    )
+    return {
+        date(year, month, day).isoformat()
+        for year in range(2025, 2036)
+        for month, day in fixed_month_days
+    }
+
+
+KNOWN_HOLIDAY_DATES = load_known_holiday_dates()
+
+
 def business_day_offset(date_key, offset, holiday_dates=None):
     parsed = parse_date_key(date_key)
     if not parsed:
@@ -615,6 +660,10 @@ def snapshot_holidays(snapshot):
         text = str(value or "")[:10]
         if parse_date_key(text):
             dates.add(text)
+    if KNOWN_HOLIDAY_DATES:
+        dates.update(KNOWN_HOLIDAY_DATES)
+        if isinstance(calendar, dict) and not calendar.get("holidays"):
+            calendar["holidays"] = sorted(KNOWN_HOLIDAY_DATES)
     return dates
 
 
