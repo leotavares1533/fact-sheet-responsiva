@@ -99,6 +99,38 @@ def assign_cash_value(accounts: dict[str, float], text: str, amount: float) -> t
     return matched, provisao
 
 
+def extract_positional_cash(rows: list[list[object]], date_column: int, date_key: str) -> tuple[dict[str, float], float] | None:
+    header_index = None
+    for index, row in enumerate(rows):
+        if date_column < len(row) and parse_excel_date(row[date_column], "") == date_key:
+            header_index = index
+            break
+    if header_index is None:
+        return None
+
+    values: list[float] = []
+    for row in rows[header_index + 1 :]:
+        value = row[date_column] if date_column < len(row) else None
+        if value in (None, ""):
+            if values:
+                break
+            continue
+        values.append(parse_number(value))
+
+    if len(values) < 5:
+        return None
+
+    accounts = {
+        "cc": values[0],
+        "conta_aplicacao": values[1],
+        "fundo_zeragem": values[2],
+        "conta_liquidacao": values[3],
+        "fundo_despesas": 0.0,
+        "provisoes": 0.0,
+    }
+    return accounts, abs(values[4])
+
+
 def infer_shifted_total_provision(accounts: dict[str, float], rows: list[list[object]], date_column: int | None = None) -> float:
     raw_total = sum(float(value or 0.0) for key, value in accounts.items() if key != "provisoes")
     if raw_total <= 0:
@@ -173,6 +205,9 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
             if matches:
                 provisao = provisao or infer_shifted_total_provision(accounts, rows, date_column)
                 return accounts, provisao
+            positional_cash = extract_positional_cash(rows, date_column, date_key)
+            if positional_cash:
+                return positional_cash
 
     for worksheet in workbook.worksheets:
         rows = [list(row) for row in worksheet.iter_rows(values_only=True)]

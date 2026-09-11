@@ -96,6 +96,38 @@ def assign_cash_value(accounts: dict[str, float], text: str, amount: float) -> t
     return matched, provisao
 
 
+def extract_positional_cash(rows: list[list[object]], date_column: int, date_key: str) -> tuple[dict[str, float], float] | None:
+    header_index = None
+    for index, row in enumerate(rows):
+        if date_column < len(row) and parse_excel_date(row[date_column], "") == date_key:
+            header_index = index
+            break
+    if header_index is None:
+        return None
+
+    values: list[float] = []
+    for row in rows[header_index + 1 :]:
+        value = row[date_column] if date_column < len(row) else None
+        if value in (None, ""):
+            if values:
+                break
+            continue
+        values.append(parse_number(value))
+
+    if len(values) < 4:
+        return None
+
+    accounts = {
+        "cc": values[0],
+        "conta_aplicacao": values[1],
+        "fundo_zeragem": 0.0,
+        "conta_liquidacao": 0.0,
+        "fundo_despesas": values[2],
+        "provisoes": 0.0,
+    }
+    return accounts, abs(values[3])
+
+
 def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], float]:
     workbook = openpyxl.load_workbook(cash_path, read_only=True, data_only=True)
     default_accounts = {
@@ -142,6 +174,9 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
                     provisao = row_provisao or provisao
             if matches:
                 return accounts, provisao
+            positional_cash = extract_positional_cash(rows, date_column, date_key)
+            if positional_cash:
+                return positional_cash
 
     # Fallback for older one-day sheets with the date and amount beside labels.
     for worksheet in workbook.worksheets:
