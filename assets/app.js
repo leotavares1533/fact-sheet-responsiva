@@ -497,14 +497,51 @@
         };
       }
 
+      function hasNumericValue(value) {
+        return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
+      }
+
+      function buildStructuredHighlights(snapshot) {
+        const ativo = snapshot.ativo || {};
+        const passivo = snapshot.passivo || {};
+        const caixaTotal = ativo.caixa ?? snapshot.caixa?.total;
+        const carteiraVpLiquida = ativo.carteiraVpLiquido ?? ativo.carteiraVp;
+        const cards = [];
+
+        const addCurrency = (label, value, caption) => {
+          if (hasNumericValue(value)) {
+            cards.push({ label, value: formatCurrency(value), caption });
+          }
+        };
+
+        addCurrency("Ativo total", ativo.total, "Carteira liquida + caixa");
+        addCurrency("Carteira VP liquida", carteiraVpLiquida, "Import carteira");
+        addCurrency("Caixa total", caixaTotal, "Import caixa");
+        addCurrency("Funding SR/MEZ", passivo.fundingTotal, "Memoria PU");
+        addCurrency("Subordinada residual", passivo.subordinadaTotal, "Ativo - funding - despesas/provisoes");
+
+        if (hasNumericValue(passivo.subordinadaPuResidual)) {
+          cards.push({
+            label: "PU SUB residual",
+            value: `R$ ${formatNumber(passivo.subordinadaPuResidual, 6)}`,
+            caption: "Subordinada residual / quantidade"
+          });
+        }
+
+        return cards;
+      }
+
       function renderSummary(snapshot) {
-        const highlights = getAllMetrics(snapshot).filter((metric) => metric.isHighlight).slice(0, 6);
+        const structuredHighlights = buildStructuredHighlights(snapshot);
+        const highlights = structuredHighlights.length
+          ? structuredHighlights.slice(0, 6)
+          : getAllMetrics(snapshot).filter((metric) => metric.isHighlight).slice(0, 6);
 
         nodes.summaryStrip.innerHTML = highlights.map((metric) => `
           <article class="metric-card">
             <div class="metric-label">${escapeHtml(metric.label)}</div>
             <strong>${escapeHtml(metric.value)}</strong>
-            <small>${escapeHtml(summaryCaption(metric))}</small>
+            <small>${escapeHtml(metric.caption ?? summaryCaption(metric))}</small>
           </article>
         `).join("");
       }
