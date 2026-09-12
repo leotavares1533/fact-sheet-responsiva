@@ -400,6 +400,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--carteira", required=True, help="Arquivo Excel de carteira.")
     parser.add_argument("--caixa", required=True, help="Arquivo Excel de caixa.")
     parser.add_argument("--python", default=str(DEFAULT_PYTHON if DEFAULT_PYTHON.exists() else sys.executable), help="Python usado para chamar os scripts auxiliares.")
+    parser.add_argument("--skip-di-update", action="store_true", help="Usa a base DI local sem consultar o BCB.")
     return parser.parse_args()
 
 
@@ -414,17 +415,18 @@ def main() -> None:
     if not caixa_path.exists():
         raise FileNotFoundError(caixa_path)
 
-    run_command(
-        [
-            python_path,
-            PROJECT_ROOT / "scripts" / "update-di-rates.py",
-            "--project-root",
-            PROJECT_ROOT,
-            "--target-date",
-            date_key,
-            "--soft-fail",
-        ]
-    )
+    if not args.skip_di_update:
+        run_command(
+            [
+                python_path,
+                PROJECT_ROOT / "scripts" / "update-di-rates.py",
+                "--project-root",
+                PROJECT_ROOT,
+                "--target-date",
+                date_key,
+                "--soft-fail",
+            ]
+        )
     run_command(
         [
             python_path,

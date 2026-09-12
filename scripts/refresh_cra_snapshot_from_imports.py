@@ -75,21 +75,6 @@ CASH_COMPETENCE_ADJUSTMENTS = {
 }
 
 
-SUB_PERFORMANCE_COMPETENCE_ADJUSTMENTS = {
-    "cra-65": [
-        {
-            "id": "cra65-baixa-historica-carteira-20260730",
-            "classe": "SUB",
-            "dataBase": "2026-09-10",
-            "competenciaIso": "2026-07-30",
-            "tipo": "competencia_carteira",
-            "descricao": "Baixa historica da carteira reconhecida em 30/07/2026 para nao contaminar a rentabilidade corrente.",
-            "resultadoDiaAlvo": 0.003,
-        },
-    ],
-}
-
-
 CRA_STATIC_INFO = {
     "cra-modelo": {
         "dataVencimentoIso": "2030-06-17",
@@ -215,17 +200,6 @@ def active_cash_competence_adjustments(cra_id, date_key):
     return adjustments
 
 
-def sub_performance_competence_adjustment(cra_id, classe, date_key):
-    classe_key = str(classe or "").upper()
-    for adjustment in SUB_PERFORMANCE_COMPETENCE_ADJUSTMENTS.get(cra_id, []):
-        if str(adjustment.get("classe") or "").upper() != classe_key:
-            continue
-        if str(adjustment.get("dataBase") or "") != date_key:
-            continue
-        return adjustment
-    return None
-
-
 def parse_number(value):
     text = str(value or "").strip().replace("R$", "").replace("%", "").replace(" ", "")
     text = re.sub(r"[^0-9,.\-]", "", text)
@@ -247,6 +221,17 @@ def add_manual_adjustment(snapshot, adjustment):
     ]
     adjustments.append(adjustment)
     metadata["manualAdjustments"] = adjustments
+
+
+def remove_obsolete_manual_adjustments(snapshot):
+    metadata = snapshot.setdefault("metadata", {})
+    obsolete_prefixes = (
+        "cra65-baixa-historica-carteira-20260730",
+    )
+    metadata["manualAdjustments"] = [
+        item for item in metadata.get("manualAdjustments", []) or []
+        if not any(str(item.get("id") or "").startswith(prefix) for prefix in obsolete_prefixes)
+    ]
 
 
 def apply_pdd_renegotiation_overrides(cra_id, date_key, carteira, snapshot):
@@ -2025,46 +2010,6 @@ def build_performance_fallback(project_root, cra_root, cra_id, date_key, snapsho
                 }
                 ajustes_fluxo_sub.append(payment_adjustment)
                 ajustes_fluxo_periodo.setdefault(date_key, []).append(payment_adjustment)
-        performance_adjustment = sub_performance_competence_adjustment(cra_id, classe, date_key)
-        if classe == "SUB" and performance_adjustment and previous_value > 0 and current_value > 0:
-            target_return = float(performance_adjustment.get("resultadoDiaAlvo") or 0.0)
-            adjustment_value = previous_value * (1.0 + target_return) - current_value
-            quantidade = float(cota.get("quantidade") or 0.0)
-            adjustment_pu = adjustment_value / quantidade if quantidade else 0.0
-            resultado_dia = target_return
-            competence_key = str(performance_adjustment.get("competenciaIso") or date_key)
-            performance_flow = {
-                "dateKey": competence_key,
-                "dataIso": competence_key,
-                "data": format_date_br(competence_key),
-                "tipoEvento": performance_adjustment.get("tipo") or "competencia_carteira",
-                "tipoNormalizado": "ajuste competencia carteira",
-                "evento": performance_adjustment.get("descricao") or "Ajuste de competencia da carteira",
-                "observacao": "Ajuste historico tratado fora da rentabilidade diaria corrente.",
-                "puEvento": adjustment_pu,
-                "puAntesEvento": prev_pu,
-                "puDepois": pu,
-                "puAposEvento": pu,
-                "valorFluxoEstimado": adjustment_value,
-                "resultadoDiaAlvo": target_return,
-                "ehDataPagamentoTs": False,
-            }
-            ajustes_fluxo_sub.append(performance_flow)
-            ajustes_fluxo_periodo.setdefault(date_key, []).append(performance_flow)
-            add_manual_adjustment(
-                snapshot,
-                {
-                    "id": f"{performance_adjustment.get('id')}-{date_key}",
-                    "tipo": performance_adjustment.get("tipo") or "competencia_carteira",
-                    "dataBase": date_key,
-                    "competenciaIso": competence_key,
-                    "descricao": performance_adjustment.get("descricao") or "",
-                    "valorAplicado": adjustment_value,
-                    "puAplicado": adjustment_pu,
-                    "resultadoDiaAlvo": target_return,
-                    "efeito": "neutraliza_quebra_historica_na_rentabilidade_corrente",
-                },
-            )
         resultado_inicio = None
         if resultado_dia is not None and prev_perf.get("resultadoInicio") is not None:
             resultado_inicio = (1.0 + float(prev_perf.get("resultadoInicio") or 0.0)) * (1.0 + resultado_dia) - 1.0
@@ -2244,6 +2189,7 @@ def main():
     revision_id = datetime.now().strftime("%Y%m%d-%H%M%S")
 
     snapshot, canonical_path = load_or_bootstrap_snapshot(project_root, cra_root, args.cra_id, date_key)
+    remove_obsolete_manual_adjustments(snapshot)
 
     carteira_path = cra_root / "imports" / "carteira" / "carteira.csv"
     caixa_path = cra_root / "imports" / "caixa" / "caixa.csv"
