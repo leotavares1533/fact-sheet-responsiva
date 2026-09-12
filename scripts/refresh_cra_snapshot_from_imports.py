@@ -61,16 +61,6 @@ CASH_COMPETENCE_ADJUSTMENTS = {
             "aplicaDeIso": "2026-07-31",
             "aplicaAteIso": "2026-08-19",
         },
-        {
-            "id": "cra65-devolucao-recebimento-indevido-20260713",
-            "tipo": "competencia_caixa",
-            "descricao": "Devolucao parcial de recebimento indevido em 13/07/2026",
-            "valor": 368600.46,
-            "competenciaIso": "2026-07-13",
-            "dataPagamentoIso": "2026-09-10",
-            "aplicaDeIso": "2026-07-13",
-            "aplicaAteIso": "2026-09-09",
-        },
     ],
 }
 
@@ -227,6 +217,7 @@ def remove_obsolete_manual_adjustments(snapshot):
     metadata = snapshot.setdefault("metadata", {})
     obsolete_prefixes = (
         "cra65-baixa-historica-carteira-20260730",
+        "cra65-devolucao-recebimento-indevido-20260713",
     )
     metadata["manualAdjustments"] = [
         item for item in metadata.get("manualAdjustments", []) or []
