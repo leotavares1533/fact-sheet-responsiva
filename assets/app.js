@@ -501,10 +501,26 @@
         return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
       }
 
+      function displayAtivoTotal(snapshot) {
+        const ativo = snapshot?.ativo || {};
+        const pl = Number(ativo.patrimonioLiquido);
+        const total = Number(ativo.total);
+        return Number.isFinite(pl) && pl > 0 ? pl : total;
+      }
+
+      function displayCaixaTotal(snapshot) {
+        const ativo = snapshot?.ativo || {};
+        const caixa = snapshot?.caixa || {};
+        const caixaLiquido = Number(ativo.caixaLiquido);
+        const caixaTotal = Number(ativo.caixa ?? caixa.total);
+        return Number.isFinite(caixaLiquido) && caixaLiquido > 0 ? caixaLiquido : caixaTotal;
+      }
+
       function buildStructuredHighlights(snapshot) {
         const ativo = snapshot.ativo || {};
         const passivo = snapshot.passivo || {};
-        const caixaTotal = ativo.caixa ?? snapshot.caixa?.total;
+        const ativoTotal = displayAtivoTotal(snapshot);
+        const caixaTotal = displayCaixaTotal(snapshot);
         const carteiraVpLiquida = ativo.carteiraVpLiquido ?? ativo.carteiraVp;
         const cards = [];
 
@@ -514,11 +530,11 @@
           }
         };
 
-        addCurrency("Ativo total", ativo.total, "Carteira liquida + caixa");
+        addCurrency("Ativo total", ativoTotal, "Carteira liquida + caixa liquido");
         addCurrency("Carteira VP liquida", carteiraVpLiquida, "Import carteira");
-        addCurrency("Caixa total", caixaTotal, "Import caixa");
+        addCurrency("Caixa total", caixaTotal, "Import caixa liquido");
         addCurrency("Funding SR/MEZ", passivo.fundingTotal, "Memoria PU");
-        addCurrency("Subordinada residual", passivo.subordinadaTotal, "Ativo - funding - despesas/provisoes");
+        addCurrency("Subordinada residual", passivo.subordinadaTotal, "Ativo liquido - funding");
 
         if (hasNumericValue(passivo.subordinadaPuResidual)) {
           cards.push({
@@ -549,6 +565,8 @@
       function renderBalance(snapshot) {
         const ativo = snapshot.ativo || {};
         const passivo = snapshot.passivo || {};
+        const ativoTotal = displayAtivoTotal(snapshot);
+        const caixaTotal = displayCaixaTotal(snapshot);
         const caixa = snapshot.caixa?.accounts || {};
         const carteiraVpBruto = ativo.carteiraVpBruto ?? ativo.carteiraVp;
         const pddTotal = ativo.pddTotal ?? 0;
@@ -565,9 +583,9 @@
             </div>
             <div class="balance-grid">
               <article>
-                <span>Ativo</span>
-                <strong>${escapeHtml(formatCurrency(ativo.total))}</strong>
-                <small>VP bruto ${escapeHtml(formatCurrency(carteiraVpBruto))} - PDD ${escapeHtml(formatCurrency(pddTotal))} + caixa ${escapeHtml(formatCurrency(ativo.caixa))}</small>
+                <span>Ativo liquido</span>
+                <strong>${escapeHtml(formatCurrency(ativoTotal))}</strong>
+                <small>VP bruto ${escapeHtml(formatCurrency(carteiraVpBruto))} - PDD ${escapeHtml(formatCurrency(pddTotal))} + caixa liquido ${escapeHtml(formatCurrency(caixaTotal))}</small>
               </article>
               <article>
                 <span>Funding</span>
@@ -582,7 +600,7 @@
               <article>
                 <span>Subordinada</span>
                 <strong>${escapeHtml(formatCurrency(passivo.subordinadaTotal))}</strong>
-                <small>Ativo - funding - despesas/provisões | PU residual ${escapeHtml(formatNumber(passivo.subordinadaPuResidual, 6))}</small>
+                <small>Ativo liquido - funding | PU residual ${escapeHtml(formatNumber(passivo.subordinadaPuResidual, 6))}</small>
               </article>
             </div>
             <div class="account-grid">
@@ -2113,7 +2131,7 @@
           totals.set(name, current);
         });
 
-        const pl = Number(snapshot.ativo?.total || snapshot.ativo?.patrimonioLiquido || snapshot.carteiraResumo?.valorPresenteLiquido || 0);
+        const pl = Number(snapshot.ativo?.patrimonioLiquido || snapshot.ativo?.total || snapshot.carteiraResumo?.valorPresenteLiquido || 0);
         return Array.from(totals.values())
           .sort((a, b) => b.valorPresenteLiquido - a.valorPresenteLiquido)
           .slice(0, 5)
@@ -2172,7 +2190,7 @@
       }
 
       function groupPddMigrationRows(rows, snapshot) {
-        const pl = Number(snapshot.ativo?.total || snapshot.ativo?.patrimonioLiquido || snapshot.carteiraResumo?.valorPresenteLiquido || 0);
+        const pl = Number(snapshot.ativo?.patrimonioLiquido || snapshot.ativo?.total || snapshot.carteiraResumo?.valorPresenteLiquido || 0);
         const grouped = new Map();
 
         rows
@@ -2275,7 +2293,7 @@
       function normalizeOverduePmts(snapshot) {
         const saved = snapshot.pmtsVencidas || snapshot.concentracaoDetalhada?.pmtsVencidas || [];
         const baseDate = parseDateKeyToDate(snapshot.metadata?.dateKey || state.dateKey);
-        const pl = Number(snapshot.ativo?.total || snapshot.ativo?.patrimonioLiquido || snapshot.carteiraResumo?.valorPresenteLiquido || 0);
+        const pl = Number(snapshot.ativo?.patrimonioLiquido || snapshot.ativo?.total || snapshot.carteiraResumo?.valorPresenteLiquido || 0);
         if (!baseDate) {
           return [];
         }
