@@ -327,11 +327,22 @@ def top_exposure(rows, field):
     return {"name": name, "valorPresenteDia": value}
 
 
-def is_active_receivable(row):
+def is_active_receivable(row, date_key=None):
     status = normalize_name(row.get("status"))
-    value = float(row.get("valorPresenteLiquido", row.get("valorPresenteDia", 0.0)) or 0.0)
-    liquidation_date = str(row.get("dataLiquidacao", "") or "").strip()
-    return value > 0 and "liquid" not in status and not liquidation_date
+    value = float(row.get("valorPresenteDia", 0.0) or 0.0)
+    if value <= 0:
+        return False
+
+    is_liquidated = "liquid" in status
+    if not is_liquidated:
+        return True
+
+    liquidation_date = parse_date_key(row.get("dataLiquidacao"))
+    base_date = parse_date_key(date_key)
+    if liquidation_date and base_date:
+        return liquidation_date > base_date
+
+    return False
 
 
 def nominal_net_pdd(row):
@@ -2308,7 +2319,7 @@ def main():
     caixa_liquido = caixa_total - deducoes_total
     patrimonio_liquido = carteira_vp + caixa_liquido
 
-    active_carteira = [row for row in carteira if is_active_receivable(row)]
+    active_carteira = [row for row in carteira if is_active_receivable(row, date_key)]
     direitos_creditorios_vn = sum(nominal_net_pdd(row) for row in active_carteira)
     direitos_creditorios_atraso = sum(
         nominal_net_pdd(row)

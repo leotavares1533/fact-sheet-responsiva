@@ -221,12 +221,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
     "aquisicoesDia": 0,
     "caixaLiquido": 135855879.7327273,
     "patrimonioLiquido": 985135584.408233,
-    "direitosCreditoriosVn": 892465209.8085,
+    "direitosCreditoriosVn": 975443467.9633,
     "direitosCreditoriosVp": 849279704.6755058,
     "direitosCreditoriosAtraso": 55697041.4585,
     "percentualDireitosCreditoriosPatrimonio": 0.8620942316134734,
     "quantidadeLastros": 3477,
-    "quantidadeLastrosAtivos": 2294,
+    "quantidadeLastrosAtivos": 3261,
     "cedentesUnicos": 83,
     "sacadosUnicos": 1049,
     "maiorCedente": {
@@ -100189,15 +100189,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
     "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-08-11/caixa-fonte-excel-2026-08-11-20260911-213132.xlsx"
   },
   "carteiraResumo": {
-    "valorNominal": 892465209.8085,
+    "valorNominal": 975443467.9633,
     "valorPresente": 849335075.9922057,
     "valorPresenteLiquido": 849279704.6755058,
     "pddTotal": 55371.3167,
     "montanteAtraso": 55697041.4585,
-    "cedentesUnicos": 77,
-    "sacadosUnicos": 769,
-    "prazoMedioDias": 317.63508771562164,
-    "taxaMediaPonderada": 0.01845574991801957,
+    "cedentesUnicos": 81,
+    "sacadosUnicos": 1040,
+    "prazoMedioDias": 309.59924167003817,
+    "taxaMediaPonderada": 0.01840040789898928,
     "taxaCarregoTotal": 0.017263350390129467,
     "taxaCarregoTotalAa": 0.22800681793742217,
     "taxaCarregoCarteira": 0.01845574991801957,
@@ -100215,8 +100215,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
     "taxaCarregoDataTaxaDiIso": "2026-08-07",
     "taxaCarregoStatusTaxaDi": "BCB_SGS_12_D-2",
     "preFixado": {
-      "valorNominal": 834632544.3885,
-      "valorPresente": 698730423.8994615
+      "valorNominal": 917610802.5433,
+      "valorPresente": 790957284.713165
     },
     "posFixado": {
       "valorNominal": 57832665.42,
@@ -100227,7 +100227,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
     "saldoCaixa": 135855879.7327273,
     "saldoRevolvencia": 135855879.7327273,
     "patrimonioLiquido": 985135584.408233,
-    "direitosCreditoriosVn": 892465209.8085,
+    "direitosCreditoriosVn": 975443467.9633,
     "direitosCreditoriosVp": 849279704.6755058,
     "direitosCreditoriosAtraso": 55697041.4585,
     "percentualDireitosCreditoriosPatrimonio": 0.8620942316134734,
@@ -100236,9 +100236,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
   "composicaoCarteira": [
     {
       "label": "Pré fixado",
-      "valorNominal": 834632544.3885,
-      "valorPresente": 698730423.8994615,
-      "taxaMedia": 0.01855523951431017
+      "valorNominal": 917610802.5433,
+      "valorPresente": 790957284.713165,
+      "taxaMedia": 0.01848421612554643
     },
     {
       "label": "Pós fixado",
@@ -100248,23 +100248,23 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
     },
     {
       "label": "Total carteira alocada",
-      "valorNominal": 892465209.8084999,
-      "valorPresente": 757052843.8618023,
-      "taxaMedia": 0.01845574991801957
+      "valorNominal": 975443467.9633,
+      "valorPresente": 849279704.6755059,
+      "taxaMedia": 0.01840040789898928
     }
   ],
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 836768168.3499994,
-      "valorPresente": 702280995.3736305,
-      "percentualCarteira": 0.8269136675554484
+      "valorNominal": 837570080.8499994,
+      "valorPresente": 720676199.5297626,
+      "percentualCarteira": 0.8485734388355834
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 50470358.99450002,
-      "valorPresente": 49545166.024172515,
-      "percentualCarteira": 0.05833786649017218
+      "valorNominal": 50752265.41930003,
+      "valorPresente": 49544094.84564109,
+      "percentualCarteira": 0.058336605211319614
     },
     {
       "status": "Entre 31 e 60 dias",
@@ -100318,8 +100318,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-08-11"] = {
     },
     {
       "cedente": "GREEN FARMING FAZENDAS RE",
-      "valorAberto": 1536421.89,
-      "valorPdd": 7682.10945,
+      "valorAberto": 1819744.9300000002,
+      "valorPdd": 9098.72465,
       "status": "Entre 1 e 30 dias"
     },
     {

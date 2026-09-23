@@ -200,12 +200,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     "aquisicoesDia": 0,
     "caixaLiquido": 69887193.88675326,
     "patrimonioLiquido": 985386022.6146812,
-    "direitosCreditoriosVn": 1029570853.90195,
+    "direitosCreditoriosVn": 1030654672.8267499,
     "direitosCreditoriosVp": 915498828.7279279,
     "direitosCreditoriosAtraso": 69874569.32195,
     "percentualDireitosCreditoriosPatrimonio": 0.9290763291919744,
     "quantidadeLastros": 3510,
-    "quantidadeLastrosAtivos": 2149,
+    "quantidadeLastrosAtivos": 2151,
     "cedentesUnicos": 86,
     "sacadosUnicos": 1051,
     "maiorCedente": {
@@ -103064,15 +103064,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-09-21/caixa-fonte-excel-2026-09-21-20260922-160853.xlsx"
   },
   "carteiraResumo": {
-    "valorNominal": 1029570853.90195,
+    "valorNominal": 1030654672.8267499,
     "valorPresente": 915655086.0111779,
     "valorPresenteLiquido": 915498828.7279279,
     "pddTotal": 156257.28325,
     "montanteAtraso": 69874569.32195,
-    "cedentesUnicos": 81,
-    "sacadosUnicos": 694,
-    "prazoMedioDias": 258.52762654130055,
-    "taxaMediaPonderada": 0.01828409139442329,
+    "cedentesUnicos": 82,
+    "sacadosUnicos": 695,
+    "prazoMedioDias": 269.84330800099616,
+    "taxaMediaPonderada": 0.018256876002563732,
     "taxaCarregoTotal": 0.01767122887915441,
     "taxaCarregoTotalAa": 0.23392839498629647,
     "taxaCarregoCarteira": 0.01828409139442329,
@@ -103090,8 +103090,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     "taxaCarregoDataTaxaDiIso": "2026-09-17",
     "taxaCarregoStatusTaxaDi": "BCB_SGS_12_D-2",
     "preFixado": {
-      "valorNominal": 971738188.48195,
-      "valorPresente": 837958330.657206
+      "valorNominal": 972822007.40675,
+      "valorPresente": 855958512.0207585
     },
     "posFixado": {
       "valorNominal": 57832665.42,
@@ -103102,7 +103102,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     "saldoCaixa": 69887193.88675326,
     "saldoRevolvencia": 69887193.88675326,
     "patrimonioLiquido": 985386022.6146812,
-    "direitosCreditoriosVn": 1029570853.90195,
+    "direitosCreditoriosVn": 1030654672.8267499,
     "direitosCreditoriosVp": 915498828.7279279,
     "direitosCreditoriosAtraso": 69874569.32195,
     "percentualDireitosCreditoriosPatrimonio": 0.9290763291919744,
@@ -103111,9 +103111,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
   "composicaoCarteira": [
     {
       "label": "Pré fixado",
-      "valorNominal": 971738188.48195,
-      "valorPresente": 837958330.657206,
-      "taxaMedia": 0.01835647216741179
+      "valorNominal": 972822007.40675,
+      "valorPresente": 855958512.0207585,
+      "taxaMedia": 0.01832584156319018
     },
     {
       "label": "Pós fixado",
@@ -103123,17 +103123,17 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     },
     {
       "label": "Total carteira alocada",
-      "valorNominal": 1029570853.90195,
-      "valorPresente": 897498647.3643754,
-      "taxaMedia": 0.01828409139442329
+      "valorNominal": 1030654672.8267499,
+      "valorPresente": 915498828.7279278,
+      "taxaMedia": 0.018256876002563732
     }
   ],
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 959696284.5799984,
-      "valorPresente": 828942869.8901644,
-      "percentualCarteira": 0.9054548666566491
+      "valorNominal": 960498197.0799984,
+      "valorPresente": 846944113.640574,
+      "percentualCarteira": 0.9251176375805857
     },
     {
       "status": "Entre 1 e 30 dias",
@@ -103143,9 +103143,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     },
     {
       "status": "Entre 31 e 60 dias",
-      "valorNominal": 8959126.493849996,
-      "valorPresente": 8378940.272352385,
-      "percentualCarteira": 0.009152322219783501
+      "valorNominal": 9241032.918649996,
+      "valorPresente": 8377877.885495011,
+      "percentualCarteira": 0.00915116177388883
     },
     {
       "status": "Entre 61 e 90 dias",
@@ -103193,8 +103193,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-21"] = {
     },
     {
       "cedente": "GREEN FARMING FAZENDAS RE",
-      "valorAberto": 5492976.1899999995,
-      "valorPdd": 27464.88095,
+      "valorAberto": 5776299.23,
+      "valorPdd": 28881.49615,
       "status": "Entre 1 e 30 dias"
     },
     {

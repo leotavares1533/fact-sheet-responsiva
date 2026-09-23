@@ -200,12 +200,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
     "aquisicoesDia": 0,
     "caixaLiquido": 123594760.02404648,
     "patrimonioLiquido": 982473843.6358206,
-    "direitosCreditoriosVn": 967560607.71935,
+    "direitosCreditoriosVn": 971308244.0041499,
     "direitosCreditoriosVp": 858879083.6117742,
     "direitosCreditoriosAtraso": 66948268.88935,
     "percentualDireitosCreditoriosPatrimonio": 0.8742004575239766,
     "quantidadeLastros": 3477,
-    "quantidadeLastrosAtivos": 2259,
+    "quantidadeLastrosAtivos": 2305,
     "cedentesUnicos": 83,
     "sacadosUnicos": 1049,
     "maiorCedente": {
@@ -101885,15 +101885,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
     "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-09-15/caixa-fonte-excel-2026-09-15-20260917-173537.xlsx"
   },
   "carteiraResumo": {
-    "valorNominal": 967560607.71935,
+    "valorNominal": 971308244.0041499,
     "valorPresente": 859047265.3976243,
     "valorPresenteLiquido": 858879083.6117742,
     "pddTotal": 168181.78585,
     "montanteAtraso": 66948268.88935,
-    "cedentesUnicos": 78,
-    "sacadosUnicos": 737,
-    "prazoMedioDias": 271.8778614285465,
-    "taxaMediaPonderada": 0.018303080072231852,
+    "cedentesUnicos": 79,
+    "sacadosUnicos": 753,
+    "prazoMedioDias": 283.3828944862734,
+    "taxaMediaPonderada": 0.018273675489647954,
     "taxaCarregoTotal": 0.017234562586538944,
     "taxaCarregoTotalAa": 0.22758986257672764,
     "taxaCarregoCarteira": 0.018303080072231852,
@@ -101911,8 +101911,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
     "taxaCarregoDataTaxaDiIso": "2026-09-11",
     "taxaCarregoStatusTaxaDi": "BCB_SGS_12_D-2",
     "preFixado": {
-      "valorNominal": 909727942.29935,
-      "valorPresente": 779128142.5813841
+      "valorNominal": 913475578.58415,
+      "valorPresente": 799512975.4864656
     },
     "posFixado": {
       "valorNominal": 57832665.42,
@@ -101923,7 +101923,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
     "saldoCaixa": 123594760.02404648,
     "saldoRevolvencia": 123594760.02404648,
     "patrimonioLiquido": 982473843.6358206,
-    "direitosCreditoriosVn": 967560607.71935,
+    "direitosCreditoriosVn": 971308244.0041499,
     "direitosCreditoriosVp": 858879083.6117742,
     "direitosCreditoriosAtraso": 66948268.88935,
     "percentualDireitosCreditoriosPatrimonio": 0.8742004575239766,
@@ -101932,9 +101932,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
   "composicaoCarteira": [
     {
       "label": "Pré fixado",
-      "valorNominal": 909727942.29935,
-      "valorPresente": 779128142.5813841,
-      "taxaMedia": 0.01838216269356745
+      "valorNominal": 913475578.58415,
+      "valorPresente": 799512975.4864656,
+      "taxaMedia": 0.018348558402218815
     },
     {
       "label": "Pós fixado",
@@ -101944,23 +101944,23 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
     },
     {
       "label": "Total carteira alocada",
-      "valorNominal": 967560607.71935,
-      "valorPresente": 838494250.7066927,
-      "taxaMedia": 0.018303080072231852
+      "valorNominal": 971308244.0041499,
+      "valorPresente": 858879083.6117742,
+      "taxaMedia": 0.018273675489647954
     }
   ],
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 900612338.8299987,
-      "valorPresente": 772090767.5657023,
-      "percentualCarteira": 0.8989516479070511
+      "valorNominal": 901414251.3299987,
+      "valorPresente": 790034640.2756892,
+      "percentualCarteira": 0.9198438468817065
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 61721586.425350025,
-      "valorPresente": 61176800.676990114,
-      "percentualCarteira": 0.07122865353726895
+      "valorNominal": 62003492.850150034,
+      "valorPresente": 61175736.98970396,
+      "percentualCarteira": 0.07122741507738974
     },
     {
       "status": "Entre 31 e 60 dias",
@@ -102026,8 +102026,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-15"] = {
     },
     {
       "cedente": "GREEN FARMING FAZENDAS RE",
-      "valorAberto": 3937372.67,
-      "valorPdd": 19686.86335,
+      "valorAberto": 4220695.71,
+      "valorPdd": 21103.47855,
       "status": "Entre 1 e 30 dias"
     },
     {

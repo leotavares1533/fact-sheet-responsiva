@@ -172,12 +172,12 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-24"] = {
     "aquisicoesDia": 0,
     "caixaLiquido": 163751948.95,
     "patrimonioLiquido": 492098727.55911,
-    "direitosCreditoriosVn": 306357430.17935,
+    "direitosCreditoriosVn": 361667980.14935,
     "direitosCreditoriosVp": 328346778.60911,
     "direitosCreditoriosAtraso": 22687383.97935,
     "percentualDireitosCreditoriosPatrimonio": 0.6672376094889813,
     "quantidadeLastros": 3477,
-    "quantidadeLastrosAtivos": 189,
+    "quantidadeLastrosAtivos": 273,
     "cedentesUnicos": 83,
     "sacadosUnicos": 1049,
     "maiorCedente": {
@@ -97925,15 +97925,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-24"] = {
     "caixaFonteExcel": "cras/cra-65/archive/raw/caixa-fonte-excel/2026-07-24/caixa-fonte-excel-2026-07-24-20260911-212921.xlsx"
   },
   "carteiraResumo": {
-    "valorNominal": 306357430.17935,
+    "valorNominal": 361667980.14935,
     "valorPresente": 328402149.92581,
     "valorPresenteLiquido": 328346778.60911,
     "pddTotal": 55371.3167,
     "montanteAtraso": 22687383.97935,
-    "cedentesUnicos": 22,
-    "sacadosUnicos": 22,
-    "prazoMedioDias": 305.6537323844616,
-    "taxaMediaPonderada": 0.018636761301481473,
+    "cedentesUnicos": 25,
+    "sacadosUnicos": 25,
+    "prazoMedioDias": 297.11434723170856,
+    "taxaMediaPonderada": 0.022678440124804074,
     "taxaCarregoTotal": 0.015754599002223507,
     "taxaCarregoTotalAa": 0.20632844393546423,
     "taxaCarregoCarteira": 0.018636761301481473,
@@ -97951,8 +97951,8 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-24"] = {
     "taxaCarregoDataTaxaDiIso": "2026-07-22",
     "taxaCarregoStatusTaxaDi": "BCB_SGS_12_D-2",
     "preFixado": {
-      "valorNominal": 288229909.90935,
-      "valorPresente": 240128660.27690113
+      "valorNominal": 343540459.87935,
+      "valorPresente": 310050909.7390476
     },
     "posFixado": {
       "valorNominal": 18127520.27,
@@ -97963,7 +97963,7 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-24"] = {
     "saldoCaixa": 163751948.95,
     "saldoRevolvencia": 163751948.95,
     "patrimonioLiquido": 492098727.55911,
-    "direitosCreditoriosVn": 306357430.17935,
+    "direitosCreditoriosVn": 361667980.14935,
     "direitosCreditoriosVp": 328346778.60911,
     "direitosCreditoriosAtraso": 22687383.97935,
     "percentualDireitosCreditoriosPatrimonio": 0.6672376094889813,
@@ -97972,9 +97972,9 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-24"] = {
   "composicaoCarteira": [
     {
       "label": "Pré fixado",
-      "valorNominal": 288229909.90935,
-      "valorPresente": 240128660.27690113,
-      "taxaMedia": 0.018757376765097186
+      "valorNominal": 343540459.87935,
+      "valorPresente": 310050909.7390476,
+      "taxaMedia": 0.02301032953981693
     },
     {
       "label": "Pós fixado",
@@ -97984,17 +97984,17 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-24"] = {
     },
     {
       "label": "Total carteira alocada",
-      "valorNominal": 306357430.17934996,
-      "valorPresente": 258424529.14696354,
-      "taxaMedia": 0.018636761301481473
+      "valorNominal": 361667980.14935,
+      "valorPresente": 328346778.60911,
+      "taxaMedia": 0.022678440124804074
     }
   ],
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 283670046.2,
-      "valorPresente": 236178321.0960086,
-      "percentualCarteira": 0.7192953806231003
+      "valorNominal": 284471958.7,
+      "valorPresente": 255195650.62532058,
+      "percentualCarteira": 0.7772138094557818
     },
     {
       "status": "Entre 1 e 30 dias",
