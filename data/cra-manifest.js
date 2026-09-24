@@ -2,8 +2,21 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-09-22",
+    "currentDate": "2026-09-23",
     "dates": [
+      {
+        "dateKey": "2026-09-23",
+        "reportDate": "23/09/2026",
+        "importedAt": "2026-09-24T18:23:52.986866-03:00",
+        "revisionId": "20260924-182350",
+        "totalAtivo": 1025046455.3936555,
+        "carteiraVp": 675014979.9254385,
+        "carteiraVpBruto": 677836421.7973013,
+        "pddTotal": 2821441.871862719,
+        "funding": 617019443.9940001,
+        "subordinada": 408027011.39965546,
+        "dataScript": "data/cras/cra-modelo/2026-09-23.js"
+      },
       {
         "dateKey": "2026-09-22",
         "reportDate": "22/09/2026",
@@ -3831,8 +3844,21 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-09-22",
+    "currentDate": "2026-09-23",
     "dates": [
+      {
+        "dateKey": "2026-09-23",
+        "reportDate": "23/09/2026",
+        "importedAt": "2026-09-24T18:19:49.967859-03:00",
+        "revisionId": "20260924-181949",
+        "totalAtivo": 986564328.5927407,
+        "carteiraVp": 897252792.8688445,
+        "carteiraVpBruto": 897397474.6462945,
+        "pddTotal": 144681.77745,
+        "funding": 802585159.992,
+        "subordinada": 183979168.60074067,
+        "dataScript": "data/cras/cra-65/2026-09-23.js"
+      },
       {
         "dateKey": "2026-09-22",
         "reportDate": "22/09/2026",
