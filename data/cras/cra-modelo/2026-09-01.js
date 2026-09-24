@@ -549616,15 +549616,15 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-09-01"] = {
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 622779923.7800018,
-      "valorPresente": 604145513.1000011,
-      "percentualCarteira": 0.9722952282043642
+      "valorNominal": 625378006.8200017,
+      "valorPresente": 606733350.4200011,
+      "percentualCarteira": 0.9764600226504809
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 11423280.92,
-      "valorPresente": 11423280.92,
-      "percentualCarteira": 0.018384315182550248
+      "valorNominal": 13717681.879999999,
+      "valorPresente": 13717681.879999999,
+      "percentualCarteira": 0.022076861194435058
     },
     {
       "status": "Entre 31 e 60 dias",
@@ -549849,18 +549849,18 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-09-01"] = {
       {
         "label": "Vencidos",
         "order": 0,
-        "quantidade": 266,
-        "valorNominal": 12316363.0,
-        "valorPresente": 12316363.0,
-        "percentualCarteira": 0.019821617001317703
+        "quantidade": 441,
+        "valorNominal": 14610763.959999997,
+        "valorPresente": 14610763.959999997,
+        "percentualCarteira": 0.02351416301320251
       },
       {
         "label": "0 a 30 dias",
         "order": 1,
-        "quantidade": 723,
-        "valorNominal": 51105238.82999995,
-        "valorPresente": 49023621.45999998,
-        "percentualCarteira": 0.07889727256315025
+        "quantidade": 741,
+        "valorNominal": 53703321.86999995,
+        "valorPresente": 51611458.77999996,
+        "percentualCarteira": 0.08306206700926685
       },
       {
         "label": "31 a 60 dias",
@@ -550557,18 +550557,18 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-09-01"] = {
         {
           "label": "Vencidos",
           "order": 0,
-          "quantidade": 266,
-          "valorNominal": 12316363.0,
-          "valorPresente": 12316363.0,
-          "percentualCarteira": 0.019821617001317703
+          "quantidade": 441,
+          "valorNominal": 14610763.959999997,
+          "valorPresente": 14610763.959999997,
+          "percentualCarteira": 0.02351416301320251
         },
         {
           "label": "0 a 30 dias",
           "order": 1,
-          "quantidade": 723,
-          "valorNominal": 51105238.82999995,
-          "valorPresente": 49023621.45999998,
-          "percentualCarteira": 0.07889727256315025
+          "quantidade": 741,
+          "valorNominal": 53703321.86999995,
+          "valorPresente": 51611458.77999996,
+          "percentualCarteira": 0.08306206700926685
         },
         {
           "label": "31 a 60 dias",

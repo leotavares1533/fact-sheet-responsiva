@@ -495674,15 +495674,15 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-02"] = {
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 949386695.48,
-      "valorPresente": 903834234.7099998,
-      "percentualCarteira": 0.8818522426911656
+      "valorNominal": 990184355.1200004,
+      "valorPresente": 980610970.7599996,
+      "percentualCarteira": 0.956761705369268
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 28374964.74,
-      "valorPresente": 28227248.65,
-      "percentualCarteira": 0.027540738745075854
+      "valorNominal": 30384673.970000003,
+      "valorPresente": 30236957.880000003,
+      "percentualCarteira": 0.029501570193556315
     },
     {
       "status": "Entre 31 e 60 dias",
@@ -495863,112 +495863,112 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-02"] = {
       {
         "label": "Vencidos",
         "order": 0,
-        "quantidade": 94,
-        "valorNominal": 30846730.470000014,
-        "valorPresente": 30701760.730000015,
-        "percentualCarteira": 0.029955068655930082
+        "quantidade": 115,
+        "valorNominal": 32856439.700000018,
+        "valorPresente": 32711469.96000002,
+        "percentualCarteira": 0.03191590010441055
       },
       {
         "label": "0 a 30 dias",
         "order": 1,
-        "quantidade": 609,
-        "valorNominal": 41765348.38000002,
-        "valorPresente": 41061877.78000006,
-        "percentualCarteira": 0.04006321913776804
+        "quantidade": 678,
+        "valorNominal": 53496301.47000002,
+        "valorPresente": 52685032.10000001,
+        "percentualCarteira": 0.05140368878431357
       },
       {
         "label": "31 a 60 dias",
         "order": 2,
-        "quantidade": 2282,
-        "valorNominal": 64780909.77000001,
-        "valorPresente": 62492969.39000005,
-        "percentualCarteira": 0.06097308897209908
+        "quantidade": 2285,
+        "valorNominal": 66252879.86000003,
+        "valorPresente": 63919834.73000005,
+        "percentualCarteira": 0.06236525177339087
       },
       {
         "label": "61 a 90 dias",
         "order": 3,
-        "quantidade": 1123,
-        "valorNominal": 46544934.40000001,
-        "valorPresente": 44244659.46999998,
-        "percentualCarteira": 0.043168592959134035
+        "quantidade": 1127,
+        "valorNominal": 53892446.14000001,
+        "valorPresente": 51231467.979999945,
+        "percentualCarteira": 0.04998547653931187
       },
       {
         "label": "91 a 180 dias",
         "order": 4,
-        "quantidade": 426,
-        "valorNominal": 180617242.71000007,
-        "valorPresente": 169452428.78000003,
-        "percentualCarteira": 0.16533120633238033
+        "quantidade": 438,
+        "valorNominal": 192240447.25000003,
+        "valorPresente": 184943978.57000005,
+        "percentualCarteira": 0.18044598888922456
       },
       {
         "label": "181 a 360 dias",
         "order": 5,
-        "quantidade": 329,
-        "valorNominal": 110927277.04999998,
-        "valorPresente": 98608817.49000011,
-        "percentualCarteira": 0.09621056993994205
+        "quantidade": 336,
+        "valorNominal": 119551297.23,
+        "valorPresente": 106245056.62000011,
+        "percentualCarteira": 0.1036610894532654
       },
       {
         "label": "Acima de 360 dias",
         "order": 6,
-        "quantidade": 71,
+        "quantidade": 74,
         "valorNominal": 505594023.92000014,
-        "valorPresente": 488813776.20000005,
-        "percentualCarteira": 0.4769254230988672
+        "valorPresente": 522425895.1600001,
+        "percentualCarteira": 0.5097200676787871
       }
     ],
     "maiores": [
       {
-        "cedente": "RIVIERA PRESERV. E FAB. D",
-        "sacado": "SEARA ALIMENTOS LTDA",
-        "devedor": "SEARA ALIMENTOS LTDA",
-        "dataVencimento": "05/07/2026",
-        "dataVencimentoIso": "2026-07-05",
-        "dias": 3,
-        "valorNominal": 480197.84,
-        "valorPresente": 479132.08,
+        "cedente": "FRIGORIFICO FRILEM LTDA",
+        "sacado": "MG  ENTREPOSTO DE CARNES",
+        "devedor": "MG  ENTREPOSTO DE CARNES",
+        "dataVencimento": "08/07/2026",
+        "dataVencimentoIso": "2026-07-08",
+        "dias": 6,
+        "valorNominal": 750980.44,
+        "valorPresente": 748573.0,
         "tipoTitulo": "NFE",
         "posicao": 1,
-        "percentualCarteira": 0.00046747919371393587
+        "percentualCarteira": 0.0007303670889163216
       },
       {
         "cedente": "FRIGORIFICO FRILEM LTDA",
-        "sacado": "FRIGORIFICO JM LTDA",
-        "devedor": "FRIGORIFICO JM LTDA",
-        "dataVencimento": "20/07/2026",
-        "dataVencimentoIso": "2026-07-20",
-        "dias": 18,
-        "valorNominal": 641159.2,
-        "valorPresente": 635012.8,
+        "sacado": "MG  ENTREPOSTO DE CARNES",
+        "devedor": "MG  ENTREPOSTO DE CARNES",
+        "dataVencimento": "10/07/2026",
+        "dataVencimentoIso": "2026-07-10",
+        "dias": 8,
+        "valorNominal": 691375.4,
+        "valorPresente": 688053.52,
         "tipoTitulo": "NFE",
         "posicao": 2,
-        "percentualCarteira": 0.0006195687663869821
+        "percentualCarteira": 0.0006713194924490037
       },
       {
         "cedente": "FRIGORIFICO FRILEM LTDA",
-        "sacado": "RPD CARNES LTDA",
-        "devedor": "RPD CARNES LTDA",
-        "dataVencimento": "21/07/2026",
-        "dataVencimentoIso": "2026-07-21",
-        "dias": 19,
-        "valorNominal": 627459.84,
-        "valorPresente": 620946.12,
+        "sacado": "FRIFORT COMERCIO DE CARNE",
+        "devedor": "FRIFORT COMERCIO DE CARNE",
+        "dataVencimento": "14/07/2026",
+        "dataVencimentoIso": "2026-07-14",
+        "dias": 12,
+        "valorNominal": 781278.4,
+        "valorPresente": 776277.29,
         "tipoTitulo": "NFE",
         "posicao": 3,
-        "percentualCarteira": 0.000605844199614847
+        "percentualCarteira": 0.0007573975877959145
       },
       {
-        "cedente": "RIVIERA PRESERV. E FAB. D",
-        "sacado": "SEARA ALIMENTOS LTDA",
-        "devedor": "SEARA ALIMENTOS LTDA",
-        "dataVencimento": "21/07/2026",
-        "dataVencimentoIso": "2026-07-21",
-        "dias": 19,
-        "valorNominal": 498955.57,
-        "valorPresente": 491660.18,
-        "tipoTitulo": "NFE",
+        "cedente": "INAGRO - INSUMOS AGRICOLA",
+        "sacado": "INAGRO  INSUMOS AGRICOLAS",
+        "devedor": "INAGRO  INSUMOS AGRICOLAS",
+        "dataVencimento": "23/07/2026",
+        "dataVencimentoIso": "2026-07-23",
+        "dias": 21,
+        "valorNominal": 5252947.2,
+        "valorPresente": 5171204.29,
+        "tipoTitulo": "NC",
         "posicao": 4,
-        "percentualCarteira": 0.00047970260001719894
+        "percentualCarteira": 0.005045436348197027
       },
       {
         "cedente": "NIVALDO ALVES PEREIRA FIL",
@@ -496299,112 +496299,112 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-02"] = {
         {
           "label": "Vencidos",
           "order": 0,
-          "quantidade": 94,
-          "valorNominal": 30846730.470000014,
-          "valorPresente": 30701760.730000015,
-          "percentualCarteira": 0.029955068655930082
+          "quantidade": 115,
+          "valorNominal": 32856439.700000018,
+          "valorPresente": 32711469.96000002,
+          "percentualCarteira": 0.03191590010441055
         },
         {
           "label": "0 a 30 dias",
           "order": 1,
-          "quantidade": 609,
-          "valorNominal": 41765348.38000002,
-          "valorPresente": 41061877.78000006,
-          "percentualCarteira": 0.04006321913776804
+          "quantidade": 678,
+          "valorNominal": 53496301.47000002,
+          "valorPresente": 52685032.10000001,
+          "percentualCarteira": 0.05140368878431357
         },
         {
           "label": "31 a 60 dias",
           "order": 2,
-          "quantidade": 2282,
-          "valorNominal": 64780909.77000001,
-          "valorPresente": 62492969.39000005,
-          "percentualCarteira": 0.06097308897209908
+          "quantidade": 2285,
+          "valorNominal": 66252879.86000003,
+          "valorPresente": 63919834.73000005,
+          "percentualCarteira": 0.06236525177339087
         },
         {
           "label": "61 a 90 dias",
           "order": 3,
-          "quantidade": 1123,
-          "valorNominal": 46544934.40000001,
-          "valorPresente": 44244659.46999998,
-          "percentualCarteira": 0.043168592959134035
+          "quantidade": 1127,
+          "valorNominal": 53892446.14000001,
+          "valorPresente": 51231467.979999945,
+          "percentualCarteira": 0.04998547653931187
         },
         {
           "label": "91 a 180 dias",
           "order": 4,
-          "quantidade": 426,
-          "valorNominal": 180617242.71000007,
-          "valorPresente": 169452428.78000003,
-          "percentualCarteira": 0.16533120633238033
+          "quantidade": 438,
+          "valorNominal": 192240447.25000003,
+          "valorPresente": 184943978.57000005,
+          "percentualCarteira": 0.18044598888922456
         },
         {
           "label": "181 a 360 dias",
           "order": 5,
-          "quantidade": 329,
-          "valorNominal": 110927277.04999998,
-          "valorPresente": 98608817.49000011,
-          "percentualCarteira": 0.09621056993994205
+          "quantidade": 336,
+          "valorNominal": 119551297.23,
+          "valorPresente": 106245056.62000011,
+          "percentualCarteira": 0.1036610894532654
         },
         {
           "label": "Acima de 360 dias",
           "order": 6,
-          "quantidade": 71,
+          "quantidade": 74,
           "valorNominal": 505594023.92000014,
-          "valorPresente": 488813776.20000005,
-          "percentualCarteira": 0.4769254230988672
+          "valorPresente": 522425895.1600001,
+          "percentualCarteira": 0.5097200676787871
         }
       ],
       "maiores": [
         {
-          "cedente": "RIVIERA PRESERV. E FAB. D",
-          "sacado": "SEARA ALIMENTOS LTDA",
-          "devedor": "SEARA ALIMENTOS LTDA",
-          "dataVencimento": "05/07/2026",
-          "dataVencimentoIso": "2026-07-05",
-          "dias": 3,
-          "valorNominal": 480197.84,
-          "valorPresente": 479132.08,
+          "cedente": "FRIGORIFICO FRILEM LTDA",
+          "sacado": "MG  ENTREPOSTO DE CARNES",
+          "devedor": "MG  ENTREPOSTO DE CARNES",
+          "dataVencimento": "08/07/2026",
+          "dataVencimentoIso": "2026-07-08",
+          "dias": 6,
+          "valorNominal": 750980.44,
+          "valorPresente": 748573.0,
           "tipoTitulo": "NFE",
           "posicao": 1,
-          "percentualCarteira": 0.00046747919371393587
+          "percentualCarteira": 0.0007303670889163216
         },
         {
           "cedente": "FRIGORIFICO FRILEM LTDA",
-          "sacado": "FRIGORIFICO JM LTDA",
-          "devedor": "FRIGORIFICO JM LTDA",
-          "dataVencimento": "20/07/2026",
-          "dataVencimentoIso": "2026-07-20",
-          "dias": 18,
-          "valorNominal": 641159.2,
-          "valorPresente": 635012.8,
+          "sacado": "MG  ENTREPOSTO DE CARNES",
+          "devedor": "MG  ENTREPOSTO DE CARNES",
+          "dataVencimento": "10/07/2026",
+          "dataVencimentoIso": "2026-07-10",
+          "dias": 8,
+          "valorNominal": 691375.4,
+          "valorPresente": 688053.52,
           "tipoTitulo": "NFE",
           "posicao": 2,
-          "percentualCarteira": 0.0006195687663869821
+          "percentualCarteira": 0.0006713194924490037
         },
         {
           "cedente": "FRIGORIFICO FRILEM LTDA",
-          "sacado": "RPD CARNES LTDA",
-          "devedor": "RPD CARNES LTDA",
-          "dataVencimento": "21/07/2026",
-          "dataVencimentoIso": "2026-07-21",
-          "dias": 19,
-          "valorNominal": 627459.84,
-          "valorPresente": 620946.12,
+          "sacado": "FRIFORT COMERCIO DE CARNE",
+          "devedor": "FRIFORT COMERCIO DE CARNE",
+          "dataVencimento": "14/07/2026",
+          "dataVencimentoIso": "2026-07-14",
+          "dias": 12,
+          "valorNominal": 781278.4,
+          "valorPresente": 776277.29,
           "tipoTitulo": "NFE",
           "posicao": 3,
-          "percentualCarteira": 0.000605844199614847
+          "percentualCarteira": 0.0007573975877959145
         },
         {
-          "cedente": "RIVIERA PRESERV. E FAB. D",
-          "sacado": "SEARA ALIMENTOS LTDA",
-          "devedor": "SEARA ALIMENTOS LTDA",
-          "dataVencimento": "21/07/2026",
-          "dataVencimentoIso": "2026-07-21",
-          "dias": 19,
-          "valorNominal": 498955.57,
-          "valorPresente": 491660.18,
-          "tipoTitulo": "NFE",
+          "cedente": "INAGRO - INSUMOS AGRICOLA",
+          "sacado": "INAGRO  INSUMOS AGRICOLAS",
+          "devedor": "INAGRO  INSUMOS AGRICOLAS",
+          "dataVencimento": "23/07/2026",
+          "dataVencimentoIso": "2026-07-23",
+          "dias": 21,
+          "valorNominal": 5252947.2,
+          "valorPresente": 5171204.29,
+          "tipoTitulo": "NC",
           "posicao": 4,
-          "percentualCarteira": 0.00047970260001719894
+          "percentualCarteira": 0.005045436348197027
         },
         {
           "cedente": "NIVALDO ALVES PEREIRA FIL",

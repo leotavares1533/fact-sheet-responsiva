@@ -2723,55 +2723,76 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-15"] = {
     "proximosVencimentos": {
       "aging": [
         {
+          "label": "Vencidos",
+          "order": 0,
+          "quantidade": 4,
+          "valorNominal": 4857661.99,
+          "valorPresente": 4857661.99,
+          "percentualCarteira": 0.014645364819734179
+        },
+        {
           "label": "0 a 30 dias",
           "order": 1,
-          "quantidade": 1,
-          "valorNominal": 5226682.464000001,
-          "valorPresente": 5193831.37947456,
-          "percentualCarteira": 0.015658881890336745
+          "quantidade": 40,
+          "valorNominal": 21707871.14400001,
+          "valorPresente": 21447842.150124524,
+          "percentualCarteira": 0.06466309791238595
         },
         {
           "label": "31 a 60 dias",
           "order": 2,
-          "quantidade": 22,
-          "valorNominal": 21778580.415349998,
-          "valorPresente": 21084716.032020025,
-          "percentualCarteira": 0.063568309002379
+          "quantidade": 62,
+          "valorNominal": 56531064.69535001,
+          "valorPresente": 52948201.03160641,
+          "percentualCarteira": 0.15963352786851717
         },
         {
           "label": "61 a 90 dias",
           "order": 3,
-          "quantidade": 33,
-          "valorNominal": 34511792.2,
-          "valorPresente": 32960667.302024357,
-          "percentualCarteira": 0.09937311371885514
+          "quantidade": 36,
+          "valorNominal": 37172750.14000001,
+          "valorPresente": 35578730.0357028,
+          "percentualCarteira": 0.10726631088543515
         },
         {
           "label": "91 a 180 dias",
           "order": 4,
-          "quantidade": 78,
-          "valorNominal": 108228938.10000004,
-          "valorPresente": 101009555.4992989,
-          "percentualCarteira": 0.30453370234729304
+          "quantidade": 87,
+          "valorNominal": 113285805.39000006,
+          "valorPresente": 105824706.65409821,
+          "percentualCarteira": 0.31905090125272784
         },
         {
           "label": "181 a 360 dias",
           "order": 5,
-          "quantidade": 50,
-          "valorNominal": 59517561.47,
-          "valorPresente": 51633193.4437474,
-          "percentualCarteira": 0.1556689115768608
+          "quantidade": 56,
+          "valorNominal": 64329036.349999994,
+          "valorPresente": 55777520.95980209,
+          "percentualCarteira": 0.16816364433719508
         },
         {
           "label": "Acima de 360 dias",
           "order": 6,
-          "quantidade": 5,
-          "valorNominal": 77093875.53,
-          "valorPresente": 45074582.075483955,
-          "percentualCarteira": 0.13589535458652066
+          "quantidade": 23,
+          "valorNominal": 91528300.20000005,
+          "valorPresente": 55271311.87758011,
+          "percentualCarteira": 0.1666374746079168
         }
       ],
       "maiores": [
+        {
+          "cedente": "RAMAX IMPORTACAO E EXPORT",
+          "sacado": "RAMAX IMPORTACAO E EXPORT",
+          "devedor": "RAMAX IMPORTACAO E EXPORT",
+          "dataVencimento": "19/07/2026",
+          "dataVencimentoIso": "2026-07-19",
+          "dias": 4,
+          "valorNominal": 1026147.67,
+          "valorPresente": 1023843.8757662867,
+          "tipoTitulo": "NP",
+          "posicao": 1,
+          "percentualCarteira": 0.0030867868348838875
+        },
         {
           "cedente": "INAGRO - INSUMOS AGRICOLA",
           "sacado": "INAGRO  INSUMOS AGRICOLAS",
@@ -2782,8 +2803,47 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-15"] = {
           "valorNominal": 5226682.464000001,
           "valorPresente": 5193831.37947456,
           "tipoTitulo": "NC",
-          "posicao": 1,
+          "posicao": 2,
           "percentualCarteira": 0.015658881890336745
+        },
+        {
+          "cedente": "GREEN FARMING FAZENDAS RE",
+          "sacado": "GREEN FARMING",
+          "devedor": "GREEN FARMING",
+          "dataVencimento": "09/08/2026",
+          "dataVencimentoIso": "2026-08-09",
+          "dias": 25,
+          "valorNominal": 848439.56,
+          "valorPresente": 835707.3823473781,
+          "tipoTitulo": "NP",
+          "posicao": 3,
+          "percentualCarteira": 0.0025195741330331697
+        },
+        {
+          "cedente": "FABIO SCHMITT",
+          "sacado": "FABIO SCHIMTT",
+          "devedor": "FABIO SCHIMTT",
+          "dataVencimento": "14/08/2026",
+          "dataVencimentoIso": "2026-08-14",
+          "dias": 30,
+          "valorNominal": 2155731.52,
+          "valorPresente": 2114888.082657631,
+          "tipoTitulo": "NP",
+          "posicao": 4,
+          "percentualCarteira": 0.006376175943734023
+        },
+        {
+          "cedente": "GREEN FARMING FAZENDAS RE",
+          "sacado": "GREEN FARMING",
+          "devedor": "GREEN FARMING",
+          "dataVencimento": "14/08/2026",
+          "dataVencimentoIso": "2026-08-14",
+          "dias": 30,
+          "valorNominal": 878454.98,
+          "valorPresente": 862775.190035655,
+          "tipoTitulo": "NP",
+          "posicao": 5,
+          "percentualCarteira": 0.002601180864683352
         }
       ]
     },
@@ -2867,15 +2927,15 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-15"] = {
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 283670046.2,
-      "valorPresente": 234845695.70081964,
-      "percentualCarteira": 0.7080362727919615
+      "valorNominal": 361867443.9399992,
+      "valorPresente": 304737462.6776845,
+      "percentualCarteira": 0.9187529565338938
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 17460701.51535,
-      "valorPresente": 16917018.651754938,
-      "percentualCarteira": 0.05100311843994701
+      "valorNominal": 22318363.505349994,
+      "valorPresente": 21774680.641754936,
+      "percentualCarteira": 0.06564848325968119
     },
     {
       "status": "Entre 31 e 60 dias",
@@ -97091,55 +97151,76 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-15"] = {
   "proximosVencimentos": {
     "aging": [
       {
+        "label": "Vencidos",
+        "order": 0,
+        "quantidade": 4,
+        "valorNominal": 4857661.99,
+        "valorPresente": 4857661.99,
+        "percentualCarteira": 0.014645364819734179
+      },
+      {
         "label": "0 a 30 dias",
         "order": 1,
-        "quantidade": 1,
-        "valorNominal": 5226682.464000001,
-        "valorPresente": 5193831.37947456,
-        "percentualCarteira": 0.015658881890336745
+        "quantidade": 40,
+        "valorNominal": 21707871.14400001,
+        "valorPresente": 21447842.150124524,
+        "percentualCarteira": 0.06466309791238595
       },
       {
         "label": "31 a 60 dias",
         "order": 2,
-        "quantidade": 22,
-        "valorNominal": 21778580.415349998,
-        "valorPresente": 21084716.032020025,
-        "percentualCarteira": 0.063568309002379
+        "quantidade": 62,
+        "valorNominal": 56531064.69535001,
+        "valorPresente": 52948201.03160641,
+        "percentualCarteira": 0.15963352786851717
       },
       {
         "label": "61 a 90 dias",
         "order": 3,
-        "quantidade": 33,
-        "valorNominal": 34511792.2,
-        "valorPresente": 32960667.302024357,
-        "percentualCarteira": 0.09937311371885514
+        "quantidade": 36,
+        "valorNominal": 37172750.14000001,
+        "valorPresente": 35578730.0357028,
+        "percentualCarteira": 0.10726631088543515
       },
       {
         "label": "91 a 180 dias",
         "order": 4,
-        "quantidade": 78,
-        "valorNominal": 108228938.10000004,
-        "valorPresente": 101009555.4992989,
-        "percentualCarteira": 0.30453370234729304
+        "quantidade": 87,
+        "valorNominal": 113285805.39000006,
+        "valorPresente": 105824706.65409821,
+        "percentualCarteira": 0.31905090125272784
       },
       {
         "label": "181 a 360 dias",
         "order": 5,
-        "quantidade": 50,
-        "valorNominal": 59517561.47,
-        "valorPresente": 51633193.4437474,
-        "percentualCarteira": 0.1556689115768608
+        "quantidade": 56,
+        "valorNominal": 64329036.349999994,
+        "valorPresente": 55777520.95980209,
+        "percentualCarteira": 0.16816364433719508
       },
       {
         "label": "Acima de 360 dias",
         "order": 6,
-        "quantidade": 5,
-        "valorNominal": 77093875.53,
-        "valorPresente": 45074582.075483955,
-        "percentualCarteira": 0.13589535458652066
+        "quantidade": 23,
+        "valorNominal": 91528300.20000005,
+        "valorPresente": 55271311.87758011,
+        "percentualCarteira": 0.1666374746079168
       }
     ],
     "maiores": [
+      {
+        "cedente": "RAMAX IMPORTACAO E EXPORT",
+        "sacado": "RAMAX IMPORTACAO E EXPORT",
+        "devedor": "RAMAX IMPORTACAO E EXPORT",
+        "dataVencimento": "19/07/2026",
+        "dataVencimentoIso": "2026-07-19",
+        "dias": 4,
+        "valorNominal": 1026147.67,
+        "valorPresente": 1023843.8757662867,
+        "tipoTitulo": "NP",
+        "posicao": 1,
+        "percentualCarteira": 0.0030867868348838875
+      },
       {
         "cedente": "INAGRO - INSUMOS AGRICOLA",
         "sacado": "INAGRO  INSUMOS AGRICOLAS",
@@ -97150,8 +97231,47 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-07-15"] = {
         "valorNominal": 5226682.464000001,
         "valorPresente": 5193831.37947456,
         "tipoTitulo": "NC",
-        "posicao": 1,
+        "posicao": 2,
         "percentualCarteira": 0.015658881890336745
+      },
+      {
+        "cedente": "GREEN FARMING FAZENDAS RE",
+        "sacado": "GREEN FARMING",
+        "devedor": "GREEN FARMING",
+        "dataVencimento": "09/08/2026",
+        "dataVencimentoIso": "2026-08-09",
+        "dias": 25,
+        "valorNominal": 848439.56,
+        "valorPresente": 835707.3823473781,
+        "tipoTitulo": "NP",
+        "posicao": 3,
+        "percentualCarteira": 0.0025195741330331697
+      },
+      {
+        "cedente": "FABIO SCHMITT",
+        "sacado": "FABIO SCHIMTT",
+        "devedor": "FABIO SCHIMTT",
+        "dataVencimento": "14/08/2026",
+        "dataVencimentoIso": "2026-08-14",
+        "dias": 30,
+        "valorNominal": 2155731.52,
+        "valorPresente": 2114888.082657631,
+        "tipoTitulo": "NP",
+        "posicao": 4,
+        "percentualCarteira": 0.006376175943734023
+      },
+      {
+        "cedente": "GREEN FARMING FAZENDAS RE",
+        "sacado": "GREEN FARMING",
+        "devedor": "GREEN FARMING",
+        "dataVencimento": "14/08/2026",
+        "dataVencimentoIso": "2026-08-14",
+        "dias": 30,
+        "valorNominal": 878454.98,
+        "valorPresente": 862775.190035655,
+        "tipoTitulo": "NP",
+        "posicao": 5,
+        "percentualCarteira": 0.002601180864683352
       }
     ]
   },

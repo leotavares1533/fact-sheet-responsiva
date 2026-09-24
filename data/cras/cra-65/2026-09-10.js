@@ -101881,10 +101881,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-10"] = {
       {
         "label": "Vencidos",
         "order": 0,
-        "quantidade": 396,
-        "valorNominal": 55697041.45850002,
-        "valorPresente": 55225325.361455835,
-        "percentualCarteira": 0.06380882235678974
+        "quantidade": 397,
+        "valorNominal": 55978947.883300014,
+        "valorPresente": 55224260.594126634,
+        "percentualCarteira": 0.0638075920960549
       },
       {
         "label": "0 a 30 dias",
@@ -101929,10 +101929,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-10"] = {
       {
         "label": "Acima de 360 dias",
         "order": 6,
-        "quantidade": 16,
-        "valorNominal": 224966331.97000003,
-        "valorPresente": 158978286.7790586,
-        "percentualCarteira": 0.18368777717970342
+        "quantidade": 17,
+        "valorNominal": 225768244.47000003,
+        "valorPresente": 176879251.23261896,
+        "percentualCarteira": 0.20437103170751938
       }
     ],
     "maiores": [
@@ -102572,10 +102572,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-10"] = {
         {
           "label": "Vencidos",
           "order": 0,
-          "quantidade": 396,
-          "valorNominal": 55697041.45850002,
-          "valorPresente": 55225325.361455835,
-          "percentualCarteira": 0.06380882235678974
+          "quantidade": 397,
+          "valorNominal": 55978947.883300014,
+          "valorPresente": 55224260.594126634,
+          "percentualCarteira": 0.0638075920960549
         },
         {
           "label": "0 a 30 dias",
@@ -102620,10 +102620,10 @@ window.LAMINA_CRA_DAILY["cra-65"]["2026-09-10"] = {
         {
           "label": "Acima de 360 dias",
           "order": 6,
-          "quantidade": 16,
-          "valorNominal": 224966331.97000003,
-          "valorPresente": 158978286.7790586,
-          "percentualCarteira": 0.18368777717970342
+          "quantidade": 17,
+          "valorNominal": 225768244.47000003,
+          "valorPresente": 176879251.23261896,
+          "percentualCarteira": 0.20437103170751938
         }
       ],
       "maiores": [

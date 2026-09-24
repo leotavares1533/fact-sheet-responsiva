@@ -495742,15 +495742,15 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 1032116047.510001,
-      "valorPresente": 971054468.2899979,
-      "percentualCarteira": 0.9594725243603063
+      "valorNominal": 1033229713.1800009,
+      "valorPresente": 972167240.3499979,
+      "percentualCarteira": 0.9605720241847866
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 28374964.74,
-      "valorPresente": 28362840.24,
-      "percentualCarteira": 0.028024551466225074
+      "valorNominal": 28538338.259999998,
+      "valorPresente": 28526213.759999998,
+      "percentualCarteira": 0.028185976400424764
     },
     {
       "status": "Entre 31 e 60 dias",
@@ -495939,18 +495939,18 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
       {
         "label": "Vencidos",
         "order": 0,
-        "quantidade": 97,
-        "valorNominal": 31689771.220000014,
-        "valorPresente": 31677646.720000014,
-        "percentualCarteira": 0.03129982164415056
+        "quantidade": 103,
+        "valorNominal": 31853144.740000013,
+        "valorPresente": 31841020.240000013,
+        "percentualCarteira": 0.03146124657835025
       },
       {
         "label": "0 a 30 dias",
         "order": 1,
-        "quantidade": 719,
-        "valorNominal": 53808331.400000036,
-        "valorPresente": 53240837.68000003,
-        "percentualCarteira": 0.05260582448875706
+        "quantidade": 721,
+        "valorNominal": 54921997.07000003,
+        "valorPresente": 54353609.74000003,
+        "percentualCarteira": 0.05370532431323752
       },
       {
         "label": "31 a 60 dias",
@@ -495996,6 +495996,19 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
     "maiores": [
       {
         "cedente": "FRIGORIFICO FRILEM LTDA",
+        "sacado": "FRIFORT COMERCIO DE CARNE",
+        "devedor": "FRIFORT COMERCIO DE CARNE",
+        "dataVencimento": "14/07/2026",
+        "dataVencimentoIso": "2026-07-14",
+        "dias": 1,
+        "valorNominal": 781278.4,
+        "valorPresente": 780651.5,
+        "tipoTitulo": "NFE",
+        "posicao": 1,
+        "percentualCarteira": 0.0007713405270351658
+      },
+      {
+        "cedente": "FRIGORIFICO FRILEM LTDA",
         "sacado": "S P COMERCIO DE CARNES LT",
         "devedor": "S P COMERCIO DE CARNES LT",
         "dataVencimento": "28/07/2026",
@@ -496004,7 +496017,7 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
         "valorNominal": 736483.0,
         "valorPresente": 730008.54,
         "tipoTitulo": "NFE",
-        "posicao": 1,
+        "posicao": 2,
         "percentualCarteira": 0.0007213015948650222
       },
       {
@@ -496017,7 +496030,7 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
         "valorNominal": 15233996.77,
         "valorPresente": 15015222.18,
         "tipoTitulo": "CPR_F",
-        "posicao": 2,
+        "posicao": 3,
         "percentualCarteira": 0.014836132883714832
       },
       {
@@ -496030,21 +496043,8 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
         "valorNominal": 738204.0,
         "valorPresente": 731127.29,
         "tipoTitulo": "NFE",
-        "posicao": 3,
-        "percentualCarteira": 0.0007224070013295209
-      },
-      {
-        "cedente": "FRIGORIFICO FRILEM LTDA",
-        "sacado": "MG  ENTREPOSTO DE CARNES",
-        "devedor": "MG  ENTREPOSTO DE CARNES",
-        "dataVencimento": "29/07/2026",
-        "dataVencimentoIso": "2026-07-29",
-        "dias": 16,
-        "valorNominal": 733169.14,
-        "valorPresente": 726140.69,
-        "tipoTitulo": "NFE",
         "posicao": 4,
-        "percentualCarteira": 0.0007174798774181294
+        "percentualCarteira": 0.0007224070013295209
       },
       {
         "cedente": "B&F AGRO COMERCIO DE GRAO",
@@ -496701,18 +496701,18 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
         {
           "label": "Vencidos",
           "order": 0,
-          "quantidade": 97,
-          "valorNominal": 31689771.220000014,
-          "valorPresente": 31677646.720000014,
-          "percentualCarteira": 0.03129982164415056
+          "quantidade": 103,
+          "valorNominal": 31853144.740000013,
+          "valorPresente": 31841020.240000013,
+          "percentualCarteira": 0.03146124657835025
         },
         {
           "label": "0 a 30 dias",
           "order": 1,
-          "quantidade": 719,
-          "valorNominal": 53808331.400000036,
-          "valorPresente": 53240837.68000003,
-          "percentualCarteira": 0.05260582448875706
+          "quantidade": 721,
+          "valorNominal": 54921997.07000003,
+          "valorPresente": 54353609.74000003,
+          "percentualCarteira": 0.05370532431323752
         },
         {
           "label": "31 a 60 dias",
@@ -496758,6 +496758,19 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
       "maiores": [
         {
           "cedente": "FRIGORIFICO FRILEM LTDA",
+          "sacado": "FRIFORT COMERCIO DE CARNE",
+          "devedor": "FRIFORT COMERCIO DE CARNE",
+          "dataVencimento": "14/07/2026",
+          "dataVencimentoIso": "2026-07-14",
+          "dias": 1,
+          "valorNominal": 781278.4,
+          "valorPresente": 780651.5,
+          "tipoTitulo": "NFE",
+          "posicao": 1,
+          "percentualCarteira": 0.0007713405270351658
+        },
+        {
+          "cedente": "FRIGORIFICO FRILEM LTDA",
           "sacado": "S P COMERCIO DE CARNES LT",
           "devedor": "S P COMERCIO DE CARNES LT",
           "dataVencimento": "28/07/2026",
@@ -496766,7 +496779,7 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
           "valorNominal": 736483.0,
           "valorPresente": 730008.54,
           "tipoTitulo": "NFE",
-          "posicao": 1,
+          "posicao": 2,
           "percentualCarteira": 0.0007213015948650222
         },
         {
@@ -496779,7 +496792,7 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
           "valorNominal": 15233996.77,
           "valorPresente": 15015222.18,
           "tipoTitulo": "CPR_F",
-          "posicao": 2,
+          "posicao": 3,
           "percentualCarteira": 0.014836132883714832
         },
         {
@@ -496792,21 +496805,8 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-13"] = {
           "valorNominal": 738204.0,
           "valorPresente": 731127.29,
           "tipoTitulo": "NFE",
-          "posicao": 3,
-          "percentualCarteira": 0.0007224070013295209
-        },
-        {
-          "cedente": "FRIGORIFICO FRILEM LTDA",
-          "sacado": "MG  ENTREPOSTO DE CARNES",
-          "devedor": "MG  ENTREPOSTO DE CARNES",
-          "dataVencimento": "29/07/2026",
-          "dataVencimentoIso": "2026-07-29",
-          "dias": 16,
-          "valorNominal": 733169.14,
-          "valorPresente": 726140.69,
-          "tipoTitulo": "NFE",
           "posicao": 4,
-          "percentualCarteira": 0.0007174798774181294
+          "percentualCarteira": 0.0007224070013295209
         },
         {
           "cedente": "B&F AGRO COMERCIO DE GRAO",

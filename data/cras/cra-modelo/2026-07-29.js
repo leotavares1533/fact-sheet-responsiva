@@ -502722,9 +502722,9 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-29"] = {
     },
     {
       "status": "Entre 121 e 150 dias",
-      "valorNominal": 558664.5722265219,
-      "valorPresente": 558664.5722265219,
-      "percentualCarteira": 0.0005550470568566405
+      "valorNominal": 609451.210226522,
+      "valorPresente": 388498.9902265219,
+      "percentualCarteira": 0.0003859833464248634
     },
     {
       "status": "Entre 151 e 180 dias",
@@ -502973,10 +502973,10 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-29"] = {
       {
         "label": "Vencidos",
         "order": 0,
-        "quantidade": 25,
-        "valorNominal": 28663005.8298837,
-        "valorPresente": 28574315.849883698,
-        "percentualCarteira": 0.0283892888553155
+        "quantidade": 26,
+        "valorNominal": 28713792.4678837,
+        "valorPresente": 28404150.2678837,
+        "percentualCarteira": 0.028220225144883725
       },
       {
         "label": "0 a 30 dias",
@@ -503771,10 +503771,10 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-29"] = {
         {
           "label": "Vencidos",
           "order": 0,
-          "quantidade": 25,
-          "valorNominal": 28663005.8298837,
-          "valorPresente": 28574315.849883698,
-          "percentualCarteira": 0.0283892888553155
+          "quantidade": 26,
+          "valorNominal": 28713792.4678837,
+          "valorPresente": 28404150.2678837,
+          "percentualCarteira": 0.028220225144883725
         },
         {
           "label": "0 a 30 dias",

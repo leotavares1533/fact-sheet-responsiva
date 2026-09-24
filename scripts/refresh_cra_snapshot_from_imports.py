@@ -410,7 +410,40 @@ def build_composicao_carteira(active_rows):
     return rows
 
 
-def build_aging(active_rows, carteira_vp):
+def aging_status_from_due(row, date_key):
+    base_date = parse_date_key(date_key)
+    due_date = parse_date_key(row.get("dataVencimento"))
+    if not base_date or not due_date:
+        return "Não informado"
+    overdue_days = (base_date - due_date).days
+    if overdue_days <= 0:
+        return "Em dia"
+    if overdue_days <= 30:
+        return "Entre 1 e 30 dias"
+    if overdue_days <= 60:
+        return "Entre 31 e 60 dias"
+    if overdue_days <= 90:
+        return "Entre 61 e 90 dias"
+    if overdue_days <= 120:
+        return "Entre 91 e 120 dias"
+    if overdue_days <= 150:
+        return "Entre 121 e 150 dias"
+    if overdue_days <= 180:
+        return "Entre 151 e 180 dias"
+    return "Acima de 180 dias"
+
+
+def aging_status_label(row, date_key=None):
+    status = str(row.get("status") or "Não informado").strip() or "Não informado"
+    if date_key and "liquid" in normalize_name(status):
+        base_date = parse_date_key(date_key)
+        liquidation_date = parse_date_key(row.get("dataLiquidacao"))
+        if base_date and liquidation_date and liquidation_date > base_date:
+            return aging_status_from_due(row, date_key)
+    return status
+
+
+def build_aging(active_rows, carteira_vp, date_key=None):
     labels = [
         "Em dia",
         "Entre 1 e 30 dias",
@@ -424,14 +457,17 @@ def build_aging(active_rows, carteira_vp):
     grouped = {label: {"status": label, "valorNominal": 0.0, "valorPresente": 0.0, "percentualCarteira": 0.0} for label in labels}
     lookup = {normalize_name(label): label for label in labels}
     for row in active_rows:
-        key = lookup.get(normalize_name(row.get("status")), str(row.get("status") or "Não informado"))
+        status = aging_status_label(row, date_key)
+        key = lookup.get(normalize_name(status), status)
         if key not in grouped:
             grouped[key] = {"status": key, "valorNominal": 0.0, "valorPresente": 0.0, "percentualCarteira": 0.0}
         grouped[key]["valorNominal"] += nominal_net_pdd(row)
         grouped[key]["valorPresente"] += float(row.get("valorPresenteLiquido", 0.0) or 0.0)
     for item in grouped.values():
         item["percentualCarteira"] = item["valorPresente"] / carteira_vp if carteira_vp else 0.0
-    return [grouped[label] for label in labels if label in grouped]
+    rows = [grouped[label] for label in labels if label in grouped]
+    rows.extend(grouped[label] for label in grouped if label not in labels)
+    return rows
 
 
 def build_pdd_composition(active_rows):
@@ -2467,7 +2503,7 @@ def main():
         "pdd": pdd_total,
     }
     snapshot["composicaoCarteira"] = portfolio_composition
-    snapshot["agingList"] = build_aging(active_carteira, carteira_vp)
+    snapshot["agingList"] = build_aging(active_carteira, carteira_vp, date_key)
     snapshot["pddComposition"] = build_pdd_composition(active_carteira)
     snapshot["movimentacoesDia"] = build_day_movements(carteira, date_key, patrimonio_liquido)
     snapshot["proximosVencimentos"] = proximos_vencimentos

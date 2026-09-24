@@ -495872,21 +495872,21 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
   "agingList": [
     {
       "status": "Em dia",
-      "valorNominal": 1031606438.3600008,
-      "valorPresente": 969842267.0299989,
-      "percentualCarteira": 0.9565241684172944
+      "valorNominal": 1034029555.0700008,
+      "valorPresente": 972263068.119999,
+      "percentualCarteira": 0.9589117265061031
     },
     {
       "status": "Entre 1 e 30 dias",
-      "valorNominal": 28374964.74,
-      "valorPresente": 28326514.48,
-      "percentualCarteira": 0.027937528223137706
+      "valorNominal": 28401798.86,
+      "valorPresente": 28353348.6,
+      "percentualCarteira": 0.02796399385078746
     },
     {
       "status": "Entre 31 e 60 dias",
-      "valorNominal": 1710958.46,
-      "valorPresente": 1710958.46,
-      "percentualCarteira": 0.0016874631821933294
+      "valorNominal": 2191156.3000000007,
+      "valorPresente": 2191156.3000000007,
+      "percentualCarteira": 0.0021610668342473744
     },
     {
       "status": "Entre 61 e 90 dias",
@@ -496089,18 +496089,18 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
       {
         "label": "Vencidos",
         "order": 0,
-        "quantidade": 96,
-        "valorNominal": 31349612.720000014,
-        "valorPresente": 31301162.460000016,
-        "percentualCarteira": 0.030871327648189662
+        "quantidade": 99,
+        "valorNominal": 31856644.680000015,
+        "valorPresente": 31808194.420000017,
+        "percentualCarteira": 0.031371396927893466
       },
       {
         "label": "0 a 30 dias",
         "order": 1,
-        "quantidade": 693,
-        "valorNominal": 50724440.33000002,
-        "valorPresente": 50151065.13999995,
-        "percentualCarteira": 0.0494623790992151
+        "quantidade": 709,
+        "valorNominal": 53147557.04000003,
+        "valorPresente": 52571866.22999995,
+        "percentualCarteira": 0.05184993718802369
       },
       {
         "label": "31 a 60 dias",
@@ -496146,6 +496146,19 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
     "maiores": [
       {
         "cedente": "FRIGORIFICO FRILEM LTDA",
+        "sacado": "FRIFORT COMERCIO DE CARNE",
+        "devedor": "FRIFORT COMERCIO DE CARNE",
+        "dataVencimento": "14/07/2026",
+        "dataVencimentoIso": "2026-07-14",
+        "dias": 4,
+        "valorNominal": 781278.4,
+        "valorPresente": 780025.11,
+        "tipoTitulo": "NFE",
+        "posicao": 1,
+        "percentualCarteira": 0.0007693136245466192
+      },
+      {
+        "cedente": "FRIGORIFICO FRILEM LTDA",
         "sacado": "S P COMERCIO DE CARNES LT",
         "devedor": "S P COMERCIO DE CARNES LT",
         "dataVencimento": "28/07/2026",
@@ -496154,21 +496167,8 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
         "valorNominal": 736483.0,
         "valorPresente": 729422.79,
         "tipoTitulo": "NFE",
-        "posicao": 1,
-        "percentualCarteira": 0.0007194061873236459
-      },
-      {
-        "cedente": "FRIGORIFICO FRILEM LTDA",
-        "sacado": "MG  ENTREPOSTO DE CARNES",
-        "devedor": "MG  ENTREPOSTO DE CARNES",
-        "dataVencimento": "28/07/2026",
-        "dataVencimentoIso": "2026-07-28",
-        "dias": 18,
-        "valorNominal": 703109.8,
-        "valorPresente": 696369.52,
-        "tipoTitulo": "NFE",
         "posicao": 2,
-        "percentualCarteira": 0.000686806812481959
+        "percentualCarteira": 0.0007194061873236459
       },
       {
         "cedente": "NIVALDO ALVES PEREIRA FIL",
@@ -496761,18 +496761,18 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
         {
           "label": "Vencidos",
           "order": 0,
-          "quantidade": 96,
-          "valorNominal": 31349612.720000014,
-          "valorPresente": 31301162.460000016,
-          "percentualCarteira": 0.030871327648189662
+          "quantidade": 99,
+          "valorNominal": 31856644.680000015,
+          "valorPresente": 31808194.420000017,
+          "percentualCarteira": 0.031371396927893466
         },
         {
           "label": "0 a 30 dias",
           "order": 1,
-          "quantidade": 693,
-          "valorNominal": 50724440.33000002,
-          "valorPresente": 50151065.13999995,
-          "percentualCarteira": 0.0494623790992151
+          "quantidade": 709,
+          "valorNominal": 53147557.04000003,
+          "valorPresente": 52571866.22999995,
+          "percentualCarteira": 0.05184993718802369
         },
         {
           "label": "31 a 60 dias",
@@ -496818,6 +496818,19 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
       "maiores": [
         {
           "cedente": "FRIGORIFICO FRILEM LTDA",
+          "sacado": "FRIFORT COMERCIO DE CARNE",
+          "devedor": "FRIFORT COMERCIO DE CARNE",
+          "dataVencimento": "14/07/2026",
+          "dataVencimentoIso": "2026-07-14",
+          "dias": 4,
+          "valorNominal": 781278.4,
+          "valorPresente": 780025.11,
+          "tipoTitulo": "NFE",
+          "posicao": 1,
+          "percentualCarteira": 0.0007693136245466192
+        },
+        {
+          "cedente": "FRIGORIFICO FRILEM LTDA",
           "sacado": "S P COMERCIO DE CARNES LT",
           "devedor": "S P COMERCIO DE CARNES LT",
           "dataVencimento": "28/07/2026",
@@ -496826,21 +496839,8 @@ window.LAMINA_CRA_DAILY["cra-modelo"]["2026-07-10"] = {
           "valorNominal": 736483.0,
           "valorPresente": 729422.79,
           "tipoTitulo": "NFE",
-          "posicao": 1,
-          "percentualCarteira": 0.0007194061873236459
-        },
-        {
-          "cedente": "FRIGORIFICO FRILEM LTDA",
-          "sacado": "MG  ENTREPOSTO DE CARNES",
-          "devedor": "MG  ENTREPOSTO DE CARNES",
-          "dataVencimento": "28/07/2026",
-          "dataVencimentoIso": "2026-07-28",
-          "dias": 18,
-          "valorNominal": 703109.8,
-          "valorPresente": 696369.52,
-          "tipoTitulo": "NFE",
           "posicao": 2,
-          "percentualCarteira": 0.000686806812481959
+          "percentualCarteira": 0.0007194061873236459
         },
         {
           "cedente": "NIVALDO ALVES PEREIRA FIL",
