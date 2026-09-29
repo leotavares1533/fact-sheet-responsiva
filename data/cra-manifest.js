@@ -18,6 +18,19 @@ window.LAMINA_CRA_MANIFEST = [
         "dataScript": "data/cras/cra-modelo/2026-09-25.js"
       },
       {
+        "dateKey": "2026-09-24",
+        "reportDate": "24/09/2026",
+        "importedAt": "2026-09-27T18:32:06.837452-03:00",
+        "revisionId": "20260927-183205",
+        "totalAtivo": 1025392614.25,
+        "carteiraVp": 681188299.37,
+        "carteiraVpBruto": 684008970.36,
+        "pddTotal": 2820670.99,
+        "funding": 617364155.994,
+        "subordinada": 408028458.25600004,
+        "dataScript": "data/cras/cra-modelo/2026-09-24.js"
+      },
+      {
         "dateKey": "2026-09-23",
         "reportDate": "23/09/2026",
         "importedAt": "2026-09-24T18:23:52.986866-03:00",
