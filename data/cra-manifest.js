@@ -2,19 +2,32 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-09-25",
+    "currentDate": "2026-09-28",
     "dates": [
+      {
+        "dateKey": "2026-09-28",
+        "reportDate": "28/09/2026",
+        "importedAt": "2026-09-30T16:49:22.142675-03:00",
+        "revisionId": "20260930-164921",
+        "totalAtivo": 1026820535.56,
+        "carteiraVp": 720827467.98,
+        "carteiraVpBruto": 723647692.72,
+        "pddTotal": 2820224.74,
+        "funding": 618054155.9940001,
+        "subordinada": 408766379.56599987,
+        "dataScript": "data/cras/cra-modelo/2026-09-28.js"
+      },
       {
         "dateKey": "2026-09-25",
         "reportDate": "25/09/2026",
-        "importedAt": "2026-09-28T21:59:19.511777-03:00",
-        "revisionId": "20260928-215918",
-        "totalAtivo": 1026128712.06,
-        "carteiraVp": 719096338.41,
-        "carteiraVpBruto": 721917009.4,
-        "pddTotal": 2820670.99,
+        "importedAt": "2026-09-30T16:47:30.190231-03:00",
+        "revisionId": "20260930-164729",
+        "totalAtivo": 1025911988.1300001,
+        "carteiraVp": 718879614.48,
+        "carteiraVpBruto": 721699839.22,
+        "pddTotal": 2820224.74,
         "funding": 617709060.0,
-        "subordinada": 408419652.05999994,
+        "subordinada": 408202928.1300001,
         "dataScript": "data/cras/cra-modelo/2026-09-25.js"
       },
       {
@@ -3870,8 +3883,34 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-09-25",
+    "currentDate": "2026-09-29",
     "dates": [
+      {
+        "dateKey": "2026-09-29",
+        "reportDate": "29/09/2026",
+        "importedAt": "2026-09-30T15:38:24.223476-03:00",
+        "revisionId": "20260930-153823",
+        "totalAtivo": 989196091.6036091,
+        "carteiraVp": 893641679.1754273,
+        "carteiraVpBruto": 893706021.5422773,
+        "pddTotal": 64342.36685,
+        "funding": 804298520.0,
+        "subordinada": 184897571.60360909,
+        "dataScript": "data/cras/cra-65/2026-09-29.js"
+      },
+      {
+        "dateKey": "2026-09-28",
+        "reportDate": "28/09/2026",
+        "importedAt": "2026-09-30T15:35:45.143055-03:00",
+        "revisionId": "20260930-153544",
+        "totalAtivo": 988633883.5576352,
+        "carteiraVp": 897044529.6980247,
+        "carteiraVpBruto": 897108872.0648748,
+        "pddTotal": 64342.36685,
+        "funding": 803869839.992,
+        "subordinada": 184764043.5656352,
+        "dataScript": "data/cras/cra-65/2026-09-28.js"
+      },
       {
         "dateKey": "2026-09-25",
         "reportDate": "25/09/2026",
