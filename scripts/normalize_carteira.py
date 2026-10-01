@@ -203,11 +203,42 @@ def find_report_date_column(headers: list, explicit_report_date: str):
     return candidates[-1]
 
 
+def pdd_status_and_rate(report_date: str, due_date: str, source_status: object, vp_value: object) -> tuple[str, float]:
+    source_text = clean_text(source_status)
+    source_key = normalize_name(source_text)
+    if "liquid" in source_key or parse_number(vp_value) <= 0:
+        return "LIQUIDADO" if source_text.upper().startswith("LIQ") else source_text or "LIQUIDADO", 0.0
+
+    base = pd.to_datetime(report_date, errors="coerce")
+    due = pd.to_datetime(due_date, errors="coerce")
+    if pd.isna(base) or pd.isna(due):
+        return source_text, 0.0
+
+    overdue_days = (base.date() - due.date()).days
+    if overdue_days <= 0:
+        return "Em dia", 0.0
+    if overdue_days <= 30:
+        return "Entre 1 e 30 dias", 0.005
+    if overdue_days <= 60:
+        return "Entre 31 e 60 dias", 0.005
+    if overdue_days <= 90:
+        return "Entre 61 e 90 dias", 0.30
+    if overdue_days <= 120:
+        return "Entre 91 e 120 dias", 0.60
+    if overdue_days <= 150:
+        return "Entre 121 e 150 dias", 0.80
+    if overdue_days <= 180:
+        return "Entre 151 e 180 dias", 0.85
+    return "Acima de 180 dias", 1.0
+
+
 def normalize_excel(path: Path, report_date: str) -> list:
     df = pd.read_excel(path, sheet_name=0, header=None, dtype=object)
     header_index = find_excel_header(df)
     headers = df.iloc[header_index].tolist()
     vp_col_idx, derived_date = find_report_date_column(headers, report_date)
+    date_columns = [(idx, parse_date(header)) for idx, header in enumerate(headers) if parse_date(header)]
+    latest_vp_col_idx, latest_date = max(date_columns, key=lambda item: item[1]) if date_columns else (vp_col_idx, derived_date)
     rows = df.iloc[header_index + 1 :].dropna(how="all")
     records = []
 
@@ -217,6 +248,18 @@ def normalize_excel(path: Path, report_date: str) -> list:
             continue
         vp_value = row.iloc[vp_col_idx] if vp_col_idx is not None else get_by_header(row, headers, ["valor_presente_dia"])
         taxa_raw = first_by_header(row, headers, ["Tx Cessao Mes", "Tx Cessão Mês", "Tx Op", "Taxa"])
+        due_date = parse_date(get_by_header(row, headers, ["Data de Vencimento", "DT Vencimento"]))
+        source_status = first_by_header(row, headers, ["faixa atraso", "Faixa Venc", "Status de Pagamento", "Status"])
+        status, pdd_rate = pdd_status_and_rate(derived_date, due_date, source_status, vp_value)
+        source_pdd_value = parse_number(get_by_header(row, headers, ["PDD", "Valor PDD", "Provisao PDD", "Provisão PDD"]))
+        if derived_date == latest_date:
+            pdd_value = source_pdd_value
+            if clean_text(source_status):
+                status = clean_text(source_status)
+        elif source_pdd_value <= 0:
+            pdd_value = 0.0
+        else:
+            pdd_value = parse_number(vp_value) * pdd_rate
         records.append(
             make_record(
                 data_base=derived_date,
@@ -225,18 +268,18 @@ def normalize_excel(path: Path, report_date: str) -> list:
                 sacado=get_by_header(row, headers, ["Sacado"]),
                 numero_nota=lastro,
                 data_aquisicao=parse_date(get_by_header(row, headers, ["Data de aquisicao", "Data de aquisição", "DT Aquisicao", "DT Aquisição"])),
-                data_vencimento=parse_date(get_by_header(row, headers, ["Data de Vencimento", "DT Vencimento"])),
+                data_vencimento=due_date,
                 data_liquidacao=parse_date(get_by_header(row, headers, ["Data de liquidacao", "Data de liquidação", "Dt Liquidacao", "Dt Liquidação"])),
                 valor_liquidacao=format_decimal(get_by_header(row, headers, ["Vlr Liquidacao", "Vlr Liquidação"])),
                 taxa=format_rate(taxa_raw, "excel"),
                 valor_presente_dia=format_decimal(vp_value),
-                pdd=format_decimal(get_by_header(row, headers, ["PDD", "Valor PDD", "Provisao PDD", "Provisão PDD"])),
+                pdd=format_decimal(pdd_value),
                 fonte="Sistema Excel",
                 arquivo_origem=path.name,
                 observacao="Normalizado do layout sistema excel",
                 taxa_texto=clean_text(taxa_raw),
                 sistema_origem="excel",
-                status=first_by_header(row, headers, ["faixa atraso", "Faixa Venc", "Status de Pagamento", "Status"]),
+                status=status,
                 tipo_titulo=get_by_header(row, headers, ["Tipo titulo", "Tipo título"]),
                 tipo_remuneracao=get_by_header(row, headers, ["Tipo"]),
                 valor_aquisicao=format_decimal(get_by_header(row, headers, ["Valor de aquisicao", "Valor de aquisição", "Vlr Aquisicao", "Vlr Aquisição"])),
