@@ -3909,8 +3909,34 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-09-29",
+    "currentDate": "2026-10-01",
     "dates": [
+      {
+        "dateKey": "2026-10-01",
+        "reportDate": "01/10/2026",
+        "importedAt": "2026-10-02T16:59:48.610644-03:00",
+        "revisionId": "20261002-165948",
+        "totalAtivo": 990315206.6355532,
+        "carteiraVp": 875792816.6002285,
+        "carteiraVpBruto": 875867480.0478286,
+        "pddTotal": 74663.4476,
+        "funding": 805156576.0,
+        "subordinada": 185158630.63555324,
+        "dataScript": "data/cras/cra-65/2026-10-01.js"
+      },
+      {
+        "dateKey": "2026-09-30",
+        "reportDate": "30/09/2026",
+        "importedAt": "2026-10-02T16:59:05.148518-03:00",
+        "revisionId": "20261002-165904",
+        "totalAtivo": 989759742.4079623,
+        "carteiraVp": 877847964.471209,
+        "carteiraVpBruto": 877922301.218809,
+        "pddTotal": 74336.7476,
+        "funding": 804727431.992,
+        "subordinada": 185032310.41596234,
+        "dataScript": "data/cras/cra-65/2026-09-30.js"
+      },
       {
         "dateKey": "2026-09-29",
         "reportDate": "29/09/2026",
