@@ -1244,7 +1244,8 @@
             { label: "PL SUB", render: (row) => escapeHtml(formatCurrencyShort(row.cotas?.SUB?.valor)) }
           ] : [])
         ];
-        return renderGenericTable("Rentabilidade diária - últimos 30 registros", columns, rows, "Sem histórico diário", "wide-table daily-returns-table");
+        const dailyReturnsClass = `wide-table daily-returns-table daily-returns-cols-${columns.length}`;
+        return renderGenericTable("Rentabilidade diária - últimos 30 registros", columns, rows, "Sem histórico diário", dailyReturnsClass);
       }
 
       function renderPricingChart(rows) {
