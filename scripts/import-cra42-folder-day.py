@@ -299,6 +299,7 @@ def main() -> None:
             PROJECT_ROOT,
             "--target-date",
             date_key,
+            "--soft-fail",
         ]
     )
     run_command(

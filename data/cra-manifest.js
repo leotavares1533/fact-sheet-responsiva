@@ -2,8 +2,21 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-09-30",
+    "currentDate": "2026-10-01",
     "dates": [
+      {
+        "dateKey": "2026-10-01",
+        "reportDate": "01/10/2026",
+        "importedAt": "2026-10-05T20:32:47.795502-03:00",
+        "revisionId": "20261005-203246",
+        "totalAtivo": 1027832868.45697,
+        "carteiraVp": 792840900.9069699,
+        "carteiraVpBruto": 796093386.6215025,
+        "pddTotal": 3252485.71453261,
+        "funding": 619090595.9940001,
+        "subordinada": 408742272.4629699,
+        "dataScript": "data/cras/cra-modelo/2026-10-01.js"
+      },
       {
         "dateKey": "2026-09-30",
         "reportDate": "30/09/2026",
