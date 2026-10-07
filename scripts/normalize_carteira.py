@@ -232,13 +232,48 @@ def pdd_status_and_rate(report_date: str, due_date: str, source_status: object, 
     return "Acima de 180 dias", 1.0
 
 
-def normalize_excel(path: Path, report_date: str) -> list:
+def preserve_historical_pdd(records: list, snapshot_path: Path, report_date: str) -> None:
+    snapshot = json.loads(snapshot_path.read_text(encoding="utf-8-sig"))
+    if snapshot.get("metadata", {}).get("dateKey") != report_date:
+        raise ValueError("A memoria de PDD deve ser da mesma data-base do reprocessamento.")
+    previous = defaultdict(list)
+    current = defaultdict(list)
+    for record in snapshot["carteira"]:
+        previous[clean_text(record["numeroUnico"])].append(record)
+    for record in records:
+        current[record["numero_unico"]].append(record)
+
+    # A coluna unica de PDD do Excel pertence a data mais recente, nao as anteriores.
+    for lastro, old_rows in previous.items():
+        values = {parse_number(row["pdd"]) for row in old_rows}
+        if len(values) != 1:
+            raise ValueError(f"PDD historico ambiguo para o lastro duplicado {lastro}.")
+        pdd = values.pop()
+        rows = current.get(lastro, [])
+        if pdd and len(rows) != len(old_rows):
+            raise ValueError(f"Quantidade de registros com PDD mudou para o lastro {lastro}.")
+        for record in rows:
+            record["pdd"] = format_decimal(pdd)
+            record["observacao"] += f"; PDD historico preservado em {report_date}"
+
+    for lastro, rows in current.items():
+        if lastro not in previous and any(parse_number(row["pdd"]) for row in rows):
+            raise ValueError(f"Nao ha memoria de PDD para o novo lastro historico {lastro}.")
+    old_total = math.fsum(parse_number(row["pdd"]) for rows in previous.values() for row in rows)
+    new_total = math.fsum(parse_number(row["pdd"]) for row in records)
+    if abs(old_total - new_total) > 0.01:
+        raise ValueError("O PDD historico nao reconciliou com a memoria preservada.")
+
+
+def normalize_excel(path: Path, report_date: str, historical_pdd_snapshot: Path | None = None) -> list:
     df = pd.read_excel(path, sheet_name=0, header=None, dtype=object)
     header_index = find_excel_header(df)
     headers = df.iloc[header_index].tolist()
     vp_col_idx, derived_date = find_report_date_column(headers, report_date)
     date_columns = [(idx, parse_date(header)) for idx, header in enumerate(headers) if parse_date(header)]
     latest_vp_col_idx, latest_date = max(date_columns, key=lambda item: item[1]) if date_columns else (vp_col_idx, derived_date)
+    if historical_pdd_snapshot and derived_date >= latest_date:
+        raise ValueError("A preservacao de PDD so pode ser usada em datas anteriores a ultima coluna do Excel.")
     rows = df.iloc[header_index + 1 :].dropna(how="all")
     records = []
 
@@ -289,6 +324,8 @@ def normalize_excel(path: Path, report_date: str) -> list:
                 status_pmt=get_by_header(row, headers, ["Status PMT", "Status da PMT"]),
             )
         )
+    if historical_pdd_snapshot:
+        preserve_historical_pdd(records, historical_pdd_snapshot, derived_date)
     return records
 
 
@@ -447,6 +484,7 @@ def parse_args():
     parser.add_argument("--validation", required=True, help="JSON de validacao/comparacao.")
     parser.add_argument("--report-date", default="", help="Data-base yyyy-mm-dd. Obrigatoria para Minerva.")
     parser.add_argument("--primary", choices=("auto", "excel", "minerva"), default="auto", help="Fonte usada no CSV final.")
+    parser.add_argument("--historical-pdd-snapshot", default="", help="Memoria JSON da mesma data para preservar PDD em reprocessamento historico autorizado.")
     return parser.parse_args()
 
 
@@ -456,7 +494,10 @@ def main():
     sources = {"excel": [], "minerva": []}
 
     if args.excel:
-        sources["excel"] = normalize_excel(Path(args.excel), args.report_date)
+        sources["excel"] = normalize_excel(
+            Path(args.excel), args.report_date,
+            Path(args.historical_pdd_snapshot) if args.historical_pdd_snapshot else None,
+        )
     if args.minerva:
         if not args.report_date:
             raise ValueError("Informe --report-date para arquivo Minerva, pois o CSV nao traz data-base da posicao.")
@@ -475,6 +516,7 @@ def main():
         "excel": summarize(sources["excel"]) if sources["excel"] else None,
         "minerva": summarize(sources["minerva"]) if sources["minerva"] else None,
         "comparacao": validate_sources(sources["excel"], sources["minerva"]),
+        "memoria_pdd_historico": args.historical_pdd_snapshot or None,
     }
     write_json(Path(args.validation), validation)
 

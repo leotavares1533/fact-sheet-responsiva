@@ -277,6 +277,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--carteira", required=True, help="Arquivo Excel de carteira.")
     parser.add_argument("--caixa", required=True, help="Arquivo Excel de caixa.")
     parser.add_argument("--python", default=str(DEFAULT_PYTHON if DEFAULT_PYTHON.exists() else sys.executable), help="Python usado para chamar os scripts auxiliares.")
+    parser.add_argument("--skip-di-update", action="store_true", help="Usa a serie DI local previamente atualizada.")
+    parser.add_argument("--preserve-historical-pdd", action="store_true", help="Preserva o PDD da memoria da mesma data ao revisar colunas historicas do Excel.")
     return parser.parse_args()
 
 
@@ -291,17 +293,25 @@ def main() -> None:
     if not caixa_path.exists():
         raise FileNotFoundError(caixa_path)
 
-    run_command(
-        [
-            python_path,
-            PROJECT_ROOT / "scripts" / "update-di-rates.py",
-            "--project-root",
-            PROJECT_ROOT,
-            "--target-date",
-            date_key,
-            "--soft-fail",
-        ]
-    )
+    historical_pdd_args = []
+    if args.preserve_historical_pdd:
+        snapshot_path = CRA_ROOT / "archive" / "canonical" / f"{date_key}.json"
+        if not snapshot_path.exists():
+            raise FileNotFoundError(snapshot_path)
+        historical_pdd_args = ["--historical-pdd-snapshot", snapshot_path]
+
+    if not args.skip_di_update:
+        run_command(
+            [
+                python_path,
+                PROJECT_ROOT / "scripts" / "update-di-rates.py",
+                "--project-root",
+                PROJECT_ROOT,
+                "--target-date",
+                date_key,
+                "--soft-fail",
+            ]
+        )
     run_command(
         [
             python_path,
@@ -316,6 +326,7 @@ def main() -> None:
             "excel",
             "--report-date",
             date_key,
+            *historical_pdd_args,
         ]
     )
     cash = write_cash_files(caixa_path, date_key)
