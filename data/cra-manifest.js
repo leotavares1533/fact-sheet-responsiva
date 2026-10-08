@@ -3961,8 +3961,21 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-10-06",
+    "currentDate": "2026-10-07",
     "dates": [
+      {
+        "dateKey": "2026-10-07",
+        "reportDate": "07/10/2026",
+        "importedAt": "2026-10-08T18:00:11.012633-03:00",
+        "revisionId": "20261008-180010",
+        "totalAtivo": 992922331.9170287,
+        "carteiraVp": 848324663.8074182,
+        "carteiraVpBruto": 848409637.2660682,
+        "pddTotal": 84973.45865,
+        "funding": 806875424.0,
+        "subordinada": 186046907.91702867,
+        "dataScript": "data/cras/cra-65/2026-10-07.js"
+      },
       {
         "dateKey": "2026-10-06",
         "reportDate": "06/10/2026",
