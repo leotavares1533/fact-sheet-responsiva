@@ -148,6 +148,24 @@ h2 {
   z-index: 1;
 }
 
+.pu-page .pu-memory-button {
+  min-height: 38px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+.pu-page .pu-memory-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.pu-memory-status {
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
 .date-control {
   display: grid;
   gap: 5px;

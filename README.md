@@ -26,6 +26,16 @@ Por isso a base historica processada esta versionada neste repositorio. Arquivos
 
 Abra `index.html` diretamente no navegador, ou use um servidor estatico simples caso o navegador bloqueie arquivos locais.
 
+## Memoria de PU
+
+Em `pu.html`, `Baixar memoria` exporta um Excel da serie e data-base selecionadas, inclusive quando a visao foi calculada pelo validador. As abas sao `Resumo`, `Historico` e `Projecao`, com valores numericos e PU com oito casas decimais.
+
+A projecao usa o mesmo motor do validador, mantendo a taxa da posicao constante ate a proxima decisao do Copom (ou o vencimento, se anterior). Inclui feriados e pagamentos programados. Nao antecipa a nova Selic, nao usa taxas posteriores a data-base e nao altera snapshots. Subordinadas residuais exportam apenas historico, sem inventar uma carteira futura.
+
+O calendario oficial de 2025 a 2027 esta em `assets/pu-memory.js`, com as fontes do Banco Central. Atualize-o quando novos calendarios forem publicados; fora da cobertura, a exportacao avisa em vez de presumir uma data.
+
+Testes de calculo: `node --test tests/pu-memory-export.test.cjs`. Teste de downloads e layout com o runtime local: `node tests/pu-memory-browser.cjs`.
+
 ## Operacional em producao
 
 O GitHub Pages nao grava arquivos diretamente pelo navegador. Para importar, processar e publicar pelo site sem expor token do GitHub no HTML:

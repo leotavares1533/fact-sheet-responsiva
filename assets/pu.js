@@ -7,7 +7,10 @@
     snapshot: null,
     baseSnapshot: null,
     cotaIndex: 0,
-    holidayDates: new Set()
+    holidayDates: new Set(),
+    loading: true,
+    exporting: false,
+    loadRequestId: 0
   };
 
   const nodes = {
@@ -18,6 +21,8 @@
     dateChips: document.getElementById("date-chips"),
     cotaTabs: document.getElementById("cota-tabs"),
     updatePuButton: document.getElementById("update-pu-button"),
+    exportPuMemory: document.getElementById("export-pu-memory"),
+    memoryStatus: document.getElementById("pu-memory-status"),
     statusPill: document.getElementById("status-pill"),
     summaryStrip: document.getElementById("summary-strip"),
     puRoot: document.getElementById("pu-root"),
@@ -1002,7 +1007,7 @@
 
   function buildProjectedRow(cota, dateKey, context, options = {}) {
     const diaUtil = isBusinessDayIso(dateKey);
-    const rateInfo = getRateInfoForDate(cota, dateKey, context.rateInfo);
+    const rateInfo = options.fixedRateInfo || getRateInfoForDate(cota, dateKey, context.rateInfo);
     const fixedRate = isFixedRateCota(cota);
     let fatorDiario = 1;
     let puAntesEvento = context.pu;
@@ -1246,17 +1251,19 @@
   }
 
   async function getBaseSnapshotForHistoricalDate(dateKey) {
+    const craId = state.craId;
     const cra = getCurrentCra();
     const currentDate = cra?.currentDate || cra?.dates?.[0]?.dateKey || "";
     const baseDateKey = toIsoDate(state.baseSnapshot?.metadata?.dateKey || state.baseSnapshot?.metadata?.reportDate);
 
-    if (state.baseSnapshot && baseDateKey && baseDateKey >= dateKey) {
+    const baseCraId = state.baseSnapshot?.metadata?.craId || state.baseSnapshot?.cra?.id;
+    if (state.baseSnapshot && baseCraId === craId && baseDateKey && baseDateKey >= dateKey) {
       return state.baseSnapshot;
     }
 
     const sourceDate = currentDate || state.dateKey;
-    const snapshot = await loadSnapshot(state.craId, sourceDate);
-    state.baseSnapshot = snapshot;
+    const snapshot = await loadSnapshot(craId, sourceDate);
+    if (state.craId === craId) state.baseSnapshot = snapshot;
     return snapshot;
   }
 
@@ -1314,6 +1321,7 @@
         state.cotaIndex = Number(button.getAttribute("data-cota-index")) || 0;
         renderCotaSelector(snapshot);
         renderPu(snapshot);
+        updateMemoryButton();
       });
     });
   }
@@ -2304,6 +2312,140 @@
     return new Set(holidays.map(toIsoDate).filter(Boolean));
   }
 
+  function updateMemoryButton() {
+    if (!nodes.exportPuMemory) return;
+    const cota = state.snapshot?.passivo?.cotas?.[state.cotaIndex];
+    const ready = !state.loading && !state.exporting && cota
+      && !state.snapshot?.metadata?.portfolioOverview
+      && cota.dataHistoricaDisponivel !== false
+      && getHistoryRowsToDate(cota, state.dateKey).length > 0
+      && (!window.LAMINA_AUTH || window.LAMINA_AUTH.can("viewPu"));
+    nodes.exportPuMemory.disabled = !ready;
+    nodes.exportPuMemory.textContent = state.exporting ? "Gerando Excel..." : "Baixar memoria";
+    nodes.exportPuMemory.title = ready
+      ? `Baixar memoria de ${formatClasseDisplay(cota)} em ${formatIsoDate(state.dateKey)}`
+      : "Selecione uma serie com historico de PU disponivel";
+    if (nodes.memoryStatus && !state.exporting) nodes.memoryStatus.hidden = true;
+  }
+
+  function buildPuMemorySheets() {
+    const exporter = window.LAMINA_PU_MEMORY;
+    if (!exporter) throw new Error("Recarregue a pagina para carregar a exportacao.");
+    const snapshot = state.snapshot;
+    const cota = snapshot?.passivo?.cotas?.[state.cotaIndex];
+    const dateKey = state.dateKey;
+    if (!cota || state.loading || snapshot.metadata?.portfolioOverview) throw new Error("Aguarde a posicao selecionada carregar.");
+    const history = getHistoryRowsToDate(cota, dateKey);
+    const last = history[history.length - 1];
+    if (!last || toIsoDate(last.dataIso || last.data) !== dateKey) throw new Error("Nao existe memoria de PU para esta data-base.");
+    if (Math.abs(Number(last.puAtualizado) - Number(cota.pu)) > 0.00000002) {
+      throw new Error("O PU em tela diverge do ultimo registro da memoria. Reprocesse a posicao antes de exportar.");
+    }
+
+    const supportsProjection = String(cota.tipo || "").toLowerCase() !== "sub"
+      && (isSeniorCota(cota) || cota.ehFunding || isFixedRateCota(cota));
+    const meeting = exporter.nextCopom(dateKey);
+    if (supportsProjection && !meeting) throw new Error("Atualize o calendario do Copom: nao ha proxima reuniao cadastrada para esta data.");
+    const maturity = getCotaMaturityDateKey(cota);
+    const endDate = supportsProjection ? [meeting.dateKey, maturity].filter(Boolean).sort()[0] : dateKey;
+    const rateInfo = getLastKnownRateInfo(cota, dateKey);
+    if (supportsProjection && endDate > dateKey && Number(last.valorNominal) > 0
+      && !isFixedRateCota(cota) && !(rateInfo.dailyRate > 0)) {
+      throw new Error("A posicao nao tem taxa DI valida para projetar.");
+    }
+    // Freeze the selected view's rate; later historical rates must not leak into this scenario.
+    const projection = supportsProjection && endDate > dateKey
+      ? projectCotaUntilDate(cota, last, dateKey, endDate, { fixedRateInfo: rateInfo }).projectedRows
+      : [];
+    const n = exporter.numberCell;
+    const d = (value) => exporter.dateCell(toIsoDate(value));
+    const final = projection[projection.length - 1] || last;
+    const summary = [
+      ["Memoria de calculo de PU", "Posicao selecionada e projecao"],
+      ["CRA", snapshot.cra?.nome || snapshot.cra?.name || getCurrentCra()?.name || state.craId],
+      ["Serie", formatClasseDisplay(cota)],
+      ["Codigo IF", cota.ifCodigo || "Nao informado"],
+      ["Data-base selecionada", d(dateKey)],
+      ["Natureza da visao", snapshot.metadata?.calculatedView ? "Calculada pelo validador" : "Posicao historica importada"],
+      ["Snapshot de origem", d(snapshot.metadata?.historicalSourceDateKey || snapshot.metadata?.dateKey)],
+      ["Revisao do snapshot", snapshot.metadata?.revisionId || "Nao informada"],
+      ["Gerado em", new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }) + " (Brasilia)"],
+      ["Quantidade atual", n(cota.quantidade, 7)],
+      ["Remuneracao", formatRemuneracao(cota)],
+      ["Inicio da serie", d(cota.dataInicioIso || cota.dataInicio)],
+      ["Vencimento", d(maturity)],
+      ["PU na data-base", n(cota.pu)],
+      ["Saldo na data-base (R$)", n(cota.valor, 4)],
+      ["Principal residual por cota", n(last.valorNominal)],
+      ["Taxa diaria da posicao", n(isFixedRateCota(cota) ? rateInfo.fixedDailyRate : rateInfo.dailyRate, 5)],
+      ["Taxa anual equivalente", n(isFixedRateCota(cota) ? rateInfo.fixedAnnualRate : rateInfo.annualRate, 5)],
+      ["Data da taxa usada", d(rateInfo.dataTaxaDiIso || rateInfo.dataTaxaDi)],
+      ["Data de referencia da taxa", d(rateInfo.dataReferenciaTaxaDiIso || rateInfo.dataReferenciaTaxaDi)],
+      ["Proxima decisao do Copom", d(meeting?.dateKey)],
+      ["Possivel vigencia da nova Selic", meeting ? d(addBusinessDays(meeting.dateKey, 1)) : "Calendario indisponivel"],
+      ["Ultima data da projecao", d(endDate)],
+      ["PU no fim da projecao", supportsProjection ? n(final.puAtualizado) : "Nao projetado"],
+      ["Saldo no fim da projecao (R$)", supportsProjection ? n(final.valorReais, 4) : "Nao projetado"],
+      ["Premissa da projecao", supportsProjection
+        ? "Taxa da posicao constante ate a decisao do Copom, limitada ao vencimento. A nova Selic e o CDI futuro nao sao conhecidos; o Copom pode manter a taxa."
+        : "Subordinada residual: apenas historico. A projecao depende da carteira, caixa, despesas e PDD futuros."],
+      ["Eventos", "Pagamentos programados no TS incluidos na projecao. Outros eventos futuros nao informados nao sao presumidos."],
+      ["Dias uteis", snapshot.metadata?.businessCalendar?.name || "Calendario do snapshot; finais de semana e feriados excluidos"],
+      ["Base anual", n(252, 7)],
+      ["Metodo", isFixedRateCota(cota)
+        ? "Fator = arredondar((1 + taxa a.a.)^(DU periodo / 252), 9). Juros = truncar(principal * (fator - 1), 8)."
+        : "TDK arredondado a 8 casas; fator diario = truncar(1 + TDK * percentual DI, 16); produtorio truncado a 16; fator final arredondado a 8; juros truncados a 8."],
+      ["Precisao e valores", "Valores calculados pelo mesmo motor do validador; PU com 8 casas. Historico preservado; projecoes identificadas separadamente. Nao altera as posicoes."],
+      ["Fonte do calendario Copom", meeting?.source || ""],
+      ["Fonte dos dados", getManifestEntry(snapshot.metadata?.historicalSourceDateKey || dateKey)?.dataScript || `Snapshot ${state.craId}`]
+    ];
+    const headers = ["Data", "Natureza", "Dia util", "Taxa diaria", "Taxa anual equivalente", "Data taxa", "Referencia taxa", "Status taxa", "DU periodo", "DU total", "Valor nominal", "PU atualizado", "PU juros", "Saldo (R$)", "TDK", "Fator diario", "Produtorio fator", "Fator DI periodo", "Fator juros acumulado", "Spread", "Spread acumulado", "Evento", "PU antes do evento", "PU do evento", "PU apos evento", "Pagamento (R$)"];
+    const rowCells = (row, projected) => [
+      d(row.dataIso || row.data), projected ? "Projecao - taxa constante" : row.taxaDiStatus === "projetada" ? "Calculado pelo validador" : "Historico",
+      (row.diaUtil ?? isBusinessDayIso(toIsoDate(row.dataIso || row.data))) ? "Sim" : "Nao",
+      n(row.taxaDiUtilizadaDia, 5), n(getAnnualRate(row), 5), d(row.dataTaxaDiIso || row.dataTaxaDi),
+      d(row.dataReferenciaTaxaDiIso || row.dataReferenciaTaxaDi), formatDiStatus(row.taxaDiStatus),
+      n(row.diasUteisPeriodo, 7), n(row.diasUteis, 7), n(row.valorNominal), n(row.puAtualizado), n(row.puJuros), n(row.valorReais, 4),
+      n(row.tdk, 6), n(row.fatorDiario, 6), n(row.produtorioFatorDi, 6), n(row.fatorDiAcumulado, 6), n(row.fatorJurosAcumulado, 6),
+      n(row.spread, 5), n(row.spreadAcumulado, 6), row.evento || row.eventoTs || "",
+      n(row.puAntesEvento), n(row.puEvento), n(row.puAposEvento), n(row.valorEventoReais, 4)
+    ];
+    const widths = headers.map((_, index) => [1, 7, 21].includes(index) ? 32 : [0, 2, 5, 6, 8, 9].includes(index) ? 14 : 24);
+    return {
+      fileName: `memoria-pu-${state.craId}-${String(cota.classe || cota.ifCodigo || "serie").replace(/[^a-z0-9-]/gi, "-")}-${dateKey}.xlsx`,
+      sheets: [
+        { name: "Resumo", rows: summary, widths: [35, 112], summary: true },
+        { name: "Historico", rows: [headers, ...history.map((row) => rowCells(row, false))], widths },
+        { name: "Projecao", rows: [headers, ...projection.map((row) => rowCells(row, true))], widths }
+      ]
+    };
+  }
+
+  async function exportPuMemory() {
+    if (state.exporting || nodes.exportPuMemory?.disabled) return;
+    state.exporting = true;
+    updateMemoryButton();
+    try {
+      const memory = buildPuMemorySheets();
+      const blob = await window.LAMINA_PU_MEMORY.createWorkbook(memory.sheets);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = memory.fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 30000);
+      nodes.memoryStatus.textContent = "Memoria de calculo exportada.";
+    } catch (error) {
+      nodes.memoryStatus.textContent = `Nao foi possivel exportar: ${error.message}`;
+    } finally {
+      state.exporting = false;
+      updateMemoryButton();
+      nodes.memoryStatus.hidden = false;
+    }
+  }
+
   function renderSnapshot(snapshot) {
     state.holidayDates = getHolidaySet(snapshot);
     const prepared = prepareSnapshotForPu(snapshot);
@@ -2315,6 +2457,8 @@
     renderSources(prepared);
     renderTimeline();
     renderDateChips();
+    state.loading = false;
+    updateMemoryButton();
     setStatus(
       prepared.metadata?.calculatedView
         ? `PU calculado em ${prepared.metadata?.reportDate || formatIsoDate(state.dateKey)}`
@@ -2333,6 +2477,10 @@
     }
 
     state.dateKey = normalizedDate;
+    const requestId = ++state.loadRequestId;
+    state.loading = true;
+    state.snapshot = null;
+    updateMemoryButton();
     nodes.dateSelector.value = normalizedDate;
     renderDateChips();
     setStatus("Carregando", "neutral");
@@ -2341,6 +2489,7 @@
       const entry = getManifestEntry(state.dateKey);
       if (entry) {
         const snapshot = await loadSnapshot(state.craId, state.dateKey);
+        if (requestId !== state.loadRequestId) return;
         state.snapshot = snapshot;
         state.baseSnapshot = snapshot;
         renderSnapshot(snapshot);
@@ -2355,6 +2504,7 @@
           state.dateKey = fallbackDate;
           nodes.dateSelector.value = fallbackDate;
           const snapshot = await loadSnapshot(state.craId, fallbackDate);
+          if (requestId !== state.loadRequestId) return;
           state.snapshot = snapshot;
           state.baseSnapshot = snapshot;
           renderSnapshot(snapshot);
@@ -2364,11 +2514,16 @@
       }
 
       const baseSnapshot = await getBaseSnapshotForHistoricalDate(state.dateKey);
+      if (requestId !== state.loadRequestId) return;
       const historicalSnapshot = buildHistoricalSnapshot(baseSnapshot, state.dateKey);
       state.snapshot = historicalSnapshot;
       renderSnapshot(historicalSnapshot);
     } catch (error) {
+      if (requestId !== state.loadRequestId) return;
       setStatus("Erro ao carregar", "error");
+      state.loading = false;
+      state.snapshot = null;
+      updateMemoryButton();
       nodes.summaryStrip.innerHTML = "";
       nodes.cotaTabs.innerHTML = "";
       nodes.puRoot.innerHTML = `<section class="panel"><strong>${escapeHtml(error.message)}</strong></section>`;
@@ -2377,6 +2532,7 @@
 
   function selectCra(craId) {
     state.craId = craId;
+    state.baseSnapshot = null;
     state.cotaIndex = 0;
     const cra = getCurrentCra();
     state.dateKey = getDefaultDateKey(cra);
@@ -2453,6 +2609,7 @@
     if (nodes.updatePuButton) {
       nodes.updatePuButton.addEventListener("click", updatePuFromLocalService);
     }
+    nodes.exportPuMemory?.addEventListener("click", exportPuMemory);
   }
 
   function refreshCraVisibilityForAccess() {
@@ -2466,6 +2623,7 @@
 
     renderCraSelector();
     renderDateSelector();
+    updateMemoryButton();
   }
 
   function init() {
