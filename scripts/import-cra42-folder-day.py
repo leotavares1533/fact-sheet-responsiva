@@ -326,6 +326,8 @@ def main() -> None:
             "excel",
             "--report-date",
             date_key,
+            "--historical-pdd-policy",
+            "ceres-42-65",
             *historical_pdd_args,
         ]
     )

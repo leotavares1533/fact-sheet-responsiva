@@ -232,6 +232,29 @@ def pdd_status_and_rate(report_date: str, due_date: str, source_status: object, 
     return "Acima de 180 dias", 1.0
 
 
+def ceres_historical_pdd_rate(report_date: str, due_date: str) -> float:
+    if not report_date or not due_date:
+        raise ValueError("Data-base e vencimento obrigatorios para reconstruir PDD historico.")
+    days = (date.fromisoformat(report_date) - date.fromisoformat(due_date)).days
+    # Clauses 5.1.16.3.1 of the CRA 42 and 65 securitization terms.
+    for limit, rate in ((15, 0.0), (90, 0.005), (120, 0.60), (150, 0.80), (180, 0.85)):
+        if days <= limit:
+            return rate
+    return 1.0
+
+
+def ceres_historical_pdd(report_date, latest_date, due_date, source_pdd, face, liquidation_date, vp):
+    if source_pdd > 0:
+        latest_rate = ceres_historical_pdd_rate(latest_date, due_date)
+        if latest_rate <= 0:
+            raise ValueError("PDD positivo fora das faixas do TS; confirme a base historica desse titulo.")
+        # Preserve the source's redemption base, including residual PDD with zero VP.
+        return source_pdd / latest_rate * ceres_historical_pdd_rate(report_date, due_date)
+    if vp > 0 and liquidation_date and report_date < liquidation_date <= latest_date:
+        return face * ceres_historical_pdd_rate(report_date, due_date)
+    return 0.0
+
+
 def preserve_historical_pdd(records: list, snapshot_path: Path, report_date: str) -> None:
     snapshot = json.loads(snapshot_path.read_text(encoding="utf-8-sig"))
     if snapshot.get("metadata", {}).get("dateKey") != report_date:
@@ -265,7 +288,7 @@ def preserve_historical_pdd(records: list, snapshot_path: Path, report_date: str
         raise ValueError("O PDD historico nao reconciliou com a memoria preservada.")
 
 
-def normalize_excel(path: Path, report_date: str, historical_pdd_snapshot: Path | None = None) -> list:
+def normalize_excel(path: Path, report_date: str, historical_pdd_snapshot: Path | None = None, historical_pdd_policy: str = "legacy") -> list:
     df = pd.read_excel(path, sheet_name=0, header=None, dtype=object)
     header_index = find_excel_header(df)
     headers = df.iloc[header_index].tolist()
@@ -284,13 +307,24 @@ def normalize_excel(path: Path, report_date: str, historical_pdd_snapshot: Path 
         vp_value = row.iloc[vp_col_idx] if vp_col_idx is not None else get_by_header(row, headers, ["valor_presente_dia"])
         taxa_raw = first_by_header(row, headers, ["Tx Cessao Mes", "Tx Cessão Mês", "Tx Op", "Taxa"])
         due_date = parse_date(get_by_header(row, headers, ["Data de Vencimento", "DT Vencimento"]))
+        liquidation_date = parse_date(get_by_header(row, headers, ["Data de liquidacao", "Data de liquidação", "Dt Liquidacao", "Dt Liquidação"]))
         source_status = first_by_header(row, headers, ["faixa atraso", "Faixa Venc", "Status de Pagamento", "Status"])
-        status, pdd_rate = pdd_status_and_rate(derived_date, due_date, source_status, vp_value)
+        effective_status = source_status
+        if historical_pdd_policy == "ceres-42-65" and derived_date < latest_date and liquidation_date > derived_date and parse_number(vp_value) > 0:
+            if "liquid" in normalize_name(source_status):
+                effective_status = ""
+        status, pdd_rate = pdd_status_and_rate(derived_date, due_date, effective_status, vp_value)
         source_pdd_value = parse_number(get_by_header(row, headers, ["PDD", "Valor PDD", "Provisao PDD", "Provisão PDD"]))
         if derived_date == latest_date:
             pdd_value = source_pdd_value
             if clean_text(source_status):
                 status = clean_text(source_status)
+        elif historical_pdd_policy == "ceres-42-65":
+            pdd_value = ceres_historical_pdd(
+                derived_date, latest_date, due_date, source_pdd_value,
+                parse_number(get_by_header(row, headers, ["Valor Face", "Vlr Face"])),
+                liquidation_date, parse_number(vp_value),
+            )
         elif source_pdd_value <= 0:
             pdd_value = 0.0
         else:
@@ -304,14 +338,17 @@ def normalize_excel(path: Path, report_date: str, historical_pdd_snapshot: Path 
                 numero_nota=lastro,
                 data_aquisicao=parse_date(get_by_header(row, headers, ["Data de aquisicao", "Data de aquisição", "DT Aquisicao", "DT Aquisição"])),
                 data_vencimento=due_date,
-                data_liquidacao=parse_date(get_by_header(row, headers, ["Data de liquidacao", "Data de liquidação", "Dt Liquidacao", "Dt Liquidação"])),
+                data_liquidacao=liquidation_date,
                 valor_liquidacao=format_decimal(get_by_header(row, headers, ["Vlr Liquidacao", "Vlr Liquidação"])),
                 taxa=format_rate(taxa_raw, "excel"),
                 valor_presente_dia=format_decimal(vp_value),
                 pdd=format_decimal(pdd_value),
                 fonte="Sistema Excel",
                 arquivo_origem=path.name,
-                observacao="Normalizado do layout sistema excel",
+                observacao="Normalizado do layout sistema excel" + (
+                    "; PDD historico conforme TS Ceres 42/65, sem antecipar liquidacao futura"
+                    if historical_pdd_policy == "ceres-42-65" and derived_date < latest_date else ""
+                ),
                 taxa_texto=clean_text(taxa_raw),
                 sistema_origem="excel",
                 status=status,
@@ -485,6 +522,7 @@ def parse_args():
     parser.add_argument("--report-date", default="", help="Data-base yyyy-mm-dd. Obrigatoria para Minerva.")
     parser.add_argument("--primary", choices=("auto", "excel", "minerva"), default="auto", help="Fonte usada no CSV final.")
     parser.add_argument("--historical-pdd-snapshot", default="", help="Memoria JSON da mesma data para preservar PDD em reprocessamento historico autorizado.")
+    parser.add_argument("--historical-pdd-policy", choices=("legacy", "ceres-42-65"), default="legacy", help="Regra de reconstrucao de PDD para colunas anteriores a ultima data do Excel.")
     return parser.parse_args()
 
 
@@ -497,6 +535,7 @@ def main():
         sources["excel"] = normalize_excel(
             Path(args.excel), args.report_date,
             Path(args.historical_pdd_snapshot) if args.historical_pdd_snapshot else None,
+            args.historical_pdd_policy,
         )
     if args.minerva:
         if not args.report_date:
@@ -517,6 +556,7 @@ def main():
         "minerva": summarize(sources["minerva"]) if sources["minerva"] else None,
         "comparacao": validate_sources(sources["excel"], sources["minerva"]),
         "memoria_pdd_historico": args.historical_pdd_snapshot or None,
+        "politica_pdd_historico": args.historical_pdd_policy,
     }
     write_json(Path(args.validation), validation)
 

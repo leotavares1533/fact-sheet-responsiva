@@ -441,6 +441,8 @@ def main() -> None:
             "excel",
             "--report-date",
             date_key,
+            "--historical-pdd-policy",
+            "ceres-42-65",
         ]
     )
     cash = write_cash_files(caixa_path, date_key)
