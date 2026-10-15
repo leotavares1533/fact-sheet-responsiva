@@ -32,6 +32,12 @@
       password: DEFAULT_PASSWORD,
       mustChangePassword: true,
     },
+    "marilia.montes@ceresinvestimentos.com": {
+      name: "Marilia Montes",
+      role: "viewer",
+      password: DEFAULT_PASSWORD,
+      mustChangePassword: true,
+    },
     [ADMIN_EMAIL]: {
       name: "Leonardo Silva",
       role: "admin",
