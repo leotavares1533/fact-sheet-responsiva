@@ -232,6 +232,12 @@ def apply_pdd_renegotiation_overrides(cra_id, date_key, carteira, snapshot):
         if from_date and date_key < from_date:
             continue
 
+        metadata = snapshot.setdefault("metadata", {})
+        metadata["manualAdjustments"] = [
+            item for item in metadata.get("manualAdjustments", []) or []
+            if item.get("id") != rule.get("id")
+        ]
+
         total_adjusted = 0.0
         adjusted_rows = 0
         target_lastro = str(rule.get("numeroUnico") or "").strip()
@@ -242,7 +248,7 @@ def apply_pdd_renegotiation_overrides(cra_id, date_key, carteira, snapshot):
             row_name = normalize_name(f"{row.get('cedente') or ''} {row.get('sacado') or ''}")
             matches_lastro = bool(target_lastro and row_lastro == target_lastro)
             matches_name = bool(target_name and target_name in row_name)
-            if not matches_lastro and not matches_name:
+            if not (matches_lastro if target_lastro else matches_name):
                 continue
 
             original_pdd = float(row.get("pdd", 0.0) or 0.0)
