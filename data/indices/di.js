@@ -3022,5 +3022,21 @@ window.LAMINA_DI_RATES = {
     "indexador": "DI",
     "taxaDia": 0.00050788,
     "taxaPercentualDia": 0.050788
+  },
+  "2026-10-16": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-10-16",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00050788,
+    "taxaPercentualDia": 0.050788
+  },
+  "2026-10-19": {
+    "arquivoOrigem": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados",
+    "data": "2026-10-19",
+    "fonte": "Banco Central do Brasil - SGS 12",
+    "indexador": "DI",
+    "taxaDia": 0.00050788,
+    "taxaPercentualDia": 0.050788
   }
 };
