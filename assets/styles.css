@@ -1652,6 +1652,11 @@ tbody tr:hover td {
   gap: 16px;
 }
 
+.funding-cash-view .metric-card strong {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
 .pu-final {
   color: var(--panel-blue);
   font-size: 1.2rem;

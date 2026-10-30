@@ -1,0 +1,40 @@
+{
+  "cra-carteira-55/MEZA/2026-07-30": {
+    "amount": 684000,
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-10-29"
+  },
+  "cra-carteira-57/SR1/2026-07-30": {
+    "amount": 1315000,
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-10-29"
+  },
+  "cra-carteira-46/SR1/2026-09-04": {
+    "reduceFunding": false,
+    "kind": "outro_ajuste",
+    "detailsPending": true,
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-10-29"
+  },
+  "cra-carteira-53/SR1/2026-09-04": {
+    "reduceFunding": false,
+    "kind": "outro_ajuste",
+    "detailsPending": true,
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-10-29"
+  },
+  "cra-carteira-54/SR1/2026-09-04": {
+    "reduceFunding": false,
+    "kind": "outro_ajuste",
+    "detailsPending": true,
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-10-29"
+  },
+  "cra-carteira-55/SR1/2026-09-04": {
+    "reduceFunding": false,
+    "kind": "outro_ajuste",
+    "detailsPending": true,
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-10-29"
+  }
+}

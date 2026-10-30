@@ -424,6 +424,7 @@
   }
 
   function formatDiStatus(status) {
+    if (status === "importada_pendente_validacao") return "Pendente validacao";
     if (status === "informada") {
       return "Informada";
     }
@@ -485,6 +486,7 @@
     if (direct) {
       return direct;
     }
+    if (cota?.importacaoFundingCaixa) return "";
 
     const classe = String(cota?.classe || "").toUpperCase();
     const cra = getCurrentCra();
@@ -503,6 +505,9 @@
   }
 
   function getSnapshotMaturityDateKey(snapshot) {
+    if (snapshot.metadata?.fundingCashOnly) {
+      return (snapshot.passivo?.cotas || []).map(getCotaMaturityDateKey).filter(Boolean).sort().at(-1) || "";
+    }
     const direct = toIsoDate(snapshot?.cra?.dataVencimentoIso || snapshot?.cra?.maturityDateIso || snapshot?.cra?.vencimentoIso || snapshot?.cra?.dataVencimento || snapshot?.cra?.maturityDate || snapshot?.cra?.vencimento);
     if (direct) {
       return direct;
@@ -523,6 +528,7 @@
   }
 
   function getPaymentComponent(event) {
+    if (event?.tipo === "juros_amortizacao") return "Juros / amortizacao";
     const raw = `${event?.componente || ""} ${event?.tipo || ""} ${event?.tipoNormalizado || ""} ${event?.tipoEvento || ""} ${event?.efeito || ""}`;
     const normalized = raw
       .normalize("NFD")
@@ -1134,6 +1140,7 @@
   }
 
   function buildForecastRowsForCota(cota, startDateKey, days = 220) {
+    if (cota.forecastBlockedReason) return [];
     const history = getHistoryRowsToDate(cota, startDateKey);
     const latestRow = history[history.length - 1] || {};
     const startRow = {
@@ -1181,6 +1188,7 @@
     if (!row) {
       next.pu = 0;
       next.valor = 0;
+      if (next.importacaoFundingCaixa) next.quantidade = 0;
       next.dataHistoricaDisponivel = false;
       next.dataHistoricaSelecionada = formatIsoDate(dateKey);
       next.acumulacaoFinal = {
@@ -1194,7 +1202,7 @@
     }
 
     let finalRow = row;
-    if (rowDateKey && rowDateKey < dateKey) {
+    if (rowDateKey && rowDateKey < dateKey && !next.forecastBlockedReason) {
       const projection = projectCotaUntilDate(next, row, rowDateKey, dateKey);
       next.historicoPu = [...rowsToDate, ...projection.projectedRows];
       finalRow = projection.projectedRows[projection.projectedRows.length - 1] || row;
@@ -1202,6 +1210,7 @@
     }
 
     next.pu = Number(finalRow.puAtualizado || 0);
+    if (next.importacaoFundingCaixa) next.quantidade = Number(finalRow.quantidade ?? next.quantidade ?? 0);
     next.valor = Number(finalRow.valorReais || (next.pu * Number(next.quantidade || 0)));
     next.principalResidual = Number(finalRow.valorNominal ?? next.principalResidual ?? 0);
     next.dataHistoricaDisponivel = true;
@@ -1220,6 +1229,9 @@
   }
 
   function buildHistoricalSnapshot(snapshot, dateKey) {
+    if (snapshot.metadata?.fundingCashOnly && dateKey > snapshot.metadata.dateKey) {
+      throw new Error("Data posterior ao arquivo importado. Aguardando nova posicao de funding e caixa.");
+    }
     const source = ensureStaticFundingSeries(cloneData(snapshot), dateKey);
     const hasAnyHistory = (source.passivo?.cotas || []).some((cota) => getHistoricalRow(cota, dateKey));
     if (!hasAnyHistory) {
@@ -1230,7 +1242,7 @@
     const cotas = (source.passivo?.cotas || []).map((cota) => buildHistoricalCota(cota, dateKey));
     const calculatedView = cotas.some((cota) => cota.visaoCalculadaPu);
     const fundingTotal = cotas
-      .filter(isSeniorCota)
+      .filter(snapshot.metadata?.fundingCashOnly ? (cota) => cota.ehFunding : isSeniorCota)
       .reduce((total, cota) => total + Number(cota.valor || 0), 0);
 
     historical.metadata = {
@@ -1247,6 +1259,11 @@
       cotas,
       fundingTotal
     };
+    if (snapshot.metadata?.fundingCashOnly) {
+      const cash = snapshot.caixaHistorico?.[dateKey];
+      historical.caixa = cash ? cloneData(cash) : { total: null, accounts: {} };
+      historical.ativo = { total: null, caixa: cash?.total ?? null };
+    }
     return historical;
   }
 
@@ -1327,6 +1344,7 @@
   }
 
   function renderSummary(snapshot) {
+    document.body.classList.toggle("funding-cash-view", Boolean(snapshot.metadata?.fundingCashOnly));
     if (snapshot.metadata?.portfolioOverview) {
       const rows = snapshot.portfolioOverview?.rows || [];
       const finalizedRows = rows.filter((row) => computedOverviewStatus(row) === "Finalizado");
@@ -1359,7 +1377,7 @@
     const passivo = snapshot.passivo || {};
     const cotas = passivo.cotas || [];
     const isHistoricalView = Boolean(snapshot.metadata?.historicalView);
-    const seniorCotas = cotas.filter(isSeniorCota);
+    const seniorCotas = snapshot.metadata?.fundingCashOnly ? cotas.filter((cota) => cota.ehFunding) : cotas.filter(isSeniorCota);
     const seniorCurrentTotal = seniorCotas
       .reduce((total, cota) => total + Number(cota.valor || 0), 0);
     const nextPaymentTotal = seniorCotas
@@ -1368,11 +1386,15 @@
     const isCrasCarteiraPu = String(snapshot.cra?.id || "").startsWith("cra-carteira-");
 
     const metrics = [
-      ["Valor total Senior", formatCurrency(seniorCurrentTotal)],
-      [isCrasCarteiraPu ? "Séries Senior" : "Cotas", formatNumber(isCrasCarteiraPu ? seniorCotas.length : cotas.length, 0)],
+      [snapshot.metadata?.fundingCashOnly ? "Funding SR/MEZ" : "Valor total Senior", formatCurrency(seniorCurrentTotal)],
+      [snapshot.metadata?.fundingCashOnly ? "Series SR/MEZ" : isCrasCarteiraPu ? "Séries Senior" : "Cotas", formatNumber(isCrasCarteiraPu ? seniorCotas.length : cotas.length, 0)],
       ["Prox. Pag. Senior", formatCurrency(nextPaymentTotal)],
       ["Vencimento CRA", maturityDate ? formatIsoDate(maturityDate) : "-"]
     ];
+    if (snapshot.metadata?.fundingCashOnly) {
+      metrics[0][1] = passivo.fundingTotal == null ? "Nao informado" : formatCurrency(seniorCurrentTotal);
+      metrics[2] = ["Caixa informado", snapshot.caixa?.total == null ? "Nao informado" : formatCurrency(snapshot.caixa.total)];
+    }
 
     if (!isCrasCarteiraPu) {
       metrics.push(
@@ -1464,7 +1486,7 @@
             ${orderedHistory.map((row) => `
               <tr class="${row.dataIso === state.dateKey ? "is-selected-date" : ""}">
                 <td><strong>${escapeHtml(row.data)}</strong></td>
-                <td>${escapeHtml(formatPercent(getAnnualRate(row)))}</td>
+                <td>${row.taxaDiStatus === "importada_pendente_validacao" ? "Pendente" : escapeHtml(formatPercent(getAnnualRate(row)))}</td>
                 <td>${escapeHtml(row.dataTaxaDi || "-")}</td>
                 <td>${escapeHtml(formatNumber(row.diasUteisPeriodo, 0))}</td>
                 <td>${escapeHtml(formatNumber(row.fator, 10))}</td>
@@ -1472,13 +1494,13 @@
                 <td>${escapeHtml(formatNumber(row.puAtualizado, 8))}</td>
                 <td>${escapeHtml(formatNumber(row.puJuros, 8))}</td>
                 <td>${escapeHtml(formatCurrency(row.valorReais))}</td>
-                <td>${escapeHtml(formatNumber(row.tdk, 12))}</td>
-                <td>${escapeHtml(formatNumber(row.fatorDiario, 12))}</td>
-                <td>${escapeHtml(formatNumber(row.produtorioFatorDi, 12))}</td>
-                <td>${escapeHtml(formatNumber(row.fatorDiAcumulado, 12))}</td>
-                <td>${escapeHtml(formatPercent(row.spread))}</td>
-                <td>${escapeHtml(formatNumber(row.spreadAcumulado, 12))}</td>
-                <td>${escapeHtml(formatNumber(row.fatorJurosAcumulado, 12))}</td>
+                <td>${row.tdk == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.tdk, 12))}</td>
+                <td>${row.fatorDiario == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.fatorDiario, 12))}</td>
+                <td>${row.produtorioFatorDi == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.produtorioFatorDi, 12))}</td>
+                <td>${row.fatorDiAcumulado == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.fatorDiAcumulado, 12))}</td>
+                <td>${row.spread == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatPercent(row.spread))}</td>
+                <td>${row.spreadAcumulado == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.spreadAcumulado, 12))}</td>
+                <td>${row.fatorJurosAcumulado == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.fatorJurosAcumulado, 12))}</td>
                 <td>${escapeHtml(row.evento || "-")}</td>
                 <td>${escapeHtml(formatNumber(row.puEvento, 8))}</td>
                 <td>${escapeHtml(formatDiStatus(row.taxaDiStatus))}</td>
@@ -1524,7 +1546,7 @@
               <strong>${escapeHtml(formatClasseDisplay(cota))}</strong>
               <span>${escapeHtml(formatNumber(cota.pu, 6))}</span>
             </div>
-            <p class="muted-line">Previsao ainda nao calculada para esta serie.</p>
+            <p class="muted-line">${escapeHtml(cota.forecastBlockedReason || "Previsao ainda nao calculada para esta serie.")}</p>
           </section>
         `;
       }
@@ -1964,6 +1986,9 @@
         <div class="panel-head">
           <div>
             <h2>Série</h2>
+            ${cota.documentValidation?.status === "pendente_documentos" ? `<p class="muted-line">Cadastro pendente de documentos: taxa, datas, prazo e revolvencia nao validados. PU importado da planilha.</p>` : ""}
+            ${cota.documentValidation?.status === "cadastro_documentado_conciliacao_financeira_pendente" ? `<p class="muted-line">Cadastro revisado com TS e aditamentos. ${cota.documentValidation.calculationStatus === "recalculo_documentado" ? "Memoria recalculada sem DU adicional, conforme orientacao de Leonardo. Ressalva contratual e boletins em conciliacao." : cota.documentValidation.calculationStatus === "recalculo_evento_confirmado" ? "Pagamento confirmado e rateio pela quantidade existente na data do evento. Memoria posterior recalculada com DI D-2. Sem novo desconto no caixa." : cota.financialEventConfirmation ? "Pagamento confirmado. PU da fonte preservado enquanto o tratamento dos juros remanescentes e conciliado." : "PU preservado enquanto pagamentos e rateios sao conciliados."}</p>` : ""}
+            ${(cota.eventosPendentes || []).length ? `<p class="muted-line">${escapeHtml(cota.eventosPendentes.length)} evento(s) pendente(s) de confirmacao; nao deduzidos novamente do PU.</p>` : ""}
           </div>
         </div>
 
@@ -1971,7 +1996,7 @@
           ${field("Classe", formatClasseDisplay(cota))}
           ${field("IF", cota.ifCodigo || "-")}
           ${field("Tipo", formatTipoDisplay(cota))}
-          ${field("Data inicial", cota.dataInicio || "-")}
+          ${field(cota.dataPrimeiraIntegralizacaoIso ? "Primeira integralizacao" : "Data inicial", cota.dataPrimeiraIntegralizacaoIso ? formatIsoDate(cota.dataPrimeiraIntegralizacaoIso) : cota.dataInicio || "-")}
           ${field("Vencimento", formatIsoDate(getCotaMaturityDateKey(cota)))}
           ${field("VNU inicial", formatNumber(cota.valorNominalInicial, 8))}
           ${field("Quantidade", formatNumber(cota.quantidade, 0))}
@@ -2342,7 +2367,7 @@
       throw new Error("O PU em tela diverge do ultimo registro da memoria. Reprocesse a posicao antes de exportar.");
     }
 
-    const supportsProjection = String(cota.tipo || "").toLowerCase() !== "sub"
+    const supportsProjection = !cota.forecastBlockedReason && String(cota.tipo || "").toLowerCase() !== "sub"
       && (isSeniorCota(cota) || cota.ehFunding || isFixedRateCota(cota));
     const meeting = exporter.nextCopom(dateKey);
     if (supportsProjection && !meeting) throw new Error("Atualize o calendario do Copom: nao ha proxima reuniao cadastrada para esta data.");
@@ -2366,7 +2391,9 @@
       ["Serie", formatClasseDisplay(cota)],
       ["Codigo IF", cota.ifCodigo || "Nao informado"],
       ["Data-base selecionada", d(dateKey)],
-      ["Natureza da visao", snapshot.metadata?.calculatedView ? "Calculada pelo validador" : "Posicao historica importada"],
+      ["Natureza da visao", cota.documentValidation?.status === "pendente_documentos" ? "PU importado da planilha; documentos e memoria pendentes de validacao"
+        : cota.documentValidation?.status === "cadastro_documentado_conciliacao_financeira_pendente" ? "Cadastro documentado; conciliacao financeira e com AF pendente"
+        : snapshot.metadata?.calculatedView ? "Calculada pelo validador" : "Posicao historica importada"],
       ["Snapshot de origem", d(snapshot.metadata?.historicalSourceDateKey || snapshot.metadata?.dateKey)],
       ["Revisao do snapshot", snapshot.metadata?.revisionId || "Nao informada"],
       ["Gerado em", new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }) + " (Brasilia)"],
@@ -2377,8 +2404,8 @@
       ["PU na data-base", n(cota.pu)],
       ["Saldo na data-base (R$)", n(cota.valor, 4)],
       ["Principal residual por cota", n(last.valorNominal)],
-      ["Taxa diaria da posicao", n(isFixedRateCota(cota) ? rateInfo.fixedDailyRate : rateInfo.dailyRate, 5)],
-      ["Taxa anual equivalente", n(isFixedRateCota(cota) ? rateInfo.fixedAnnualRate : rateInfo.annualRate, 5)],
+      ["Taxa diaria da posicao", cota.documentValidation?.status === "pendente_documentos" ? "Pendente validacao" : n(isFixedRateCota(cota) ? rateInfo.fixedDailyRate : rateInfo.dailyRate, 5)],
+      ["Taxa anual equivalente", cota.documentValidation?.status === "pendente_documentos" ? "Pendente validacao" : n(isFixedRateCota(cota) ? rateInfo.fixedAnnualRate : rateInfo.annualRate, 5)],
       ["Data da taxa usada", d(rateInfo.dataTaxaDiIso || rateInfo.dataTaxaDi)],
       ["Data de referencia da taxa", d(rateInfo.dataReferenciaTaxaDiIso || rateInfo.dataReferenciaTaxaDi)],
       ["Proxima decisao do Copom", d(meeting?.dateKey)],
@@ -2388,11 +2415,19 @@
       ["Saldo no fim da projecao (R$)", supportsProjection ? n(final.valorReais, 4) : "Nao projetado"],
       ["Premissa da projecao", supportsProjection
         ? "Taxa da posicao constante ate a decisao do Copom, limitada ao vencimento. A nova Selic e o CDI futuro nao sao conhecidos; o Copom pode manter a taxa."
-        : "Subordinada residual: apenas historico. A projecao depende da carteira, caixa, despesas e PDD futuros."],
+        : cota.forecastBlockedReason || "Subordinada residual: apenas historico. A projecao depende da carteira, caixa, despesas e PDD futuros."],
       ["Eventos", "Pagamentos programados no TS incluidos na projecao. Outros eventos futuros nao informados nao sao presumidos."],
       ["Dias uteis", snapshot.metadata?.businessCalendar?.name || "Calendario do snapshot; finais de semana e feriados excluidos"],
       ["Base anual", n(252, 7)],
-      ["Metodo", isFixedRateCota(cota)
+      ["Metodo", cota.documentValidation?.calculationStatus === "recalculo_evento_confirmado"
+        ? "Rateio do pagamento aprovado pela quantidade historica. Juros unitarios informados preservados; memoria posterior DI D-2, fatores DI/spread separados, sem DU adicional nem novo desconto no caixa."
+        : cota.metodo === "di_spread_ts_252" && cota.documentValidation?.calculationStatus === "recalculo_documentado"
+        ? "DI D-2 com 8 casas; produto truncado em 16; spread e fator combinado arredondados em 9; juros truncados em 8. Sem DU adicional no primeiro periodo, conforme orientacao de Leonardo; ressalva contratual separada."
+        : cota.documentValidation?.calculationStatus === "preservado_pendente_evento_financeiro"
+        ? "PU preservado da fonte; cadastro documentado, mas eventos/rateios ainda pendentes de conciliacao."
+        : cota.documentValidation?.status === "pendente_documentos"
+        ? "PU observado na planilha, sem validacao do metodo contratual. Fatores e taxas diarios nao confirmados nao sao presumidos."
+        : isFixedRateCota(cota)
         ? "Fator = arredondar((1 + taxa a.a.)^(DU periodo / 252), 9). Juros = truncar(principal * (fator - 1), 8)."
         : "TDK arredondado a 8 casas; fator diario = truncar(1 + TDK * percentual DI, 16); produtorio truncado a 16; fator final arredondado a 8; juros truncados a 8."],
       ["Precisao e valores", "Valores calculados pelo mesmo motor do validador; PU com 8 casas. Historico preservado; projecoes identificadas separadamente. Nao altera as posicoes."],

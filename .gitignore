@@ -13,10 +13,13 @@
 !/scripts/import-cra42-folder-day.py
 !/scripts/import-cra65-folder-day.py
 !/scripts/import-cras-carteira-consolidated.py
+!/scripts/import-cras-fundings-cash.py
+!/scripts/reconcile-cras-carteira-documents.py
 !/scripts/normalize_carteira.py
 !/scripts/refresh_cra_snapshot_from_imports.py
 !/scripts/update-di-rates.py
 /tmp/
+/data/fundings/cras-carteira/20??-??-??.json
 /.lamina-publisher-key
 
 # Duplicidades e variantes locais

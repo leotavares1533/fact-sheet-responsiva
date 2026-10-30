@@ -517,6 +517,16 @@
       }
 
       function buildStructuredHighlights(snapshot) {
+        if (snapshot.metadata?.fundingCashOnly) {
+          const cotas = snapshot.passivo?.cotas || [];
+          const series = snapshot.portfolioOverview?.rows || cotas;
+          return [
+            { label: "Funding SR/MEZ", value: snapshot.passivo?.fundingTotal == null ? "Nao informado" : formatCurrency(snapshot.passivo.fundingTotal), caption: "Inclui series pendentes de validacao" },
+            { label: "Caixa informado", value: snapshot.caixa?.total == null ? "Nao informado" : formatCurrency(snapshot.caixa.total), caption: "Total da planilha; despesas ja deduzidas" },
+            { label: "Series cadastradas", value: String(series.length), caption: "Senior e mezanino" },
+            { label: "Carteira e subordinada", value: "Nao atualizadas", caption: "Importacao apenas de funding e caixa" }
+          ];
+        }
         const ativo = snapshot.ativo || {};
         const passivo = snapshot.passivo || {};
         const ativoTotal = displayAtivoTotal(snapshot);
@@ -548,6 +558,7 @@
       }
 
       function renderSummary(snapshot) {
+        document.body.classList.toggle("funding-cash-view", Boolean(snapshot.metadata?.fundingCashOnly));
         const structuredHighlights = buildStructuredHighlights(snapshot);
         const highlights = structuredHighlights.length
           ? structuredHighlights.slice(0, 6)
@@ -2623,6 +2634,10 @@
       }
 
       function renderSections(snapshot) {
+        if (snapshot.metadata?.fundingCashOnly) {
+          nodes.sectionsRoot.innerHTML = renderFundingCashSnapshot(snapshot);
+          return;
+        }
         if (snapshot.metadata?.portfolioOverview) {
           nodes.sectionsRoot.innerHTML = renderCrasCarteiraOverview(snapshot);
           return;
@@ -2634,6 +2649,62 @@
           renderPortfolioDetailed(snapshot)
         ].join("");
         bindChartFilters();
+      }
+
+      function renderFundingCashSnapshot(snapshot) {
+        const cotas = snapshot.passivo?.cotas || [];
+        const series = snapshot.portfolioOverview?.rows || cotas.map((cota) => ({
+          operacao: snapshot.cra?.name, serie: cota.label || cota.classe, ifCodigo: cota.ifCodigo,
+          quantidadeIntegralizada: cota.quantidade, puAtual: cota.pu, valorAtual: cota.valor,
+          taxa: cota.taxaTexto, dataVencimento: cota.dataVencimento,
+          status: cota.documentValidation?.status === "pendente_documentos" ? "Pendente documentos"
+            : cota.documentValidation?.status === "cadastro_documentado_conciliacao_financeira_pendente" ? "Cadastro documentado; conciliacao pendente"
+            : "Cadastro anterior preservado"
+        }));
+        const seriesColumns = [
+          { label: "CRA", render: (r) => escapeHtml(r.operacao) },
+          { label: "Serie", render: (r) => escapeHtml(r.serie) },
+          { label: "IF", render: (r) => escapeHtml(r.ifCodigo || "Pendente") },
+          { label: "Quantidade", render: (r) => escapeHtml(formatNumber(r.quantidadeIntegralizada, 0)) },
+          { label: "PU", render: (r) => escapeHtml(formatNumber(r.puAtual, 8)) },
+          { label: "Saldo", render: (r) => escapeHtml(formatCurrency(r.valorAtual)) },
+          { label: "Remuneracao", render: (r) => escapeHtml(r.taxa || "Pendente") },
+          { label: "Vencimento", render: (r) => escapeHtml(r.dataVencimento || "Pendente") },
+          { label: "Validacao", render: (r) => escapeHtml(r.status) }
+        ];
+        const cashRows = snapshot.fundingCashVehicles || [{ name: snapshot.cra?.name, cash: snapshot.caixa?.total, funding: snapshot.passivo?.fundingTotal }];
+        const cashColumns = [
+          { label: "CRA", render: (r) => escapeHtml(r.name) },
+          { label: "Caixa informado", render: (r) => r.cash == null ? "Nao informado" : escapeHtml(formatCurrency(r.cash)) },
+          { label: "Funding SR/MEZ", render: (r) => r.funding == null ? "Nao informado" : escapeHtml(formatCurrency(r.funding)) }
+        ];
+        const events = cotas.flatMap((cota) => (cota.eventosAplicados || []).map((e) => ({ ...e, classe: cota.label || cota.classe })));
+        events.sort((a, b) => String(b.dataIso || "").localeCompare(String(a.dataIso || "")));
+        const eventColumns = [
+          { label: "Data", render: (r) => escapeHtml(r.data) },
+          { label: "Serie", render: (r) => escapeHtml(r.classe) },
+          { label: "Evento", render: (r) => escapeHtml(r.tipoEvento || r.tipo || "-") },
+          { label: "Quantidade", render: (r) => r.quantidade == null ? "-" : escapeHtml(formatNumber(r.quantidade, 0)) },
+          { label: "Valor", render: (r) => escapeHtml(formatCurrency(r.valorEventoReais ?? r.valor)) }
+        ];
+        const pending = cotas.flatMap((cota) => (cota.eventosPendentes || []).map((e) => ({
+          data: formatIsoDate(e.date), classe: cota.label || cota.classe, tipo: "Evento pendente de confirmacao",
+          valorEventoReais: (e.fields?.valorjuros || 0) + (e.fields?.valoramortizacao || 0) || e.fields?.saldoemconta
+        })));
+        const cash = snapshot.caixa || {};
+        const mismatch = cash.total != null && cash.totalCalculado != null && Math.abs(cash.total - cash.totalCalculado) > 0.02;
+        const pendingDocNames = series.filter((r) => r.status === "Pendente documentos").map((r) => `${r.operacao} ${r.serie}`);
+        return `
+          <section class="panel section-panel report-block">
+            <div class="block-title"><h2>Funding e caixa</h2><span class="panel-meta">${escapeHtml(snapshot.metadata.reportDate)}</span></div>
+            <p class="muted-line">Carteira de ativos, PL e subordinada nao recalculados nesta posicao.</p>
+            ${renderGenericTable("Caixa por CRA", cashColumns, cashRows, "Sem caixa informado", "fit-table")}
+            ${mismatch ? `<p class="muted-line">Caixa informado: ${escapeHtml(formatCurrency(cash.total))}. Soma das contas menos fundo de despesas: ${escapeHtml(formatCurrency(cash.totalCalculado))}. Diferenca pendente de conferencia.</p>` : ""}
+            ${pendingDocNames.length ? `<p class="muted-line">Documentos pendentes: ${escapeHtml(pendingDocNames.join("; "))}. Confirmar taxa, datas, prazo e revolvencia.</p>` : ""}
+            ${renderGenericTable("Posicao das series", seriesColumns, series, "Sem funding informado", "wide-table fit-table")}
+            ${events.length ? renderGenericTable("Eventos registrados", eventColumns, events, "", "fit-table") : ""}
+            ${pending.length ? renderGenericTable("Eventos pendentes", eventColumns, pending, "", "fit-table") : ""}
+          </section>`;
       }
 
       function bindChartFilters() {
