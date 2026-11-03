@@ -459,6 +459,7 @@ def main() -> None:
         ]
     )
     snapshot = patch_cra65_pu(date_key)
+    run_command([python_path, PROJECT_ROOT / "scripts" / "refresh-funding-pu.py"])
     print(
         json.dumps(
             {

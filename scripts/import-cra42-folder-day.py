@@ -344,6 +344,7 @@ def main() -> None:
             date_key,
         ]
     )
+    run_command([python_path, PROJECT_ROOT / "scripts" / "refresh-funding-pu.py"])
     print(
         {
             "date_key": date_key,

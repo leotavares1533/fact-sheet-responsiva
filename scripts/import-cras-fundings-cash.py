@@ -655,7 +655,9 @@ def main():
             (work / "manifest-before.js").write_bytes((ROOT / "data/cra-manifest.js").read_bytes())
         decisions_path = Path(args.decisions) if args.decisions else ROOT / "data/fundings/cras-carteira/confirmacoes-2026-10-29.json"
         decisions = json.loads(decisions_path.read_text(encoding="utf-8")) if decisions_path.exists() else {}
+        ENGINE.update_di_rates(cutoff)
         apply_report(report, models, work, decisions)
+        ENGINE.refresh_all_funding_pu()
         return
     print(json.dumps({"positionDate": cutoff, "seriesCount": len(series), "cashVehicleCount": len(cash),
         "cashIssues": [row for row in issues if row["date"] == cutoff], "historicalCashIssueCount": len(issues),

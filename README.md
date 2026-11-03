@@ -13,6 +13,13 @@ Versao estatica da lamina diaria ao investidor, pronta para abrir em navegador o
 
 ## Historico
 
+Ao processar carteira do CRA 42, CRA 65 ou dos CRAs Carteira, a rotina atualiza
+tambem o PU dos fundings das demais emissoes ate o ultimo dia util encerrado,
+com o CDI oficial disponivel e a defasagem de cada serie. A visao em `pu.html`
+mostra a data efetiva do PU separada da ultima posicao de carteira e caixa.
+Sem CDI, cadastro validado ou confirmacao de um evento no periodo, a serie fica
+na ultima data calculavel. A rotina nao altera a subordinada nem os snapshots.
+
 A navegacao por data depende da pasta `data/`, principalmente:
 
 - `data/cra-manifest.js`

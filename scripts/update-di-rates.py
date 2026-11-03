@@ -110,7 +110,8 @@ def main() -> None:
 
     latest_local = max((parse_iso(key) for key in existing), default=None)
     start = parse_iso(args.start_date)
-    end = parse_iso(args.end_date) or parse_iso(args.target_date) or date.today()
+    today = date.today()
+    end = parse_iso(args.end_date) or max(today, parse_iso(args.target_date) or today)
 
     if start is None:
         if latest_local:

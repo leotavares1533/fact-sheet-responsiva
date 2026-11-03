@@ -24,7 +24,27 @@ const output = path.join(root, "tmp/pu-memory-tests");
     await page.goto(pathToFileURL(path.join(root, "pu.html")).href);
     const button = page.locator("#export-pu-memory");
     await page.waitForFunction(() => !document.querySelector("#export-pu-memory").disabled);
+    const status = page.locator("#status-pill");
+    const fundingUpdate = await page.evaluate(() => window.LAMINA_FUNDING_PU);
+    assert.ok(fundingUpdate.vehicles["cra-carteira-73"]);
+    const group = await page.evaluate(() => window.LAMINA_CRA_MANIFEST.find((row) => row.craId === "cra-carteira-73").groupId);
+    await page.locator("#cra-selector").selectOption("group:" + group);
+    await page.locator("#cra-child-selector").selectOption("cra-carteira-73");
+    await status.filter({ hasText: "Funding:" }).waitFor();
+    assert.equal(await page.locator("#date-selector").inputValue(), fundingUpdate.target);
+    await page.locator("#pu-root").getByText("PU de " + fundingUpdate.target.split("-").reverse().join("/"), { exact: true }).waitFor();
+
+    await page.locator("#cra-child-selector").selectOption("cra-carteira-46");
+    await page.getByText(/Vencimento pendente de conciliacao/).waitFor();
+
+    await page.locator("#cra-child-selector").selectOption("cras-carteira-overview");
+    await page.locator(".overview-table tbody tr").filter({ hasText: "CRA02600590" })
+      .getByText(fundingUpdate.target.split("-").reverse().join("/"), { exact: true }).waitFor();
+
     await page.locator("#cra-selector").selectOption("cra:cra-65");
+    await status.filter({ hasText: "Funding:" }).waitFor();
+    assert.equal(await page.locator("#date-selector").inputValue(), fundingUpdate.target);
+    assert.equal(await page.locator("[data-cota-index]").count(), 2, "No residual SUB on the funding-only date");
     await page.waitForFunction(() => !document.querySelector("#export-pu-memory").disabled);
     await page.locator("#date-selector").fill("2026-10-07");
     await page.locator("#date-selector").dispatchEvent("change");

@@ -702,16 +702,26 @@
       && String(cra?.childLabel || "").toLowerCase().includes("geral");
   }
 
+  function fundingUpdateFor(cra) {
+    const update = window.LAMINA_FUNDING_PU?.vehicles?.[cra?.craId];
+    const entry = cra?.dates?.find((row) => row.dateKey === cra.currentDate);
+    return update && update.sourceDate === cra.currentDate && update.sourceRevision === (entry?.revisionId || "") ? update : null;
+  }
+
+  function fundingUpdateTarget(cra) {
+    const target = window.LAMINA_FUNDING_PU?.target;
+    if (!target) return "";
+    return isPortfolioOverviewCra(cra) || fundingUpdateFor(cra) ? target : "";
+  }
+
   function getManifestDateBounds() {
     const cra = getCurrentCra();
     const dates = (cra?.dates || [])
       .map((item) => toIsoDate(item.dateKey))
       .filter(Boolean)
       .sort();
-    const controlDate = getControlDateKey();
-    const maxCandidates = isPortfolioOverviewCra(cra)
-      ? [dates[dates.length - 1], cra?.currentDate].filter(Boolean).sort()
-      : [dates[dates.length - 1], cra?.currentDate, controlDate].filter(Boolean).sort();
+    const controlDate = window.LAMINA_FUNDING_PU ? fundingUpdateTarget(cra) : isPortfolioOverviewCra(cra) ? "" : getControlDateKey();
+    const maxCandidates = [dates[dates.length - 1], cra?.currentDate, controlDate].filter(Boolean).sort();
 
     return {
       min: dates[0] || "",
@@ -720,14 +730,14 @@
   }
 
   function getDefaultDateKey(cra) {
-    const controlDate = getControlDateKey();
+    const controlDate = window.LAMINA_FUNDING_PU ? fundingUpdateTarget(cra) : getControlDateKey();
     const manifestDates = (cra?.dates || [])
       .map((item) => toIsoDate(item.dateKey))
       .filter(Boolean)
       .sort();
     const manifestCurrent = toIsoDate(cra?.currentDate) || manifestDates[manifestDates.length - 1] || "";
 
-    if (isPortfolioOverviewCra(cra)) {
+    if (isPortfolioOverviewCra(cra) && !window.LAMINA_FUNDING_PU) {
       return manifestCurrent || controlDate;
     }
 
@@ -852,9 +862,10 @@
     const isCalculatedView = Boolean(state.snapshot?.metadata?.calculatedView);
     const label = isCalculatedView ? "PU calculado" : isHistoricalView ? "PU historico" : "Snapshot salvo";
     const selectedDate = entry?.reportDate || formatIsoDate(state.dateKey);
-    const currentDate = cra?.currentDate || cra?.dates?.[0]?.dateKey || "";
+    const currentDate = state.snapshot?.metadata?.fundingUpdate
+      ? cra?.currentDate || "" : getDefaultDateKey(cra);
     const currentButton = currentDate && currentDate !== state.dateKey
-      ? `<button class="date-chip date-chip-secondary" data-date-key="${escapeHtml(currentDate)}" type="button">Voltar atual</button>`
+      ? `<button class="date-chip date-chip-secondary" data-date-key="${escapeHtml(currentDate)}" type="button">${state.snapshot?.metadata?.fundingUpdate ? "Última posição" : "Voltar atual"}</button>`
       : "";
 
     nodes.dateChips.innerHTML = state.dateKey
@@ -1267,6 +1278,60 @@
     return historical;
   }
 
+  function fundingRowThrough(series, dateKey) {
+    return (series?.rows || []).filter((row) => row.dataIso <= dateKey).at(-1);
+  }
+
+  function buildFundingUpdateSnapshot(snapshot, dateKey, cra) {
+    const view = cloneData(snapshot);
+    const sourceDate = view.metadata.dateKey;
+    view.metadata = {
+      ...view.metadata, dateKey, reportDate: formatIsoDate(dateKey),
+      fundingUpdate: true, historicalView: true, historicalSourceDateKey: sourceDate
+    };
+    if (isPortfolioOverviewCra(cra)) {
+      const updates = new Map();
+      for (const entry of getAccessibleCraManifest()) {
+        const update = fundingUpdateFor(entry);
+        if (update) Object.entries(update.series).forEach(([code, series]) => updates.set(code, series));
+      }
+      for (const row of view.portfolioOverview.rows || []) {
+        const series = updates.get(row.ifCodigo);
+        const calculated = fundingRowThrough(series, dateKey);
+        if (calculated) {
+          row.puAtual = calculated.puAtualizado;
+          row.valorAtual = calculated.valorReais;
+        }
+        row.dataPu = calculated?.dataIso || sourceDate;
+        row.fundingUpdateReason = row.dataPu < dateKey ? series?.reason : "";
+      }
+      return view;
+    }
+
+    const update = fundingUpdateFor(cra);
+    const cotas = (view.passivo?.cotas || []).filter((cota) => update.series[cota.ifCodigo || cota.classe]);
+    for (const cota of cotas) {
+      const series = update.series[cota.ifCodigo || cota.classe];
+      const row = fundingRowThrough(series, dateKey);
+      cota.dataPu = row?.dataIso || (cota.historicoPu || []).at(-1)?.dataIso || sourceDate;
+      cota.fundingUpdateReason = cota.dataPu < dateKey ? series.reason : "";
+      if (!row) continue;
+      cota.historicoPu.push(...series.rows.filter((item) => item.dataIso <= dateKey));
+      cota.pu = row.puAtualizado;
+      cota.valor = row.valorReais;
+      cota.previsaoPu = [];
+      cota.acumulacaoFinal = {
+        ...cota.acumulacaoFinal, puFinal: row.puAtualizado, periodoFim: row.data,
+        diasAcumulacao: row.diasUteis, diasUteisPeriodo: row.diasUteisPeriodo
+      };
+    }
+    view.passivo.cotas = cotas;
+    if (view.passivo.fundingTotal != null) {
+      view.passivo.fundingTotal = cotas.reduce((sum, cota) => sum + Number(cota.valor || 0), 0);
+    }
+    return view;
+  }
+
   async function getBaseSnapshotForHistoricalDate(dateKey) {
     const craId = state.craId;
     const cra = getCurrentCra();
@@ -1357,7 +1422,7 @@
         .filter((dateKey) => dateKey >= state.dateKey)
         .sort()[0];
       const metrics = [
-        ["Valor total SR/MEZ", formatCurrency(totalValue)],
+        [snapshot.metadata.fundingUpdate ? "SR/MEZ por última data" : "Valor total SR/MEZ", formatCurrency(totalValue)],
         ["Séries ativas", formatNumber(activeRows.length, 0)],
         ["Finalizadas", formatNumber(finalizedRows.length, 0)],
         ["Pendentes/parciais", formatNumber(pendingRows.length, 0)],
@@ -1393,7 +1458,8 @@
     ];
     if (snapshot.metadata?.fundingCashOnly) {
       metrics[0][1] = passivo.fundingTotal == null ? "Nao informado" : formatCurrency(seniorCurrentTotal);
-      metrics[2] = ["Caixa informado", snapshot.caixa?.total == null ? "Nao informado" : formatCurrency(snapshot.caixa.total)];
+      const cashLabel = snapshot.metadata.fundingUpdate ? `Caixa de ${formatIsoDate(snapshot.metadata.historicalSourceDateKey)}` : "Caixa informado";
+      metrics[2] = [cashLabel, snapshot.caixa?.total == null ? "Nao informado" : formatCurrency(snapshot.caixa.total)];
     }
 
     if (!isCrasCarteiraPu) {
@@ -1986,6 +2052,7 @@
         <div class="panel-head">
           <div>
             <h2>Série</h2>
+            ${cota.dataPu ? `<p class="muted-line">PU de ${escapeHtml(formatIsoDate(cota.dataPu))}${cota.fundingUpdateReason ? ` · ${escapeHtml(cota.fundingUpdateReason)}` : ""}</p>` : ""}
             ${cota.documentValidation?.status === "pendente_documentos" ? `<p class="muted-line">Cadastro pendente de documentos: taxa, datas, prazo e revolvencia nao validados. PU importado da planilha.</p>` : ""}
             ${cota.documentValidation?.status === "cadastro_documentado_conciliacao_financeira_pendente" ? `<p class="muted-line">Cadastro revisado com TS e aditamentos. ${cota.documentValidation.calculationStatus === "recalculo_documentado" ? "Memoria recalculada sem DU adicional, conforme orientacao de Leonardo. Ressalva contratual e boletins em conciliacao." : cota.documentValidation.calculationStatus === "recalculo_evento_confirmado" ? "Pagamento confirmado e rateio pela quantidade existente na data do evento. Memoria posterior recalculada com DI D-2. Sem novo desconto no caixa." : cota.financialEventConfirmation ? "Pagamento confirmado. PU da fonte preservado enquanto o tratamento dos juros remanescentes e conciliado." : "PU preservado enquanto pagamentos e rateios sao conciliados."}</p>` : ""}
             ${(cota.eventosPendentes || []).length ? `<p class="muted-line">${escapeHtml(cota.eventosPendentes.length)} evento(s) pendente(s) de confirmacao; nao deduzidos novamente do PU.</p>` : ""}
@@ -2160,7 +2227,7 @@
         <td><strong>${escapeHtml(row.operacao || "-")}</strong></td>
         <td>${escapeHtml(overviewSerieLabel(row))}</td>
         <td title="${escapeHtml(row.ifCodigo || "-")}">${escapeHtml(row.ifCodigo || "-")}</td>
-        <td class="numeric"><strong>${overviewPu(row) == null ? "-" : escapeHtml(formatNumber(overviewPu(row), 6))}</strong></td>
+        <td class="numeric" title="${escapeHtml(row.fundingUpdateReason || "")}"><strong>${overviewPu(row) == null ? "-" : escapeHtml(formatNumber(overviewPu(row), 6))}</strong>${row.dataPu ? `<br><small>${escapeHtml(formatIsoDate(row.dataPu))}</small>` : ""}</td>
         <td class="numeric"><strong>${escapeHtml(formatCurrencyShort(row.valorAtual || 0))}</strong></td>
         <td title="${escapeHtml(overviewRateText(row))}">${escapeHtml(overviewRateText(row))}</td>
         <td>${renderOverviewMaturityCell(row)}</td>
@@ -2309,7 +2376,7 @@
   function prepareSnapshotForPu(snapshot) {
     const prepared = cloneData(snapshot);
     const dateKey = toIsoDate(prepared.metadata?.dateKey || prepared.metadata?.reportDate) || state.dateKey;
-    ensureStaticFundingSeries(prepared, dateKey);
+    if (!prepared.metadata?.fundingUpdate) ensureStaticFundingSeries(prepared, dateKey);
     const cotas = prepared.passivo?.cotas || [];
 
     prepared.passivo = prepared.passivo || {};
@@ -2324,7 +2391,7 @@
 
       return {
         ...cota,
-        previsaoPu: buildForecastRowsForCota(cota, dateKey)
+        previsaoPu: buildForecastRowsForCota(cota, cota.dataPu || dateKey)
       };
     });
 
@@ -2358,7 +2425,7 @@
     if (!exporter) throw new Error("Recarregue a pagina para carregar a exportacao.");
     const snapshot = state.snapshot;
     const cota = snapshot?.passivo?.cotas?.[state.cotaIndex];
-    const dateKey = state.dateKey;
+    const dateKey = cota?.dataPu || state.dateKey;
     if (!cota || state.loading || snapshot.metadata?.portfolioOverview) throw new Error("Aguarde a posicao selecionada carregar.");
     const history = getHistoryRowsToDate(cota, dateKey);
     const last = history[history.length - 1];
@@ -2495,7 +2562,9 @@
     state.loading = false;
     updateMemoryButton();
     setStatus(
-      prepared.metadata?.calculatedView
+      prepared.metadata?.fundingUpdate
+        ? `Funding: ${formatIsoDate(state.dateKey)} · Última posição: ${formatIsoDate(prepared.metadata.historicalSourceDateKey)}`
+        : prepared.metadata?.calculatedView
         ? `PU calculado em ${prepared.metadata?.reportDate || formatIsoDate(state.dateKey)}`
         : prepared.metadata?.historicalView
           ? `PU historico em ${prepared.metadata?.reportDate || formatIsoDate(state.dateKey)}`
@@ -2532,6 +2601,13 @@
       }
 
       const cra = getCurrentCra();
+      if (state.dateKey > cra?.currentDate && state.dateKey <= fundingUpdateTarget(cra)) {
+        const base = await getBaseSnapshotForHistoricalDate(state.dateKey);
+        if (requestId !== state.loadRequestId) return;
+        state.snapshot = buildFundingUpdateSnapshot(base, state.dateKey, cra);
+        renderSnapshot(state.snapshot);
+        return;
+      }
       if (isPortfolioOverviewCra(cra)) {
         const nearestEntry = getNearestManifestEntry(state.dateKey);
         const fallbackDate = toIsoDate(nearestEntry?.dateKey);

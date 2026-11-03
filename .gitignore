@@ -18,6 +18,7 @@
 !/scripts/reconcile-cras-carteira-internal-pu.py
 !/scripts/normalize_carteira.py
 !/scripts/refresh_cra_snapshot_from_imports.py
+!/scripts/refresh-funding-pu.py
 !/scripts/update-di-rates.py
 /tmp/
 /data/fundings/cras-carteira/20??-??-??.json

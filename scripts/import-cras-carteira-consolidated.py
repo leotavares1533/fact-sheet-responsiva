@@ -236,6 +236,11 @@ def update_di_rates(target_date: str) -> None:
     DI_RATES = parse_di_rates()
 
 
+def refresh_all_funding_pu() -> None:
+    subprocess.run([sys.executable, str(REPO_ROOT / "scripts" / "refresh-funding-pu.py")],
+                   cwd=REPO_ROOT, check=True)
+
+
 def di_daily_for(date_key: str) -> tuple[float, float, str]:
     available = [key for key in DI_RATES if key <= date_key]
     if not available:
@@ -1779,6 +1784,8 @@ def main() -> None:
         SNAPSHOT_SOURCE_OVERRIDES.update(load_latest_source_snapshots(cra_ids))
 
     results = [import_record(*record) for record in records]
+    if results:
+        refresh_all_funding_pu()
     print(json.dumps({
         "mode": "all-dates" if args.all_dates else "single-date",
         "dates": len(results),
