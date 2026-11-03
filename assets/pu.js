@@ -1299,6 +1299,9 @@
         const series = updates.get(row.ifCodigo);
         const calculated = fundingRowThrough(series, dateKey);
         if (calculated) {
+          const added = calculated.quantidade - Number(row.quantidadeIntegralizada || 0);
+          if (added > 0) row.quantidadeAIntegralizar = Math.max(0, Number(row.quantidadeAIntegralizar || 0) - added);
+          row.quantidadeIntegralizada = calculated.quantidade;
           row.puAtual = calculated.puAtualizado;
           row.valorAtual = calculated.valorReais;
         }
@@ -1317,6 +1320,9 @@
       cota.fundingUpdateReason = cota.dataPu < dateKey ? series.reason : "";
       if (!row) continue;
       cota.historicoPu.push(...series.rows.filter((item) => item.dataIso <= dateKey));
+      cota.eventosAplicados = [...(cota.eventosAplicados || []),
+        ...(series.events || []).filter((event) => event.dataIso <= dateKey)];
+      cota.quantidade = row.quantidade;
       cota.pu = row.puAtualizado;
       cota.valor = row.valorReais;
       cota.previsaoPu = [];
@@ -1494,7 +1500,8 @@
         <td>${escapeHtml(formatNumber(event.puEvento, 8))}</td>
         <td>${escapeHtml(formatCurrency(getEventTotalValue(event, cota)))}</td>
         <td>${escapeHtml(formatNumber(event.puAposEvento, 8))}</td>
-        <td>${escapeHtml(event.tipoEvento || event.efeito || event.tipoNormalizado || event.tipo || "-")}</td>
+        <td title="${escapeHtml(event.observacao || "")}">${escapeHtml(event.tipo === "integralizacao" && event.quantidade != null
+          ? `${formatNumber(event.quantidade, 0)} títulos` : event.tipoEvento || event.efeito || event.tipoNormalizado || event.tipo || "-")}</td>
       </tr>
     `).join("");
   }

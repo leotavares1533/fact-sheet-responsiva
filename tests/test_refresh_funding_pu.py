@@ -57,6 +57,36 @@ class FundingPuTests(unittest.TestCase):
         self.assertEqual(result["rows"][-1]["dataTaxaDiIso"], "2026-10-28")
         self.assertEqual(result["rows"][-1]["diasUteisPeriodo"], 29)
 
+    def test_confirmed_integrations_change_only_quantity_from_event_date(self):
+        result = funding.build_funding_pu("2026-10-30", funding.engine.parse_di_rates(), set())
+        for number, code, day, old_quantity, new_quantity, value in (
+            (71, "CRA026004HI", "2026-10-29", 280, 485, 208118.99),
+            (74, "CRA02600592", "2026-10-30", 14210, 19850, 5479187.91),
+        ):
+            with self.subTest(code=code):
+                series = result["vehicles"][f"cra-carteira-{number}"]["series"][code]
+                event, = series["events"]
+                self.assertEqual(event["dataIso"], day)
+                self.assertEqual(event["quantidade"], new_quantity - old_quantity)
+                self.assertEqual(event["valorEventoReais"], value)
+                self.assertEqual(event["status"], "realizado")
+                self.assertTrue(all(row["quantidade"] == (old_quantity if row["dataIso"] < day else new_quantity)
+                                    for row in series["rows"]))
+                self.assertTrue(all(row["valorEventoReais"] == (value if row["dataIso"] == day else 0)
+                                    for row in series["rows"]))
+
+    def test_covered_integration_is_not_added_again(self):
+        integration = {"date": self.source, "quantity": 205, "amount": "208118.99"}
+        result = funding.extend_series(self.series, self.source, "2026-10-30", set(), self.rates,
+                                       integrations=[integration])
+        self.assertIn("nao conciliada", result["reason"])
+        self.series["eventosAplicados"] = [{"dataIso": self.source, "tipo": "integralizacao",
+                                            "quantidade": 205, "valorEventoReais": 208118.99}]
+        result = funding.extend_series(self.series, self.source, "2026-10-30", set(), self.rates,
+                                       integrations=[integration])
+        self.assertEqual(result["rows"][-1]["quantidade"], 400000)
+        self.assertNotIn("events", result)
+
 
 if __name__ == "__main__":
     unittest.main()

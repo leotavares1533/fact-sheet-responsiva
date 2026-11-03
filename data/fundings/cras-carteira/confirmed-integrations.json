@@ -1,0 +1,21 @@
+[
+  {
+    "cra": "cra-carteira-71",
+    "ifCodigo": "CRA026004HI",
+    "date": "2026-10-29",
+    "quantity": 205,
+    "unitPrice": "1015.21458500",
+    "amount": "208118.99",
+    "source": "Liquidacao 71 - 2910"
+  },
+  {
+    "cra": "cra-carteira-74",
+    "ifCodigo": "CRA02600592",
+    "date": "2026-10-30",
+    "quantity": 5640,
+    "unitPrice": "971.48721856",
+    "amount": "5479187.91",
+    "source": "Liquidacao 74 - 3010",
+    "note": "Cabecalho SR2 diverge do cadastro e da ficha B3: o codigo corresponde a 1a serie Senior."
+  }
+]

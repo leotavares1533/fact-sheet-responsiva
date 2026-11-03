@@ -37,6 +37,12 @@ const output = path.join(root, "tmp/pu-memory-tests");
     await page.locator("#cra-child-selector").selectOption("cra-carteira-46");
     await page.getByText(/Vencimento pendente de conciliacao/).waitFor();
 
+    const integralization = fundingUpdate.vehicles["cra-carteira-74"].series.CRA02600592.events?.at(-1);
+    if (integralization) {
+      await page.locator("#cra-child-selector").selectOption("cra-carteira-74");
+      await page.getByText("5.640 títulos", { exact: true }).waitFor();
+    }
+
     await page.locator("#cra-child-selector").selectOption("cras-carteira-overview");
     await page.locator(".overview-table tbody tr").filter({ hasText: "CRA02600590" })
       .getByText(fundingUpdate.target.split("-").reverse().join("/"), { exact: true }).waitFor();

@@ -13,6 +13,7 @@ terms = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(terms)
 engine = terms.ENGINE
 ONE = Decimal(1)
+INTEGRATIONS = ROOT / "data/fundings/cras-carteira/confirmed-integrations.json"
 
 
 def dec(value):
@@ -23,7 +24,26 @@ def event_date(event):
     return engine.iso(engine.as_date(event.get("dataIso") or event.get("date") or event.get("data")))
 
 
-def extend_series(cota, source, target, holidays, rates, extra_events=()):
+def integration_event(cota, integration, pu):
+    key = integration["date"]
+    return {
+        "data": engine.date_key_to_br(key), "dataIso": key, "tipo": "integralizacao",
+        "status": "realizado", "quantidade": integration["quantity"],
+        "puIntegralizacao": float(integration["unitPrice"]), "puEvento": float(integration["unitPrice"]),
+        "puAposEvento": float(pu), "valorEventoReais": float(integration["amount"]),
+        "ifCodigo": cota["ifCodigo"], "fonte": integration["source"], "observacao": integration.get("note", ""),
+    }
+
+
+def already_booked(cota, integration):
+    return any(event_date(event) == integration["date"]
+               and event.get("tipo") == "integralizacao" and event.get("status", "realizado") == "realizado"
+               and event.get("quantidade") == integration["quantity"]
+               and dec(event.get("valorEventoReais") or event.get("valor") or 0) == dec(integration["amount"])
+               for event in cota.get("eventosAplicados") or [])
+
+
+def extend_series(cota, source, target, holidays, rates, extra_events=(), integrations=()):
     history = cota.get("historicoPu") or []
     last = history[-1] if history else {}
     rows = []
@@ -31,6 +51,13 @@ def extend_series(cota, source, target, holidays, rates, extra_events=()):
 
     def stop(reason):
         return {**result, "reason": reason}
+
+    unbooked = [integration for integration in integrations if not already_booked(cota, integration)]
+    if any(integration["date"] <= source for integration in unbooked):
+        return stop("Integralizacao confirmada nao conciliada com a posicao importada")
+    pending_integrations = {integration["date"]: integration for integration in unbooked}
+    if pending_integrations:
+        result["events"] = []
 
     if not cota.get("quantidade") or not cota.get("pu") or source >= target:
         return result
@@ -111,13 +138,19 @@ def extend_series(cota, source, target, holidays, rates, extra_events=()):
         calculated, combined = theoretical(product, days)
         # Preserve the imported PU, including any historical residual, as the opening balance.
         pu = terms.quantize(observed + calculated - initial, 8)
+        integration = pending_integrations.get(key)
+        if integration:
+            quantity += dec(integration["quantity"])
+            result["events"].append(integration_event(cota, integration, pu))
         rows.append({
             "data": engine.date_key_to_br(key), "dataIso": key, "diaUtil": True,
             "diasUteis": int(last.get("diasUteis") or 0) + days - period_days, "diasUteisPeriodo": days,
             "quantidade": float(quantity), "valorNominal": float(nominal), "puAtualizado": float(pu),
-            "puAntesEvento": float(pu), "puAposEvento": float(pu), "puEvento": 0, "valorEventoReais": 0,
+            "puAntesEvento": float(pu), "puAposEvento": float(pu), "puEvento": 0,
+            "valorEventoReais": float(integration["amount"]) if integration else 0,
             "principalAntesEvento": float(nominal), "principalAposEvento": float(nominal),
-            "puJuros": float(pu - nominal), "valorReais": float(pu * quantity), "evento": "",
+            "puJuros": float(pu - nominal), "valorReais": float(pu * quantity),
+            "evento": "Integralizacao" if integration else "",
             "taxaDiUtilizadaDia": float(daily), "tdk": float(daily), "fatorDiario": float(factor),
             "taxaDiAnualEquivalente": float((ONE + daily) ** 252 - ONE) if reference else float(fixed),
             "fator": combined, "fatorJurosAcumulado": combined, "produtorioFatorDi": float(product),
@@ -133,6 +166,18 @@ def extend_series(cota, source, target, holidays, rates, extra_events=()):
 
 def build_funding_pu(target, rates, holidays):
     manifest = engine.load_json_assignment(ROOT / "data/cra-manifest.js")
+    integrations = {}
+    seen = set()
+    for entry in json.loads(INTEGRATIONS.read_text(encoding="utf-8")):
+        key = (entry["cra"], entry["ifCodigo"])
+        identity = (*key, entry["date"])
+        if (identity in seen or entry["quantity"] <= 0 or dec(entry["unitPrice"]) <= 0
+                or terms.quantize(dec(entry["unitPrice"]) * entry["quantity"], 2) != dec(entry["amount"])
+                or not engine.is_business_day(date.fromisoformat(entry["date"]), holidays)):
+            raise ValueError(f"Integralizacao confirmada invalida: {identity}")
+        seen.add(identity)
+        integrations.setdefault(key, []).append(entry)
+    matched = set()
     vehicles = {}
     for item in manifest:
         cra = item["craId"]
@@ -149,8 +194,13 @@ def build_funding_pu(target, rates, holidays):
         for cota in snapshot["passivo"]["cotas"]:
             if cota.get("ehFunding") or cota.get("tipo") in {"sr", "mez"}:
                 key = cota.get("ifCodigo") or cota["classe"]
-                series[key] = extend_series(cota, source, target, holidays, rates, payments)
+                if (cra, key) in integrations:
+                    matched.add((cra, key))
+                series[key] = extend_series(cota, source, target, holidays, rates, payments,
+                                            integrations.get((cra, key), ()))
         vehicles[cra] = {"sourceDate": source, "sourceRevision": revision, "series": series}
+    if missing := integrations.keys() - matched:
+        raise ValueError(f"Codigos de integralizacao sem serie no controle: {sorted(missing)}")
     return {"target": target, "vehicles": vehicles}
 
 
