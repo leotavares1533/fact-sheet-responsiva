@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     "craId": "cras-carteira-overview",
     "dateKey": "2026-10-27",
     "reportDate": "27/10/2026",
-    "revisionId": "20261027-documentos-20261030-3a880273-overview",
+    "revisionId": "20261027-revisao-interna-20261103-cra73",
     "importedAt": "2026-10-29T14:03:14.249037-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -56,7 +56,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     "total": 21999553.65
   },
   "passivo": {
-    "fundingTotal": 574055067.8442929,
+    "fundingTotal": 574067594.5986986,
     "cotas": []
   },
   "portfolioOverview": {
@@ -298,12 +298,12 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "sourceClass": "MEZA",
         "ifCodigo": "CRA026000MH",
         "quantidadeIntegralizada": 9000,
-        "puAtual": 730.7769329099999,
-        "valorAtual": 6576992.396189999,
+        "puAtual": 731.84759952,
+        "valorAtual": 6586628.39568,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "30/11/2027",
         "dataVencimentoIso": "2027-11-30",
-        "status": "Cadastro anterior",
+        "status": "PU revisado no controle",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -317,6 +317,16 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
           "checks": [
             "taxa_planilha_diverge_cadastro_validado"
           ]
+        },
+        "revisaoInternaPu": {
+          "versao": "20261027-revisao-interna-20261103",
+          "dataBase": "2026-10-27",
+          "inicio": "2026-08-17",
+          "fonte": "Comunicado CRA 51 de 17/08/2026, aba Versao final, PU residual informado.",
+          "diasUteis": 49,
+          "diReferenciaFinal": "2026-10-23",
+          "puAnterior": 730.7769329099999,
+          "pendencia": null
         }
       },
       {
@@ -327,12 +337,12 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "sourceClass": "MEZB",
         "ifCodigo": "CRA026000MI",
         "quantidadeIntegralizada": 4189,
-        "puAtual": 1149.60816,
-        "valorAtual": 4815708.58224,
+        "puAtual": 1149.6482726,
+        "valorAtual": 4815876.6139214,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "30/11/2028",
         "dataVencimentoIso": "2028-11-30",
-        "status": "Cadastro anterior",
+        "status": "PU revisado no controle",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -346,6 +356,16 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
           "checks": [
             "taxa_planilha_diverge_cadastro_validado"
           ]
+        },
+        "revisaoInternaPu": {
+          "versao": "20261027-revisao-interna-20261103",
+          "dataBase": "2026-10-27",
+          "inicio": "2026-07-23",
+          "fonte": "5o aditamento do CRA 51, clausula 5.1.16.2. PU de 23/07 preservado na mudanca de regime.",
+          "diasUteis": 66,
+          "diReferenciaFinal": "2026-10-23",
+          "puAnterior": 1149.60816,
+          "pendencia": null
         }
       },
       {
@@ -750,12 +770,12 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "sourceClass": "MEZB",
         "ifCodigo": "CRA026000S8",
         "quantidadeIntegralizada": 13000.0,
-        "puAtual": 1076.48535,
-        "valorAtual": 13994309.549999999,
+        "puAtual": 1076.541538,
+        "valorAtual": 13995039.993999999,
         "taxa": "CDI + 6,50% a.a.",
         "dataVencimento": "30/06/2028",
         "dataVencimentoIso": "2028-06-30",
-        "status": "Cadastro anterior",
+        "status": "PU revisado no controle",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -769,6 +789,16 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
           "checks": [
             "vencimento_planilha_diverge_cadastro_validado"
           ]
+        },
+        "revisaoInternaPu": {
+          "versao": "20261027-revisao-interna-20261103",
+          "dataBase": "2026-10-27",
+          "inicio": "2026-06-11",
+          "fonte": "1o aditamento do CRA 59, de 10/06/2026. Primeira integralizacao registrada em 11/06.",
+          "diasUteis": 96,
+          "diReferenciaFinal": "2026-10-23",
+          "puAnterior": 1076.48535,
+          "pendencia": null
         }
       },
       {
@@ -895,12 +925,12 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "sourceClass": "SR1",
         "ifCodigo": "CRA0260020F",
         "quantidadeIntegralizada": 20000,
-        "puAtual": 973.11578502,
-        "valorAtual": 19462315.7004,
+        "puAtual": 973.14967579,
+        "valorAtual": 19462993.5158,
         "taxa": "CDI + 7,50% a.a.",
         "dataVencimento": "30/04/2030",
         "dataVencimentoIso": "2030-04-30",
-        "status": "Cadastro anterior",
+        "status": "PU revisado no controle",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -914,6 +944,16 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
           "checks": [
             "vencimento_planilha_diverge_cadastro_validado"
           ]
+        },
+        "revisaoInternaPu": {
+          "versao": "20261027-revisao-interna-20261103",
+          "dataBase": "2026-10-27",
+          "inicio": "2026-07-10",
+          "fonte": "1o aditamento do CRA 62, clausula 5.1.16.1, e comunicado de 10/07/2026, PU residual.",
+          "diasUteis": 75,
+          "diReferenciaFinal": "2026-10-23",
+          "puAnterior": 973.11578502,
+          "pendencia": null
         }
       },
       {
@@ -924,12 +964,12 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "sourceClass": "MEZA",
         "ifCodigo": "CRA0260020G",
         "quantidadeIntegralizada": 17537.0,
-        "puAtual": 1083.87776999,
-        "valorAtual": 19007964.45231463,
+        "puAtual": 1083.934348,
+        "valorAtual": 19008956.660876,
         "taxa": "CDI + 7,50% a.a.",
         "dataVencimento": "10/05/2030",
         "dataVencimentoIso": "2030-05-10",
-        "status": "Cadastro anterior",
+        "status": "PU revisado no controle",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -943,6 +983,16 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
           "checks": [
             "vencimento_planilha_diverge_cadastro_validado"
           ]
+        },
+        "revisaoInternaPu": {
+          "versao": "20261027-revisao-interna-20261103",
+          "dataBase": "2026-10-27",
+          "inicio": "2026-06-05",
+          "fonte": "1o aditamento do CRA 62, clausula 5.1.16.2. Primeira integralizacao em 05/06 confirmada em 03/11/2026.",
+          "diasUteis": 100,
+          "diReferenciaFinal": "2026-10-23",
+          "puAnterior": 1083.87776999,
+          "pendencia": null
         }
       },
       {
@@ -2143,12 +2193,12 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "sourceClass": "SR1",
         "ifCodigo": "CRA02600590",
         "quantidadeIntegralizada": 35900.0,
-        "puAtual": 1030.76123247,
-        "valorAtual": 37004328.245673,
+        "puAtual": 1030.77020894,
+        "valorAtual": 37004650.500946,
         "taxa": "CDI + 7.50% a.a.",
         "dataVencimento": "30/09/2027",
         "dataVencimentoIso": "2027-09-30",
-        "status": "Conciliacao pendente",
+        "status": "Juros incorporados; conciliar AF",
         "documentValidation": {
           "status": "cadastro_documentado_conciliacao_financeira_pendente",
           "reviewDate": "2026-10-30",
@@ -2229,6 +2279,16 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
             }
           ],
           "calculationStatus": "preservado_pendente_evento_financeiro"
+        },
+        "revisaoInternaPu": {
+          "versao": "20261027-revisao-interna-20261103-cra73",
+          "dataBase": "2026-10-27",
+          "inicio": "2026-08-19",
+          "fonte": "TS CRA 73 e comunicado de 18/09/2026; incorporacao dos juros remanescentes confirmada por Leonardo.",
+          "diasUteis": 47,
+          "diReferenciaFinal": "2026-10-23",
+          "puAnterior": 1030.76123247,
+          "pendencia": null
         }
       },
       {
@@ -2531,7 +2591,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     {
       "craId": "cra-carteira-51",
       "name": "CRA Carteira 51",
-      "funding": 11392700.97843,
+      "funding": 11402505.0096014,
       "cash": 5583.470000000001
     },
     {
@@ -2579,7 +2639,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     {
       "craId": "cra-carteira-59",
       "name": "CRA Carteira 59",
-      "funding": 31350784.057800002,
+      "funding": 31351514.5018,
       "cash": 14028721.16
     },
     {
@@ -2597,7 +2657,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     {
       "craId": "cra-carteira-62",
       "name": "CRA Carteira 62",
-      "funding": 38470280.152714625,
+      "funding": 38471950.176676,
       "cash": 501012.07
     },
     {
@@ -2645,7 +2705,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     {
       "craId": "cra-carteira-73",
       "name": "CRA Carteira 73",
-      "funding": 37004328.245673,
+      "funding": 37004650.500946,
       "cash": 0.0
     },
     {

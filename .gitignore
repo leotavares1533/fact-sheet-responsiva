@@ -15,6 +15,7 @@
 !/scripts/import-cras-carteira-consolidated.py
 !/scripts/import-cras-fundings-cash.py
 !/scripts/reconcile-cras-carteira-documents.py
+!/scripts/reconcile-cras-carteira-internal-pu.py
 !/scripts/normalize_carteira.py
 !/scripts/refresh_cra_snapshot_from_imports.py
 !/scripts/update-di-rates.py
