@@ -20,6 +20,12 @@ mostra a data efetiva do PU separada da ultima posicao de carteira e caixa.
 Sem CDI, cadastro validado ou confirmacao de um evento no periodo, a serie fica
 na ultima data calculavel. A rotina nao altera a subordinada nem os snapshots.
 
+O validador mostra ate cinco dias uteis de carrego projetado para as series
+ativas dos CRAs Carteira, a partir da data-base de funding selecionada. A
+previsao usa a defasagem da serie e a ultima taxa DI conhecida naquela data
+quando a taxa futura ainda nao existe. A previsao para antes de eventos que
+exijam confirmacao. Os PUs exibidos no validador usam oito casas decimais.
+
 A navegacao por data depende da pasta `data/`, principalmente:
 
 - `data/cra-manifest.js`

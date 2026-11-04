@@ -43,7 +43,7 @@ def already_booked(cota, integration):
                for event in cota.get("eventosAplicados") or [])
 
 
-def extend_series(cota, source, target, holidays, rates, extra_events=(), integrations=()):
+def extend_series(cota, source, target, holidays, rates, extra_events=(), integrations=(), *, forecast_days=0):
     history = cota.get("historicoPu") or []
     last = history[-1] if history else {}
     rows = []
@@ -59,7 +59,11 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
     if pending_integrations:
         result["events"] = []
 
-    if not cota.get("quantidade") or not cota.get("pu") or source >= target:
+    if not cota.get("quantidade") or not cota.get("pu"):
+        if forecast_days:
+            return stop("Sem saldo ativo para projetar")
+        return result
+    if source >= target:
         return result
     if last.get("dataIso") != source:
         return stop("Memoria de PU nao chega a ultima posicao")
@@ -112,6 +116,9 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
         return base + terms.quantize(base * (applied - ONE), 8, terms.ROUND_DOWN), float(applied)
 
     initial, _ = theoretical(product, days)
+    known_rates = sorted(key for key, rate in rates.items() if key <= source
+                         and rate.get("fonte") == "Banco Central do Brasil - SGS 12"
+                         and rate.get("taxaDia") is not None) if forecast_days else []
     cursor = date.fromisoformat(source)
     end = date.fromisoformat(target)
     while cursor < end:
@@ -122,9 +129,12 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
         if not engine.is_business_day(cursor, holidays):
             continue
         reference = terms.prior_business_day(key, lag, holidays) if lag is not None else ""
+        rate_key = reference
         daily = Decimal(0)
         if method != "prefixado_252_ts":
-            rate = rates.get(reference, {})
+            if forecast_days:
+                rate_key = next((d for d in reversed(known_rates) if d <= reference), "")
+            rate = rates.get(rate_key, {})
             if rate.get("fonte") != "Banco Central do Brasil - SGS 12" or rate.get("taxaDia") is None:
                 return stop(f"CDI oficial de {engine.date_key_to_br(reference)} indisponivel")
             daily = terms.quantize(dec(rate["taxaDia"]), 8)
@@ -154,14 +164,37 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
             "taxaDiUtilizadaDia": float(daily), "tdk": float(daily), "fatorDiario": float(factor),
             "taxaDiAnualEquivalente": float((ONE + daily) ** 252 - ONE) if reference else float(fixed),
             "fator": combined, "fatorJurosAcumulado": combined, "produtorioFatorDi": float(product),
-            "dataTaxaDiIso": reference, "dataReferenciaTaxaDiIso": reference,
-            "dataTaxaDi": engine.date_key_to_br(reference) if reference else "",
+            "dataTaxaDiIso": rate_key, "dataReferenciaTaxaDiIso": reference,
+            "dataTaxaDi": engine.date_key_to_br(rate_key) if rate_key else "",
             "dataReferenciaTaxaDi": engine.date_key_to_br(reference) if reference else "",
-            "taxaDiStatus": "BCB_SGS_12" if reference else "prefixada",
+            "taxaDiStatus": ("projetada" if forecast_days else "BCB_SGS_12") if reference else "prefixada",
             "lagBusinessDays": lag, "puBaseCalculo": float(base),
         })
         result["through"] = key
+        if forecast_days and len(rows) >= forecast_days:
+            break
     return result
+
+
+def build_series_forecasts(cota, source, actual, holidays, rates, integrations):
+    forecasts = {}
+    opening = cota
+    for key, row in [(source, None), *((row["dataIso"], row) for row in actual["rows"])]:
+        if row is not None:
+            opening = {
+                **cota, "pu": row["puAtualizado"], "quantidade": row["quantidade"],
+                "historicoPu": [row],
+                "eventosAplicados": [*(cota.get("eventosAplicados") or []),
+                                    *(event for event in actual.get("events", []) if event["dataIso"] <= key)],
+            }
+        # Stop before future changes in quantity or cash flow; none are presumed in the forecast.
+        next_integrations = [entry["date"] for entry in integrations if entry["date"] > key]
+        end = (date.fromisoformat(key) + timedelta(days=21)).isoformat()
+        forecasts[key] = extend_series(
+            opening, key, end, holidays, rates, extra_events=next_integrations, integrations=integrations,
+            forecast_days=5,
+        )
+    return forecasts
 
 
 def build_funding_pu(target, rates, holidays):
@@ -196,8 +229,12 @@ def build_funding_pu(target, rates, holidays):
                 key = cota.get("ifCodigo") or cota["classe"]
                 if (cra, key) in integrations:
                     matched.add((cra, key))
-                series[key] = extend_series(cota, source, target, holidays, rates, payments,
-                                            integrations.get((cra, key), ()))
+                confirmed = integrations.get((cra, key), ())
+                series[key] = extend_series(cota, source, target, holidays, rates, payments, confirmed)
+                if cra.startswith("cra-carteira-"):
+                    series[key]["forecasts"] = build_series_forecasts(
+                        cota, source, series[key], holidays, rates, confirmed,
+                    )
         vehicles[cra] = {"sourceDate": source, "sourceRevision": revision, "series": series}
     if missing := integrations.keys() - matched:
         raise ValueError(f"Codigos de integralizacao sem serie no controle: {sorted(missing)}")
@@ -215,6 +252,12 @@ def main():
         parser.error("O corte deve ser um dia util encerrado.")
     result = build_funding_pu(target.isoformat(), engine.parse_di_rates(), holidays)
     path = ROOT / "data/funding-pu-latest.js"
+    preview_columns = ("data", "dataIso", "puAtualizado", "puJuros", "valorReais", "taxaDiAnualEquivalente")
+    for vehicle in result["vehicles"].values():
+        for series in vehicle["series"].values():
+            for forecast in series.get("forecasts", {}).values():
+                forecast["rows"] = [{column: row[column] for column in preview_columns}
+                                    for row in forecast["rows"]]
     payload = "window.LAMINA_FUNDING_PU = " + json.dumps(result, ensure_ascii=True, separators=(",", ":")) + ";\n"
     if not path.exists() or path.read_text(encoding="utf-8") != payload:
         path.write_text(payload, encoding="utf-8")

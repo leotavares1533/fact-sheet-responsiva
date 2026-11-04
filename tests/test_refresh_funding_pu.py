@@ -37,6 +37,38 @@ class FundingPuTests(unittest.TestCase):
         self.assertEqual(result["through"], "2026-10-30")
         self.assertIn("29/10/2026", result["reason"])
 
+    def test_forecast_respects_lag_holidays_and_does_not_use_future_cdi(self):
+        self.rates["2026-10-29"] = {**self.rates["2026-10-28"], "taxaDia": .0006}
+        self.rates["2026-10-30"] = {**self.rates["2026-10-28"], "taxaDia": .01}
+        actual = funding.extend_series(self.series, self.source, "2026-10-30", set(), self.rates)
+        forecast = funding.build_series_forecasts(
+            self.series, self.source, actual, {"2026-11-02"}, self.rates, (),
+        )
+        first, second, third, *_ = forecast[self.source]["rows"]
+        self.assertEqual(len(forecast[self.source]["rows"]), 5)
+        self.assertEqual(first["puAtualizado"], actual["rows"][0]["puAtualizado"])
+        self.assertEqual((second["dataIso"], second["dataTaxaDiIso"]), ("2026-11-03", "2026-10-29"))
+        self.assertEqual(third["dataReferenciaTaxaDiIso"], "2026-10-30")
+        self.assertEqual(third["taxaDiUtilizadaDia"], .0006)
+        self.assertEqual(third["taxaDiStatus"], "projetada")
+        self.assertEqual(forecast["2026-10-30"]["rows"][0]["dataIso"], "2026-11-03")
+        self.assertEqual(self.series["pu"], 1000)
+
+    def test_forecast_does_not_cross_a_payment_or_book_an_integration(self):
+        self.series["agendaPagamentos"] = [{"dataIso": "2026-11-04", "juros": True}]
+        self.series["ifCodigo"] = "CRA-TEST"
+        integration = {"date": "2026-11-03", "quantity": 5, "unitPrice": "1000", "amount": "5000", "source": "Test"}
+        actual = funding.extend_series(
+            self.series, self.source, "2026-10-30", {"2026-11-02"}, self.rates, integrations=[integration],
+        )
+        forecast = funding.build_series_forecasts(
+            self.series, self.source, actual, {"2026-11-02"}, self.rates, [integration],
+        )
+        self.assertEqual([row["dataIso"] for row in forecast[self.source]["rows"]], ["2026-10-30"])
+        self.assertIn("03/11/2026", forecast["2026-10-30"]["reason"])
+        self.assertFalse(forecast["2026-10-30"]["rows"])
+        self.assertTrue(all(row["quantidade"] == 400000 for row in forecast[self.source]["rows"]))
+
     def test_event_and_maturity_hold_the_series(self):
         self.series["agendaPagamentos"] = [{"dataIso": "2026-10-30", "juros": True}]
         result = funding.extend_series(self.series, self.source, "2026-10-30", set(), self.rates)
@@ -56,6 +88,9 @@ class FundingPuTests(unittest.TestCase):
         self.assertEqual(result["rows"][-1]["valorNominal"], 1009.68976270)
         self.assertEqual(result["rows"][-1]["dataTaxaDiIso"], "2026-10-28")
         self.assertEqual(result["rows"][-1]["diasUteisPeriodo"], 29)
+        forecast = funding.build_series_forecasts(senior, source, result, set(), funding.engine.parse_di_rates(), ())
+        self.assertEqual([row["puAtualizado"] for row in forecast[source]["rows"][:3]],
+                         [row["puAtualizado"] for row in result["rows"]])
 
     def test_confirmed_integrations_change_only_quantity_from_event_date(self):
         result = funding.build_funding_pu("2026-10-30", funding.engine.parse_di_rates(), set())

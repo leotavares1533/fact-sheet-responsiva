@@ -33,9 +33,26 @@ const output = path.join(root, "tmp/pu-memory-tests");
     await status.filter({ hasText: "Funding:" }).waitFor();
     assert.equal(await page.locator("#date-selector").inputValue(), fundingUpdate.target);
     await page.locator("#pu-root").getByText("PU de " + fundingUpdate.target.split("-").reverse().join("/"), { exact: true }).waitFor();
+    const pu8 = /^-?(?:\d{1,3}(?:\.\d{3})+|\d+),\d{8}$/;
+    const detailForecast = page.locator(".forecast-class tbody tr");
+    await detailForecast.first().waitFor();
+    assert.equal(await detailForecast.count(), 5);
+    const firstForecast = fundingUpdate.vehicles["cra-carteira-73"].series.CRA02600590.forecasts[fundingUpdate.target].rows[0];
+    assert.equal(await detailForecast.first().locator("td").nth(3).textContent(),
+      firstForecast.puAtualizado.toLocaleString("pt-BR", { minimumFractionDigits: 8, maximumFractionDigits: 8 }));
+    assert.match(await page.locator(".forecast-class-head span").first().textContent(), pu8);
+    await page.locator(".forecast-class").first().screenshot({ path: path.join(output, "forecast-desktop.png") });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.locator(".forecast-class").first().screenshot({ path: path.join(output, "forecast-mobile.png") });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+
+    await page.locator("#cra-child-selector").selectOption("cra-carteira-51");
+    await page.locator(".forecast-class-head").filter({ hasText: /Mezanino/i }).first().waitFor();
+    assert.ok(await page.locator(".forecast-class").filter({ hasText: /Mezanino/i }).first().locator("tbody tr").count());
 
     await page.locator("#cra-child-selector").selectOption("cra-carteira-46");
-    await page.getByText(/Vencimento pendente de conciliacao/).waitFor();
+    await page.locator(".forecast-class").getByText("Vencimento pendente de conciliacao", { exact: true }).waitFor();
+    assert.equal(await detailForecast.count(), 0);
 
     const integralization = fundingUpdate.vehicles["cra-carteira-74"].series.CRA02600592.events?.at(-1);
     if (integralization) {
@@ -46,11 +63,16 @@ const output = path.join(root, "tmp/pu-memory-tests");
     await page.locator("#cra-child-selector").selectOption("cras-carteira-overview");
     await page.locator(".overview-table tbody tr").filter({ hasText: "CRA02600590" })
       .getByText(fundingUpdate.target.split("-").reverse().join("/"), { exact: true }).waitFor();
+    assert.ok((await page.locator(".overview-table tbody tr").filter({ hasText: "CRA02600590" })
+      .locator("td.numeric strong").allTextContents()).some((text) => pu8.test(text)));
 
     await page.locator("#cra-selector").selectOption("cra:cra-65");
-    await status.filter({ hasText: "Funding:" }).waitFor();
+    const cra65FundingOnly = fundingUpdate.target > fundingUpdate.vehicles["cra-65"].sourceDate;
+    await status.filter({ hasText: cra65FundingOnly ? "Funding:" : "Atualizado em" }).waitFor();
     assert.equal(await page.locator("#date-selector").inputValue(), fundingUpdate.target);
-    assert.equal(await page.locator("[data-cota-index]").count(), 2, "No residual SUB on the funding-only date");
+    if (cra65FundingOnly) {
+      assert.equal(await page.locator("[data-cota-index]").count(), 2, "No residual SUB on the funding-only date");
+    }
     await page.waitForFunction(() => !document.querySelector("#export-pu-memory").disabled);
     await page.locator("#date-selector").fill("2026-10-07");
     await page.locator("#date-selector").dispatchEvent("change");

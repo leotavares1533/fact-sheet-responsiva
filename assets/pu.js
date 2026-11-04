@@ -141,6 +141,10 @@
     });
   }
 
+  function formatPu(value) {
+    return formatNumber(value, 8);
+  }
+
   function formatPercent(value) {
     const number = Number(value || 0);
     return number.toLocaleString("pt-BR", {
@@ -471,6 +475,11 @@
 
   function isSeniorCota(cota) {
     return ["SR1", "SR2", "SR3"].includes(String(cota?.classe || "").toUpperCase());
+  }
+
+  function isForecastCota(cota) {
+    const type = String(cota?.tipo || "").toLowerCase();
+    return type !== "sub" && (isSeniorCota(cota) || cota.ehFunding || type === "mez");
   }
 
   function formatNextPayment(cota) {
@@ -1471,7 +1480,7 @@
     if (!isCrasCarteiraPu) {
       metrics.push(
       ["Sub residual", isHistoricalView ? "Nao recalculado" : formatCurrency(passivo.subordinadaTotal)],
-      ["PU SUB residual", isHistoricalView ? "Nao recalculado" : formatNumber(passivo.subordinadaPuResidual, 6)]
+      ["PU SUB residual", isHistoricalView ? "Nao recalculado" : formatPu(passivo.subordinadaPuResidual)]
       );
     }
 
@@ -1604,22 +1613,22 @@
   }
 
   function renderForecast(cotas) {
-    const fundingCotas = (cotas || []).filter(isSeniorCota);
+    const fundingCotas = (cotas || []).filter(isForecastCota);
 
     if (!fundingCotas.length) {
-      return `<p class="muted-line">Previsao ainda nao gerada para as series senior.</p>`;
+      return `<p class="muted-line">Nenhuma serie de funding para projetar.</p>`;
     }
 
-    return fundingCotas.map((cota) => {
+    const classes = fundingCotas.map((cota) => {
       const rows = getForecastRows(cota.previsaoPu || []);
       if (!rows.length) {
         return `
           <section class="forecast-class">
             <div class="forecast-class-head">
               <strong>${escapeHtml(formatClasseDisplay(cota))}</strong>
-              <span>${escapeHtml(formatNumber(cota.pu, 6))}</span>
+              <span>${escapeHtml(formatPu(cota.pu))}</span>
             </div>
-            <p class="muted-line">${escapeHtml(cota.forecastBlockedReason || "Previsao ainda nao calculada para esta serie.")}</p>
+            <p class="muted-line">${escapeHtml(cota.forecastNotice || cota.forecastBlockedReason || "Previsao ainda nao calculada para esta serie.")}</p>
           </section>
         `;
       }
@@ -1628,7 +1637,7 @@
         <section class="forecast-class">
           <div class="forecast-class-head">
             <strong>${escapeHtml(formatClasseDisplay(cota))}</strong>
-            <span>${escapeHtml(formatNumber(cota.pu, 6))}</span>
+            <span>${escapeHtml(formatPu(cota.pu))}</span>
           </div>
           <div class="table-wrap">
             <table class="compact-table rail-table">
@@ -1646,22 +1655,26 @@
                   <tr class="${row.ehDataPagamentoTs ? "is-payment-row" : ""}">
                     <td><strong>${escapeHtml(row.data)}</strong></td>
                     <td>${escapeHtml(formatPercent(getAnnualRate(row)))}</td>
-                    <td>${escapeHtml(formatNumber(row.puJuros, 6))}</td>
-                    <td>${escapeHtml(formatNumber(row.puAtualizado, 6))}</td>
+                    <td>${escapeHtml(formatPu(row.puJuros))}</td>
+                    <td>${escapeHtml(formatPu(row.puAtualizado))}</td>
                     <td>${escapeHtml(formatCurrencyShort(row.valorReais))}</td>
                   </tr>
                   ${row.ehDataPagamentoTs ? `
                     <tr class="payment-note-row">
-                      <td colspan="5">${escapeHtml(row.eventoTs || "Pagamento TS")} - ${escapeHtml(formatNumber(row.puEvento, 6))} PU</td>
+                      <td colspan="5">${escapeHtml(row.eventoTs || "Pagamento TS")} - ${escapeHtml(formatPu(row.puEvento))} PU</td>
                     </tr>
                   ` : ""}
                 `).join("")}
               </tbody>
             </table>
           </div>
+          ${cota.forecastNotice ? `<p class="muted-line">${escapeHtml(cota.forecastNotice)}</p>` : ""}
         </section>
       `;
     }).join("");
+    const assumption = fundingCotas.some((cota) => cota.carteiraForecast && cota.previsaoPu.length)
+      ? '<p class="muted-line">Carrego estimado, sem pagamentos nao confirmados.</p>' : "";
+    return assumption + classes;
   }
 
   function getDefaultSimulationDate(cota) {
@@ -2001,7 +2014,7 @@
 
     const width = 760;
     const height = 178;
-    const padLeft = 42;
+    const padLeft = 105;
     const padRight = 16;
     const padTop = 14;
     const padBottom = 28;
@@ -2039,8 +2052,8 @@
         <svg class="pu-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Grafico de PU historico e projetado">
           <line class="chart-grid" x1="${padLeft}" y1="${padTop}" x2="${padLeft}" y2="${height - padBottom}"></line>
           <line class="chart-grid" x1="${padLeft}" y1="${height - padBottom}" x2="${width - padRight}" y2="${height - padBottom}"></line>
-          <text class="chart-axis-label" x="4" y="${padTop + 4}">${escapeHtml(formatNumber(paddedMax, 2))}</text>
-          <text class="chart-axis-label" x="4" y="${height - padBottom}">${escapeHtml(formatNumber(paddedMin, 2))}</text>
+          <text class="chart-axis-label" x="4" y="${padTop + 4}">${escapeHtml(formatPu(paddedMax))}</text>
+          <text class="chart-axis-label" x="4" y="${height - padBottom}">${escapeHtml(formatPu(paddedMin))}</text>
           <text class="chart-axis-label" x="${padLeft}" y="${height - 8}">${escapeHtml(first.data)}</text>
           <text class="chart-axis-label chart-axis-end" x="${width - padRight}" y="${height - 8}">${escapeHtml(last.data)}</text>
           <path class="chart-line chart-line-history" d="${escapeHtml(buildChartPath(historyPoints))}"></path>
@@ -2234,7 +2247,7 @@
         <td><strong>${escapeHtml(row.operacao || "-")}</strong></td>
         <td>${escapeHtml(overviewSerieLabel(row))}</td>
         <td title="${escapeHtml(row.ifCodigo || "-")}">${escapeHtml(row.ifCodigo || "-")}</td>
-        <td class="numeric" title="${escapeHtml(row.fundingUpdateReason || "")}"><strong>${overviewPu(row) == null ? "-" : escapeHtml(formatNumber(overviewPu(row), 6))}</strong>${row.dataPu ? `<br><small>${escapeHtml(formatIsoDate(row.dataPu))}</small>` : ""}</td>
+        <td class="numeric" title="${escapeHtml(row.fundingUpdateReason || "")}"><strong>${overviewPu(row) == null ? "-" : escapeHtml(formatPu(overviewPu(row)))}</strong>${row.dataPu ? `<br><small>${escapeHtml(formatIsoDate(row.dataPu))}</small>` : ""}</td>
         <td class="numeric"><strong>${escapeHtml(formatCurrencyShort(row.valorAtual || 0))}</strong></td>
         <td title="${escapeHtml(overviewRateText(row))}">${escapeHtml(overviewRateText(row))}</td>
         <td>${renderOverviewMaturityCell(row)}</td>
@@ -2383,13 +2396,28 @@
   function prepareSnapshotForPu(snapshot) {
     const prepared = cloneData(snapshot);
     const dateKey = toIsoDate(prepared.metadata?.dateKey || prepared.metadata?.reportDate) || state.dateKey;
+    const cra = getCurrentCra();
+    const isCarteira = String(cra?.craId || "").startsWith("cra-carteira-");
+    const update = isCarteira ? fundingUpdateFor(cra) : null;
     if (!prepared.metadata?.fundingUpdate) ensureStaticFundingSeries(prepared, dateKey);
     const cotas = prepared.passivo?.cotas || [];
 
     prepared.passivo = prepared.passivo || {};
     prepared.passivo.cotas = cotas.map((cota) => {
-      if (!isSeniorCota(cota)) {
+      if (!isForecastCota(cota)) {
         return cota;
+      }
+
+      if (isCarteira) {
+        const forecasts = update?.series?.[cota.ifCodigo || cota.classe]?.forecasts;
+        const forecast = forecasts?.[cota.dataPu || dateKey]
+          || (!cota.quantidade && dateKey >= update?.sourceDate ? forecasts?.[update.sourceDate] : null);
+        return {
+          ...cota,
+          carteiraForecast: true,
+          previsaoPu: forecast?.rows || [],
+          forecastNotice: forecast?.reason || (!forecast ? "Previsao indisponivel para esta data-base." : "")
+        };
       }
 
       if ((cota.previsaoPu || []).length && getNextPayment(cota)) {
