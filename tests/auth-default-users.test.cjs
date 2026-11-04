@@ -23,16 +23,19 @@ function createContext(storage = new Map()) {
   return { auth: context.window.LAMINA_AUTH, storage };
 }
 
-test('Marilia can sign in as viewer on a fresh browser and must change her initial password', () => {
+for (const [email, name] of [
+  [EMAIL, 'Marilia Montes'],
+  ['wellington.lacerda@ceresasset.com.br', 'Wellington Lacerda'],
+]) test(`${name} can sign in as viewer and must change the initial password`, () => {
   const { auth, storage } = createContext();
-  const record = JSON.parse(storage.get(USERS_KEY))[EMAIL];
-  assert.equal(record.name, 'Marilia Montes');
+  const record = JSON.parse(storage.get(USERS_KEY))[email];
+  assert.equal(record.name, name);
   assert.equal(record.role, 'viewer');
   assert.equal(record.mustChangePassword, true);
-  assert.equal(auth.login(EMAIL, 'incorrect-password').ok, false);
-  const result = auth.login(`  ${EMAIL.toUpperCase()}  `, record.password);
+  assert.equal(auth.login(email, 'incorrect-password').ok, false);
+  const result = auth.login(`  ${email.toUpperCase()}  `, record.password);
   assert.equal(result.ok, true);
-  assert.equal(result.user.email, EMAIL);
+  assert.equal(result.user.email, email);
   assert.equal(result.user.mustChangePassword, true);
   for (const permission of ['viewLamina', 'viewPu', 'generatePdf']) assert.equal(auth.can(permission), true);
   for (const permission of ['simulate', 'viewRealizedEvents', 'updatePu', 'operate', 'publish', 'manageUsers']) {

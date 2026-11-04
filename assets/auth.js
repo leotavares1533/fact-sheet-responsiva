@@ -38,6 +38,12 @@
       password: DEFAULT_PASSWORD,
       mustChangePassword: true,
     },
+    "wellington.lacerda@ceresasset.com.br": {
+      name: "Wellington Lacerda",
+      role: "viewer",
+      password: DEFAULT_PASSWORD,
+      mustChangePassword: true,
+    },
     [ADMIN_EMAIL]: {
       name: "Leonardo Silva",
       role: "admin",
