@@ -153,6 +153,7 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
         for date_column in dict.fromkeys(date_columns):
             accounts = dict(default_accounts)
             provisao = 0.0
+            manual_adjustment = 0.0
             matches = 0
             for row in rows:
                 label = next(
@@ -168,11 +169,15 @@ def extract_cash(cash_path: Path, date_key: str) -> tuple[dict[str, float], floa
                 if not text:
                     continue
                 amount = parse_number(row[date_column] if date_column < len(row) else 0)
+                if text == "ajustemanual":
+                    manual_adjustment += amount
+                    continue
                 matched, row_provisao = assign_cash_value(accounts, text, amount)
                 if matched:
                     matches += 1
                     provisao = row_provisao or provisao
             if matches:
+                accounts["cc"] += manual_adjustment
                 return accounts, provisao
             positional_cash = extract_positional_cash(rows, date_column, date_key)
             if positional_cash:
