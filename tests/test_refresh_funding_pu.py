@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import unittest
 from pathlib import Path
 
@@ -93,13 +94,18 @@ class FundingPuTests(unittest.TestCase):
                          [row["puAtualizado"] for row in result["rows"]])
 
     def test_confirmed_integrations_change_only_quantity_from_event_date(self):
-        result = funding.build_funding_pu("2026-10-30", funding.engine.parse_di_rates(), set())
+        source = "2026-10-27"
+        integrations = json.loads(funding.INTEGRATIONS.read_text(encoding="utf-8"))
         for number, code, day, old_quantity, new_quantity, value in (
             (71, "CRA026004HI", "2026-10-29", 280, 485, 208118.99),
             (74, "CRA02600592", "2026-10-30", 14210, 19850, 5479187.91),
         ):
             with self.subTest(code=code):
-                series = result["vehicles"][f"cra-carteira-{number}"]["series"][code]
+                cra = f"cra-carteira-{number}"
+                snapshot = funding.engine.load_snapshot(funding.ROOT / f"data/cras/{cra}/{source}.js", cra, source)
+                cota = next(c for c in snapshot["passivo"]["cotas"] if c["ifCodigo"] == code)
+                series = funding.extend_series(cota, source, "2026-10-30", set(), funding.engine.parse_di_rates(),
+                    integrations=[event for event in integrations if event["cra"] == cra and event["ifCodigo"] == code])
                 event, = series["events"]
                 self.assertEqual(event["dataIso"], day)
                 self.assertEqual(event["quantidade"], new_quantity - old_quantity)

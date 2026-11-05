@@ -382,6 +382,7 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
     principal = first_present_number(latest.get("valorNominal"), next_cota.get("principalResidual"), next_cota.get("valorNominalInicial"))
     pu = first_present_number(latest.get("puAtualizado"), next_cota.get("pu"), principal)
     base_pu = principal
+    retained_interest = to_number(latest.get("puJurosRetidosSemCapitalizacao"))
     period_factor = to_number(latest.get("fatorDiAcumulado")) or 1.0
     total_factor = to_number(latest.get("produtorioFatorDi")) or 1.0
     dias_uteis = int(to_number(latest.get("diasUteis")))
@@ -408,7 +409,7 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
                 period_factor = fixed_period_factor(next_cota, dias_uteis_periodo)
                 total_factor = fixed_period_factor(next_cota, dias_uteis)
                 pure_di_factor = total_factor
-                pu = apply_ts_factor(principal, period_factor)
+                pu = apply_ts_factor(principal, period_factor) + retained_interest
             elif "di_spread" in metodo:
                 taxa_dia, taxa_aa, rate_key = combined_di_spread_daily(day_key, snapshot, next_cota, latest)
                 fator_diario = ts_daily_factor(taxa_dia, to_number(next_cota.get("percentualIndexador")) or 1.0)
@@ -416,7 +417,7 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
                 total_factor = add_ts_factor(total_factor, fator_diario)
                 di_daily, _, _ = di_daily_for(day_key)
                 pure_di_factor = add_ts_factor(pure_di_factor, ts_daily_factor(di_daily or taxa_dia, 1.0))
-                pu = apply_ts_factor(base_pu, period_factor)
+                pu = apply_ts_factor(base_pu, period_factor) + retained_interest
             else:
                 taxa_dia = to_number(latest.get("taxaDiUtilizadaDia") or latest.get("tdk"))
                 taxa_aa = to_number(latest.get("taxaDiAnualEquivalente"))
@@ -424,9 +425,9 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
                 period_factor = add_ts_factor(period_factor, fator_diario)
                 total_factor = add_ts_factor(total_factor, fator_diario)
                 pure_di_factor = add_ts_factor(pure_di_factor, ts_daily_factor(taxa_dia, 1.0))
-                pu = apply_ts_factor(base_pu, period_factor)
+                pu = apply_ts_factor(base_pu, period_factor) + retained_interest
 
-        fator = pu / principal if principal else 0.0
+        fator = (pu - retained_interest) / principal if principal else 0.0
         row = {
             "data": br_date(cursor),
             "dataIso": day_key,
@@ -463,6 +464,8 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
             "efeitoEvento": "",
             "ehDataPagamentoTs": False,
         }
+        if retained_interest:
+            row["puJurosRetidosSemCapitalizacao"] = retained_interest
         history.append(row)
         latest = row
 
@@ -474,6 +477,8 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
     next_cota["dataHistoricaDisponivel"] = True
     next_cota["dataHistoricaSelecionada"] = final_row.get("data")
     next_cota["dataHistoricaIso"] = final_row.get("dataIso")
+    if "fundingSourceDateKey" in next_cota:
+        next_cota["fundingSourceDateKey"] = final_row.get("dataIso")
     next_cota["visaoCalculadaPu"] = final_row.get("dataIso") == target_key
     next_cota["acumulacaoFinal"] = {
         **(next_cota.get("acumulacaoFinal") or {}),

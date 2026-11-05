@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
     "craId": "cras-carteira-overview",
     "dateKey": "2026-10-27",
     "reportDate": "27/10/2026",
-    "revisionId": "20261027-revisao-interna-20261103-cra73",
+    "revisionId": "20261105-encargos-passados-53-54",
     "importedAt": "2026-10-29T14:03:14.249037-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -410,7 +410,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "31/03/2027",
         "dataVencimentoIso": "2027-03-31",
-        "status": "Cadastro anterior",
+        "status": "04/09: encargos passados, sem efeito no PU",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -439,7 +439,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "30/03/2027",
         "dataVencimentoIso": "2027-03-30",
-        "status": "Cadastro anterior",
+        "status": "04/09: encargos passados, sem efeito no PU",
         "documentValidation": {
           "status": "validado_cadastro_anterior",
           "fields": [],
@@ -2781,18 +2781,6 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-27"] = {
       "class": "MEZB",
       "date": "2026-03-20",
       "type": "evento_anterior_base_validada_pendente"
-    },
-    {
-      "cra": "cra-carteira-53",
-      "class": "SR1",
-      "date": "2026-09-04",
-      "type": "ajuste_generico_sem_detalhamento"
-    },
-    {
-      "cra": "cra-carteira-54",
-      "class": "SR1",
-      "date": "2026-09-04",
-      "type": "ajuste_generico_sem_detalhamento"
     },
     {
       "cra": "cra-carteira-55",

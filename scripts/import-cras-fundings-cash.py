@@ -128,6 +128,10 @@ def select_payments(entry, issues, decisions):
             chosen.update({"pending": False, "status": "nao_efetivado", "humanConfirmation": decision})
             selected.append(chosen)
             continue
+        if decision and decision.get("kind") == "encargos_passados" and decision.get("ignoreForPu"):
+            chosen.update(pending=False, status="realizado_sem_efeito_pu", humanConfirmation=copy.deepcopy(decision))
+            selected.append(chosen)
+            continue
         if decision:
             chosen["humanConfirmation"] = decision
         chosen["pending"] = conflict and decision is None
@@ -135,6 +139,11 @@ def select_payments(entry, issues, decisions):
             chosen = copy.deepcopy(min(events, key=lambda event: abs(payment_amount(event) - decision["amount"])))
             chosen["pending"] = False
             chosen["humanConfirmation"] = decision
+        if decision and decision.get("kind") == "amortizacao_extraordinaria":
+            if not decision.get("amountConfirmed") or not decision.get("reduceFunding"):
+                raise ValueError("Amortizacao extraordinaria sem valor confirmado")
+            chosen["fields"].update(valorjuros=0, pujuros=0,
+                valoramortizacao=decision["amount"], puamortizacao=decision["puAmortizacao"])
         if len(events) > 1:
             issues.append({"cra": entry["cra"], "class": entry["class"], "date": key,
                 "type": "quadros_pagamento_repetidos_divergentes" if conflict else "quadros_pagamento_deduplicados",
@@ -142,11 +151,19 @@ def select_payments(entry, issues, decisions):
         if not any(abs(chosen["fields"].get(k, 0)) > .00000001 for k in ["valorjuros", "valoramortizacao", "pujuros", "puamortizacao"]):
             chosen["pending"] = not bool(decision and decision.get("reduceFunding"))
             if chosen["pending"]:
+                payment_pending = decision and decision.get("kind") == "pagamento" and decision.get("amountConfirmed") is False
+                if payment_pending:
+                    issue_type = "pagamento_confirmado_valor_rateio_pendente"
+                elif decision and decision.get("kind") == "outro_ajuste":
+                    issue_type = "ajuste_generico_sem_detalhamento"
+                else:
+                    issue_type = "evento_generico_sem_natureza_confirmada"
                 issues.append({"cra": entry["cra"], "class": entry["class"], "date": key,
-                    "type": "ajuste_generico_sem_detalhamento" if decision and decision.get("kind") == "outro_ajuste" else "evento_generico_sem_natureza_confirmada",
+                    "type": issue_type,
                     "pending": True, "amount": payment_amount(chosen)})
                 if decision:
-                    chosen["pendingReason"] = "Outro ajuste confirmado pelo usuario; sem reducao de funding ate detalhamento."
+                    chosen["pendingReason"] = ("Pagamento confirmado; valor ou rateio correto sera enviado por Leonardo. Sem baixa de funding ate confirmacao."
+                                               if payment_pending else "Outro ajuste confirmado pelo usuario; sem reducao de funding ate detalhamento.")
         if chosen["pending"] and any(e.get("dataIso") == key and norm(e.get("tipo")) != "integralizacao"
                 for e in (entry.get("previous") or {}).get("eventosAplicados", [])):
             chosen["pending"] = False
@@ -199,6 +216,35 @@ def apply_payment(cota, event, entry, issues):
         raise ValueError(f'Pagamento sem quantidade: {entry["cra"]}/{entry["class"]}/{event["date"]}')
     before = float(row["puAtualizado"])
     paid = payment_amount(event)
+    confirmation = event.get("humanConfirmation") or {}
+    if confirmation.get("kind") == "amortizacao_extraordinaria":
+        amortization_pu = float(confirmation["puAmortizacao"])
+        nominal = float(row["valorNominal"])
+        if not (0 < amortization_pu <= nominal) or abs(amortization_pu * quantity - paid) > .02:
+            raise ValueError("PU de amortizacao nao concilia com o principal, quantidade ou pagamento")
+        principal_after = nominal - amortization_pu
+        after = before - amortization_pu
+        factor = row.get("fatorDiAcumulado") or 1
+        # Retain interest on the redeemed principal separately, without capitalizing it.
+        retained_interest = round(after - ENGINE.apply_ts_factor(principal_after, factor), 8)
+        row.update(valorNominal=principal_after, puAntesEvento=before, puEvento=amortization_pu,
+            puAposEvento=after, puAtualizado=after, puJuros=after-principal_after,
+            principalAntesEvento=nominal, principalAposEvento=principal_after,
+            valorReais=after*quantity, valorEventoReais=paid, evento="Amortizacao extraordinaria",
+            efeitoEvento="Somente principal amortizado; juros acumulados e periodo preservados",
+            puJurosRetidosSemCapitalizacao=retained_interest)
+        cota.update(pu=after, principalResidual=principal_after, valor=after*quantity)
+        cota.setdefault("eventosAplicados", []).append({
+            "data": br(event["date"]), "dataIso": event["date"], "tipo": "amortizacao_extraordinaria",
+            "tipoEvento": "Amortizacao extraordinaria", "quantidadeNoEvento": quantity,
+            "valorEventoReais": paid, "valorJuros": 0, "valorAmortizacao": paid,
+            "puJuros": 0, "puAmortizacao": amortization_pu, "puEvento": amortization_pu,
+            "puAntesEvento": before, "puAposEvento": after, "principalAntesEvento": nominal,
+            "principalAposEvento": principal_after, "puJurosNaoQuitados": before-nominal,
+            "incorpora": False, "humanConfirmation": copy.deepcopy(confirmation),
+            "observacao": "Evento B3 sem juros. Principal baixado; caixa informado preservado.",
+        })
+        return
     pu_event = paid / quantity
     after = max(0.0, before - pu_event)
     if paid > before * quantity + .02:
@@ -211,11 +257,15 @@ def apply_payment(cota, event, entry, issues):
         "valorReais": after * quantity, "valorEventoReais": paid, "evento": "Juros / amortizacao" if event["fields"].get("valorjuros") else "Amortizacao / evento",
         "fatorDiAcumulado": 1, "diasUteisPeriodo": 0, "fatorJurosAcumulado": 1,
         "efeitoEvento": "Pagamento deduzido do PU; saldo residual inicia novo periodo"})
+    row.pop("puJurosRetidosSemCapitalizacao", None)
     cota.update({"pu": after, "principalResidual": after, "valor": after * quantity})
     item = {"data": br(event["date"]), "dataIso": event["date"], "tipo": "juros_amortizacao", "tipoEvento": row["evento"],
         "valorEventoReais": paid, "valorJuros": event["fields"].get("valorjuros"),
         "valorAmortizacao": event["fields"].get("valoramortizacao"), "puAntesEvento": before,
         "puEvento": pu_event, "puAposEvento": after, "sourceSheet": event["sourceSheet"], "sourceCells": event["sourceCells"]}
+    if event.get("humanConfirmation"):
+        item["humanConfirmation"] = copy.deepcopy(event["humanConfirmation"])
+        item["observacao"] = "Pagamento confirmado deduzido apenas do funding; caixa informado preservado."
     if event.get("excessPaymentReais"):
         item["differencePendingReconciliationReais"] = event["excessPaymentReais"]
     cota.setdefault("eventosAplicados", []).append(item)
@@ -330,6 +380,9 @@ def build_cota(entry, model, cutoff, issues, decisions):
     cota["previsaoPu"] = []
     cota["eventosPendentes"] = [e for e in payments if e["pending"]]
     cota["eventosPrevistos"] = [e for e in payments if e["status"] == "previsto"]
+    non_pu_events = [event for event in payments if event["status"] == "realizado_sem_efeito_pu"]
+    if non_pu_events:
+        cota["eventosSemEfeitoPu"] = non_pu_events
     cota["eventosAplicados"].sort(key=lambda e: e.get("dataIso", ""))
     subscriptions = [e for e in cota["eventosAplicados"] if norm(e.get("tipo")) == "integralizacao"]
     for row in cota["historicoPu"]:

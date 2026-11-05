@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-10-27"] = {
     "craId": "cra-carteira-53",
     "dateKey": "2026-10-27",
     "reportDate": "27/10/2026",
-    "revisionId": "20261027-documentos-20261030-3a880273",
+    "revisionId": "20261105-encargos-passados-53-54",
     "importedAt": "2026-10-29T14:03:14.459857-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -10336,7 +10336,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-10-27"] = {
         },
         "forecastBlockedReason": "Agenda futura e documentos pendentes de conciliacao nesta importacao.",
         "previsaoPu": [],
-        "eventosPendentes": [
+        "eventosPendentes": [],
+        "eventosPrevistos": [],
+        "eventosSemEfeitoPu": [
           {
             "date": "2026-09-04",
             "type": "pagamento",
@@ -10351,32 +10353,60 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-10-27"] = {
               "saldoemconta": "M162",
               "pueventogenerico": "M163"
             },
-            "status": "realizado",
+            "status": "realizado_sem_efeito_pu",
+            "pending": false,
             "humanConfirmation": {
               "reduceFunding": false,
-              "kind": "outro_ajuste",
-              "detailsPending": true,
+              "kind": "encargos_passados",
+              "ignoreForPu": true,
+              "amountConfirmed": true,
+              "amount": 1601742.06,
+              "puEventoInformadoB3": "40.14391130",
+              "puJuros": "0.00000000",
+              "quantityAtEvent": 39900,
+              "incorpora": false,
               "confirmedBy": "Leonardo",
-              "confirmedOn": "2026-10-29"
-            },
-            "pending": true,
-            "pendingReason": "Outro ajuste confirmado pelo usuario; sem reducao de funding ate detalhamento."
+              "confirmedOn": "2026-11-05",
+              "source": "CRA026000B7.tsv",
+              "sourceSha256": "af5169ccc7fc03a67ff85f2f1459965a8a94ebd01a8abafb1f8ed69912b4e493",
+              "sourceEvent": {
+                "Data Original": "04/09/2026",
+                "Data da Efetivação": "04/09/2026",
+                "Data de Liquidação": "04/09/2026",
+                "Liquidação": "D0",
+                "Sistema": "CETIP21",
+                "Título": "CRA026000B7",
+                "Tipo do Título": "CRA",
+                "Situação Título": "CONFIRMADO",
+                "Nome Evento": "AMORTIZACAO EXTRAORDINARIA",
+                "Status Evento": "INFORMACAO DE PU ANTECIPADO",
+                "Observação": "----",
+                "Taxa do Evento": "----",
+                "PU Evento": "40,14391130",
+                "PU Amortização - Principal": "----",
+                "PU Amortização - Atualização Monetária": "----",
+                "Incorpora": "N",
+                "Status de Liquidação": "Liquidado através da Cetip",
+                "Registrador": "CERESSEC",
+                "Agente Pagto": "CERESSEC",
+                "PU Calculado pelo Sistema": "----",
+                "PU Calculado": "----",
+                "Quitacao Integral Inad.": "----"
+              },
+              "note": "Leonardo esclareceu que o pagamento foi de encargos passados e nao reduziu o PU. Desconsiderar o evento no funding: sem baixa de principal, pagamento de juros correntes, incorporacao ou reinicio do periodo. Caixa informado preservado."
+            }
           }
         ],
-        "eventosPrevistos": [],
-        "eventosNaoEfetivados": [
-          {
-            "date": "2026-10-07",
-            "status": "nao_efetivado",
-            "confirmedBy": "Leonardo",
-            "confirmationDate": "2026-10-30",
-            "scope": [
-              "cra-carteira-53/SR1"
-            ],
-            "description": "Pagamentos de 07/10 nao aconteceram. Nao aplicar baixa, reset de juros ou saida adicional de caixa."
-          }
-        ],
-        "afEventReconciliation": "AF considera evento 2026-10-07 nao realizado; nao reduzir funding nem caixa."
+        "financialEventConfirmation": {
+          "date": "2026-09-04",
+          "status": "encargos_passados_sem_efeito_pu",
+          "amount": 1601742.06,
+          "source": "CRA026000B7.tsv",
+          "confirmationDate": "2026-11-05",
+          "interestPaid": 0,
+          "reducesFunding": false,
+          "remainingIssue": null
+        }
       }
     ]
   },
@@ -12333,15 +12363,6 @@ window.LAMINA_CRA_DAILY["cra-carteira-53"]["2026-10-27"] = {
       }
     }
   },
-  "fundingCashIssues": [
-    {
-      "cra": "cra-carteira-53",
-      "class": "SR1",
-      "date": "2026-09-04",
-      "type": "ajuste_generico_sem_detalhamento",
-      "pending": true,
-      "amount": 1601742.06
-    }
-  ],
+  "fundingCashIssues": [],
   "cadastroSeriesDocumentadas": []
 };

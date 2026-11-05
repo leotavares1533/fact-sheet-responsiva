@@ -170,6 +170,8 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
             "taxaDiStatus": ("projetada" if forecast_days else "BCB_SGS_12") if reference else "prefixada",
             "lagBusinessDays": lag, "puBaseCalculo": float(base),
         })
+        if last.get("puJurosRetidosSemCapitalizacao"):
+            rows[-1]["puJurosRetidosSemCapitalizacao"] = last["puJurosRetidosSemCapitalizacao"]
         result["through"] = key
         if forecast_days and len(rows) >= forecast_days:
             break
@@ -230,10 +232,11 @@ def build_funding_pu(target, rates, holidays):
                 if (cra, key) in integrations:
                     matched.add((cra, key))
                 confirmed = integrations.get((cra, key), ())
-                series[key] = extend_series(cota, source, target, holidays, rates, payments, confirmed)
+                funding_source = cota.get("fundingSourceDateKey") or source
+                series[key] = extend_series(cota, funding_source, target, holidays, rates, payments, confirmed)
                 if cra.startswith("cra-carteira-"):
                     series[key]["forecasts"] = build_series_forecasts(
-                        cota, source, series[key], holidays, rates, confirmed,
+                        cota, funding_source, series[key], holidays, rates, confirmed,
                     )
         vehicles[cra] = {"sourceDate": source, "sourceRevision": revision, "series": series}
     if missing := integrations.keys() - matched:
