@@ -452,7 +452,7 @@
     return {
       dateKey: "",
       afLeadDays: 5,
-      interest: true,
+      interest: false,
       ordinaryAmortization: false,
       amex: false,
       rescue: false,
@@ -460,7 +460,9 @@
       interestPayPct: 100,
       ordinaryLimitPct: 100,
       amexLimitPct: 100,
-      premiumPct: 0
+      premiumMode: "amount",
+      premiumAmount: "",
+      premiumPct: ""
     };
   }
 
@@ -485,6 +487,8 @@
         interestPayPct: defaults.interestPayPct,
         ordinaryLimitPct: defaults.ordinaryLimitPct,
         amexLimitPct: defaults.amexLimitPct,
+        premiumMode: defaults.premiumMode,
+        premiumAmount: defaults.premiumAmount,
         premiumPct: defaults.premiumPct
       });
     }
@@ -506,8 +510,19 @@
       interestPayPct: 100,
       ordinaryLimitPct: 100,
       amexLimitPct: 100,
-      premiumPct: 0
+      premiumMode: rowState.premiumMode === "percent" ? "percent" : "amount",
+      premiumAmount: Math.max(0, parseInputNumber(rowState.premiumAmount)),
+      premiumPct: Math.max(0, parseInputNumber(rowState.premiumPct))
     };
+  }
+
+  function getPremiumValue(row, config, baseRow) {
+    if (!config.premium) return 0;
+    const principal = Number(baseRow.valorNominal ?? row.cota.principalResidual ?? 0);
+    const basis = Math.max(0, principal * Number(row.cota.quantidade || 0));
+    return roundDecimal(config.premiumMode === "percent"
+      ? basis * Math.max(0, parseInputNumber(config.premiumPct)) / 100
+      : Math.max(0, parseInputNumber(config.premiumAmount)), 2);
   }
 
   function simulateEvent(row, config, cashAvailable = 0, cashOriginal = cashAvailable) {
@@ -522,7 +537,10 @@
     const handlesInterest = config.interest || hasPrincipalEvent;
     const components = [];
 
-    let cashRemaining = Math.max(0, parseInputNumber(cashAvailable));
+    const premiumRequested = getPremiumValue(row, config, baseRow);
+    const premiumValue = Math.min(premiumRequested, Math.max(0, parseInputNumber(cashAvailable)));
+    const premiumShortfall = premiumRequested - premiumValue;
+    let cashRemaining = Math.max(0, parseInputNumber(cashAvailable) - premiumValue);
     const originalCash = Math.max(0, parseInputNumber(cashOriginal));
     const settlesBalance = roundDecimal(cashRemaining, 2) >= roundDecimal(puBefore * quantity, 2);
     let principalAfterInterest = principalBefore;
@@ -588,7 +606,7 @@
 
     if (config.rescue && quantity > 0 && principal > 0) {
       const neededValue = principal * quantity;
-      if (cashRemaining >= neededValue) {
+      if (roundDecimal(cashRemaining, 2) >= roundDecimal(neededValue, 2)) {
         rescuePu = principal;
         principal = 0;
         cashRemaining = Math.max(0, cashRemaining - neededValue);
@@ -614,22 +632,23 @@
     }
 
     const paidBeforePremium = components.reduce((total, item) => total + Number(item.value || 0), 0);
-    const premiumValue = config.premium ? paidBeforePremium * (Number(config.premiumPct || 0) / 100) : 0;
     if (config.premium) {
-      cashRemaining -= premiumValue;
       components.push({
         component: "Premio",
-        pu: null,
+        pu: quantity > 0 ? premiumValue / quantity : 0,
         value: premiumValue,
-        detail: `${formatPercent(Number(config.premiumPct || 0) / 100)} sobre o valor do evento`
+        detail: (config.premiumMode === "percent"
+          ? `${formatNumber(config.premiumPct, 6)}% sobre principal atual de ${formatCurrency(principalBefore * quantity)}`
+          : "Valor informado em reais")
+          + (premiumShortfall > 0 ? `; faltam ${formatCurrency(premiumShortfall)}` : "")
       });
     }
 
     const principalEventPu = ordinaryPu + amexPu + rescuePu;
-    const eventPu = interestPaidPu + principalEventPu;
+    const eventPu = interestPaidPu + principalEventPu + (quantity > 0 ? premiumValue / quantity : 0);
     const eventValue = paidBeforePremium + premiumValue;
     const afDeadline = addBusinessDays(targetDateKey, -Math.round(Number(config.afLeadDays || 0)));
-    const warning = rescueShortfall > 0 || cashRemaining < -0.0001
+    const warning = rescueShortfall > 0.005 || premiumShortfall > 0.005 || cashRemaining < -0.0001
       ? "insuficiente"
       : eventValue <= 0 && cashOriginal <= 0
         ? "sem-caixa"
@@ -652,11 +671,14 @@
       amexPu,
       rescuePu,
       rescueShortfall,
+      premiumRequested,
+      premiumValue,
+      premiumShortfall,
       eventPu,
       eventValue,
       puAfter,
       principalAfter: principal,
-      valueAfter: principal * quantity,
+      valueAfter: puAfter * quantity,
       cashRemaining,
       components,
       warning
@@ -912,8 +934,9 @@
     const simulations = [...allocations.byId.values()].filter((item) => item.selected).map((item) => item.simulation);
     const selectedRows = simulations.length;
     const selectedCraIds = [...new Set(simulations.map((item) => item.row.craId))];
-    const unallocated = [...allocations.unallocated.values()].reduce((total, value) => total + value, 0);
-    const totalCash = simulations.reduce((total, item) => total + item.cashOriginal, unallocated);
+    const unallocated = selectedCraIds.reduce((total, craId) => total + (allocations.unallocated.get(craId) || 0), 0);
+    const totalCash = [...allocations.byId.values()].filter((item) => selectedCraIds.includes(item.simulation.row.craId))
+      .reduce((total, item) => total + item.cash, unallocated);
     const totalEvent = simulations.reduce((total, item) => total + item.eventValue, 0);
     const totalInterest = simulations.reduce((total, item) => total + item.interestPaidPu * item.quantity, 0);
     const totalPrincipal = simulations.reduce((total, item) => total + (item.ordinaryPu + item.amexPu + item.rescuePu) * item.quantity, 0);
@@ -921,7 +944,7 @@
       const premium = item.components.find((component) => component.component === "Premio");
       return total + Number(premium?.value || 0);
     }, 0);
-    const remaining = simulations.reduce((total, item) => total + Number(item.cashRemaining || 0), unallocated);
+    const remaining = Math.max(0, totalCash - totalEvent);
     const warnings = simulations.filter((item) => item.warning === "insuficiente").length;
 
     nodes.summary.innerHTML = `
@@ -974,10 +997,10 @@
 
   function getAllocations() {
     const byId = new Map();
-    const unallocated = new Map(state.unallocatedCash);
+    const unallocated = new Map();
     for (const craId of new Set(state.rows.map((row) => row.craId))) {
       const previous = [];
-      let carry = 0;
+      let carry = state.unallocatedCash.get(craId) || 0;
       for (const row of getCraAllocationRows(craId)) {
         const rowState = getRowState(row.id);
         let config = getRowEventConfig(row);
@@ -985,12 +1008,13 @@
         const payoff = Math.max(0, roundDecimal(Number(baseRow.puAtualizado || 0) * Number(row.cota.quantidade || 0), 2));
         const blocker = previous.find((item) => getAllocationOrder(item.simulation.row) < getAllocationOrder(row)
           && item.payoff > 0 && (!item.selected || item.simulation.principalAfter > 0.00000001 || item.simulation.dateKey > config.dateKey));
-        const selected = !blocker && (rowState.selected || carry > 0);
+        const selected = !blocker && rowState.selected;
         const requested = blocker ? 0 : Math.max(0, parseInputNumber(rowState.cash)) + carry;
-        const cash = Math.min(requested, payoff);
-        const fullPayoff = payoff > 0 && cash >= payoff;
+        const premium = getPremiumValue(row, config, baseRow);
+        const cash = Math.min(requested, roundDecimal(payoff + premium, 2));
+        const fullPayoff = payoff > 0 && roundDecimal(cash - premium, 2) >= payoff;
         if (fullPayoff) {
-          config = { ...config, interest: false, ordinaryAmortization: true, amex: false, rescue: false, premium: false };
+          config = { ...config, ordinaryAmortization: false, amex: false };
         }
         let simulation = simulateEvent(row, config, cash, cash);
         if (!selected) {
@@ -1004,8 +1028,10 @@
         const allocation = { cash, payoff, selected, fullPayoff, blocker, config, simulation };
         byId.set(row.id, allocation);
         previous.push(allocation);
-        // Only excess above a fully funded payoff can flow to the next series.
-        if (!blocker) carry = selected ? Math.max(0, roundDecimal(requested - cash, 2)) : 0;
+        // Keep blocked cash available, without selecting or paying the next series.
+        carry = blocker
+          ? roundDecimal(carry + Math.max(0, parseInputNumber(rowState.cash)), 2)
+          : Math.max(0, roundDecimal(requested - cash, 2));
       }
       unallocated.set(craId, (unallocated.get(craId) || 0) + carry);
     }
@@ -1021,7 +1047,6 @@
     allocations.byId.forEach((item, rowId) => {
       const rowState = getRowState(rowId);
       rowState.cash = item.cash > 0 ? formatMoneyInput(item.cash) : "";
-      rowState.selected = item.selected;
     });
     state.unallocatedCash = allocations.unallocated;
   }
@@ -1034,24 +1059,19 @@
     rows.slice(rows.findIndex((item) => item.id === row.id) + 1).forEach((item) => {
       const rowState = getRowState(item.id);
       rowState.cash = "";
-      rowState.selected = false;
     });
     state.unallocatedCash.delete(row.craId);
     const rowState = getRowState(row.id);
     rowState.cash = formatMoneyInput(value);
-    rowState.selected = parseInputNumber(value) > 0;
   }
 
   function redistributeCraCash(craId) {
-    const allocations = getAllocations();
     const rows = getCraAllocationRows(craId);
     const total = rows.reduce((sum, row) => sum + Math.max(0, parseInputNumber(getRowState(row.id).cash)),
       state.unallocatedCash.get(craId) || 0);
-    const selected = rows.some((row) => allocations.byId.get(row.id).selected);
     rows.forEach((row, index) => {
       const rowState = getRowState(row.id);
       rowState.cash = index === 0 && total > 0 ? formatMoneyInput(total) : "";
-      rowState.selected = index === 0 && selected;
     });
     state.unallocatedCash.delete(craId);
   }
@@ -1065,6 +1085,7 @@
   }
 
   function renderRowEventChecks(row, allocation) {
+    const rowState = getRowState(row.id);
     const options = [
       ["interest", "Juros"],
       ["ordinaryAmortization", "Amort."],
@@ -1077,12 +1098,28 @@
       <div class="cra-event-checks">
         ${options.map(([key, label]) => `
           <label>
-            <input type="checkbox" data-row-type="${escapeHtml(key)}" data-row-id="${escapeHtml(row.id)}" ${allocation.config[key] ? "checked" : ""} ${allocation.blocker || allocation.fullPayoff ? "disabled" : ""}>
+            <input type="checkbox" data-row-type="${escapeHtml(key)}" data-row-id="${escapeHtml(row.id)}" ${allocation.config[key] ? "checked" : ""} ${isEventTypeDisabled(allocation, key) ? "disabled" : ""}>
             ${escapeHtml(label)}
           </label>
         `).join("")}
       </div>
+      ${allocation.config.premium ? `
+        <div class="sim-premium-controls">
+          <label>Premio
+            <select data-row-premium-mode="${escapeHtml(row.id)}" ${allocation.blocker ? "disabled" : ""}>
+              <option value="amount" ${allocation.config.premiumMode === "amount" ? "selected" : ""}>Valor em R$</option>
+              <option value="percent" ${allocation.config.premiumMode === "percent" ? "selected" : ""}>% do principal atual</option>
+            </select>
+          </label>
+          <label>${allocation.config.premiumMode === "percent" ? "% do principal atual" : "Valor do premio (R$)"}
+            <input type="text" inputmode="decimal" data-row-premium-value="${escapeHtml(row.id)}" value="${escapeHtml(allocation.config.premiumMode === "percent" ? rowState.premiumPct : rowState.premiumAmount)}" ${allocation.blocker ? "disabled" : ""} placeholder="0,00">
+          </label>
+        </div>` : ""}
     `;
+  }
+
+  function isEventTypeDisabled(allocation, key) {
+    return Boolean(allocation.blocker || (allocation.fullPayoff && ["ordinaryAmortization", "amex"].includes(key)));
   }
 
   function renderRows() {
@@ -1780,13 +1817,35 @@
         return;
       }
 
+      const premiumModeId = event.target?.getAttribute("data-row-premium-mode");
+      const premiumValueId = event.target?.getAttribute("data-row-premium-value");
+      const premiumId = premiumModeId || premiumValueId;
+      if (premiumId) {
+        const allocation = getAllocations().byId.get(premiumId);
+        if (allocation && !allocation.blocker) {
+          commitAllocations();
+          const rowState = getRowState(premiumId);
+          if (premiumModeId) {
+            rowState.premiumMode = event.target.value === "percent" ? "percent" : "amount";
+          } else {
+            const value = Math.max(0, parseInputNumber(event.target.value));
+            if (rowState.premiumMode === "percent") rowState.premiumPct = formatNumber(value, 6);
+            else rowState.premiumAmount = formatMoneyInput(value);
+          }
+          redistributeCraCash(state.rows.find((row) => row.id === premiumId).craId);
+        }
+        updateComputedCells();
+        return;
+      }
+
       const type = event.target?.getAttribute("data-row-type");
       const rowId = event.target?.getAttribute("data-row-id");
       if (rowId && type) {
         const allocation = getAllocations().byId.get(rowId);
-        if (!allocation?.blocker && !allocation?.fullPayoff) {
+        if (allocation && !isEventTypeDisabled(allocation, type)) {
           commitAllocations();
           getRowState(rowId)[type] = Boolean(event.target.checked);
+          redistributeCraCash(state.rows.find((row) => row.id === rowId).craId);
         }
         updateComputedCells();
       }

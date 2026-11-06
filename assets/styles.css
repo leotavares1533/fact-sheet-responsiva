@@ -2465,6 +2465,33 @@ tbody tr:hover td {
   background: var(--line);
 }
 
+.sim-premium-controls {
+  display: grid;
+  grid-template-columns: 170px 150px;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.sim-premium-controls label {
+  display: grid;
+  gap: 3px;
+  font-size: 0.67rem;
+  font-weight: 800;
+}
+
+.sim-premium-controls input,
+.sim-premium-controls select {
+  width: 100%;
+  min-width: 0;
+  height: 31px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 7px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.74rem;
+}
+
 .sim-cash-input {
   width: 118px;
   height: 31px;
