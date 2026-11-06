@@ -5,6 +5,7 @@
   const state = {
     rows: [],
     rowState: new Map(),
+    unallocatedCash: new Map(),
     visibleRows: [],
     holidayDates: new Set()
   };
@@ -523,6 +524,7 @@
 
     let cashRemaining = Math.max(0, parseInputNumber(cashAvailable));
     const originalCash = Math.max(0, parseInputNumber(cashOriginal));
+    const settlesBalance = roundDecimal(cashRemaining, 2) >= roundDecimal(puBefore * quantity, 2);
     let principalAfterInterest = principalBefore;
     let puAfterInterest = puBefore;
     let interestPaidPu = 0;
@@ -556,7 +558,9 @@
 
     if (config.ordinaryAmortization && quantity > 0 && principal > 0 && cashRemaining > 0) {
       const limitPu = principal * (Number(config.ordinaryLimitPct || 0) / 100);
-      ordinaryPu = Math.min(limitPu, cashRemaining / quantity, principal);
+      ordinaryPu = settlesBalance && limitPu >= principal
+        ? principal
+        : Math.min(limitPu, cashRemaining / quantity, principal);
       const value = ordinaryPu * quantity;
       principal = Math.max(0, principal - ordinaryPu);
       cashRemaining = Math.max(0, cashRemaining - value);
@@ -842,6 +846,7 @@
     }
     const isCarteira = String(cra?.craId || "").includes("carteira");
     if (isCarteira) {
+      if (cota?.label) return cota.label;
       if (classe === "SR1") return "Senior";
       if (classe === "SR2") return "Mezanino A";
       if (classe === "SR3") return "Mezanino B";
@@ -903,10 +908,12 @@
   }
 
   function renderSummary() {
-    const simulations = getSelectedSimulations();
+    const allocations = getAllocations();
+    const simulations = [...allocations.byId.values()].filter((item) => item.selected).map((item) => item.simulation);
     const selectedRows = simulations.length;
     const selectedCraIds = [...new Set(simulations.map((item) => item.row.craId))];
-    const totalCash = simulations.reduce((total, item) => total + item.cashOriginal, 0);
+    const unallocated = [...allocations.unallocated.values()].reduce((total, value) => total + value, 0);
+    const totalCash = simulations.reduce((total, item) => total + item.cashOriginal, unallocated);
     const totalEvent = simulations.reduce((total, item) => total + item.eventValue, 0);
     const totalInterest = simulations.reduce((total, item) => total + item.interestPaidPu * item.quantity, 0);
     const totalPrincipal = simulations.reduce((total, item) => total + (item.ordinaryPu + item.amexPu + item.rescuePu) * item.quantity, 0);
@@ -914,7 +921,7 @@
       const premium = item.components.find((component) => component.component === "Premio");
       return total + Number(premium?.value || 0);
     }, 0);
-    const remaining = simulations.reduce((total, item) => total + Number(item.cashRemaining || 0), 0);
+    const remaining = simulations.reduce((total, item) => total + Number(item.cashRemaining || 0), unallocated);
     const warnings = simulations.filter((item) => item.warning === "insuficiente").length;
 
     nodes.summary.innerHTML = `
@@ -926,7 +933,7 @@
       <article class="metric-card">
         <span class="metric-label">Caixa informado</span>
         <strong>${escapeHtml(formatCurrencyShort(totalCash))}</strong>
-        <small>Digitado por serie</small>
+        <small>Alocado por prioridade</small>
       </article>
       <article class="metric-card">
         <span class="metric-label">Valor do evento</span>
@@ -946,48 +953,107 @@
       <article class="metric-card ${warnings ? "metric-card-alert" : ""}">
         <span class="metric-label">Saldo pos-evento</span>
         <strong>${escapeHtml(formatCurrencyShort(remaining))}</strong>
-        <small>${warnings ? `${warnings} alerta(s)` : `Premio: ${formatCurrencyShort(totalPremium)}`}</small>
+        <small>${warnings ? `${warnings} alerta(s)` : unallocated > 0 ? `Nao alocado: ${formatCurrencyShort(unallocated)}` : `Premio: ${formatCurrencyShort(totalPremium)}`}</small>
       </article>
     `;
   }
 
-  function getSelectedSimulations() {
-    return state.rows
-      .filter((row) => getRowState(row.id).selected)
-      .map((row) => {
+  function getAllocationOrder(row) {
+    const order = Number(row.cota.ordem);
+    if (Number.isFinite(order) && row.cota.ordem != null) return order;
+    const label = `${row.cota.tipo || ""} ${row.cota.classe || ""} ${row.serie}`.toLowerCase();
+    if (label.includes("sub")) return 90;
+    if (label.includes("mez")) return /mez\s*b|mezb|mezanino b/.test(label) ? 12 : 11;
+    return 10;
+  }
+
+  function getCraAllocationRows(craId) {
+    return state.rows.filter((row) => row.craId === craId)
+      .sort((a, b) => getAllocationOrder(a) - getAllocationOrder(b) || a.id.localeCompare(b.id));
+  }
+
+  function getAllocations() {
+    const byId = new Map();
+    const unallocated = new Map(state.unallocatedCash);
+    for (const craId of new Set(state.rows.map((row) => row.craId))) {
+      const previous = [];
+      let carry = 0;
+      for (const row of getCraAllocationRows(craId)) {
         const rowState = getRowState(row.id);
-        const cash = Math.max(0, parseInputNumber(rowState.cash));
-        return simulateEvent(row, getRowEventConfig(row), cash, cash);
-      });
-  }
-
-  function getSimulationMap() {
-    return getSelectedSimulations().reduce((map, simulation) => {
-      map.set(simulation.row.id, simulation);
-      return map;
-    }, new Map());
-  }
-
-  function simulatePreviewRow(row) {
-    const rowState = getRowState(row.id);
-    const config = getRowEventConfig(row);
-    const cash = Math.max(0, parseInputNumber(rowState.cash));
-    const simulation = simulateEvent(row, config, cash, cash);
-    if (rowState.selected) {
-      return simulation;
+        let config = getRowEventConfig(row);
+        const baseRow = getSimulationBaseRow(row, config.dateKey);
+        const payoff = Math.max(0, roundDecimal(Number(baseRow.puAtualizado || 0) * Number(row.cota.quantidade || 0), 2));
+        const blocker = previous.find((item) => getAllocationOrder(item.simulation.row) < getAllocationOrder(row)
+          && item.payoff > 0 && (!item.selected || item.simulation.principalAfter > 0.00000001 || item.simulation.dateKey > config.dateKey));
+        const selected = !blocker && (rowState.selected || carry > 0);
+        const requested = blocker ? 0 : Math.max(0, parseInputNumber(rowState.cash)) + carry;
+        const cash = Math.min(requested, payoff);
+        const fullPayoff = payoff > 0 && cash >= payoff;
+        if (fullPayoff) {
+          config = { ...config, interest: false, ordinaryAmortization: true, amex: false, rescue: false, premium: false };
+        }
+        let simulation = simulateEvent(row, config, cash, cash);
+        if (!selected) {
+          simulation = {
+            ...simulation, components: [], eventPu: 0, eventValue: 0,
+            puAfter: simulation.puBefore, principalAfter: simulation.principalBefore,
+            valueAfter: simulation.puBefore * simulation.quantity, cashRemaining: cash,
+            warning: blocker ? "prioridade" : cash > 0 ? "sem-evento" : "sem-caixa"
+          };
+        }
+        const allocation = { cash, payoff, selected, fullPayoff, blocker, config, simulation };
+        byId.set(row.id, allocation);
+        previous.push(allocation);
+        // Only excess above a fully funded payoff can flow to the next series.
+        if (!blocker) carry = selected ? Math.max(0, roundDecimal(requested - cash, 2)) : 0;
+      }
+      unallocated.set(craId, (unallocated.get(craId) || 0) + carry);
     }
+    return { byId, unallocated };
+  }
 
-    return {
-      ...simulation,
-      components: [],
-      eventPu: 0,
-      eventValue: 0,
-      puAfter: simulation.puBefore,
-      principalAfter: simulation.principalBefore,
-      valueAfter: simulation.puBefore * simulation.quantity,
-      cashRemaining: cash,
-      warning: cash > 0 ? "sem-evento" : "sem-caixa"
-    };
+  function getSelectedSimulations() {
+    return [...getAllocations().byId.values()].filter((item) => item.selected).map((item) => item.simulation);
+  }
+
+  function commitAllocations() {
+    const allocations = getAllocations();
+    allocations.byId.forEach((item, rowId) => {
+      const rowState = getRowState(rowId);
+      rowState.cash = item.cash > 0 ? formatMoneyInput(item.cash) : "";
+      rowState.selected = item.selected;
+    });
+    state.unallocatedCash = allocations.unallocated;
+  }
+
+  function setAllocationCash(row, value) {
+    const current = getAllocations().byId.get(row.id);
+    if (!current || current.blocker) return;
+    commitAllocations();
+    const rows = getCraAllocationRows(row.craId);
+    rows.slice(rows.findIndex((item) => item.id === row.id) + 1).forEach((item) => {
+      const rowState = getRowState(item.id);
+      rowState.cash = "";
+      rowState.selected = false;
+    });
+    state.unallocatedCash.delete(row.craId);
+    const rowState = getRowState(row.id);
+    rowState.cash = formatMoneyInput(value);
+    rowState.selected = parseInputNumber(value) > 0;
+  }
+
+  function redistributeCraCash(craId) {
+    const allocations = getAllocations();
+    const rows = getCraAllocationRows(craId);
+    const total = rows.reduce((sum, row) => sum + Math.max(0, parseInputNumber(getRowState(row.id).cash)),
+      state.unallocatedCash.get(craId) || 0);
+    const selected = rows.some((row) => allocations.byId.get(row.id).selected);
+    rows.forEach((row, index) => {
+      const rowState = getRowState(row.id);
+      rowState.cash = index === 0 && total > 0 ? formatMoneyInput(total) : "";
+      rowState.selected = index === 0 && selected;
+    });
+    state.unallocatedCash.delete(craId);
   }
 
   function getVisibleRows() {
@@ -998,8 +1064,7 @@
     return state.rows.filter((row) => row.search.includes(filter));
   }
 
-  function renderRowEventChecks(row) {
-    const rowState = getRowState(row.id);
+  function renderRowEventChecks(row, allocation) {
     const options = [
       ["interest", "Juros"],
       ["ordinaryAmortization", "Amort."],
@@ -1012,7 +1077,7 @@
       <div class="cra-event-checks">
         ${options.map(([key, label]) => `
           <label>
-            <input type="checkbox" data-row-type="${escapeHtml(key)}" data-row-id="${escapeHtml(row.id)}" ${rowState[key] ? "checked" : ""}>
+            <input type="checkbox" data-row-type="${escapeHtml(key)}" data-row-id="${escapeHtml(row.id)}" ${allocation.config[key] ? "checked" : ""} ${allocation.blocker || allocation.fullPayoff ? "disabled" : ""}>
             ${escapeHtml(label)}
           </label>
         `).join("")}
@@ -1027,14 +1092,15 @@
       return;
     }
 
-    const simulationMap = getSimulationMap();
+    const allocations = getAllocations();
     nodes.rows.innerHTML = state.visibleRows.map((row) => {
       const rowState = getRowState(row.id);
-      const simulation = simulationMap.get(row.id) || simulatePreviewRow(row);
+      const allocation = allocations.byId.get(row.id);
+      const simulation = allocation.simulation;
       return `
-        <tr data-row-id="${escapeHtml(row.id)}">
+        <tr data-row-id="${escapeHtml(row.id)}" ${allocation.blocker ? `title="Prioridade pendente: ${escapeHtml(allocation.blocker.simulation.row.serie)}"` : ""}>
           <td>
-            <input class="sim-row-check" type="checkbox" data-row-select="${escapeHtml(row.id)}" ${rowState.selected ? "checked" : ""} aria-label="Selecionar ${escapeHtml(row.craName)} ${escapeHtml(row.serie)}">
+            <input class="sim-row-check" type="checkbox" data-row-select="${escapeHtml(row.id)}" ${allocation.selected ? "checked" : ""} ${allocation.blocker ? "disabled" : ""} aria-label="Selecionar ${escapeHtml(row.craName)} ${escapeHtml(row.serie)}">
           </td>
           <td>
             <strong>${escapeHtml(row.craName)}</strong>
@@ -1051,9 +1117,9 @@
             <input class="sim-af-input" type="number" min="0" max="30" step="1" data-row-af="${escapeHtml(row.id)}" value="${escapeHtml(rowState.afLeadDays)}">
           </td>
           <td>
-            <input class="sim-cash-input cra-cash-input" type="text" inputmode="decimal" data-row-cash="${escapeHtml(row.id)}" value="${escapeHtml(rowState.cash)}" placeholder="0,00">
+            <input class="sim-cash-input cra-cash-input" type="text" inputmode="decimal" data-row-cash="${escapeHtml(row.id)}" value="${escapeHtml(allocation.cash > 0 ? formatMoneyInput(allocation.cash) : "")}" ${allocation.blocker ? "disabled" : ""} placeholder="0,00">
           </td>
-          <td>${renderRowEventChecks(row)}</td>
+          <td>${renderRowEventChecks(row, allocation)}</td>
           <td data-cell="puBefore">${escapeHtml(formatNumber(simulation.puBefore, 8))}</td>
           <td data-cell="interestPu">${escapeHtml(formatNumber(simulation.interestPu, 8))}</td>
           <td data-cell="eventPu">${escapeHtml(formatNumber(simulation.eventPu, 8))}</td>
@@ -1068,6 +1134,9 @@
   }
 
   function renderWarning(warning) {
+    if (warning === "prioridade") {
+      return `<span class="sim-badge is-muted">Bloqueada</span>`;
+    }
     if (warning === "insuficiente") {
       return `<span class="sim-badge is-danger">Insuf.</span>`;
     }
@@ -1081,6 +1150,7 @@
   }
 
   function getWarningLabel(warning) {
+    if (warning === "prioridade") return "Serie anterior pendente de quitacao";
     if (warning === "insuficiente") {
       return "Saldo insuficiente";
     }
@@ -1614,6 +1684,7 @@
     });
 
     nodes.applyGlobalDate?.addEventListener("click", () => {
+      commitAllocations();
       const normalized = normalizeBusinessDate(nodes.globalEventDate?.value || "");
       const eventDate = normalized || nodes.globalEventDate?.value || "";
       if (nodes.globalEventDate && normalized && normalized !== nodes.globalEventDate.value) {
@@ -1623,26 +1694,31 @@
       state.rows.forEach((row) => {
         getRowState(row.id).dateKey = eventDate || getDefaultEventDateForRow(row);
       });
+      new Set(state.rows.map((row) => row.craId)).forEach(redistributeCraCash);
       updateComputedCells();
     });
 
     nodes.selectVisible?.addEventListener("click", () => {
+      commitAllocations();
       getVisibleRows().forEach((row) => {
-        getRowState(row.id).selected = true;
+        if (!getAllocations().byId.get(row.id).blocker) getRowState(row.id).selected = true;
       });
       updateComputedCells();
     });
 
     nodes.clearSelection?.addEventListener("click", () => {
+      commitAllocations();
       state.rowState.forEach((item) => {
         item.selected = false;
       });
+      state.unallocatedCash.clear();
       updateComputedCells();
     });
 
     nodes.suggestCash?.addEventListener("click", () => {
-      getVisibleRows().forEach((row) => {
-        getRowState(row.id).cash = formatMoneyInput(row.baseCash);
+      new Set(getVisibleRows().map((row) => row.craId)).forEach((craId) => {
+        const row = getCraAllocationRows(craId)[0];
+        setAllocationCash(row, row.baseCash);
       });
       updateComputedCells();
     });
@@ -1652,13 +1728,11 @@
     nodes.rows?.addEventListener("input", (event) => {
       const cashId = event.target?.getAttribute("data-row-cash");
       if (cashId) {
-        getRowState(cashId).cash = event.target.value;
         return;
       }
 
       const dateId = event.target?.getAttribute("data-row-date");
       if (dateId) {
-        getRowState(dateId).dateKey = event.target.value;
         return;
       }
 
@@ -1671,15 +1745,20 @@
     nodes.rows?.addEventListener("change", (event) => {
       const selectId = event.target?.getAttribute("data-row-select");
       if (selectId) {
-        getRowState(selectId).selected = Boolean(event.target.checked);
+        if (!getAllocations().byId.get(selectId)?.blocker) {
+          commitAllocations();
+          getRowState(selectId).selected = Boolean(event.target.checked);
+        }
         updateComputedCells();
         return;
       }
 
       const dateId = event.target?.getAttribute("data-row-date");
       if (dateId) {
+        commitAllocations();
         const normalized = normalizeBusinessDate(event.target.value);
         getRowState(dateId).dateKey = normalized || event.target.value;
+        redistributeCraCash(state.rows.find((row) => row.id === dateId).craId);
         if (normalized && normalized !== event.target.value) {
           event.target.value = normalized;
         }
@@ -1696,9 +1775,7 @@
 
       const cashId = event.target?.getAttribute("data-row-cash");
       if (cashId) {
-        const formatted = formatMoneyInput(event.target.value);
-        getRowState(cashId).cash = formatted;
-        event.target.value = formatted;
+        setAllocationCash(state.rows.find((row) => row.id === cashId), event.target.value);
         updateComputedCells();
         return;
       }
@@ -1706,7 +1783,11 @@
       const type = event.target?.getAttribute("data-row-type");
       const rowId = event.target?.getAttribute("data-row-id");
       if (rowId && type) {
-        getRowState(rowId)[type] = Boolean(event.target.checked);
+        const allocation = getAllocations().byId.get(rowId);
+        if (!allocation?.blocker && !allocation?.fullPayoff) {
+          commitAllocations();
+          getRowState(rowId)[type] = Boolean(event.target.checked);
+        }
         updateComputedCells();
       }
     });
@@ -1734,7 +1815,9 @@
 
       state.rows = snapshots
         .flatMap(({ cra, snapshot }) => snapshot ? buildRowsFromSnapshot(cra, snapshot) : [])
-        .sort((a, b) => `${a.craName} ${a.serie}`.localeCompare(`${b.craName} ${b.serie}`, "pt-BR", { numeric: true }));
+        .sort((a, b) => a.craName.localeCompare(b.craName, "pt-BR", { numeric: true })
+          || getAllocationOrder(a) - getAllocationOrder(b)
+          || a.serie.localeCompare(b.serie, "pt-BR", { numeric: true }));
 
       const latestBaseDate = state.rows
         .map((row) => row.dateKey)

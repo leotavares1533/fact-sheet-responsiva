@@ -2456,6 +2456,15 @@ tbody tr:hover td {
   accent-color: var(--panel-blue);
 }
 
+.simulator-table input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.simulator-table .sim-cash-input:disabled {
+  background: var(--line);
+}
+
 .sim-cash-input {
   width: 118px;
   height: 31px;
@@ -2588,6 +2597,10 @@ tbody tr:hover td {
   color: var(--ink);
   font-size: 0.76rem;
   text-transform: none;
+}
+
+.event-simulator-page .sim-detail-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
 }
 
 .empty-state {
