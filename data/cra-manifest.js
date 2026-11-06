@@ -5353,8 +5353,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cras-carteira-overview",
     "name": "CRAs Carteira - Visão geral",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-overview",
+        "totalAtivo": null,
+        "funding": 582402042.9685501,
+        "subordinada": null,
+        "dataScript": "data/cras/cras-carteira-overview/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 40778660.72
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -7295,8 +7309,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-44",
     "name": "CRA Carteira 44",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 11853115.101408,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-44/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 7835.55
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -9237,8 +9265,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-45",
     "name": "CRA Carteira 45",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 0.0,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-45/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 191694.86
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -11167,8 +11209,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-46",
     "name": "CRA Carteira 46",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 125838.256698,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-46/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 210165.08
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -13109,8 +13165,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-47",
     "name": "CRA Carteira 47",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 16306196.303292,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-47/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 2976012.15
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -14931,8 +15001,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-48",
     "name": "CRA Carteira 48",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 11343999.358713,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-48/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 19451.53
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -16753,8 +16837,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-49",
     "name": "CRA Carteira 49",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 418973.170329,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-49/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 321682.82
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -18431,8 +18529,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-50",
     "name": "CRA Carteira 50",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 10506775.320573,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-50/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 10798.12
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -19953,8 +20065,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-51",
     "name": "CRA Carteira 51",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 11455735.155124411,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-51/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 5515.95
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -21391,8 +21517,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-52",
     "name": "CRA Carteira 52",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 0.0,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-52/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 59896.82
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -22901,8 +23041,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-53",
     "name": "CRA Carteira 53",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 11304185.837175,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-53/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 964802.81
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -24375,8 +24529,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-54",
     "name": "CRA Carteira 54",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 11246902.07214265,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-54/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 648906.28
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -25849,8 +26017,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-55",
     "name": "CRA Carteira 55",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 10345970.701402,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-55/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 364602.92
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -27326,8 +27508,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 56",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": null,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-56/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 1243474.4
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -27417,8 +27613,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-57",
     "name": "CRA Carteira 57",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 0.0,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-57/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 163458.63
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -28471,8 +28681,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-58",
     "name": "CRA Carteira 58",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 31005629.15251235,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-58/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 0.0
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -29345,8 +29569,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-59",
     "name": "CRA Carteira 59",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 31492768.7118,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-59/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 3838101.2
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -29823,8 +30061,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-60",
     "name": "CRA Carteira 60",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 6777501.374786,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-60/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 210005.82
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -30829,8 +31081,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-61",
     "name": "CRA Carteira 61",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 43983745.448601,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-61/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 131709.7
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -31547,8 +31813,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-62",
     "name": "CRA Carteira 62",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 38655838.854213,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-62/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 501616.17
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32145,8 +32425,22 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-63",
     "name": "CRA Carteira 63",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 40941064.863120005,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-63/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 1792352.05
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32346,8 +32640,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 67",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 27179443.660122,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-67/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 1182770.52
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32440,8 +32748,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 68",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 38374110.550110996,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-68/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 0.0
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32534,8 +32856,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 69",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 39216714.79672299,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-69/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 0.0
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32628,8 +32964,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 70",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 35233679.746916994,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-70/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 1799.84
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32722,8 +33072,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 71",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 20862887.839735,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-71/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 250055.09
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32816,8 +33180,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 72",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 33800895.08189118,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-72/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 6566.67
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -32910,8 +33288,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 73",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 37181525.896821,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-73/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 0.0
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -33004,8 +33396,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 74",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 19322438.1679405,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-74/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 308216.97
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -33098,8 +33504,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 75",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 38329307.35788,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-75/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 25367168.77
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",
@@ -33192,8 +33612,22 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 80",
-    "currentDate": "2026-11-04",
+    "currentDate": "2026-11-05",
     "dates": [
+      {
+        "dateKey": "2026-11-05",
+        "reportDate": "05/11/2026",
+        "importedAt": "2026-11-06T15:37:28.617086-03:00",
+        "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
+        "totalAtivo": null,
+        "funding": 5136800.18852,
+        "subordinada": null,
+        "dataScript": "data/cras/cra-carteira-80/2026-11-05.js",
+        "assetImported": false,
+        "portfolioAssetImport": false,
+        "fundingCashOnly": true,
+        "cash": 0.0
+      },
       {
         "dateKey": "2026-11-04",
         "reportDate": "04/11/2026",

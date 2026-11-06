@@ -41,6 +41,29 @@ class CashTextTests(unittest.TestCase):
         self.assertEqual(components["totals"]["2026-10-28"], 209770.8)
         self.assertEqual(reported["issues"][0]["difference"], -500)
 
+    def test_compact_layout_without_heading_and_unicode_dashes(self):
+        rows = [["", "", "", "", "", "05/11/2026"],
+                ["44\u00aa", "", "", "", "Saldo em Conta Corrente", "R$ 29.549,63"],
+                ["26556-0 (ITAU)", "", "", "", "Saldo em Aplica\u00e7\u00e3o", "\u2013"],
+                ["21371-9", "", "", "", "Fundo de despesa", "R$ 21.714,08"],
+                ["", "", "", "", "Total", "R$ 7.835,55"]]
+        raw = "\n".join("\t".join(row) for row in rows).encode("utf-8")
+        with patch.object(Path, "read_bytes", return_value=raw):
+            parsed = MODULE.parse_source(Path("cash.txt"))
+        self.assertIsNone(parsed["headingTotal"])
+        self.assertIsNone(parsed["headingDifference"])
+        self.assertEqual(parsed["vehicles"], ["cra-carteira-44"])
+        record = parsed["records"]["2026-11-05"]["cra-carteira-44"]
+        self.assertEqual(record["total"], 7835.55)
+        self.assertEqual(record["totalCalculado"], 7835.55)
+        self.assertEqual(record["bankAccount"], "26556-0 (ITAU)")
+        self.assertEqual(parsed["issues"], [])
+
+    def test_old_layout_retains_real_heading_total(self):
+        with patch.object(Path, "read_bytes", return_value=self.source()):
+            parsed = MODULE.parse_source(Path("cash.txt"))
+        self.assertEqual(parsed["headingTotal"], 999)
+
     def test_projection_does_not_bring_future_integrations_into_earlier_cash_date(self):
         cota = {"pu": 1000, "quantidade": 100, "principalResidual": 1000, "valor": 100000,
                 "historicoPu": [{"dataIso": "2026-10-27", "puAtualizado": 1000, "valorNominal": 1000,

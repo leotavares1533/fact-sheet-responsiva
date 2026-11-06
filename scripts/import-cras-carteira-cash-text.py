@@ -26,6 +26,7 @@ OVERVIEW = "cras-carteira-overview"
 
 def money(value):
     value = value.strip().replace("R$", "").replace(" ", "").replace("\u00a0", "")
+    value = value.replace("\u2013", "-").replace("\u2014", "-").replace("\u2212", "-")
     if value in {"", "-"}:
         return Decimal(0)
     return Decimal(value.replace(".", "").replace(",", "."))
@@ -43,25 +44,33 @@ def parse_source(source, cra60_policy="reported"):
                 raise ValueError(f"Cabecalho de datas mudou na linha {line}")
             columns, dates = header, sorted(header.values())
             if heading is None:
-                heading = money(row[2]) if len(row) > 2 else None
+                candidates = [value.strip() for value in row[:min(header)]
+                              if re.fullmatch(r"(?:R\$\s*)?-?\d[\d.]*,\d{2}", value.strip())]
+                if candidates:
+                    heading = money(candidates[0])
             continue
-        if len(row) < 6:
+        fields = [(index, FIELDS[ENGINE.normalize_key(value)]) for index, value in enumerate(row)
+                  if ENGINE.normalize_key(value) in FIELDS]
+        if not fields:
             continue
-        match = re.fullmatch(r"(\d+)\u00aa", row[1].strip())
+        if len(fields) != 1:
+            raise ValueError(f"Mais de um componente de caixa na linha {line}")
+        label_index, field = fields[0]
+        prefix = [value.strip() for value in row[:label_index] if value.strip()]
+        match = next((match for value in prefix if (match := re.fullmatch(r"(\d+)\u00aa", value))), None)
         if match:
             current = f"cra-carteira-{match[1]}"
             if current in blocks:
                 raise ValueError(f"Bloco duplicado: {current}")
             blocks[current] = {}
-        field = FIELDS.get(ENGINE.normalize_key(row[5]))
         if field:
-            if current is None or not columns or field in blocks[current]:
+            if current is None or not columns or min(columns) <= label_index or field in blocks[current]:
                 raise ValueError(f"Linha de caixa fora do bloco ou repetida: {line}")
             padded = row + [""] * (max(columns) + 1 - len(row))
             blocks[current][field] = {key: money(padded[index]) for index, key in columns.items()}
             blocks[current][f"{field}Line"] = line
             if field == "aplicacao":
-                blocks[current]["bankAccount"] = row[1].strip()
+                blocks[current]["bankAccount"] = " ".join(prefix)
     if not dates or not blocks:
         raise ValueError("Nenhum caixa identificado no texto")
     records, issues = {}, []
