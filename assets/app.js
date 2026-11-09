@@ -6,7 +6,9 @@
       const state = {
         craId: window.LAMINA_CURRENT_CRA || craManifest[0]?.craId || "",
         dateKey: "",
-        snapshot: null
+        snapshot: null,
+        circulationModel: null,
+        circulationRequest: 0
       };
 
       const nodes = {
@@ -2561,6 +2563,9 @@
       }
 
       function renderCrasCarteiraOverview(snapshot) {
+        if (window.LAMINA_CARTEIRA_REPORT_VIEW && snapshot.portfolioOverview?.assetRows?.length) {
+          return '<div id="carteira-circulation" class="carteira-report-surface carteira-overview-report" aria-busy="true"><p class="muted-line">Carregando consolidado e resumos dos CRAs...</p></div>';
+        }
         const overview = snapshot.portfolioOverview || {};
         const assetRows = overview.assetRows || [];
         const seriesRows = overview.rows || [];
@@ -2775,12 +2780,47 @@
 
       function renderSnapshot(snapshot) {
         const metadata = snapshot.metadata || {};
+        const circulation = metadata.portfolioOverview && !metadata.fundingCashOnly && Boolean(snapshot.portfolioOverview?.assetRows?.length) && Boolean(window.LAMINA_CARTEIRA_REPORT_VIEW);
+        document.body.classList.toggle("carteira-circulation-view", circulation);
+        state.circulationRequest += 1;
+        state.circulationModel = null;
+        if (nodes.printButton) nodes.printButton.disabled = circulation;
         renderSummary(snapshot);
         renderSections(snapshot);
         renderSources(snapshot);
         renderTimeline();
         updatePrintMeta(snapshot);
         setStatus(`Atualizado em ${metadata.reportDate || state.dateKey}`, "ok");
+        if (circulation) hydrateCarteiraCirculation(snapshot, state.circulationRequest);
+      }
+
+      async function hydrateCarteiraCirculation(snapshot, request) {
+        const dateKey = snapshot.metadata.dateKey;
+        const isCurrent = () => request === state.circulationRequest && state.craId === "cras-carteira-overview" && state.dateKey === dateKey && !isPublicAccess();
+        try {
+          const children = getAccessibleCraManifest().filter(cra => cra.craId.startsWith("cra-carteira-"));
+          const snapshots = [];
+          for (const cra of children) {
+            const entry = cra.dates.find(row => row.dateKey === dateKey);
+            if (!entry || entry.fundingCashOnly || !entry.assetImported) throw new Error("Falta carteira individual na data-base selecionada.");
+            snapshots.push(await loadSnapshot(cra.craId, dateKey));
+            if (!isCurrent()) return;
+          }
+          const model = window.LAMINA_CARTEIRA_REPORT.build(snapshots, dateKey);
+          if (!isCurrent()) return;
+          const host = document.getElementById("carteira-circulation");
+          host.innerHTML = window.LAMINA_CARTEIRA_REPORT_VIEW.render(model, "all");
+          host.setAttribute("aria-busy", "false");
+          state.circulationModel = model;
+          if (nodes.printButton) nodes.printButton.disabled = false;
+          setStatus(`${model.vehicles.length} CRAs - consolidado e resumos em ${formatIsoDate(dateKey)}`, "ok");
+        } catch (error) {
+          if (!isCurrent()) return;
+          const host = document.getElementById("carteira-circulation");
+          host.innerHTML = `<p class="muted-line">${escapeHtml(error.message)}</p>`;
+          host.setAttribute("aria-busy", "false");
+          setStatus("Resumo individual indisponivel", "error");
+        }
       }
 
       function updatePrintMeta(snapshot) {
@@ -2803,6 +2843,9 @@
       }
 
       async function selectDate(dateKey) {
+        state.circulationRequest += 1;
+        state.circulationModel = null;
+        if (nodes.printButton) nodes.printButton.disabled = true;
         if (!dateKey) {
           renderEmptyState("CRA sem data importada");
           return;
@@ -2879,6 +2922,10 @@
       async function printReport() {
         if (!state.snapshot) {
           setStatus("Aguarde carregar", "neutral");
+          return;
+        }
+        if (document.body.classList.contains("carteira-circulation-view") && !state.circulationModel) {
+          setStatus("Aguarde carregar os resumos dos CRAs", "neutral");
           return;
         }
 
