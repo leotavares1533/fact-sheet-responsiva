@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
     "craId": "cra-carteira-74",
     "dateKey": "2026-11-04",
     "reportDate": "04/11/2026",
-    "revisionId": "20261104-caixa-texto-0674c15d6ed1-reported-total_informado",
+    "revisionId": "20261104-integracoes-20261109-cra-carteira-74",
     "importedAt": "2026-11-05T17:07:27.425970-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -121,7 +121,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
     "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
   },
   "passivo": {
-    "fundingTotal": 19309624.0794435,
+    "fundingTotal": 34609461.23417838,
     "subordinadaTotal": null,
     "subordinadaPuResidual": null,
     "cotas": [
@@ -131,7 +131,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
         "label": "Senior",
         "ifCodigo": "CRA02600592",
         "ehFunding": true,
-        "quantidade": 19850.0,
+        "quantidade": 35578.0,
         "valorNominalInicial": 1000,
         "metodo": "di_spread_ts_252",
         "taxaAa": 0,
@@ -167,17 +167,6 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
             "status": "realizado"
           },
           {
-            "data": "26/10/2026",
-            "dataIso": "2026-10-26",
-            "tipo": "integralizacao",
-            "quantidade": 2850.0,
-            "valor": 2761401.31,
-            "valorEventoReais": 2761401.31,
-            "sourceSheet": "74ª PU SR",
-            "sourceRow": 6,
-            "status": "realizado"
-          },
-          {
             "data": "18/09/2026",
             "dataIso": "2026-09-18",
             "tipo": "juros_amortizacao",
@@ -204,6 +193,17 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
             "observacao": "Quantidade historica no evento. Juros unitarios aprovados; memoria posterior DI D-2. Caixa nao deduzido novamente."
           },
           {
+            "data": "26/10/2026",
+            "dataIso": "2026-10-26",
+            "tipo": "integralizacao",
+            "quantidade": 2850.0,
+            "valor": 2761401.31,
+            "valorEventoReais": 2761401.31,
+            "sourceSheet": "74ª PU SR",
+            "sourceRow": 6,
+            "status": "realizado"
+          },
+          {
             "data": "30/10/2026",
             "dataIso": "2026-10-30",
             "tipo": "integralizacao",
@@ -216,6 +216,21 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
             "ifCodigo": "CRA02600592",
             "fonte": "Liquidacao 74 - 3010",
             "observacao": "Cabecalho SR2 diverge do cadastro e da ficha B3: o codigo corresponde a 1a serie Senior."
+          },
+          {
+            "data": "04/11/2026",
+            "dataIso": "2026-11-04",
+            "tipo": "integralizacao",
+            "status": "realizado",
+            "quantidade": 15728,
+            "puIntegralizacao": 972.76794951,
+            "puEvento": 972.76794951,
+            "puAposEvento": 972.77703171,
+            "valorEventoReais": 15299694.31,
+            "ifCodigo": "CRA02600592",
+            "fonte": "Liquidacao 74 - 0411",
+            "observacao": "",
+            "diferencaPuIntegralizacaoControle": -0.0090822
           }
         ],
         "historicoPu": [
@@ -2109,18 +2124,18 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
             "diaUtil": true,
             "diasUteis": 31,
             "diasUteisPeriodo": 31,
-            "quantidade": 19850.0,
+            "quantidade": 35578.0,
             "valorNominal": 952.97612523,
             "puAtualizado": 972.77703171,
             "puAntesEvento": 972.77703171,
             "puAposEvento": 972.77703171,
             "puEvento": 0,
-            "valorEventoReais": 0,
+            "valorEventoReais": 15299694.31,
             "principalAntesEvento": 952.97612523,
             "principalAposEvento": 952.97612523,
             "puJuros": 19.80090648,
-            "valorReais": 19309624.0794435,
-            "evento": "",
+            "valorReais": 34609461.23417838,
+            "evento": "Integralizacao",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
             "fatorDiario": 1.00050788,
@@ -2140,7 +2155,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-74"]["2026-11-04"] = {
         "taxaTexto": "CDI + 4.00% a.a.",
         "pu": 972.77703171,
         "principalResidual": 952.97612523,
-        "valor": 19309624.0794435,
+        "valor": 34609461.23417838,
         "documentValidation": {
           "status": "cadastro_documentado_conciliacao_financeira_pendente",
           "reviewDate": "2026-10-30",

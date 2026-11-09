@@ -11,10 +11,14 @@
   },
   "cra-carteira-46/SR1/2026-09-04": {
     "reduceFunding": false,
-    "kind": "outro_ajuste",
-    "detailsPending": true,
+    "kind": "encargos_passados",
+    "ignoreForPu": true,
+    "amountConfirmed": true,
+    "amount": 591442.99,
+    "detailsPending": false,
     "confirmedBy": "Leonardo",
-    "confirmedOn": "2026-10-29"
+    "confirmedOn": "2026-11-09",
+    "note": "Pagamento anteriormente nao realizado, mas ja deduzido do PU no passado. Pago em 04/09 apenas para acertar o financeiro, sem nova reducao do PU, principal ou reinicio de juros. Nao deduzir novamente do caixa informado."
   },
   "cra-carteira-53/SR1/2026-09-04": {
     "reduceFunding": false,
@@ -98,9 +102,13 @@
   },
   "cra-carteira-55/SR1/2026-09-04": {
     "reduceFunding": false,
-    "kind": "outro_ajuste",
-    "detailsPending": true,
+    "kind": "encargos_passados",
+    "ignoreForPu": true,
+    "amountConfirmed": true,
+    "amount": 536451.91,
+    "detailsPending": false,
     "confirmedBy": "Leonardo",
-    "confirmedOn": "2026-10-29"
+    "confirmedOn": "2026-11-09",
+    "note": "Pagamento anteriormente nao realizado, mas ja deduzido do PU no passado. Pago em 04/09 apenas para acertar o financeiro, sem nova reducao do PU, principal ou reinicio de juros. Nao deduzir novamente do caixa informado."
   }
 }

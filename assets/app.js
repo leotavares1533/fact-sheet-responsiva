@@ -549,7 +549,7 @@
         if (hasNumericValue(passivo.subordinadaPuResidual)) {
           cards.push({
             label: "PU SUB residual",
-            value: `R$ ${formatNumber(passivo.subordinadaPuResidual, 6)}`,
+            value: `R$ ${formatNumber(passivo.subordinadaPuResidual, 8)}`,
             caption: "Subordinada residual / quantidade"
           });
         }
@@ -571,6 +571,9 @@
             <small>${escapeHtml(metric.caption ?? summaryCaption(metric))}</small>
           </article>
         `).join("");
+        if (snapshot.metadata?.positionNotice) {
+          nodes.summaryStrip.innerHTML += `<p class="muted-line" style="grid-column:1/-1">${escapeHtml(snapshot.metadata.positionNotice)}</p>`;
+        }
       }
 
       function renderBalance(snapshot) {
@@ -611,7 +614,7 @@
               <article>
                 <span>Subordinada</span>
                 <strong>${escapeHtml(formatCurrency(passivo.subordinadaTotal))}</strong>
-                <small>Ativo liquido - funding | PU residual ${escapeHtml(formatNumber(passivo.subordinadaPuResidual, 6))}</small>
+                <small>Ativo liquido - funding | PU residual ${escapeHtml(formatNumber(passivo.subordinadaPuResidual, 8))}</small>
               </article>
             </div>
             <div class="account-grid">
@@ -2605,7 +2608,7 @@
                 <p class="eyebrow">cras carteira</p>
                 <h2>Visao geral consolidada</h2>
               </div>
-              <span class="panel-meta">${escapeHtml(snapshot.metadata?.reportDate || state.dateKey)}</span>
+              <a class="nav-link" href="./cras-carteira-relatorio.html?date=${encodeURIComponent(state.dateKey)}">Relatorio de circulacao</a>
             </div>
             <div class="stat-grid stat-grid-eight">
               ${renderStatTile("Ativo total", formatCurrency(totals.total), "Carteira + caixa", "primary", "no-break-value")}

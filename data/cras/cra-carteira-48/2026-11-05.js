@@ -7,9 +7,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
     "craId": "cra-carteira-48",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
-    "importedAt": "2026-11-06T15:37:28.617086-03:00",
-    "fundingCashOnly": true,
+    "revisionId": "20261105-revisao-20261109-cra-carteira-48",
+    "importedAt": "2026-11-09T15:33:09.230540-03:00",
+    "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
@@ -92,7 +92,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
       "source": "Texto colado.txt",
       "sha256": "08aa8f5da010c5bbea15676b9f69014200fb20a4043965206cf94dfc6b9666c2",
       "noPortfolioReprocessing": true
-    }
+    },
+    "sourceSnapshotDateKey": "2026-11-05",
+    "assetImport": {
+      "sourceFile": "CRA_GER004 - Titulos (5).csv",
+      "sheetCarteira": "CSV GER004",
+      "sheetCaixa": "Caixa detalhado",
+      "cashDate": "05/11/2026",
+      "importMode": "carteira-caixa-consolidado",
+      "cashGainLiquidated": false
+    },
+    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "assetDateKey": "2026-11-05",
+    "positionStatus": "previa"
   },
   "cra": {
     "id": "cra-carteira-48",
@@ -101,8 +113,21 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
     "dataBase": "05/11/2026"
   },
   "ativo": {
-    "total": null,
-    "caixa": 19451.53
+    "carteiraVpBruto": 11326385.31,
+    "pddTotal": 0.0,
+    "carteiraVp": 11326385.31,
+    "carteiraVpLiquido": 11326385.31,
+    "caixa": 19451.53,
+    "total": 11345836.84,
+    "liquidacoesDia": 0,
+    "aquisicoesDia": 0,
+    "quantidadeLastros": 11,
+    "quantidadeLastrosBase": 11,
+    "lastrosAtivos": 1,
+    "quantidadeLastrosAtivos": 1,
+    "cedentesUnicos": 1,
+    "sacadosUnicos": 1,
+    "montanteAtraso": 0
   },
   "caixa": {
     "accounts": {
@@ -122,8 +147,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
   },
   "passivo": {
     "fundingTotal": 11343999.358713,
-    "subordinadaTotal": null,
-    "subordinadaPuResidual": null,
+    "subordinadaTotal": 1837.4812870007008,
+    "subordinadaPuResidual": 18.37481287000701,
     "cotas": [
       {
         "classe": "SR1",
@@ -356,8 +381,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
           "periodoInicio": "29/12/2025",
           "periodoFim": "05/11/2026",
           "puFinal": 284.31076087,
-          "diasAcumulacao": 213,
-          "diasUteisPeriodo": 61
+          "diasAcumulacao": 213.0,
+          "diasUteisPeriodo": 61.0
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "05/11/2026",
@@ -12006,24 +12031,60 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
         "eventosPendentes": [],
         "eventosPrevistos": [],
         "fundingSourceDateKey": "2026-11-05"
+      },
+      {
+        "classe": "SUB",
+        "label": "Subordinada",
+        "tipo": "sub",
+        "ifCodigo": "",
+        "quantidade": 100,
+        "pu": 18.37481287000701,
+        "valor": 1837.4812870007008,
+        "principalResidual": 18.37481287000701,
+        "ehFunding": false,
+        "ordem": 90,
+        "historicoPu": [
+          {
+            "data": "05/11/2026",
+            "dataIso": "2026-11-05",
+            "valorNominal": 18.37481287000701,
+            "puAtualizado": 18.37481287000701,
+            "valorReais": 1837.4812870007008,
+            "diasUteis": 0,
+            "diasUteisPeriodo": 0,
+            "produtorioFatorDi": 1,
+            "fatorDiAcumulado": 1
+          }
+        ],
+        "dataHistoricaDisponivel": true,
+        "dataHistoricaSelecionada": "05/11/2026",
+        "dataHistoricaIso": "2026-11-05",
+        "visaoCalculadaPu": true,
+        "acumulacaoFinal": {
+          "periodoFim": "05/11/2026",
+          "diasAcumulacao": 0.0,
+          "diasUteisPeriodo": 0.0,
+          "puFinal": 18.37481287000701
+        }
       }
-    ]
+    ],
+    "despesasTotal": 0,
+    "despesasOperacionaisTotal": 0,
+    "provisoesTotal": 0.0,
+    "provisoesCaixa": 0,
+    "deducoesTotal": 0,
+    "subordinadaQuantidade": 100
   },
   "sources": [
     {
-      "name": "Eventos de funding e caixa",
-      "date": "27/10/2026",
-      "file": "fundings e caixa cras carteiras.xlsx"
-    },
-    {
-      "name": "Atualizacao de caixa",
-      "date": "04/11/2026",
-      "file": "Texto colado.txt"
-    },
-    {
-      "name": "Atualizacao de caixa",
+      "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "Texto colado.txt"
+      "file": "CRA_GER004 - Titulos (5).csv"
+    },
+    {
+      "name": "Memoria PU existente",
+      "date": "05/11/2026",
+      "file": "data/cras/cra-carteira-48/2026-11-05.js"
     }
   ],
   "caixaHistorico": {
@@ -14138,5 +14199,621 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-11-05"] = {
       "puTimesQuantity": 11290652.549588999
     }
   ],
-  "cadastroSeriesDocumentadas": []
+  "cadastroSeriesDocumentadas": [],
+  "carteira": [
+    {
+      "craCarteira": "48",
+      "lastro": "417287",
+      "numeroUnico": "417287",
+      "cedente": "BMG FOODS IMPORTACAO E EXPORTACAO LTDA",
+      "sacado": "BMG FOODS IMPORTAÇÃO E EXPORTAÇÃO LTDA",
+      "devedor": "BMG FOODS IMPORTAÇÃO E EXPORTAÇÃO LTDA",
+      "valorAquisicao": 10000000.0,
+      "valorFace": 11346953.9,
+      "valorNominal": 10856061.98,
+      "pagamentosAcumulados": 490891.92,
+      "dataAquisicao": "26/01/2026",
+      "dataAquisicaoIso": "2026-01-26",
+      "dataVencimento": "12/01/2028",
+      "dataVencimentoIso": "2028-01-12",
+      "dataLiquidacao": "",
+      "dataLiquidacaoIso": "",
+      "status": "EM CARTEIRA",
+      "statusOriginal": "BAIXA PARCIAL",
+      "statusPagamento": "VENCIDO",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "tipo": "pos fixado",
+      "indexadorAtivo": "pos fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 252.0,
+      "diasDoVencimento": 433,
+      "faixaVenc": "Em dia",
+      "faixaVencOrder": 0,
+      "valorPresenteDia": 11326385.31,
+      "valorPresente": 11326385.31,
+      "valorPresenteLiquido": 11326385.31,
+      "pdd": 0,
+      "metodoPrecificacao": "Motor pos; CDI D0 + 0.75% a.m.",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "420944",
+      "numeroUnico": "420944",
+      "cedente": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROPECUARIOS LTDA",
+      "sacado": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROP LTDA",
+      "devedor": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROP LTDA",
+      "valorAquisicao": 10000000.0,
+      "valorFace": 0.0,
+      "valorNominal": 0,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "29/12/2025",
+      "dataAquisicaoIso": "2025-12-29",
+      "dataVencimento": "30/09/2028",
+      "dataVencimentoIso": "2028-09-30",
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "BAIXA POR RECOMPRA",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "tipo": "pos fixado",
+      "indexadorAtivo": "pos fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": 695,
+      "faixaVenc": "Em dia",
+      "faixaVencOrder": 0,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Sem linha de aquisicao do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "422326",
+      "numeroUnico": "422326",
+      "cedente": "INOVA 100 COMERCIO DE PRODUTOS AGROPECUARIOS LTDA",
+      "sacado": "INOVA 100 COMERCIO DE PRODUTOS AGROPECUARIOS LTDA.",
+      "devedor": "INOVA 100 COMERCIO DE PRODUTOS AGROPECUARIOS LTDA.",
+      "valorAquisicao": 4655728.11,
+      "valorFace": 0.0,
+      "valorNominal": 0,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "30/01/2026",
+      "dataAquisicaoIso": "2026-01-30",
+      "dataVencimento": "31/10/2028",
+      "dataVencimentoIso": "2028-10-31",
+      "dataLiquidacao": "03/06/2026",
+      "dataLiquidacaoIso": "2026-06-03",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "BAIXA POR RECOMPRA",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "tipo": "pos fixado",
+      "indexadorAtivo": "pos fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": 726,
+      "faixaVenc": "Em dia",
+      "faixaVencOrder": 0,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Sem linha de aquisicao do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "422327",
+      "numeroUnico": "422327",
+      "cedente": "BR AGRO AGRONEGOCIOS S.A",
+      "sacado": "ELO AGRONEGOCIOS LTDA",
+      "devedor": "ELO AGRONEGOCIOS LTDA",
+      "valorAquisicao": 6000000.0,
+      "valorFace": 6467362.55,
+      "valorNominal": 6467362.55,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "04/02/2026",
+      "dataAquisicaoIso": "2026-02-04",
+      "dataVencimento": "29/05/2026",
+      "dataVencimentoIso": "2026-05-29",
+      "dataLiquidacao": "23/06/2026",
+      "dataLiquidacaoIso": "2026-06-23",
+      "status": "BAIXA POR EXCLUSÃO",
+      "statusOriginal": "BAIXA POR EXCLUSÃO",
+      "statusPagamento": "BAIXA POR EXCLUSÃO",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -160,
+      "faixaVenc": "Entre 151 e 180 dias",
+      "faixaVencOrder": 6,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "443167",
+      "numeroUnico": "443167",
+      "cedente": "FABIO SCHMITT",
+      "sacado": "FABIO SCHIMTT",
+      "devedor": "FABIO SCHIMTT",
+      "valorAquisicao": 1250551.67,
+      "valorFace": 1359120.42,
+      "valorNominal": 1359120.42,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "22/08/2026",
+      "dataVencimentoIso": "2026-08-22",
+      "dataLiquidacao": "06/07/2026",
+      "dataLiquidacaoIso": "2026-07-06",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "BAIXA POR RECOMPRA",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -75,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "443170",
+      "numeroUnico": "443170",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 2348526.28,
+      "valorFace": 2554586.8,
+      "valorNominal": 2554586.8,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "24/08/2026",
+      "dataVencimentoIso": "2026-08-24",
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "LIQUIDADO",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -73,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "443171",
+      "numeroUnico": "443171",
+      "cedente": "JOAO LEOPOLDO SAMWAYS FILHO",
+      "sacado": "JOAO LEOPOLDO SAMWAYS FILHO",
+      "devedor": "JOAO LEOPOLDO SAMWAYS FILHO",
+      "valorAquisicao": 1965664.48,
+      "valorFace": 2136316.96,
+      "valorNominal": 2136316.96,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "21/08/2026",
+      "dataVencimentoIso": "2026-08-21",
+      "dataLiquidacao": "30/07/2026",
+      "dataLiquidacaoIso": "2026-07-30",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "BAIXA POR RECOMPRA",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -76,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "457667",
+      "numeroUnico": "457667",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 1846022.65,
+      "valorFace": 1997784.38,
+      "valorNominal": 1997784.38,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "16/08/2026",
+      "dataVencimentoIso": "2026-08-16",
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "LIQUIDADO",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -81,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "457669",
+      "numeroUnico": "457669",
+      "cedente": "FABIO SCHMITT",
+      "sacado": "FABIO SCHIMTT",
+      "devedor": "FABIO SCHIMTT",
+      "valorAquisicao": 287935.86,
+      "valorFace": 311607.1,
+      "valorNominal": 311607.1,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "16/08/2026",
+      "dataVencimentoIso": "2026-08-16",
+      "dataLiquidacao": "06/07/2026",
+      "dataLiquidacaoIso": "2026-07-06",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "BAIXA POR RECOMPRA",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -81,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "457670",
+      "numeroUnico": "457670",
+      "cedente": "PEDRO RIBEIRO MEROLA",
+      "sacado": "PEDRO RIBEIRO MEROLA",
+      "devedor": "PEDRO RIBEIRO MEROLA",
+      "valorAquisicao": 2207617.27,
+      "valorFace": 2391136.19,
+      "valorNominal": 2391136.19,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "01/04/2026",
+      "dataAquisicaoIso": "2026-04-01",
+      "dataVencimento": "17/08/2026",
+      "dataVencimentoIso": "2026-08-17",
+      "dataLiquidacao": "22/07/2026",
+      "dataLiquidacaoIso": "2026-07-22",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "LIQUIDADO",
+      "tipoTitulo": "NP",
+      "tipoAtivo": "NP",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -80,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "48",
+      "lastro": "481153",
+      "numeroUnico": "481153",
+      "cedente": "BR AGRO AGRONEGOCIOS S.A",
+      "sacado": "ELO AGRONEGOCIOS LTDA",
+      "devedor": "ELO AGRONEGOCIOS LTDA",
+      "valorAquisicao": 6000000.0,
+      "valorFace": 6884522.73,
+      "valorNominal": 6884522.73,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "30/01/2026",
+      "dataAquisicaoIso": "2026-01-30",
+      "dataVencimento": "27/08/2026",
+      "dataVencimentoIso": "2026-08-27",
+      "dataLiquidacao": "30/07/2026",
+      "dataLiquidacaoIso": "2026-07-30",
+      "status": "LIQUIDADO",
+      "statusOriginal": "LIQUIDADO",
+      "statusPagamento": "BAIXA POR RECOMPRA",
+      "tipoTitulo": "NC",
+      "tipoAtivo": "NC",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -70,
+      "faixaVenc": "Entre 61 e 90 dias",
+      "faixaVencOrder": 3,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    }
+  ],
+  "carteiraResumo": {
+    "valorNominal": 10856061.98,
+    "valorPresente": 11326385.31,
+    "valorPresenteLiquido": 11326385.31,
+    "pddTotal": 0.0,
+    "cedentesUnicos": 1,
+    "sacadosUnicos": 1,
+    "prazoMedioDias": 433.0,
+    "taxaMediaPonderada": 0.0,
+    "preFixado": {
+      "valorPresente": 0
+    },
+    "posFixado": {
+      "valorPresente": 11326385.31
+    },
+    "montanteAtraso": 0
+  },
+  "rankingCarteira": {
+    "cedentes": [
+      {
+        "name": "BMG FOODS IMPORTACAO E EXPORTACAO LTDA",
+        "quantidade": 1,
+        "valorPresenteDia": 11326385.31,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11326385.31,
+        "valorNominal": 10856061.98,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 0.9982855799643247
+      }
+    ],
+    "sacados": [
+      {
+        "name": "BMG FOODS IMPORTAÇÃO E EXPORTAÇÃO LTDA",
+        "quantidade": 1,
+        "valorPresenteDia": 11326385.31,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11326385.31,
+        "valorNominal": 10856061.98,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 0.9982855799643247
+      }
+    ],
+    "lastrosAtivos": 1
+  },
+  "concentracaoDetalhada": {
+    "top10Cedentes": [
+      {
+        "name": "BMG FOODS IMPORTACAO E EXPORTACAO LTDA",
+        "quantidade": 1,
+        "valorPresenteDia": 11326385.31,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11326385.31,
+        "valorNominal": 10856061.98,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 0.9982855799643247
+      }
+    ],
+    "top10Sacados": [
+      {
+        "name": "BMG FOODS IMPORTAÇÃO E EXPORTAÇÃO LTDA",
+        "quantidade": 1,
+        "valorPresenteDia": 11326385.31,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 11326385.31,
+        "valorNominal": 10856061.98,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 0.9982855799643247
+      }
+    ]
+  },
+  "agingList": [
+    {
+      "status": "Em dia",
+      "valorNominal": 10856061.98,
+      "valorPresente": 11326385.31,
+      "valorPdd": 0.0,
+      "order": 0.0,
+      "percentualCarteira": 1.0
+    }
+  ],
+  "pddComposition": [],
+  "composicaoCarteira": [
+    {
+      "label": "NC",
+      "tipoTitulo": "NC",
+      "valorNominal": 10856061.98,
+      "valorPresente": 11326385.31,
+      "lastros": 1,
+      "percentualCarteira": 1.0,
+      "taxaMedia": 0.0
+    }
+  ],
+  "movimentacoesDia": {
+    "aquisicoes": [],
+    "liquidacoes": []
+  },
+  "aquisicoesDia": {
+    "total": 0,
+    "quantidade": 0,
+    "itens": []
+  },
+  "liquidacoesDia": {
+    "total": 0,
+    "quantidade": 0,
+    "itens": []
+  },
+  "performanceCotas": [],
+  "rendimento30Dias": [],
+  "precificacaoMensal": [],
+  "sections": [
+    {
+      "id": "resumo",
+      "label": "Resumo",
+      "metrics": [
+        {
+          "label": "Ativo total",
+          "value": "R$ 11.345.836,84",
+          "isHighlight": true,
+          "source": {
+            "name": "Carteira + caixa"
+          }
+        },
+        {
+          "label": "Carteira VP liquida",
+          "value": "R$ 11.326.385,31",
+          "isHighlight": true,
+          "source": {
+            "name": "Import carteira"
+          }
+        },
+        {
+          "label": "Caixa total",
+          "value": "R$ 19.451,53",
+          "isHighlight": true,
+          "source": {
+            "name": "Import caixa"
+          }
+        },
+        {
+          "label": "Funding SR/MEZ",
+          "value": "R$ 11.343.999,36",
+          "isHighlight": true,
+          "source": {
+            "name": "Memoria PU"
+          }
+        },
+        {
+          "label": "Subordinada residual",
+          "value": "R$ 1.837,48",
+          "isHighlight": true,
+          "source": {
+            "name": "Residual"
+          }
+        },
+        {
+          "label": "PU SUB residual",
+          "value": "18,374813",
+          "isHighlight": true,
+          "source": {
+            "name": "Residual"
+          }
+        },
+        {
+          "label": "Valor nominal",
+          "value": "R$ 10.856.061,98",
+          "isHighlight": false,
+          "source": {
+            "name": "Carteira"
+          }
+        },
+        {
+          "label": "PDD",
+          "value": "R$ 0,00",
+          "isHighlight": false,
+          "source": {
+            "name": "Faixa vencimento"
+          }
+        }
+      ]
+    }
+  ]
 };

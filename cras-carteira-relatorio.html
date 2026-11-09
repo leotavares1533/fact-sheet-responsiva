@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>CRAs Carteira - Relatorio de circulacao</title>
+  <link rel="stylesheet" href="./assets/cra-carteira-report.css?v=20261109-v1">
+</head>
+<body>
+  <header class="report-toolbar topbar">
+    <div class="toolbar-title"><h1>CRAs Carteira</h1><span>Relatorio de circulacao</span></div>
+    <div class="controls">
+      <a class="report-command" href="./index.html">Voltar a lamina</a>
+      <label>Data-base <select id="report-date" aria-label="Data-base"></select></label>
+      <fieldset class="report-mode" aria-label="Conteudo do relatorio">
+        <label><input type="radio" name="report-mode" value="summary" checked><span>Consolidado</span></label>
+        <label><input type="radio" name="report-mode" value="detail"><span>Por CRA</span></label>
+        <label><input type="radio" name="report-mode" value="all"><span>Completo</span></label>
+      </fieldset>
+      <button id="print-button" class="report-command print-button" type="button" disabled>Gerar PDF</button>
+    </div>
+  </header>
+  <p id="report-status" role="status">Carregando posicoes...</p>
+  <main id="report-pages"></main>
+  <script src="./data/cra-manifest.js?v=20261109-carteiras-v1"></script>
+  <script src="./assets/auth.js?v=20261104-wellington-access-v1"></script>
+  <script src="./assets/cra-carteira-report-model.js?v=20261109-v1"></script>
+  <script src="./assets/cra-carteira-report.js?v=20261109-v1"></script>
+</body>
+</html>

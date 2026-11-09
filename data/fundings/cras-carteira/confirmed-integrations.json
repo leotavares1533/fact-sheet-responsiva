@@ -17,5 +17,41 @@
     "amount": "5479187.91",
     "source": "Liquidacao 74 - 3010",
     "note": "Cabecalho SR2 diverge do cadastro e da ficha B3: o codigo corresponde a 1a serie Senior."
+  },
+  {
+    "cra": "cra-carteira-74",
+    "ifCodigo": "CRA02600592",
+    "date": "2026-11-04",
+    "quantity": 15728,
+    "unitPrice": "972.76794951",
+    "amount": "15299694.31",
+    "source": "Liquidacao 74 - 0411"
+  },
+  {
+    "cra": "cra-carteira-67",
+    "ifCodigo": "CRA026004H5",
+    "date": "2026-11-04",
+    "quantity": 2891,
+    "unitPrice": "1035.98373500",
+    "amount": "2995028.98",
+    "source": "Liquidacao 67 - 0411 - SR1"
+  },
+  {
+    "cra": "cra-carteira-67",
+    "ifCodigo": "CRA026004H6",
+    "date": "2026-11-04",
+    "quantity": 7819,
+    "unitPrice": "1035.98373500",
+    "amount": "8100356.82",
+    "source": "Liquidacao 67 - 0411 - SR2"
+  },
+  {
+    "cra": "cra-carteira-74",
+    "ifCodigo": "CRA02600592",
+    "date": "2026-11-09",
+    "quantity": 1540,
+    "unitPrice": "974.70584841",
+    "amount": "1501047.01",
+    "source": "Liquidacao 74 - 0911"
   }
 ]

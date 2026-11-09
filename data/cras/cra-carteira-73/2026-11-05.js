@@ -7,9 +7,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     "craId": "cra-carteira-73",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-caixa-texto-08aa8f5da010-reported-total_informado",
-    "importedAt": "2026-11-06T15:37:28.617086-03:00",
-    "fundingCashOnly": true,
+    "revisionId": "20261105-revisao-20261109-cra-carteira-73",
+    "importedAt": "2026-11-09T15:33:11.834749-03:00",
+    "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
       "name": "ANBIMA feriados nacionais",
@@ -92,7 +92,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       "source": "Texto colado.txt",
       "sha256": "08aa8f5da010c5bbea15676b9f69014200fb20a4043965206cf94dfc6b9666c2",
       "noPortfolioReprocessing": true
-    }
+    },
+    "sourceSnapshotDateKey": "2026-11-05",
+    "assetImport": {
+      "sourceFile": "CRA_GER004 - Titulos (5).csv",
+      "sheetCarteira": "CSV GER004",
+      "sheetCaixa": "Caixa detalhado",
+      "cashDate": "05/11/2026",
+      "importMode": "carteira-caixa-consolidado",
+      "cashGainLiquidated": false
+    },
+    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "assetDateKey": "2026-11-05",
+    "positionStatus": "previa"
   },
   "cra": {
     "id": "cra-carteira-73",
@@ -101,8 +113,21 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     "dataBase": "05/11/2026"
   },
   "ativo": {
-    "total": null,
-    "caixa": 0.0
+    "carteiraVpBruto": 37174802.26,
+    "pddTotal": 0.0,
+    "carteiraVp": 37174802.26,
+    "carteiraVpLiquido": 37174802.26,
+    "caixa": 0.0,
+    "total": 37174802.26,
+    "liquidacoesDia": 0,
+    "aquisicoesDia": 0,
+    "quantidadeLastros": 2,
+    "quantidadeLastrosBase": 2,
+    "lastrosAtivos": 1,
+    "quantidadeLastrosAtivos": 1,
+    "cedentesUnicos": 1,
+    "sacadosUnicos": 1,
+    "montanteAtraso": 0
   },
   "caixa": {
     "accounts": {
@@ -122,8 +147,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
   },
   "passivo": {
     "fundingTotal": 37181525.896821,
-    "subordinadaTotal": null,
-    "subordinadaPuResidual": null,
+    "subordinadaTotal": -6723.636821001768,
+    "subordinadaPuResidual": -67.23636821001769,
     "cotas": [
       {
         "classe": "SR1",
@@ -2452,8 +2477,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
           "periodoInicio": "18/09/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1035.69710019,
-          "diasAcumulacao": 53,
-          "diasUteisPeriodo": 32
+          "diasAcumulacao": 53.0,
+          "diasUteisPeriodo": 32.0
         },
         "sourceClass": "SR1",
         "serieJuridica": 1,
@@ -2494,24 +2519,60 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         "dataHistoricaIso": "2026-11-05",
         "dataHistoricaSelecionada": "05/11/2026",
         "visaoCalculadaPu": true
+      },
+      {
+        "classe": "SUB",
+        "label": "Subordinada",
+        "tipo": "sub",
+        "ifCodigo": "",
+        "quantidade": 100,
+        "pu": -67.23636821001769,
+        "valor": -6723.636821001768,
+        "principalResidual": -67.23636821001769,
+        "ehFunding": false,
+        "ordem": 90,
+        "historicoPu": [
+          {
+            "data": "05/11/2026",
+            "dataIso": "2026-11-05",
+            "valorNominal": -67.23636821001769,
+            "puAtualizado": -67.23636821001769,
+            "valorReais": -6723.636821001768,
+            "diasUteis": 0,
+            "diasUteisPeriodo": 0,
+            "produtorioFatorDi": 1,
+            "fatorDiAcumulado": 1
+          }
+        ],
+        "dataHistoricaDisponivel": true,
+        "dataHistoricaSelecionada": "05/11/2026",
+        "dataHistoricaIso": "2026-11-05",
+        "visaoCalculadaPu": true,
+        "acumulacaoFinal": {
+          "periodoFim": "05/11/2026",
+          "diasAcumulacao": 0.0,
+          "diasUteisPeriodo": 0.0,
+          "puFinal": -67.23636821001769
+        }
       }
-    ]
+    ],
+    "despesasTotal": 0,
+    "despesasOperacionaisTotal": 0,
+    "provisoesTotal": 0.0,
+    "provisoesCaixa": 0,
+    "deducoesTotal": 0,
+    "subordinadaQuantidade": 100
   },
   "sources": [
     {
-      "name": "Eventos de funding e caixa",
-      "date": "27/10/2026",
-      "file": "fundings e caixa cras carteiras.xlsx"
-    },
-    {
-      "name": "Atualizacao de caixa",
-      "date": "04/11/2026",
-      "file": "Texto colado.txt"
-    },
-    {
-      "name": "Atualizacao de caixa",
+      "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "Texto colado.txt"
+      "file": "CRA_GER004 - Titulos (5).csv"
+    },
+    {
+      "name": "Memoria PU existente",
+      "date": "05/11/2026",
+      "file": "data/cras/cra-carteira-73/2026-11-05.js"
     }
   ],
   "caixaHistorico": {
@@ -4723,6 +4784,271 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         "Sem posicao integralizada informada; nao presumida como zero ou como quantidade emitida"
       ],
       "calculationStatus": "cadastro_sem_posicao"
+    }
+  ],
+  "carteira": [
+    {
+      "craCarteira": "73",
+      "lastro": "503096",
+      "numeroUnico": "503096",
+      "cedente": "JOAO RUIZ LOURENCO FILHO",
+      "sacado": "JOAO RUIZ LOURENCO F",
+      "devedor": "JOAO RUIZ LOURENCO F",
+      "valorAquisicao": 35705239.94,
+      "valorFace": 36204500.0,
+      "valorNominal": 36204500.0,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "20/08/2026",
+      "dataAquisicaoIso": "2026-08-20",
+      "dataVencimento": "10/09/2026",
+      "dataVencimentoIso": "2026-09-10",
+      "dataLiquidacao": "30/09/2026",
+      "dataLiquidacaoIso": "2026-09-30",
+      "status": "BAIXA MANUAL",
+      "statusOriginal": "BAIXA MANUAL",
+      "statusPagamento": "BAIXA MANUAL",
+      "tipoTitulo": "CPR_F",
+      "tipoAtivo": "CPR_F",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0,
+      "taxaOp": 0.0,
+      "taxaMedia": 0.0,
+      "base": 0.0,
+      "diasDoVencimento": -56,
+      "faixaVenc": "Entre 31 e 60 dias",
+      "faixaVencOrder": 2,
+      "valorPresenteDia": 0.0,
+      "valorPresente": 0.0,
+      "valorPresenteLiquido": 0.0,
+      "pdd": 0,
+      "metodoPrecificacao": "Fora da carteira: status do titulo",
+      "observacao": "",
+      "valorLiquidacao": 0
+    },
+    {
+      "craCarteira": "73",
+      "lastro": "541245",
+      "numeroUnico": "541245",
+      "cedente": "JOAO RUIZ LOURENCO FILHO",
+      "sacado": "JOAO RUIZ LOURENCO F",
+      "devedor": "JOAO RUIZ LOURENCO F",
+      "valorAquisicao": 35689893.91,
+      "valorFace": 42909262.76,
+      "valorNominal": 42909262.76,
+      "pagamentosAcumulados": 0.0,
+      "dataAquisicao": "20/08/2026",
+      "dataAquisicaoIso": "2026-08-20",
+      "dataVencimento": "30/07/2027",
+      "dataVencimentoIso": "2027-07-30",
+      "dataLiquidacao": "",
+      "dataLiquidacaoIso": "",
+      "status": "EM CARTEIRA",
+      "statusOriginal": "EM CARTEIRA",
+      "statusPagamento": "VINCENDO",
+      "tipoTitulo": "CPR_F",
+      "tipoAtivo": "CPR_F",
+      "tipo": "pre fixado",
+      "indexadorAtivo": "pre fixado",
+      "taxa": 0.0165984755,
+      "taxaOp": 0.0165984755,
+      "taxaMedia": 0.0165984755,
+      "base": 252.0,
+      "diasDoVencimento": 267,
+      "faixaVenc": "Em dia",
+      "faixaVencOrder": 0,
+      "valorPresenteDia": 37174802.26,
+      "valorPresente": 37174802.26,
+      "valorPresenteLiquido": 37174802.26,
+      "pdd": 0,
+      "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
+      "observacao": "",
+      "valorLiquidacao": 0
+    }
+  ],
+  "carteiraResumo": {
+    "valorNominal": 42909262.76,
+    "valorPresente": 37174802.26,
+    "valorPresenteLiquido": 37174802.26,
+    "pddTotal": 0.0,
+    "cedentesUnicos": 1,
+    "sacadosUnicos": 1,
+    "prazoMedioDias": 267.0,
+    "taxaMediaPonderada": 0.0165984755,
+    "preFixado": {
+      "valorPresente": 37174802.26
+    },
+    "posFixado": {
+      "valorPresente": 0
+    },
+    "montanteAtraso": 0
+  },
+  "rankingCarteira": {
+    "cedentes": [
+      {
+        "name": "JOAO RUIZ LOURENCO FILHO",
+        "quantidade": 1,
+        "valorPresenteDia": 37174802.26,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 37174802.26,
+        "valorNominal": 42909262.76,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 1.0
+      }
+    ],
+    "sacados": [
+      {
+        "name": "JOAO RUIZ LOURENCO F",
+        "quantidade": 1,
+        "valorPresenteDia": 37174802.26,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 37174802.26,
+        "valorNominal": 42909262.76,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 1.0
+      }
+    ],
+    "lastrosAtivos": 1
+  },
+  "concentracaoDetalhada": {
+    "top10Cedentes": [
+      {
+        "name": "JOAO RUIZ LOURENCO FILHO",
+        "quantidade": 1,
+        "valorPresenteDia": 37174802.26,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 37174802.26,
+        "valorNominal": 42909262.76,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 1.0
+      }
+    ],
+    "top10Sacados": [
+      {
+        "name": "JOAO RUIZ LOURENCO F",
+        "quantidade": 1,
+        "valorPresenteDia": 37174802.26,
+        "pdd": 0.0,
+        "valorPresenteLiquido": 37174802.26,
+        "valorNominal": 42909262.76,
+        "posicao": 1,
+        "participacao": 1.0,
+        "participacaoPl": 1.0
+      }
+    ]
+  },
+  "agingList": [
+    {
+      "status": "Em dia",
+      "valorNominal": 42909262.76,
+      "valorPresente": 37174802.26,
+      "valorPdd": 0.0,
+      "order": 0.0,
+      "percentualCarteira": 1.0
+    }
+  ],
+  "pddComposition": [],
+  "composicaoCarteira": [
+    {
+      "label": "CPR_F",
+      "tipoTitulo": "CPR_F",
+      "valorNominal": 42909262.76,
+      "valorPresente": 37174802.26,
+      "lastros": 1,
+      "percentualCarteira": 1.0,
+      "taxaMedia": 0.0165984755
+    }
+  ],
+  "movimentacoesDia": {
+    "aquisicoes": [],
+    "liquidacoes": []
+  },
+  "aquisicoesDia": {
+    "total": 0,
+    "quantidade": 0,
+    "itens": []
+  },
+  "liquidacoesDia": {
+    "total": 0,
+    "quantidade": 0,
+    "itens": []
+  },
+  "performanceCotas": [],
+  "rendimento30Dias": [],
+  "precificacaoMensal": [],
+  "sections": [
+    {
+      "id": "resumo",
+      "label": "Resumo",
+      "metrics": [
+        {
+          "label": "Ativo total",
+          "value": "R$ 37.174.802,26",
+          "isHighlight": true,
+          "source": {
+            "name": "Carteira + caixa"
+          }
+        },
+        {
+          "label": "Carteira VP liquida",
+          "value": "R$ 37.174.802,26",
+          "isHighlight": true,
+          "source": {
+            "name": "Import carteira"
+          }
+        },
+        {
+          "label": "Caixa total",
+          "value": "R$ 0,00",
+          "isHighlight": true,
+          "source": {
+            "name": "Import caixa"
+          }
+        },
+        {
+          "label": "Funding SR/MEZ",
+          "value": "R$ 37.181.525,90",
+          "isHighlight": true,
+          "source": {
+            "name": "Memoria PU"
+          }
+        },
+        {
+          "label": "Subordinada residual",
+          "value": "R$ -6.723,64",
+          "isHighlight": true,
+          "source": {
+            "name": "Residual"
+          }
+        },
+        {
+          "label": "PU SUB residual",
+          "value": "-67,236368",
+          "isHighlight": true,
+          "source": {
+            "name": "Residual"
+          }
+        },
+        {
+          "label": "Valor nominal",
+          "value": "R$ 42.909.262,76",
+          "isHighlight": false,
+          "source": {
+            "name": "Carteira"
+          }
+        },
+        {
+          "label": "PDD",
+          "value": "R$ 0,00",
+          "isHighlight": false,
+          "source": {
+            "name": "Faixa vencimento"
+          }
+        }
+      ]
     }
   ]
 };

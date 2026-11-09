@@ -1,0 +1,9 @@
+{
+  "scope": "cras_carteira",
+  "quantity": 100,
+  "positionFrom": "2026-11-05",
+  "confirmedBy": "Leonardo",
+  "confirmedOn": "2026-11-09",
+  "source": "Confirmacao no chat: Todas as subs de cras carteira sao de 100 quantidades.",
+  "note": "Confirma quantidade integralizada para as posicoes atuais dos CRAs Carteira. Nao se aplica aos CRAs 42 e 65 nem presume um evento historico de integralizacao."
+}

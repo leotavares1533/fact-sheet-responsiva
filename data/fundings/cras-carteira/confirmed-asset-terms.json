@@ -1,0 +1,12 @@
+{
+  "50/426733": {
+    "acquisitionValue": "4930895.61",
+    "monthlyRate": "0.021",
+    "baseDays": 360,
+    "faceRule": "acquisition_compounded_to_maturity",
+    "confirmedBy": "Leonardo",
+    "confirmedOn": "2026-11-09",
+    "source": "Correcao no chat: aquisicao 4930895,61; face igual a aquisicao remunerada a 2,10% no periodo.",
+    "note": "Datas de cessao e vencimento preservadas da fonte; base 360 ja cadastrada. Nao altera o arquivo recebido."
+  }
+}

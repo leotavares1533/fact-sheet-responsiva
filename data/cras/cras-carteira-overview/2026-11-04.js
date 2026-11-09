@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
     "craId": "cras-carteira-overview",
     "dateKey": "2026-11-04",
     "reportDate": "04/11/2026",
-    "revisionId": "20261104-caixa-texto-0674c15d6ed1-reported-overview",
+    "revisionId": "20261104-integracoes-20261109-overview",
     "importedAt": "2026-11-05T17:07:27.425970-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -59,7 +59,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
     "total": 40443873.62
   },
   "passivo": {
-    "fundingTotal": 581960332.1262795,
+    "fundingTotal": 608355554.0011544,
     "cotas": []
   },
   "portfolioOverview": {
@@ -1177,9 +1177,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
         "classe": "SR1",
         "sourceClass": "SR1",
         "ifCodigo": "CRA026004H5",
-        "quantidadeIntegralizada": 17019.0,
+        "quantidadeIntegralizada": 19910.0,
         "puAtual": 1035.983634,
-        "valorAtual": 17631405.467046,
+        "valorAtual": 20626434.15294,
         "taxa": "CDI + 4.00% a.a.",
         "dataVencimento": "30/07/2027",
         "dataVencimentoIso": "2027-07-30",
@@ -1251,9 +1251,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
         "classe": "SR2",
         "sourceClass": "MEZA",
         "ifCodigo": "CRA026004H6",
-        "quantidadeIntegralizada": 9199.0,
+        "quantidadeIntegralizada": 17018.0,
         "puAtual": 1035.983634,
-        "valorAtual": 9530013.449166,
+        "valorAtual": 17630369.483412,
         "taxa": "CDI + 4.00% a.a.",
         "dataVencimento": "10/08/2027",
         "dataVencimentoIso": "2027-08-10",
@@ -2346,9 +2346,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
         "classe": "SR1",
         "sourceClass": "SR1",
         "ifCodigo": "CRA02600592",
-        "quantidadeIntegralizada": 19850.0,
+        "quantidadeIntegralizada": 35578.0,
         "puAtual": 972.77703171,
-        "valorAtual": 19309624.0794435,
+        "valorAtual": 34609461.23417838,
         "taxa": "CDI + 4.00% a.a.",
         "dataVencimento": "20/12/2027",
         "dataVencimentoIso": "2027-12-20",
@@ -2720,7 +2720,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
     {
       "craId": "cra-carteira-67",
       "name": "CRA Carteira 67",
-      "funding": 27161418.916212,
+      "funding": 38256803.636352,
       "cash": 1182771.52
     },
     {
@@ -2762,7 +2762,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-04"] = {
     {
       "craId": "cra-carteira-74",
       "name": "CRA Carteira 74",
-      "funding": 19309624.0794435,
+      "funding": 34609461.23417838,
       "cash": 308217.97
     },
     {

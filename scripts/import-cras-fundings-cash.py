@@ -392,6 +392,12 @@ def build_cota(entry, model, cutoff, issues, decisions):
     cota["dataHistoricaDisponivel"] = True
     cota["acumulacaoFinal"] = {"periodoInicio": cota.get("dataInicio"), "periodoFim": br(cutoff), "puFinal": cota["pu"],
         "diasAcumulacao": cota["historicoPu"][-1].get("diasUteis", 0)}
+    confirmations_path = ROOT / 'scripts/reconcile-cra-carteira-confirmations.py'
+    if confirmations_path.exists():
+        spec = importlib.util.spec_from_file_location('current_cra_confirmations', confirmations_path)
+        confirmations = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(confirmations)
+        cota = confirmations.apply_first_date_confirmation(cota, model, cutoff, ENGINE)
     return cota
 
 
