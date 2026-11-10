@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
     "craId": "cra-carteira-51",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-51",
-    "importedAt": "2026-11-09T15:33:09.871831-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:56.805279-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-51",
@@ -117,12 +121,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
     "pddTotal": 0.0,
     "carteiraVp": 10534563.59,
     "carteiraVpLiquido": 10534563.59,
-    "caixa": 5515.95,
-    "total": 10540079.54,
+    "caixa": 5516.95,
+    "total": 10540080.54,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "quantidadeLastros": 18,
-    "quantidadeLastrosBase": 18,
+    "quantidadeLastros": 17,
+    "quantidadeLastrosBase": 17,
     "lastrosAtivos": 8,
     "quantidadeLastrosAtivos": 8,
     "cedentesUnicos": 3,
@@ -131,24 +135,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 93964.58,
+      "cc": 93965.58,
       "contaAplicacao": 0.0,
       "fundoDespesas": 88448.63
     },
-    "total": 5515.95,
-    "totalInformado": 5515.95,
-    "totalCalculado": 5515.95,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 5516.95,
+    "totalCalculado": 5516.95,
+    "totalInformado": 5516.95,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "98846-5 (ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 11455735.155124411,
-    "subordinadaTotal": -915655.6151244119,
-    "subordinadaPuResidual": -9156.556151244118,
+    "subordinadaTotal": -915654.6151244119,
+    "subordinadaPuResidual": -9156.546151244118,
     "cotas": [
       {
         "classe": "SR1",
@@ -10656,8 +10660,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
           "periodoInicio": "22/02/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 735.26407375,
-          "diasAcumulacao": 181.0,
-          "diasUteisPeriodo": 55.0
+          "diasAcumulacao": 181,
+          "diasUteisPeriodo": 55
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "05/11/2026",
@@ -21099,8 +21103,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
           "periodoInicio": "22/02/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1155.01515669,
-          "diasAcumulacao": 181.0,
-          "diasUteisPeriodo": 72.0
+          "diasAcumulacao": 181,
+          "diasUteisPeriodo": 72
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "05/11/2026",
@@ -31667,34 +31671,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": -9156.556151244118,
-        "valor": -915655.6151244119,
-        "principalResidual": -9156.556151244118,
+        "pu": -9156.546151244118,
+        "valor": -915654.6151244119,
+        "principalResidual": -9156.546151244118,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": -9156.556151244118,
-            "puAtualizado": -9156.556151244118,
-            "valorReais": -915655.6151244119,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": -9156.556151244118
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -31708,7 +31689,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -33707,10 +33688,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 5515.95,
-      "totalCalculado": 5515.95,
+      "total": 5516.95,
+      "totalCalculado": 5516.95,
       "accounts": {
-        "cc": 93964.58,
+        "cc": 93965.58,
         "contaAplicacao": 0.0,
         "fundoDespesas": 88448.63
       }
@@ -33772,7 +33753,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Valor de face no vencimento e apos, sem PDD",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "112.542.639-00",
+      "documentoSacado": "112.542.639-00",
+      "numeroTitulo": "CPR 172/2025 - VINICIUS LOGEN RIBEIRO",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -33811,7 +33796,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "15.621.557/0001-17",
+      "documentoSacado": "15.621.557/0001-17",
+      "numeroTitulo": "CPR 04/25 - GOUTHIER DOMINGOS DA SILVA",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -33850,7 +33839,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "15.621.557/0001-17",
+      "documentoSacado": "15.621.557/0001-17",
+      "numeroTitulo": "CPR NAZARÉ",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -33889,7 +33882,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "15.621.557/0001-17",
+      "documentoSacado": "15.621.557/0001-17",
+      "numeroTitulo": "CPR 06/2025 ALESSANDRA ARAUJO",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -33928,7 +33925,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "15.621.557/0001-17",
+      "documentoSacado": "15.621.557/0001-17",
+      "numeroTitulo": "CPR 07/2025 ANA LUIZA SILVA MORAIS E OUTROS",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -33967,7 +33968,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "360.165.858-58",
+      "documentoSacado": "360.165.858-58",
+      "numeroTitulo": "CPR LEONARDO LEAL",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34006,7 +34011,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "14.278.189/0001-93",
+      "documentoSacado": "14.278.189/0001-93",
+      "numeroTitulo": "CPR NEWTON SILVA VOLPP",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34045,7 +34054,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Valor de face no vencimento e apos, sem PDD",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "39.922.344/0001-93",
+      "documentoSacado": "39.922.344/0001-93",
+      "numeroTitulo": "CPR LUZIA ORNELAS",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34084,7 +34097,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Valor de face no vencimento e apos, sem PDD",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "39.922.344/0001-93",
+      "documentoSacado": "39.922.344/0001-93",
+      "numeroTitulo": "CPR LUZIA ORNELAS 2",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34123,7 +34140,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "39.922.344/0001-93",
+      "documentoSacado": "39.922.344/0001-93",
+      "numeroTitulo": "CPR LUZIA ORNELAS 3",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34162,7 +34183,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "39.922.344/0001-93",
+      "documentoSacado": "39.922.344/0001-93",
+      "numeroTitulo": "CPR LUZIA ORNELAS4",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34201,7 +34226,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "39.922.344/0001-93",
+      "documentoSacado": "39.922.344/0001-93",
+      "numeroTitulo": "CPR LUZIA ORNELAS 5",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34240,7 +34269,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "39.922.344/0001-93",
+      "documentoSacado": "39.922.344/0001-93",
+      "numeroTitulo": "CPR LUZIA ORNELAS6",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34279,7 +34312,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "34.798.628/0001-04",
+      "documentoSacado": "34.798.628/0001-04",
+      "numeroTitulo": "CPR SCANNAVINO",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34318,7 +34355,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "45.017.632/0001-04",
+      "documentoSacado": "45.017.632/0001-04",
+      "numeroTitulo": "CPR IZVQ",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34357,46 +34398,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Sem saldo aberto no export",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "51",
-      "lastro": "472793",
-      "numeroUnico": "472793",
-      "cedente": "LEONARDO LEAL LOPES",
-      "sacado": "LEONARDO LEAL LOPES",
-      "devedor": "LEONARDO LEAL LOPES",
-      "valorAquisicao": 6368186.0,
-      "valorFace": 0.0,
-      "valorNominal": 0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "29/05/2026",
-      "dataAquisicaoIso": "2026-05-29",
-      "dataVencimento": "30/08/2030",
-      "dataVencimentoIso": "2030-08-30",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR",
-      "tipoAtivo": "CPR",
-      "tipo": "pos fixado",
-      "indexadorAtivo": "pos fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 1394,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Sem linha de aquisicao do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "012.018.186-05",
+      "documentoSacado": "012.018.186-05",
+      "numeroTitulo": "CPR PEDRO MEROLA SOJA-1",
+      "parcela": "1"
     },
     {
       "craCarteira": "51",
@@ -34435,7 +34441,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Valor de face no vencimento e apos, sem PDD",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "15.621.557/0001-17",
+      "documentoSacado": "15.621.557/0001-17",
+      "numeroTitulo": "ADTTECCRA51",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -34466,7 +34476,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 8370192.76,
         "posicao": 1,
         "participacao": 0.6482817652249798,
-        "participacaoPl": 0.6479424993029987
+        "participacaoPl": 0.6479424378288481
       },
       {
         "name": "VINICIUS LONGEN RIBEIRO",
@@ -34477,7 +34487,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 2540400.0,
         "posicao": 2,
         "participacao": 0.2411490498202973,
-        "participacaoPl": 0.24102284905527385
+        "participacaoPl": 0.2410228261880056
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRICOLAS LTDA",
@@ -34488,7 +34498,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 1164798.11,
         "posicao": 3,
         "participacao": 0.11056918495472294,
-        "participacaoPl": 0.11051132067642823
+        "participacaoPl": 0.11051131019156332
       }
     ],
     "sacados": [
@@ -34501,7 +34511,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 8370192.76,
         "posicao": 1,
         "participacao": 0.6482817652249798,
-        "participacaoPl": 0.6479424993029987
+        "participacaoPl": 0.6479424378288481
       },
       {
         "name": "VINICIUS LONGEN RIBEIRO",
@@ -34512,7 +34522,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 2540400.0,
         "posicao": 2,
         "participacao": 0.2411490498202973,
-        "participacaoPl": 0.24102284905527385
+        "participacaoPl": 0.2410228261880056
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRICOLAS LTDA",
@@ -34523,7 +34533,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 1164798.11,
         "posicao": 3,
         "participacao": 0.11056918495472294,
-        "participacaoPl": 0.11051132067642823
+        "participacaoPl": 0.11051131019156332
       }
     ],
     "lastrosAtivos": 8
@@ -34539,7 +34549,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 8370192.76,
         "posicao": 1,
         "participacao": 0.6482817652249798,
-        "participacaoPl": 0.6479424993029987
+        "participacaoPl": 0.6479424378288481
       },
       {
         "name": "VINICIUS LONGEN RIBEIRO",
@@ -34550,7 +34560,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 2540400.0,
         "posicao": 2,
         "participacao": 0.2411490498202973,
-        "participacaoPl": 0.24102284905527385
+        "participacaoPl": 0.2410228261880056
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRICOLAS LTDA",
@@ -34561,7 +34571,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 1164798.11,
         "posicao": 3,
         "participacao": 0.11056918495472294,
-        "participacaoPl": 0.11051132067642823
+        "participacaoPl": 0.11051131019156332
       }
     ],
     "top10Sacados": [
@@ -34574,7 +34584,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 8370192.76,
         "posicao": 1,
         "participacao": 0.6482817652249798,
-        "participacaoPl": 0.6479424993029987
+        "participacaoPl": 0.6479424378288481
       },
       {
         "name": "VINICIUS LONGEN RIBEIRO",
@@ -34585,7 +34595,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 2540400.0,
         "posicao": 2,
         "participacao": 0.2411490498202973,
-        "participacaoPl": 0.24102284905527385
+        "participacaoPl": 0.2410228261880056
       },
       {
         "name": "TEC PLANTE PRODUTOS AGRICOLAS LTDA",
@@ -34596,7 +34606,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         "valorNominal": 1164798.11,
         "posicao": 3,
         "participacao": 0.11056918495472294,
-        "participacaoPl": 0.11051132067642823
+        "participacaoPl": 0.11051131019156332
       }
     ]
   },
@@ -34687,7 +34697,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 10.540.079,54",
+          "value": "R$ 10.540.080,54",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -34703,7 +34713,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 5.515,95",
+          "value": "R$ 5.516,95",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -34719,7 +34729,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -915.655,62",
+          "value": "R$ -915.654,62",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -34727,7 +34737,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-9.156,556151",
+          "value": "-9.156,546151",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -34751,5 +34761,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-51"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [],
+    "replacementParcels": [],
+    "paymentDifferences": []
+  }
 };

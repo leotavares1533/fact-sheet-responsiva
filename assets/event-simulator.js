@@ -443,6 +443,13 @@
   }
 
   function projectCotaUntilDate(cota, startRow, startDateKey, targetDateKey) {
+    if (cota.metodo === "di_spread_ts_252") {
+      const fallback = getLastKnownRateInfo(cota, startDateKey);
+      return window.LAMINA_FUNDING_CONTRACT.project(cota, startRow, startDateKey, targetDateKey, {
+        isBusinessDay: isBusinessDayIso, formatDate: formatIsoDate,
+        rateInfo: (key) => getRateInfoForDate(cota, key, fallback)
+      });
+    }
     const projectedRows = [];
     const context = createProjectionContext(cota, startRow, startDateKey);
     let cursor = startDateKey;
@@ -470,7 +477,8 @@
       produtorioFatorDi: latestRow?.produtorioFatorDi,
       fatorDiAcumulado: latestRow?.fatorDiAcumulado,
       fatorJurosAcumulado: latestRow?.fatorJurosAcumulado,
-      puBaseCalculo: latestRow?.puBaseCalculo
+      puBaseCalculo: latestRow?.puBaseCalculo,
+      puSemEncargos: latestRow?.puSemEncargos
     };
 
     if (!targetDateKey || targetDateKey <= startDateKey) {
@@ -484,7 +492,8 @@
     const holdReason = cota.documentValidation?.status === "pendente_documentos"
       ? "Cadastro pendente de documentacao"
       : cota.revisaoInternaPu?.pendencia ? "Memoria de PU pendente de conciliacao"
-        : maturity && maturity <= startDateKey ? "Vencimento pendente de conciliacao" : "";
+        : maturity && maturity <= startDateKey && !window.LAMINA_FUNDING_CONTRACT.lateTerms(cota)
+          ? "Vencimento pendente de conciliacao" : "";
     if (holdReason) return { ...startRow, projectionBlockedReason: holdReason };
 
     const projection = projectCotaUntilDate(cota, startRow, startDateKey, targetDateKey);
@@ -578,6 +587,7 @@
     }
     const puBefore = Number(baseRow.puAtualizado || 0);
     const principalBefore = Number(baseRow.valorNominal ?? cota?.principalResidual ?? 0);
+    const hasLateCharges = Boolean(window.LAMINA_FUNDING_CONTRACT.lateTerms(cota));
     const interestPu = Math.max(0, puBefore - principalBefore);
     const hasPrincipalEvent = config.ordinaryAmortization || config.amex || config.rescue;
     const handlesInterest = config.interest || hasPrincipalEvent;
@@ -600,14 +610,16 @@
       const interestPaidValue = interestPaidPu * quantity;
       cashRemaining = Math.max(0, cashRemaining - interestPaidValue);
       interestIncorporatedPu = Math.max(0, interestPu - interestPaidPu);
-      principalAfterInterest = principalBefore + interestIncorporatedPu;
-      puAfterInterest = principalAfterInterest;
+      principalAfterInterest = principalBefore + (hasLateCharges ? 0 : interestIncorporatedPu);
+      puAfterInterest = hasLateCharges ? puBefore - interestPaidPu : principalAfterInterest;
 
       components.push({
-        component: "Juros",
+        component: hasLateCharges ? "Juros / encargos" : "Juros",
         pu: interestPaidPu,
         value: interestPaidValue,
-        detail: interestIncorporatedPu > 0
+        detail: hasLateCharges
+          ? `Mora ${formatNumber(baseRow.puMora, 8)} PU; multa ${formatNumber(baseRow.puMulta, 8)} PU; base 252. Saldo nao pago permanece sem capitalizacao.`
+          : interestIncorporatedPu > 0
           ? `Incorpora ${formatNumber(interestIncorporatedPu, 8)} PU`
           : "Pago em caixa"
       });
@@ -674,7 +686,7 @@
     }
 
     if (handlesInterest || hasPrincipalEvent) {
-      puAfter = principal;
+      puAfter = principal + (hasLateCharges ? interestIncorporatedPu : 0);
     }
 
     const paidBeforePremium = components.reduce((total, item) => total + Number(item.value || 0), 0);
@@ -714,7 +726,7 @@
       principalBefore,
       interestPu,
       interestPaidPu,
-      interestIncorporatedPu,
+      interestIncorporatedPu: hasLateCharges ? 0 : interestIncorporatedPu,
       ordinaryPu,
       amexPu,
       rescuePu,

@@ -1147,6 +1147,13 @@
   }
 
   function projectCotaUntilDate(cota, startRow, startDateKey, targetDateKey, options = {}) {
+    if (cota.metodo === "di_spread_ts_252") {
+      const fallback = getLastKnownRateInfo(cota, startDateKey);
+      return window.LAMINA_FUNDING_CONTRACT.project(cota, startRow, startDateKey, targetDateKey, {
+        isBusinessDay: isBusinessDayIso, formatDate: formatIsoDate,
+        rateInfo: (key) => options.fixedRateInfo || getDiRateForDate(addBusinessDays(key, -Number(cota.lagBusinessDays ?? 2))) || fallback
+      });
+    }
     const projectedRows = [];
     const context = createProjectionContext(cota, startRow, startDateKey);
     let cursor = startDateKey;
@@ -1549,7 +1556,8 @@
               <th>Fator</th>
               <th>Valor nominal</th>
               <th>PU atualizado</th>
-              <th>PU juros</th>
+              <th>${cota.encargosMora ? "PU juros / encargos" : "PU juros"}</th>
+              ${cota.encargosMora ? "<th>Juros remuneratorios PU</th><th>Mora PU</th><th>Multa PU</th><th>DU atraso</th>" : ""}
               <th>Valor em reais</th>
               <th>TDK</th>
               <th>Fator diario</th>
@@ -1575,6 +1583,7 @@
                 <td>${escapeHtml(formatNumber(row.valorNominal, 8))}</td>
                 <td>${escapeHtml(formatNumber(row.puAtualizado, 8))}</td>
                 <td>${escapeHtml(formatNumber(row.puJuros, 8))}</td>
+                ${cota.encargosMora ? `<td>${escapeHtml(formatNumber(row.puJurosRemuneratorios ?? row.puJuros, 8))}</td><td>${escapeHtml(formatNumber(row.puMora || 0, 8))}</td><td>${escapeHtml(formatNumber(row.puMulta || 0, 8))}</td><td>${escapeHtml(formatNumber(row.diasUteisMora || 0, 0))}</td>` : ""}
                 <td>${escapeHtml(formatCurrency(row.valorReais))}</td>
                 <td>${row.tdk == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.tdk, 12))}</td>
                 <td>${row.fatorDiario == null && row.taxaDiStatus === "importada_pendente_validacao" ? "-" : escapeHtml(formatNumber(row.fatorDiario, 12))}</td>
@@ -1645,7 +1654,7 @@
                 <tr>
                   <th>Dia</th>
                   <th>Taxa</th>
-                  <th>Juros</th>
+                  <th>${cota.encargosMora ? "Juros / encargos" : "Juros"}</th>
                   <th>PU</th>
                   <th>Valor</th>
                 </tr>
@@ -1696,7 +1705,7 @@
       valorNominal: Number(cota?.principalResidual ?? cota?.valorNominalInicial ?? 0),
       diasUteis: Number(cota?.acumulacaoFinal?.diasAcumulacao || 0),
       diasUteisPeriodo: Number(cota?.acumulacaoFinal?.diasUteisPeriodo ?? cota?.acumulacaoFinal?.diasAcumulacao ?? 0),
-      produtorioFatorDi: 1
+      ...(getHistoryRowsToDate(cota, startDateKey).at(-1) || {})
     };
 
     if (!targetDateKey || targetDateKey <= startDateKey) {
@@ -2469,12 +2478,14 @@
       throw new Error("O PU em tela diverge do ultimo registro da memoria. Reprocesse a posicao antes de exportar.");
     }
 
-    const supportsProjection = !cota.forecastBlockedReason && String(cota.tipo || "").toLowerCase() !== "sub"
+    const activeRegime = !last.metodoCalculo || last.metodoCalculo === cota.metodo;
+    const supportsProjection = activeRegime && !cota.forecastBlockedReason && String(cota.tipo || "").toLowerCase() !== "sub"
       && (isSeniorCota(cota) || cota.ehFunding || isFixedRateCota(cota));
     const meeting = exporter.nextCopom(dateKey);
     if (supportsProjection && !meeting) throw new Error("Atualize o calendario do Copom: nao ha proxima reuniao cadastrada para esta data.");
     const maturity = getCotaMaturityDateKey(cota);
-    const endDate = supportsProjection ? [meeting.dateKey, maturity].filter(Boolean).sort()[0] : dateKey;
+    const hasLateCharges = Boolean(window.LAMINA_FUNDING_CONTRACT.lateTerms(cota));
+    const endDate = supportsProjection ? [meeting.dateKey, hasLateCharges ? "" : maturity].filter(Boolean).sort()[0] : dateKey;
     const rateInfo = getLastKnownRateInfo(cota, dateKey);
     if (supportsProjection && endDate > dateKey && Number(last.valorNominal) > 0
       && !isFixedRateCota(cota) && !(rateInfo.dailyRate > 0)) {
@@ -2537,6 +2548,12 @@
       ["Fonte dos dados", getManifestEntry(snapshot.metadata?.historicalSourceDateKey || dateKey)?.dataScript || `Snapshot ${state.craId}`]
     ];
     const headers = ["Data", "Natureza", "Dia util", "Taxa diaria", "Taxa anual equivalente", "Data taxa", "Referencia taxa", "Status taxa", "DU periodo", "DU total", "Valor nominal", "PU atualizado", "PU juros", "Saldo (R$)", "TDK", "Fator diario", "Produtorio fator", "Fator DI periodo", "Fator juros acumulado", "Spread", "Spread acumulado", "Evento", "PU antes do evento", "PU do evento", "PU apos evento", "Pagamento (R$)"];
+    if (hasLateCharges) {
+      summary.push(["Mora", cota.encargosMora.formulaMora], ["Multa", cota.encargosMora.formulaMulta],
+        ["Inicio do atraso", d(cota.encargosMora.dataInadimplementoIso)],
+        ["Base da mora", "252 dias uteis, conforme confirmacao de Leonardo; multa unica sem capitalizacao."]);
+      headers.push("PU sem encargos", "Juros remuneratorios PU", "Mora PU", "Multa PU", "DU atraso");
+    }
     const rowCells = (row, projected) => [
       d(row.dataIso || row.data), projected ? "Projecao - taxa constante" : row.taxaDiStatus === "projetada" ? "Calculado pelo validador" : "Historico",
       (row.diaUtil ?? isBusinessDayIso(toIsoDate(row.dataIso || row.data))) ? "Sim" : "Nao",
@@ -2545,7 +2562,9 @@
       n(row.diasUteisPeriodo, 7), n(row.diasUteis, 7), n(row.valorNominal), n(row.puAtualizado), n(row.puJuros), n(row.valorReais, 4),
       n(row.tdk, 6), n(row.fatorDiario, 6), n(row.produtorioFatorDi, 6), n(row.fatorDiAcumulado, 6), n(row.fatorJurosAcumulado, 6),
       n(row.spread, 5), n(row.spreadAcumulado, 6), row.evento || row.eventoTs || "",
-      n(row.puAntesEvento), n(row.puEvento), n(row.puAposEvento), n(row.valorEventoReais, 4)
+      n(row.puAntesEvento), n(row.puEvento), n(row.puAposEvento), n(row.valorEventoReais, 4),
+      ...(hasLateCharges ? [n(row.puSemEncargos ?? row.puAtualizado), n(row.puJurosRemuneratorios ?? row.puJuros),
+        n(row.puMora || 0), n(row.puMulta || 0), n(row.diasUteisMora || 0, 7)] : [])
     ];
     const widths = headers.map((_, index) => [1, 7, 21].includes(index) ? 32 : [0, 2, 5, 6, 8, 9].includes(index) ? 14 : 24);
     return {

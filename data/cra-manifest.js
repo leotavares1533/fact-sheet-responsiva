@@ -2,8 +2,34 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-modelo",
     "name": "CRA 42",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "importedAt": "2026-11-10T19:33:18.199745-03:00",
+        "revisionId": "20261110-193317",
+        "totalAtivo": 1044268636.8462923,
+        "carteiraVp": 917476713.7262923,
+        "carteiraVpBruto": 921080888.6119313,
+        "pddTotal": 3604174.885639038,
+        "funding": 627795461.994,
+        "subordinada": 416473174.8522923,
+        "dataScript": "data/cras/cra-modelo/2026-11-09.js"
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "importedAt": "2026-11-10T19:33:12.858564-03:00",
+        "revisionId": "20261110-193311",
+        "totalAtivo": 1043791214.0960284,
+        "carteiraVp": 918579639.0960284,
+        "carteiraVpBruto": 922173611.0177674,
+        "pddTotal": 3593971.9217390376,
+        "funding": 627444930.0,
+        "subordinada": 416346284.09602845,
+        "dataScript": "data/cras/cra-modelo/2026-11-06.js"
+      },
       {
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
@@ -4221,8 +4247,34 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-65",
     "name": "CRA 65",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "importedAt": "2026-11-10T19:33:23.366723-03:00",
+        "revisionId": "20261110-193323",
+        "totalAtivo": 996061073.6702561,
+        "carteiraVp": 959281923.0956081,
+        "carteiraVpBruto": 962600813.9413081,
+        "pddTotal": 3318890.8457,
+        "funding": 806853264.0,
+        "subordinada": 189207809.67025614,
+        "dataScript": "data/cras/cra-65/2026-11-09.js"
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "importedAt": "2026-11-10T19:33:21.896503-03:00",
+        "revisionId": "20261110-193321",
+        "totalAtivo": 994999139.4486625,
+        "carteiraVp": 958566511.0255935,
+        "carteiraVpBruto": 961885401.8712935,
+        "pddTotal": 3318890.8457,
+        "funding": 806423224.0,
+        "subordinada": 188575915.44866252,
+        "dataScript": "data/cras/cra-65/2026-11-06.js"
+      },
       {
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
@@ -5379,7 +5431,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cras-carteira-overview",
     "name": "CRAs Carteira - Visão geral",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2025-12-12",
@@ -7317,16 +7369,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-overview",
-        "totalAtivo": 602762496.24,
-        "funding": 609971788.962057,
-        "subordinada": -7209292.722057009,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729-overview",
+        "totalAtivo": 602684632.8100001,
+        "funding": 610010422.571008,
+        "subordinada": -7325789.761008004,
         "dataScript": "data/cras/cras-carteira-overview/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 40778660.72,
-        "puSub": -7209292.722057009
+        "puSub": -7325789.761008004
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cras-carteira-overview/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729-overview",
+        "funding": 610471027.6296123,
+        "fundingCashOnly": false,
+        "totalAtivo": 603073203.38,
+        "subordinada": -7397824.249612355,
+        "puSub": -7397824.249612355,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cras-carteira-overview/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729-overview",
+        "funding": 612433046.2103362,
+        "fundingCashOnly": false,
+        "totalAtivo": 604887181.44,
+        "subordinada": -7545864.770336198,
+        "puSub": -7545864.770336198,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -7336,7 +7414,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-44",
     "name": "CRA Carteira 44",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2025-12-12",
@@ -9274,16 +9352,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-44",
-        "totalAtivo": 12376094.81,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 12376095.81,
         "funding": 11853115.101408,
-        "subordinada": 522979.70859200135,
+        "subordinada": 522980.70859200135,
         "dataScript": "data/cras/cra-carteira-44/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 7835.55,
-        "puSub": 5229.797085920013
+        "puSub": 5229.807085920013
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-44/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 11862065.896338,
+        "fundingCashOnly": false,
+        "totalAtivo": 12376095.81,
+        "subordinada": 514029.9136619996,
+        "puSub": 5140.299136619997,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-44/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 11871023.607534,
+        "fundingCashOnly": false,
+        "totalAtivo": 12376095.81,
+        "subordinada": 505072.2024659999,
+        "puSub": 5050.722024659999,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -9293,7 +9397,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-45",
     "name": "CRA Carteira 45",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2025-12-15",
@@ -11219,16 +11323,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-45",
-        "totalAtivo": 191694.86,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 191695.86,
         "funding": 0.0,
-        "subordinada": 191694.86,
+        "subordinada": 191695.86,
         "dataScript": "data/cras/cra-carteira-45/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 191694.86,
-        "puSub": 1916.9486
+        "puSub": 1916.9586
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-45/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 0.0,
+        "fundingCashOnly": false,
+        "totalAtivo": 191760.86,
+        "subordinada": 191760.86,
+        "puSub": 1917.6085999999998,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-45/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 0.0,
+        "fundingCashOnly": false,
+        "totalAtivo": 191825.89,
+        "subordinada": 191825.89,
+        "puSub": 1918.2589,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -11238,7 +11368,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-46",
     "name": "CRA Carteira 46",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2025-12-12",
@@ -13176,16 +13306,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-46",
-        "totalAtivo": 210165.08,
-        "funding": 125838.256698,
-        "subordinada": 84326.82330199999,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 210241.51,
+        "funding": 130422.348945,
+        "subordinada": 79819.161055,
         "dataScript": "data/cras/cra-carteira-46/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 210165.08,
-        "puSub": 843.2682330199999
+        "puSub": 798.1916105500001
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-46/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 130584.288681,
+        "fundingCashOnly": false,
+        "totalAtivo": 210317.98,
+        "subordinada": 79733.691319,
+        "puSub": 797.33691319,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-46/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 130746.429114,
+        "fundingCashOnly": false,
+        "totalAtivo": 210394.49,
+        "subordinada": 79648.06088599999,
+        "puSub": 796.48060886,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -13195,7 +13351,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-47",
     "name": "CRA Carteira 47",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2025-12-29",
@@ -15013,16 +15169,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-47",
-        "totalAtivo": 16374140.31,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 16374141.31,
         "funding": 16306196.303292,
-        "subordinada": 67944.00670799986,
+        "subordinada": 67945.00670799986,
         "dataScript": "data/cras/cra-carteira-47/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 2976012.15,
-        "puSub": 679.4400670799986
+        "puSub": 679.4500670799986
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-47/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 16318484.827785,
+        "fundingCashOnly": false,
+        "totalAtivo": 16385365.34,
+        "subordinada": 66880.51221499965,
+        "puSub": 668.8051221499965,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-47/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 16330783.090272,
+        "fundingCashOnly": false,
+        "totalAtivo": 16396598.67,
+        "subordinada": 65815.57972799987,
+        "puSub": 658.1557972799986,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -15032,7 +15214,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-48",
     "name": "CRA Carteira 48",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2025-12-29",
@@ -16850,16 +17032,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-48",
-        "totalAtivo": 11345836.84,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 11345837.84,
         "funding": 11343999.358713,
-        "subordinada": 1837.4812870007008,
+        "subordinada": 1838.4812870007008,
         "dataScript": "data/cras/cra-carteira-48/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 19451.53,
-        "puSub": 18.37481287000701
+        "puSub": 18.384812870007007
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-48/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 11352589.89774,
+        "fundingCashOnly": false,
+        "totalAtivo": 11355623.09,
+        "subordinada": 3033.192259998992,
+        "puSub": 30.33192259998992,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-48/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 11361187.244106,
+        "fundingCashOnly": false,
+        "totalAtivo": 11365416.799999999,
+        "subordinada": 4229.555893998593,
+        "puSub": 42.29555893998593,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -16869,7 +17077,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-49",
     "name": "CRA Carteira 49",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-01-15",
@@ -18543,16 +18751,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-49",
-        "totalAtivo": 819323.62,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 819324.5900000001,
         "funding": 418973.170329,
-        "subordinada": 400350.449671,
+        "subordinada": 400351.4196710001,
         "dataScript": "data/cras/cra-carteira-49/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 321682.82,
-        "puSub": 4003.5044967100002
+        "puSub": 4003.5141967100008
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-49/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 419289.554586,
+        "fundingCashOnly": false,
+        "totalAtivo": 819565.0900000001,
+        "subordinada": 400275.5354140001,
+        "puSub": 4002.755354140001,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-49/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 419606.183829,
+        "fundingCashOnly": false,
+        "totalAtivo": 819805.8,
+        "subordinada": 400199.61617100006,
+        "puSub": 4001.9961617100007,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -18562,7 +18796,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-50",
     "name": "CRA Carteira 50",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-02-03",
@@ -20080,16 +20314,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-50",
-        "totalAtivo": 10755477.76,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 10755478.76,
         "funding": 10506775.320573,
-        "subordinada": 248702.43942699954,
+        "subordinada": 248703.43942699954,
         "dataScript": "data/cras/cra-carteira-50/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 10798.12,
-        "puSub": 2487.0243942699954
+        "puSub": 2487.0343942699956
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-50/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 10514709.43677,
+        "fundingCashOnly": false,
+        "totalAtivo": 10758839.63,
+        "subordinada": 244130.19323000126,
+        "puSub": 2441.3019323000126,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-50/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 10522649.683602,
+        "fundingCashOnly": false,
+        "totalAtivo": 10768874.930000002,
+        "subordinada": 246225.2463980019,
+        "puSub": 2462.252463980019,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -20099,7 +20359,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-51",
     "name": "CRA Carteira 51",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-02-12",
@@ -21533,16 +21793,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-51",
-        "totalAtivo": 10540079.54,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 10540080.54,
         "funding": 11455735.155124411,
-        "subordinada": -915655.6151244119,
+        "subordinada": -915654.6151244119,
         "dataScript": "data/cras/cra-carteira-51/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 5515.95,
-        "puSub": -9156.556151244118
+        "puSub": -9156.546151244118
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-51/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 11464631.020202309,
+        "fundingCashOnly": false,
+        "totalAtivo": 10543007.68,
+        "subordinada": -921623.3402023092,
+        "puSub": -9216.233402023092,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-51/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 11473533.719460499,
+        "fundingCashOnly": false,
+        "totalAtivo": 10545937.309999999,
+        "subordinada": -927596.4094604999,
+        "puSub": -9275.964094604999,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -21552,7 +21838,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-52",
     "name": "CRA Carteira 52",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-02-04",
@@ -23058,16 +23344,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-52",
-        "totalAtivo": 59896.82,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 59897.82,
         "funding": 0.0,
-        "subordinada": 59896.82,
+        "subordinada": 59897.82,
         "dataScript": "data/cras/cra-carteira-52/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 59896.82,
-        "puSub": 598.9682
+        "puSub": 598.9782
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-52/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 0.0,
+        "fundingCashOnly": false,
+        "totalAtivo": 59936.05,
+        "subordinada": 59936.05,
+        "puSub": 599.3605,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-52/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 0.0,
+        "fundingCashOnly": false,
+        "totalAtivo": 59974.31,
+        "subordinada": 59974.31,
+        "puSub": 599.7431,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -23077,7 +23389,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-53",
     "name": "CRA Carteira 53",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-02-09",
@@ -24547,16 +24859,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-53",
-        "totalAtivo": 11182955.32,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 11105031.32,
         "funding": 11304185.837175,
-        "subordinada": -121230.51717500016,
+        "subordinada": -199154.51717500016,
         "dataScript": "data/cras/cra-carteira-53/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 964802.81,
-        "puSub": -1212.3051717500016
+        "puSub": -1991.5451717500016
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-53/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 11312655.418953,
+        "fundingCashOnly": false,
+        "totalAtivo": 11105360.36,
+        "subordinada": -207295.05895300023,
+        "puSub": -2072.950589530002,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-53/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 11321131.54473,
+        "fundingCashOnly": false,
+        "totalAtivo": 11105695.219999999,
+        "subordinada": -215436.3247300014,
+        "puSub": -2154.363247300014,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -24566,7 +24904,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-54",
     "name": "CRA Carteira 54",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-02-09",
@@ -26036,16 +26374,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-54",
-        "totalAtivo": 10910082.43,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 10910083.43,
         "funding": 11246902.07214265,
-        "subordinada": -336819.64214264974,
+        "subordinada": -336818.64214264974,
         "dataScript": "data/cras/cra-carteira-54/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 648906.28,
-        "puSub": -3368.196421426497
+        "puSub": -3368.1864214264974
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-54/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 11255230.17114555,
+        "fundingCashOnly": false,
+        "totalAtivo": 10910564.319999998,
+        "subordinada": -344665.8511455525,
+        "puSub": -3446.6585114555246,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-54/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 11263564.7055649,
+        "fundingCashOnly": false,
+        "totalAtivo": 10911079.16,
+        "subordinada": -352485.5455648992,
+        "puSub": -3524.855455648992,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -26055,7 +26419,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-55",
     "name": "CRA Carteira 55",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-02-09",
@@ -27525,16 +27889,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-55",
-        "totalAtivo": 10385235.9,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 10385236.9,
         "funding": 10345970.701402,
-        "subordinada": 39265.19859800115,
+        "subordinada": 39266.19859800115,
         "dataScript": "data/cras/cra-carteira-55/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 364602.92,
-        "puSub": 392.65198598001155
+        "puSub": 392.66198598001154
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-55/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 10353667.818781,
+        "fundingCashOnly": false,
+        "totalAtivo": 10385324.120000001,
+        "subordinada": 31656.301219001412,
+        "puSub": 316.56301219001415,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-55/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 10361370.883521,
+        "fundingCashOnly": false,
+        "totalAtivo": 10385473.16,
+        "subordinada": 24102.276479000226,
+        "puSub": 241.02276479000227,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -27547,7 +27937,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 56",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -27637,23 +28027,49 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-56",
-        "totalAtivo": 1243474.4,
-        "funding": 1129662.56494,
-        "subordinada": 113811.83505999995,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 1243475.4,
+        "funding": 1163712.081644,
+        "subordinada": 79763.31835599989,
         "dataScript": "data/cras/cra-carteira-56/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 1243474.4,
-        "puSub": 1138.1183505999995
+        "puSub": 797.6331835599989
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-56/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 1164615.74376,
+        "fundingCashOnly": false,
+        "totalAtivo": 1244006.89,
+        "subordinada": 79391.14623999991,
+        "puSub": 793.9114623999991,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-56/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 1165520.114416,
+        "fundingCashOnly": false,
+        "totalAtivo": 1244538.64,
+        "subordinada": 79018.52558399993,
+        "puSub": 790.1852558399993,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
   {
     "craId": "cra-carteira-57",
     "name": "CRA Carteira 57",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-04-01",
@@ -28703,16 +29119,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-57",
-        "totalAtivo": 163458.63,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 163459.63,
         "funding": 0.0,
-        "subordinada": 163458.63,
+        "subordinada": 163459.63,
         "dataScript": "data/cras/cra-carteira-57/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 163458.63,
-        "puSub": 1634.5863
+        "puSub": 1634.5963000000002
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-57/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 0.0,
+        "fundingCashOnly": false,
+        "totalAtivo": 163536.1,
+        "subordinada": 163536.1,
+        "puSub": 1635.361,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-57/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 0.0,
+        "fundingCashOnly": false,
+        "totalAtivo": 163612.61,
+        "subordinada": 163612.61,
+        "puSub": 1636.1261,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -28722,7 +29164,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-58",
     "name": "CRA Carteira 58",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-04-24",
@@ -29592,7 +30034,7 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-58",
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
         "totalAtivo": 31108690.2,
         "funding": 31005629.15251235,
         "subordinada": 103061.04748765007,
@@ -29602,6 +30044,32 @@ window.LAMINA_CRA_MANIFEST = [
         "fundingCashOnly": false,
         "cash": 0.0,
         "puSub": 1030.6104748765006
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-58/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 31030608.5592393,
+        "fundingCashOnly": false,
+        "totalAtivo": 31128213.61,
+        "subordinada": 97605.05076069757,
+        "puSub": 976.0505076069758,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-58/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 31055608.29999885,
+        "fundingCashOnly": false,
+        "totalAtivo": 31186857.599999998,
+        "subordinada": 131249.30000114813,
+        "puSub": 1312.4930000114814,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -29611,7 +30079,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-59",
     "name": "CRA Carteira 59",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-06-12",
@@ -30085,16 +30553,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-59",
-        "totalAtivo": 31325074.009999998,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 31325074.349999998,
         "funding": 31492768.7118,
-        "subordinada": -167694.70180000365,
+        "subordinada": -167694.3618000038,
         "dataScript": "data/cras/cra-carteira-59/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 3838101.2,
-        "puSub": -1676.9470180000365
+        "puSub": -1676.943618000038
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-59/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 31516322.942199998,
+        "fundingCashOnly": false,
+        "totalAtivo": 31342384.48,
+        "subordinada": -173938.46219999716,
+        "puSub": -1739.3846219999716,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-59/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 31539895.063,
+        "fundingCashOnly": false,
+        "totalAtivo": 31358571.27,
+        "subordinada": -181323.79300000146,
+        "puSub": -1813.2379300000146,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -30104,7 +30598,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-60",
     "name": "CRA Carteira 60",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-04-08",
@@ -31106,16 +31600,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-60",
-        "totalAtivo": 6619024.13,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 6619025.13,
         "funding": 6804846.7092255,
-        "subordinada": -185822.5792255001,
+        "subordinada": -185821.5792255001,
         "dataScript": "data/cras/cra-carteira-60/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 210005.82,
-        "puSub": -1858.2257922550011
+        "puSub": -1858.2157922550011
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-60/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 6810329.0377255,
+        "fundingCashOnly": false,
+        "totalAtivo": 6623695.79,
+        "subordinada": -186633.2477254998,
+        "puSub": -1866.332477254998,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-60/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 6815815.7222255,
+        "fundingCashOnly": false,
+        "totalAtivo": 6628369.79,
+        "subordinada": -187445.93222550023,
+        "puSub": -1874.4593222550022,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -31125,7 +31645,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-61",
     "name": "CRA Carteira 61",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-05-14",
@@ -31839,16 +32359,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-61",
-        "totalAtivo": 43911960.580000006,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 43911963.080000006,
         "funding": 43983745.448601,
-        "subordinada": -71784.86860099435,
+        "subordinada": -71782.36860099435,
         "dataScript": "data/cras/cra-carteira-61/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 131709.7,
-        "puSub": -717.8486860099434
+        "puSub": -717.8236860099435
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-61/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 44019180.638601005,
+        "fundingCashOnly": false,
+        "totalAtivo": 43942386.12,
+        "subordinada": -76794.51860100776,
+        "puSub": -767.9451860100776,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-61/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 44054644.556601,
+        "fundingCashOnly": false,
+        "totalAtivo": 43972835.25,
+        "subordinada": -81809.30660100281,
+        "puSub": -818.0930660100281,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -31858,7 +32404,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-62",
     "name": "CRA Carteira 62",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-05-28",
@@ -32452,16 +32998,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-62",
-        "totalAtivo": 36438726.93,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 36438727.93,
         "funding": 38655838.854213,
-        "subordinada": -2217111.9242129996,
+        "subordinada": -2217110.9242129996,
         "dataScript": "data/cras/cra-carteira-62/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 501616.17,
-        "puSub": -22171.119242129997
+        "puSub": -22171.109242129998
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-62/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 38686572.361946,
+        "fundingCashOnly": false,
+        "totalAtivo": 36464187.07,
+        "subordinada": -2222385.2919460014,
+        "puSub": -22223.852919460012,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-62/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 38717330.077153996,
+        "fundingCashOnly": false,
+        "totalAtivo": 36489669.269999996,
+        "subordinada": -2227660.807154,
+        "puSub": -22276.60807154,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -32471,7 +33043,7 @@ window.LAMINA_CRA_MANIFEST = [
   {
     "craId": "cra-carteira-63",
     "name": "CRA Carteira 63",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-07-03",
@@ -32665,16 +33237,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-63",
-        "totalAtivo": 41128188.269999996,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 41128189.269999996,
         "funding": 40941064.863120005,
-        "subordinada": 187123.4068799913,
+        "subordinada": 187124.4068799913,
         "dataScript": "data/cras/cra-carteira-63/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 1792352.05,
-        "puSub": 1871.2340687999128
+        "puSub": 1871.2440687999128
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-63/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 40972857.15768,
+        "fundingCashOnly": false,
+        "totalAtivo": 41159018.33,
+        "subordinada": 186161.17232000083,
+        "puSub": 1861.6117232000083,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-63/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 41004674.21344,
+        "fundingCashOnly": false,
+        "totalAtivo": 41192309.410000004,
+        "subordinada": 187635.19656000286,
+        "puSub": 1876.3519656000287,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ],
     "groupId": "cras-carteira",
@@ -32687,7 +33285,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 67",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -32777,16 +33375,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-67",
-        "totalAtivo": 38401942.230000004,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 38401943.230000004,
         "funding": 38282191.451712,
-        "subordinada": 119750.77828800678,
+        "subordinada": 119751.77828800678,
         "dataScript": "data/cras/cra-carteira-67/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 1182770.52,
-        "puSub": 1197.507782880068
+        "puSub": 1197.517782880068
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-67/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 38307595.55232,
+        "fundingCashOnly": false,
+        "totalAtivo": 38430099.79,
+        "subordinada": 122504.2376799956,
+        "puSub": 1225.042376799956,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-67/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 38333017.046016,
+        "fundingCashOnly": false,
+        "totalAtivo": 38458722.92,
+        "subordinada": 125705.87398400158,
+        "puSub": 1257.0587398400157,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -32796,7 +33420,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 68",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -32886,16 +33510,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-68",
-        "totalAtivo": 38119629.53,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 38119632.21,
         "funding": 38374110.550110996,
-        "subordinada": -254481.02011099458,
+        "subordinada": -254478.34011099488,
         "dataScript": "data/cras/cra-carteira-68/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 0.0,
-        "puSub": -2544.810201109946
+        "puSub": -2544.783401109949
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-68/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 38404619.846158996,
+        "fundingCashOnly": false,
+        "totalAtivo": 38151144.31,
+        "subordinada": -253475.53615899384,
+        "puSub": -2534.7553615899383,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-68/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 38435153.728475004,
+        "fundingCashOnly": false,
+        "totalAtivo": 38182682.53,
+        "subordinada": -252471.19847500324,
+        "puSub": -2524.7119847500326,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -32905,7 +33555,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 69",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -32995,16 +33645,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-69",
-        "totalAtivo": 38876780.62,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 38876780.98,
         "funding": 39216714.79672299,
-        "subordinada": -339934.17672299594,
+        "subordinada": -339933.81672299653,
         "dataScript": "data/cras/cra-carteira-69/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 0.0,
-        "puSub": -3399.3417672299593
+        "puSub": -3399.338167229965
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-69/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 39247894.004387,
+        "fundingCashOnly": false,
+        "totalAtivo": 38908983.03,
+        "subordinada": -338910.9743869975,
+        "puSub": -3389.1097438699753,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-69/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 39279098.338175,
+        "fundingCashOnly": false,
+        "totalAtivo": 38941211.83,
+        "subordinada": -337886.50817500055,
+        "puSub": -3378.8650817500056,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -33014,7 +33690,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 70",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -33104,16 +33780,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-70",
-        "totalAtivo": 35450657.400000006,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 35450658.400000006,
         "funding": 35233679.746916994,
-        "subordinada": 216977.6530830115,
+        "subordinada": 216978.6530830115,
         "dataScript": "data/cras/cra-carteira-70/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 1799.84,
-        "puSub": 2169.776530830115
+        "puSub": 2169.786530830115
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-70/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 35261692.246773,
+        "fundingCashOnly": false,
+        "totalAtivo": 35484101.82000001,
+        "subordinada": 222409.57322701067,
+        "puSub": 2224.0957322701065,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-70/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 35289727.320824996,
+        "fundingCashOnly": false,
+        "totalAtivo": 35517576.77,
+        "subordinada": 227849.44917500764,
+        "puSub": 2278.4944917500766,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -33123,7 +33825,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 71",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -33213,16 +33915,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-71",
-        "totalAtivo": 20869245.5,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 20869246.5,
         "funding": 20862887.839735,
-        "subordinada": 6357.660264998674,
+        "subordinada": 6358.660264998674,
         "dataScript": "data/cras/cra-carteira-71/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 250055.09,
-        "puSub": 63.57660264998675
+        "puSub": 63.586602649986744
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-71/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 20879475.035875,
+        "fundingCashOnly": false,
+        "totalAtivo": 20888224.31,
+        "subordinada": 8749.2741249986,
+        "puSub": 87.492741249986,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-71/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 20896075.199020002,
+        "fundingCashOnly": false,
+        "totalAtivo": 20772941.72,
+        "subordinada": -123133.47902000323,
+        "puSub": -1231.3347902000323,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -33232,7 +33960,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 72",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -33322,16 +34050,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-72",
-        "totalAtivo": 33858301.86,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 33858302.86,
         "funding": 33800895.08189118,
-        "subordinada": 57406.77810882032,
+        "subordinada": 57407.77810882032,
         "dataScript": "data/cras/cra-carteira-72/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 6566.67,
-        "puSub": 574.0677810882032
+        "puSub": 574.0777810882032
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-72/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 33823325.69405988,
+        "fundingCashOnly": false,
+        "totalAtivo": 33882281.47,
+        "subordinada": 58955.77594012022,
+        "puSub": 589.5577594012022,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-72/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 33845771.06484822,
+        "fundingCashOnly": false,
+        "totalAtivo": 33906277.24,
+        "subordinada": 60506.17515178025,
+        "puSub": 605.0617515178025,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -33341,7 +34095,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 73",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -33431,16 +34185,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-73",
-        "totalAtivo": 37174802.26,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 37174759.21,
         "funding": 37181525.896821,
-        "subordinada": -6723.636821001768,
+        "subordinada": -6766.686820998788,
         "dataScript": "data/cras/cra-carteira-73/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 0.0,
-        "puSub": -67.23636821001769
+        "puSub": -67.66686820998788
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-73/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 37211087.261068,
+        "fundingCashOnly": false,
+        "totalAtivo": 37203911.68,
+        "subordinada": -7175.5810680016875,
+        "puSub": -71.75581068001688,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-73/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 37240672.00519,
+        "fundingCashOnly": false,
+        "totalAtivo": 37233087.0,
+        "subordinada": -7585.005189999938,
+        "puSub": -75.85005189999939,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -33540,26 +34320,39 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-74",
-        "totalAtivo": 34855392.339999996,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 34855393.68,
         "funding": 34632428.47047794,
-        "subordinada": 222963.86952205747,
+        "subordinada": 222965.20952206105,
         "dataScript": "data/cras/cra-carteira-74/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 308216.97,
-        "puSub": 2229.638695220575
+        "puSub": 2229.6520952206106
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-74/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 34655410.89644882,
+        "fundingCashOnly": false,
+        "totalAtivo": 34879377.49,
+        "subordinada": 223966.59355118126,
+        "puSub": 2239.6659355118127,
+        "assetImported": true,
+        "portfolioAssetImport": true
       },
       {
         "dateKey": "2026-11-09",
         "reportDate": "09/11/2026",
-        "revisionId": "20261109-proforma74",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
         "funding": 36179469.46510424,
         "fundingCashOnly": false,
-        "totalAtivo": 36356439.349999994,
-        "subordinada": 176969.88489575684,
-        "puSub": 1769.6988489575683,
+        "totalAtivo": 36404436.79000001,
+        "subordinada": 224967.32489576936,
+        "puSub": 2249.6732489576934,
         "dataScript": "data/cras/cra-carteira-74/2026-11-09.js",
         "assetImported": true,
         "portfolioAssetImport": true
@@ -33572,7 +34365,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 75",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -33662,16 +34455,42 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-75",
-        "totalAtivo": 32829996.73,
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
+        "totalAtivo": 32829997.73,
         "funding": 38329307.35788,
-        "subordinada": -5499310.627879996,
+        "subordinada": -5499309.627879996,
         "dataScript": "data/cras/cra-carteira-75/2026-11-05.js",
         "assetImported": true,
         "portfolioAssetImport": true,
         "fundingCashOnly": false,
         "cash": 25367168.77,
-        "puSub": -54993.10627879996
+        "puSub": -54993.09627879996
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-75/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 38354743.192073,
+        "fundingCashOnly": false,
+        "totalAtivo": 32835185.240000002,
+        "subordinada": -5519557.952073,
+        "puSub": -55195.57952073,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-75/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 38380195.788319,
+        "fundingCashOnly": false,
+        "totalAtivo": 32851061.590000004,
+        "subordinada": -5529134.198318996,
+        "puSub": -55291.34198318995,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   },
@@ -33681,7 +34500,7 @@ window.LAMINA_CRA_MANIFEST = [
     "groupId": "cras-carteira",
     "groupName": "CRAs Carteira",
     "childLabel": "CRA 80",
-    "currentDate": "2026-11-05",
+    "currentDate": "2026-11-09",
     "dates": [
       {
         "dateKey": "2026-10-27",
@@ -33771,7 +34590,7 @@ window.LAMINA_CRA_MANIFEST = [
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "importedAt": "2026-11-06T15:37:28.617086-03:00",
-        "revisionId": "20261105-revisao-20261109-cra-carteira-80",
+        "revisionId": "20261105-ger004-v2-9ec1bcd729",
         "totalAtivo": 5236167.33,
         "funding": 5136800.18852,
         "subordinada": 99367.14147999976,
@@ -33781,6 +34600,32 @@ window.LAMINA_CRA_MANIFEST = [
         "fundingCashOnly": false,
         "cash": 0.0,
         "puSub": 993.6714147999976
+      },
+      {
+        "dateKey": "2026-11-06",
+        "reportDate": "06/11/2026",
+        "dataScript": "data/cras/cra-carteira-80/2026-11-06.js",
+        "revisionId": "20261106-ger004-v2-9ec1bcd729",
+        "funding": 5140789.128315,
+        "fundingCashOnly": false,
+        "totalAtivo": 5240705.5200000005,
+        "subordinada": 99916.39168500062,
+        "puSub": 999.1639168500062,
+        "assetImported": true,
+        "portfolioAssetImport": true
+      },
+      {
+        "dateKey": "2026-11-09",
+        "reportDate": "09/11/2026",
+        "dataScript": "data/cras/cra-carteira-80/2026-11-09.js",
+        "revisionId": "20261109-ger004-v2-9ec1bcd729",
+        "funding": 5144781.115795,
+        "fundingCashOnly": false,
+        "totalAtivo": 5245247.66,
+        "subordinada": 100466.5442049997,
+        "puSub": 1004.665442049997,
+        "assetImported": true,
+        "portfolioAssetImport": true
       }
     ]
   }

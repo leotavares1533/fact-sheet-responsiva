@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
     "craId": "cra-carteira-45",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-45",
-    "importedAt": "2026-11-09T15:33:08.523589-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:55.016035-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-45",
@@ -117,12 +121,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
     "pddTotal": 0,
     "carteiraVp": 0,
     "carteiraVpLiquido": 0,
-    "caixa": 191694.86,
-    "total": 191694.86,
+    "caixa": 191695.86,
+    "total": 191695.86,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "quantidadeLastros": 298,
-    "quantidadeLastrosBase": 298,
+    "quantidadeLastros": 244,
+    "quantidadeLastrosBase": 244,
     "lastrosAtivos": 0,
     "quantidadeLastrosAtivos": 0,
     "cedentesUnicos": 0,
@@ -131,24 +135,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 46386.44,
+      "cc": 46387.44,
       "contaAplicacao": 170193.09,
       "fundoDespesas": 24884.67
     },
-    "total": 191694.86,
-    "totalInformado": 191694.86,
-    "totalCalculado": 191694.86,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 191695.86,
+    "totalCalculado": 191695.86,
+    "totalInformado": 191695.86,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "99892-1 (ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 0.0,
-    "subordinadaTotal": 191694.86,
-    "subordinadaPuResidual": 1916.9486,
+    "subordinadaTotal": 191695.86,
+    "subordinadaPuResidual": 1916.9586,
     "cotas": [
       {
         "classe": "SR1",
@@ -12881,34 +12885,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": 1916.9486,
-        "valor": 191694.86,
-        "principalResidual": 1916.9486,
+        "pu": 1916.9586,
+        "valor": 191695.86,
+        "principalResidual": 1916.9586,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": 1916.9486,
-            "puAtualizado": 1916.9486,
-            "valorReais": 191694.86,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": 1916.9486
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -12922,7 +12903,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -14921,10 +14902,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 191694.86,
-      "totalCalculado": 191694.86,
+      "total": 191695.86,
+      "totalCalculado": 191695.86,
       "accounts": {
-        "cc": 46386.44,
+        "cc": 46387.44,
         "contaAplicacao": 170193.09,
         "fundoDespesas": 24884.67
       }
@@ -14944,630 +14925,6 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
   ],
   "cadastroSeriesDocumentadas": [],
   "carteira": [
-    {
-      "craCarteira": "45",
-      "lastro": "406904",
-      "numeroUnico": "406904",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "RC INVESTIMENTOS E PARTICIPACOES LTDA",
-      "devedor": "RC INVESTIMENTOS E PARTICIPACOES LTDA",
-      "valorAquisicao": 1312198.83,
-      "valorFace": 1625115.7,
-      "valorNominal": 1625115.7,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "406905",
-      "numeroUnico": "406905",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "J.O. GARCIA PARTICIPACOES LTDA",
-      "devedor": "J.O. GARCIA PARTICIPACOES LTDA",
-      "valorAquisicao": 1446640.55,
-      "valorFace": 1825193.5,
-      "valorNominal": 1825193.5,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/11/2026",
-      "dataVencimentoIso": "2026-11-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 25,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407236",
-      "numeroUnico": "407236",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "RC INVESTIMENTOS E PARTICIPACOES LTDA",
-      "devedor": "RC INVESTIMENTOS E PARTICIPACOES LTDA",
-      "valorAquisicao": 1312198.83,
-      "valorFace": 1625115.7,
-      "valorNominal": 1625115.7,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407237",
-      "numeroUnico": "407237",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "TEMPO INVESTIMENTOS PARTICIPACOES LTDA",
-      "devedor": "TEMPO INVESTIMENTOS PARTICIPACOES LTDA",
-      "valorAquisicao": 1518308.13,
-      "valorFace": 1949725.7,
-      "valorNominal": 1949725.7,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/12/2026",
-      "dataVencimentoIso": "2026-12-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 55,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407238",
-      "numeroUnico": "407238",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "TEMPO INVESTIMENTOS PARTICIPACOES LTDA",
-      "devedor": "TEMPO INVESTIMENTOS PARTICIPACOES LTDA",
-      "valorAquisicao": 1518308.13,
-      "valorFace": 1949725.7,
-      "valorNominal": 1949725.7,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/12/2026",
-      "dataVencimentoIso": "2026-12-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 55,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407239",
-      "numeroUnico": "407239",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "TRADE COMPANY CONSULTORIA FINANCEIRA LTDA",
-      "devedor": "TRADE COMPANY CONSULTORIA FINANCEIRA LTDA",
-      "valorAquisicao": 1352467.87,
-      "valorFace": 1674987.6,
-      "valorNominal": 1674987.6,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407240",
-      "numeroUnico": "407240",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "TRADE COMPANY CONSULTORIA FINANCEIRA LTDA",
-      "devedor": "TRADE COMPANY CONSULTORIA FINANCEIRA LTDA",
-      "valorAquisicao": 1352467.87,
-      "valorFace": 1674987.6,
-      "valorNominal": 1674987.6,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407241",
-      "numeroUnico": "407241",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "TRADE COMPANY PARTICIPACOES E INVESTIMENTOS LTDA",
-      "devedor": "TRADE COMPANY PARTICIPACOES E INVESTIMENTOS LTDA",
-      "valorAquisicao": 1367116.25,
-      "valorFace": 1724859.5,
-      "valorNominal": 1724859.5,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/11/2026",
-      "dataVencimentoIso": "2026-11-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 25,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407242",
-      "numeroUnico": "407242",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "TRADE COMPANY PARTICIPACOES E INVESTIMENTOS LTDA",
-      "devedor": "TRADE COMPANY PARTICIPACOES E INVESTIMENTOS LTDA",
-      "valorAquisicao": 1367116.25,
-      "valorFace": 1724859.5,
-      "valorNominal": 1724859.5,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/11/2026",
-      "dataVencimentoIso": "2026-11-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 25,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407243",
-      "numeroUnico": "407243",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "VILA CARVALHO EMPREENDIMENTOS IMOBILIARIOS LTDA",
-      "devedor": "VILA CARVALHO EMPREENDIMENTOS IMOBILIARIOS LTDA",
-      "valorAquisicao": 1271929.79,
-      "valorFace": 1575243.8,
-      "valorNominal": 1575243.8,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407244",
-      "numeroUnico": "407244",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "VILA CARVALHO EMPREENDIMENTOS IMOBILIARIOS LTDA",
-      "devedor": "VILA CARVALHO EMPREENDIMENTOS IMOBILIARIOS LTDA",
-      "valorAquisicao": 1271929.79,
-      "valorFace": 1575243.8,
-      "valorNominal": 1575243.8,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407245",
-      "numeroUnico": "407245",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "AC BIO PARTICIPACOES E INVESTIMENTOS LTDA",
-      "devedor": "AC BIO PARTICIPACOES E INVESTIMENTOS LTDA",
-      "valorAquisicao": 1615050.6,
-      "valorFace": 2000187.8,
-      "valorNominal": 2000187.8,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407246",
-      "numeroUnico": "407246",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "AC BIO PARTICIPACOES E INVESTIMENTOS LTDA",
-      "devedor": "AC BIO PARTICIPACOES E INVESTIMENTOS LTDA",
-      "valorAquisicao": 1557604.44,
-      "valorFace": 2000187.8,
-      "valorNominal": 2000187.8,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/12/2026",
-      "dataVencimentoIso": "2026-12-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 55,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407247",
-      "numeroUnico": "407247",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "ESTANCIA SANTA FE LTDA",
-      "devedor": "ESTANCIA SANTA FE LTDA",
-      "valorAquisicao": 1479471.43,
-      "valorFace": 1899853.8,
-      "valorNominal": 1899853.8,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/12/2026",
-      "dataVencimentoIso": "2026-12-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 55,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407248",
-      "numeroUnico": "407248",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "ESTANCIA SANTA FE LTDA",
-      "devedor": "ESTANCIA SANTA FE LTDA",
-      "valorAquisicao": 1479471.43,
-      "valorFace": 1899853.8,
-      "valorNominal": 1899853.8,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/12/2026",
-      "dataVencimentoIso": "2026-12-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 55,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407249",
-      "numeroUnico": "407249",
-      "cedente": "RENOVAGRO - AGRICULTURA RENOVAVEL S.A.",
-      "sacado": "J.O. GARCIA PARTICIPACOES LTDA",
-      "devedor": "J.O. GARCIA PARTICIPACOES LTDA",
-      "valorAquisicao": 1446640.55,
-      "valorFace": 1825193.5,
-      "valorNominal": 1825193.5,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/11/2026",
-      "dataVencimentoIso": "2026-11-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 25,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
     {
       "craCarteira": "45",
       "lastro": "407259",
@@ -15605,85 +14962,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "407274",
-      "numeroUnico": "407274",
-      "cedente": "ACREAVES ALIMENTOS LTDA",
-      "sacado": "ACREAVES ALIMENTOS LTDA",
-      "devedor": "ACREAVES ALIMENTOS LTDA",
-      "valorAquisicao": 5091257.96,
-      "valorFace": 6329613.73,
-      "valorNominal": 6329613.73,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "05/11/2026",
-      "dataVencimentoIso": "2026-11-05",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NC",
-      "tipoAtivo": "NC",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 0,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "412283",
-      "numeroUnico": "412283",
-      "cedente": "G3 AGRONEGOCIOS LTDA",
-      "sacado": "G3 AGRONEGOCIOS LTDA",
-      "devedor": "G3 AGRONEGOCIOS LTDA",
-      "valorAquisicao": 1556937.02,
-      "valorFace": 1726324.63,
-      "valorNominal": 1726324.63,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "15/12/2025",
-      "dataAquisicaoIso": "2025-12-15",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "05/03/2026",
-      "dataLiquidacaoIso": "2026-03-05",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NC",
-      "tipoAtivo": "NC",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "360.165.858-58",
+      "documentoSacado": "360.165.858-58",
+      "numeroTitulo": "CCB_LLR_AGRO_24-11",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15722,7 +15005,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0010-10",
+      "documentoSacado": "806.732.959-15",
+      "numeroTitulo": "799",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15761,7 +15048,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0010-69",
+      "documentoSacado": "075.311.251-53",
+      "numeroTitulo": "7093",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15800,7 +15091,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "006.385.760-08",
+      "numeroTitulo": "31679",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15839,7 +15134,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "790.867.051-20",
+      "numeroTitulo": "31629",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15878,7 +15177,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "558.243.821-15",
+      "numeroTitulo": "31628",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15917,7 +15220,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "407.944.071-53",
+      "numeroTitulo": "31605",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15956,7 +15263,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "012.502.851-27",
+      "numeroTitulo": "31601",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -15995,7 +15306,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "848.340.131-20",
+      "numeroTitulo": "31599",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16034,7 +15349,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "848.340.131-20",
+      "numeroTitulo": "31598",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16073,7 +15392,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "848.340.131-20",
+      "numeroTitulo": "31595",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16112,7 +15435,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "848.340.131-20",
+      "numeroTitulo": "31594",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16151,7 +15478,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "038.433.991-31",
+      "numeroTitulo": "31586",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16190,7 +15521,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "012.502.851-27",
+      "numeroTitulo": "31585",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16229,7 +15564,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "901.806.660-53",
+      "numeroTitulo": "31740",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16268,7 +15607,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "792.541.951-20",
+      "numeroTitulo": "31736",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16307,7 +15650,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "792.541.951-20",
+      "numeroTitulo": "31726",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16346,7 +15693,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "949.053.711-04",
+      "numeroTitulo": "31724",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16385,7 +15736,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "407.977.591-15",
+      "numeroTitulo": "31720",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16424,7 +15779,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "832.102.299-53",
+      "numeroTitulo": "31715",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16463,7 +15822,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "117.431.820-15",
+      "numeroTitulo": "31699",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16502,7 +15865,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "29.161.530/0001-01",
+      "documentoSacado": "117.431.820-15",
+      "numeroTitulo": "31698",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16541,7 +15908,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0004-08",
+      "documentoSacado": "592.935.780-34",
+      "numeroTitulo": "21387",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16580,7 +15951,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0004-08",
+      "documentoSacado": "592.935.780-34",
+      "numeroTitulo": "21372",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16619,7 +15994,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0004-08",
+      "documentoSacado": "592.935.780-34",
+      "numeroTitulo": "21347",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16658,7 +16037,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0004-08",
+      "documentoSacado": "592.935.780-34",
+      "numeroTitulo": "21332",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16697,7 +16080,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0004-08",
+      "documentoSacado": "592.935.780-34",
+      "numeroTitulo": "21331",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16736,7 +16123,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0004-08",
+      "documentoSacado": "592.935.780-34",
+      "numeroTitulo": "21466",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16775,7 +16166,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0009-04",
+      "documentoSacado": "016.571.221-07",
+      "numeroTitulo": "1197",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16814,7 +16209,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0009-04",
+      "documentoSacado": "554.863.719-34",
+      "numeroTitulo": "1171",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16853,7 +16252,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0009-04",
+      "documentoSacado": "326.040.761-87",
+      "numeroTitulo": "1219",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16892,7 +16295,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0009-04",
+      "documentoSacado": "203.239.991-15",
+      "numeroTitulo": "1225",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16931,7 +16338,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0009-04",
+      "documentoSacado": "203.239.991-15",
+      "numeroTitulo": "1109",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -16970,7 +16381,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.072.608/0009-04",
+      "documentoSacado": "203.239.991-15",
+      "numeroTitulo": "928",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17009,46 +16424,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "412994",
-      "numeroUnico": "412994",
-      "cedente": "ARENA MAQUINAS LTDA",
-      "sacado": "ROBERTO DE OLIVEIRA",
-      "devedor": "ROBERTO DE OLIVEIRA",
-      "valorAquisicao": 41874.05,
-      "valorFace": 44000.0,
-      "valorNominal": 44000.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "31/03/2026",
-      "dataLiquidacaoIso": "2026-03-31",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "12.090.439/0001-31",
+      "documentoSacado": "116.955.398-26",
+      "numeroTitulo": "7966",
+      "parcela": "2"
     },
     {
       "craCarteira": "45",
@@ -17087,358 +16467,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "412996",
-      "numeroUnico": "412996",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 3435.05,
-      "valorFace": 3600.0,
-      "valorNominal": 3600.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "412997",
-      "numeroUnico": "412997",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 36526.07,
-      "valorFace": 38280.0,
-      "valorNominal": 38280.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "412998",
-      "numeroUnico": "412998",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 1145.02,
-      "valorFace": 1200.0,
-      "valorNominal": 1200.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "412999",
-      "numeroUnico": "412999",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 70.61,
-      "valorFace": 74.0,
-      "valorNominal": 74.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413000",
-      "numeroUnico": "413000",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 677.47,
-      "valorFace": 710.0,
-      "valorNominal": 710.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413001",
-      "numeroUnico": "413001",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 770.02,
-      "valorFace": 807.0,
-      "valorNominal": 807.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413002",
-      "numeroUnico": "413002",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "OLMIRO DECIAN/MARINES BURIM DECIEN",
-      "devedor": "OLMIRO DECIAN/MARINES BURIM DECIEN",
-      "valorAquisicao": 11297.51,
-      "valorFace": 11840.0,
-      "valorNominal": 11840.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413003",
-      "numeroUnico": "413003",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 45275.91,
-      "valorFace": 47450.0,
-      "valorNominal": 47450.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413004",
-      "numeroUnico": "413004",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "RAUL CUENCA",
-      "devedor": "RAUL CUENCA",
-      "valorAquisicao": 12823.25,
-      "valorFace": 13439.0,
-      "valorNominal": 13439.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "12.090.439/0001-31",
+      "documentoSacado": "220.748.868-37",
+      "numeroTitulo": "8123",
+      "parcela": "2"
     },
     {
       "craCarteira": "45",
@@ -17477,7 +16510,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "045.131.561-80",
+      "numeroTitulo": "46454",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17516,7 +16553,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "542.811.991-87",
+      "numeroTitulo": "46453",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17555,7 +16596,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "542.811.991-87",
+      "numeroTitulo": "46376",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17594,7 +16639,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "542.811.991-87",
+      "numeroTitulo": "46373",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17633,241 +16682,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413010",
-      "numeroUnico": "413010",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "OLMIRO DECIAN/MARINES BURIM DECIEN",
-      "devedor": "OLMIRO DECIAN/MARINES BURIM DECIEN",
-      "valorAquisicao": 5982.72,
-      "valorFace": 6270.0,
-      "valorNominal": 6270.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413011",
-      "numeroUnico": "413011",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MONICA PICCIONI BRIGNONI",
-      "devedor": "MONICA PICCIONI BRIGNONI",
-      "valorAquisicao": 3738.65,
-      "valorFace": 3920.0,
-      "valorNominal": 3920.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413012",
-      "numeroUnico": "413012",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 11565.01,
-      "valorFace": 12126.0,
-      "valorNominal": 12126.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413013",
-      "numeroUnico": "413013",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 1802.56,
-      "valorFace": 1890.0,
-      "valorNominal": 1890.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413014",
-      "numeroUnico": "413014",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 75535.91,
-      "valorFace": 79200.0,
-      "valorNominal": 79200.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413015",
-      "numeroUnico": "413015",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 16509.17,
-      "valorFace": 17310.0,
-      "valorNominal": 17310.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "542.811.991-87",
+      "numeroTitulo": "46372",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17906,7 +16725,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "666.225.579-34",
+      "numeroTitulo": "46647",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17945,7 +16768,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "562.073.871-04",
+      "numeroTitulo": "46541",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -17984,7 +16811,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "766.877.321-53",
+      "numeroTitulo": "46404",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18023,7 +16854,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "666.225.579-34",
+      "numeroTitulo": "46397",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18062,163 +16897,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413021",
-      "numeroUnico": "413021",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MONICA PICCIONI BRIGNONI",
-      "devedor": "MONICA PICCIONI BRIGNONI",
-      "valorAquisicao": 30021.71,
-      "valorFace": 31478.0,
-      "valorNominal": 31478.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413022",
-      "numeroUnico": "413022",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MARCOS ANTONIO BRIGNONI",
-      "devedor": "MARCOS ANTONIO BRIGNONI",
-      "valorAquisicao": 7839.71,
-      "valorFace": 8220.0,
-      "valorNominal": 8220.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413023",
-      "numeroUnico": "413023",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MARCOS ANTONIO BRIGNONI",
-      "devedor": "MARCOS ANTONIO BRIGNONI",
-      "valorAquisicao": 4730.53,
-      "valorFace": 4960.0,
-      "valorNominal": 4960.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413024",
-      "numeroUnico": "413024",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 22889.67,
-      "valorFace": 24000.0,
-      "valorNominal": 24000.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "562.073.871-04",
+      "numeroTitulo": "46542",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18257,319 +16940,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413026",
-      "numeroUnico": "413026",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 309.96,
-      "valorFace": 325.0,
-      "valorNominal": 325.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413027",
-      "numeroUnico": "413027",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MONICA PICCIONI BRIGNONI",
-      "devedor": "MONICA PICCIONI BRIGNONI",
-      "valorAquisicao": 2975.66,
-      "valorFace": 3120.0,
-      "valorNominal": 3120.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413028",
-      "numeroUnico": "413028",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 2697.17,
-      "valorFace": 2828.0,
-      "valorNominal": 2828.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413029",
-      "numeroUnico": "413029",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 2697.17,
-      "valorFace": 2828.0,
-      "valorNominal": 2828.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413030",
-      "numeroUnico": "413030",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MARCOS ANTONIO BRIGNONI",
-      "devedor": "MARCOS ANTONIO BRIGNONI",
-      "valorAquisicao": 5151.13,
-      "valorFace": 5401.0,
-      "valorNominal": 5401.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413031",
-      "numeroUnico": "413031",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MARCOS ANTONIO BRIGNONI",
-      "devedor": "MARCOS ANTONIO BRIGNONI",
-      "valorAquisicao": 759.17,
-      "valorFace": 796.0,
-      "valorNominal": 796.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413032",
-      "numeroUnico": "413032",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MARCOS ANTONIO BRIGNONI",
-      "devedor": "MARCOS ANTONIO BRIGNONI",
-      "valorAquisicao": 2180.24,
-      "valorFace": 2286.0,
-      "valorNominal": 2286.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413033",
-      "numeroUnico": "413033",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 3061.49,
-      "valorFace": 3210.0,
-      "valorNominal": 3210.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "562.073.871-04",
+      "numeroTitulo": "47088",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18608,7 +16983,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "766.877.321-53",
+      "numeroTitulo": "46418",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18647,7 +17026,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "766.877.321-53",
+      "numeroTitulo": "46396",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18686,7 +17069,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "666.225.579-34",
+      "numeroTitulo": "46403",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18725,46 +17112,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413038",
-      "numeroUnico": "413038",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "MONICA PICCIONI BRIGNONI",
-      "devedor": "MONICA PICCIONI BRIGNONI",
-      "valorAquisicao": 22007.46,
-      "valorFace": 23075.0,
-      "valorNominal": 23075.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "766.877.321-53",
+      "numeroTitulo": "46393",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18803,46 +17155,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413040",
-      "numeroUnico": "413040",
-      "cedente": "CASA DA LAVOURA COM. DE PROD. AGRIC. LTDA.",
-      "sacado": "EUCLIDES LIMA NETO",
-      "devedor": "EUCLIDES LIMA NETO",
-      "valorAquisicao": 8850.68,
-      "valorFace": 9280.0,
-      "valorNominal": 9280.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "00.411.502/0001-05",
+      "documentoSacado": "766.877.321-53",
+      "numeroTitulo": "46389",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18881,7 +17198,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "789.210.661-87",
+      "numeroTitulo": "11426",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18920,7 +17241,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "789.210.661-87",
+      "numeroTitulo": "11293",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18959,7 +17284,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "190.570.401-15",
+      "numeroTitulo": "10941",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -18998,7 +17327,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "493.809.581-53",
+      "numeroTitulo": "11572",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19037,7 +17370,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "701.692.031-31",
+      "numeroTitulo": "10945",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19076,7 +17413,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "499.583.481-87",
+      "numeroTitulo": "10956",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19115,7 +17456,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "069.195.676-60",
+      "numeroTitulo": "10872",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19154,7 +17499,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "294.059.968-86",
+      "numeroTitulo": "10274",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19193,7 +17542,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "822.552.101-34",
+      "numeroTitulo": "10241",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19232,7 +17585,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "822.552.101-34",
+      "numeroTitulo": "10054",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19271,7 +17628,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "701.692.031-31",
+      "numeroTitulo": "10638",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19310,7 +17671,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "782.395.401-04",
+      "numeroTitulo": "9342",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19349,7 +17714,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "910.891.236-04",
+      "numeroTitulo": "10793",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19388,7 +17757,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "472.904.631-53",
+      "numeroTitulo": "10751",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19427,7 +17800,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "625.501.101-10",
+      "numeroTitulo": "10674",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19466,7 +17843,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0002-90",
+      "documentoSacado": "575.358.331-87",
+      "numeroTitulo": "30",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19505,7 +17886,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "016.620.321-10",
+      "numeroTitulo": "10675",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19544,7 +17929,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.032.968/0001-00",
+      "documentoSacado": "891.026.301-68",
+      "numeroTitulo": "9268",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19583,7 +17972,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "23.639.554/0001-39",
+      "documentoSacado": "681.940.130-20",
+      "numeroTitulo": "5183",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19622,7 +18015,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0010-69",
+      "documentoSacado": "709.628.281-57",
+      "numeroTitulo": "7099",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19661,7 +18058,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0014-92",
+      "documentoSacado": "951.640.301-87",
+      "numeroTitulo": "854",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19700,7 +18101,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0014-92",
+      "documentoSacado": "951.640.301-87",
+      "numeroTitulo": "841",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19739,7 +18144,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0001-78",
+      "documentoSacado": "242.315.769-04",
+      "numeroTitulo": "74821",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19778,7 +18187,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0001-78",
+      "documentoSacado": "102.146.310-87",
+      "numeroTitulo": "74648",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19817,7 +18230,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.634.396/0001-78",
+      "documentoSacado": "565.188.549-87",
+      "numeroTitulo": "74594",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19856,7 +18273,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "234.880.009-82",
+      "numeroTitulo": "893",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19895,7 +18316,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "085.693.379-14",
+      "numeroTitulo": "916",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19934,7 +18359,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "034.931.478-05",
+      "numeroTitulo": "808",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -19973,7 +18402,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "085.693.379-14",
+      "numeroTitulo": "927",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20012,7 +18445,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "040.776.351-10",
+      "numeroTitulo": "763",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20051,7 +18488,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "040.590.661-76",
+      "numeroTitulo": "731",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20090,7 +18531,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "539.200.319-20",
+      "numeroTitulo": "928",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20129,7 +18574,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "234.880.009-82",
+      "numeroTitulo": "933",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20168,7 +18617,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "034.931.478-05",
+      "numeroTitulo": "887",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20207,7 +18660,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "047.675.529-82",
+      "numeroTitulo": "829",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20246,7 +18703,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "271.851.761-15",
+      "numeroTitulo": "737",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20285,7 +18746,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "539.294.899-53",
+      "numeroTitulo": "925",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20324,7 +18789,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "896.208.019-20",
+      "numeroTitulo": "795",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20363,7 +18832,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "085.693.379-14",
+      "numeroTitulo": "956",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20402,7 +18875,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "040.776.351-10",
+      "numeroTitulo": "978",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20441,7 +18918,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "539.200.319-20",
+      "numeroTitulo": "926",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20480,7 +18961,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "085.693.379-14",
+      "numeroTitulo": "917",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20519,7 +19004,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "034.931.478-05",
+      "numeroTitulo": "822",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20558,7 +19047,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "949.053.711-04",
+      "numeroTitulo": "745",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20597,7 +19090,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "949.053.711-04",
+      "numeroTitulo": "558",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20636,7 +19133,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "539.294.899-53",
+      "numeroTitulo": "659",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20675,7 +19176,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "910",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20714,7 +19219,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "019.610.329-02",
+      "numeroTitulo": "847",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20753,7 +19262,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "712",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20792,7 +19305,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "700",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20831,7 +19348,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "691",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20870,7 +19391,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "718",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20909,7 +19434,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "854",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20948,7 +19477,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "696",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -20987,7 +19520,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "920",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21026,7 +19563,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "931.379.239-72",
+      "numeroTitulo": "1051",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21065,7 +19606,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "931.379.239-72",
+      "numeroTitulo": "748",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21104,7 +19649,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "812",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21143,7 +19692,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "692",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21182,7 +19735,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "019.610.329-02",
+      "numeroTitulo": "811",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21221,7 +19778,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "720",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21260,7 +19821,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "723",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21299,7 +19864,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "883",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21338,7 +19907,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "694",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21377,7 +19950,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "878",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21416,7 +19993,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "024.962.431-11",
+      "numeroTitulo": "1007",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21455,7 +20036,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "48.589.423/0001-15",
+      "documentoSacado": "557.743.001-10",
+      "numeroTitulo": "846",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21494,7 +20079,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "41.818.936/0004-54",
+      "documentoSacado": "175.062.981-04",
+      "numeroTitulo": "517",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21533,7 +20122,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "41.818.936/0004-54",
+      "documentoSacado": "175.062.981-04",
+      "numeroTitulo": "516",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21572,7 +20165,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "41.818.936/0004-54",
+      "documentoSacado": "175.062.981-04",
+      "numeroTitulo": "515",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21611,7 +20208,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "41.818.936/0004-54",
+      "documentoSacado": "175.062.981-04",
+      "numeroTitulo": "514",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21650,7 +20251,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24942",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21689,7 +20294,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24861",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21728,7 +20337,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24627",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21767,7 +20380,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "625.501.101-10",
+      "numeroTitulo": "25051",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21806,7 +20423,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24475",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21845,7 +20466,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24444",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21884,7 +20509,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24740",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21923,7 +20552,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24385",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -21962,7 +20595,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24325",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22001,7 +20638,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24943",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22040,7 +20681,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24871",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22079,7 +20724,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "37.401.221/0001-81",
+      "documentoSacado": "864.833.151-04",
+      "numeroTitulo": "24862",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22118,7 +20767,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.672.616/0001-58",
+      "documentoSacado": "996.510.761-00",
+      "numeroTitulo": "65837",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22157,7 +20810,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.672.616/0001-58",
+      "documentoSacado": "458.253.351-53",
+      "numeroTitulo": "66289",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22196,7 +20853,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "498.898.189-49",
+      "numeroTitulo": "4001",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22235,7 +20896,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "498.898.189-49",
+      "numeroTitulo": "3893",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22274,7 +20939,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "832.102.299-53",
+      "numeroTitulo": "4242",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22313,7 +20982,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "558.243.821-15",
+      "numeroTitulo": "4221",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22352,7 +21025,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "832.102.299-53",
+      "numeroTitulo": "4202",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22391,7 +21068,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "897.791.931-20",
+      "numeroTitulo": "4168",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22430,7 +21111,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "003.998.521-07",
+      "numeroTitulo": "4167",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22469,7 +21154,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "792.541.951-20",
+      "numeroTitulo": "4153",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22508,7 +21197,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "737.106.281-72",
+      "numeroTitulo": "4137",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22547,7 +21240,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "016.014.331-40",
+      "numeroTitulo": "4133",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22586,7 +21283,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "832.102.299-53",
+      "numeroTitulo": "4115",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22625,7 +21326,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "832.102.299-53",
+      "numeroTitulo": "4260",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22664,7 +21369,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "832.102.299-53",
+      "numeroTitulo": "4258",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22703,7 +21412,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "002.756.931-47",
+      "numeroTitulo": "4088",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22742,7 +21455,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "044.429.251-94",
+      "numeroTitulo": "4147",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22781,7 +21498,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "465.260.801-20",
+      "numeroTitulo": "4251",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22820,7 +21541,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "447.965.521-20",
+      "numeroTitulo": "4253",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22859,7 +21584,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "039.455.291-15",
+      "numeroTitulo": "4254",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22898,7 +21627,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "002.756.931-47",
+      "numeroTitulo": "4282",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22937,7 +21670,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "039.455.291-15",
+      "numeroTitulo": "4075",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -22976,7 +21713,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "447.299.871-87",
+      "numeroTitulo": "4132",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23015,7 +21756,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "790.867.051-20",
+      "numeroTitulo": "4184",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23054,7 +21799,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "447.299.871-87",
+      "numeroTitulo": "4192",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23093,7 +21842,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "019.505.499-76",
+      "numeroTitulo": "4085",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23132,7 +21885,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.881-43",
+      "numeroTitulo": "4570",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23171,7 +21928,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.911-01",
+      "numeroTitulo": "4560",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23210,7 +21971,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.911-01",
+      "numeroTitulo": "4559",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23249,7 +22014,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.911-01",
+      "numeroTitulo": "4547",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23288,7 +22057,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "011.755.618-19",
+      "numeroTitulo": "4539",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23327,7 +22100,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "558.243.821-15",
+      "numeroTitulo": "4526",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23366,7 +22143,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "051.044.519-50",
+      "numeroTitulo": "4513",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23405,7 +22186,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "733.150.871-72",
+      "numeroTitulo": "4454",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23444,7 +22229,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "994.261.708-63",
+      "numeroTitulo": "4453",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23483,7 +22272,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "448.364.491-20",
+      "numeroTitulo": "4447",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23522,7 +22315,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "733.150.871-72",
+      "numeroTitulo": "4446",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23561,7 +22358,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.911-01",
+      "numeroTitulo": "4440",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23600,7 +22401,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.881-43",
+      "numeroTitulo": "4439",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23639,7 +22444,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.881-43",
+      "numeroTitulo": "4425",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23678,7 +22487,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "333.646.309-25",
+      "numeroTitulo": "4421",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23717,7 +22530,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.881-43",
+      "numeroTitulo": "4420",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23756,7 +22573,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "091.231.801-53",
+      "numeroTitulo": "4418",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23795,7 +22616,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "994.261.708-63",
+      "numeroTitulo": "4410",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23834,7 +22659,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "051.044.519-50",
+      "numeroTitulo": "4382",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23873,7 +22702,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "715.121.951-20",
+      "numeroTitulo": "4375",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23912,7 +22745,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "060.024.891-77",
+      "numeroTitulo": "4346",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23951,7 +22788,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "060.024.891-77",
+      "numeroTitulo": "4343",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -23990,7 +22831,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "011.755.618-19",
+      "numeroTitulo": "4333",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24029,7 +22874,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "404.898.091-20",
+      "numeroTitulo": "4330",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24068,7 +22917,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "790.867.051-20",
+      "numeroTitulo": "4324",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24107,7 +22960,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "790.867.051-20",
+      "numeroTitulo": "4316",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24146,7 +23003,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "092.631.619-25",
+      "numeroTitulo": "4300",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24185,7 +23046,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "494.282.500-82",
+      "numeroTitulo": "4297",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24224,7 +23089,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "092.631.619-25",
+      "numeroTitulo": "4267",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24263,7 +23132,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "052.085.379-23",
+      "numeroTitulo": "4235",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24302,7 +23175,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "051.044.519-50",
+      "numeroTitulo": "4189",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24341,7 +23218,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.911-01",
+      "numeroTitulo": "4183",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24380,7 +23261,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "038.432.881-43",
+      "numeroTitulo": "4182",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24419,7 +23304,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "448.364.491-20",
+      "numeroTitulo": "4159",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24458,7 +23347,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "333.646.309-25",
+      "numeroTitulo": "4157",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24497,7 +23390,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "052.085.379-23",
+      "numeroTitulo": "4145",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24536,7 +23433,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "404.898.091-20",
+      "numeroTitulo": "4113",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24575,7 +23476,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "46.907.400/0001-86",
+      "documentoSacado": "200.846.251-04",
+      "numeroTitulo": "4573",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24614,7 +23519,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "33.174.133/0001-33",
+      "documentoSacado": "003.046.461-72",
+      "numeroTitulo": "11067",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24653,7 +23562,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "119.254.646-60",
+      "numeroTitulo": "7004",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24692,7 +23605,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "001.056.701-11",
+      "numeroTitulo": "6940",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24731,7 +23648,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "059.317.961-77",
+      "numeroTitulo": "7019",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24770,7 +23691,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "866.601.871-20",
+      "numeroTitulo": "7021",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24809,7 +23734,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "866.601.871-20",
+      "numeroTitulo": "7022",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24848,7 +23777,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "866.601.871-20",
+      "numeroTitulo": "7023",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24887,7 +23820,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "119.254.646-60",
+      "numeroTitulo": "6922",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24926,7 +23863,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "701.538.721-28",
+      "numeroTitulo": "7253",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -24965,7 +23906,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "009.059.351-01",
+      "numeroTitulo": "7252",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25004,7 +23949,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "701.538.721-28",
+      "numeroTitulo": "7254",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25043,46 +23992,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413213",
-      "numeroUnico": "413213",
-      "cedente": "ZITRA AGRONEGOCIOS LTDA",
-      "sacado": "IVO MACEDO DOS SANTOS NETO",
-      "devedor": "IVO MACEDO DOS SANTOS NETO",
-      "valorAquisicao": 2280.78,
-      "valorFace": 2396.0,
-      "valorNominal": 2396.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "30/03/2026",
-      "dataVencimentoIso": "2026-03-30",
-      "dataLiquidacao": "31/03/2026",
-      "dataLiquidacaoIso": "2026-03-31",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -220,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "118.423.261-04",
+      "numeroTitulo": "7292",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25121,46 +24035,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413215",
-      "numeroUnico": "413215",
-      "cedente": "ZITRA AGRONEGOCIOS LTDA",
-      "sacado": "ALEXANDRE RIZZI",
-      "devedor": "ALEXANDRE RIZZI",
-      "valorAquisicao": 15434.62,
-      "valorFace": 16230.0,
-      "valorNominal": 16230.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "31/03/2026",
-      "dataVencimentoIso": "2026-03-31",
-      "dataLiquidacao": "31/03/2026",
-      "dataLiquidacaoIso": "2026-03-31",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -219,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "039.486.121-37",
+      "numeroTitulo": "7328",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25199,85 +24078,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413217",
-      "numeroUnico": "413217",
-      "cedente": "ZITRA AGRONEGOCIOS LTDA",
-      "sacado": "ALEXANDRE RIZZI",
-      "devedor": "ALEXANDRE RIZZI",
-      "valorAquisicao": 16949.74,
-      "valorFace": 17823.2,
-      "valorNominal": 17823.2,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "31/03/2026",
-      "dataVencimentoIso": "2026-03-31",
-      "dataLiquidacao": "31/03/2026",
-      "dataLiquidacaoIso": "2026-03-31",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -219,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413218",
-      "numeroUnico": "413218",
-      "cedente": "ZITRA AGRONEGOCIOS LTDA",
-      "sacado": "DIMARCY BORGES",
-      "devedor": "DIMARCY BORGES",
-      "valorAquisicao": 10128.08,
-      "valorFace": 10650.0,
-      "valorNominal": 10650.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "31/03/2026",
-      "dataVencimentoIso": "2026-03-31",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -219,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "036.856.531-99",
+      "numeroTitulo": "7319",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25316,7 +24121,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "025.972.721-09",
+      "numeroTitulo": "7291",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25355,7 +24164,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "029.295.821-89",
+      "numeroTitulo": "7330",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25394,46 +24207,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "413222",
-      "numeroUnico": "413222",
-      "cedente": "ZITRA AGRONEGOCIOS LTDA",
-      "sacado": "ANDRE VELOSO CRUVINEL",
-      "devedor": "ANDRE VELOSO CRUVINEL",
-      "valorAquisicao": 3283.54,
-      "valorFace": 3452.75,
-      "valorNominal": 3452.75,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "14/01/2026",
-      "dataAquisicaoIso": "2026-01-14",
-      "dataVencimento": "31/03/2026",
-      "dataVencimentoIso": "2026-03-31",
-      "dataLiquidacao": "26/03/2026",
-      "dataLiquidacaoIso": "2026-03-26",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "LIQUIDADO",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -219,
-      "faixaVenc": "Acima de 180 dias",
-      "faixaVencOrder": 7,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "118.423.261-04",
+      "numeroTitulo": "7299",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25472,7 +24250,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "004.907.931-00",
+      "numeroTitulo": "7307",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25511,7 +24293,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "019.224.381-03",
+      "numeroTitulo": "7320",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25550,7 +24336,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "43.160.642/0001-60",
+      "documentoSacado": "617.877.361-72",
+      "numeroTitulo": "7309",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25589,7 +24379,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "436.006.031-91",
+      "numeroTitulo": "34966",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25628,7 +24422,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "436.006.031-91",
+      "numeroTitulo": "34916",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25667,7 +24465,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "436.006.031-91",
+      "numeroTitulo": "34896",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25706,7 +24508,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "951.640.301-87",
+      "numeroTitulo": "34905",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25745,7 +24551,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "584.076.421-34",
+      "numeroTitulo": "34747",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25784,7 +24594,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "102.146.310-87",
+      "numeroTitulo": "34717",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25823,7 +24637,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "102.146.310-87",
+      "numeroTitulo": "34710",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25862,7 +24680,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0001-29",
+      "documentoSacado": "102.146.310-87",
+      "numeroTitulo": "34617",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25901,7 +24723,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0002-00",
+      "documentoSacado": "857.559.231-91",
+      "numeroTitulo": "2026",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25940,7 +24766,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0002-00",
+      "documentoSacado": "055.524.741-47",
+      "numeroTitulo": "2000",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -25979,7 +24809,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0012-81",
+      "documentoSacado": "075.311.251-53",
+      "numeroTitulo": "1901",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26018,7 +24852,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "02.154.955/0010-10",
+      "documentoSacado": "806.732.959-15",
+      "numeroTitulo": "802",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26057,7 +24895,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "5910",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26096,7 +24938,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "00.192.724/0001-84",
+      "numeroTitulo": "5905",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26135,7 +24981,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "00.192.724/0001-84",
+      "numeroTitulo": "5905",
+      "parcela": "2"
     },
     {
       "craCarteira": "45",
@@ -26174,7 +25024,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "00.192.724/0001-84",
+      "numeroTitulo": "5905",
+      "parcela": "3"
     },
     {
       "craCarteira": "45",
@@ -26213,7 +25067,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "79.863.569/0043-90",
+      "numeroTitulo": "5931",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26252,7 +25110,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "63.693.389/0001-18",
+      "numeroTitulo": "5921",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26291,7 +25153,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "63.693.389/0001-18",
+      "numeroTitulo": "5921",
+      "parcela": "2"
     },
     {
       "craCarteira": "45",
@@ -26330,7 +25196,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "63.693.389/0001-18",
+      "numeroTitulo": "5921",
+      "parcela": "3"
     },
     {
       "craCarteira": "45",
@@ -26369,7 +25239,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "56.037.812/0001-66",
+      "numeroTitulo": "5888",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26408,7 +25282,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "37.543.501/0002-05",
+      "numeroTitulo": "5890",
+      "parcela": "1"
     },
     {
       "craCarteira": "45",
@@ -26447,7 +25325,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "37.543.501/0002-05",
+      "numeroTitulo": "5890",
+      "parcela": "2"
     },
     {
       "craCarteira": "45",
@@ -26486,7 +25368,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "37.543.501/0002-05",
+      "numeroTitulo": "5890",
+      "parcela": "3"
     },
     {
       "craCarteira": "45",
@@ -26525,46 +25411,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "45",
-      "lastro": "472782",
-      "numeroUnico": "472782",
-      "cedente": "LEONARDO LEAL LOPES",
-      "sacado": "LEONARDO LEAL LOPES",
-      "devedor": "LEONARDO LEAL LOPES",
-      "valorAquisicao": 2207303.21,
-      "valorFace": 0.0,
-      "valorNominal": 0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "29/05/2026",
-      "dataAquisicaoIso": "2026-05-29",
-      "dataVencimento": "30/08/2030",
-      "dataVencimentoIso": "2030-08-30",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR",
-      "tipoAtivo": "CPR",
-      "tipo": "pos fixado",
-      "indexadorAtivo": "pos fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 1394,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Sem linha de aquisicao do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "17.329.639/0001-18",
+      "documentoSacado": "76.075.118/0001-40",
+      "numeroTitulo": "5900",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -26620,7 +25471,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 191.694,86",
+          "value": "R$ 191.695,86",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -26636,7 +25487,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 191.694,86",
+          "value": "R$ 191.695,86",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -26652,7 +25503,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 191.694,86",
+          "value": "R$ 191.695,86",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -26660,7 +25511,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "1.916,948600",
+          "value": "1.916,958600",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -26684,5 +25535,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-45"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [],
+    "replacementParcels": [],
+    "paymentDifferences": []
+  }
 };

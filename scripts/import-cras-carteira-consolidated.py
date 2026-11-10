@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import importlib.util
 import json
 import math
 import re
@@ -377,6 +378,18 @@ def project_cota_to_date(snapshot: dict[str, Any], cota: dict[str, Any], target_
     latest_key = clean_text(latest.get("dataIso") or latest.get("data"))[:10]
     if "/" in latest_key:
         latest_key = iso(as_date(latest_key))
+    if next_cota.get("usarMotorFundingContratual"):
+        # Keep validated contractual rounding, CDI lag and default charges in future portfolio imports.
+        spec = importlib.util.spec_from_file_location("contract_cash_materializer", REPO_ROOT / "scripts/import-cras-carteira-cash-text.py")
+        materializer = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(materializer)
+        funding = materializer.REFRESH
+        calendar = set(json.loads(funding.terms.REGISTRY.read_text("utf-8"))["businessCalendar"]["holidays"]) | holidays
+        next_cota["historicoPu"] = history
+        next_cota["pu"] = latest["puAtualizado"]
+        next_cota["quantidade"] = latest.get("quantidade", next_cota.get("quantidade", 0))
+        projection = funding.extend_series(next_cota, latest_key, target_key, calendar, parse_di_rates())
+        return materializer.materialize_series(next_cota, projection, target_key)
     cursor = as_date(latest_key) or target
 
     principal = first_present_number(latest.get("valorNominal"), next_cota.get("principalResidual"), next_cota.get("valorNominalInicial"))

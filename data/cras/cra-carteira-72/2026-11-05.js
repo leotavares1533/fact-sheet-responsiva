@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
     "craId": "cra-carteira-72",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-72",
-    "importedAt": "2026-11-09T15:33:11.821789-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:59.155173-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-72",
@@ -117,8 +121,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
     "pddTotal": 0.0,
     "carteiraVp": 33851735.19,
     "carteiraVpLiquido": 33851735.19,
-    "caixa": 6566.67,
-    "total": 33858301.86,
+    "caixa": 6567.67,
+    "total": 33858302.86,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 311,
@@ -131,24 +135,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 24617.52,
+      "cc": 24618.52,
       "contaAplicacao": 0.0,
       "fundoDespesas": 18050.85
     },
-    "total": 6566.67,
-    "totalInformado": 6566.67,
-    "totalCalculado": 6566.67,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 6567.67,
+    "totalCalculado": 6567.67,
+    "totalInformado": 6567.67,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "29599-4 (ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 33800895.08189118,
-    "subordinadaTotal": 57406.77810882032,
-    "subordinadaPuResidual": 574.0677810882032,
+    "subordinadaTotal": 57407.77810882032,
+    "subordinadaPuResidual": 574.0777810882032,
     "cotas": [
       {
         "classe": "SR1",
@@ -2347,8 +2351,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
           "periodoInicio": "31/07/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1009.40378313,
-          "diasAcumulacao": 32.0,
-          "diasUteisPeriodo": 32.0
+          "diasAcumulacao": 32,
+          "diasUteisPeriodo": 32
         },
         "sourceClass": "SR1",
         "serieJuridica": 1,
@@ -2375,34 +2379,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": 574.0677810882032,
-        "valor": 57406.77810882032,
-        "principalResidual": 574.0677810882032,
+        "pu": 574.0777810882032,
+        "valor": 57407.77810882032,
+        "principalResidual": 574.0777810882032,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": 574.0677810882032,
-            "puAtualizado": 574.0677810882032,
-            "valorReais": 57406.77810882032,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": 574.0677810882032
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -2416,7 +2397,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -4415,10 +4396,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 6566.67,
-      "totalCalculado": 6566.67,
+      "total": 6567.67,
+      "totalCalculado": 6567.67,
       "accounts": {
-        "cc": 24617.52,
+        "cc": 24618.52,
         "contaAplicacao": 0.0,
         "fundoDespesas": 18050.85
       }
@@ -4621,7 +4602,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "278.989.629-15",
+      "numeroTitulo": "2049",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4660,7 +4645,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "667.690.601-59",
+      "numeroTitulo": "2040",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4699,7 +4688,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "872.187.551-00",
+      "numeroTitulo": "2051",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4738,7 +4731,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "011.817.511-44",
+      "numeroTitulo": "2052",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4777,7 +4774,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "325.061.120-49",
+      "numeroTitulo": "2061",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4816,7 +4817,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "039.793.701-60",
+      "numeroTitulo": "2064",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4855,7 +4860,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "708",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4894,7 +4903,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0012-80",
+      "documentoSacado": "22.939.321/0001-99",
+      "numeroTitulo": "561",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4933,7 +4946,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0012-80",
+      "documentoSacado": "41.280.697/0001-89",
+      "numeroTitulo": "562",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -4972,7 +4989,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0012-80",
+      "documentoSacado": "11.228.680/0001-11",
+      "numeroTitulo": "563",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5011,7 +5032,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "11.081.868/0001-80",
+      "numeroTitulo": "106482",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5050,7 +5075,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.737.282/0001-28",
+      "numeroTitulo": "32915",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5089,7 +5118,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.737.282/0001-28",
+      "numeroTitulo": "33140",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5128,7 +5161,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "526.973.801-59",
+      "numeroTitulo": "35940",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5167,7 +5204,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "54.037.858/0001-50",
+      "numeroTitulo": "38144",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5206,7 +5247,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.938.642/0001-79",
+      "numeroTitulo": "38539",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5245,7 +5290,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.938.642/0001-79",
+      "numeroTitulo": "38540",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5284,7 +5333,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "10.830.366/0001-41",
+      "numeroTitulo": "38546",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5323,7 +5376,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "10.910.326/0001-00",
+      "numeroTitulo": "38560",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5362,7 +5419,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "38566",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5401,7 +5462,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "38567",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5440,7 +5505,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.938.642/0001-79",
+      "numeroTitulo": "38575",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5479,7 +5548,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "533.587.241-15",
+      "numeroTitulo": "38577",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5518,7 +5591,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "896.037.451-20",
+      "numeroTitulo": "38585",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5557,7 +5634,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "208.997.420-68",
+      "numeroTitulo": "38586",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5596,7 +5677,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "821.721.531-68",
+      "numeroTitulo": "38587",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5635,7 +5720,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "821.721.531-68",
+      "numeroTitulo": "38588",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5674,7 +5763,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "51.054.516/0001-50",
+      "numeroTitulo": "38591",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5713,7 +5806,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "469.235.510-72",
+      "numeroTitulo": "38592",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5752,7 +5849,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.997.682/0001-75",
+      "numeroTitulo": "38601",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5791,7 +5892,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "21.164.905/0001-77",
+      "numeroTitulo": "38602",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5830,7 +5935,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.415.880/0001-83",
+      "numeroTitulo": "38609",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5869,7 +5978,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "38628",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5908,7 +6021,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "38629",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5947,7 +6064,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "38630",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -5986,7 +6107,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "51.054.516/0001-50",
+      "numeroTitulo": "38631",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6025,7 +6150,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "51.054.516/0001-50",
+      "numeroTitulo": "38632",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6064,7 +6193,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.782.610/0001-45",
+      "numeroTitulo": "38636",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6103,7 +6236,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.782.610/0001-45",
+      "numeroTitulo": "38637",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6142,7 +6279,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.613.886/0001-50",
+      "numeroTitulo": "38641",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6181,7 +6322,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "23.823.066/0001-87",
+      "numeroTitulo": "38642",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6220,7 +6365,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "38644",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6259,7 +6408,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "38645",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6298,7 +6451,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "55.428.345/0001-32",
+      "numeroTitulo": "38675",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6337,7 +6494,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "55.428.345/0001-32",
+      "numeroTitulo": "38676",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6376,7 +6537,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "872.187.551-00",
+      "numeroTitulo": "38677",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6415,7 +6580,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "29.060.707/0001-75",
+      "numeroTitulo": "38680",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6454,7 +6623,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "32.128.982/0001-98",
+      "numeroTitulo": "38679",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6493,7 +6666,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.073.939/0001-98",
+      "numeroTitulo": "38682",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6532,7 +6709,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.833.634/0001-41",
+      "numeroTitulo": "38685",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6571,7 +6752,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "00.709.000/0001-65",
+      "numeroTitulo": "38688",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6610,7 +6795,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.207.537/0001-70",
+      "numeroTitulo": "38691",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6649,7 +6838,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "38704",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6688,7 +6881,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "19.495.736/0001-06",
+      "numeroTitulo": "38707",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6727,7 +6924,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.081.868/0001-80",
+      "numeroTitulo": "38763",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6766,7 +6967,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.300.797/0001-10",
+      "numeroTitulo": "38766",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6805,7 +7010,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.997.682/0001-75",
+      "numeroTitulo": "38772",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6844,7 +7053,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "75.984.906/0001-97",
+      "numeroTitulo": "38774",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6883,7 +7096,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.902.385/0001-61",
+      "numeroTitulo": "38777",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6922,7 +7139,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "51.934.983/0001-74",
+      "numeroTitulo": "38780",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -6961,7 +7182,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "07.863.957/0001-00",
+      "numeroTitulo": "38785",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7000,7 +7225,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "07.863.957/0001-00",
+      "numeroTitulo": "38786",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7039,7 +7268,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.613.886/0001-50",
+      "numeroTitulo": "38787",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7078,7 +7311,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "21.784.762/0001-04",
+      "numeroTitulo": "38790",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7117,7 +7354,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "21.784.762/0001-04",
+      "numeroTitulo": "38791",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7156,7 +7397,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "23.823.066/0001-87",
+      "numeroTitulo": "38804",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7195,7 +7440,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "16.832.651/0001-88",
+      "numeroTitulo": "38806",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7234,7 +7483,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "554.468.769-20",
+      "numeroTitulo": "38810",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7273,7 +7526,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "38811",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7312,7 +7569,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.868.726/0001-52",
+      "numeroTitulo": "38825",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7351,7 +7612,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "02.507.962/0001-67",
+      "numeroTitulo": "38830",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7390,7 +7655,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.926.488/0001-50",
+      "numeroTitulo": "38835",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7429,7 +7698,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "89.842.686/0001-71",
+      "numeroTitulo": "38860",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7468,7 +7741,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.754.560/0001-55",
+      "numeroTitulo": "38861",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7507,7 +7784,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "91.022.632/0001-01",
+      "numeroTitulo": "38862",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7546,7 +7827,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "91.022.632/0001-01",
+      "numeroTitulo": "38863",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7585,7 +7870,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "91.022.632/0001-01",
+      "numeroTitulo": "38864",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7624,7 +7913,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "00.838.969/0001-36",
+      "numeroTitulo": "38869",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7663,7 +7956,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "79.035.275/0001-10",
+      "numeroTitulo": "38871",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7702,7 +7999,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "37.413.691/0001-65",
+      "numeroTitulo": "38883",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7741,7 +8042,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "07.359.609/0001-09",
+      "numeroTitulo": "38884",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7780,7 +8085,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.902.385/0001-61",
+      "numeroTitulo": "38889",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7819,7 +8128,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "45.175.407/0001-98",
+      "numeroTitulo": "38904",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7858,7 +8171,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.255.646/0001-70",
+      "numeroTitulo": "38907",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7897,7 +8214,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "10.830.366/0001-41",
+      "numeroTitulo": "38915",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7936,7 +8257,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.804.407/0001-04",
+      "numeroTitulo": "38918",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -7975,7 +8300,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.581.128/0001-06",
+      "numeroTitulo": "38919",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8014,7 +8343,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.581.128/0001-06",
+      "numeroTitulo": "38920",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8053,7 +8386,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.824.489/0001-30",
+      "numeroTitulo": "38921",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8092,7 +8429,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "25.356.182/0001-69",
+      "numeroTitulo": "38927",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8131,7 +8472,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "710.543.911-49",
+      "numeroTitulo": "38932",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8170,7 +8515,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "25.356.182/0001-69",
+      "numeroTitulo": "38937",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8209,7 +8558,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "01.111.512/0001-98",
+      "numeroTitulo": "38938",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8248,7 +8601,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.799.069/0001-60",
+      "numeroTitulo": "38949",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8287,7 +8644,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "38968",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8326,7 +8687,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "32.128.982/0001-98",
+      "numeroTitulo": "38974",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8365,7 +8730,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "28.331.375/0001-53",
+      "numeroTitulo": "38975",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8404,7 +8773,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.207.537/0001-70",
+      "numeroTitulo": "38980",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8443,7 +8816,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.207.537/0001-70",
+      "numeroTitulo": "38981",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8482,7 +8859,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "07.840.776/0001-69",
+      "numeroTitulo": "38985",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8521,7 +8902,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "24.121.710/0001-38",
+      "numeroTitulo": "38990",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8560,7 +8945,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "03.794.178/0001-40",
+      "numeroTitulo": "38992",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8599,7 +8988,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "872.187.551-00",
+      "numeroTitulo": "38993",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8638,7 +9031,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "59.697.805/0001-89",
+      "numeroTitulo": "38994",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8677,7 +9074,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "38997",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8716,7 +9117,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "37.465.646/0001-54",
+      "numeroTitulo": "38998",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8755,7 +9160,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "29.060.707/0001-75",
+      "numeroTitulo": "39000",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8794,7 +9203,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "59.331.702/0001-09",
+      "numeroTitulo": "39001",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8833,7 +9246,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "64.219.454/0001-30",
+      "numeroTitulo": "39002",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8872,7 +9289,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "18.589.401/0001-94",
+      "numeroTitulo": "39004",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8911,7 +9332,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "70.979.083/0001-98",
+      "numeroTitulo": "39025",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8950,7 +9375,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0013-60",
+      "documentoSacado": "257.217.981-49",
+      "numeroTitulo": "157",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -8989,7 +9418,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "825.408.618-49",
+      "numeroTitulo": "2023",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9028,7 +9461,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "142.017.209-34",
+      "numeroTitulo": "2038",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9067,7 +9504,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "667.690.601-59",
+      "numeroTitulo": "2039",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9106,7 +9547,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "01.111.512/0001-98",
+      "numeroTitulo": "39569",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9145,7 +9590,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "07.359.609/0001-09",
+      "numeroTitulo": "106729",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9184,7 +9633,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "01.111.512/0001-98",
+      "numeroTitulo": "39132",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9223,7 +9676,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "91.022.632/0001-01",
+      "numeroTitulo": "39317",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9262,7 +9719,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "91.022.632/0001-01",
+      "numeroTitulo": "39318",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9301,7 +9762,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.300.797/0001-10",
+      "numeroTitulo": "39734",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9340,7 +9805,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "01.111.512/0001-98",
+      "numeroTitulo": "106681",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9379,7 +9848,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "10.830.366/0001-41",
+      "numeroTitulo": "106699",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9418,7 +9891,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "19.495.736/0001-06",
+      "numeroTitulo": "39083",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9457,7 +9934,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "90.582.990/0002-97",
+      "numeroTitulo": "39049",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9496,7 +9977,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.300.797/0001-10",
+      "numeroTitulo": "39466",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9535,7 +10020,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.581.128/0006-02",
+      "numeroTitulo": "39098",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9574,7 +10063,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.425.760/0001-64",
+      "numeroTitulo": "39277",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9613,7 +10106,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.425.760/0014-89",
+      "numeroTitulo": "39278",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9652,7 +10149,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.570.312/0005-15",
+      "numeroTitulo": "39635",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9691,7 +10192,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.902.385/0010-52",
+      "numeroTitulo": "39738",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9730,7 +10235,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "19.495.736/0001-06",
+      "numeroTitulo": "39333",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9769,7 +10278,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "39082",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9808,7 +10321,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0012-80",
+      "documentoSacado": "41.280.697/0001-89",
+      "numeroTitulo": "566",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9847,7 +10364,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "710.543.911-49",
+      "numeroTitulo": "39276",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9886,7 +10407,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.228.680/0001-11",
+      "numeroTitulo": "39687",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9925,7 +10450,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "872.187.551-00",
+      "numeroTitulo": "39696",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -9964,7 +10493,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "75.984.906/0001-97",
+      "numeroTitulo": "106732",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10003,7 +10536,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "91.022.632/0001-01",
+      "numeroTitulo": "106648",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10042,7 +10579,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "327.034.518-65",
+      "numeroTitulo": "39578",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10081,7 +10622,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.067.326/0002-04",
+      "numeroTitulo": "39026",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10120,7 +10665,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "23.026.767/0001-95",
+      "numeroTitulo": "39307",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10159,7 +10708,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.868.726/0001-52",
+      "numeroTitulo": "39281",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10198,7 +10751,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "29.060.707/0001-75",
+      "numeroTitulo": "39357",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10237,7 +10794,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "89.842.686/0001-71",
+      "numeroTitulo": "39341",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10276,7 +10837,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "37.032.968/0001-00",
+      "numeroTitulo": "39197",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10315,7 +10880,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.813.102/0091-26",
+      "numeroTitulo": "39692",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10354,7 +10923,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "710.543.911-49",
+      "numeroTitulo": "39457",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10393,7 +10966,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "06.338.993/0008-69",
+      "numeroTitulo": "106651",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10432,7 +11009,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "89.842.686/0001-71",
+      "numeroTitulo": "39339",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10471,7 +11052,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "106781",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10510,7 +11095,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "21.164.905/0001-77",
+      "numeroTitulo": "39054",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10549,7 +11138,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "51.934.983/0001-74",
+      "numeroTitulo": "39459",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10588,7 +11181,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "39296",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10627,7 +11224,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.067.326/0002-04",
+      "numeroTitulo": "39027",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10666,7 +11267,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.754.560/0001-55",
+      "numeroTitulo": "39553",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10705,7 +11310,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "872.187.551-00",
+      "numeroTitulo": "39366",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10744,7 +11353,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "70.979.083/0001-98",
+      "numeroTitulo": "106631",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10783,7 +11396,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.813.102/0067-04",
+      "numeroTitulo": "39668",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10822,7 +11439,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.613.886/0001-50",
+      "numeroTitulo": "39106",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10861,7 +11482,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "06.933.748/0001-23",
+      "numeroTitulo": "39545",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10900,7 +11525,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "04.570.312/0001-91",
+      "numeroTitulo": "106806",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10939,7 +11568,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "39618",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -10978,7 +11611,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.902.385/0003-23",
+      "numeroTitulo": "39477",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11017,7 +11654,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.228.680/0002-00",
+      "numeroTitulo": "39601",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11056,7 +11697,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.799.069/0001-60",
+      "numeroTitulo": "39529",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11095,7 +11740,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "37.032.968/0001-00",
+      "numeroTitulo": "106617",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11134,7 +11783,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.813.102/0080-73",
+      "numeroTitulo": "39616",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11173,7 +11826,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "28.138.113/0040-83",
+      "numeroTitulo": "39492",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11212,7 +11869,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "07.279.419/0001-73",
+      "numeroTitulo": "39059",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11251,7 +11912,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "06.338.993/0020-55",
+      "numeroTitulo": "106743",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11290,7 +11955,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "981.903.508-20",
+      "numeroTitulo": "2095",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11329,7 +11998,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.813.102/0081-54",
+      "numeroTitulo": "39556",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11368,7 +12041,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.300.797/0001-10",
+      "numeroTitulo": "39717",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11407,7 +12084,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "06.338.993/0029-93",
+      "numeroTitulo": "106775",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11446,7 +12127,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "05.905.050/0003-01",
+      "numeroTitulo": "39467",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11485,7 +12170,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.926.488/0003-11",
+      "numeroTitulo": "38950",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11524,7 +12213,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "11.997.682/0001-75",
+      "numeroTitulo": "106741",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11563,7 +12256,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "11.081.868/0001-80",
+      "numeroTitulo": "106673",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11602,7 +12299,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "11.081.868/0001-80",
+      "numeroTitulo": "106672",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11641,7 +12342,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.813.102/0008-46",
+      "numeroTitulo": "39699",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11680,7 +12385,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "06.338.993/0024-89",
+      "numeroTitulo": "39061",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11719,7 +12428,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "23.026.767/0004-38",
+      "numeroTitulo": "38713",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11758,7 +12471,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "37.032.968/0001-00",
+      "numeroTitulo": "39195",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11797,7 +12514,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0004-70",
+      "documentoSacado": "37.032.968/0001-00",
+      "numeroTitulo": "106656",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11836,7 +12557,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "208.997.420-68",
+      "numeroTitulo": "39409",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11875,7 +12600,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "325.061.120-49",
+      "numeroTitulo": "39733",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11914,7 +12643,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.570.312/0002-72",
+      "numeroTitulo": "39541",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11953,7 +12686,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "37.032.968/0001-00",
+      "numeroTitulo": "39196",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -11992,7 +12729,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "208.997.420-68",
+      "numeroTitulo": "39408",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12031,7 +12772,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.570.312/0006-04",
+      "numeroTitulo": "39542",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12070,7 +12815,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "011.817.511-44",
+      "numeroTitulo": "2111",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12109,7 +12858,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "94.813.102/0041-67",
+      "numeroTitulo": "39320",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12148,7 +12901,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "257.217.981-49",
+      "numeroTitulo": "2120",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12187,7 +12944,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "19896",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12226,7 +12987,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "667.690.601-59",
+      "numeroTitulo": "2103",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12265,7 +13030,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "011.817.511-44",
+      "numeroTitulo": "2073",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12304,7 +13073,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "257.217.981-49",
+      "numeroTitulo": "2151",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12343,7 +13116,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "325.061.120-49",
+      "numeroTitulo": "39739",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12382,7 +13159,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "81.175.416/0001-42",
+      "numeroTitulo": "19899",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12421,7 +13202,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "278.989.629-15",
+      "numeroTitulo": "2123",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12460,7 +13245,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "278.989.629-15",
+      "numeroTitulo": "2124",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12499,7 +13288,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "667.690.601-59",
+      "numeroTitulo": "2127",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12538,7 +13331,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "19895",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12577,7 +13374,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "142.017.209-34",
+      "numeroTitulo": "2126",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12616,7 +13417,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "19905",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12655,7 +13460,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "039.793.701-60",
+      "numeroTitulo": "2092",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12694,7 +13503,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "009.440.380-50",
+      "numeroTitulo": "2148",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12733,7 +13546,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "03.750.194/0001-30",
+      "numeroTitulo": "2406",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12772,7 +13589,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.255.646/0001-70",
+      "numeroTitulo": "40549",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12811,7 +13632,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.581.128/0006-02",
+      "numeroTitulo": "40625",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12850,7 +13675,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "07.863.957/0001-00",
+      "numeroTitulo": "40745",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12889,7 +13718,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.938.642/0001-79",
+      "numeroTitulo": "40728",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12928,7 +13761,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "81.175.416/0001-42",
+      "numeroTitulo": "19925",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -12967,7 +13804,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "322.990.698-52",
+      "numeroTitulo": "40236",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13006,7 +13847,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "32.128.982/0001-98",
+      "numeroTitulo": "40759",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13045,7 +13890,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "14.607.517/0001-58",
+      "numeroTitulo": "40224",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13084,7 +13933,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "15.926.488/0003-11",
+      "numeroTitulo": "40760",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13123,7 +13976,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "410.763.030-72",
+      "numeroTitulo": "40584",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13162,7 +14019,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "92.702.158/0001-21",
+      "numeroTitulo": "40384",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13201,7 +14062,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.702.241/0004-04",
+      "numeroTitulo": "40115",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13240,7 +14105,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "04.255.646/0001-70",
+      "numeroTitulo": "40548",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13279,7 +14148,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "34.952.776/0003-95",
+      "numeroTitulo": "40103",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13318,7 +14191,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "77.198.794/0001-74",
+      "numeroTitulo": "19917",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13357,7 +14234,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.902.385/0003-23",
+      "numeroTitulo": "40761",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13396,7 +14277,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.702.241/0008-38",
+      "numeroTitulo": "40660",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13435,7 +14320,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "89.051.817/0001-00",
+      "numeroTitulo": "40831",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13474,7 +14363,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "92.702.158/0001-21",
+      "numeroTitulo": "40569",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13513,7 +14406,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.716.220/0003-10",
+      "numeroTitulo": "40423",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13552,7 +14449,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "11.228.680/0002-00",
+      "numeroTitulo": "40107",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13591,7 +14492,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "30.064.085/0001-32",
+      "numeroTitulo": "40671",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13630,7 +14535,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "92.702.158/0001-21",
+      "numeroTitulo": "2362",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13669,7 +14578,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "89.051.817/0001-00",
+      "numeroTitulo": "40841",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13708,7 +14621,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "19.495.736/0001-06",
+      "numeroTitulo": "40389",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13747,7 +14664,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.804.407/0001-04",
+      "numeroTitulo": "40132",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13786,7 +14707,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "89.051.817/0001-00",
+      "numeroTitulo": "40832",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13825,7 +14750,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "03.033.002/0001-75",
+      "numeroTitulo": "19923",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13864,7 +14793,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "08.922.469/0001-90",
+      "numeroTitulo": "40398",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13903,7 +14836,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "22.939.321/0001-99",
+      "numeroTitulo": "40126",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13942,7 +14879,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0002-08",
+      "documentoSacado": "03.033.002/0001-75",
+      "numeroTitulo": "19904",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -13981,7 +14922,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "23.026.767/0004-38",
+      "numeroTitulo": "40709",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14020,7 +14965,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0011-07",
+      "documentoSacado": "12.902.385/0001-61",
+      "numeroTitulo": "40685",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14059,7 +15008,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "27.864.836/0001-90",
+      "numeroTitulo": "2292",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14098,7 +15051,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "48.826.106/0001-75",
+      "numeroTitulo": "2440",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14137,7 +15094,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "18.692.568/0001-86",
+      "numeroTitulo": "2441",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14176,7 +15137,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "696.094.621-20",
+      "numeroTitulo": "2152",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14215,7 +15180,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "667.690.601-59",
+      "numeroTitulo": "2302",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14254,7 +15223,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "024.647.668-01",
+      "numeroTitulo": "2381",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14293,7 +15266,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "203.333.311-68",
+      "numeroTitulo": "2089",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14332,7 +15309,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "696.094.621-20",
+      "numeroTitulo": "2114",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14371,7 +15352,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "11.844.968/0001-10",
+      "numeroTitulo": "2442",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14410,7 +15395,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "486.099.430-20",
+      "numeroTitulo": "2072",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14449,7 +15438,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "035.191.841-84",
+      "numeroTitulo": "2177",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14488,7 +15481,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "001.738.917-80",
+      "numeroTitulo": "2087",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14527,7 +15524,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "990.254.001-59",
+      "numeroTitulo": "732",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14566,7 +15567,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "209.631.739-87",
+      "numeroTitulo": "2445",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14605,7 +15610,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "972.743.301-44",
+      "numeroTitulo": "2205",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14644,7 +15653,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "053.719.721-45",
+      "numeroTitulo": "2478",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14683,7 +15696,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "057.579.539-50",
+      "numeroTitulo": "2251",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14722,7 +15739,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "860.639.011-91",
+      "numeroTitulo": "2450",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14761,7 +15782,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "167.189.335-20",
+      "numeroTitulo": "710",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14800,7 +15825,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "031.358.481-83",
+      "numeroTitulo": "2150",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14839,7 +15868,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "360.930.840-00",
+      "numeroTitulo": "2187",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14878,7 +15911,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "007.436.481-29",
+      "numeroTitulo": "2175",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14917,7 +15954,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "556.377.521-68",
+      "numeroTitulo": "2179",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14956,7 +15997,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "981.903.508-20",
+      "numeroTitulo": "2210",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -14995,7 +16040,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "452.071.781-72",
+      "numeroTitulo": "2387",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15034,7 +16083,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "453.012.471-15",
+      "numeroTitulo": "2185",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15073,7 +16126,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "167.189.335-20",
+      "numeroTitulo": "709",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15112,7 +16169,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "453.012.471-15",
+      "numeroTitulo": "2128",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15151,7 +16212,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "700.440.231-20",
+      "numeroTitulo": "2390",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15190,7 +16255,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "000.625.151-01",
+      "numeroTitulo": "2448",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15229,7 +16298,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "022.852.951-46",
+      "numeroTitulo": "2183",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15268,7 +16341,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "868.184.901-82",
+      "numeroTitulo": "2180",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15307,7 +16384,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "868.184.901-82",
+      "numeroTitulo": "2086",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15346,7 +16427,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "468.669.736-00",
+      "numeroTitulo": "2132",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15385,7 +16470,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "024.647.668-01",
+      "numeroTitulo": "2085",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15424,7 +16513,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "360.930.840-00",
+      "numeroTitulo": "2186",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15463,7 +16556,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "057.579.539-50",
+      "numeroTitulo": "2420",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15502,7 +16599,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "496.055.341-34",
+      "numeroTitulo": "2236",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15541,7 +16642,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "41.589.138/0001-55",
+      "numeroTitulo": "717",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15580,7 +16685,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "209.631.739-87",
+      "numeroTitulo": "2181",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15619,7 +16728,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "197.695.129-15",
+      "numeroTitulo": "2113",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15658,7 +16771,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "01.205.084/0001-62",
+      "numeroTitulo": "2438",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15697,7 +16814,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "943.455.111-00",
+      "numeroTitulo": "2119",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15736,7 +16857,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "360.930.840-00",
+      "numeroTitulo": "2269",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15775,7 +16900,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "142.017.209-34",
+      "numeroTitulo": "2490",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15814,7 +16943,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "000.625.151-01",
+      "numeroTitulo": "2134",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15853,7 +16986,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "345.714.859-72",
+      "numeroTitulo": "2088",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15892,7 +17029,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "942.355.621-34",
+      "numeroTitulo": "2176",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15931,7 +17072,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "841.116.071-87",
+      "numeroTitulo": "2074",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -15970,7 +17115,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0007-12",
+      "documentoSacado": "04.429.539/0001-11",
+      "numeroTitulo": "2444",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16009,7 +17158,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0013-60",
+      "documentoSacado": "11.081.868/0001-80",
+      "numeroTitulo": "167",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16048,7 +17201,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "040.232.391-27",
+      "numeroTitulo": "2497",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16087,7 +17244,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "029.392.038-90",
+      "numeroTitulo": "2227",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16126,7 +17287,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "203.333.311-68",
+      "numeroTitulo": "2075",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16165,7 +17330,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "016.145.961-74",
+      "numeroTitulo": "2505",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16204,7 +17373,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "28.154.746/0001-79",
+      "numeroTitulo": "738",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16243,7 +17416,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "838.457.121-04",
+      "numeroTitulo": "720",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16282,7 +17459,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "486.099.430-20",
+      "numeroTitulo": "2289",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16321,7 +17502,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "203.333.311-68",
+      "numeroTitulo": "2188",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16360,7 +17545,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "000.625.151-01",
+      "numeroTitulo": "2372",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16399,7 +17588,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "053.719.721-45",
+      "numeroTitulo": "2455",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16438,7 +17631,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "825.408.618-49",
+      "numeroTitulo": "2202",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16477,7 +17674,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "016.145.961-74",
+      "numeroTitulo": "2147",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16516,7 +17717,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "000.625.151-01",
+      "numeroTitulo": "2097",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16555,7 +17760,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0014-41",
+      "documentoSacado": "838.457.121-04",
+      "numeroTitulo": "719",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16594,7 +17803,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "209.631.739-87",
+      "numeroTitulo": "2370",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16633,7 +17846,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "017.768.701-07",
+      "numeroTitulo": "2216",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16672,7 +17889,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "942.355.621-34",
+      "numeroTitulo": "2084",
+      "parcela": "1"
     },
     {
       "craCarteira": "72",
@@ -16711,7 +17932,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "01.789.121/0015-22",
+      "documentoSacado": "972.743.301-44",
+      "numeroTitulo": "2501",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -16742,7 +17967,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 37118835.46999998,
         "posicao": 1,
         "participacao": 1.0,
-        "participacaoPl": 0.9998060543606953
+        "participacaoPl": 0.9998060248315704
       }
     ],
     "sacados": [
@@ -16755,7 +17980,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 2494078.0,
         "posicao": 1,
         "participacao": 0.06715180085278223,
-        "participacaoPl": 0.06713877705383539
+        "participacaoPl": 0.06713877507090148
       },
       {
         "name": "GARCIA AGRONEGOCIOS LTDA",
@@ -16766,7 +17991,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1708447.2999999998,
         "posicao": 2,
         "participacao": 0.04601316804759042,
-        "participacaoPl": 0.046004243994297006
+        "participacaoPl": 0.04600424263556842
       },
       {
         "name": "COOP AGRIC MISTA NOVA PALMA LTDA",
@@ -16777,7 +18002,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1495826.08,
         "posicao": 3,
         "participacao": 0.040286695861985446,
-        "participacaoPl": 0.04027888243300103
+        "participacaoPl": 0.04027888124337015
       },
       {
         "name": "COAGRU COOPERATIVA AGROINDUSTRIAL UNIAO",
@@ -16788,7 +18013,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1474087.6600000001,
         "posicao": 4,
         "participacao": 0.04021570659108067,
-        "participacaoPl": 0.04020790693015577
+        "participacaoPl": 0.040207905742621154
       },
       {
         "name": "TRES TENTOS AGROINDUSTRIAL LTDA",
@@ -16799,7 +18024,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1274097.5999999999,
         "posicao": 5,
         "participacao": 0.034314940238075284,
-        "participacaoPl": 0.03430828500505312
+        "participacaoPl": 0.03430828399176296
       },
       {
         "name": "JOSE CESAR SABO",
@@ -16810,7 +18035,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1268900.0,
         "posicao": 6,
         "participacao": 0.03407315942672066,
-        "participacaoPl": 0.03406655108603252
+        "participacaoPl": 0.034066550079881935
       },
       {
         "name": "BUSATTO BASTOS LTDA",
@@ -16821,7 +18046,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1157700.0,
         "posicao": 7,
         "participacao": 0.03145905650102659,
-        "participacaoPl": 0.03145295515420158
+        "participacaoPl": 0.03145295422524317
       },
       {
         "name": "GASOL COMERCIO E REPRESENTACO",
@@ -16832,7 +18057,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1115112.13,
         "posicao": 8,
         "participacao": 0.03003302590823558,
-        "participacaoPl": 0.030027201133825555
+        "participacaoPl": 0.030027200246976582
       },
       {
         "name": "AMPLIAR PRODUTOS AGROPECUARIOS LTDA",
@@ -16843,7 +18068,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1094453.0,
         "posicao": 9,
         "participacao": 0.02976478677812793,
-        "participacaoPl": 0.029759014027527484
+        "participacaoPl": 0.02975901314859938
       },
       {
         "name": "CEREZA PASSINATO INSUMOS AGRICOLAS A",
@@ -16854,7 +18079,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1097163.0,
         "posicao": 10,
         "participacao": 0.029508261375478403,
-        "participacaoPl": 0.029502538376861173
+        "participacaoPl": 0.029502537505508037
       },
       {
         "name": "PRIORI SEMENTES DEF AGRIC LTDA",
@@ -16865,7 +18090,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 972000.0,
         "posicao": 11,
         "participacao": 0.026178624375561885,
-        "participacaoPl": 0.026173547145521257
+        "participacaoPl": 0.026173546372489385
       },
       {
         "name": "CIARAMA INSUMOS LTDA",
@@ -16876,7 +18101,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 899025.8,
         "posicao": 12,
         "participacao": 0.0243874157518482,
-        "participacaoPl": 0.024382685918909224
+        "participacaoPl": 0.02438268519877018
       },
       {
         "name": "PRISMA AGRONEGOCIOS LTDA",
@@ -16887,7 +18112,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 690860.0,
         "posicao": 13,
         "participacao": 0.0186067531387894,
-        "participacaoPl": 0.018603144440156517
+        "participacaoPl": 0.01860314389071538
       },
       {
         "name": "TOP AGRONEGOCIOS LTDA",
@@ -16898,7 +18123,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 549268.0,
         "posicao": 14,
         "participacao": 0.014781181147482562,
-        "participacaoPl": 0.014778314401855239
+        "participacaoPl": 0.014778313965379894
       },
       {
         "name": "DIRCEU JOSE RAGAGNIN",
@@ -16909,7 +18134,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 547200.0,
         "posicao": 15,
         "participacao": 0.014737595789399179,
-        "participacaoPl": 0.014734737496961994
+        "participacaoPl": 0.014734737061773686
       },
       {
         "name": "AB COMERCIO DE INSUMOS LTDA",
@@ -16920,7 +18145,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 538200.0,
         "posicao": 16,
         "participacao": 0.01437044740157676,
-        "participacaoPl": 0.014367660315968369
+        "participacaoPl": 0.014367659891621634
       },
       {
         "name": "KE SOJA COM DE INSUMOS E MAQ AGRICOLAS LTDA",
@@ -16931,7 +18156,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 516843.0,
         "posicao": 17,
         "participacao": 0.014002554000245918,
-        "participacaoPl": 0.013999838265958445
+        "participacaoPl": 0.013999837852475279
       },
       {
         "name": "BUSATTO E BASTOS LTDA",
@@ -16942,7 +18167,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 481068.0,
         "posicao": 18,
         "participacao": 0.013083144114007824,
-        "participacaoPl": 0.01308060669525852
+        "participacaoPl": 0.013080606308924724
       },
       {
         "name": "AGRICOLA ANDREIS LTDA",
@@ -16953,7 +18178,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 480150.0,
         "posicao": 19,
         "participacao": 0.012931755419418428,
-        "participacaoPl": 0.01292924736184628
+        "participacaoPl": 0.012929246979982859
       },
       {
         "name": "IMPERIO RURAL LTDA",
@@ -16964,7 +18189,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 478915.2,
         "posicao": 20,
         "participacao": 0.01289849892625253,
-        "participacaoPl": 0.012895997318632212
+        "participacaoPl": 0.012895996937750825
       }
     ],
     "lastrosAtivos": 311
@@ -16980,7 +18205,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 37118835.46999998,
         "posicao": 1,
         "participacao": 1.0,
-        "participacaoPl": 0.9998060543606953
+        "participacaoPl": 0.9998060248315704
       }
     ],
     "top10Sacados": [
@@ -16993,7 +18218,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 2494078.0,
         "posicao": 1,
         "participacao": 0.06715180085278223,
-        "participacaoPl": 0.06713877705383539
+        "participacaoPl": 0.06713877507090148
       },
       {
         "name": "GARCIA AGRONEGOCIOS LTDA",
@@ -17004,7 +18229,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1708447.2999999998,
         "posicao": 2,
         "participacao": 0.04601316804759042,
-        "participacaoPl": 0.046004243994297006
+        "participacaoPl": 0.04600424263556842
       },
       {
         "name": "COOP AGRIC MISTA NOVA PALMA LTDA",
@@ -17015,7 +18240,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1495826.08,
         "posicao": 3,
         "participacao": 0.040286695861985446,
-        "participacaoPl": 0.04027888243300103
+        "participacaoPl": 0.04027888124337015
       },
       {
         "name": "COAGRU COOPERATIVA AGROINDUSTRIAL UNIAO",
@@ -17026,7 +18251,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1474087.6600000001,
         "posicao": 4,
         "participacao": 0.04021570659108067,
-        "participacaoPl": 0.04020790693015577
+        "participacaoPl": 0.040207905742621154
       },
       {
         "name": "TRES TENTOS AGROINDUSTRIAL LTDA",
@@ -17037,7 +18262,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1274097.5999999999,
         "posicao": 5,
         "participacao": 0.034314940238075284,
-        "participacaoPl": 0.03430828500505312
+        "participacaoPl": 0.03430828399176296
       },
       {
         "name": "JOSE CESAR SABO",
@@ -17048,7 +18273,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1268900.0,
         "posicao": 6,
         "participacao": 0.03407315942672066,
-        "participacaoPl": 0.03406655108603252
+        "participacaoPl": 0.034066550079881935
       },
       {
         "name": "BUSATTO BASTOS LTDA",
@@ -17059,7 +18284,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1157700.0,
         "posicao": 7,
         "participacao": 0.03145905650102659,
-        "participacaoPl": 0.03145295515420158
+        "participacaoPl": 0.03145295422524317
       },
       {
         "name": "GASOL COMERCIO E REPRESENTACO",
@@ -17070,7 +18295,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1115112.13,
         "posicao": 8,
         "participacao": 0.03003302590823558,
-        "participacaoPl": 0.030027201133825555
+        "participacaoPl": 0.030027200246976582
       },
       {
         "name": "AMPLIAR PRODUTOS AGROPECUARIOS LTDA",
@@ -17081,7 +18306,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1094453.0,
         "posicao": 9,
         "participacao": 0.02976478677812793,
-        "participacaoPl": 0.029759014027527484
+        "participacaoPl": 0.02975901314859938
       },
       {
         "name": "CEREZA PASSINATO INSUMOS AGRICOLAS A",
@@ -17092,7 +18317,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         "valorNominal": 1097163.0,
         "posicao": 10,
         "participacao": 0.029508261375478403,
-        "participacaoPl": 0.029502538376861173
+        "participacaoPl": 0.029502537505508037
       }
     ]
   },
@@ -17142,7 +18367,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 33.858.301,86",
+          "value": "R$ 33.858.302,86",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -17158,7 +18383,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 6.566,67",
+          "value": "R$ 6.567,67",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -17174,7 +18399,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 57.406,78",
+          "value": "R$ 57.407,78",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -17182,7 +18407,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "574,067781",
+          "value": "574,077781",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -17206,5 +18431,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-72"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [],
+    "replacementParcels": [],
+    "paymentDifferences": []
+  }
 };

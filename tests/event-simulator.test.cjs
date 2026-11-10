@@ -12,6 +12,7 @@ function loadSimulator() {
     return nodes.get(id);
   } };
   const context = vm.createContext({ window: {}, document, Date, Set, Map, console });
+  vm.runInContext(fs.readFileSync(path.join(root, "assets/funding-contract.js"), "utf8"), context);
   const source = fs.readFileSync(path.join(root, "assets/event-simulator.js"), "utf8");
   vm.runInContext(source.replace("  init();", `  window.testEvents = { state, getRowState, getAllocations,
     getSelectedSimulations, setAllocationCash, commitAllocations, redistributeCraCash,
@@ -379,29 +380,40 @@ test("summary does not mix draft cash from unselected CRAs into the selected CRA
 
 test("CRA47 projection preserves accrued interest and matches the control curve with CDI plus spread", () => {
   const api = loadSimulator();
-  for (const file of ["data/indices/di.js", "data/funding-pu-latest.js", "data/cras/cra-carteira-47/2026-11-05.js"]) {
+  for (const file of ["data/indices/di.js", "data/funding-pu-latest.js"]) {
     vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), api.context);
   }
-  const snapshot = api.context.window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-11-05"];
+  const update = api.context.window.LAMINA_FUNDING_PU.vehicles["cra-carteira-47"];
+  vm.runInContext(fs.readFileSync(path.join(root, `data/cras/cra-carteira-47/${update.sourceDate}.js`), "utf8"), api.context);
+  const snapshot = api.context.window.LAMINA_CRA_DAILY["cra-carteira-47"][update.sourceDate];
   api.collectHolidays(snapshot);
   const row = api.buildRowsFromSnapshot({ craId: "cra-carteira-47" }, snapshot)
     .find((item) => item.cota.ifCodigo === "CRA02500B49");
   api.state.rows.push(row);
-  const control = api.context.window.LAMINA_FUNDING_PU.vehicles["cra-carteira-47"].series["CRA02500B49"];
-  for (const expected of control.forecasts["2026-11-05"].rows) {
+  const control = update.series["CRA02500B49"];
+  const forecast = control.forecasts[update.sourceDate].rows;
+  assert.ok(forecast.length >= 2);
+  for (const expected of forecast) {
     const actual = api.getSimulationBaseRow(row, expected.dataIso);
     assert.equal(actual.puAtualizado, expected.puAtualizado, `PU on ${expected.dataIso}`);
     assert.ok(Math.abs(actual.puJuros - expected.puJuros) < 1e-10, `Accrued interest on ${expected.dataIso}`);
     assert.ok(actual.puAtualizado >= row.cota.pu, "Projection cannot discard accrued interest");
   }
-  for (const dateKey of ["2026-11-07", "2026-11-08"]) {
-    assert.equal(api.getSimulationBaseRow(row, dateKey).puAtualizado, control.rows[0].puAtualizado);
+  const weekend = new Date(`${update.sourceDate}T00:00:00Z`);
+  while (weekend.getUTCDay() !== 6) weekend.setUTCDate(weekend.getUTCDate() + 1);
+  for (let day = 0; day < 2; day += 1) {
+    const dateKey = weekend.toISOString().slice(0, 10);
+    const previous = forecast.filter(item => item.dataIso <= dateKey).at(-1);
+    assert.equal(api.getSimulationBaseRow(row, dateKey).puAtualizado, previous?.puAtualizado ?? row.cota.pu);
+    weekend.setUTCDate(weekend.getUTCDate() + 1);
   }
-  Object.assign(api.getRowState(row.id), { selected: true, interest: true, dateKey: "2026-11-11" });
+  const event = forecast[1];
+  Object.assign(api.getRowState(row.id), { selected: true, interest: true, dateKey: event.dataIso });
   api.setAllocationCash(row, row.baseCash);
   const simulation = api.getAllocations().byId.get(row.id).simulation;
-  assert.equal(simulation.puBefore, 409.90999954);
-  assert.ok(Math.abs(simulation.interestPu - 22.53426619355883) < 1e-10);
+  assert.equal(simulation.puBefore, event.puAtualizado);
+  assert.ok(Math.abs(simulation.interestPu - (event.puAtualizado - row.cota.principalResidual)) < 1e-10);
+  assert.ok(simulation.interestPu > row.cota.pu - row.cota.principalResidual);
   assert.equal(simulation.puAfter, row.cota.principalResidual);
   assert.ok(Math.abs(simulation.eventValue - simulation.interestPu * row.cota.quantidade) < 1e-8);
 });
@@ -457,6 +469,11 @@ test("pending documentation and overdue funding block future events without cons
     const api = loadSimulator();
     vm.runInContext(fs.readFileSync(path.join(root, `data/cras/${id}/2026-11-05.js`), "utf8"), api.context);
     const snapshot = api.context.window.LAMINA_CRA_DAILY[id]["2026-11-05"];
+    // A missing document or unconfirmed default must still hold, even after this review.
+    for (const cota of snapshot.passivo.cotas) {
+      delete cota.encargosMora;
+      if (id.endsWith("56")) cota.documentValidation = { status: "pendente_documentos" };
+    }
     api.collectHolidays(snapshot);
     const row = api.buildRowsFromSnapshot({ craId: id }, snapshot)[0];
     api.state.rows.push(row);
@@ -492,4 +509,36 @@ test("residual subordinated units never accrue assumed CDI", () => {
   const row = addRow(api, "SUB", 90, 1050);
   Object.assign(row.cota, { tipo:"sub", metodo:"subordinada_residual" });
   assert.equal(api.getSimulationBaseRow(row, "2026-11-11").puAtualizado, 1050);
+});
+
+test("confirmed CRA46 default includes compounded DU/252 late interest and a single fine at payment", () => {
+  const api = loadSimulator();
+  for (const file of ["data/indices/di.js", "data/cras/cra-carteira-46/2026-11-05.js"]) {
+    vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), api.context);
+  }
+  const snapshot = api.context.window.LAMINA_CRA_DAILY["cra-carteira-46"]["2026-11-05"];
+  api.collectHolidays(snapshot);
+  const row = api.buildRowsFromSnapshot({ craId: "cra-carteira-46" }, snapshot)[0];
+  const onFriday = api.getSimulationBaseRow(row, "2026-11-06");
+  const onSunday = api.getSimulationBaseRow(row, "2026-11-08");
+  const onMonday = api.getSimulationBaseRow(row, "2026-11-09");
+  assert.equal(onSunday.diasUteisMora, onFriday.diasUteisMora);
+  assert.equal(onSunday.puAtualizado, onFriday.puAtualizado);
+  assert.equal(onMonday.diasUteisMora, onFriday.diasUteisMora + 1);
+  assert.ok(Math.abs(onMonday.puMulta - onMonday.puSemEncargos * .02) < 1e-8);
+  assert.ok(Math.abs(onMonday.puMora - onMonday.puSemEncargos * (1.01 ** (onMonday.diasUteisMora / 21) - 1)) < 1e-8);
+  assert.ok(onMonday.puMora > onFriday.puMora);
+  api.state.rows.push(row);
+  Object.assign(api.getRowState(row.id), { selected: true, interest: true, rescue: true,
+    cash: "200.000,00", dateKey: "2026-11-09" });
+  let result = api.getAllocations().byId.get(row.id);
+  assert.equal(result.simulation.principalAfter, 0);
+  assert.equal(result.simulation.puAfter, 0);
+  assert.ok(Math.abs(result.simulation.eventValue - onMonday.puAtualizado * row.cota.quantidade) < .01);
+  assert.match(result.simulation.components[0].detail, /Mora .*multa .*base 252/);
+  api.setAllocationCash(row, 100);
+  result = api.getAllocations().byId.get(row.id);
+  assert.equal(result.simulation.principalAfter, row.cota.principalResidual);
+  assert.equal(result.simulation.interestIncorporatedPu, 0);
+  assert.ok(Math.abs(result.simulation.valueAfter + result.simulation.eventValue - onMonday.valorReais) < .001);
 });

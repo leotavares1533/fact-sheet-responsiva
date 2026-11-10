@@ -7,7 +7,7 @@ const { test } = require("node:test");
 const root = path.resolve(__dirname, "..");
 function loadValidator(craId = "cra-65", dateKey = "2026-10-07") {
   const context = vm.createContext({ window: {}, document: { getElementById: () => null }, Date, Set, console });
-  for (const file of ["data/cra-manifest.js", "data/indices/di.js", "assets/pu-memory.js", `data/cras/${craId}/${dateKey}.js`]) {
+  for (const file of ["data/cra-manifest.js", "data/indices/di.js", "assets/pu-memory.js", "assets/funding-contract.js", `data/cras/${craId}/${dateKey}.js`]) {
     vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), context);
   }
   const source = fs.readFileSync(path.join(root, "assets/pu.js"), "utf8");
@@ -24,6 +24,31 @@ function loadValidator(craId = "cra-65", dateKey = "2026-10-07") {
 
 const value = (cell) => cell && typeof cell === "object" ? cell.value : cell;
 const summaryValue = (memory, label) => value(memory.sheets[0].rows.find((row) => row[0] === label)[1]);
+
+test("CRA46 exports separate ordinary interest, late interest and fine and projects beyond overdue maturity", () => {
+  const api = loadValidator("cra-carteira-46", "2026-11-05");
+  const cota = api.state.snapshot.passivo.cotas[0];
+  const memory = api.buildPuMemorySheets();
+  assert.equal(summaryValue(memory, "Ultima data da projecao"), value(api.exporter.dateCell("2026-12-09")));
+  const headers = memory.sheets[1].rows[0];
+  const last = memory.sheets[1].rows.at(-1);
+  assert.ok(value(last[headers.indexOf("Mora PU")]) > 0);
+  assert.ok(value(last[headers.indexOf("Multa PU")]) > 0);
+  assert.ok(Math.abs(value(last[headers.indexOf("PU atualizado")]) - cota.pu) < 1e-8);
+  const final = memory.sheets[2].rows.at(-1);
+  assert.ok(value(final[headers.indexOf("PU atualizado")]) > cota.pu);
+  assert.ok(memory.sheets[0].rows.some(row => row[0] === "Base da mora" && /252/.test(row[1])));
+});
+
+test("CRA56 memory reflects the amended CDI plus seven rate and November 2027 maturity", () => {
+  const api = loadValidator("cra-carteira-56", "2026-11-05");
+  const memory = api.buildPuMemorySheets();
+  assert.equal(summaryValue(memory, "Vencimento"), value(api.exporter.dateCell("2027-11-20")));
+  assert.equal(summaryValue(memory, "Quantidade atual"), 19600);
+  assert.equal(summaryValue(memory, "Inicio da serie"), value(api.exporter.dateCell("2026-03-11")));
+  assert.match(summaryValue(memory, "Remuneracao"), /CDI \+ 7,00/);
+  assert.ok(memory.sheets[2].rows.length > 2);
+});
 
 test("Copom horizon follows selected date, including decision-day and year rollover", () => {
   const { exporter } = loadValidator();

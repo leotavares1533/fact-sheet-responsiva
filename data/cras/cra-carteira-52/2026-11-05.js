@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
     "craId": "cra-carteira-52",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-52",
-    "importedAt": "2026-11-09T15:33:10.094816-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:57.110400-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": true
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-52",
@@ -117,12 +121,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
     "pddTotal": 0,
     "carteiraVp": 0,
     "carteiraVpLiquido": 0,
-    "caixa": 59896.82,
-    "total": 59896.82,
+    "caixa": 59897.82,
+    "total": 59897.82,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "quantidadeLastros": 7,
-    "quantidadeLastrosBase": 7,
+    "quantidadeLastros": 6,
+    "quantidadeLastrosBase": 6,
     "lastrosAtivos": 0,
     "quantidadeLastrosAtivos": 0,
     "cedentesUnicos": 0,
@@ -131,24 +135,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 50694.53,
+      "cc": 50695.53,
       "contaAplicacao": 100110.61,
       "fundoDespesas": 90908.32
     },
-    "total": 59896.82,
-    "totalInformado": 59896.82,
-    "totalCalculado": 59896.82,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 59897.82,
+    "totalCalculado": 59897.82,
+    "totalInformado": 59897.82,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "98847-3(ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 0.0,
-    "subordinadaTotal": 59896.82,
-    "subordinadaPuResidual": 598.9682,
+    "subordinadaTotal": 59897.82,
+    "subordinadaPuResidual": 598.9782,
     "cotas": [
       {
         "classe": "SR1",
@@ -10687,34 +10691,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": 598.9682,
-        "valor": 59896.82,
-        "principalResidual": 598.9682,
+        "pu": 598.9782,
+        "valor": 59897.82,
+        "principalResidual": 598.9782,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": 598.9682,
-            "puAtualizado": 598.9682,
-            "valorReais": 59896.82,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": 598.9682
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -10728,7 +10709,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -12732,10 +12713,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 59896.82,
-      "totalCalculado": 59896.82,
+      "total": 59897.82,
+      "totalCalculado": 59897.82,
       "accounts": {
-        "cc": 50694.53,
+        "cc": 50695.53,
         "contaAplicacao": 100110.61,
         "fundoDespesas": 90908.32
       }
@@ -12744,45 +12725,6 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
   "fundingCashIssues": [],
   "cadastroSeriesDocumentadas": [],
   "carteira": [
-    {
-      "craCarteira": "52",
-      "lastro": "422306",
-      "numeroUnico": "422306",
-      "cedente": "NOVO HORIZONTE AGRO-INDUSTRIAL S/A",
-      "sacado": "NOVO HORIZONTE AGRO-INDUSTRIAL S.A.",
-      "devedor": "NOVO HORIZONTE AGRO-INDUSTRIAL S.A.",
-      "valorAquisicao": 12760987.0,
-      "valorFace": 17468847.48,
-      "valorNominal": 17468847.48,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "05/02/2026",
-      "dataAquisicaoIso": "2026-02-05",
-      "dataVencimento": "31/12/2028",
-      "dataVencimentoIso": "2028-12-31",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "PENDENTE",
-      "statusOriginal": "PENDENTE",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NC",
-      "tipoAtivo": "NC",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 787,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Liquidado em 03/06/2026; baixa confirmada no controle",
-      "observacao": "Novo Horizonte: sem novo lancamento no caixa",
-      "valorLiquidacao": 0
-    },
     {
       "craCarteira": "52",
       "lastro": "422325",
@@ -12859,7 +12801,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Liquidado em 03/06/2026; baixa confirmada no controle",
       "observacao": "Novo Horizonte: sem novo lancamento no caixa",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "32.874.878/0001-42",
+      "documentoSacado": "32.874.878/0001-42",
+      "numeroTitulo": "NCNH",
+      "parcela": "1"
     },
     {
       "craCarteira": "52",
@@ -12898,7 +12844,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Liquidado em 03/06/2026; baixa confirmada no controle",
       "observacao": "Novo Horizonte: sem novo lancamento no caixa",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "32.874.878/0001-42",
+      "documentoSacado": "32.874.878/0001-42",
+      "numeroTitulo": "NCNH",
+      "parcela": "2"
     },
     {
       "craCarteira": "52",
@@ -12937,7 +12887,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Liquidado em 03/06/2026; baixa confirmada no controle",
       "observacao": "Novo Horizonte: sem novo lancamento no caixa",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "32.874.878/0001-42",
+      "documentoSacado": "32.874.878/0001-42",
+      "numeroTitulo": "NCNH",
+      "parcela": "3"
     },
     {
       "craCarteira": "52",
@@ -12976,7 +12930,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Liquidado em 03/06/2026; baixa confirmada no controle",
       "observacao": "Novo Horizonte: sem novo lancamento no caixa",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "32.874.878/0001-42",
+      "documentoSacado": "32.874.878/0001-42",
+      "numeroTitulo": "NCNH",
+      "parcela": "4"
     },
     {
       "craCarteira": "52",
@@ -13015,7 +12973,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Liquidado em 03/06/2026; baixa confirmada no controle",
       "observacao": "Novo Horizonte: sem novo lancamento no caixa",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "32.874.878/0001-42",
+      "documentoSacado": "32.874.878/0001-42",
+      "numeroTitulo": "NCNH",
+      "parcela": "5"
     }
   ],
   "carteiraResumo": {
@@ -13071,7 +13033,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 59.896,82",
+          "value": "R$ 59.897,82",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -13087,7 +13049,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 59.896,82",
+          "value": "R$ 59.897,82",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -13103,7 +13065,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 59.896,82",
+          "value": "R$ 59.897,82",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -13111,7 +13073,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "598,968200",
+          "value": "598,978200",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -13135,5 +13097,123 @@ window.LAMINA_CRA_DAILY["cra-carteira-52"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [],
+    "replacementParcels": [
+      {
+        "cra": 52,
+        "lastroNovo": "1001077",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "1",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/07/2026",
+        "aquisicao": 0.0,
+        "face": 2052407.52,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 52,
+        "lastroNovo": "1001078",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "2",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/01/2027",
+        "aquisicao": 0.0,
+        "face": 978938.2,
+        "saldoFonte": 2114246.16,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 52,
+        "lastroNovo": "1001079",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "3",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/07/2027",
+        "aquisicao": 0.0,
+        "face": 962054.15,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 52,
+        "lastroNovo": "1001080",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "4",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/01/2028",
+        "aquisicao": 0.0,
+        "face": 978938.2,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 52,
+        "lastroNovo": "1001081",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "5",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/07/2028",
+        "aquisicao": 0.0,
+        "face": 967678.64,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 52,
+        "lastroNovo": "1001082",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "6",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/01/2029",
+        "aquisicao": 0.0,
+        "face": 978938.2,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 52,
+        "lastroNovo": "1001083",
+        "lastroAnterior": "422325",
+        "numeroNovo": "CPRF-TRADING-04-07",
+        "parcela": "7",
+        "cedente": "CERES TRADING S.A.",
+        "sacado": "CERES TRADING S.A.",
+        "tipo": "CPR_F",
+        "dataCessao": "02/07/2025",
+        "vencimento": "01/07/2029",
+        "aquisicao": 8000000.0,
+        "face": 8962054.15,
+        "saldoFonte": 8000000.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      }
+    ],
+    "paymentDifferences": []
+  }
 };

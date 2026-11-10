@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
     "craId": "cra-carteira-80",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-80",
-    "importedAt": "2026-11-09T15:33:11.890136-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:59.251497-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-80",
@@ -131,19 +135,19 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 4908.95,
+      "cc": 4909.95,
       "contaAplicacao": 0.0,
       "fundoDespesas": 110000.0
     },
     "total": 0.0,
+    "totalCalculado": -105090.05,
     "totalInformado": 0.0,
-    "totalCalculado": -105091.05,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "33010-6 (ITAU)",
     "totalPolicy": "total_informado",
-    "reservaInsuficiente": 105091.05,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "reservaInsuficiente": 105090.05,
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 5136800.18852,
@@ -698,8 +702,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
           "periodoInicio": "23/10/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1006.229224,
-          "diasAcumulacao": 8.0,
-          "diasUteisPeriodo": 8.0
+          "diasAcumulacao": 8,
+          "diasUteisPeriodo": 8
         },
         "sourceClass": "SR1",
         "serieJuridica": 1,
@@ -732,30 +736,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
         "valor": 99367.14147999976,
         "principalResidual": 993.6714147999976,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": 993.6714147999976,
-            "puAtualizado": 993.6714147999976,
-            "valorReais": 99367.14147999976,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": 993.6714147999976
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -769,7 +750,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -825,9 +806,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
     },
     "2026-11-05": {
       "total": 0.0,
-      "totalCalculado": -105091.05,
+      "totalCalculado": -105090.05,
       "accounts": {
-        "cc": 4908.95,
+        "cc": 4909.95,
         "contaAplicacao": 0.0,
         "fundoDespesas": 110000.0
       }
@@ -838,7 +819,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "cra": "cra-carteira-80",
       "date": "2026-11-05",
       "type": "reserva_superior_aos_saldos",
-      "amount": 105091.05,
+      "amount": 105090.05,
       "reportedTotalPreserved": true
     }
   ],
@@ -1122,7 +1103,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "126.609.376-13",
+      "numeroTitulo": "CPR 100016022/2027 Aline Rodrigues Mendes Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "80",
@@ -1161,7 +1146,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "039.417.158-60",
+      "numeroTitulo": "CPR 10011257/2027 Jonadan Hsuan Min Ma Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "80",
@@ -1200,7 +1189,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "170.582.876-00",
+      "numeroTitulo": "CPR 100017280/2027 Manoel Pedro Graciano Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "80",
@@ -1239,7 +1232,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "144.671.446-25",
+      "numeroTitulo": "CPR 100010805-2/2027 Mateus Januario Batista Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "80",
@@ -1278,7 +1275,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "05.662.861/0002-30",
+      "documentoSacado": "017.518.100-46",
+      "numeroTitulo": "CPR 2027-SJ-0036 Aloisio Margutti Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "80",
@@ -1317,7 +1318,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "05.662.861/0002-30",
+      "documentoSacado": "010.530.720-31",
+      "numeroTitulo": "CPR 2027-SJ-0021 Giancarlo Rieger Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "80",
@@ -1356,7 +1361,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "05.662.861/0002-30",
+      "documentoSacado": "524.428.109-72",
+      "numeroTitulo": "CPR 2027-SJ-0083 Roberto da Cunha Ceres Trading",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -1697,5 +1706,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-80"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [],
+    "replacementParcels": [],
+    "paymentDifferences": []
+  }
 };

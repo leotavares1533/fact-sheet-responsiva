@@ -20,6 +20,39 @@ def dec(value):
     return Decimal(str(value))
 
 
+def validated_late_terms(cota):
+    rules = cota.get("encargosMora") or {}
+    if rules.get("status") != "validado" or rules.get("dataInadimplementoIso") != cota.get("dataVencimentoIso"):
+        return None
+    if rules.get("baseAnual") != 252 or rules.get("capitalizacao") != "composta":
+        raise ValueError("Convencao de mora nao suportada")
+    return rules
+
+
+def apply_late_charges(cota, row, holidays):
+    rules = validated_late_terms(cota)
+    if not rules:
+        return row
+    due = date.fromisoformat(rules["dataInadimplementoIso"])
+    target = date.fromisoformat(row["dataIso"])
+    days = 0
+    cursor = due
+    while cursor < target:
+        cursor += timedelta(days=1)
+        days += engine.is_business_day(cursor, holidays)
+    ordinary = dec(row.get("puSemEncargos", row["puAtualizado"]))
+    # Recompute from the unpaid ordinary balance, never from yesterday's fine or late interest.
+    factor = (ONE + dec(rules["taxaMoraMensal"])) ** (dec(days) * 12 / 252)
+    fine = terms.quantize(ordinary * dec(rules["multaPercentual"]), 8, terms.ROUND_DOWN) if target > due else dec(0)
+    interest = terms.quantize(ordinary * (factor - ONE), 8, terms.ROUND_DOWN)
+    pu = terms.quantize(ordinary + fine + interest, 8)
+    return {**row, "puSemEncargos": float(ordinary), "puJurosRemuneratorios": float(ordinary - dec(row["valorNominal"])),
+            "puMulta": float(fine), "puMora": float(interest), "puEncargosMoratorios": float(fine + interest),
+            "diasUteisMora": days, "fatorMora": float(factor), "baseAnualMora": 252,
+            "puAtualizado": float(pu), "puAntesEvento": float(pu), "puAposEvento": float(pu),
+            "puJuros": float(pu - dec(row["valorNominal"])), "valorReais": float(pu * dec(row["quantidade"]))}
+
+
 def event_date(event):
     return engine.iso(engine.as_date(event.get("dataIso") or event.get("date") or event.get("data")))
 
@@ -69,7 +102,8 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
         return stop("Memoria de PU nao chega a ultima posicao")
     if cota.get("documentValidation", {}).get("status") == "pendente_documentos":
         return stop("Cadastro pendente de documentacao")
-    if not cota.get("dataVencimentoIso") or cota["dataVencimentoIso"] <= source:
+    late_terms = validated_late_terms(cota)
+    if not cota.get("dataVencimentoIso") or (cota["dataVencimentoIso"] <= source and not late_terms):
         return stop("Vencimento pendente de conciliacao")
     if cota.get("revisaoInternaPu", {}).get("pendencia"):
         return stop("Memoria de PU pendente de conciliacao")
@@ -85,15 +119,18 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
     if method != "prefixado_252_ts" and lag not in (0, 1, 2):
         return stop("Defasagem do CDI nao confirmada")
 
-    events = {cota["dataVencimentoIso"], *extra_events}
+    events = set(extra_events)
+    if not late_terms:
+        events.add(cota["dataVencimentoIso"])
     for field in ("agendaPagamentos", "eventosPendentes", "eventosPrevistos", "eventosAplicados"):
-        events.update(filter(None, (event_date(e) for e in cota.get(field) or [])))
+        events.update(key for e in cota.get(field) or [] if (key := event_date(e))
+                      and not (late_terms and field == "agendaPagamentos" and key == cota["dataVencimentoIso"]))
     next_event = min((key for key in events if key > source), default="")
 
     base = dec(last.get("puBaseCalculo") or last.get("valorNominal") or cota["principalResidual"])
     nominal = dec(last.get("valorNominal") or base)
     quantity = dec(cota["quantidade"])
-    observed = dec(cota["pu"])
+    observed = dec(last.get("puSemEncargos", cota["pu"]))
     days = period_days = int(last.get("diasUteisPeriodo") or 0)
     product = dec(last.get("produtorioFatorDi") or 1) if method == "di_spread_ts_252" else dec(last.get("fatorDiAcumulado") or 1)
     spread = dec(cota.get("spreadAa") or 0)
@@ -172,6 +209,7 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
         })
         if last.get("puJurosRetidosSemCapitalizacao"):
             rows[-1]["puJurosRetidosSemCapitalizacao"] = last["puJurosRetidosSemCapitalizacao"]
+        rows[-1] = apply_late_charges(cota, rows[-1], holidays)
         result["through"] = key
         if forecast_days and len(rows) >= forecast_days:
             break
@@ -259,7 +297,9 @@ def main():
     for vehicle in result["vehicles"].values():
         for series in vehicle["series"].values():
             for forecast in series.get("forecasts", {}).values():
-                forecast["rows"] = [{column: row[column] for column in preview_columns}
+                forecast["rows"] = [{column: row[column] for column in (*preview_columns,
+                                    "puSemEncargos", "puJurosRemuneratorios", "puMulta", "puMora",
+                                    "puEncargosMoratorios", "diasUteisMora") if column in row}
                                     for row in forecast["rows"]]
     payload = "window.LAMINA_FUNDING_PU = " + json.dumps(result, ensure_ascii=True, separators=(",", ":")) + ";\n"
     if not path.exists() or path.read_text(encoding="utf-8") != payload:

@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
     "craId": "cra-carteira-50",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-50",
-    "importedAt": "2026-11-09T15:33:09.739747-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:56.634381-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,23 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [
+      "426733",
+      "426977"
+    ],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-50",
@@ -117,12 +124,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
     "pddTotal": 0.0,
     "carteiraVp": 10744679.64,
     "carteiraVpLiquido": 10744679.64,
-    "caixa": 10798.12,
-    "total": 10755477.76,
+    "caixa": 10799.12,
+    "total": 10755478.76,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "quantidadeLastros": 36,
-    "quantidadeLastrosBase": 36,
+    "quantidadeLastros": 28,
+    "quantidadeLastrosBase": 28,
     "lastrosAtivos": 2,
     "quantidadeLastrosAtivos": 2,
     "cedentesUnicos": 2,
@@ -131,24 +138,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 31666.43,
+      "cc": 31667.43,
       "contaAplicacao": 80078.04,
       "fundoDespesas": 100946.35
     },
-    "total": 10798.12,
-    "totalInformado": 10798.12,
-    "totalCalculado": 10798.12,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 10799.12,
+    "totalCalculado": 10799.12,
+    "totalInformado": 10799.12,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "98851-5 (ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 10506775.320573,
-    "subordinadaTotal": 248702.43942699954,
-    "subordinadaPuResidual": 2487.0243942699954,
+    "subordinadaTotal": 248703.43942699954,
+    "subordinadaPuResidual": 2487.0343942699956,
     "cotas": [
       {
         "classe": "SR1",
@@ -466,8 +473,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
           "periodoInicio": "30/01/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 263.32770227,
-          "diasAcumulacao": 189.0,
-          "diasUteisPeriodo": 36.0
+          "diasAcumulacao": 189,
+          "diasUteisPeriodo": 36
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "05/11/2026",
@@ -10796,34 +10803,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": 2487.0243942699954,
-        "valor": 248702.43942699954,
-        "principalResidual": 2487.0243942699954,
+        "pu": 2487.0343942699956,
+        "valor": 248703.43942699954,
+        "principalResidual": 2487.0343942699956,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": 2487.0243942699954,
-            "puAtualizado": 2487.0243942699954,
-            "valorReais": 248702.43942699954,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": 2487.0243942699954
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -10837,7 +10821,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -12836,10 +12820,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 10798.12,
-      "totalCalculado": 10798.12,
+      "total": 10799.12,
+      "totalCalculado": 10799.12,
       "accounts": {
-        "cc": 31666.43,
+        "cc": 31667.43,
         "contaAplicacao": 80078.04,
         "fundoDespesas": 100946.35
       }
@@ -12885,7 +12869,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "536.639.856-87",
+      "numeroTitulo": "3662",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -12924,7 +12912,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "984.850.406-00",
+      "numeroTitulo": "3656",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -12963,7 +12955,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "008.603.506-14",
+      "numeroTitulo": "3682",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13002,7 +12998,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "055.104.896-42",
+      "numeroTitulo": "3655",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13041,7 +13041,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "468.106.176-04",
+      "numeroTitulo": "3663",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13080,7 +13084,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "043.438.046-66",
+      "numeroTitulo": "3681",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13119,7 +13127,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "065.214.186-29",
+      "numeroTitulo": "3673",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13158,7 +13170,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "905.435.306-63",
+      "numeroTitulo": "3672",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13197,7 +13213,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "468.106.176-04",
+      "numeroTitulo": "3679",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13236,7 +13256,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "468.106.176-04",
+      "numeroTitulo": "3659",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13275,7 +13299,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "587.441.936-53",
+      "numeroTitulo": "3677",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13314,7 +13342,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "536.639.856-87",
+      "numeroTitulo": "3658",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13353,163 +13385,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422257",
-      "numeroUnico": "422257",
-      "cedente": "CONNTACTA AGRONEGOCIOS LTDA.",
-      "sacado": "JOSE LUIZ VOLPE NETO",
-      "devedor": "JOSE LUIZ VOLPE NETO",
-      "valorAquisicao": 29270.48,
-      "valorFace": 35271.39,
-      "valorNominal": 35271.39,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "28/08/2026",
-      "dataVencimentoIso": "2026-08-28",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -69,
-      "faixaVenc": "Entre 61 e 90 dias",
-      "faixaVencOrder": 3,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422258",
-      "numeroUnico": "422258",
-      "cedente": "CONNTACTA AGRONEGOCIOS LTDA.",
-      "sacado": "ROGERIO VIEIRA GOUVEA E OUTRO(S)",
-      "devedor": "ROGERIO VIEIRA GOUVEA E OUTRO(S)",
-      "valorAquisicao": 355869.49,
-      "valorFace": 429840.0,
-      "valorNominal": 429840.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "31/08/2026",
-      "dataVencimentoIso": "2026-08-31",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -66,
-      "faixaVenc": "Entre 61 e 90 dias",
-      "faixaVencOrder": 3,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422259",
-      "numeroUnico": "422259",
-      "cedente": "CONNTACTA AGRONEGOCIOS LTDA.",
-      "sacado": "MARANATA AGROPECUARIA LTDA",
-      "devedor": "MARANATA AGROPECUARIA LTDA",
-      "valorAquisicao": 237246.32,
-      "valorFace": 286560.0,
-      "valorNominal": 286560.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "31/08/2026",
-      "dataVencimentoIso": "2026-08-31",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -66,
-      "faixaVenc": "Entre 61 e 90 dias",
-      "faixaVencOrder": 3,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422260",
-      "numeroUnico": "422260",
-      "cedente": "CONNTACTA AGRONEGOCIOS LTDA.",
-      "sacado": "REGINALDO DONIZETE DA SILVEIRA",
-      "devedor": "REGINALDO DONIZETE DA SILVEIRA",
-      "valorAquisicao": 16706.71,
-      "valorFace": 20179.35,
-      "valorNominal": 20179.35,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "31/08/2026",
-      "dataVencimentoIso": "2026-08-31",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -66,
-      "faixaVenc": "Entre 61 e 90 dias",
-      "faixaVencOrder": 3,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "54.764.341/0001-62",
+      "documentoSacado": "861.288.256-72",
+      "numeroTitulo": "3651",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13548,7 +13428,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "675.681.579-20",
+      "numeroTitulo": "119",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13587,7 +13471,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "675.681.579-20",
+      "numeroTitulo": "129",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13626,7 +13514,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0002-85",
+      "documentoSacado": "054.415.149-65",
+      "numeroTitulo": "21",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13665,7 +13557,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "585.571.569-87",
+      "numeroTitulo": "305",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13704,7 +13600,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "169.078.048-75",
+      "numeroTitulo": "304",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13743,7 +13643,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "053.131.859-18",
+      "numeroTitulo": "413",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13782,7 +13686,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "585.571.569-87",
+      "numeroTitulo": "283",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13821,7 +13729,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "169.078.048-75",
+      "numeroTitulo": "282",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13860,7 +13772,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "053.131.859-18",
+      "numeroTitulo": "273",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13899,7 +13815,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "57.735.153/0001-02",
+      "documentoSacado": "053.131.859-18",
+      "numeroTitulo": "414",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -13938,124 +13858,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422319",
-      "numeroUnico": "422319",
-      "cedente": "HEDER AUGUSTO DAVI RAMOS",
-      "sacado": "HEDER AUGUSTO DAVI R",
-      "devedor": "HEDER AUGUSTO DAVI R",
-      "valorAquisicao": 4573648.55,
-      "valorFace": 5600000.0,
-      "valorNominal": 5600000.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422320",
-      "numeroUnico": "422320",
-      "cedente": "WALDINEY DA COSTA CHICARELLI",
-      "sacado": "WALDINEY DA COSTA CHICARELLI",
-      "devedor": "WALDINEY DA COSTA CHICARELLI",
-      "valorAquisicao": 1971492.82,
-      "valorFace": 2300000.0,
-      "valorNominal": 2300000.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "20/08/2026",
-      "dataVencimentoIso": "2026-08-20",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -77,
-      "faixaVenc": "Entre 61 e 90 dias",
-      "faixaVencOrder": 3,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "422321",
-      "numeroUnico": "422321",
-      "cedente": "JOAO PEDRO MARTINS OLIVEIRA",
-      "sacado": "JOAO PEDRO MARTINS DE OLIVEIRA",
-      "devedor": "JOAO PEDRO MARTINS DE OLIVEIRA",
-      "valorAquisicao": 4362497.01,
-      "valorFace": 5182064.1,
-      "valorNominal": 5182064.1,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "30/10/2026",
-      "dataVencimentoIso": "2026-10-30",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NC",
-      "tipoAtivo": "NC",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -6,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "085.477.156-57",
+      "documentoSacado": "085.477.156-57",
+      "numeroTitulo": "J1003",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -14093,8 +13900,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "valorPresenteLiquido": 4805660.09,
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
-      "observacao": "Aquisicao e face corrigidos por Leonardo em 09/11/2026; face calculado pela taxa e prazo",
-      "valorLiquidacao": 0
+      "observacao": "Aquisicao e face corrigidos por Leonardo em 09/11/2026; face calculado pela taxa e prazo; Ausente no GER004 novo; memoria anterior preservada por confirmacao de Leonardo em 10/11/2026",
+      "valorLiquidacao": 0,
+      "sourcePreserved": true
     },
     {
       "craCarteira": "50",
@@ -14132,8 +13940,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "valorPresenteLiquido": 5939019.55,
       "pdd": 0,
       "metodoPrecificacao": "Valor de face no vencimento e apos, sem PDD",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "observacao": "Ausente no GER004 novo; memoria anterior preservada por confirmacao de Leonardo em 10/11/2026",
+      "valorLiquidacao": 0,
+      "sourcePreserved": true
     },
     {
       "craCarteira": "50",
@@ -14172,7 +13981,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "61.167.060/0001-98",
+      "documentoSacado": "61.167.060/0001-98",
+      "numeroTitulo": "Pre_NC_Kimberlit_01-07-25",
+      "parcela": "1"
     },
     {
       "craCarteira": "50",
@@ -14211,46 +14024,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "50",
-      "lastro": "436701",
-      "numeroUnico": "436701",
-      "cedente": "ALEX SANDRO PELOSI",
-      "sacado": "ALEX SANDRO PELOSI E OUTRO(S)",
-      "devedor": "ALEX SANDRO PELOSI E OUTRO(S)",
-      "valorAquisicao": 1246001.84,
-      "valorFace": 1497845.98,
-      "valorNominal": 1497845.98,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "03/02/2026",
-      "dataAquisicaoIso": "2026-02-03",
-      "dataVencimento": "10/10/2026",
-      "dataVencimentoIso": "2026-10-10",
-      "dataLiquidacao": "03/06/2026",
-      "dataLiquidacaoIso": "2026-06-03",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": -26,
-      "faixaVenc": "Entre 1 e 30 dias",
-      "faixaVencOrder": 1,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "14.278.189/0001-93",
+      "documentoSacado": "14.278.189/0001-93",
+      "numeroTitulo": "CPRF CANASSA",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -14281,7 +14059,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5939019.55,
         "posicao": 1,
         "participacao": 0.5527404956673049,
-        "participacaoPl": 0.5521855637215319
+        "participacaoPl": 0.5521855123815985
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -14292,7 +14070,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5546090.359999999,
         "posicao": 2,
         "participacao": 0.44725950433269496,
-        "participacaoPl": 0.44681047157871673
+        "participacaoPl": 0.4468104300361242
       }
     ],
     "sacados": [
@@ -14305,7 +14083,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5939019.55,
         "posicao": 1,
         "participacao": 0.5527404956673049,
-        "participacaoPl": 0.5521855637215319
+        "participacaoPl": 0.5521855123815985
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -14316,7 +14094,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5546090.359999999,
         "posicao": 2,
         "participacao": 0.44725950433269496,
-        "participacaoPl": 0.44681047157871673
+        "participacaoPl": 0.4468104300361242
       }
     ],
     "lastrosAtivos": 2
@@ -14332,7 +14110,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5939019.55,
         "posicao": 1,
         "participacao": 0.5527404956673049,
-        "participacaoPl": 0.5521855637215319
+        "participacaoPl": 0.5521855123815985
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -14343,7 +14121,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5546090.359999999,
         "posicao": 2,
         "participacao": 0.44725950433269496,
-        "participacaoPl": 0.44681047157871673
+        "participacaoPl": 0.4468104300361242
       }
     ],
     "top10Sacados": [
@@ -14356,7 +14134,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5939019.55,
         "posicao": 1,
         "participacao": 0.5527404956673049,
-        "participacaoPl": 0.5521855637215319
+        "participacaoPl": 0.5521855123815985
       },
       {
         "name": "MADEPLANT FLORESTAL LTDA",
@@ -14367,7 +14145,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "valorNominal": 5546090.359999999,
         "posicao": 2,
         "participacao": 0.44725950433269496,
-        "participacaoPl": 0.44681047157871673
+        "participacaoPl": 0.4468104300361242
       }
     ]
   },
@@ -14425,7 +14203,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 10.755.477,76",
+          "value": "R$ 10.755.478,76",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -14441,7 +14219,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 10.798,12",
+          "value": "R$ 10.799,12",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -14457,7 +14235,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 248.702,44",
+          "value": "R$ 248.703,44",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -14465,7 +14243,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "2.487,024394",
+          "value": "2.487,034394",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -14489,5 +14267,334 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [
+      "426733",
+      "426977"
+    ],
+    "replacementParcels": [
+      {
+        "cra": 50,
+        "lastroNovo": "1000990",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "1",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "28/02/2026",
+        "aquisicao": 0.0,
+        "face": 315253.53,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000991",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "2",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/03/2026",
+        "aquisicao": 0.0,
+        "face": 77921.55,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000992",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "3",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/04/2026",
+        "aquisicao": 0.0,
+        "face": 83334.15,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000993",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "4",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/05/2026",
+        "aquisicao": 0.0,
+        "face": 80627.22,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000994",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "5",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/06/2026",
+        "aquisicao": 0.0,
+        "face": 83334.15,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000995",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "6",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/07/2026",
+        "aquisicao": 0.0,
+        "face": 80627.22,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000996",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "7",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/08/2026",
+        "aquisicao": 0.0,
+        "face": 83334.15,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000997",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "8",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/09/2026",
+        "aquisicao": 0.0,
+        "face": 83334.15,
+        "saldoFonte": 0.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1000998",
+        "lastroAnterior": "426977",
+        "numeroNovo": "PRE_NC_CWA_05-11-25",
+        "parcela": "9",
+        "cedente": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "sacado": "CWA INDUSTRIA DE EUCALIPTO IMUNIZADO LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "29/10/2026",
+        "aquisicao": 5759087.36,
+        "face": 5839714.58,
+        "saldoFonte": 6727480.71,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001084",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "1",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/04/2026",
+        "aquisicao": 445377.62,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001085",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "2",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "25/05/2026",
+        "aquisicao": 436648.98,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001086",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "3",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/06/2026",
+        "aquisicao": 427667.95,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001087",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "4",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/07/2026",
+        "aquisicao": 418457.32,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001088",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "5",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/08/2026",
+        "aquisicao": 409850.46,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001089",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "6",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/09/2026",
+        "aquisicao": 401023.56,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001090",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "7",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "26/10/2026",
+        "aquisicao": 392775.28,
+        "face": 513593.12,
+        "saldoFonte": 513593.12,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001091",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "8",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/11/2026",
+        "aquisicao": 385458.83,
+        "face": 513593.12,
+        "saldoFonte": 509038.96,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001092",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "9",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/12/2026",
+        "aquisicao": 377157.25,
+        "face": 513593.12,
+        "saldoFonte": 498075.85,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001093",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "10",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "24/02/2027",
+        "aquisicao": 362518.83,
+        "face": 513593.12,
+        "saldoFonte": 478744.27,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 50,
+        "lastroNovo": "1001094",
+        "lastroAnterior": "426733",
+        "numeroNovo": "NC_MADEPLANT_25-09-25",
+        "parcela": "11",
+        "cedente": "MADEPLANT FLORESTAL LTDA",
+        "sacado": "MADEPLANT FLORESTAL LTDA",
+        "tipo": "NC",
+        "dataCessao": "03/02/2026",
+        "vencimento": "25/03/2027",
+        "aquisicao": 447519.85,
+        "face": 647331.4,
+        "saldoFonte": 590997.07,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      }
+    ],
+    "paymentDifferences": []
+  }
 };

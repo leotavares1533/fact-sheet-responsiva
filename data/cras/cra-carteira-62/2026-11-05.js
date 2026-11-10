@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
     "craId": "cra-carteira-62",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-62",
-    "importedAt": "2026-11-09T15:33:11.575377-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:58.892940-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [
+      "475240",
+      "498540",
+      "509212"
+    ],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-62",
@@ -117,12 +125,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
     "pddTotal": 0.0,
     "carteiraVp": 35937110.76,
     "carteiraVpLiquido": 35937110.76,
-    "caixa": 501616.17,
-    "total": 36438726.93,
+    "caixa": 501617.17,
+    "total": 36438727.93,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
-    "quantidadeLastros": 21,
-    "quantidadeLastrosBase": 21,
+    "quantidadeLastros": 12,
+    "quantidadeLastrosBase": 12,
     "lastrosAtivos": 11,
     "quantidadeLastrosAtivos": 11,
     "cedentesUnicos": 6,
@@ -131,24 +139,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 41149.95,
+      "cc": 41150.95,
       "contaAplicacao": 490552.65,
       "fundoDespesas": 30086.43
     },
-    "total": 501616.17,
-    "totalInformado": 501616.17,
-    "totalCalculado": 501616.17,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 501617.17,
+    "totalCalculado": 501617.17,
+    "totalInformado": 501617.17,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "98799-6 (ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 38655838.854213,
-    "subordinadaTotal": -2217111.9242129996,
-    "subordinadaPuResidual": -22171.119242129997,
+    "subordinadaTotal": -2217110.9242129996,
+    "subordinadaPuResidual": -22171.109242129998,
     "cotas": [
       {
         "classe": "SR1",
@@ -245,8 +253,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
           "periodoInicio": "01/05/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 977.80114894,
-          "diasAcumulacao": 111.0,
-          "diasUteisPeriodo": 81.0
+          "diasAcumulacao": 111,
+          "diasUteisPeriodo": 81
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "05/11/2026",
@@ -7008,8 +7016,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
           "periodoInicio": "01/05/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1089.115349,
-          "diasAcumulacao": 106.0,
-          "diasUteisPeriodo": 106.0
+          "diasAcumulacao": 106,
+          "diasUteisPeriodo": 106
         },
         "dataHistoricaDisponivel": true,
         "dataHistoricaSelecionada": "05/11/2026",
@@ -13736,34 +13744,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": -22171.119242129997,
-        "valor": -2217111.9242129996,
-        "principalResidual": -22171.119242129997,
+        "pu": -22171.109242129998,
+        "valor": -2217110.9242129996,
+        "principalResidual": -22171.109242129998,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": -22171.119242129997,
-            "puAtualizado": -22171.119242129997,
-            "valorReais": -2217111.9242129996,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": -22171.119242129997
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -13777,7 +13762,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -15776,10 +15761,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 501616.17,
-      "totalCalculado": 501616.17,
+      "total": 501617.17,
+      "totalCalculado": 501617.17,
       "accounts": {
-        "cc": 41149.95,
+        "cc": 41150.95,
         "contaAplicacao": 490552.65,
         "fundoDespesas": 30086.43
       }
@@ -15853,84 +15838,6 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
   "carteira": [
     {
       "craCarteira": "62",
-      "lastro": "471388",
-      "numeroUnico": "471388",
-      "cedente": "WESLLEY PEDRO VIANA MATSUI",
-      "sacado": "WESLLEY PEDRO VIANA MATSUI",
-      "devedor": "WESLLEY PEDRO VIANA MATSUI",
-      "valorAquisicao": 2657470.0,
-      "valorFace": 0.0,
-      "valorNominal": 0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "28/05/2026",
-      "dataAquisicaoIso": "2026-05-28",
-      "dataVencimento": "28/02/2030",
-      "dataVencimentoIso": "2030-02-28",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pos fixado",
-      "indexadorAtivo": "pos fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 1211,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Sem linha de aquisicao do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "471396",
-      "numeroUnico": "471396",
-      "cedente": "IDIANE RIGO",
-      "sacado": "IDIANE RIGO",
-      "devedor": "IDIANE RIGO",
-      "valorAquisicao": 6163679.33,
-      "valorFace": 0.0,
-      "valorNominal": 0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "28/05/2026",
-      "dataAquisicaoIso": "2026-05-28",
-      "dataVencimento": "30/01/2030",
-      "dataVencimentoIso": "2030-01-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pos fixado",
-      "indexadorAtivo": "pos fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 1182,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Sem linha de aquisicao do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
       "lastro": "475240",
       "numeroUnico": "475240",
       "cedente": "EBERTH SANTOS DOS REIS",
@@ -15965,8 +15872,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "valorPresenteLiquido": 5512705.46,
       "pdd": 0,
       "metodoPrecificacao": "Motor pos; CDI D0 + 10.7% a.a.",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "observacao": "Ausente no GER004 novo; memoria anterior preservada por confirmacao de Leonardo em 10/11/2026",
+      "valorLiquidacao": 0,
+      "sourcePreserved": true
     },
     {
       "craCarteira": "62",
@@ -16005,280 +15913,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Sem saldo aberto no export",
       "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "479075",
-      "numeroUnico": "479075",
-      "cedente": "AGROPECUARIA RUIZ LTDA",
-      "sacado": "AGROPECUÁRIA RUIZ LTDA",
-      "devedor": "AGROPECUÁRIA RUIZ LTDA",
-      "valorAquisicao": 1000000.0,
-      "valorFace": 1458234.74,
-      "valorNominal": 1458234.74,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "05/06/2026",
-      "dataAquisicaoIso": "2026-06-05",
-      "dataVencimento": "30/06/2027",
-      "dataVencimentoIso": "2027-06-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 237,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "486918",
-      "numeroUnico": "486918",
-      "cedente": "CULTURA AGRONEGOCIOS LTDA",
-      "sacado": "VALDECIR DE PAULA FREITAS E OUTRO(S)",
-      "devedor": "VALDECIR DE PAULA FREITAS E OUTRO(S)",
-      "valorAquisicao": 723216.27,
-      "valorFace": 875342.0,
-      "valorNominal": 875342.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "20/07/2026",
-      "dataAquisicaoIso": "2026-07-20",
-      "dataVencimento": "30/05/2027",
-      "dataVencimentoIso": "2027-05-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 206,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "486919",
-      "numeroUnico": "486919",
-      "cedente": "CULTURA AGRONEGOCIOS LTDA",
-      "sacado": "VALDEMIR DE PAULA FREITAS",
-      "devedor": "VALDEMIR DE PAULA FREITAS",
-      "valorAquisicao": 732340.93,
-      "valorFace": 886386.0,
-      "valorNominal": 886386.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "20/07/2026",
-      "dataAquisicaoIso": "2026-07-20",
-      "dataVencimento": "30/05/2027",
-      "dataVencimentoIso": "2027-05-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 206,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "486920",
-      "numeroUnico": "486920",
-      "cedente": "CULTURA AGRONEGOCIOS LTDA",
-      "sacado": "VALDECIR DE PAULA FREITAS E OUTRO(S)",
-      "devedor": "VALDECIR DE PAULA FREITAS E OUTRO(S)",
-      "valorAquisicao": 361235.51,
-      "valorFace": 437220.0,
-      "valorNominal": 437220.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "20/07/2026",
-      "dataAquisicaoIso": "2026-07-20",
-      "dataVencimento": "30/05/2027",
-      "dataVencimentoIso": "2027-05-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 206,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "486921",
-      "numeroUnico": "486921",
-      "cedente": "CULTURA AGRONEGOCIOS LTDA",
-      "sacado": "VALDEMIR DE PAULA FREITAS",
-      "devedor": "VALDEMIR DE PAULA FREITAS",
-      "valorAquisicao": 512035.35,
-      "valorFace": 619740.0,
-      "valorNominal": 619740.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "20/07/2026",
-      "dataAquisicaoIso": "2026-07-20",
-      "dataVencimento": "30/05/2027",
-      "dataVencimentoIso": "2027-05-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 206,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "486922",
-      "numeroUnico": "486922",
-      "cedente": "CULTURA AGRONEGOCIOS LTDA",
-      "sacado": "VALDECIR DE PAULA FREITAS E OUTRO(S)",
-      "devedor": "VALDECIR DE PAULA FREITAS E OUTRO(S)",
-      "valorAquisicao": 364292.49,
-      "valorFace": 440920.0,
-      "valorNominal": 440920.0,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "20/07/2026",
-      "dataAquisicaoIso": "2026-07-20",
-      "dataVencimento": "30/05/2027",
-      "dataVencimentoIso": "2027-05-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "BAIXA POR RECOMPRA",
-      "tipoTitulo": "NF",
-      "tipoAtivo": "NF",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 206,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
-    },
-    {
-      "craCarteira": "62",
-      "lastro": "494509",
-      "numeroUnico": "494509",
-      "cedente": "AGROPECUARIA RUIZ LTDA",
-      "sacado": "AGROPECUÁRIA RUIZ LTDA",
-      "devedor": "AGROPECUÁRIA RUIZ LTDA",
-      "valorAquisicao": 3510743.55,
-      "valorFace": 3761765.26,
-      "valorNominal": 3761765.26,
-      "pagamentosAcumulados": 0.0,
-      "dataAquisicao": "06/07/2026",
-      "dataAquisicaoIso": "2026-07-06",
-      "dataVencimento": "30/06/2027",
-      "dataVencimentoIso": "2027-06-30",
-      "dataLiquidacao": "30/07/2026",
-      "dataLiquidacaoIso": "2026-07-30",
-      "status": "LIQUIDADO",
-      "statusOriginal": "LIQUIDADO",
-      "statusPagamento": "Baixa por venda",
-      "tipoTitulo": "CPR_F",
-      "tipoAtivo": "CPR_F",
-      "tipo": "pre fixado",
-      "indexadorAtivo": "pre fixado",
-      "taxa": 0.0,
-      "taxaOp": 0.0,
-      "taxaMedia": 0.0,
-      "base": 0.0,
-      "diasDoVencimento": 237,
-      "faixaVenc": "Em dia",
-      "faixaVencOrder": 0,
-      "valorPresenteDia": 0.0,
-      "valorPresente": 0.0,
-      "valorPresenteLiquido": 0.0,
-      "pdd": 0,
-      "metodoPrecificacao": "Fora da carteira: status do titulo",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "012.018.186-05",
+      "documentoSacado": "012.018.186-05",
+      "numeroTitulo": "CPR 2 PEDRO MEROLA",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16316,8 +15955,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "valorPresenteLiquido": 3125023.99,
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "observacao": "Ausente no GER004 novo; memoria anterior preservada por confirmacao de Leonardo em 10/11/2026",
+      "valorLiquidacao": 0,
+      "sourcePreserved": true
     },
     {
       "craCarteira": "62",
@@ -16356,7 +15996,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "38.079.557/0001-32",
+      "documentoSacado": "38.079.557/0001-32",
+      "numeroTitulo": "CPR RUIZ",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16394,8 +16038,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "valorPresenteLiquido": 4823433.76,
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "observacao": "Ausente no GER004 novo; memoria anterior preservada por confirmacao de Leonardo em 10/11/2026",
+      "valorLiquidacao": 0,
+      "sourcePreserved": true
     },
     {
       "craCarteira": "62",
@@ -16434,7 +16079,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "34.470.721/0001-87",
+      "documentoSacado": "013.730.035-29",
+      "numeroTitulo": "CPR 000087/2026-01 Edgar Bortolozzo Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16473,7 +16122,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "34.470.721/0001-87",
+      "documentoSacado": "557.249.309-00",
+      "numeroTitulo": "CPR 000091/2026-01 Vilson Walker Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16512,7 +16165,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "34.470.721/0001-87",
+      "documentoSacado": "557.249.309-00",
+      "numeroTitulo": "CPR 000092/2026-01 Vilson Walker Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16551,7 +16208,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "34.470.721/0001-87",
+      "documentoSacado": "557.249.309-00",
+      "numeroTitulo": "CPR 000093/2026-01 Vilson Walker Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16590,7 +16251,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "49.557.805/0001-20",
+      "documentoSacado": "019.645.711-46",
+      "numeroTitulo": "205278-3",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16629,7 +16294,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "49.557.805/0001-20",
+      "documentoSacado": "719.397.521-83",
+      "numeroTitulo": "CPR 205278-6 Milton Pereira dos Santos Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "62",
@@ -16668,7 +16337,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "33.661.467/0001-31",
+      "documentoSacado": "719.352.582-49",
+      "numeroTitulo": "CPR ABE.001/2026 Flaviana Margarida Vicente Chadas Ceres Trading",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -16699,7 +16372,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 23617128.59,
         "posicao": 1,
         "participacao": 0.6242623487409147,
-        "participacaoPl": 0.6156687420253955
+        "participacaoPl": 0.6156687251293956
       },
       {
         "name": "EBERTH SANTOS DOS REIS",
@@ -16710,7 +16383,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 5659358.21,
         "posicao": 2,
         "participacao": 0.153398682960789,
-        "participacaoPl": 0.15128699393340744
+        "participacaoPl": 0.15128698978158867
       },
       {
         "name": "AGROPECUARIA RUIZ LTDA",
@@ -16721,7 +16394,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 4659590.9,
         "posicao": 3,
         "participacao": 0.10676913527146331,
-        "participacaoPl": 0.10529934943586132
+        "participacaoPl": 0.10529934654609663
       },
       {
         "name": "JOARES APARECIDO SANCHES",
@@ -16732,7 +16405,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 3125023.99,
         "posicao": 4,
         "participacao": 0.08695813113274328,
-        "participacaoPl": 0.08576106393626964
+        "participacaoPl": 0.08576106158270054
       },
       {
         "name": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROPECUARIOS LTDA",
@@ -16743,7 +16416,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 819794.52,
         "posicao": 5,
         "participacao": 0.021696730023935844,
-        "participacaoPl": 0.02139805244837076
+        "participacaoPl": 0.021398051861136965
       },
       {
         "name": "AGRICOLA PROCAMPO LTDA",
@@ -16754,7 +16427,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 265302.97000000003,
         "posicao": 6,
         "participacao": 0.006914971870153758,
-        "participacaoPl": 0.00681978024307448
+        "participacaoPl": 0.006819780055917006
       }
     ],
     "sacados": [
@@ -16767,7 +16440,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 15445200.0,
         "posicao": 1,
         "participacao": 0.4066565873254971,
-        "participacaoPl": 0.4010585454336563
+        "participacaoPl": 0.4010585344272747
       },
       {
         "name": "EDGAR BORTOLOZZO",
@@ -16778,7 +16451,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 8171928.59,
         "posicao": 2,
         "participacao": 0.2176057614154177,
-        "participacaoPl": 0.21461019659173916
+        "participacaoPl": 0.21461019070212092
       },
       {
         "name": "EBERTH SANTOS DOS REIS",
@@ -16789,7 +16462,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 5659358.21,
         "posicao": 3,
         "participacao": 0.15339868296078904,
-        "participacaoPl": 0.15128699393340744
+        "participacaoPl": 0.15128698978158867
       },
       {
         "name": "AGROPECUÁRIA RUIZ LTDA",
@@ -16800,7 +16473,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 4659590.9,
         "posicao": 4,
         "participacao": 0.10676913527146334,
-        "participacaoPl": 0.10529934943586132
+        "participacaoPl": 0.10529934654609663
       },
       {
         "name": "JOARES APARECIDO SANCHES",
@@ -16811,7 +16484,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 3125023.99,
         "posicao": 5,
         "participacao": 0.08695813113274331,
-        "participacaoPl": 0.08576106393626964
+        "participacaoPl": 0.08576106158270054
       },
       {
         "name": "FLAVIANA MARGARIDA VICENTE CHAGAS",
@@ -16822,7 +16495,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 819794.52,
         "posicao": 6,
         "participacao": 0.02169673002393585,
-        "participacaoPl": 0.02139805244837076
+        "participacaoPl": 0.021398051861136965
       },
       {
         "name": "ROGERIO TRAJANO SACCHI",
@@ -16833,7 +16506,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 186000.01,
         "posicao": 7,
         "participacao": 0.004847985169523406,
-        "participacaoPl": 0.004781247718524506
+        "participacaoPl": 0.004781247587311152
       },
       {
         "name": "MILTON PEREIRA DOS SANTOS SOBRINHO",
@@ -16844,7 +16517,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 79302.96,
         "posicao": 8,
         "participacao": 0.0020669867006303543,
-        "participacaoPl": 0.0020385325245499734
+        "participacaoPl": 0.0020385324686058547
       }
     ],
     "lastrosAtivos": 11
@@ -16860,7 +16533,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 23617128.59,
         "posicao": 1,
         "participacao": 0.6242623487409147,
-        "participacaoPl": 0.6156687420253955
+        "participacaoPl": 0.6156687251293956
       },
       {
         "name": "EBERTH SANTOS DOS REIS",
@@ -16871,7 +16544,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 5659358.21,
         "posicao": 2,
         "participacao": 0.153398682960789,
-        "participacaoPl": 0.15128699393340744
+        "participacaoPl": 0.15128698978158867
       },
       {
         "name": "AGROPECUARIA RUIZ LTDA",
@@ -16882,7 +16555,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 4659590.9,
         "posicao": 3,
         "participacao": 0.10676913527146331,
-        "participacaoPl": 0.10529934943586132
+        "participacaoPl": 0.10529934654609663
       },
       {
         "name": "JOARES APARECIDO SANCHES",
@@ -16893,7 +16566,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 3125023.99,
         "posicao": 4,
         "participacao": 0.08695813113274328,
-        "participacaoPl": 0.08576106393626964
+        "participacaoPl": 0.08576106158270054
       },
       {
         "name": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROPECUARIOS LTDA",
@@ -16904,7 +16577,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 819794.52,
         "posicao": 5,
         "participacao": 0.021696730023935844,
-        "participacaoPl": 0.02139805244837076
+        "participacaoPl": 0.021398051861136965
       },
       {
         "name": "AGRICOLA PROCAMPO LTDA",
@@ -16915,7 +16588,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 265302.97000000003,
         "posicao": 6,
         "participacao": 0.006914971870153758,
-        "participacaoPl": 0.00681978024307448
+        "participacaoPl": 0.006819780055917006
       }
     ],
     "top10Sacados": [
@@ -16928,7 +16601,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 15445200.0,
         "posicao": 1,
         "participacao": 0.4066565873254971,
-        "participacaoPl": 0.4010585454336563
+        "participacaoPl": 0.4010585344272747
       },
       {
         "name": "EDGAR BORTOLOZZO",
@@ -16939,7 +16612,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 8171928.59,
         "posicao": 2,
         "participacao": 0.2176057614154177,
-        "participacaoPl": 0.21461019659173916
+        "participacaoPl": 0.21461019070212092
       },
       {
         "name": "EBERTH SANTOS DOS REIS",
@@ -16950,7 +16623,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 5659358.21,
         "posicao": 3,
         "participacao": 0.15339868296078904,
-        "participacaoPl": 0.15128699393340744
+        "participacaoPl": 0.15128698978158867
       },
       {
         "name": "AGROPECUÁRIA RUIZ LTDA",
@@ -16961,7 +16634,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 4659590.9,
         "posicao": 4,
         "participacao": 0.10676913527146334,
-        "participacaoPl": 0.10529934943586132
+        "participacaoPl": 0.10529934654609663
       },
       {
         "name": "JOARES APARECIDO SANCHES",
@@ -16972,7 +16645,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 3125023.99,
         "posicao": 5,
         "participacao": 0.08695813113274331,
-        "participacaoPl": 0.08576106393626964
+        "participacaoPl": 0.08576106158270054
       },
       {
         "name": "FLAVIANA MARGARIDA VICENTE CHAGAS",
@@ -16983,7 +16656,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 819794.52,
         "posicao": 6,
         "participacao": 0.02169673002393585,
-        "participacaoPl": 0.02139805244837076
+        "participacaoPl": 0.021398051861136965
       },
       {
         "name": "ROGERIO TRAJANO SACCHI",
@@ -16994,7 +16667,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 186000.01,
         "posicao": 7,
         "participacao": 0.004847985169523406,
-        "participacaoPl": 0.004781247718524506
+        "participacaoPl": 0.004781247587311152
       },
       {
         "name": "MILTON PEREIRA DOS SANTOS SOBRINHO",
@@ -17005,7 +16678,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         "valorNominal": 79302.96,
         "posicao": 8,
         "participacao": 0.0020669867006303543,
-        "participacaoPl": 0.0020385325245499734
+        "participacaoPl": 0.0020385324686058547
       }
     ]
   },
@@ -17064,7 +16737,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 36.438.726,93",
+          "value": "R$ 36.438.727,93",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -17080,7 +16753,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 501.616,17",
+          "value": "R$ 501.617,17",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -17096,7 +16769,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -2.217.111,92",
+          "value": "R$ -2.217.110,92",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -17104,7 +16777,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-22.171,119242",
+          "value": "-22.171,109242",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -17128,5 +16801,111 @@ window.LAMINA_CRA_DAILY["cra-carteira-62"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [
+      "475240",
+      "498540",
+      "509212"
+    ],
+    "replacementParcels": [
+      {
+        "cra": 62,
+        "lastroNovo": "1000006",
+        "lastroAnterior": "498540",
+        "numeroNovo": "CPR217325",
+        "parcela": "1",
+        "cedente": "JOARES APARECIDO SANCHES",
+        "sacado": "JOARES APARECIDO SANCHES",
+        "tipo": "CPR",
+        "dataCessao": "07/08/2026",
+        "vencimento": "26/02/2027",
+        "aquisicao": 2781687.44,
+        "face": 3125024.0,
+        "saldoFonte": 2934618.58,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 62,
+        "lastroNovo": "1000007",
+        "lastroAnterior": "498540",
+        "numeroNovo": "CPR217325",
+        "parcela": "2",
+        "cedente": "JOARES APARECIDO SANCHES",
+        "sacado": "JOARES APARECIDO SANCHES",
+        "tipo": "CPR",
+        "dataCessao": "07/08/2026",
+        "vencimento": "25/02/2028",
+        "aquisicao": 2243706.52,
+        "face": 3125023.99,
+        "saldoFonte": 2367060.64,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 62,
+        "lastroNovo": "1001250",
+        "lastroAnterior": "475240",
+        "numeroNovo": "CPR EBERTH",
+        "parcela": "1",
+        "cedente": "EBERTH SANTOS DOS REIS",
+        "sacado": "EBERTH SANTOS DOS REIS",
+        "tipo": "CPR",
+        "dataCessao": "03/06/2026",
+        "vencimento": "28/02/2027",
+        "aquisicao": 1248786.0,
+        "face": 1776402.3,
+        "saldoFonte": 1776402.3,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 62,
+        "lastroNovo": "1001251",
+        "lastroAnterior": "475240",
+        "numeroNovo": "CPR EBERTH",
+        "parcela": "2",
+        "cedente": "EBERTH SANTOS DOS REIS",
+        "sacado": "EBERTH SANTOS DOS REIS",
+        "tipo": "CPR",
+        "dataCessao": "03/06/2026",
+        "vencimento": "28/02/2028",
+        "aquisicao": 1248786.0,
+        "face": 1248786.0,
+        "saldoFonte": 1248786.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 62,
+        "lastroNovo": "1001252",
+        "lastroAnterior": "475240",
+        "numeroNovo": "CPR EBERTH",
+        "parcela": "3",
+        "cedente": "EBERTH SANTOS DOS REIS",
+        "sacado": "EBERTH SANTOS DOS REIS",
+        "tipo": "CPR",
+        "dataCessao": "03/06/2026",
+        "vencimento": "28/02/2029",
+        "aquisicao": 1248786.0,
+        "face": 1248786.0,
+        "saldoFonte": 1248786.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      },
+      {
+        "cra": 62,
+        "lastroNovo": "1001253",
+        "lastroAnterior": "475240",
+        "numeroNovo": "CPR EBERTH",
+        "parcela": "4",
+        "cedente": "EBERTH SANTOS DOS REIS",
+        "sacado": "EBERTH SANTOS DOS REIS",
+        "tipo": "CPR",
+        "dataCessao": "03/06/2026",
+        "vencimento": "28/02/2030",
+        "aquisicao": 1248786.0,
+        "face": 1248786.0,
+        "saldoFonte": 1248786.0,
+        "motivo": "Numero do contrato e cedente coincidentes; parcelas novas nao somadas ao contrato anterior"
+      }
+    ],
+    "paymentDifferences": []
+  }
 };

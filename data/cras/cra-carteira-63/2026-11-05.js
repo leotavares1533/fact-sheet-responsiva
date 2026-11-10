@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
     "craId": "cra-carteira-63",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-63",
-    "importedAt": "2026-11-09T15:33:11.666102-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:58.975327-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,22 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [
+      "512319"
+    ],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-63",
@@ -117,8 +123,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
     "pddTotal": 0.0,
     "carteiraVp": 39335836.22,
     "carteiraVpLiquido": 39335836.22,
-    "caixa": 1792352.05,
-    "total": 41128188.269999996,
+    "caixa": 1792353.05,
+    "total": 41128189.269999996,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 84,
@@ -131,24 +137,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 1881050.31,
+      "cc": 1881051.31,
       "contaAplicacao": 0.0,
       "fundoDespesas": 88698.26
     },
-    "total": 1792352.05,
-    "totalInformado": 1792352.05,
-    "totalCalculado": 1792352.05,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "total": 1792353.05,
+    "totalCalculado": 1792353.05,
+    "totalInformado": 1792353.05,
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "98795-4 (ITAU)",
     "totalPolicy": "total_informado",
     "reservaInsuficiente": 0,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 40941064.863120005,
-    "subordinadaTotal": 187123.4068799913,
-    "subordinadaPuResidual": 1871.2340687999128,
+    "subordinadaTotal": 187124.4068799913,
+    "subordinadaPuResidual": 1871.2440687999128,
     "cotas": [
       {
         "classe": "SR1",
@@ -4182,8 +4188,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
           "periodoInicio": "31/07/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1052.924523,
-          "diasAcumulacao": 66.0,
-          "diasUteisPeriodo": 66.0
+          "diasAcumulacao": 66,
+          "diasUteisPeriodo": 66
         },
         "eventosNaoEfetivados": [
           {
@@ -6003,8 +6009,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
           "periodoInicio": "23/09/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1022.766173,
-          "diasAcumulacao": 29.0,
-          "diasUteisPeriodo": 29.0
+          "diasAcumulacao": 29,
+          "diasUteisPeriodo": 29
         },
         "sourceClass": "MEZA",
         "serieJuridica": 2,
@@ -6033,34 +6039,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": 1871.2340687999128,
-        "valor": 187123.4068799913,
-        "principalResidual": 1871.2340687999128,
+        "pu": 1871.2440687999128,
+        "valor": 187124.4068799913,
+        "principalResidual": 1871.2440687999128,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": 1871.2340687999128,
-            "puAtualizado": 1871.2340687999128,
-            "valorReais": 187123.4068799913,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": 1871.2340687999128
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -6074,7 +6057,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -8073,10 +8056,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       }
     },
     "2026-11-05": {
-      "total": 1792352.05,
-      "totalCalculado": 1792352.05,
+      "total": 1792353.05,
+      "totalCalculado": 1792353.05,
       "accounts": {
-        "cc": 1881050.31,
+        "cc": 1881051.31,
         "contaAplicacao": 0.0,
         "fundoDespesas": 88698.26
       }
@@ -8381,7 +8364,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2180",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8420,7 +8407,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2180",
+      "parcela": "2"
     },
     {
       "craCarteira": "63",
@@ -8459,7 +8450,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2180",
+      "parcela": "3"
     },
     {
       "craCarteira": "63",
@@ -8498,7 +8493,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0010-47",
+      "numeroTitulo": "2202",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8537,7 +8536,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0009-03",
+      "numeroTitulo": "2203",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8576,7 +8579,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0002-37",
+      "numeroTitulo": "2204",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8615,7 +8622,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0004-07",
+      "numeroTitulo": "2205",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8654,7 +8665,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0013-90",
+      "numeroTitulo": "2206",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8693,7 +8708,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0006-60",
+      "numeroTitulo": "2197",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8732,7 +8751,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2181",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8771,7 +8794,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2181",
+      "parcela": "2"
     },
     {
       "craCarteira": "63",
@@ -8810,7 +8837,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2181",
+      "parcela": "3"
     },
     {
       "craCarteira": "63",
@@ -8849,7 +8880,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0007-41",
+      "numeroTitulo": "2198",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8888,7 +8923,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0011-28",
+      "numeroTitulo": "2199",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8927,7 +8966,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0003-18",
+      "numeroTitulo": "2200",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -8966,7 +9009,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0008-22",
+      "numeroTitulo": "2201",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9005,7 +9052,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0015-51",
+      "numeroTitulo": "2208",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9044,7 +9095,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0006-60",
+      "numeroTitulo": "2209",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9083,7 +9138,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0006-60",
+      "numeroTitulo": "2210",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9122,7 +9181,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0012-09",
+      "numeroTitulo": "2212",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9161,7 +9224,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "38.850.314/0014-70",
+      "numeroTitulo": "2207",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9200,7 +9267,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "773.358.481-72",
+      "numeroTitulo": "2193",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9239,7 +9310,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "773.358.481-72",
+      "numeroTitulo": "2194",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9278,7 +9353,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "773.358.481-72",
+      "numeroTitulo": "2195",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9317,7 +9396,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "773.358.481-72",
+      "numeroTitulo": "2196",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9356,7 +9439,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "33.097.310/0001-25",
+      "numeroTitulo": "2189",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9395,7 +9482,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "33.097.310/0001-25",
+      "numeroTitulo": "2190",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9434,7 +9525,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "33.097.310/0001-25",
+      "numeroTitulo": "2192",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9473,7 +9568,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "33.097.310/0001-25",
+      "numeroTitulo": "2216",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9512,7 +9611,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2178",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9551,7 +9654,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2178",
+      "parcela": "2"
     },
     {
       "craCarteira": "63",
@@ -9590,7 +9697,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2178",
+      "parcela": "3"
     },
     {
       "craCarteira": "63",
@@ -9629,7 +9740,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2179",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9668,7 +9783,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2179",
+      "parcela": "2"
     },
     {
       "craCarteira": "63",
@@ -9707,7 +9826,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 360",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "02.460.988/0001-05",
+      "numeroTitulo": "2179",
+      "parcela": "3"
     },
     {
       "craCarteira": "63",
@@ -9746,7 +9869,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2295",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9785,7 +9912,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0002-40",
+      "numeroTitulo": "2308",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9824,7 +9955,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0004-01",
+      "numeroTitulo": "2311",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9863,7 +9998,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0013-00",
+      "numeroTitulo": "2304",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9902,7 +10041,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0007-54",
+      "numeroTitulo": "2294",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9941,7 +10084,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0002-40",
+      "numeroTitulo": "2307",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -9980,7 +10127,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0002-40",
+      "numeroTitulo": "2309",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10019,7 +10170,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2298",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10058,7 +10213,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2302",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10097,7 +10256,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0013-00",
+      "numeroTitulo": "2306",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10136,7 +10299,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2296",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10175,7 +10342,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0013-00",
+      "numeroTitulo": "2303",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10214,7 +10385,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0013-00",
+      "numeroTitulo": "2305",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10253,7 +10428,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2301",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10292,7 +10471,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2299",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10331,7 +10514,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0004-01",
+      "numeroTitulo": "2310",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10370,7 +10557,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2300",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10409,7 +10600,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2297",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10448,7 +10643,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0004-01",
+      "numeroTitulo": "2316",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10487,7 +10686,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0004-01",
+      "numeroTitulo": "2313",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10526,7 +10729,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0014-83",
+      "numeroTitulo": "2315",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10565,7 +10772,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0004-01",
+      "numeroTitulo": "2312",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10604,7 +10815,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0007-54",
+      "numeroTitulo": "2284",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10643,7 +10858,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0007-54",
+      "numeroTitulo": "2286",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10682,7 +10901,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "21.320.221/0011-99",
+      "documentoSacado": "04.731.876/0007-54",
+      "numeroTitulo": "2285",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10697,8 +10920,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pagamentosAcumulados": 0.0,
       "dataAquisicao": "01/09/2026",
       "dataAquisicaoIso": "2026-09-01",
-      "dataVencimento": "30/01/2027",
-      "dataVencimentoIso": "2027-01-30",
+      "dataVencimento": "01/02/2027",
+      "dataVencimentoIso": "2027-02-01",
       "dataLiquidacao": "",
       "dataLiquidacaoIso": "",
       "status": "EM CARTEIRA",
@@ -10712,7 +10935,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "taxaOp": 0.019,
       "taxaMedia": 0.019,
       "base": 252.0,
-      "diasDoVencimento": 86,
+      "diasDoVencimento": 88,
       "faixaVenc": "Em dia",
       "faixaVencOrder": 0,
       "valorPresenteDia": 1252807.11,
@@ -10721,7 +10944,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "031.237.566-29",
+      "numeroTitulo": "CPR 100010474/2027 Dilton Martins Borges Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10760,7 +10987,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "737.608.206-97",
+      "numeroTitulo": "CPR 10001097/2027 Filomena Estefânia de Matos Couto Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10799,7 +11030,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "442.175.528-15",
+      "numeroTitulo": "CPR 100014692/2027 Martinho Mansano Rodrigues Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10838,7 +11073,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "570.979.846-00",
+      "numeroTitulo": "CPR 100010454 Geraldo Soares de Paula Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10877,7 +11116,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "144.671.446-25",
+      "numeroTitulo": "CPR 100010805/2027 Mateus Januario Batista Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10916,7 +11159,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "239.443.906-87",
+      "numeroTitulo": "CPR 10001806/2027 Wantuir Roberto Alves Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10955,7 +11202,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "349.822.258-93",
+      "numeroTitulo": "CPRE 100013297/2027 Danilo Vassimon Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -10970,8 +11221,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pagamentosAcumulados": 0.0,
       "dataAquisicao": "02/09/2026",
       "dataAquisicaoIso": "2026-09-02",
-      "dataVencimento": "30/01/2027",
-      "dataVencimentoIso": "2027-01-30",
+      "dataVencimento": "01/02/2027",
+      "dataVencimentoIso": "2027-02-01",
       "dataLiquidacao": "",
       "dataLiquidacaoIso": "",
       "status": "EM CARTEIRA",
@@ -10985,7 +11236,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "taxaOp": 0.019,
       "taxaMedia": 0.019,
       "base": 252.0,
-      "diasDoVencimento": 86,
+      "diasDoVencimento": 88,
       "faixaVenc": "Em dia",
       "faixaVencOrder": 0,
       "valorPresenteDia": 309192.61,
@@ -10994,7 +11245,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "07.366.063/0001-05",
+      "documentoSacado": "053.607.856-40",
+      "numeroTitulo": "CPR 10005129/2027 Celio Roberto Nascentes Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11033,7 +11288,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "50.371.430/0001-98",
+      "documentoSacado": "094.149.909-09",
+      "numeroTitulo": "CPR 041.26/27 Gean Gabriel Tizoni Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11072,7 +11331,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "18.337.224/0001-59",
+      "documentoSacado": "913.612.149-53",
+      "numeroTitulo": "CPR CSJ-06-05-26/27 Leonardo Joao Barbian Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11110,8 +11373,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "valorPresenteLiquido": 1029836.04,
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
-      "observacao": "",
-      "valorLiquidacao": 0
+      "observacao": "Ausente no GER004 novo; memoria anterior preservada por confirmacao de Leonardo em 10/11/2026",
+      "valorLiquidacao": 0,
+      "sourcePreserved": true
     },
     {
       "craCarteira": "63",
@@ -11150,7 +11414,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "30.916.486/0001-73",
+      "documentoSacado": "913.612.149-53",
+      "numeroTitulo": "CPR 27/2026 Liro Joao Wolf Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11189,7 +11457,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "18.337.224/0001-59",
+      "documentoSacado": "913.612.149-53",
+      "numeroTitulo": "CPR CSJ-07-05-26/27 Leonardo Joao Barbian Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11228,7 +11500,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "50.371.430/0001-98",
+      "documentoSacado": "015.418.222-26",
+      "numeroTitulo": "006.26/27",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11267,7 +11543,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "49.557.805/0001-20",
+      "documentoSacado": "177.018.561-53",
+      "numeroTitulo": "CPR 205278-2  Clovis Galhardo Sacchi Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11306,7 +11586,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "18.337.224/0001-59",
+      "documentoSacado": "809.935.082-00",
+      "numeroTitulo": "CPR CSJ-14-03-26/27 Miguel Eduardo Vujanski Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11345,7 +11629,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "05.662.861/0002-30",
+      "documentoSacado": "005.689.219-50",
+      "numeroTitulo": "CPR 2027-SJ-0064 Volmar Duda Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11384,7 +11672,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "50.371.430/0001-98",
+      "documentoSacado": "555.398.902-72",
+      "numeroTitulo": "CPR 046.26/27 Rutiele Tavares Henkert Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11423,7 +11715,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "50.371.430/0001-98",
+      "documentoSacado": "906.000.379-91",
+      "numeroTitulo": "CPR 020.26/27 Gladimir Jose Allgayer Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11462,7 +11758,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "49.557.805/0001-20",
+      "documentoSacado": "058.013.229-30",
+      "numeroTitulo": "CPR 205278-4 Robervania Bravo Ribeiro Schilve Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11477,8 +11777,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pagamentosAcumulados": 0.0,
       "dataAquisicao": "02/10/2026",
       "dataAquisicaoIso": "2026-10-02",
-      "dataVencimento": "31/01/2027",
-      "dataVencimentoIso": "2027-01-31",
+      "dataVencimento": "01/02/2027",
+      "dataVencimentoIso": "2027-02-01",
       "dataLiquidacao": "",
       "dataLiquidacaoIso": "",
       "status": "EM CARTEIRA",
@@ -11492,7 +11792,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "taxaOp": 0.018,
       "taxaMedia": 0.018,
       "base": 252.0,
-      "diasDoVencimento": 87,
+      "diasDoVencimento": 88,
       "faixaVenc": "Em dia",
       "faixaVencOrder": 0,
       "valorPresenteDia": 4905730.28,
@@ -11501,7 +11801,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "667.690.601-59",
+      "documentoSacado": "667.690.601-59",
+      "numeroTitulo": "CPR 219640 Jose Cesar Sabo Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11540,7 +11844,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "33.661.467/0001-31",
+      "documentoSacado": "645.613.302-59",
+      "numeroTitulo": "CPR ABE.014/2026 Adriano Kalkmann Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11579,7 +11887,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "50.371.430/0001-98",
+      "documentoSacado": "513.316.329-00",
+      "numeroTitulo": "CPR 007.26/27 Tarcisio Roecker Ceres Trading",
+      "parcela": "1"
     },
     {
       "craCarteira": "63",
@@ -11618,7 +11930,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "18.337.224/0001-59",
+      "documentoSacado": "559.773.409-15",
+      "numeroTitulo": "CPR CSJ-11-05-26/27 Aparecido Vicente Ferreira Ceres Trading",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
@@ -11628,7 +11944,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
     "pddTotal": 0.0,
     "cedentesUnicos": 9,
     "sacadosUnicos": 24,
-    "prazoMedioDias": 97.35576876468905,
+    "prazoMedioDias": 97.55990144602042,
     "taxaMediaPonderada": 0.01830685791888321,
     "preFixado": {
       "valorPresente": 39335836.22
@@ -11649,7 +11965,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 9539558.82,
         "posicao": 1,
         "participacao": 0.2373553768574238,
-        "participacaoPl": 0.227011512608017
+        "participacaoPl": 0.22701150708840825
       },
       {
         "name": "BOASAFRA COMERCIO E REPRESENTACOES LTDA",
@@ -11660,7 +11976,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 7960862.0,
         "posicao": 2,
         "participacao": 0.1957866060588352,
-        "participacaoPl": 0.187254294291821
+        "participacaoPl": 0.1872542897388782
       },
       {
         "name": "S. C. COMERCIO E REPRESENTACOES DE PRODUTOS AGRICOLAS LTDA",
@@ -11671,7 +11987,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5365384.13,
         "posicao": 3,
         "participacao": 0.12973132899626458,
-        "participacaoPl": 0.12407768308438549
+        "participacaoPl": 0.12407768006753293
       },
       {
         "name": "JOSE CESAR SABO",
@@ -11682,7 +11998,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5153500.14,
         "posicao": 4,
         "participacao": 0.12471402037986216,
-        "participacaoPl": 0.11927902702143511
+        "participacaoPl": 0.11927902412125815
       },
       {
         "name": "UBY AGROQUIMICA S.A",
@@ -11693,7 +12009,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5464701.52,
         "posicao": 5,
         "participacao": 0.11615100094597654,
-        "participacaoPl": 0.11108918097743377
+        "participacaoPl": 0.11108917827638655
       },
       {
         "name": "CULTURA AGRONEGOCIOS LTDA",
@@ -11704,7 +12020,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 3087507.39,
         "posicao": 6,
         "participacao": 0.07455591699125698,
-        "participacaoPl": 0.07130679622324147
+        "participacaoPl": 0.07130679448947207
       },
       {
         "name": "AGRICOLA PROCAMPO LTDA",
@@ -11715,7 +12031,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2120400.0,
         "posicao": 7,
         "participacao": 0.050491804442437754,
-        "participacaoPl": 0.04829138927689508
+        "participacaoPl": 0.048291388102727435
       },
       {
         "name": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROPECUARIOS LTDA",
@@ -11726,7 +12042,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1862473.5,
         "posicao": 8,
         "participacao": 0.045033339067527774,
-        "participacaoPl": 0.043070801912568665
+        "participacaoPl": 0.043070800865335546
       },
       {
         "name": "AGROW COMERCIO E REPRESENTACAO DE PRODUTOS AGROPECUARIOS LTDA",
@@ -11737,7 +12053,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1099452.84,
         "posicao": 9,
         "participacao": 0.026180606260415226,
-        "participacaoPl": 0.025039664602760782
+        "participacaoPl": 0.02503966399394077
       }
     ],
     "sacados": [
@@ -11750,7 +12066,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 7960862.0,
         "posicao": 1,
         "participacao": 0.1957866060588352,
-        "participacaoPl": 0.187254294291821
+        "participacaoPl": 0.1872542897388782
       },
       {
         "name": "JOSE CESAR SABO",
@@ -11761,7 +12077,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5153500.14,
         "posicao": 2,
         "participacao": 0.12471402037986216,
-        "participacaoPl": 0.11927902702143511
+        "participacaoPl": 0.11927902412125815
       },
       {
         "name": "LEONARDO JOAO BARBIAN",
@@ -11772,7 +12088,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 4538627.57,
         "posicao": 3,
         "participacao": 0.10974091909110559,
-        "participacaoPl": 0.10495844824627867
+        "participacaoPl": 0.10495844569429547
       },
       {
         "name": "TARCISIO ROECKER",
@@ -11783,7 +12099,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 3310768.82,
         "posicao": 4,
         "participacao": 0.08416673288660545,
-        "participacaoPl": 0.08049877612564237
+        "participacaoPl": 0.0804987741683771
       },
       {
         "name": "GLADIMIR JOSE ALLGAYER - 223",
@@ -11794,7 +12110,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2339635.0,
         "posicao": 5,
         "participacao": 0.057540150343853555,
-        "participacaoPl": 0.05503257073083809
+        "participacaoPl": 0.055032569392763846
       },
       {
         "name": "PEDRO FELIX DE MOURA JUNIOR - 105",
@@ -11805,7 +12121,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2069208.0,
         "posicao": 6,
         "participacao": 0.05088936507677985,
-        "participacaoPl": 0.048671624357938204
+        "participacaoPl": 0.04867162317452543
       },
       {
         "name": "CLOVIS GALHARDO SACCHI",
@@ -11816,7 +12132,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1944320.0,
         "posicao": 7,
         "participacao": 0.04629891760313008,
-        "participacaoPl": 0.04428122697854009
+        "participacaoPl": 0.04428122590187643
       },
       {
         "name": "ADRIANO KALKMANN",
@@ -11827,7 +12143,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1862473.5,
         "posicao": 8,
         "participacao": 0.045033339067527774,
-        "participacaoPl": 0.043070801912568665
+        "participacaoPl": 0.043070800865335546
       },
       {
         "name": "GGF AGRO LTDA",
@@ -11838,7 +12154,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2016546.0,
         "posicao": 9,
         "participacao": 0.04225379195459747,
-        "participacaoPl": 0.04041238648998238
+        "participacaoPl": 0.04041238550738657
       },
       {
         "name": "USINA GOIANESIA S/A",
@@ -11849,7 +12165,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1639985.8,
         "posicao": 10,
         "participacao": 0.034130346498580176,
-        "participacaoPl": 0.032642957943744125
+        "participacaoPl": 0.03264295715005593
       },
       {
         "name": "GEAN GABRIEL TIZONI",
@@ -11860,7 +12176,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1361024.0,
         "posicao": 11,
         "participacao": 0.033472539712542056,
-        "participacaoPl": 0.03201381814721012
+        "participacaoPl": 0.032013817368818975
       },
       {
         "name": "DILTON MARTINS BORGE",
@@ -11871,7 +12187,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1319655.36,
         "posicao": 12,
         "participacao": 0.03184900158199815,
-        "participacaoPl": 0.03046103324015931
+        "participacaoPl": 0.03046103249952293
       },
       {
         "name": "LIRO JOAO WOLF",
@@ -11882,7 +12198,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1099452.84,
         "posicao": 13,
         "participacao": 0.026180606260415226,
-        "participacaoPl": 0.025039664602760782
+        "participacaoPl": 0.02503966399394077
       },
       {
         "name": "NOVA ERA AGRICOLA PIRANGI LTDA",
@@ -11893,7 +12209,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1155021.72,
         "posicao": 14,
         "participacao": 0.025418117067805914,
-        "participacaoPl": 0.024310404422295262
+        "participacaoPl": 0.024310403831206646
       },
       {
         "name": "FILOMENA ESTEFANIA D",
@@ -11904,7 +12220,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 642487.4,
         "posicao": 15,
         "participacao": 0.015603594050148302,
-        "participacaoPl": 0.014923594882678262
+        "participacaoPl": 0.014923594519822635
       },
       {
         "name": "GERALDO SOARES DE PAULA",
@@ -11915,7 +12231,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 579622.0,
         "posicao": 16,
         "participacao": 0.014076830524285726,
-        "participacaoPl": 0.013463367176907744
+        "participacaoPl": 0.013463366849556421
       },
       {
         "name": "MIGUEL EDUARDO VUJANSKI",
@@ -11926,7 +12242,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 525924.72,
         "posicao": 17,
         "participacao": 0.012716501238269597,
-        "participacaoPl": 0.012162320565062909
+        "participacaoPl": 0.012162320269345524
       },
       {
         "name": "RUTIELE TAVARES HENKERT - 704",
@@ -11937,7 +12253,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 458923.0,
         "posicao": 18,
         "participacao": 0.011286588837642867,
-        "participacaoPl": 0.010794723246388213
+        "participacaoPl": 0.010794722983922896
       },
       {
         "name": "CELIO ROBERTO NASCEN",
@@ -11948,7 +12264,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 325690.75,
         "posicao": 19,
         "participacao": 0.007860328893752955,
-        "participacaoPl": 0.0075177785116669815
+        "participacaoPl": 0.007517778328878033
       },
       {
         "name": "APARECIDO VICENTE FERREIRA",
@@ -11959,7 +12275,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 300831.84,
         "posicao": 20,
         "participacao": 0.007273908666889401,
-        "participacaoPl": 0.0069569142730439085
+        "participacaoPl": 0.006956914103891937
       }
     ],
     "lastrosAtivos": 80
@@ -11975,7 +12291,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 9539558.82,
         "posicao": 1,
         "participacao": 0.2373553768574238,
-        "participacaoPl": 0.227011512608017
+        "participacaoPl": 0.22701150708840825
       },
       {
         "name": "BOASAFRA COMERCIO E REPRESENTACOES LTDA",
@@ -11986,7 +12302,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 7960862.0,
         "posicao": 2,
         "participacao": 0.1957866060588352,
-        "participacaoPl": 0.187254294291821
+        "participacaoPl": 0.1872542897388782
       },
       {
         "name": "S. C. COMERCIO E REPRESENTACOES DE PRODUTOS AGRICOLAS LTDA",
@@ -11997,7 +12313,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5365384.13,
         "posicao": 3,
         "participacao": 0.12973132899626458,
-        "participacaoPl": 0.12407768308438549
+        "participacaoPl": 0.12407768006753293
       },
       {
         "name": "JOSE CESAR SABO",
@@ -12008,7 +12324,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5153500.14,
         "posicao": 4,
         "participacao": 0.12471402037986216,
-        "participacaoPl": 0.11927902702143511
+        "participacaoPl": 0.11927902412125815
       },
       {
         "name": "UBY AGROQUIMICA S.A",
@@ -12019,7 +12335,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5464701.52,
         "posicao": 5,
         "participacao": 0.11615100094597654,
-        "participacaoPl": 0.11108918097743377
+        "participacaoPl": 0.11108917827638655
       },
       {
         "name": "CULTURA AGRONEGOCIOS LTDA",
@@ -12030,7 +12346,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 3087507.39,
         "posicao": 6,
         "participacao": 0.07455591699125698,
-        "participacaoPl": 0.07130679622324147
+        "participacaoPl": 0.07130679448947207
       },
       {
         "name": "AGRICOLA PROCAMPO LTDA",
@@ -12041,7 +12357,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2120400.0,
         "posicao": 7,
         "participacao": 0.050491804442437754,
-        "participacaoPl": 0.04829138927689508
+        "participacaoPl": 0.048291388102727435
       },
       {
         "name": "AGRO BOA ESPERANCA COMERCIO DE PRODUTOS AGROPECUARIOS LTDA",
@@ -12052,7 +12368,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1862473.5,
         "posicao": 8,
         "participacao": 0.045033339067527774,
-        "participacaoPl": 0.043070801912568665
+        "participacaoPl": 0.043070800865335546
       },
       {
         "name": "AGROW COMERCIO E REPRESENTACAO DE PRODUTOS AGROPECUARIOS LTDA",
@@ -12063,7 +12379,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1099452.84,
         "posicao": 9,
         "participacao": 0.026180606260415226,
-        "participacaoPl": 0.025039664602760782
+        "participacaoPl": 0.02503966399394077
       }
     ],
     "top10Sacados": [
@@ -12076,7 +12392,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 7960862.0,
         "posicao": 1,
         "participacao": 0.1957866060588352,
-        "participacaoPl": 0.187254294291821
+        "participacaoPl": 0.1872542897388782
       },
       {
         "name": "JOSE CESAR SABO",
@@ -12087,7 +12403,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 5153500.14,
         "posicao": 2,
         "participacao": 0.12471402037986216,
-        "participacaoPl": 0.11927902702143511
+        "participacaoPl": 0.11927902412125815
       },
       {
         "name": "LEONARDO JOAO BARBIAN",
@@ -12098,7 +12414,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 4538627.57,
         "posicao": 3,
         "participacao": 0.10974091909110559,
-        "participacaoPl": 0.10495844824627867
+        "participacaoPl": 0.10495844569429547
       },
       {
         "name": "TARCISIO ROECKER",
@@ -12109,7 +12425,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 3310768.82,
         "posicao": 4,
         "participacao": 0.08416673288660545,
-        "participacaoPl": 0.08049877612564237
+        "participacaoPl": 0.0804987741683771
       },
       {
         "name": "GLADIMIR JOSE ALLGAYER - 223",
@@ -12120,7 +12436,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2339635.0,
         "posicao": 5,
         "participacao": 0.057540150343853555,
-        "participacaoPl": 0.05503257073083809
+        "participacaoPl": 0.055032569392763846
       },
       {
         "name": "PEDRO FELIX DE MOURA JUNIOR - 105",
@@ -12131,7 +12447,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2069208.0,
         "posicao": 6,
         "participacao": 0.05088936507677985,
-        "participacaoPl": 0.048671624357938204
+        "participacaoPl": 0.04867162317452543
       },
       {
         "name": "CLOVIS GALHARDO SACCHI",
@@ -12142,7 +12458,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1944320.0,
         "posicao": 7,
         "participacao": 0.04629891760313008,
-        "participacaoPl": 0.04428122697854009
+        "participacaoPl": 0.04428122590187643
       },
       {
         "name": "ADRIANO KALKMANN",
@@ -12153,7 +12469,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1862473.5,
         "posicao": 8,
         "participacao": 0.045033339067527774,
-        "participacaoPl": 0.043070801912568665
+        "participacaoPl": 0.043070800865335546
       },
       {
         "name": "GGF AGRO LTDA",
@@ -12164,7 +12480,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 2016546.0,
         "posicao": 9,
         "participacao": 0.04225379195459747,
-        "participacaoPl": 0.04041238648998238
+        "participacaoPl": 0.04041238550738657
       },
       {
         "name": "USINA GOIANESIA S/A",
@@ -12175,7 +12491,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         "valorNominal": 1639985.8,
         "posicao": 10,
         "participacao": 0.034130346498580176,
-        "participacaoPl": 0.032642957943744125
+        "participacaoPl": 0.03264295715005593
       }
     ]
   },
@@ -12234,7 +12550,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 41.128.188,27",
+          "value": "R$ 41.128.189,27",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -12250,7 +12566,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         },
         {
           "label": "Caixa total",
-          "value": "R$ 1.792.352,05",
+          "value": "R$ 1.792.353,05",
           "isHighlight": true,
           "source": {
             "name": "Import caixa"
@@ -12266,7 +12582,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 187.123,41",
+          "value": "R$ 187.124,41",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -12274,7 +12590,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "1.871,234069",
+          "value": "1.871,244069",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -12298,5 +12614,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-63"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [
+      "512319"
+    ],
+    "replacementParcels": [],
+    "paymentDifferences": []
+  }
 };

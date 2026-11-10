@@ -1721,8 +1721,9 @@ def normalize_funding_history_memory(cotas, holiday_dates=None):
             factor = pu / principal if principal else 0.0
             row["fator"] = factor
             row["fatorJurosAcumulado"] = factor
-            row["produtorioFatorDi"] = factor
-            row["fatorDiAcumulado"] = factor
+            # The PU is rounded for display; do not feed its ratio back into the product.
+            row["produtorioFatorDi"] = row.get("produtorioFatorDi") or factor
+            row["fatorDiAcumulado"] = row.get("fatorDiAcumulado") or factor
             row["fatorDiario"] = row.get("fatorDiario") or (1.0 if row_key == start_key else 0.0)
             previous_key = row_key
 

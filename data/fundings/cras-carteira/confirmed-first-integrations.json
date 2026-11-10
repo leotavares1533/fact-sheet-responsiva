@@ -2,5 +2,6 @@
   "CRA026000S2": {"cra": "cra-carteira-58", "class": "SR1", "date": "2026-04-24", "confirmedBy": "Leonardo", "confirmedOn": "2026-11-09"},
   "CRA026000S3": {"cra": "cra-carteira-58", "class": "MEZA", "date": "2026-08-05", "confirmedBy": "Leonardo", "confirmedOn": "2026-11-09"},
   "CRA026000S4": {"cra": "cra-carteira-58", "class": "MEZB", "date": "2026-08-05", "confirmedBy": "Leonardo", "confirmedOn": "2026-11-09"},
-  "CRA0260020A": {"cra": "cra-carteira-60", "class": "MEZA", "date": "2026-04-08", "confirmedBy": "Leonardo", "confirmedOn": "2026-11-09"}
+  "CRA0260020A": {"cra": "cra-carteira-60", "class": "MEZA", "date": "2026-04-08", "confirmedBy": "Leonardo", "confirmedOn": "2026-11-09"},
+  "CRA026000RT": {"cra": "cra-carteira-56", "class": "SR1", "date": "2026-03-11", "confirmedBy": "Leonardo", "confirmedOn": "2026-11-10", "supersedes": "2026-02-05", "note": "Primeira integralizacao corrigida por Leonardo para 11/03/2026. A data de emissao permanece 05/02/2026."}
 }

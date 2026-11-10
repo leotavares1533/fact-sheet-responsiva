@@ -7,8 +7,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     "craId": "cra-carteira-73",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-revisao-20261109-cra-carteira-73",
-    "importedAt": "2026-11-09T15:33:11.834749-03:00",
+    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "importedAt": "2026-11-10T18:33:59.170430-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
     "businessCalendar": {
@@ -95,16 +95,20 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     },
     "sourceSnapshotDateKey": "2026-11-05",
     "assetImport": {
-      "sourceFile": "CRA_GER004 - Titulos (5).csv",
-      "sheetCarteira": "CSV GER004",
-      "sheetCaixa": "Caixa detalhado",
+      "sourceFile": "ger004-titulos-cra-10-11-2026_18-05-13.csv",
+      "sheetCarteira": "GER004 formato novo",
+      "sheetCaixa": "Texto colado.txt",
       "cashDate": "05/11/2026",
       "importMode": "carteira-caixa-consolidado",
       "cashGainLiquidated": false
     },
-    "positionNotice": "Previa de 05/11/2026. Carteira, caixa e funding na mesma data; pendencias de conciliacao continuam sinalizadas.",
+    "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-05",
-    "positionStatus": "previa"
+    "positionStatus": "previa",
+    "portfolioSourceSha256": "9ec1bcd729dba506be5c0159dc4bc186e97df0aa6c6317486a0e7032e087d7be",
+    "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
+    "preservedMissingTitles": [],
+    "pendingValuationCount": 0
   },
   "cra": {
     "id": "cra-carteira-73",
@@ -113,12 +117,12 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     "dataBase": "05/11/2026"
   },
   "ativo": {
-    "carteiraVpBruto": 37174802.26,
+    "carteiraVpBruto": 37174759.21,
     "pddTotal": 0.0,
-    "carteiraVp": 37174802.26,
-    "carteiraVpLiquido": 37174802.26,
+    "carteiraVp": 37174759.21,
+    "carteiraVpLiquido": 37174759.21,
     "caixa": 0.0,
-    "total": 37174802.26,
+    "total": 37174759.21,
     "liquidacoesDia": 0,
     "aquisicoesDia": 0,
     "quantidadeLastros": 2,
@@ -131,24 +135,24 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
   },
   "caixa": {
     "accounts": {
-      "cc": 37598.99,
+      "cc": 37599.99,
       "contaAplicacao": 0.0,
       "fundoDespesas": 85501.34
     },
     "total": 0.0,
+    "totalCalculado": -47901.35,
     "totalInformado": 0.0,
-    "totalCalculado": -47902.35,
-    "fonte": "Texto de saldos informado por Leonardo",
+    "fonte": "Saldos detalhados informados por Leonardo",
     "arquivoOrigem": "Texto colado.txt",
     "contaCorrenteIdentificacao": "99887-1 (ITAU)",
     "totalPolicy": "total_informado",
-    "reservaInsuficiente": 47902.35,
-    "observacao": "Reserva de despesas deduzida uma unica vez. Total da fonte preservado, salvo ajuste explicitamente confirmado."
+    "reservaInsuficiente": 47901.35,
+    "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
     "fundingTotal": 37181525.896821,
-    "subordinadaTotal": -6723.636821001768,
-    "subordinadaPuResidual": -67.23636821001769,
+    "subordinadaTotal": -6766.686820998788,
+    "subordinadaPuResidual": -67.66686820998788,
     "cotas": [
       {
         "classe": "SR1",
@@ -2477,8 +2481,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
           "periodoInicio": "18/09/2026",
           "periodoFim": "05/11/2026",
           "puFinal": 1035.69710019,
-          "diasAcumulacao": 53.0,
-          "diasUteisPeriodo": 32.0
+          "diasAcumulacao": 53,
+          "diasUteisPeriodo": 32
         },
         "sourceClass": "SR1",
         "serieJuridica": 1,
@@ -2526,34 +2530,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": -67.23636821001769,
-        "valor": -6723.636821001768,
-        "principalResidual": -67.23636821001769,
+        "pu": -67.66686820998788,
+        "valor": -6766.686820998788,
+        "principalResidual": -67.66686820998788,
         "ehFunding": false,
-        "ordem": 90,
-        "historicoPu": [
-          {
-            "data": "05/11/2026",
-            "dataIso": "2026-11-05",
-            "valorNominal": -67.23636821001769,
-            "puAtualizado": -67.23636821001769,
-            "valorReais": -6723.636821001768,
-            "diasUteis": 0,
-            "diasUteisPeriodo": 0,
-            "produtorioFatorDi": 1,
-            "fatorDiAcumulado": 1
-          }
-        ],
-        "dataHistoricaDisponivel": true,
-        "dataHistoricaSelecionada": "05/11/2026",
-        "dataHistoricaIso": "2026-11-05",
-        "visaoCalculadaPu": true,
-        "acumulacaoFinal": {
-          "periodoFim": "05/11/2026",
-          "diasAcumulacao": 0.0,
-          "diasUteisPeriodo": 0.0,
-          "puFinal": -67.23636821001769
-        }
+        "ordem": 90
       }
     ],
     "despesasTotal": 0,
@@ -2567,7 +2548,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     {
       "name": "Importacao carteira+caixa CRAs Carteira",
       "date": "05/11/2026",
-      "file": "CRA_GER004 - Titulos (5).csv"
+      "file": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
     },
     {
       "name": "Memoria PU existente",
@@ -4567,9 +4548,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     },
     "2026-11-05": {
       "total": 0.0,
-      "totalCalculado": -47902.35,
+      "totalCalculado": -47901.35,
       "accounts": {
-        "cc": 37598.99,
+        "cc": 37599.99,
         "contaAplicacao": 0.0,
         "fundoDespesas": 85501.34
       }
@@ -4580,7 +4561,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       "cra": "cra-carteira-73",
       "date": "2026-11-05",
       "type": "reserva_superior_aos_saldos",
-      "amount": 47902.35,
+      "amount": 47901.35,
       "reportedTotalPreserved": true
     }
   ],
@@ -4824,7 +4805,11 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       "pdd": 0,
       "metodoPrecificacao": "Fora da carteira: status do titulo",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "213.452.188-00",
+      "documentoSacado": "213.452.188-00",
+      "numeroTitulo": "JRF2026",
+      "parcela": "1"
     },
     {
       "craCarteira": "73",
@@ -4850,33 +4835,37 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       "tipoAtivo": "CPR_F",
       "tipo": "pre fixado",
       "indexadorAtivo": "pre fixado",
-      "taxa": 0.0165984755,
-      "taxaOp": 0.0165984755,
-      "taxaMedia": 0.0165984755,
+      "taxa": 0.016598,
+      "taxaOp": 0.016598,
+      "taxaMedia": 0.016598,
       "base": 252.0,
       "diasDoVencimento": 267,
       "faixaVenc": "Em dia",
       "faixaVencOrder": 0,
-      "valorPresenteDia": 37174802.26,
-      "valorPresente": 37174802.26,
-      "valorPresenteLiquido": 37174802.26,
+      "valorPresenteDia": 37174759.21,
+      "valorPresente": 37174759.21,
+      "valorPresenteLiquido": 37174759.21,
       "pdd": 0,
       "metodoPrecificacao": "Motor pre; taxa mensal; base 252",
       "observacao": "",
-      "valorLiquidacao": 0
+      "valorLiquidacao": 0,
+      "documentoCedente": "213.452.188-00",
+      "documentoSacado": "213.452.188-00",
+      "numeroTitulo": "Primeiro Aditamento Ruiz",
+      "parcela": "1"
     }
   ],
   "carteiraResumo": {
     "valorNominal": 42909262.76,
-    "valorPresente": 37174802.26,
-    "valorPresenteLiquido": 37174802.26,
+    "valorPresente": 37174759.21,
+    "valorPresenteLiquido": 37174759.21,
     "pddTotal": 0.0,
     "cedentesUnicos": 1,
     "sacadosUnicos": 1,
     "prazoMedioDias": 267.0,
-    "taxaMediaPonderada": 0.0165984755,
+    "taxaMediaPonderada": 0.016598,
     "preFixado": {
-      "valorPresente": 37174802.26
+      "valorPresente": 37174759.21
     },
     "posFixado": {
       "valorPresente": 0
@@ -4888,9 +4877,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       {
         "name": "JOAO RUIZ LOURENCO FILHO",
         "quantidade": 1,
-        "valorPresenteDia": 37174802.26,
+        "valorPresenteDia": 37174759.21,
         "pdd": 0.0,
-        "valorPresenteLiquido": 37174802.26,
+        "valorPresenteLiquido": 37174759.21,
         "valorNominal": 42909262.76,
         "posicao": 1,
         "participacao": 1.0,
@@ -4901,9 +4890,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       {
         "name": "JOAO RUIZ LOURENCO F",
         "quantidade": 1,
-        "valorPresenteDia": 37174802.26,
+        "valorPresenteDia": 37174759.21,
         "pdd": 0.0,
-        "valorPresenteLiquido": 37174802.26,
+        "valorPresenteLiquido": 37174759.21,
         "valorNominal": 42909262.76,
         "posicao": 1,
         "participacao": 1.0,
@@ -4917,9 +4906,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       {
         "name": "JOAO RUIZ LOURENCO FILHO",
         "quantidade": 1,
-        "valorPresenteDia": 37174802.26,
+        "valorPresenteDia": 37174759.21,
         "pdd": 0.0,
-        "valorPresenteLiquido": 37174802.26,
+        "valorPresenteLiquido": 37174759.21,
         "valorNominal": 42909262.76,
         "posicao": 1,
         "participacao": 1.0,
@@ -4930,9 +4919,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       {
         "name": "JOAO RUIZ LOURENCO F",
         "quantidade": 1,
-        "valorPresenteDia": 37174802.26,
+        "valorPresenteDia": 37174759.21,
         "pdd": 0.0,
-        "valorPresenteLiquido": 37174802.26,
+        "valorPresenteLiquido": 37174759.21,
         "valorNominal": 42909262.76,
         "posicao": 1,
         "participacao": 1.0,
@@ -4944,7 +4933,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
     {
       "status": "Em dia",
       "valorNominal": 42909262.76,
-      "valorPresente": 37174802.26,
+      "valorPresente": 37174759.21,
       "valorPdd": 0.0,
       "order": 0.0,
       "percentualCarteira": 1.0
@@ -4956,10 +4945,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       "label": "CPR_F",
       "tipoTitulo": "CPR_F",
       "valorNominal": 42909262.76,
-      "valorPresente": 37174802.26,
+      "valorPresente": 37174759.21,
       "lastros": 1,
       "percentualCarteira": 1.0,
-      "taxaMedia": 0.0165984755
+      "taxaMedia": 0.016598
     }
   ],
   "movimentacoesDia": {
@@ -4986,7 +4975,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
       "metrics": [
         {
           "label": "Ativo total",
-          "value": "R$ 37.174.802,26",
+          "value": "R$ 37.174.759,21",
           "isHighlight": true,
           "source": {
             "name": "Carteira + caixa"
@@ -4994,7 +4983,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         },
         {
           "label": "Carteira VP liquida",
-          "value": "R$ 37.174.802,26",
+          "value": "R$ 37.174.759,21",
           "isHighlight": true,
           "source": {
             "name": "Import carteira"
@@ -5018,7 +5007,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -6.723,64",
+          "value": "R$ -6.766,69",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -5026,7 +5015,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-67,236368",
+          "value": "-67,666868",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -5050,5 +5039,10 @@ window.LAMINA_CRA_DAILY["cra-carteira-73"]["2026-11-05"] = {
         }
       ]
     }
-  ]
+  ],
+  "assetReconciliation": {
+    "preservedMissingTitles": [],
+    "replacementParcels": [],
+    "paymentDifferences": []
+  }
 };
