@@ -376,3 +376,120 @@ test("summary does not mix draft cash from unselected CRAs into the selected CRA
   assert.match(api.nodes.get("sim-summary").innerHTML, /R\$ 50,0 mil/);
   assert.doesNotMatch(api.nodes.get("sim-summary").innerHTML, /R\$ 200,0 mil/);
 });
+
+test("CRA47 projection preserves accrued interest and matches the control curve with CDI plus spread", () => {
+  const api = loadSimulator();
+  for (const file of ["data/indices/di.js", "data/funding-pu-latest.js", "data/cras/cra-carteira-47/2026-11-05.js"]) {
+    vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), api.context);
+  }
+  const snapshot = api.context.window.LAMINA_CRA_DAILY["cra-carteira-47"]["2026-11-05"];
+  api.collectHolidays(snapshot);
+  const row = api.buildRowsFromSnapshot({ craId: "cra-carteira-47" }, snapshot)
+    .find((item) => item.cota.ifCodigo === "CRA02500B49");
+  api.state.rows.push(row);
+  const control = api.context.window.LAMINA_FUNDING_PU.vehicles["cra-carteira-47"].series["CRA02500B49"];
+  for (const expected of control.forecasts["2026-11-05"].rows) {
+    const actual = api.getSimulationBaseRow(row, expected.dataIso);
+    assert.equal(actual.puAtualizado, expected.puAtualizado, `PU on ${expected.dataIso}`);
+    assert.ok(Math.abs(actual.puJuros - expected.puJuros) < 1e-10, `Accrued interest on ${expected.dataIso}`);
+    assert.ok(actual.puAtualizado >= row.cota.pu, "Projection cannot discard accrued interest");
+  }
+  for (const dateKey of ["2026-11-07", "2026-11-08"]) {
+    assert.equal(api.getSimulationBaseRow(row, dateKey).puAtualizado, control.rows[0].puAtualizado);
+  }
+  Object.assign(api.getRowState(row.id), { selected: true, interest: true, dateKey: "2026-11-11" });
+  api.setAllocationCash(row, row.baseCash);
+  const simulation = api.getAllocations().byId.get(row.id).simulation;
+  assert.equal(simulation.puBefore, 409.90999954);
+  assert.ok(Math.abs(simulation.interestPu - 22.53426619355883) < 1e-10);
+  assert.equal(simulation.puAfter, row.cota.principalResidual);
+  assert.ok(Math.abs(simulation.eventValue - simulation.interestPu * row.cota.quantidade) < 1e-8);
+});
+
+test("all supported funding methods match the control for CRAs 42, 65 and Carteira", () => {
+  const api = loadSimulator();
+  for (const file of ["data/indices/di.js", "data/funding-pu-latest.js"]) {
+    vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), api.context);
+  }
+  let checked = 0;
+  const checkedSeries = new Set();
+  for (const [craId, update] of Object.entries(api.context.window.LAMINA_FUNDING_PU.vehicles)) {
+    vm.runInContext(fs.readFileSync(path.join(root, `data/cras/${craId}/${update.sourceDate}.js`), "utf8"), api.context);
+    const snapshot = api.context.window.LAMINA_CRA_DAILY[craId][update.sourceDate];
+    api.collectHolidays(snapshot);
+    for (const row of api.buildRowsFromSnapshot({ craId }, snapshot)) {
+      const series = update.series[row.cota.ifCodigo];
+      const expectedRows = [...(series?.rows || []), ...(series?.forecasts?.[update.sourceDate]?.rows || [])]
+        .filter((item) => item.dataIso > row.dateKey);
+      for (const expected of expectedRows) {
+        const actual = api.getSimulationBaseRow(row, expected.dataIso);
+        assert.ok(Math.abs(actual.puAtualizado - expected.puAtualizado) < 0.00000002,
+          `${craId}/${row.cota.ifCodigo}/${expected.dataIso}: ${actual.puAtualizado} vs ${expected.puAtualizado}`);
+        checked += 1;
+        checkedSeries.add(row.id);
+      }
+    }
+  }
+  assert.ok(checked >= 200, "Regression covers daily PUs across all supported methods");
+  assert.ok(checkedSeries.size >= 40, "Every active series with a control curve is compared");
+});
+
+test("CDI projections respect each series' D0, D1 and D2 rate reference", () => {
+  for (const [lag, expectedDate, expectedPu] of [[0, "2026-11-06", 1041.0296], [1, "2026-11-05", 1040.6864], [2, "2026-11-04", 1040.2288]]) {
+    const api = loadSimulator();
+    api.context.window.LAMINA_DI_RATES = {
+      "2026-11-04": { data: "2026-11-04", taxaDia: 0.0002 },
+      "2026-11-05": { data: "2026-11-05", taxaDia: 0.0006 },
+      "2026-11-06": { data: "2026-11-06", taxaDia: 0.0009 }
+    };
+    const row = addRow(api, "SR", 10, 1040);
+    Object.assign(row.cota, { metodo: "percentual_di_252", indexador: "DI", percentualIndexador: 1.1, lagBusinessDays: lag,
+      historicoPu: [{ dataIso: row.dateKey, puAtualizado: 1040, valorNominal: 1000, fatorDiAcumulado: 1.04,
+        diasUteis: 20, diasUteisPeriodo: 20, taxaDiUtilizadaDia: 0.0002 }] });
+    const result = api.getSimulationBaseRow(row, "2026-11-06");
+    assert.equal(result.dataReferenciaTaxaDiIso, expectedDate);
+    assert.ok(Math.abs(result.puAtualizado - expectedPu) < 0.00000002);
+  }
+});
+
+test("pending documentation and overdue funding block future events without consuming or releasing cash", () => {
+  for (const id of ["cra-carteira-46", "cra-carteira-56"]) {
+    const api = loadSimulator();
+    vm.runInContext(fs.readFileSync(path.join(root, `data/cras/${id}/2026-11-05.js`), "utf8"), api.context);
+    const snapshot = api.context.window.LAMINA_CRA_DAILY[id]["2026-11-05"];
+    api.collectHolidays(snapshot);
+    const row = api.buildRowsFromSnapshot({ craId: id }, snapshot)[0];
+    api.state.rows.push(row);
+    Object.assign(api.getRowState(row.id), { selected: true, interest: true, rescue: true,
+      cash: "150.000,00", dateKey: "2026-11-11" });
+    addRow(api, "MEZA", 11, 1010, 100, id);
+    const allocation = api.getAllocations();
+    const result = allocation.byId.get(row.id);
+    assert.ok(result.projectionBlockedReason);
+    assert.equal(result.selected, false);
+    assert.equal(result.cash, 0);
+    assert.equal(result.simulation.eventValue, 0);
+    assert.equal(result.simulation.warning, "calculo-pendente");
+    assert.ok(allocation.byId.get("MEZA").blocker);
+    assert.equal(allocation.unallocated.get(id), 150000);
+    assert.equal(api.getSelectedSimulations().length, 0);
+    api.setAllocationCash(row, 999999);
+    assert.equal(api.getAllocations().byId.get(row.id).cash, 0);
+    api.bindEvents();
+    api.nodes.get("select-visible").handlers.click();
+    assert.equal(api.getSelectedSimulations().length, 0);
+    api.renderRows();
+    const html = api.nodes.get("event-rows").innerHTML;
+    assert.match(html, /PU pendente/);
+    assert.ok(html.includes(`data-row-select="${row.id}"  disabled`));
+    assert.match(html, /data-cell="puBefore">-<\/td>/);
+  }
+});
+
+test("residual subordinated units never accrue assumed CDI", () => {
+  const api = loadSimulator();
+  api.context.window.LAMINA_DI_RATES = { "2026-11-06": { data:"2026-11-06", taxaDia:0.001 } };
+  const row = addRow(api, "SUB", 90, 1050);
+  Object.assign(row.cota, { tipo:"sub", metodo:"subordinada_residual" });
+  assert.equal(api.getSimulationBaseRow(row, "2026-11-11").puAtualizado, 1050);
+});

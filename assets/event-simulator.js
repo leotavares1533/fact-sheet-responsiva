@@ -310,6 +310,8 @@
       dataTaxaDiIso: row.dataTaxaDiIso || "",
       dataReferenciaTaxaDi: row.dataReferenciaTaxaDi || "",
       dataReferenciaTaxaDiIso: row.dataReferenciaTaxaDiIso || "",
+      lagBusinessDays: Number(cota.lagBusinessDays ?? row.lagBusinessDays ?? row.defasagemDiDiasUteis
+        ?? (cota.metodo === "percentual_di_252" ? 2 : 0)),
       fixedAnnualRate: Number(row.taxaAa || row.taxaPrefixadaAa || cota.taxaAa || 0),
       fixedDailyRate: Number(row.taxaPrefixadaDia || cota.taxaDia || 0) || getFixedDailyRate(cota)
     };
@@ -319,8 +321,24 @@
     if (isFixedRateCota(cota)) {
       return fallback;
     }
-    const diRate = getDiRateForDate(dateKey);
-    return diRate ? { ...fallback, ...diRate } : fallback;
+    const referenceDate = addBusinessDays(dateKey, -Number(fallback.lagBusinessDays || 0));
+    const diRate = getDiRateForDate(referenceDate);
+    return diRate ? { ...fallback, ...diRate,
+      dataReferenciaTaxaDi: formatIsoDate(referenceDate), dataReferenciaTaxaDiIso: referenceDate } : fallback;
+  }
+
+  function getProjectedPeriodPu(cota, basePu, product, businessDays) {
+    if (isFixedRateCota(cota)) {
+      return applyTsFactorToPu(basePu, getFixedPeriodFactor(cota, businessDays));
+    }
+    if (cota.metodo === "di_spread_ts_252") {
+      const spread = Number(cota.spreadAa ?? cota.taxaJurosSpread ?? 0);
+      const spreadFactor = roundDecimal(Math.pow(1 + spread, businessDays / 252), 9);
+      const factor = roundDecimal(getTsFinalFactor(product) * spreadFactor, 9);
+      const nominal = truncateDecimal(basePu, 8);
+      return nominal + truncateDecimal(nominal * (factor - 1), 8);
+    }
+    return applyTsFactorToPu(basePu, product);
   }
 
   function buildProjectedRow(cota, dateKey, context) {
@@ -329,7 +347,7 @@
     const fixedRate = isFixedRateCota(cota);
     let fatorDiario = 1;
 
-    if (diaUtil && context.principal > 0) {
+    if (diaUtil && context.principal > 0 && cota.metodo !== "subordinada_residual") {
       context.diasUteis += 1;
       context.diasUteisPeriodo += 1;
 
@@ -338,15 +356,25 @@
         context.periodFactor = getFixedPeriodFactor(cota, context.diasUteisPeriodo);
         context.totalFactor = getFixedPeriodFactor(cota, context.diasUteis);
         context.pureDiFactor = context.totalFactor;
-        context.pu = applyFixedFactorToPu(context.principal, context.periodFactor);
+      } else if (cota.metodo === "di_spread_252") {
+        const spread = Number(cota.spreadAa ?? cota.taxaJurosSpread ?? 0);
+        const dailyFactor = roundDecimal(getTsDailyFactor(rateInfo.dailyRate, cota.percentualIndexador || 1)
+          * Math.pow(1 + spread, 1 / 252), 8);
+        context.periodFactor = addTsFactor(context.periodFactor, dailyFactor);
+        context.totalFactor = addTsFactor(context.totalFactor, dailyFactor);
+        context.pureDiFactor = addTsFactor(context.pureDiFactor, getTsDailyFactor(rateInfo.dailyRate, 1));
+        fatorDiario = dailyFactor;
       } else {
         const dailyFactor = getTsDailyFactor(rateInfo.dailyRate, cota.percentualIndexador || 1);
         context.periodFactor = addTsFactor(context.periodFactor, dailyFactor);
         context.totalFactor = addTsFactor(context.totalFactor, dailyFactor);
         context.pureDiFactor = addTsFactor(context.pureDiFactor, getTsDailyFactor(rateInfo.dailyRate, 1));
-        context.pu = applyTsFactorToPu(context.basePu, context.periodFactor);
         fatorDiario = dailyFactor;
       }
+      // Preserve the opening PU, including accrued interest and historical precision residuals.
+      context.pu = roundDecimal(context.openingPu
+        + getProjectedPeriodPu(cota, context.basePu, context.periodFactor, context.diasUteisPeriodo)
+        - context.openingTheoreticalPu, 8);
     }
 
     const fator = context.principal > 0 ? context.pu / context.principal : 0;
@@ -392,18 +420,25 @@
   function createProjectionContext(cota, startRow, startDateKey) {
     const principal = Number(startRow?.valorNominal ?? cota.principalResidual ?? cota.valorNominalInicial ?? 0);
     const pu = Number(startRow?.puAtualizado ?? cota.pu ?? principal);
-    const periodFactor = Number(startRow?.fatorDiAcumulado || startRow?.fatorJurosAcumulado || (principal > 0 ? pu / principal : 1) || 1);
+    const controlMethod = ["di_spread_252", "di_spread_ts_252", "percentual_di_252", "prefixado_252_ts"].includes(cota.metodo);
+    const basePu = Number(startRow?.puBaseCalculo ?? principal);
+    const periodFactor = cota.metodo === "di_spread_ts_252" ? Number(startRow?.produtorioFatorDi || 1)
+      : controlMethod ? Number(startRow?.fatorDiAcumulado || 1)
+        : Number(startRow?.fatorDiAcumulado || startRow?.fatorJurosAcumulado || (principal > 0 ? pu / principal : 1) || 1);
+    const periodDays = Number(startRow?.diasUteisPeriodo ?? startRow?.diasUteis ?? 0);
     return {
       startDateKey,
       rateInfo: getLastKnownRateInfo(cota, startDateKey),
       principal,
       pu,
-      basePu: principal,
+      basePu,
+      openingPu: pu,
+      openingTheoreticalPu: getProjectedPeriodPu(cota, basePu, periodFactor, periodDays),
       periodFactor,
       totalFactor: Number(startRow?.produtorioFatorDi || periodFactor || 1),
       pureDiFactor: 1,
       diasUteis: Number(startRow?.diasUteis || 0),
-      diasUteisPeriodo: Number(startRow?.diasUteisPeriodo || startRow?.diasUteis || 0)
+      diasUteisPeriodo: periodDays
     };
   }
 
@@ -434,7 +469,8 @@
       diasUteisPeriodo: Number(latestRow?.diasUteisPeriodo ?? cota?.acumulacaoFinal?.diasUteisPeriodo ?? cota?.acumulacaoFinal?.diasAcumulacao ?? 0),
       produtorioFatorDi: latestRow?.produtorioFatorDi,
       fatorDiAcumulado: latestRow?.fatorDiAcumulado,
-      fatorJurosAcumulado: latestRow?.fatorJurosAcumulado
+      fatorJurosAcumulado: latestRow?.fatorJurosAcumulado,
+      puBaseCalculo: latestRow?.puBaseCalculo
     };
 
     if (!targetDateKey || targetDateKey <= startDateKey) {
@@ -443,6 +479,13 @@
         || history[history.length - 1]
         || startRow;
     }
+
+    const maturity = toIsoDate(cota.dataVencimentoIso || cota.dataVencimento);
+    const holdReason = cota.documentValidation?.status === "pendente_documentos"
+      ? "Cadastro pendente de documentacao"
+      : cota.revisaoInternaPu?.pendencia ? "Memoria de PU pendente de conciliacao"
+        : maturity && maturity <= startDateKey ? "Vencimento pendente de conciliacao" : "";
+    if (holdReason) return { ...startRow, projectionBlockedReason: holdReason };
 
     const projection = projectCotaUntilDate(cota, startRow, startDateKey, targetDateKey);
     return projection.projectedRows[projection.projectedRows.length - 1] || startRow;
@@ -530,6 +573,9 @@
     const quantity = Number(cota?.quantidade || 0);
     const targetDateKey = config.dateKey || row.dateKey;
     const baseRow = getSimulationBaseRow(row, targetDateKey);
+    if (baseRow.projectionBlockedReason) {
+      config = { ...config, interest: false, ordinaryAmortization: false, amex: false, rescue: false, premium: false };
+    }
     const puBefore = Number(baseRow.puAtualizado || 0);
     const principalBefore = Number(baseRow.valorNominal ?? cota?.principalResidual ?? 0);
     const interestPu = Math.max(0, puBefore - principalBefore);
@@ -648,7 +694,8 @@
     const eventPu = interestPaidPu + principalEventPu + (quantity > 0 ? premiumValue / quantity : 0);
     const eventValue = paidBeforePremium + premiumValue;
     const afDeadline = addBusinessDays(targetDateKey, -Math.round(Number(config.afLeadDays || 0)));
-    const warning = rescueShortfall > 0.005 || premiumShortfall > 0.005 || cashRemaining < -0.0001
+    const warning = baseRow.projectionBlockedReason ? "calculo-pendente"
+      : rescueShortfall > 0.005 || premiumShortfall > 0.005 || cashRemaining < -0.0001
       ? "insuficiente"
       : eventValue <= 0 && cashOriginal <= 0
         ? "sem-caixa"
@@ -659,6 +706,7 @@
       dateKey: targetDateKey,
       afDeadline,
       baseRow,
+      projectionBlockedReason: baseRow.projectionBlockedReason || "",
       quantity,
       cashOriginal: originalCash,
       cashBefore: Math.max(0, parseInputNumber(cashAvailable)),
@@ -1008,8 +1056,9 @@
         const payoff = Math.max(0, roundDecimal(Number(baseRow.puAtualizado || 0) * Number(row.cota.quantidade || 0), 2));
         const blocker = previous.find((item) => getAllocationOrder(item.simulation.row) < getAllocationOrder(row)
           && item.payoff > 0 && (!item.selected || item.simulation.principalAfter > 0.00000001 || item.simulation.dateKey > config.dateKey));
-        const selected = !blocker && rowState.selected;
-        const requested = blocker ? 0 : Math.max(0, parseInputNumber(rowState.cash)) + carry;
+        const projectionBlockedReason = baseRow.projectionBlockedReason || "";
+        const selected = !blocker && !projectionBlockedReason && rowState.selected;
+        const requested = blocker || projectionBlockedReason ? 0 : Math.max(0, parseInputNumber(rowState.cash)) + carry;
         const premium = getPremiumValue(row, config, baseRow);
         const cash = Math.min(requested, roundDecimal(payoff + premium, 2));
         const fullPayoff = payoff > 0 && roundDecimal(cash - premium, 2) >= payoff;
@@ -1022,14 +1071,14 @@
             ...simulation, components: [], eventPu: 0, eventValue: 0,
             puAfter: simulation.puBefore, principalAfter: simulation.principalBefore,
             valueAfter: simulation.puBefore * simulation.quantity, cashRemaining: cash,
-            warning: blocker ? "prioridade" : cash > 0 ? "sem-evento" : "sem-caixa"
+            warning: projectionBlockedReason ? "calculo-pendente" : blocker ? "prioridade" : cash > 0 ? "sem-evento" : "sem-caixa"
           };
         }
-        const allocation = { cash, payoff, selected, fullPayoff, blocker, config, simulation };
+        const allocation = { cash, payoff, selected, fullPayoff, blocker, projectionBlockedReason, config, simulation };
         byId.set(row.id, allocation);
         previous.push(allocation);
         // Keep blocked cash available, without selecting or paying the next series.
-        carry = blocker
+        carry = blocker || projectionBlockedReason
           ? roundDecimal(carry + Math.max(0, parseInputNumber(rowState.cash)), 2)
           : Math.max(0, roundDecimal(requested - cash, 2));
       }
@@ -1053,7 +1102,7 @@
 
   function setAllocationCash(row, value) {
     const current = getAllocations().byId.get(row.id);
-    if (!current || current.blocker) return;
+    if (!current || isAllocationBlocked(current)) return;
     commitAllocations();
     const rows = getCraAllocationRows(row.craId);
     rows.slice(rows.findIndex((item) => item.id === row.id) + 1).forEach((item) => {
@@ -1106,20 +1155,24 @@
       ${allocation.config.premium ? `
         <div class="sim-premium-controls">
           <label>Premio
-            <select data-row-premium-mode="${escapeHtml(row.id)}" ${allocation.blocker ? "disabled" : ""}>
+            <select data-row-premium-mode="${escapeHtml(row.id)}" ${isAllocationBlocked(allocation) ? "disabled" : ""}>
               <option value="amount" ${allocation.config.premiumMode === "amount" ? "selected" : ""}>Valor em R$</option>
               <option value="percent" ${allocation.config.premiumMode === "percent" ? "selected" : ""}>% do principal atual</option>
             </select>
           </label>
           <label>${allocation.config.premiumMode === "percent" ? "% do principal atual" : "Valor do premio (R$)"}
-            <input type="text" inputmode="decimal" data-row-premium-value="${escapeHtml(row.id)}" value="${escapeHtml(allocation.config.premiumMode === "percent" ? rowState.premiumPct : rowState.premiumAmount)}" ${allocation.blocker ? "disabled" : ""} placeholder="0,00">
+            <input type="text" inputmode="decimal" data-row-premium-value="${escapeHtml(row.id)}" value="${escapeHtml(allocation.config.premiumMode === "percent" ? rowState.premiumPct : rowState.premiumAmount)}" ${isAllocationBlocked(allocation) ? "disabled" : ""} placeholder="0,00">
           </label>
         </div>` : ""}
     `;
   }
 
+  function isAllocationBlocked(allocation) {
+    return Boolean(allocation?.blocker || allocation?.projectionBlockedReason);
+  }
+
   function isEventTypeDisabled(allocation, key) {
-    return Boolean(allocation.blocker || (allocation.fullPayoff && ["ordinaryAmortization", "amex"].includes(key)));
+    return isAllocationBlocked(allocation) || (allocation.fullPayoff && ["ordinaryAmortization", "amex"].includes(key));
   }
 
   function renderRows() {
@@ -1135,9 +1188,9 @@
       const allocation = allocations.byId.get(row.id);
       const simulation = allocation.simulation;
       return `
-        <tr data-row-id="${escapeHtml(row.id)}" ${allocation.blocker ? `title="Prioridade pendente: ${escapeHtml(allocation.blocker.simulation.row.serie)}"` : ""}>
+        <tr data-row-id="${escapeHtml(row.id)}" ${allocation.projectionBlockedReason ? `title="${escapeHtml(allocation.projectionBlockedReason)}"` : allocation.blocker ? `title="Prioridade pendente: ${escapeHtml(allocation.blocker.simulation.row.serie)}"` : ""}>
           <td>
-            <input class="sim-row-check" type="checkbox" data-row-select="${escapeHtml(row.id)}" ${allocation.selected ? "checked" : ""} ${allocation.blocker ? "disabled" : ""} aria-label="Selecionar ${escapeHtml(row.craName)} ${escapeHtml(row.serie)}">
+            <input class="sim-row-check" type="checkbox" data-row-select="${escapeHtml(row.id)}" ${allocation.selected ? "checked" : ""} ${isAllocationBlocked(allocation) ? "disabled" : ""} aria-label="Selecionar ${escapeHtml(row.craName)} ${escapeHtml(row.serie)}">
           </td>
           <td>
             <strong>${escapeHtml(row.craName)}</strong>
@@ -1154,23 +1207,26 @@
             <input class="sim-af-input" type="number" min="0" max="30" step="1" data-row-af="${escapeHtml(row.id)}" value="${escapeHtml(rowState.afLeadDays)}">
           </td>
           <td>
-            <input class="sim-cash-input cra-cash-input" type="text" inputmode="decimal" data-row-cash="${escapeHtml(row.id)}" value="${escapeHtml(allocation.cash > 0 ? formatMoneyInput(allocation.cash) : "")}" ${allocation.blocker ? "disabled" : ""} placeholder="0,00">
+            <input class="sim-cash-input cra-cash-input" type="text" inputmode="decimal" data-row-cash="${escapeHtml(row.id)}" value="${escapeHtml(allocation.cash > 0 ? formatMoneyInput(allocation.cash) : "")}" ${isAllocationBlocked(allocation) ? "disabled" : ""} placeholder="0,00">
           </td>
           <td>${renderRowEventChecks(row, allocation)}</td>
-          <td data-cell="puBefore">${escapeHtml(formatNumber(simulation.puBefore, 8))}</td>
-          <td data-cell="interestPu">${escapeHtml(formatNumber(simulation.interestPu, 8))}</td>
-          <td data-cell="eventPu">${escapeHtml(formatNumber(simulation.eventPu, 8))}</td>
+          <td data-cell="puBefore">${simulation.projectionBlockedReason ? "-" : escapeHtml(formatNumber(simulation.puBefore, 8))}</td>
+          <td data-cell="interestPu">${simulation.projectionBlockedReason ? "-" : escapeHtml(formatNumber(simulation.interestPu, 8))}</td>
+          <td data-cell="eventPu">${simulation.projectionBlockedReason ? "-" : escapeHtml(formatNumber(simulation.eventPu, 8))}</td>
           <td data-cell="eventValue">${escapeHtml(formatCurrencyShort(simulation.eventValue))}</td>
-          <td data-cell="puAfter">${escapeHtml(formatNumber(simulation.puAfter, 8))}</td>
+          <td data-cell="puAfter">${simulation.projectionBlockedReason ? "-" : escapeHtml(formatNumber(simulation.puAfter, 8))}</td>
           <td data-cell="cashRemaining">${escapeHtml(formatCurrencyShort(simulation.cashRemaining))}</td>
           <td data-cell="afDeadline">${escapeHtml(formatIsoDate(simulation.afDeadline))}</td>
-          <td data-cell="warning">${renderWarning(simulation.warning)}</td>
+          <td data-cell="warning">${renderWarning(simulation.warning, simulation.projectionBlockedReason)}</td>
         </tr>
       `;
     }).join("");
   }
 
-  function renderWarning(warning) {
+  function renderWarning(warning, reason = "") {
+    if (warning === "calculo-pendente") {
+      return `<span class="sim-badge is-danger" title="${escapeHtml(reason)}">PU pendente</span>`;
+    }
     if (warning === "prioridade") {
       return `<span class="sim-badge is-muted">Bloqueada</span>`;
     }
@@ -1187,6 +1243,7 @@
   }
 
   function getWarningLabel(warning) {
+    if (warning === "calculo-pendente") return "Memoria de PU pendente de conciliacao";
     if (warning === "prioridade") return "Serie anterior pendente de quitacao";
     if (warning === "insuficiente") {
       return "Saldo insuficiente";
@@ -1738,7 +1795,7 @@
     nodes.selectVisible?.addEventListener("click", () => {
       commitAllocations();
       getVisibleRows().forEach((row) => {
-        if (!getAllocations().byId.get(row.id).blocker) getRowState(row.id).selected = true;
+        if (!isAllocationBlocked(getAllocations().byId.get(row.id))) getRowState(row.id).selected = true;
       });
       updateComputedCells();
     });
@@ -1782,7 +1839,7 @@
     nodes.rows?.addEventListener("change", (event) => {
       const selectId = event.target?.getAttribute("data-row-select");
       if (selectId) {
-        if (!getAllocations().byId.get(selectId)?.blocker) {
+        if (!isAllocationBlocked(getAllocations().byId.get(selectId))) {
           commitAllocations();
           getRowState(selectId).selected = Boolean(event.target.checked);
         }
@@ -1822,7 +1879,7 @@
       const premiumId = premiumModeId || premiumValueId;
       if (premiumId) {
         const allocation = getAllocations().byId.get(premiumId);
-        if (allocation && !allocation.blocker) {
+        if (allocation && !isAllocationBlocked(allocation)) {
           commitAllocations();
           const rowState = getRowState(premiumId);
           if (premiumModeId) {
