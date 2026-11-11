@@ -7,6 +7,7 @@
         craId: window.LAMINA_CURRENT_CRA || craManifest[0]?.craId || "",
         dateKey: "",
         snapshot: null,
+        snapshotRequest: 0,
         circulationModel: null,
         circulationRequest: 0
       };
@@ -2646,7 +2647,7 @@
           nodes.sectionsRoot.innerHTML = renderFundingCashSnapshot(snapshot);
           return;
         }
-        if (snapshot.metadata?.portfolioOverview) {
+        if (state.craId === "cras-carteira-overview" && snapshot.metadata?.portfolioOverview) {
           nodes.sectionsRoot.innerHTML = renderCrasCarteiraOverview(snapshot);
           return;
         }
@@ -2778,9 +2779,20 @@
         });
       }
 
+      function matchesSelectedPosition(snapshot) {
+        return snapshot?.metadata?.craId === state.craId && snapshot.metadata.dateKey === state.dateKey;
+      }
+
+      function needsCarteiraCirculation(snapshot) {
+        return state.craId === "cras-carteira-overview" && matchesSelectedPosition(snapshot)
+          && snapshot.metadata.portfolioOverview && !snapshot.metadata.fundingCashOnly
+          && Boolean(snapshot.portfolioOverview?.assetRows?.length) && Boolean(window.LAMINA_CARTEIRA_REPORT_VIEW);
+      }
+
       function renderSnapshot(snapshot) {
+        if (!matchesSelectedPosition(snapshot)) return;
         const metadata = snapshot.metadata || {};
-        const circulation = metadata.portfolioOverview && !metadata.fundingCashOnly && Boolean(snapshot.portfolioOverview?.assetRows?.length) && Boolean(window.LAMINA_CARTEIRA_REPORT_VIEW);
+        const circulation = needsCarteiraCirculation(snapshot);
         document.body.classList.toggle("carteira-circulation-view", circulation);
         state.circulationRequest += 1;
         state.circulationModel = null;
@@ -2798,9 +2810,11 @@
         const dateKey = snapshot.metadata.dateKey;
         const isCurrent = () => request === state.circulationRequest && state.craId === "cras-carteira-overview" && state.dateKey === dateKey && !isPublicAccess();
         try {
+          if (!isCurrent()) return;
           const children = getAccessibleCraManifest().filter(cra => cra.craId.startsWith("cra-carteira-"));
           const snapshots = [];
           for (const cra of children) {
+            if (!isCurrent()) return;
             const entry = cra.dates.find(row => row.dateKey === dateKey);
             if (!entry || entry.fundingCashOnly || !entry.assetImported) throw new Error("Falta carteira individual na data-base selecionada.");
             snapshots.push(await loadSnapshot(cra.craId, dateKey));
@@ -2843,8 +2857,12 @@
       }
 
       async function selectDate(dateKey) {
+        const request = ++state.snapshotRequest;
+        const craId = state.craId;
+        state.snapshot = null;
         state.circulationRequest += 1;
         state.circulationModel = null;
+        document.body.classList.remove("carteira-circulation-view");
         if (nodes.printButton) nodes.printButton.disabled = true;
         if (!dateKey) {
           renderEmptyState("CRA sem data importada");
@@ -2878,10 +2896,12 @@
         setStatus("Carregando", "neutral");
 
         try {
-          const snapshot = await loadSnapshot(state.craId, state.dateKey);
+          const snapshot = await loadSnapshot(craId, dateKey);
+          if (request !== state.snapshotRequest || craId !== state.craId || dateKey !== state.dateKey) return;
           state.snapshot = snapshot;
           renderSnapshot(snapshot);
         } catch (error) {
+          if (request !== state.snapshotRequest || craId !== state.craId || dateKey !== state.dateKey) return;
           setStatus("Erro ao carregar", "error");
           nodes.sectionsRoot.innerHTML = `<section class="panel"><strong>${escapeHtml(error.message)}</strong></section>`;
         }
@@ -2920,22 +2940,27 @@
       }
 
       async function printReport() {
-        if (!state.snapshot) {
+        const snapshot = state.snapshot;
+        if (!matchesSelectedPosition(snapshot)) {
           setStatus("Aguarde carregar", "neutral");
           return;
         }
-        if (document.body.classList.contains("carteira-circulation-view") && !state.circulationModel) {
+        if (needsCarteiraCirculation(snapshot) && !state.circulationModel) {
           setStatus("Aguarde carregar os resumos dos CRAs", "neutral");
           return;
         }
 
-        updatePrintMeta(state.snapshot);
+        const request = state.snapshotRequest;
+        updatePrintMeta(snapshot);
         document.body.classList.add("is-printing-report");
-        await waitForPrintLayout();
-        window.setTimeout(() => {
+        try {
+          await waitForPrintLayout();
+          await new Promise(resolve => window.setTimeout(resolve, 80));
+          if (request !== state.snapshotRequest || snapshot !== state.snapshot || !matchesSelectedPosition(snapshot)) return;
           window.print();
+        } finally {
           document.body.classList.remove("is-printing-report");
-        }, 80);
+        }
       }
 
       function bindCraEvents() {
