@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-10-28"] = {
     "craId": "cra-carteira-48",
     "dateKey": "2026-10-28",
     "reportDate": "28/10/2026",
-    "revisionId": "20261028-caixa-texto-0674c15d6ed1-reported-total_informado",
+    "revisionId": "20261028-pu-continuidade-20261111-cra-carteira-48",
     "importedAt": "2026-11-05T17:07:27.425970-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -92,7 +92,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-10-28"] = {
       "source": "Texto colado.txt",
       "sha256": "0674c15d6ed190bf6c03b4e7e283e500f1d031684388d3e6bdd6d9ff75baeb1d",
       "noPortfolioReprocessing": true
-    }
+    },
+    "fundingContinuityRevision": "pu-continuidade-20261111"
   },
   "cra": {
     "id": "cra-carteira-48",
@@ -11806,6 +11807,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-10-28"] = {
             "fator": 1.04575659,
             "fatorJurosAcumulado": 1.04575659,
             "produtorioFatorDi": 1.0457565891133096,
+            "fatorDiAcumulado": 1.0457565891133096,
+            "fatorAcumuladoDecimal": "1.0457565891133096",
             "dataTaxaDiIso": "2026-10-28",
             "dataReferenciaTaxaDiIso": "2026-10-28",
             "dataTaxaDi": "28/10/2026",
@@ -11840,7 +11843,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-48"]["2026-10-28"] = {
         "previsaoPu": [],
         "eventosPendentes": [],
         "eventosPrevistos": [],
-        "fundingSourceDateKey": "2026-10-28"
+        "fundingSourceDateKey": "2026-10-28",
+        "revisaoContinuidadePu": {
+          "versao": "pu-continuidade-20261111",
+          "inicio": "2026-10-27",
+          "puAnterior": 283.1937726,
+          "caixaPreservado": true,
+          "carteiraPreservada": true,
+          "pagamentosFinanceirosPreservados": true
+        }
       }
     ]
   },

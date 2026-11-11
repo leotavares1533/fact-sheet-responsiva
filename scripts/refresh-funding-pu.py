@@ -132,7 +132,12 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
     quantity = dec(cota["quantidade"])
     observed = dec(last.get("puSemEncargos", cota["pu"]))
     days = period_days = int(last.get("diasUteisPeriodo") or 0)
-    product = dec(last.get("produtorioFatorDi") or 1) if method == "di_spread_ts_252" else dec(last.get("fatorDiAcumulado") or 1)
+    if last.get("fatorAcumuladoDecimal"):
+        product = dec(last["fatorAcumuladoDecimal"])
+    elif method == "di_spread_ts_252":
+        product = dec(last.get("produtorioFatorDi") or last.get("fatorDiAcumulado") or 1)
+    else:
+        product = dec(last.get("fatorDiAcumulado") or last.get("produtorioFatorDi") or 1)
     spread = dec(cota.get("spreadAa") or 0)
     pct = dec(cota.get("percentualIndexador") or 1)
     fixed = dec(cota.get("taxaAa") or 0)
@@ -201,6 +206,8 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
             "taxaDiUtilizadaDia": float(daily), "tdk": float(daily), "fatorDiario": float(factor),
             "taxaDiAnualEquivalente": float((ONE + daily) ** 252 - ONE) if reference else float(fixed),
             "fator": combined, "fatorJurosAcumulado": combined, "produtorioFatorDi": float(product),
+            "fatorDiAcumulado": float(product),
+            "fatorAcumuladoDecimal": str(product),
             "dataTaxaDiIso": rate_key, "dataReferenciaTaxaDiIso": reference,
             "dataTaxaDi": engine.date_key_to_br(rate_key) if rate_key else "",
             "dataReferenciaTaxaDi": engine.date_key_to_br(reference) if reference else "",

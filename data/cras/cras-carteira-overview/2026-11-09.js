@@ -8,7 +8,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
     "reportDate": "09/11/2026",
     "dateKey": "2026-11-09",
     "importedAt": "2026-11-10T18:34:14.243418-03:00",
-    "revisionId": "20261109-ger004-v2-9ec1bcd729-overview",
+    "revisionId": "20261109-pu-continuidade-20261111-overview",
     "portfolioOverview": true,
     "portfolioConsolidado": true,
     "assetImport": {
@@ -21,7 +21,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
     "positionStatus": "previa",
     "positionNotice": "Previa: carteira e caixa na data-base, sem PDD. Subordinada com 100 cotas. Titulos omitidos no novo arquivo preservados pela memoria anterior; conciliacao em andamento.",
     "assetDateKey": "2026-11-09",
-    "cashDateKey": "2026-11-09"
+    "cashDateKey": "2026-11-09",
+    "fundingContinuityRevision": "pu-continuidade-20261111"
   },
   "cra": {
     "id": "cras-carteira-overview",
@@ -48,10 +49,10 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
     "arquivoOrigem": "ger004-titulos-cra-10-11-2026_18-05-13.csv"
   },
   "passivo": {
-    "fundingTotal": 612433046.2103362,
-    "subordinadaTotal": -7545864.770336198,
+    "fundingTotal": 612443032.927759,
+    "subordinadaTotal": -7555851.487758999,
     "subordinadaQuantidade": 1.0,
-    "subordinadaPuResidual": -7545864.770336198,
+    "subordinadaPuResidual": -7555851.487758999,
     "deducoesTotal": 0,
     "provisoesTotal": 0.0,
     "cotas": [
@@ -61,8 +62,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "tipo": "sr",
         "quantidade": 1,
         "taxa": "-",
-        "pu": 612433046.2103362,
-        "valor": 612433046.2103362
+        "pu": 612443032.927759,
+        "valor": 612443032.927759
       },
       {
         "classe": "SUB",
@@ -70,8 +71,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "tipo": "sub",
         "quantidade": 1,
         "taxa": "-",
-        "pu": -7545864.770336198,
-        "valor": -7545864.770336198
+        "pu": -7555851.487758999,
+        "valor": -7555851.487758999
       }
     ]
   },
@@ -107,7 +108,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
       },
       {
         "label": "Subordinadas",
-        "value": "R$ -7.545.864,77"
+        "value": "R$ -7.555.851,49"
       },
       {
         "label": "PDD",
@@ -123,9 +124,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 7836.55,
         "cessaoRendimentosDia": null,
         "ativoTotal": 12376095.81,
-        "funding": 11871023.607534,
-        "subordinada": 505072.2024659999,
-        "puSub": 5050.722024659999,
+        "funding": 11871778.133292,
+        "subordinada": 504317.6767079998,
+        "puSub": 5043.176767079998,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -186,9 +187,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 2978231.4,
         "cessaoRendimentosDia": null,
         "ativoTotal": 16396598.67,
-        "funding": 16330783.090272,
-        "subordinada": 65815.57972799987,
-        "puSub": 658.1557972799986,
+        "funding": 16333086.912681,
+        "subordinada": 63511.75731899962,
+        "puSub": 635.1175731899962,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -207,9 +208,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 19452.53,
         "cessaoRendimentosDia": null,
         "ativoTotal": 11365416.799999999,
-        "funding": 11361187.244106,
-        "subordinada": 4229.555893998593,
-        "puSub": 42.29555893998593,
+        "funding": 11362466.992317,
+        "subordinada": 2949.8076829984784,
+        "puSub": 29.498076829984782,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -228,9 +229,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 321683.82,
         "cessaoRendimentosDia": null,
         "ativoTotal": 819805.8,
-        "funding": 419606.183829,
-        "subordinada": 400199.61617100006,
-        "puSub": 4001.9961617100007,
+        "funding": 419822.366019,
+        "subordinada": 399983.43398100004,
+        "puSub": 3999.8343398100005,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -249,9 +250,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 10860.31,
         "cessaoRendimentosDia": null,
         "ativoTotal": 10768874.930000002,
-        "funding": 10522649.683602,
-        "subordinada": 246225.2463980019,
-        "puSub": 2462.252463980019,
+        "funding": 10523318.506155,
+        "subordinada": 245556.42384500243,
+        "puSub": 2455.5642384500243,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -312,9 +313,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 965344.87,
         "cessaoRendimentosDia": null,
         "ativoTotal": 11105695.219999999,
-        "funding": 11321131.54473,
-        "subordinada": -215436.3247300014,
-        "puSub": -2154.363247300014,
+        "funding": 11322598.830522,
+        "subordinada": -216903.61052200198,
+        "puSub": -2169.0361052200196,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -333,9 +334,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 649332.47,
         "cessaoRendimentosDia": null,
         "ativoTotal": 10911079.16,
-        "funding": 11263564.7055649,
-        "subordinada": -352485.5455648992,
-        "puSub": -3524.855455648992,
+        "funding": 11265237.5320497,
+        "subordinada": -354158.37204970047,
+        "puSub": -3541.583720497005,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -354,9 +355,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 364840.18,
         "cessaoRendimentosDia": null,
         "ativoTotal": 10385473.16,
-        "funding": 10361370.883521,
-        "subordinada": 24102.276479000226,
-        "puSub": 241.02276479000227,
+        "funding": 10362827.782146,
+        "subordinada": 22645.377854000777,
+        "puSub": 226.45377854000776,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -438,9 +439,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "caixa": 3839971.22,
         "cessaoRendimentosDia": null,
         "ativoTotal": 31358571.27,
-        "funding": 31539895.063,
-        "subordinada": -181323.79300000146,
-        "puSub": -1813.2379300000146,
+        "funding": 31540061.6684,
+        "subordinada": -181490.39840000123,
+        "puSub": -1814.9039840000123,
         "rendimentoSubDia": null,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -753,8 +754,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "SR1",
         "classe": "SR1",
         "ifCodigo": "CRA02500B41",
-        "puAtual": 297.51938866,
-        "valorAtual": 11871023.607534,
+        "puAtual": 297.53829908,
+        "valorAtual": 11871778.133292,
         "quantidadeIntegralizada": 39900.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -795,8 +796,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Senior",
         "classe": "SR1",
         "ifCodigo": "CRA02500B49",
-        "puAtual": 409.29280928,
-        "valorAtual": 16330783.090272,
+        "puAtual": 409.35054919,
+        "valorAtual": 16333086.912681,
         "quantidadeIntegralizada": 39900.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -809,8 +810,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Senior",
         "classe": "SR1",
         "ifCodigo": "CRA02500B9U",
-        "puAtual": 284.74153494,
-        "valorAtual": 11361187.244106,
+        "puAtual": 284.77360883,
+        "valorAtual": 11362466.992317,
         "quantidadeIntegralizada": 39900.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -823,8 +824,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Senior",
         "classe": "SR1",
         "ifCodigo": "CRA02500B9X",
-        "puAtual": 10.51644571,
-        "valorAtual": 419606.183829,
+        "puAtual": 10.52186381,
+        "valorAtual": 419822.366019,
         "quantidadeIntegralizada": 39900.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -837,8 +838,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Senior",
         "classe": "SR1",
         "ifCodigo": "CRA02500B9Z",
-        "puAtual": 263.72555598,
-        "valorAtual": 10522649.683602,
+        "puAtual": 263.74231845,
+        "valorAtual": 10523318.506155,
         "quantidadeIntegralizada": 39900.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -907,8 +908,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Senior",
         "classe": "SR1",
         "ifCodigo": "CRA026000B7",
-        "puAtual": 283.7376327,
-        "valorAtual": 11321131.54473,
+        "puAtual": 283.77440678,
+        "valorAtual": 11322598.830522,
         "quantidadeIntegralizada": 39900.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -921,8 +922,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Senior",
         "classe": "SR1",
         "ifCodigo": "CRA026000B9",
-        "puAtual": 284.39754338,
-        "valorAtual": 11263564.7055649,
+        "puAtual": 284.43978114,
+        "valorAtual": 11265237.5320497,
         "quantidadeIntegralizada": 39605.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -963,8 +964,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Mezanino B",
         "classe": "MEZB",
         "ifCodigo": "CRA026000MB",
-        "puAtual": 779.05044237,
-        "valorAtual": 10361370.883521,
+        "puAtual": 779.15998362,
+        "valorAtual": 10362827.782146,
         "quantidadeIntegralizada": 13300.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -1089,8 +1090,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "serie": "Mezanino A",
         "classe": "MEZA",
         "ifCodigo": "CRA026000S7",
-        "puAtual": 872.98852685,
-        "valorAtual": 17459770.537,
+        "puAtual": 872.99685712,
+        "valorAtual": 17459937.1424,
         "quantidadeIntegralizada": 20000.0,
         "taxa": "-",
         "dataVencimento": null,
@@ -1436,14 +1437,6 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
     ],
     "subHistory": [
       {
-        "dateKey": "2026-06-18",
-        "reportDate": "18/06/2026",
-        "caixaTotal": 14895696.75,
-        "cessaoRendimentosDia": 578676.82,
-        "subordinadaTotal": 10361500.233802604,
-        "rendimentoSubDia": null
-      },
-      {
         "dateKey": "2026-06-19",
         "reportDate": "19/06/2026",
         "caixaTotal": 6385785.289999999,
@@ -1640,7 +1633,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "reportDate": "23/07/2026",
         "caixaTotal": 35459696.5,
         "cessaoRendimentosDia": 403394.1899999994,
-        "subordinadaTotal": 2130518.5667558517,
+        "subordinadaTotal": 2130518.5667558536,
         "rendimentoSubDia": null
       },
       {
@@ -1648,7 +1641,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "reportDate": "24/07/2026",
         "caixaTotal": 35478627.32,
         "cessaoRendimentosDia": 58774.35999999903,
-        "subordinadaTotal": 902106.7102579809,
+        "subordinadaTotal": 902106.6993726267,
         "rendimentoSubDia": null
       },
       {
@@ -1656,28 +1649,30 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         "reportDate": "27/07/2026",
         "caixaTotal": 35597283.19,
         "cessaoRendimentosDia": 158498.4099999983,
-        "subordinadaTotal": -3581257.1119307205,
+        "subordinadaTotal": -1643002.946335519,
         "rendimentoSubDia": null
       },
       {
         "dateKey": "2026-11-05",
         "reportDate": "05/11/2026",
         "caixaTotal": 40778761.15,
-        "subordinadaTotal": -7325789.761008004,
+        "subordinadaTotal": -7330364.0673696585,
         "rendimentoSubDia": null
       },
       {
         "dateKey": "2026-11-06",
         "reportDate": "06/11/2026",
         "caixaTotal": 40782680.56,
-        "subordinadaTotal": -7397824.249612355,
+        "cessaoRendimentosDia": 0.0,
+        "subordinadaTotal": -7405103.630399503,
         "rendimentoSubDia": null
       },
       {
         "dateKey": "2026-11-09",
         "reportDate": "09/11/2026",
         "caixaTotal": 42164711.71,
-        "subordinadaTotal": -7545864.770336198,
+        "cessaoRendimentosDia": 0.0,
+        "subordinadaTotal": -7555851.487758999,
         "rendimentoSubDia": null
       }
     ]
@@ -1688,8 +1683,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
       "label": "Funding SR/MEZ",
       "quantidade": 1,
       "taxa": "-",
-      "pu": 612433046.2103362,
-      "valor": 612433046.2103362,
+      "pu": 612443032.927759,
+      "valor": 612443032.927759,
       "resultadoDia": null
     },
     {
@@ -1697,8 +1692,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
       "label": "Subordinadas",
       "quantidade": 1,
       "taxa": "-",
-      "pu": -7545864.770336198,
-      "valor": -7545864.770336198,
+      "pu": -7555851.487758999,
+      "valor": -7555851.487758999,
       "resultadoDia": null
     }
   ],
@@ -1742,7 +1737,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         },
         {
           "label": "Funding SR/MEZ",
-          "value": "R$ 612.433.046,21",
+          "value": "R$ 612.443.032,93",
           "isHighlight": true,
           "source": {
             "name": "Memoria PU"
@@ -1750,7 +1745,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-11-09"] = {
         },
         {
           "label": "Subordinadas",
-          "value": "R$ -7.545.864,77",
+          "value": "R$ -7.555.851,49",
           "isHighlight": true,
           "source": {
             "name": "Residual"

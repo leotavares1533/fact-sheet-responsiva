@@ -8,7 +8,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
     "reportDate": "23/07/2026",
     "dateKey": "2026-07-23",
     "importedAt": "2026-07-29T10:14:01.400019-03:00",
-    "revisionId": "20260723-cras-carteira-overview-assets",
+    "revisionId": "20260723-pu-continuidade-20261111-overview",
     "portfolioOverview": true,
     "portfolioConsolidado": true,
     "assetImport": {
@@ -16,7 +16,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
       "sheetCarteira": "carteira ",
       "sheetCaixa": "caixa ",
       "importMode": "carteira-caixa-consolidado"
-    }
+    },
+    "fundingContinuityRevision": "pu-continuidade-20261111"
   },
   "cra": {
     "id": "cras-carteira-overview",
@@ -44,9 +45,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
   },
   "passivo": {
     "fundingTotal": 319681035.6229403,
-    "subordinadaTotal": 2130518.5667558517,
+    "subordinadaTotal": 2130518.5667558536,
     "subordinadaQuantidade": 1.0,
-    "subordinadaPuResidual": 2130518.5667558517,
+    "subordinadaPuResidual": 2130518.5667558536,
     "deducoesTotal": 0,
     "provisoesTotal": 0.0,
     "cotas": [
@@ -65,8 +66,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
         "tipo": "sub",
         "quantidade": 1,
         "taxa": "-",
-        "pu": 2130518.5667558517,
-        "valor": 2130518.5667558517
+        "pu": 2130518.5667558536,
+        "valor": 2130518.5667558536
       }
     ]
   },
@@ -307,9 +308,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
         "caixa": 162114.13,
         "cessaoRendimentosDia": 47.38000000000466,
         "ativoTotal": 19293393.837934688,
-        "funding": 18941550.303648002,
-        "subordinada": 351843.5342866853,
-        "puSub": 3518.435342866853,
+        "funding": 18941550.303648,
+        "subordinada": 351843.534286689,
+        "puSub": 3518.43534286689,
         "rendimentoSubDia": -0.006480451729432013,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -328,9 +329,9 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
         "caixa": 8236.190000000002,
         "cessaoRendimentosDia": 7631.779999999999,
         "ativoTotal": 14518287.552144775,
-        "funding": 14349057.103158848,
-        "subordinada": 169230.4489859268,
-        "puSub": 1692.304489859268,
+        "funding": 14349057.10315885,
+        "subordinada": 169230.44898592494,
+        "puSub": 1692.3044898592495,
         "rendimentoSubDia": 0.024933692983424738,
         "rendimentoSubMes": null,
         "pdd": 0.0,
@@ -651,7 +652,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
         "classe": "SR1",
         "ifCodigo": "CRA026000B7",
         "puAtual": 474.72557152,
-        "valorAtual": 18941550.303648002,
+        "valorAtual": 18941550.303648,
         "quantidadeIntegralizada": 39900,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "31/03/2027",
@@ -665,7 +666,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
         "classe": "SR1",
         "ifCodigo": "CRA026000B9",
         "puAtual": 362.30418137,
-        "valorAtual": 14349057.103158848,
+        "valorAtual": 14349057.10315885,
         "quantidadeIntegralizada": 39605,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "30/03/2027",
@@ -1163,8 +1164,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
         "reportDate": "23/07/2026",
         "caixaTotal": 35459696.5,
         "cessaoRendimentosDia": 403394.1899999994,
-        "subordinadaTotal": 2130518.5667558517,
-        "rendimentoSubDia": 0.0005960268267093394
+        "subordinadaTotal": 2130518.5667558536,
+        "rendimentoSubDia": null
       }
     ]
   },
@@ -1183,8 +1184,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-07-23"] = {
       "label": "Subordinadas",
       "quantidade": 1,
       "taxa": "-",
-      "pu": 2130518.5667558517,
-      "valor": 2130518.5667558517,
+      "pu": 2130518.5667558536,
+      "valor": 2130518.5667558536,
       "resultadoDia": null
     }
   ],

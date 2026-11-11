@@ -1,6 +1,8 @@
 import importlib.util
 import json
 import unittest
+import copy
+from datetime import date, timedelta
 from pathlib import Path
 
 
@@ -37,6 +39,45 @@ class FundingPuTests(unittest.TestCase):
         result = funding.extend_series(self.series, self.source, "2026-11-03", {"2026-11-02"}, self.rates)
         self.assertEqual(result["through"], "2026-10-30")
         self.assertIn("29/10/2026", result["reason"])
+
+    def test_repeated_updates_preserve_accrued_factors_for_every_method(self):
+        rates = {}
+        cursor = date(2026, 10, 20)
+        while cursor <= date(2026, 11, 10):
+            if cursor.weekday() < 5:
+                rates[cursor.isoformat()] = dict(taxaDia=.0005 if cursor.day % 2 else .00051,
+                                                fonte="Banco Central do Brasil - SGS 12")
+            cursor += timedelta(days=1)
+        for method in ("percentual_di_252", "di_spread_252", "di_spread_ts_252", "prefixado_252_ts"):
+            with self.subTest(method=method):
+                opening = copy.deepcopy(self.series)
+                opening.update(metodo=method, spreadAa=.07, taxaAa=.225, lagBusinessDays=2)
+                opening['historicoPu'][0].update(produtorioFatorDi=1.01, fatorDiAcumulado=1.01,
+                    diasUteisPeriodo=20, puAtualizado=1050, puBaseCalculo=1000)
+                opening['pu'] = 1050
+                one = funding.extend_series(opening, self.source, "2026-11-06", {"2026-11-02"}, rates)
+                staged = copy.deepcopy(opening)
+                source = self.source
+                for target in ("2026-10-30", "2026-11-03", "2026-11-04", "2026-11-05", "2026-11-06"):
+                    result = funding.extend_series(staged, source, target, {"2026-11-02"}, rates)
+                    self.assertEqual(result['through'], target)
+                    row = result['rows'][-1]
+                    self.assertIn('fatorDiAcumulado', row)
+                    staged['historicoPu'].extend(result['rows'])
+                    staged['pu'] = row['puAtualizado']
+                    source = target
+                self.assertAlmostEqual(staged['pu'], one['rows'][-1]['puAtualizado'], places=8)
+                self.assertEqual(staged['historicoPu'][-1]['diasUteisPeriodo'], one['rows'][-1]['diasUteisPeriodo'])
+                self.assertEqual(staged['historicoPu'][-1]['produtorioFatorDi'], one['rows'][-1]['produtorioFatorDi'])
+
+    def test_old_generated_row_recovers_product_without_resetting_to_one(self):
+        opening = copy.deepcopy(self.series)
+        opening.update(metodo='di_spread_252', spreadAa=.07, lagBusinessDays=2, pu=1050)
+        row = opening['historicoPu'][0]
+        row.pop('fatorDiAcumulado')
+        row.update(produtorioFatorDi=1.05, puAtualizado=1050, diasUteisPeriodo=20)
+        result = funding.extend_series(opening, self.source, '2026-10-30', set(), self.rates)
+        self.assertGreater(result['rows'][0]['produtorioFatorDi'], 1.05)
 
     def test_forecast_respects_lag_holidays_and_does_not_use_future_cdi(self):
         self.rates["2026-10-29"] = {**self.rates["2026-10-28"], "taxaDia": .0006}

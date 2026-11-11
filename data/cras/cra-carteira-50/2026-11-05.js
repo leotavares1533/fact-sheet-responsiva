@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
     "craId": "cra-carteira-50",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-ger004-v2-9ec1bcd729",
+    "revisionId": "20261105-pu-continuidade-20261111-cra-carteira-50",
     "importedAt": "2026-11-10T18:33:56.634381-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
@@ -111,7 +111,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
       "426733",
       "426977"
     ],
-    "pendingValuationCount": 0
+    "pendingValuationCount": 0,
+    "fundingContinuityRevision": "pu-continuidade-20261111"
   },
   "cra": {
     "id": "cra-carteira-50",
@@ -153,9 +154,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
     "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
-    "fundingTotal": 10506775.320573,
-    "subordinadaTotal": 248703.43942699954,
-    "subordinadaPuResidual": 2487.0343942699956,
+    "fundingTotal": 10506993.970179,
+    "subordinadaTotal": 248484.7898209989,
+    "subordinadaPuResidual": 2484.847898209989,
     "cotas": [
       {
         "classe": "SR1",
@@ -177,8 +178,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "dataVencimentoIso": "2027-03-30",
         "valorNominalInicial": 1000,
         "principalResidual": 256.0718500774937,
-        "pu": 263.32770227,
-        "valor": 10506775.320573,
+        "pu": 263.33318221,
+        "valor": 10506993.970179,
         "taxaAa": 0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -472,7 +473,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "acumulacaoFinal": {
           "periodoInicio": "30/01/2026",
           "periodoFim": "05/11/2026",
-          "puFinal": 263.32770227,
+          "puFinal": 263.33318221,
           "diasAcumulacao": 189,
           "diasUteisPeriodo": 36
         },
@@ -10594,6 +10595,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
             "fator": 1.02437311,
             "fatorJurosAcumulado": 1.02437311,
             "produtorioFatorDi": 1.024373108994157,
+            "fatorDiAcumulado": 1.024373108994157,
+            "fatorAcumuladoDecimal": "1.0243731089941571",
             "dataTaxaDiIso": "2026-10-28",
             "dataReferenciaTaxaDiIso": "2026-10-28",
             "dataTaxaDi": "28/10/2026",
@@ -10627,6 +10630,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
             "fator": 1.02516858,
             "fatorJurosAcumulado": 1.02516858,
             "produtorioFatorDi": 1.0251685756882154,
+            "fatorDiAcumulado": 1.0251685756882154,
+            "fatorAcumuladoDecimal": "1.0251685756882154",
             "dataTaxaDiIso": "2026-10-29",
             "dataReferenciaTaxaDiIso": "2026-10-29",
             "dataTaxaDi": "29/10/2026",
@@ -10660,6 +10665,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
             "fator": 1.02596466,
             "fatorJurosAcumulado": 1.02596466,
             "produtorioFatorDi": 1.0259646600939802,
+            "fatorDiAcumulado": 1.0259646600939802,
+            "fatorAcumuladoDecimal": "1.0259646600939803",
             "dataTaxaDiIso": "2026-10-30",
             "dataReferenciaTaxaDiIso": "2026-10-30",
             "dataTaxaDi": "30/10/2026",
@@ -10693,6 +10700,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
             "fator": 1.02676136,
             "fatorJurosAcumulado": 1.02676136,
             "produtorioFatorDi": 1.0267613626911296,
+            "fatorDiAcumulado": 1.0267613626911296,
+            "fatorAcumuladoDecimal": "1.0267613626911296",
             "dataTaxaDiIso": "2026-11-03",
             "dataReferenciaTaxaDiIso": "2026-11-03",
             "dataTaxaDi": "03/11/2026",
@@ -10726,6 +10735,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
             "fator": 1.02755868,
             "fatorJurosAcumulado": 1.02755868,
             "produtorioFatorDi": 1.0275586839597137,
+            "fatorDiAcumulado": 1.0275586839597137,
+            "fatorAcumuladoDecimal": "1.0275586839597137",
             "dataTaxaDiIso": "2026-11-04",
             "dataReferenciaTaxaDiIso": "2026-11-04",
             "dataTaxaDi": "04/11/2026",
@@ -10742,23 +10753,25 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
             "diasUteisPeriodo": 36,
             "quantidade": 39900.0,
             "valorNominal": 256.0718500774937,
-            "puAtualizado": 263.32770227,
-            "puAntesEvento": 263.32770227,
-            "puAposEvento": 263.32770227,
+            "puAtualizado": 263.33318221,
+            "puAntesEvento": 263.33318221,
+            "puAposEvento": 263.33318221,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 256.0718500774937,
             "principalAposEvento": 256.0718500774937,
-            "puJuros": 7.2558521925063,
-            "valorReais": 10506775.320573,
+            "puJuros": 7.2613321325063,
+            "valorReais": 10506993.970179,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
             "fatorDiario": 1.00077654,
             "taxaDiAnualEquivalente": 0.13649989315282104,
-            "fator": 1.00077654,
-            "fatorJurosAcumulado": 1.00077654,
-            "produtorioFatorDi": 1.00077654,
+            "fator": 1.02835662,
+            "fatorJurosAcumulado": 1.02835662,
+            "produtorioFatorDi": 1.0283566243801556,
+            "fatorDiAcumulado": 1.0283566243801556,
+            "fatorAcumuladoDecimal": "1.0283566243801557",
             "dataTaxaDiIso": "2026-11-05",
             "dataReferenciaTaxaDiIso": "2026-11-05",
             "dataTaxaDi": "05/11/2026",
@@ -10795,7 +10808,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "previsaoPu": [],
         "eventosPendentes": [],
         "eventosPrevistos": [],
-        "fundingSourceDateKey": "2026-11-05"
+        "fundingSourceDateKey": "2026-11-05",
+        "revisaoContinuidadePu": {
+          "versao": "pu-continuidade-20261111",
+          "inicio": "2026-10-27",
+          "puAnterior": 263.32770227,
+          "caixaPreservado": true,
+          "carteiraPreservada": true,
+          "pagamentosFinanceirosPreservados": true
+        }
       },
       {
         "classe": "SUB",
@@ -10803,9 +10824,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": 2487.0343942699956,
-        "valor": 248703.43942699954,
-        "principalResidual": 2487.0343942699956,
+        "pu": 2484.847898209989,
+        "valor": 248484.7898209989,
+        "principalResidual": 2484.847898209989,
         "ehFunding": false,
         "ordem": 90
       }
@@ -14227,7 +14248,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         },
         {
           "label": "Funding SR/MEZ",
-          "value": "R$ 10.506.775,32",
+          "value": "R$ 10.506.993,97",
           "isHighlight": true,
           "source": {
             "name": "Memoria PU"
@@ -14235,7 +14256,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ 248.703,44",
+          "value": "R$ 248.484,79",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -14243,7 +14264,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-50"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "2.487,034394",
+          "value": "2.484,847898",
           "isHighlight": true,
           "source": {
             "name": "Residual"

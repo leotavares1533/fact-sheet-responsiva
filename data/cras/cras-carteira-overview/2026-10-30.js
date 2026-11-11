@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
     "craId": "cras-carteira-overview",
     "dateKey": "2026-10-30",
     "reportDate": "30/10/2026",
-    "revisionId": "20261030-caixa-texto-0674c15d6ed1-reported-overview",
+    "revisionId": "20261030-pu-continuidade-20261111-overview",
     "importedAt": "2026-11-05T17:07:27.425970-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -43,7 +43,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
       "date": "2026-10-30",
       "cancelledPaymentDate": "2026-10-07"
     },
-    "cashDateKey": "2026-10-30"
+    "cashDateKey": "2026-10-30",
+    "fundingContinuityRevision": "pu-continuidade-20261111"
   },
   "cra": {
     "id": "cras-carteira-overview",
@@ -59,7 +60,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
     "total": 9862622.89
   },
   "passivo": {
-    "fundingTotal": 581072650.2777511,
+    "fundingTotal": 581074577.2358016,
     "cotas": []
   },
   "portfolioOverview": {
@@ -163,8 +164,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
         "sourceClass": "SR1",
         "ifCodigo": "CRA02500B49",
         "quantidadeIntegralizada": 39900.0,
-        "puAtual": 407.72004056,
-        "valorAtual": 16268029.618344,
+        "puAtual": 407.7271431,
+        "valorAtual": 16268313.00969,
         "taxa": "CDI + 7,50% a.a.",
         "dataVencimento": "29/12/2028",
         "dataVencimentoIso": "2028-12-29",
@@ -219,8 +220,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
         "sourceClass": "SR1",
         "ifCodigo": "CRA02500B9X",
         "quantidadeIntegralizada": 39900.0,
-        "puAtual": 10.47637436,
-        "valorAtual": 418007.336964,
+        "puAtual": 10.48110553,
+        "valorAtual": 418196.110647,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "30/11/2028",
         "dataVencimentoIso": "2028-11-30",
@@ -419,8 +420,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
         "sourceClass": "SR1",
         "ifCodigo": "CRA026000B7",
         "quantidadeIntegralizada": 39900.0,
-        "puAtual": 282.66149315,
-        "valorAtual": 11278193.576685,
+        "puAtual": 282.67516133,
+        "valorAtual": 11278738.937067,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "31/03/2027",
         "dataVencimentoIso": "2027-03-31",
@@ -449,8 +450,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
         "sourceClass": "SR1",
         "ifCodigo": "CRA026000B9",
         "quantidadeIntegralizada": 39605.0,
-        "puAtual": 283.3263456,
-        "valorAtual": 11221139.917488,
+        "puAtual": 283.3379579,
+        "valorAtual": 11221599.8226295,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "30/03/2027",
         "dataVencimentoIso": "2027-03-30",
@@ -540,8 +541,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
         "sourceClass": "MEZB",
         "ifCodigo": "CRA026000MB",
         "quantidadeIntegralizada": 13300.0,
-        "puAtual": 776.10798158,
-        "valorAtual": 10322236.155014,
+        "puAtual": 776.14178064,
+        "valorAtual": 10322685.682512,
         "taxa": "CDI + 7,00% a.a.",
         "dataVencimento": "31/03/2027",
         "dataVencimentoIso": "2027-03-31",
@@ -2618,7 +2619,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
     {
       "craId": "cra-carteira-47",
       "name": "CRA Carteira 47",
-      "funding": 16268029.618344,
+      "funding": 16268313.00969,
       "cash": 2972777.98
     },
     {
@@ -2630,7 +2631,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
     {
       "craId": "cra-carteira-49",
       "name": "CRA Carteira 49",
-      "funding": 418007.336964,
+      "funding": 418196.110647,
       "cash": 48893.1
     },
     {
@@ -2654,19 +2655,19 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-30"] = {
     {
       "craId": "cra-carteira-53",
       "name": "CRA Carteira 53",
-      "funding": 11278193.576685,
+      "funding": 11278738.937067,
       "cash": 767287.07
     },
     {
       "craId": "cra-carteira-54",
       "name": "CRA Carteira 54",
-      "funding": 11221139.917488,
+      "funding": 11221599.8226295,
       "cash": 529830.47
     },
     {
       "craId": "cra-carteira-55",
       "name": "CRA Carteira 55",
-      "funding": 10322236.155014,
+      "funding": 10322685.682512,
       "cash": 245870.89
     },
     {
