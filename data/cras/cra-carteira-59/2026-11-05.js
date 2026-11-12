@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
     "craId": "cra-carteira-59",
     "dateKey": "2026-11-05",
     "reportDate": "05/11/2026",
-    "revisionId": "20261105-pu-continuidade-20261111-cra-carteira-59",
+    "revisionId": "20261105-pu56-59-20261112-cra-carteira-59",
     "importedAt": "2026-11-10T18:33:58.422190-03:00",
     "fundingCashOnly": false,
     "crasCarteiraBatch": true,
@@ -109,7 +109,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
     "cashSourceSha256": "63b36fdb055002c7700de3d21a2c6ddb7f318d96a6d438c0585f0c6ab0d7663f",
     "preservedMissingTitles": [],
     "pendingValuationCount": 0,
-    "fundingContinuityRevision": "pu-continuidade-20261111"
+    "fundingContinuityRevision": "pu-continuidade-20261111",
+    "fundingErrorRevision": "pu56-59-20261112"
   },
   "cra": {
     "id": "cra-carteira-59",
@@ -151,9 +152,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
     "observacao": "Fundo de despesas deduzido uma unica vez do caixa; sem nova deducao da subordinada."
   },
   "passivo": {
-    "fundingTotal": 31492817.723400004,
-    "subordinadaTotal": -167743.37340000644,
-    "subordinadaPuResidual": -1677.4337340000645,
+    "fundingTotal": 31494360.285800003,
+    "subordinadaTotal": -169285.93580000475,
+    "subordinadaPuResidual": -1692.8593580000475,
     "cotas": [
       {
         "classe": "SR1",
@@ -5871,8 +5872,8 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
         "dataVencimentoIso": "2027-11-30",
         "valorNominalInicial": 1000.0,
         "principalResidual": 850.89581765,
-        "pu": 871.70063647,
-        "valor": 17434012.7294,
+        "pu": 871.77776459,
+        "valor": 17435555.2918,
         "taxaAa": 0.0,
         "taxaAm": 0,
         "taxaDia": 0,
@@ -5958,7 +5959,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
         "acumulacaoFinal": {
           "periodoInicio": "11/06/2026",
           "periodoFim": "05/11/2026",
-          "puFinal": 871.70063647,
+          "puFinal": 871.77776459,
           "diasAcumulacao": 6,
           "diasUteisPeriodo": 6
         },
@@ -7360,15 +7361,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "diasUteisPeriodo": 1,
             "quantidade": 20000.0,
             "valorNominal": 850.89581765,
-            "puAtualizado": 868.46865336,
-            "puAntesEvento": 868.46865336,
-            "puAposEvento": 868.46865336,
+            "puAtualizado": 868.4814837,
+            "puAntesEvento": 868.4814837,
+            "puAposEvento": 868.4814837,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 850.89581765,
             "principalAposEvento": 850.89581765,
-            "puJuros": 17.57283571,
-            "valorReais": 17369373.0672,
+            "puJuros": 17.58566605,
+            "valorReais": 17369629.674,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
@@ -7385,7 +7386,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "dataReferenciaTaxaDi": "28/10/2026",
             "taxaDiStatus": "BCB_SGS_12",
             "lagBusinessDays": 0,
-            "puBaseCalculo": 850.89581765
+            "puBaseCalculo": 867.82372539
           },
           {
             "data": "29/10/2026",
@@ -7395,15 +7396,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "diasUteisPeriodo": 2,
             "quantidade": 20000.0,
             "valorNominal": 850.89581765,
-            "puAtualizado": 869.11406635,
-            "puAntesEvento": 869.11406635,
-            "puAposEvento": 869.11406635,
+            "puAtualizado": 869.13973667,
+            "puAntesEvento": 869.13973667,
+            "puAposEvento": 869.13973667,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 850.89581765,
             "principalAposEvento": 850.89581765,
-            "puJuros": 18.2182487,
-            "valorReais": 17382281.327,
+            "puJuros": 18.24391902,
+            "valorReais": 17382794.7334,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
@@ -7420,7 +7421,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "dataReferenciaTaxaDi": "29/10/2026",
             "taxaDiStatus": "BCB_SGS_12",
             "lagBusinessDays": 0,
-            "puBaseCalculo": 850.89581765
+            "puBaseCalculo": 867.82372539
           },
           {
             "data": "30/10/2026",
@@ -7430,15 +7431,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "diasUteisPeriodo": 3,
             "quantidade": 20000.0,
             "valorNominal": 850.89581765,
-            "puAtualizado": 869.75997285,
-            "puAntesEvento": 869.75997285,
-            "puAposEvento": 869.75997285,
+            "puAtualizado": 869.79849299,
+            "puAntesEvento": 869.79849299,
+            "puAposEvento": 869.79849299,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 850.89581765,
             "principalAposEvento": 850.89581765,
-            "puJuros": 18.8641552,
-            "valorReais": 17395199.457,
+            "puJuros": 18.90267534,
+            "valorReais": 17395969.8598,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
@@ -7455,7 +7456,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "dataReferenciaTaxaDi": "30/10/2026",
             "taxaDiStatus": "BCB_SGS_12",
             "lagBusinessDays": 0,
-            "puBaseCalculo": 850.89581765
+            "puBaseCalculo": 867.82372539
           },
           {
             "data": "03/11/2026",
@@ -7465,15 +7466,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "diasUteisPeriodo": 4,
             "quantidade": 20000.0,
             "valorNominal": 850.89581765,
-            "puAtualizado": 870.40637288,
-            "puAntesEvento": 870.40637288,
-            "puAposEvento": 870.40637288,
+            "puAtualizado": 870.45775263,
+            "puAntesEvento": 870.45775263,
+            "puAposEvento": 870.45775263,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 850.89581765,
             "principalAposEvento": 850.89581765,
-            "puJuros": 19.51055523,
-            "valorReais": 17408127.4576,
+            "puJuros": 19.56193498,
+            "valorReais": 17409155.0526,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
@@ -7490,7 +7491,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "dataReferenciaTaxaDi": "03/11/2026",
             "taxaDiStatus": "BCB_SGS_12",
             "lagBusinessDays": 0,
-            "puBaseCalculo": 850.89581765
+            "puBaseCalculo": 867.82372539
           },
           {
             "data": "04/11/2026",
@@ -7500,15 +7501,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "diasUteisPeriodo": 5,
             "quantidade": 20000.0,
             "valorNominal": 850.89581765,
-            "puAtualizado": 871.05325792,
-            "puAntesEvento": 871.05325792,
-            "puAposEvento": 871.05325792,
+            "puAtualizado": 871.11750694,
+            "puAntesEvento": 871.11750694,
+            "puAposEvento": 871.11750694,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 850.89581765,
             "principalAposEvento": 850.89581765,
-            "puJuros": 20.15744027,
-            "valorReais": 17421065.1584,
+            "puJuros": 20.22168929,
+            "valorReais": 17422350.1388,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
@@ -7525,7 +7526,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "dataReferenciaTaxaDi": "04/11/2026",
             "taxaDiStatus": "BCB_SGS_12",
             "lagBusinessDays": 0,
-            "puBaseCalculo": 850.89581765
+            "puBaseCalculo": 867.82372539
           },
           {
             "data": "05/11/2026",
@@ -7535,15 +7536,15 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "diasUteisPeriodo": 6,
             "quantidade": 20000.0,
             "valorNominal": 850.89581765,
-            "puAtualizado": 871.70063647,
-            "puAntesEvento": 871.70063647,
-            "puAposEvento": 871.70063647,
+            "puAtualizado": 871.77776459,
+            "puAntesEvento": 871.77776459,
+            "puAposEvento": 871.77776459,
             "puEvento": 0,
             "valorEventoReais": 0,
             "principalAntesEvento": 850.89581765,
             "principalAposEvento": 850.89581765,
-            "puJuros": 20.80481882,
-            "valorReais": 17434012.7294,
+            "puJuros": 20.88194694,
+            "valorReais": 17435555.2918,
             "evento": "",
             "taxaDiUtilizadaDia": 0.00050788,
             "tdk": 0.00050788,
@@ -7560,7 +7561,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
             "dataReferenciaTaxaDi": "05/11/2026",
             "taxaDiStatus": "BCB_SGS_12",
             "lagBusinessDays": 0,
-            "puBaseCalculo": 850.89581765
+            "puBaseCalculo": 867.82372539
           }
         ],
         "visaoCalculadaPu": true,
@@ -7603,6 +7604,14 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
           "caixaPreservado": true,
           "carteiraPreservada": true,
           "pagamentosFinanceirosPreservados": true
+        },
+        "usarMotorFundingContratual": true,
+        "revisaoErrosPu": {
+          "versao": "pu56-59-20261112",
+          "calendarioCompleto2026": true,
+          "carteiraPreservada": true,
+          "caixaPreservado": true,
+          "valoresPagosPreservados": true
         }
       },
       {
@@ -14117,9 +14126,9 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
         "tipo": "sub",
         "ifCodigo": "",
         "quantidade": 100,
-        "pu": -1677.4337340000645,
-        "valor": -167743.37340000644,
-        "principalResidual": -1677.4337340000645,
+        "pu": -1692.8593580000475,
+        "valor": -169285.93580000475,
+        "principalResidual": -1692.8593580000475,
         "ehFunding": false,
         "ordem": 90
       }
@@ -17713,7 +17722,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
         },
         {
           "label": "Funding SR/MEZ",
-          "value": "R$ 31.492.817,72",
+          "value": "R$ 31.494.360,29",
           "isHighlight": true,
           "source": {
             "name": "Memoria PU"
@@ -17721,7 +17730,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
         },
         {
           "label": "Subordinada residual",
-          "value": "R$ -167.743,37",
+          "value": "R$ -169.285,94",
           "isHighlight": true,
           "source": {
             "name": "Residual"
@@ -17729,7 +17738,7 @@ window.LAMINA_CRA_DAILY["cra-carteira-59"]["2026-11-05"] = {
         },
         {
           "label": "PU SUB residual",
-          "value": "-1.677,433734",
+          "value": "-1.692,859358",
           "isHighlight": true,
           "source": {
             "name": "Residual"

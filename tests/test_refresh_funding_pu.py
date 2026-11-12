@@ -79,6 +79,35 @@ class FundingPuTests(unittest.TestCase):
         result = funding.extend_series(opening, self.source, '2026-10-30', set(), self.rates)
         self.assertGreater(result['rows'][0]['produtorioFatorDi'], 1.05)
 
+    def test_legacy_closing_pu_without_factors_keeps_accrued_interest_in_the_growth_basis(self):
+        opening = copy.deepcopy(self.series)
+        opening.update(metodo='di_spread_252', spreadAa=.065, lagBusinessDays=0, pu=1050,
+                       percentualIndexador=1)
+        opening['historicoPu'] = [dict(dataIso=self.source, puAtualizado=1050, valorNominal=1000,
+                                      puJuros=50, diasUteis=20)]
+        rates = {'2026-10-30': dict(taxaDia=.0005, fonte='Banco Central do Brasil - SGS 12')}
+        result = funding.extend_series(opening, self.source, '2026-10-30', set(), rates)
+        row = result['rows'][0]
+        self.assertEqual(row['valorNominal'], 1000)
+        self.assertEqual(row['puBaseCalculo'], 1050)
+        factor = funding.terms.quantize((funding.ONE + funding.dec('.0005')) *
+                                       funding.dec('1.065') ** (funding.ONE/252), 8)
+        expected = 1050 + funding.terms.quantize(funding.dec(1050)*(factor-1), 8, funding.terms.ROUND_DOWN)
+        self.assertEqual(row['puAtualizado'], float(expected))
+        self.assertEqual(row['diasUteis'], 21)
+        self.assertEqual(row['valorEventoReais'], 0)
+        self.assertEqual(opening['pu'], 1050)
+
+    def test_legacy_rebase_keeps_explicit_noncapitalizing_interest_outside_the_growth_basis(self):
+        opening = copy.deepcopy(self.series)
+        opening.update(metodo='di_spread_252', spreadAa=.065, lagBusinessDays=0, pu=1050,
+                       percentualIndexador=1)
+        opening['historicoPu'] = [dict(dataIso=self.source, puAtualizado=1050, valorNominal=1000,
+                                      puJurosRetidosSemCapitalizacao=10)]
+        rates = {'2026-10-30': dict(taxaDia=.0005, fonte='Banco Central do Brasil - SGS 12')}
+        result = funding.extend_series(opening, self.source, '2026-10-30', set(), rates)
+        self.assertEqual(result['rows'][0]['puBaseCalculo'], 1040)
+
     def test_forecast_respects_lag_holidays_and_does_not_use_future_cdi(self):
         self.rates["2026-10-29"] = {**self.rates["2026-10-28"], "taxaDia": .0006}
         self.rates["2026-10-30"] = {**self.rates["2026-10-28"], "taxaDia": .01}

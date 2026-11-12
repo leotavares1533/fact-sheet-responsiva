@@ -132,6 +132,12 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
     quantity = dec(cota["quantidade"])
     observed = dec(last.get("puSemEncargos", cota["pu"]))
     days = period_days = int(last.get("diasUteisPeriodo") or 0)
+    has_product = any(last.get(key) is not None for key in
+                      ("fatorAcumuladoDecimal", "produtorioFatorDi", "fatorDiAcumulado"))
+    if method == "di_spread_252" and not has_product:
+        # A legacy closing PU already includes accrued interest; carry the whole balance forward.
+        base = observed - dec(last.get("puJurosRetidosSemCapitalizacao") or 0)
+        days = period_days = 0
     if last.get("fatorAcumuladoDecimal"):
         product = dec(last["fatorAcumuladoDecimal"])
     elif method == "di_spread_ts_252":

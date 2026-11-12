@@ -7,7 +7,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-29"] = {
     "craId": "cras-carteira-overview",
     "dateKey": "2026-10-29",
     "reportDate": "29/10/2026",
-    "revisionId": "20261029-pu-continuidade-20261111-overview",
+    "revisionId": "20261029-pu56-59-20261112-overview",
     "importedAt": "2026-11-05T17:07:27.425970-03:00",
     "fundingCashOnly": true,
     "crasCarteiraBatch": true,
@@ -44,7 +44,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-29"] = {
       "cancelledPaymentDate": "2026-10-07"
     },
     "cashDateKey": "2026-10-29",
-    "fundingContinuityRevision": "pu-continuidade-20261111"
+    "fundingContinuityRevision": "pu-continuidade-20261111",
+    "fundingErrorRevision": "pu56-59-20261112"
   },
   "cra": {
     "id": "cras-carteira-overview",
@@ -60,7 +61,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-29"] = {
     "total": 9957592.16
   },
   "passivo": {
-    "fundingTotal": 575155689.4329842,
+    "fundingTotal": 575156202.8393842,
     "cotas": []
   },
   "portfolioOverview": {
@@ -768,8 +769,8 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-29"] = {
         "sourceClass": "MEZA",
         "ifCodigo": "CRA026000S7",
         "quantidadeIntegralizada": 20000.0,
-        "puAtual": 869.11406635,
-        "valorAtual": 17382281.327,
+        "puAtual": 869.13973667,
+        "valorAtual": 17382794.7334,
         "taxa": "CDI + 6,50% a.a.",
         "dataVencimento": "30/11/2027",
         "dataVencimentoIso": "2027-11-30",
@@ -2691,7 +2692,7 @@ window.LAMINA_CRA_DAILY["cras-carteira-overview"]["2026-10-29"] = {
     {
       "craId": "cra-carteira-59",
       "name": "CRA Carteira 59",
-      "funding": 31398544.159,
+      "funding": 31399057.565399997,
       "cash": 0.0
     },
     {
