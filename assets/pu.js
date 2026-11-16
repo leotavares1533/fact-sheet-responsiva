@@ -1341,6 +1341,10 @@
       cota.quantidade = row.quantidade;
       cota.pu = row.puAtualizado;
       cota.valor = row.valorReais;
+      cota.principalResidual = row.valorNominal;
+      if (row.capitalizacaoPendente) {
+        cota.forecastBlockedReason = "Confirmar tratamento dos juros nao pagos antes de projetar.";
+      }
       cota.previsaoPu = [];
       cota.acumulacaoFinal = {
         ...cota.acumulacaoFinal, puFinal: row.puAtualizado, periodoFim: row.data,

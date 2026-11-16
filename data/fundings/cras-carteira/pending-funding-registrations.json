@@ -1,0 +1,20 @@
+{
+  "cra-carteira-76": {
+    "label": "CRA 76",
+    "confirmedOn": "2026-11-16",
+    "firstIntegrationDate": "2026-11-16",
+    "status": "integralizacao_confirmada_documentos_pendentes",
+    "fundingConfirmed": 6235000,
+    "subordinatedSubscribed": 100000,
+    "totalSubscribed": 6335000,
+    "assetDate": null,
+    "cashDate": null,
+    "residualSubValue": null,
+    "residualSubPu": null,
+    "pending": ["Termo de Securitizacao e aditamentos", "Fichas B3", "Taxa e convencoes de calculo", "Defasagem", "Vencimento", "Revolvencia", "Carteira e caixa para apuracao da subordinada residual"],
+    "series": [
+      {"ifCodigo":"CRA0260073L","class":"SR1","kind":"sr","date":"2026-11-16","quantity":6235,"unitPrice":"1000.00000000","amount":"6235000.00","fund":"CERES BTG URA AGRO 2 FIAGRO RL","source":"Liquidacao 76 - 1611 - Senior","rate":null,"maturity":null,"revolving":null,"forecastBlockedReason":"Cadastro pendente de documentos"},
+      {"ifCodigo":"CRA0260073M","class":"SUB","kind":"sub","date":"2026-11-16","quantity":100,"unitPrice":"1000.00000000","amount":"100000.00","fund":"BTG CERES FIDC RL","source":"Liquidacao 76 - 1611 - Subordinada","residualValue":null,"residualPu":null}
+    ]
+  }
+}

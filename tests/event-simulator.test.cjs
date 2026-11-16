@@ -16,7 +16,7 @@ function loadSimulator() {
   const source = fs.readFileSync(path.join(root, "assets/event-simulator.js"), "utf8");
   vm.runInContext(source.replace("  init();", `  window.testEvents = { state, getRowState, getAllocations,
     getSelectedSimulations, setAllocationCash, commitAllocations, redistributeCraCash,
-    getSimulationBaseRow, buildRowsFromSnapshot, collectHolidays, renderRows, renderSummary, bindEvents };`), context);
+    getSimulationBaseRow, buildRowsFromSnapshot, applyFundingUpdate, collectHolidays, renderRows, renderSummary, bindEvents };`), context);
   const api = context.window.testEvents;
   return { ...api, nodes, context };
 }
@@ -30,6 +30,36 @@ function addRow(api, id, order = 10, pu = 1010, quantity = 100, craId = "cra-tes
   api.getRowState(id).dateKey = row.dateKey;
   return row;
 }
+
+test("confirmed funding updates quantities and principal without changing cash or the source snapshot", () => {
+  const api = loadSimulator();
+  const cra = {craId: "cra-test", dates: [{dateKey:"2026-11-09", dataScript:"snapshot.js", revisionId:"approved"}]};
+  const source = {metadata:{dateKey:"2026-11-09",cashDateKey:"2026-11-09"},caixa:{total:15000},
+    passivo:{cotas:[{classe:"SR1",tipo:"sr",ehFunding:true,ifCodigo:"TEST",quantidade:10,pu:1000,
+      principalResidual:1000,historicoPu:[],eventosAplicados:[]}]}};
+  api.context.window.LAMINA_FUNDING_PU = {target:"2026-11-13",vehicles:{"cra-test":{
+    sourceDate:"2026-11-09",sourceRevision:"approved",series:{TEST:{rows:[{dataIso:"2026-11-13",data:"13/11/2026",
+      quantidade:20,puAtualizado:901,valorNominal:900,valorReais:18020,diasUteis:20,diasUteisPeriodo:0}],
+      events:[{dataIso:"2026-11-13",tipo:"juros_amortizacao"}]}}}}};
+  const updated = api.applyFundingUpdate(cra,source);
+  assert.equal(updated.passivo.cotas[0].quantidade,20);
+  assert.equal(updated.passivo.cotas[0].principalResidual,900);
+  assert.equal(updated.passivo.cotas[0].eventosAplicados.length,1);
+  assert.equal(updated.caixa.total,15000);
+  assert.equal(source.passivo.cotas[0].quantidade,10);
+  const row = api.buildRowsFromSnapshot(cra,updated)[0];
+  assert.equal(row.dateKey,"2026-11-13");
+  assert.equal(row.cashDateKey,"2026-11-09");
+  api.context.window.LAMINA_FUNDING_PU.vehicles["cra-test"].sourceRevision="stale";
+  assert.equal(api.applyFundingUpdate(cra,source),source);
+});
+
+test("unconfirmed capitalization blocks a new event projection", () => {
+  const api=loadSimulator();
+  const row=addRow(api,"SR");
+  row.cota.capitalizacaoPendente=true;
+  assert.match(api.getSimulationBaseRow(row,"2026-11-06").projectionBlockedReason,/juros nao pagos/);
+});
 
 function selectSeries(api, id, flags = ["interest", "rescue"]) {
   const rowState = api.getRowState(id);
@@ -399,12 +429,16 @@ test("CRA47 projection preserves accrued interest and matches the control curve 
     assert.ok(Math.abs(actual.puJuros - expected.puJuros) < 1e-10, `Accrued interest on ${expected.dataIso}`);
     assert.ok(actual.puAtualizado >= row.cota.pu, "Projection cannot discard accrued interest");
   }
-  const weekend = new Date(`${update.sourceDate}T00:00:00Z`);
+  const updated = api.applyFundingUpdate({craId:"cra-carteira-47",dates:[{
+    dateKey:update.sourceDate,dataScript:"snapshot.js",revisionId:update.sourceRevision}]},snapshot);
+  const closing = api.buildRowsFromSnapshot({craId:"cra-carteira-47"},updated)
+    .find(item=>item.cota.ifCodigo==="CRA02500B49");
+  const weekend = new Date(`${closing.dateKey}T00:00:00Z`);
   while (weekend.getUTCDay() !== 6) weekend.setUTCDate(weekend.getUTCDate() + 1);
   for (let day = 0; day < 2; day += 1) {
     const dateKey = weekend.toISOString().slice(0, 10);
-    const previous = forecast.filter(item => item.dataIso <= dateKey).at(-1);
-    assert.equal(api.getSimulationBaseRow(row, dateKey).puAtualizado, previous?.puAtualizado ?? row.cota.pu);
+    const previous = (control.forecasts[closing.dateKey]?.rows || []).filter(item => item.dataIso <= dateKey).at(-1);
+    assert.equal(api.getSimulationBaseRow(closing, dateKey).puAtualizado, previous?.puAtualizado ?? closing.cota.pu);
     weekend.setUTCDate(weekend.getUTCDate() + 1);
   }
   const event = forecast[1];
@@ -431,13 +465,28 @@ test("all supported funding methods match the control for CRAs 42, 65 and Cartei
     api.collectHolidays(snapshot);
     for (const row of api.buildRowsFromSnapshot({ craId }, snapshot)) {
       const series = update.series[row.cota.ifCodigo];
+      const paymentDate = (series?.events || []).filter((event) => event.tipo !== "integralizacao")
+        .map((event) => event.dataIso).sort()[0];
       const expectedRows = [...(series?.rows || []), ...(series?.forecasts?.[update.sourceDate]?.rows || [])]
-        .filter((item) => item.dataIso > row.dateKey);
+        .filter((item) => item.dataIso > row.dateKey && (!paymentDate || item.dataIso < paymentDate));
       for (const expected of expectedRows) {
         const actual = api.getSimulationBaseRow(row, expected.dataIso);
         assert.ok(Math.abs(actual.puAtualizado - expected.puAtualizado) < 0.00000002,
           `${craId}/${row.cota.ifCodigo}/${expected.dataIso}: ${actual.puAtualizado} vs ${expected.puAtualizado}`);
         checked += 1;
+        checkedSeries.add(row.id);
+      }
+    }
+    const cra = {craId,dates:[{dateKey:update.sourceDate,dataScript:"snapshot.js",revisionId:update.sourceRevision}]};
+    const updated = api.applyFundingUpdate(cra,snapshot);
+    for (const row of api.buildRowsFromSnapshot(cra,updated)) {
+      const series=update.series[row.cota.ifCodigo];
+      if (!series?.rows?.length) continue;
+      for (const expected of series.forecasts?.[row.dateKey]?.rows || []) {
+        const actual=api.getSimulationBaseRow(row,expected.dataIso);
+        assert.ok(Math.abs(actual.puAtualizado-expected.puAtualizado)<0.00000002,
+          `After confirmed events: ${craId}/${row.cota.ifCodigo}/${expected.dataIso}: ${actual.puAtualizado} vs ${expected.puAtualizado}`);
+        checked+=1;
         checkedSeries.add(row.id);
       }
     }

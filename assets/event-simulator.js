@@ -489,7 +489,9 @@
     }
 
     const maturity = toIsoDate(cota.dataVencimentoIso || cota.dataVencimento);
-    const holdReason = cota.documentValidation?.status === "pendente_documentos"
+    const holdReason = cota.capitalizacaoPendente
+      ? "Confirmar tratamento dos juros nao pagos antes de projetar"
+      : cota.documentValidation?.status === "pendente_documentos"
       ? "Cadastro pendente de documentacao"
       : cota.revisaoInternaPu?.pendencia ? "Memoria de PU pendente de conciliacao"
         : maturity && maturity <= startDateKey && !window.LAMINA_FUNDING_CONTRACT.lateTerms(cota)
@@ -789,7 +791,34 @@
       await loadScript(`./${entry.dataScript}?v=${version}`);
     }
 
-    return window.LAMINA_CRA_DAILY[cra.craId][entry.dateKey] || null;
+    const snapshot = window.LAMINA_CRA_DAILY[cra.craId][entry.dateKey] || null;
+    return snapshot ? applyFundingUpdate(cra, snapshot) : null;
+  }
+
+  function applyFundingUpdate(cra, snapshot) {
+    const entry = getLatestManifestEntry(cra);
+    const update = window.LAMINA_FUNDING_PU?.vehicles?.[cra.craId];
+    if (!update || update.sourceDate !== entry?.dateKey || update.sourceRevision !== (entry.revisionId || "")) {
+      return snapshot;
+    }
+    const cotas = (snapshot.passivo?.cotas || []).map((cota) => {
+      const series = update.series[cota.ifCodigo || cota.classe];
+      const rows = (series?.rows || []).filter((row) => row.dataIso <= window.LAMINA_FUNDING_PU.target);
+      const last = rows.at(-1);
+      if (!last) return cota;
+      const previous = (cota.historicoPu || []).at(-1)?.dataIso || update.sourceDate;
+      return {
+        ...cota, pu: last.puAtualizado, valor: last.valorReais, quantidade: last.quantidade,
+        principalResidual: last.valorNominal, fundingSourceDateKey: last.dataIso,
+        capitalizacaoPendente: Boolean(last.capitalizacaoPendente),
+        historicoPu: [...(cota.historicoPu || []), ...rows.filter((row) => row.dataIso > previous)],
+        eventosAplicados: [...(cota.eventosAplicados || []), ...(series.events || []).filter((event) => event.dataIso <= last.dataIso)],
+        acumulacaoFinal: {...cota.acumulacaoFinal, puFinal: last.puAtualizado,
+          periodoFim: last.data, diasAcumulacao: last.diasUteis, diasUteisPeriodo: last.diasUteisPeriodo}
+      };
+    });
+    return {...snapshot, passivo: {...snapshot.passivo, cotas,
+      fundingTotal: cotas.filter(isFundingSeries).reduce((sum, cota) => sum + Number(cota.valor || 0), 0)}};
   }
 
   function collectHolidays(snapshot) {
@@ -979,7 +1008,8 @@
           craId: cra.craId,
           craName,
           childLabel: cra?.childLabel || "",
-          dateKey,
+          dateKey: cota.fundingSourceDateKey || dateKey,
+          cashDateKey: snapshot.metadata?.cashDateKey || dateKey,
           baseCash: cash,
           cota,
           serie: formatSerie(cra, cota),
@@ -1219,7 +1249,7 @@
             <input class="sim-af-input" type="number" min="0" max="30" step="1" data-row-af="${escapeHtml(row.id)}" value="${escapeHtml(rowState.afLeadDays)}">
           </td>
           <td>
-            <input class="sim-cash-input cra-cash-input" type="text" inputmode="decimal" data-row-cash="${escapeHtml(row.id)}" value="${escapeHtml(allocation.cash > 0 ? formatMoneyInput(allocation.cash) : "")}" ${isAllocationBlocked(allocation) ? "disabled" : ""} placeholder="0,00">
+            <input class="sim-cash-input cra-cash-input" type="text" inputmode="decimal" data-row-cash="${escapeHtml(row.id)}" title="Caixa de ${escapeHtml(formatIsoDate(row.cashDateKey || row.dateKey))}" value="${escapeHtml(allocation.cash > 0 ? formatMoneyInput(allocation.cash) : "")}" ${isAllocationBlocked(allocation) ? "disabled" : ""} placeholder="0,00">
           </td>
           <td>${renderRowEventChecks(row, allocation)}</td>
           <td data-cell="puBefore">${simulation.projectionBlockedReason ? "-" : escapeHtml(formatNumber(simulation.puBefore, 8))}</td>

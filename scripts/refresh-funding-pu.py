@@ -5,6 +5,7 @@ import importlib.util
 import json
 from datetime import date, timedelta
 from decimal import Decimal
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +15,8 @@ spec.loader.exec_module(terms)
 engine = terms.ENGINE
 ONE = Decimal(1)
 INTEGRATIONS = ROOT / "data/fundings/cras-carteira/confirmed-integrations.json"
+PAYMENTS = ROOT / "data/fundings/cras-carteira/confirmed-payments.json"
+PENDING_FUNDINGS = ROOT / "data/fundings/cras-carteira/pending-funding-registrations.json"
 
 
 def dec(value):
@@ -65,6 +68,8 @@ def integration_event(cota, integration, pu):
         "puIntegralizacao": float(integration["unitPrice"]), "puEvento": float(integration["unitPrice"]),
         "puAposEvento": float(pu), "valorEventoReais": float(integration["amount"]),
         "ifCodigo": cota["ifCodigo"], "fonte": integration["source"], "observacao": integration.get("note", ""),
+        "puControleNaIntegralizacao": float(pu),
+        "diferencaPuIntegralizacaoControle": float(dec(integration["unitPrice"]) - dec(pu)),
     }
 
 
@@ -76,6 +81,85 @@ def already_booked(cota, integration):
                for event in cota.get("eventosAplicados") or [])
 
 
+@lru_cache(maxsize=4)
+def read_payments(path, modification):
+    entries = json.loads(Path(path).read_text(encoding="utf-8"))
+    seen = set()
+    ids = set()
+    for entry in entries:
+        identity = (entry["cra"], entry["ifCodigo"], entry["date"])
+        if identity in seen or entry["id"] in ids or not entry.get("confirmed"):
+            raise ValueError(f"Pagamento duplicado ou nao confirmado: {identity}")
+        interest, amort = dec(entry["interestPu"]), dec(entry["amortizationPu"])
+        if interest < 0 or amort < 0 or interest + amort <= 0:
+            raise ValueError(f"PU de pagamento invalido: {identity}")
+        if entry.get("unpaidInterestTreatment", "retain") not in {"capitalize", "retain", "pending"}:
+            raise ValueError(f"Tratamento dos juros pendente de correcao: {identity}")
+        seen.add(identity)
+        ids.add(entry["id"])
+    return entries
+
+
+def confirmed_payments(cota):
+    if not PAYMENTS.exists() or not cota.get("ifCodigo"):
+        return []
+    return [entry for entry in read_payments(str(PAYMENTS), PAYMENTS.stat().st_mtime_ns)
+            if entry["ifCodigo"] == cota["ifCodigo"]]
+
+
+def payment_booked(cota, payment):
+    return any(event.get("confirmationId") == payment["id"]
+               and event.get("unpaidInterestTreatment") == payment.get("unpaidInterestTreatment", "retain")
+               and dec(event.get("interestPuSource", -1)) == dec(payment["interestPu"])
+               and dec(event.get("amortizationPuSource", -1)) == dec(payment["amortizationPu"])
+               for event in cota.get("eventosAplicados") or [])
+
+
+def apply_confirmed_payment(cota, row, payment):
+    if validated_late_terms(cota):
+        raise ValueError("Pagamento com encargos de mora exige rateio confirmado dos encargos")
+    nominal, before = dec(row["valorNominal"]), dec(row["puAtualizado"])
+    interest, amort = dec(payment["interestPu"]), dec(payment["amortizationPu"])
+    quantity = dec(row["quantidade"])
+    if amort > nominal or before - interest - amort < 0:
+        raise ValueError(f"Pagamento excede o saldo: {payment['id']}")
+    remaining = terms.quantize(before - nominal - interest, 8)
+    # The screenshot can show fewer than eight decimal places; retain its rounding residual.
+    shown_unit = Decimal(1).scaleb(dec(payment["interestPu"]).as_tuple().exponent)
+    if remaining < -max(shown_unit / 2, Decimal("0.00000001")):
+        raise ValueError(f"Juros pagos excedem os juros calculados: {payment['id']}")
+    treatment = payment.get("unpaidInterestTreatment", "retain")
+    incorporated = remaining if treatment == "capitalize" and remaining > 0 else dec(0)
+    after = terms.quantize(before - interest - amort, 8)
+    principal = terms.quantize(nominal - amort + incorporated, 8)
+    retained = terms.quantize(after - principal, 8)
+    pending = treatment == "pending" and retained * quantity > Decimal("0.01")
+    paid = terms.quantize((interest + amort) * quantity, 2)
+    interest_value = terms.quantize(interest * quantity, 2)
+    amort_value = terms.quantize(amort * quantity, 2)
+    fields = dict(puAntesEvento=float(before), puAposEvento=float(after), puAtualizado=float(after),
+        puEvento=float(interest + amort), principalAntesEvento=float(nominal), principalAposEvento=float(principal),
+        valorNominal=float(principal), puJurosAntesEvento=float(before - nominal),
+        puJurosPagos=float(interest), puAmortizacao=float(amort), puJurosIncorporados=float(incorporated),
+        puJuros=float(retained), puJurosRetidosSemCapitalizacao=float(retained),
+        valorEventoReais=float(paid), valorJuros=float(interest_value), valorAmortizacao=float(amort_value),
+        ajusteArredondamentoComponentes=float(paid - interest_value - amort_value),
+        valorReais=float(after * quantity), diasUteisAntesEvento=row["diasUteisPeriodo"],
+        fatorAntesEvento=row["fator"], produtorioFatorDiAntesEvento=row["produtorioFatorDi"],
+        diasUteisPeriodo=0, puBaseCalculo=float(principal), fator=1, fatorJurosAcumulado=1,
+        produtorioFatorDi=1, fatorDiAcumulado=1, fatorAcumuladoDecimal="1", capitalizacaoPendente=pending)
+    label = "Juros / amortizacao extraordinarios" if amort and interest else "Amortizacao extraordinaria" if amort else "Juros extraordinarios"
+    row.update(fields, evento=label, confirmationId=payment["id"])
+    journal = {**fields, "data": row["data"], "dataIso": row["dataIso"],
+        "tipo": "juros_amortizacao" if amort and interest else "amortizacao" if amort else "juros",
+        "tipoEvento": label, "status": "realizado", "quantidadeNoEvento": float(quantity),
+        "ifCodigo": cota["ifCodigo"], "confirmationId": payment["id"], "fonte": payment["source"],
+        "confirmedOn": payment["confirmedOn"], "interestPuSource": payment["interestPu"],
+        "amortizationPuSource": payment["amortizationPu"], "unpaidInterestTreatment": treatment,
+        "cashNotReprocessed": True}
+    return journal
+
+
 def extend_series(cota, source, target, holidays, rates, extra_events=(), integrations=(), *, forecast_days=0):
     history = cota.get("historicoPu") or []
     last = history[-1] if history else {}
@@ -85,12 +169,23 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
     def stop(reason):
         return {**result, "reason": reason}
 
+    payments = [entry for entry in confirmed_payments(cota) if not payment_booked(cota, entry)]
+    if any(entry["date"] <= source for entry in payments):
+        return stop("Pagamento confirmado nao conciliado com a posicao importada")
+    pending_payments = {entry["date"]: entry for entry in payments}
+    if any(not engine.is_business_day(date.fromisoformat(key), holidays) for key in pending_payments):
+        raise ValueError("Pagamento confirmado fora do calendario util")
+    if pending_payments:
+        result["events"] = []
+    if target > source and last.get("capitalizacaoPendente"):
+        return stop("Confirmar tratamento dos juros nao pagos antes de projetar")
+
     unbooked = [integration for integration in integrations if not already_booked(cota, integration)]
     if any(integration["date"] <= source for integration in unbooked):
         return stop("Integralizacao confirmada nao conciliada com a posicao importada")
     pending_integrations = {integration["date"]: integration for integration in unbooked}
     if pending_integrations:
-        result["events"] = []
+        result.setdefault("events", [])
 
     if not cota.get("quantidade") or not cota.get("pu"):
         if forecast_days:
@@ -120,11 +215,14 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
         return stop("Defasagem do CDI nao confirmada")
 
     events = set(extra_events)
+    if forecast_days:
+        events.update(pending_payments)
     if not late_terms:
         events.add(cota["dataVencimentoIso"])
     for field in ("agendaPagamentos", "eventosPendentes", "eventosPrevistos", "eventosAplicados"):
         events.update(key for e in cota.get(field) or [] if (key := event_date(e))
-                      and not (late_terms and field == "agendaPagamentos" and key == cota["dataVencimentoIso"]))
+                      and not (late_terms and field == "agendaPagamentos" and key == cota["dataVencimentoIso"])
+                      and (forecast_days or key not in pending_payments))
     next_event = min((key for key in events if key > source), default="")
 
     base = dec(last.get("puBaseCalculo") or last.get("valorNominal") or cota["principalResidual"])
@@ -164,6 +262,8 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
         return base + terms.quantize(base * (applied - ONE), 8, terms.ROUND_DOWN), float(applied)
 
     initial, _ = theoretical(product, days)
+    elapsed_days = 0
+    retained = dec(last.get("puJurosRetidosSemCapitalizacao") or 0)
     known_rates = sorted(key for key, rate in rates.items() if key <= source
                          and rate.get("fonte") == "Banco Central do Brasil - SGS 12"
                          and rate.get("taxaDia") is not None) if forecast_days else []
@@ -193,6 +293,7 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
             factor = (ONE + fixed) ** (ONE / 252)
         product = terms.quantize(product * factor, 16, terms.ROUND_DOWN)
         days += 1
+        elapsed_days += 1
         calculated, combined = theoretical(product, days)
         # Preserve the imported PU, including any historical residual, as the opening balance.
         pu = terms.quantize(observed + calculated - initial, 8)
@@ -202,7 +303,7 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
             result["events"].append(integration_event(cota, integration, pu))
         rows.append({
             "data": engine.date_key_to_br(key), "dataIso": key, "diaUtil": True,
-            "diasUteis": int(last.get("diasUteis") or 0) + days - period_days, "diasUteisPeriodo": days,
+            "diasUteis": int(last.get("diasUteis") or 0) + elapsed_days, "diasUteisPeriodo": days,
             "quantidade": float(quantity), "valorNominal": float(nominal), "puAtualizado": float(pu),
             "puAntesEvento": float(pu), "puAposEvento": float(pu), "puEvento": 0,
             "valorEventoReais": float(integration["amount"]) if integration else 0,
@@ -220,10 +321,23 @@ def extend_series(cota, source, target, holidays, rates, extra_events=(), integr
             "taxaDiStatus": ("projetada" if forecast_days else "BCB_SGS_12") if reference else "prefixada",
             "lagBusinessDays": lag, "puBaseCalculo": float(base),
         })
-        if last.get("puJurosRetidosSemCapitalizacao"):
-            rows[-1]["puJurosRetidosSemCapitalizacao"] = last["puJurosRetidosSemCapitalizacao"]
+        if retained:
+            rows[-1]["puJurosRetidosSemCapitalizacao"] = float(retained)
         rows[-1] = apply_late_charges(cota, rows[-1], holidays)
+        payment = pending_payments.get(key)
+        if payment:
+            if integration:
+                raise ValueError("Integralizacao e pagamento na mesma data exigem confirmar a ordem de alocacao")
+            journal = apply_confirmed_payment(cota, rows[-1], payment)
+            result["events"].append(journal)
+            nominal = base = dec(rows[-1]["valorNominal"])
+            observed = dec(rows[-1]["puAtualizado"])
+            retained = dec(rows[-1]["puJurosRetidosSemCapitalizacao"])
+            product, days = ONE, 0
+            initial, _ = theoretical(product, days)
         result["through"] = key
+        if payment and rows[-1].get("capitalizacaoPendente") and key < target:
+            return stop("Confirmar tratamento dos juros nao pagos antes de projetar")
         if forecast_days and len(rows) >= forecast_days:
             break
     return result
@@ -264,6 +378,8 @@ def build_funding_pu(target, rates, holidays):
         seen.add(identity)
         integrations.setdefault(key, []).append(entry)
     matched = set()
+    payment_keys = {(entry["cra"], entry["ifCodigo"]) for entry in read_payments(str(PAYMENTS), PAYMENTS.stat().st_mtime_ns)} if PAYMENTS.exists() else set()
+    matched_payment_keys = set()
     vehicles = {}
     for item in manifest:
         cra = item["craId"]
@@ -280,6 +396,8 @@ def build_funding_pu(target, rates, holidays):
         for cota in snapshot["passivo"]["cotas"]:
             if cota.get("ehFunding") or cota.get("tipo") in {"sr", "mez"}:
                 key = cota.get("ifCodigo") or cota["classe"]
+                if (cra, key) in payment_keys:
+                    matched_payment_keys.add((cra, key))
                 if (cra, key) in integrations:
                     matched.add((cra, key))
                 confirmed = integrations.get((cra, key), ())
@@ -292,7 +410,30 @@ def build_funding_pu(target, rates, holidays):
         vehicles[cra] = {"sourceDate": source, "sourceRevision": revision, "series": series}
     if missing := integrations.keys() - matched:
         raise ValueError(f"Codigos de integralizacao sem serie no controle: {sorted(missing)}")
-    return {"target": target, "vehicles": vehicles}
+    if missing := payment_keys - matched_payment_keys:
+        raise ValueError(f"Codigos de pagamento sem serie no controle: {sorted(missing)}")
+    result = {"target": target, "vehicles": vehicles}
+    if PENDING_FUNDINGS.exists():
+        pending = json.loads(PENDING_FUNDINGS.read_text(encoding="utf-8"))
+        for cra, registration in pending.items():
+            funding = subordinated = dec(0)
+            for cota in registration["series"]:
+                amount = dec(cota["amount"])
+                if (cota["quantity"] <= 0 or dec(cota["unitPrice"]) <= 0
+                        or terms.quantize(dec(cota["unitPrice"]) * cota["quantity"], 2) != amount):
+                    raise ValueError(f"Integralizacao pendente invalida: {cra}")
+                if cota["kind"] == "sub":
+                    subordinated += amount
+                else:
+                    funding += amount
+            if (funding != dec(registration["fundingConfirmed"])
+                    or subordinated != dec(registration["subordinatedSubscribed"])
+                    or funding + subordinated != dec(registration["totalSubscribed"])):
+                raise ValueError(f"Totais da nova emissao nao conciliam: {cra}")
+            if any(registration[field] is not None for field in ["cashDate", "assetDate", "residualSubValue", "residualSubPu"]):
+                raise ValueError(f"Ativar a emissao no cadastro principal antes de apurar posicoes: {cra}")
+        result["pendingRegistrations"] = pending
+    return result
 
 
 def main():

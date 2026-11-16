@@ -53,5 +53,25 @@
     "unitPrice": "974.70584841",
     "amount": "1501047.01",
     "source": "Liquidacao 74 - 0911"
+  },
+  {
+    "cra": "cra-carteira-80",
+    "ifCodigo": "CRA02600799",
+    "date": "2026-11-11",
+    "quantity": 3245,
+    "unitPrice": "1009.35837800",
+    "amount": "3275367.94",
+    "source": "Liquidacao 80 - 1111",
+    "confirmedOn": "2026-11-16"
+  },
+  {
+    "cra": "cra-carteira-71",
+    "ifCodigo": "CRA026004HI",
+    "date": "2026-11-11",
+    "quantity": 2640,
+    "unitPrice": "1021.68978600",
+    "amount": "2697261.04",
+    "source": "Liquidacao 71 - 1111",
+    "confirmedOn": "2026-11-16"
   }
 ]
